@@ -1,7 +1,8 @@
 {
   "name": "@folio/data-export",
   "version": "1.0.0",
-  "description": "Data Export manager",
+  "description": "Data export manager",
+  "main": "src/index.js",
   "repository": "folio-org/ui-data-export",
   "publishConfig": {
     "registry": "https://repository.folio.org/repository/npm-folio/"
@@ -9,5 +10,70 @@
   "license": "Apache-2.0",
   "engines": {
     "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "lint": "eslint .",
+    "lintfix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@folio/eslint-config-stripes": "^4.1.0",
+    "@folio/stripes-core": "^3.3.0",
+    "@folio/stripes-smart-components": "^2.12.0",
+    "@folio/stripes": "^2.12.0",
+    "@folio/stripes-acq-components": "^1.3.0",
+    "babel-eslint": "^9.0.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^5.5.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-no-only-tests": "^2.3.1",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.16.4",
+    "prop-types": "^15.6.0",
+    "react-intl": "^2.3.0",
+    "react-router-dom": "^4.0.0",
+    "redux-form": "^7.0.3",
+    "react-router-prop-types": "^1.0.4"
+  },
+  "peerDependencies": {
+    "@folio/stripes": "^2.12.0",
+    "react": "*",
+    "react-router": "*",
+    "react-router-dom": "*"
+  },
+  "stripes": {
+    "actsAs": ["app", "settings"],
+    "displayName": "ui-data-export.meta.title",
+    "route": "/data-export",
+    "queryResource": "query",
+    "icons": [
+      {
+        "name": "app",
+        "alt": "Data export loader for MARC records",
+        "title": "Data export"
+      }
+    ],
+    "permissionSets": [
+      {
+        "permissionName": "module.data-export.enabled",
+        "displayName": "UI: Data export module is enabled",
+        "subPermissions": [],
+        "visible": true
+      },
+      {
+        "permissionName": "settings.data-export.enabled",
+        "displayName": "Settings (data-export): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": true
+      }
+    ]
   }
 }
