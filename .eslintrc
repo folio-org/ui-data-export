@@ -9,11 +9,7 @@
       "legacyDecorators": true
     }
   },
-  "plugins": [
-    "babel",
-    "no-only-tests",
-    "react-hooks"
-  ],
+  "plugins": ["babel"],
   "root": true,
   "rules": {
     "key-spacing": [
@@ -22,8 +18,8 @@
         "beforeColon": false
       }
     ],
-    "import/no-extraneous-dependencies": 0,
-    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
     "padding-line-between-statements": [
       "error",
       {
@@ -82,7 +78,7 @@
         "skipUndeclared": true
       }
     ],
-    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-one-expression-per-line": "off",
     "react/jsx-wrap-multilines": [
       "error"
     ],
@@ -113,20 +109,6 @@
       "error",
       "unix"
     ],
-    "no-only-tests/no-only-tests": [
-      "warn",
-      {
-        "block": [
-          "describe",
-          "it"
-        ],
-        "focus": [
-          "only",
-          "skip"
-        ]
-      }
-    ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react/jsx-no-useless-fragment": "error"
   }
 }
