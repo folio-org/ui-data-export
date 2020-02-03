@@ -1,0 +1,8 @@
+.upload {
+  composes: upload from "@folio/stripes-data-transfer-components/lib/FileUploader/FileUploader.css";
+  height: 150px;
+}
+
+.activeUpload {
+  composes: activeUpload from "@folio/stripes-data-transfer-components/lib/FileUploader/FileUploader.css";
+}
