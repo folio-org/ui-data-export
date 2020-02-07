@@ -3,7 +3,8 @@
   "settings.index.paneTitle": "Data export",
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",
-  "uploadTitle": "Drag and drop",
-  "uploadBtnText": "or choose file",
-  "uploadSubTitle": "Select a file with records IDs or CQL queries"
+  "uploaderTitle": "Drag and drop",
+  "uploaderBtnText": "or choose file",
+  "uploaderSubTitle": "Select a file with records IDs or CQL queries",
+  "uploaderActiveTitle": "Drop to start import"
 }

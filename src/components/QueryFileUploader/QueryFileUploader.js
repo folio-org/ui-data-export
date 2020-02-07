@@ -5,10 +5,14 @@ import { noop } from 'lodash';
 import { FileUploader } from '@folio/stripes-data-transfer-components';
 import { Layout } from '@folio/stripes-components';
 
-import css from './ImportRecords.css';
+import css from './QueryFileUploader.css';
 
-export function ImportRecords() {
+export function QueryFileUploader() {
   const [isDropZoneActive, setDropZoneActive] = useState(false);
+
+  const uploaderTitle = isDropZoneActive ?
+    <FormattedMessage id="ui-data-export.uploaderActiveTitle" /> :
+    <FormattedMessage id="ui-data-export.uploaderTitle" />;
 
   function onDragEnter() {
     setDropZoneActive(true);
@@ -21,8 +25,8 @@ export function ImportRecords() {
   return (
     <FileUploader
       multiple={false}
-      title={<FormattedMessage id="ui-data-export.uploadTitle" />}
-      uploadButtonText={<FormattedMessage id="ui-data-export.uploadBtnText" />}
+      title={uploaderTitle}
+      uploadButtonText={<FormattedMessage id="ui-data-export.uploaderBtnText" />}
       isDropZoneActive={isDropZoneActive}
       className={css.upload}
       activeClassName={css.activeUpload}
@@ -31,7 +35,9 @@ export function ImportRecords() {
       onDrop={noop}
     >
       <Layout className="padding-top-gutter padding-start-gutter padding-end-gutter textCentered">
-        <FormattedMessage id="ui-data-export.uploadSubTitle" />
+        <span data-test-sub-title>
+          <FormattedMessage id="ui-data-export.uploaderSubTitle" />
+        </span>
       </Layout>
     </FileUploader>
   );
