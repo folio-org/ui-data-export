@@ -1,2 +1,3 @@
-export * from './app-display-interactor';
-export * from './settings-display-interactor';
+export * from './appDisplayInteractor';
+export * from './settingsDisplayInteractor';
+export * from './queryFileUploaderInteractor';

@@ -9,8 +9,7 @@ import {
 } from '@folio/stripes/core';
 
 import { DataExportSettings } from './settings';
-
-const Home = React.lazy(() => import('./routes/Home'));
+import Home from './routes/Home';
 
 export default function DataExport(props) {
   const {
@@ -23,15 +22,13 @@ export default function DataExport(props) {
   }
 
   return (
-    <React.Suspense fallback={null}>
-      <Switch>
-        <Route
-          path={path}
-          exact
-          component={Home}
-        />
-      </Switch>
-    </React.Suspense>
+    <Switch>
+      <Route
+        path={path}
+        exact
+        component={Home}
+      />
+    </Switch>
   );
 }
 

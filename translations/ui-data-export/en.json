@@ -1,4 +1,10 @@
 {
   "meta.title": "Data export",
-  "settings.index.paneTitle": "Data export"
+  "settings.index.paneTitle": "Data export",
+  "jobsPaneTitle": "Jobs",
+  "logsPaneTitle": "Logs",
+  "uploaderTitle": "Drag and drop",
+  "uploaderBtnText": "or choose file",
+  "uploaderSubTitle": "Select a file with records IDs or CQL queries",
+  "uploaderActiveTitle": "Drop to start import"
 }
