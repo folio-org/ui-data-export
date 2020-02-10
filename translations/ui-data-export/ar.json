@@ -1,4 +1,10 @@
 {
     "meta.title": "تصدير البيانات",
-    "settings.index.paneTitle": "تصدير البيانات"
+    "settings.index.paneTitle": "تصدير البيانات",
+    "jobsPaneTitle": "وظائف",
+    "logsPaneTitle": "سجلات",
+    "uploaderTitle": "سحب وإفلات",
+    "uploaderBtnText": "أو اختر ملف",
+    "uploaderSubTitle": "Select a file with records IDs or CQL queries",
+    "uploaderActiveTitle": "قم بالإسقاط لبدء الاستيراد"
 }

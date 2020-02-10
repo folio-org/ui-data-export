@@ -1,4 +1,10 @@
 {
     "meta.title": "Esportazione dei dati",
-    "settings.index.paneTitle": "Esportazione dei dati"
+    "settings.index.paneTitle": "Esportazione dei dati",
+    "jobsPaneTitle": "Procedure",
+    "logsPaneTitle": "Log",
+    "uploaderTitle": "Trascina e rilascia",
+    "uploaderBtnText": "o scegli il file",
+    "uploaderSubTitle": "Seleziona un file con ID record o query CQL",
+    "uploaderActiveTitle": "Rilascia per iniziare l'importazione"
 }

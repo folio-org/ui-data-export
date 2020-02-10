@@ -1,4 +1,10 @@
 {
     "meta.title": "Export de données",
-    "settings.index.paneTitle": "Export de données"
+    "settings.index.paneTitle": "Export de données",
+    "jobsPaneTitle": "Tâches",
+    "logsPaneTitle": "Logs",
+    "uploaderTitle": "Glisser-déposer",
+    "uploaderBtnText": "ou choisir un fichier",
+    "uploaderSubTitle": "Select a file with records IDs or CQL queries",
+    "uploaderActiveTitle": "Déposer pour démarrer l'importation"
 }

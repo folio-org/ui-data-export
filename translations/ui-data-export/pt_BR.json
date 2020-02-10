@@ -1,4 +1,10 @@
 {
     "meta.title": "Exportação de dados",
-    "settings.index.paneTitle": "Exportação de dados"
+    "settings.index.paneTitle": "Exportação de dados",
+    "jobsPaneTitle": "Jobs",
+    "logsPaneTitle": "Logs",
+    "uploaderTitle": "Arrastar e soltar",
+    "uploaderBtnText": "ou escolha o arquivo",
+    "uploaderSubTitle": "Selecione um arquivo com IDs de registros ou consultas CQL",
+    "uploaderActiveTitle": "Solte para iniciar a importação"
 }
