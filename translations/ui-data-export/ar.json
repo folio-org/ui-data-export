@@ -5,6 +5,6 @@
     "logsPaneTitle": "سجلات",
     "uploaderTitle": "سحب وإفلات",
     "uploaderBtnText": "أو اختر ملف",
-    "uploaderSubTitle": "Select a file with records IDs or CQL queries",
+    "uploaderSubTitle": "اختر ملف بمعرفات التسجيلات أو استعلامات CQL",
     "uploaderActiveTitle": "قم بالإسقاط لبدء الاستيراد"
 }
