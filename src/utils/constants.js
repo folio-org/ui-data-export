@@ -1,0 +1,5 @@
+export const JOB_STATUSES = {
+  QUEUED: 'QUEUED',
+  SCHEDULED: 'SCHEDULED',
+  RUNNING: 'RUNNING',
+};

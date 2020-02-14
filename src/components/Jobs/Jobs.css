@@ -1,0 +1,6 @@
+@import "@folio/stripes-components/lib/variables.css";
+
+.jobsContainer {
+  margin-top: 20px;
+  margin-left: var(--input-horizontal-padding);
+}
