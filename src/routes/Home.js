@@ -6,7 +6,10 @@ import {
   Pane,
 } from '@folio/stripes-components';
 
-import { QueryFileUploader } from '../components';
+import {
+  QueryFileUploader,
+  Jobs,
+} from '../components';
 
 export default function Home() {
   return (
@@ -21,6 +24,7 @@ export default function Home() {
         )}
       >
         <QueryFileUploader />
+        <Jobs />
       </Pane>
       <Pane
         data-test-logs-pane
