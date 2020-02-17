@@ -6,5 +6,15 @@
     "uploaderTitle": "Trascina e rilascia",
     "uploaderBtnText": "o scegli il file",
     "uploaderSubTitle": "Seleziona un file con ID record o query CQL",
-    "uploaderActiveTitle": "Rilascia per iniziare l'importazione"
+    "uploaderActiveTitle": "Rilascia per iniziare l'importazione",
+    "runningJobs": "Running",
+    "triggeredBy": "Triggered by {userName}",
+    "jobProfileLabel": "Job profile: {jobProfile}",
+    "inProgressStatus": "In progress",
+    "beganRunning": "Began {time}",
+    "noRunningJobsMessage": "No running jobs to show",
+    "today": "Today",
+    "cancel": "Cancel",
+    "pause": "Pause",
+    "resume": "Resume"
 }

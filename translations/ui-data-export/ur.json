@@ -6,5 +6,15 @@
     "uploaderTitle": "Drag and drop",
     "uploaderBtnText": "or choose file",
     "uploaderSubTitle": "Select a file with records IDs or CQL queries",
-    "uploaderActiveTitle": "Drop to start import"
+    "uploaderActiveTitle": "Drop to start import",
+    "runningJobs": "کام چل رہا ہے",
+    "triggeredBy": "آغاز {صارف نام}",
+    "jobProfileLabel": "کام کی نوعیت",
+    "inProgressStatus": "کام جاری ہے",
+    "beganRunning": "شروع {وقت}",
+    "noRunningJobsMessage": "کوئی ہدایت نہیں چل رہی ہے",
+    "today": "آج",
+    "cancel": "منسوخ",
+    "pause": "روکیں",
+    "resume": "دوبارہ شروع کریں"
 }

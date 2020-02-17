@@ -5,6 +5,16 @@
     "logsPaneTitle": "Logs",
     "uploaderTitle": "Glisser-déposer",
     "uploaderBtnText": "ou choisir un fichier",
-    "uploaderSubTitle": "Select a file with records IDs or CQL queries",
-    "uploaderActiveTitle": "Déposer pour démarrer l'importation"
+    "uploaderSubTitle": "Sélectionnez un fichier avec des ID d'enregistrement ou des requêtes CQL",
+    "uploaderActiveTitle": "Déposer pour démarrer l'importation",
+    "runningJobs": "En cours d'exécution",
+    "triggeredBy": "Déclenché par {userName}",
+    "jobProfileLabel": "Profil de tâche: {jobProfile}",
+    "inProgressStatus": "En cours",
+    "beganRunning": "A commencé à {time}",
+    "noRunningJobsMessage": "Aucune tâche en cours d'exécution à afficher",
+    "today": "Aujourd'hui",
+    "cancel": "Annuler",
+    "pause": "Pause",
+    "resume": "Reprendre"
 }
