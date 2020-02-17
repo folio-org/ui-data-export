@@ -6,5 +6,15 @@
     "uploaderTitle": "سحب وإفلات",
     "uploaderBtnText": "أو اختر ملف",
     "uploaderSubTitle": "اختر ملف بمعرفات التسجيلات أو استعلامات CQL",
-    "uploaderActiveTitle": "قم بالإسقاط لبدء الاستيراد"
+    "uploaderActiveTitle": "قم بالإسقاط لبدء الاستيراد",
+    "runningJobs": "جاري التشغيل",
+    "triggeredBy": "ناتج عن {userName}",
+    "jobProfileLabel": "وضع الوظيفة: {jobProfile}",
+    "inProgressStatus": "قيد التقدم",
+    "beganRunning": "بدأ {time}",
+    "noRunningJobsMessage": "لا توجد مهام قيد التشغيل للعرض",
+    "today": "اليوم",
+    "cancel": "إلغاء",
+    "pause": "توقف",
+    "resume": "استئناف"
 }

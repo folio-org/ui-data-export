@@ -6,5 +6,15 @@
     "uploaderTitle": "Arrastar e soltar",
     "uploaderBtnText": "ou escolha o arquivo",
     "uploaderSubTitle": "Selecione um arquivo com IDs de registros ou consultas CQL",
-    "uploaderActiveTitle": "Solte para iniciar a importação"
+    "uploaderActiveTitle": "Solte para iniciar a importação",
+    "runningJobs": "Executando",
+    "triggeredBy": "Disparado por {userName}",
+    "jobProfileLabel": "Perfil do job: {jobProfile}",
+    "inProgressStatus": "Em andamento",
+    "beganRunning": "Começou {time}",
+    "noRunningJobsMessage": "Nenhum job em execução para exibir",
+    "today": "Hoje",
+    "cancel": "Cancelar",
+    "pause": "Pausa",
+    "resume": "Continuar"
 }
