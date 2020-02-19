@@ -70,7 +70,11 @@
       {
         "permissionName": "module.data-export.enabled",
         "displayName": "UI: Data export module is enabled",
-        "subPermissions": [],
+        "subPermissions": [
+          "data-export.file-definitions.item.post",
+          "data-export.file-definitions.upload.post",
+          "data-export.export.post"
+        ],
         "visible": true
       },
       {

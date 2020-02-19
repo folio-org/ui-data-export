@@ -102,6 +102,7 @@
       "error",
       "as-needed"
     ],
+    "no-use-before-define": "off",
     "prefer-template": "error",
     "no-else-return": "error",
     "newline-per-chained-call": "error",
