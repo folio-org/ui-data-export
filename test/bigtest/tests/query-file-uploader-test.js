@@ -9,6 +9,15 @@ import translation from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
 import { queryFileUploaderInteractor } from '../interactors';
 
+function initiateFileUpload(files = []) {
+  return queryFileUploaderInteractor.triggerDrop({
+    dataTransfer: {
+      types: ['Files'],
+      files,
+    },
+  });
+}
+
 function testUploaderInactiveMode() {
   it('should display title for inactive uploader area', () => {
     expect(queryFileUploaderInteractor.title).to.equal(translation.uploaderTitle);
@@ -65,5 +74,41 @@ describe('queryFileUploader component', () => {
     });
 
     testUploaderInactiveMode();
+  });
+
+  describe('triggering drop on uploader area with no files', () => {
+    beforeEach(async () => {
+      await initiateFileUpload();
+    });
+
+    it.always('should not initiate uploading process', () => {
+      expect(queryFileUploaderInteractor.hasPreloader).to.be.false;
+    });
+  });
+
+  describe('triggering drop on uploader area with file in case of success API responses', () => {
+    beforeEach(async () => {
+      await initiateFileUpload([new File([], 'file.csv')]);
+    });
+
+    it('should show preloader indicator', () => {
+      expect(queryFileUploaderInteractor.hasPreloader).to.be.true;
+    });
+
+    it.always('should not show error notification', () => {
+      expect(queryFileUploaderInteractor.callout.errorCalloutIsPresent).to.be.false;
+    });
+  });
+
+  describe('triggering drop on uploader area with file in case of error API response', () => {
+    beforeEach(async function () {
+      this.server.post('/data-export/export', {}, 500);
+
+      await initiateFileUpload([new File([], 'file.csv')]);
+    });
+
+    it('should show error notification', () => {
+      expect(queryFileUploaderInteractor.callout.errorCalloutIsPresent).to.be.true;
+    });
   });
 });
