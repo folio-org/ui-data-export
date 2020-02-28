@@ -111,4 +111,48 @@ describe('queryFileUploader component', () => {
       expect(queryFileUploaderInteractor.callout.errorCalloutIsPresent).to.be.true;
     });
   });
+
+  describe('error modal showing with invalid type file', () => {
+    beforeEach(async () => {
+      await initiateFileUpload([new File([], 'file.pdf')]);
+    });
+
+    it('should render error modal', () => {
+      expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.true;
+    });
+
+    it('should display correct header', () => {
+      expect(queryFileUploaderInteractor.fileExtensionModal.header.text).to.equal(translation['modal.fileExtensions.blocked.header']);
+    });
+
+    describe('cancel button clicked', () => {
+      beforeEach(async () => {
+        await queryFileUploaderInteractor.fileExtensionModal.cancelButton.click();
+      });
+
+      it('should close modal', () => {
+        expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
+      });
+    });
+
+    describe('action (confirm) button clicked', () => {
+      beforeEach(async () => {
+        await queryFileUploaderInteractor.fileExtensionModal.confirmButton.click();
+      });
+
+      it('should close modal', () => {
+        expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
+      });
+    });
+  });
+
+  describe('error modal not showing with csv type file', () => {
+    beforeEach(async () => {
+      await initiateFileUpload([new File([], 'file.csv')]);
+    });
+
+    it('should not render error modal', () => {
+      expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
+    });
+  });
 });

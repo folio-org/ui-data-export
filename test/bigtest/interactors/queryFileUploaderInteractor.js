@@ -7,7 +7,12 @@ import {
   isPresent,
 } from '@bigtest/interactor';
 
+import ConfirmationModalInteractor from '@folio/stripes-components/lib/ConfirmationModal/tests/interactor';
 import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
+
+class FileExtensionsModal extends ConfirmationModalInteractor {
+  header = new Interactor('[data-test-file-extension-modal-header]');
+}
 
 @interactor class QueryFileUploaderInteractor {
   static defaultScope = '#ModuleContainer';
@@ -22,6 +27,7 @@ import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/inter
   hasPreloader = isPresent('[data-test-preloader]');
   hasActiveClass = is('[class*="activeUpload---"]');
   callout = new CalloutInteractor();
+  fileExtensionModal = new FileExtensionsModal('#file-extension-modal');
 }
 
 export const queryFileUploaderInteractor = new QueryFileUploaderInteractor('[class*="upload---"]');

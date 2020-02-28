@@ -6,3 +6,4 @@
 * Add dependency on @folio/stripes-data-transfer-components. Add file uploader feature on landing page. Refs UIDEXP-11.
 * Add running jobs components to display temp static data. Refs UIDEXP-6.
 * Implement logic for initiating the export job process once the user has selected file. Refs UIDEXP-20.
+* Add validation to QueryFileUploaderComponent to let user upload only file with csv extension. UIDEXP-21.
