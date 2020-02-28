@@ -68,11 +68,11 @@ const QueryFileUploaderComponent = props => {
     setLoading(active);
   };
 
-  const showFileExtensionsModal = () => {
+  const showFileExtensionModal = () => {
     setFileExtensionModalOpen(true);
   };
 
-  const hideFileExtensionsModal = () => {
+  const hideFileExtensionModal = () => {
     setFileExtensionModalOpen(false);
   };
 
@@ -86,7 +86,7 @@ const QueryFileUploaderComponent = props => {
     const haveCsvExtension = checkFileHaveCsvExtension(fileToUpload);
 
     if (!haveCsvExtension) {
-      showFileExtensionsModal();
+      showFileExtensionModal();
 
       return;
     }
@@ -163,15 +163,19 @@ const QueryFileUploaderComponent = props => {
             <ConfirmationModal
               id="file-extension-modal"
               open={fileExtensionModalOpen}
-              heading={<span data-test-file-extension-modal-header><FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.header" /></span>}
+              heading={(
+                <span data-test-file-extension-modal-header>
+                  <FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.header" />
+                </span>
+              )}
               message={<FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.message" />}
               confirmLabel={<FormattedMessage id="ui-data-export.modal.fileExtensions.actionButton" />}
               cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
               onConfirm={() => {
-                hideFileExtensionsModal();
+                hideFileExtensionModal();
                 openDialogWindow();
               }}
-              onCancel={hideFileExtensionsModal}
+              onCancel={hideFileExtensionModal}
             />
           </>
         )}

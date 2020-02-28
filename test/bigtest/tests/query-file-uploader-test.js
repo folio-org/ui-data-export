@@ -7,10 +7,7 @@ import {
 
 import translation from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
-import {
-  queryFileUploaderInteractor,
-  fileExtensionModal,
-} from '../interactors';
+import { queryFileUploaderInteractor } from '../interactors';
 
 function initiateFileUpload(files = []) {
   return queryFileUploaderInteractor.triggerDrop({
@@ -121,30 +118,30 @@ describe('queryFileUploader component', () => {
     });
 
     it('should render error modal', () => {
-      expect(fileExtensionModal.isPresent).to.be.true;
+      expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.true;
     });
 
     it('should display correct header', () => {
-      expect(fileExtensionModal.header.text).to.equal(translation['modal.fileExtensions.blocked.header']);
+      expect(queryFileUploaderInteractor.fileExtensionModal.header.text).to.equal(translation['modal.fileExtensions.blocked.header']);
     });
 
     describe('cancel button clicked', () => {
       beforeEach(async () => {
-        await fileExtensionModal.cancelButton.click();
+        await queryFileUploaderInteractor.fileExtensionModal.cancelButton.click();
       });
 
       it('should close modal', () => {
-        expect(fileExtensionModal.isPresent).to.be.false;
+        expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
       });
     });
 
-    describe('"Choose other files" button clicked', () => {
+    describe('action (confirm) button clicked', () => {
       beforeEach(async () => {
-        await fileExtensionModal.confirmButton.click();
+        await queryFileUploaderInteractor.fileExtensionModal.confirmButton.click();
       });
 
       it('should close modal', () => {
-        expect(fileExtensionModal.isPresent).to.be.false;
+        expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
       });
     });
   });
@@ -155,7 +152,7 @@ describe('queryFileUploader component', () => {
     });
 
     it('should not render error modal', () => {
-      expect(fileExtensionModal.isPresent).to.be.false;
+      expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
     });
   });
 });
