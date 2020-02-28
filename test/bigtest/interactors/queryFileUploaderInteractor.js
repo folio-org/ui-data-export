@@ -7,6 +7,7 @@ import {
   isPresent,
 } from '@bigtest/interactor';
 
+import ConfirmationModalInteractor from '@folio/stripes-components/lib/ConfirmationModal/tests/interactor';
 import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
 
 @interactor class QueryFileUploaderInteractor {
@@ -24,4 +25,9 @@ import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/inter
   callout = new CalloutInteractor();
 }
 
+class FileExtensionsModal extends ConfirmationModalInteractor {
+  header = new Interactor('[data-test-file-extension-modal-header]');
+}
+
+export const fileExtensionModal = new FileExtensionsModal('#file-extension-modal');
 export const queryFileUploaderInteractor = new QueryFileUploaderInteractor('[class*="upload---"]');

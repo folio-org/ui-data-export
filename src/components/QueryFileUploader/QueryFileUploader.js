@@ -15,20 +15,25 @@ import {
 import {
   Layout,
   Callout,
+  ConfirmationModal,
 } from '@folio/stripes-components';
 import {
   useStripes,
   stripesConnect,
 } from '@folio/stripes-core';
 
-import { generateFileDefinitionBody } from './utils';
+import {
+  generateFileDefinitionBody,
+  checkFileHaveCsvExtension,
+} from './utils';
 
 import css from './QueryFileUploader.css';
 
-function QueryFileUploaderComponent(props) {
+const QueryFileUploaderComponent = props => {
   const { mutator } = props;
 
   const [isDropZoneActive, setDropZoneActive] = useState(false);
+  const [fileExtensionModalOpen, setFileExtensionModalOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const calloutRef = useRef(null);
   const currentFileUploadXhr = useRef(null);
@@ -50,18 +55,26 @@ function QueryFileUploaderComponent(props) {
     };
   }, []);
 
-  function handleDragEnter() {
+  const handleDragEnter = () => {
     setDropZoneActive(true);
-  }
+  };
 
-  function handleDragLeave() {
+  const handleDragLeave = () => {
     setDropZoneActive(false);
-  }
+  };
 
-  function setDropZone(active = true) {
+  const setDropZone = (active = true) => {
     setDropZoneActive(active);
     setLoading(active);
-  }
+  };
+
+  const showFileExtensionsModal = () => {
+    setFileExtensionModalOpen(true);
+  };
+
+  const hideFileExtensionsModal = () => {
+    setFileExtensionModalOpen(false);
+  };
 
   async function handleDrop(acceptedFiles) {
     const { okapi } = stripes;
@@ -69,6 +82,14 @@ function QueryFileUploaderComponent(props) {
     const fileToUpload = acceptedFiles[0];
 
     if (!fileToUpload) return;
+
+    const haveCsvExtension = checkFileHaveCsvExtension(fileToUpload);
+
+    if (!haveCsvExtension) {
+      showFileExtensionsModal();
+
+      return;
+    }
 
     setDropZone();
 
@@ -105,19 +126,19 @@ function QueryFileUploaderComponent(props) {
     }
   }
 
-  function handleFileUploadProgress(file, { loaded: uploadedValue }) {
+  const handleFileUploadProgress = (file, { loaded: uploadedValue }) => {
     // TODO: handle file progress once the file uploading occurs on the choose job profile page
     console.log(uploadedValue); // eslint-disable-line no-console
-  }
+  };
 
-  function handleUploadError() {
+  const handleUploadError = () => {
     if (!calloutRef.current) return;
 
     calloutRef.current.sendCallout({
       type: 'error',
       message: <FormattedMessage id="ui-data-import.communicationProblem" />,
     });
-  }
+  };
 
   return (
     <>
@@ -132,16 +153,33 @@ function QueryFileUploaderComponent(props) {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <Layout className="padding-top-gutter padding-start-gutter padding-end-gutter textCentered">
-          <span data-test-sub-title>
-            <FormattedMessage id="ui-data-export.uploaderSubTitle" />
-          </span>
-        </Layout>
+        {openDialogWindow => (
+          <>
+            <Layout className="padding-top-gutter padding-start-gutter padding-end-gutter textCentered">
+              <span data-test-sub-title>
+                <FormattedMessage id="ui-data-export.uploaderSubTitle" />
+              </span>
+            </Layout>
+            <ConfirmationModal
+              id="file-extension-modal"
+              open={fileExtensionModalOpen}
+              heading={<span data-test-file-extension-modal-header><FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.header" /></span>}
+              message={<FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.message" />}
+              confirmLabel={<FormattedMessage id="ui-data-export.modal.fileExtensions.actionButton" />}
+              cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
+              onConfirm={() => {
+                hideFileExtensionsModal();
+                openDialogWindow();
+              }}
+              onCancel={hideFileExtensionsModal}
+            />
+          </>
+        )}
       </FileUploader>
       <Callout ref={calloutRef} />
     </>
   );
-}
+};
 
 QueryFileUploaderComponent.propTypes = {
   mutator: PropTypes.shape({
