@@ -17,5 +17,8 @@
     "cancel": "إلغاء",
     "pause": "توقف",
     "resume": "استئناف",
-    "uploading": "تحميل"
+    "uploading": "تحميل",
+    "modal.fileExtensions.blocked.header": "ملف غير صالح",
+    "modal.fileExtensions.blocked.message": "يمكن فقط تحميل الملفات ذات امتداد csv",
+    "modal.fileExtensions.actionButton": "اختر ملفات أخرى للتحميل"
 }

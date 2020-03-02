@@ -11,11 +11,14 @@
     "triggeredBy": "Déclenché par {userName}",
     "jobProfileLabel": "Profil de tâche: {jobProfile}",
     "inProgressStatus": "En cours",
-    "beganRunning": "A commencé à {time}",
+    "beganRunning": "A commencé à{time}",
     "noRunningJobsMessage": "Aucune tâche en cours d'exécution à afficher",
     "today": "Aujourd'hui",
     "cancel": "Annuler",
     "pause": "Pause",
     "resume": "Reprendre",
-    "uploading": "Chargement..."
+    "uploading": "Chargement...",
+    "modal.fileExtensions.blocked.header": "Fichier invalide",
+    "modal.fileExtensions.blocked.message": "Seulement un fichier avec une extenstion CSV peut être téléversé",
+    "modal.fileExtensions.actionButton": "Choisir un autre fichier à téléverser"
 }
