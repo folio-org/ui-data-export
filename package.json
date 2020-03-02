@@ -66,6 +66,9 @@
         "title": "Data export"
       }
     ],
+    "okapiInterfaces": {
+      "data-export": "1.0"
+    },
     "permissionSets": [
       {
         "permissionName": "module.data-export.enabled",
