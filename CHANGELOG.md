@@ -7,3 +7,4 @@
 * Add running jobs components to display temp static data. Refs UIDEXP-6.
 * Implement logic for initiating the export job process once the user has selected file. Refs UIDEXP-20.
 * Add validation to QueryFileUploaderComponent to let user upload only file with csv extension. UIDEXP-21.
+* Updated `stripes` to `v3.0.0`, `stripes-core` to `4.0.0` and `react-intl` to `2.9.0`. UIDEXP-30.
