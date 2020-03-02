@@ -202,6 +202,7 @@ QueryFileUploaderComponent.manifest = Object.freeze({
   export: {
     type: 'okapi',
     path: 'data-export/export',
+    clientGeneratePk: false,
     throwErrors: false,
     fetch: false,
   },
