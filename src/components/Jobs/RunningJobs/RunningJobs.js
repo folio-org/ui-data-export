@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { isEmpty } from 'lodash';
 
 import {
   sortRunningJobs,
@@ -8,6 +10,7 @@ import {
 import { JOB_STATUSES } from '../../../utils/constants';
 import ItemFormatter from './ItemFormatter';
 import tempData from './tempData';
+import { DataFetcherContext } from '../../../contexts/DataFetcherContext';
 
 const prepareJobsData = jobs => {
   const jobStatuses = [JOB_STATUSES.RUNNING];
@@ -17,12 +20,15 @@ const prepareJobsData = jobs => {
 };
 
 const RunningJobs = () => {
-  const hasLoaded = true;
-  const jobs = prepareJobsData(tempData);
+  const {
+    jobs: realData,
+    hasLoaded,
+  } = useContext(DataFetcherContext);
+  const jobs = isEmpty(realData) ? tempData : realData; // TODO: remove tempData once backend is ready (MDEXP-69)
 
   return (
     <JobsListAccordion
-      jobs={jobs}
+      jobs={prepareJobsData(jobs)}
       hasLoaded={hasLoaded}
       itemFormatter={ItemFormatter}
       titleId="ui-data-export.runningJobs"
