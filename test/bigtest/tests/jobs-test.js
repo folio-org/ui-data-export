@@ -9,16 +9,16 @@ import translation from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
 import {
   JobsInteractor,
-  RunningJobInteractor,
+  RunningJobsInteractor,
 } from '../interactors';
-import tempData from '../../../src/components/Jobs/RunningJobs/tempData';
+
+import { sampleJobExecution } from '../network/scenarios/fetch-job-profiles-success';
 
 describe('Jobs lists', () => {
-  const runningJobData = tempData[0];
   const jobs = new JobsInteractor();
-  const runningJob = new RunningJobInteractor();
+  const runningJobs = new RunningJobsInteractor();
 
-  setupApplication();
+  setupApplication({ scenarios: ['fetch-job-profiles-success'] });
 
   beforeEach(async function () {
     this.visit('/data-export');
@@ -40,46 +40,50 @@ describe('Jobs lists', () => {
       expect(jobs.accordions(0).title.text).to.equal(translation.runningJobs);
     });
 
+    it('should display correct amount of running jobs', () => {
+      expect(runningJobs.jobItemsAmount).to.equal(3);
+    });
+
     it('should display running job', () => {
-      expect(runningJob.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).isPresent).to.be.true;
     });
 
     it('should display correct job profile name', () => {
-      expect(runningJob.jobProfileName).to.equal(runningJobData.jobProfileInfo.name);
+      expect(runningJobs.jobItems(0).jobProfileName).to.equal(sampleJobExecution.jobProfileInfo.name);
     });
 
     it('should display correct file name', () => {
-      expect(runningJob.fileName).to.equal(runningJobData.fileName);
+      expect(runningJobs.jobItems(0).fileName).to.equal(sampleJobExecution.fileName);
     });
 
     it('should display correct human readable id', () => {
-      expect(runningJob.hrId).to.equal(String(runningJobData.hrId));
+      expect(runningJobs.jobItems(0).hrId).to.equal(String(sampleJobExecution.hrId));
     });
 
     it('should display correct triggered by name', () => {
       const {
         firstName,
         lastName,
-      } = runningJobData.runBy;
+      } = sampleJobExecution.runBy;
 
-      expect(runningJob.triggeredBy).to.equal(`Triggered by ${firstName} ${lastName}`);
+      expect(runningJobs.jobItems(0).triggeredBy).to.equal(`Triggered by ${firstName} ${lastName}`);
     });
 
-    it('should display progress bar', () => {
-      expect(runningJob.progressBar.isPresent).to.be.true;
+    it('should display job profile name', () => {
+      expect(runningJobs.jobItems(0).jobProfileName).to.exist;
     });
 
     it('should display buttons', () => {
-      expect(runningJob.buttons.isPresent).to.be.true;
-      expect(runningJob.buttons.cancel.isPresent).to.be.true;
-      expect(runningJob.buttons.pause.isPresent).to.be.true;
-      expect(runningJob.buttons.resume.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).buttons.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).buttons.cancel.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).buttons.pause.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).buttons.resume.isPresent).to.be.true;
     });
 
     it('should apply correct translations to buttons', () => {
-      expect(runningJob.buttons.cancel.text).to.equal(translation.cancel);
-      expect(runningJob.buttons.pause.text).to.equal(translation.pause);
-      expect(runningJob.buttons.resume.text).to.equal(translation.resume);
+      expect(runningJobs.jobItems(0).buttons.cancel.text).to.equal(translation.cancel);
+      expect(runningJobs.jobItems(0).buttons.pause.text).to.equal(translation.pause);
+      expect(runningJobs.jobItems(0).buttons.resume.text).to.equal(translation.resume);
     });
   });
 });

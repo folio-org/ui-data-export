@@ -19,16 +19,6 @@ import {
 import { DataFetcherContext } from '../contexts/DataFetcherContext';
 import { JOB_EXECUTION_STATUSES } from '../utils/constants';
 
-const jobsUrl = createUrl('data-export/jobExecutions', {
-  query: `status=(${JOB_EXECUTION_STATUSES.IN_PROGRESS})`,
-  limit: 50,
-}, false);
-
-const logsUrl = createUrl('data-export/jobExecutions', {
-  query: `status=(${JOB_EXECUTION_STATUSES.SUCCESS})`,
-  limit: 25,
-}, false);
-
 function Home(props) {
   return (
     <Paneset>
@@ -36,6 +26,7 @@ function Home(props) {
         FetcherContext={DataFetcherContext}
         resources={props.resources}
         mutator={props.mutator}
+        resourcesMappingPath="records.0.jobExecutions"
       >
         <Pane
           data-test-jobs-pane
@@ -64,6 +55,16 @@ function Home(props) {
     </Paneset>
   );
 }
+
+const jobsUrl = createUrl('data-export/jobExecutions', {
+  query: `status=(${JOB_EXECUTION_STATUSES.IN_PROGRESS})`,
+  limit: 50,
+}, false);
+
+const logsUrl = createUrl('data-export/jobExecutions', {
+  query: `status=(${JOB_EXECUTION_STATUSES.SUCCESS})`,
+  limit: 25,
+}, false);
 
 Home.manifest = Object.freeze({
   jobs: {

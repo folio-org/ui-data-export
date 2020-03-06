@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-
 import { isEmpty } from 'lodash';
 
 import {
@@ -7,14 +6,14 @@ import {
   JobsListAccordion,
 } from '@folio/stripes-data-transfer-components';
 
-import { JOB_STATUSES } from '../../../utils/constants';
+import { JOB_EXECUTION_STATUSES } from '../../../utils/constants';
 import ItemFormatter from './ItemFormatter';
-import tempData from './tempData';
 import { DataFetcherContext } from '../../../contexts/DataFetcherContext';
+import { sampleJobExecution } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 
 const prepareJobsData = jobs => {
-  const jobStatuses = [JOB_STATUSES.RUNNING];
-  const filteredJobs = jobs.filter(({ uiStatus }) => jobStatuses.includes(uiStatus));
+  const jobStatuses = [JOB_EXECUTION_STATUSES.IN_PROGRESS];
+  const filteredJobs = jobs.filter(({ status }) => jobStatuses.includes(status));
 
   return sortRunningJobs(filteredJobs);
 };
@@ -24,7 +23,7 @@ const RunningJobs = () => {
     jobs: realData,
     hasLoaded,
   } = useContext(DataFetcherContext);
-  const jobs = isEmpty(realData) ? tempData : realData; // TODO: remove tempData once backend is ready (MDEXP-69)
+  const jobs = isEmpty(realData) ? [sampleJobExecution] : realData; // TODO: remove sampleJobExecution once backend is ready (MDEXP-69)
 
   return (
     <JobsListAccordion

@@ -2,14 +2,14 @@ import {
   interactor,
   text,
   scoped,
+  collection,
+  count,
 } from '@bigtest/interactor';
 
 import RunningJobsControlButtonsInteractor from './RunningJobsControlButtonsInteractor';
 
 @interactor
-export class RunningJobInteractor {
-  static defaultScope = '[data-test-running-job]';
-
+class JobInteractor {
   jobProfileName = text('[data-test-running-job-profile]');
   fileName = text('[data-test-running-job-file-name]');
   hrId = text('[data-test-running-job-hr-id]');
@@ -21,4 +21,12 @@ export class RunningJobInteractor {
   whenLoaded() {
     return this.when(() => this.isPresent);
   }
+}
+
+@interactor
+export class RunningJobsInteractor {
+  static defaultScope = '[data-test-running-jobs]';
+
+  jobItems = collection('[data-test-job-item]', JobInteractor);
+  jobItemsAmount = count('[data-test-job-item]');
 }
