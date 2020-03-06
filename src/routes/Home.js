@@ -9,6 +9,7 @@ import {
 import {
   QueryFileUploader,
   Jobs,
+  JobLogsContainer,
 } from '../components';
 
 export default function Home() {
@@ -34,7 +35,9 @@ export default function Home() {
             <FormattedMessage id="ui-data-export.logsPaneTitle" />
           </span>
         )}
-      />
+      >
+        <JobLogsContainer />
+      </Pane>
     </Paneset>
   );
 }
