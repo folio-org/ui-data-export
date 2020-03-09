@@ -19,6 +19,9 @@
     "resume": "Reprendre",
     "uploading": "Chargement...",
     "modal.fileExtensions.blocked.header": "Fichier invalide",
-    "modal.fileExtensions.blocked.message": "Seulement un fichier avec une extenstion CSV peut être téléversé",
-    "modal.fileExtensions.actionButton": "Choisir un autre fichier à téléverser"
+    "modal.fileExtensions.blocked.message": "Seul un fichier avec une extension CSV peut être téléversé",
+    "modal.fileExtensions.actionButton": "Choisir un autre fichier à téléverser",
+    "status": "Statut",
+    "jobStatus.fail": "Échec",
+    "jobStatus.success": "Succès"
 }

@@ -20,5 +20,8 @@
     "uploading": "Carregando",
     "modal.fileExtensions.blocked.header": "Arquivo inválido",
     "modal.fileExtensions.blocked.message": "Somente arquivos com extensão csv podem ser carregados",
-    "modal.fileExtensions.actionButton": "Escolha outro arquivo para carregar"
+    "modal.fileExtensions.actionButton": "Escolha outro arquivo para carregar",
+    "status": "Status",
+    "jobStatus.fail": "Falhou",
+    "jobStatus.success": "Sucesso"
 }
