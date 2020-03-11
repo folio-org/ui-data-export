@@ -6,6 +6,12 @@ const jobsLogsData = [
       id: '22fafcc3-f582-493d-88b0-3c538480cd83',
       name: 'default',
     },
+    exportedFiles: [
+      {
+        fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
+        fileName: 'catrepbarcodes-20200116114002.mrc',
+      },
+    ],
     sourcePath: 'path',
     fileName: 'import_28-20181105141034.mrc',
     progress: {
@@ -28,6 +34,12 @@ const jobsLogsData = [
       id: '32fafcc3-f582-493d-88b0-3c538480cd83',
       name: 'default',
     },
+    exportedFiles: [
+      {
+        fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
+        fileName: 'catrepbarcodes-20200116114002.mrc',
+      },
+    ],
     sourcePath: 'path',
     fileName: 'exportQueryFile_21-20181105142257.mrc',
     progress: {
