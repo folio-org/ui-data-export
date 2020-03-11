@@ -14,7 +14,7 @@ const logsList = new MultiColumnListInteractor('#job-logs-list');
 const getCellContent = (row, cell) => logsList.rows(row).cells(cell).content;
 
 describe('Job logs list', () => {
-  setupApplication();
+  setupApplication({ scenarios: ['fetch-job-profiles-success'] });
 
   beforeEach(function () {
     this.visit('/data-export');

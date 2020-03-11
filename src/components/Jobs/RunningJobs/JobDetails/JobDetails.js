@@ -5,6 +5,7 @@ import {
   FormattedDate,
 } from 'react-intl';
 import classNames from 'classnames';
+import { get } from 'lodash';
 
 import {
   Progress,
@@ -31,7 +32,7 @@ const JobDetails = props => {
 
   const {
     jobProfileInfo,
-    fileName,
+    exportedFiles,
     hrId,
     runBy: {
       firstName,
@@ -48,7 +49,7 @@ const JobDetails = props => {
     <>
       <div className={classNames(css.delimiter, css.jobHeader)}>
         <span data-test-running-job-profile>{jobProfileInfo.name}</span>
-        <span data-test-running-job-file-name>{fileName}</span>
+        <span data-test-running-job-file-name>{get(exportedFiles, '0.fileName')}</span>
       </div>
 
       <div className={css.delimiter}>
