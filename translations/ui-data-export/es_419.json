@@ -21,7 +21,7 @@
     "modal.fileExtensions.blocked.header": "Invalid file",
     "modal.fileExtensions.blocked.message": "Only file with csv extension can be uploaded",
     "modal.fileExtensions.actionButton": "Choose other file to upload",
-    "status": "Status",
-    "jobStatus.fail": "Fail",
-    "jobStatus.success": "Success"
+    "status": "Estado",
+    "jobStatus.fail": "Fallo",
+    "jobStatus.success": "Éxito"
 }
