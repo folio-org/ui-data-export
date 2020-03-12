@@ -7,10 +7,7 @@ import {
 import classNames from 'classnames';
 import { get } from 'lodash';
 
-import {
-  Progress,
-  jobExecutionPropTypes,
-} from '@folio/stripes-data-transfer-components';
+import { jobExecutionPropTypes } from '@folio/stripes-data-transfer-components';
 
 import css from '@folio/stripes-data-transfer-components/lib/Jobs/Job/Job.css';
 
@@ -27,39 +24,33 @@ const formatTime = dateStr => {
   return <span>{datePart} {timePart} {todayPart}</span>;
 };
 
+// TODO: remove defaults for jobProfileInfo, hrId and runBy once backend is in place
 const JobDetails = props => {
   const { job } = props;
 
   const {
     jobProfileInfo,
     exportedFiles,
-    hrId,
-    runBy: {
-      firstName,
-      lastName,
-    },
-    progress: {
-      current,
-      total,
-    },
+    runBy,
     startedDate,
   } = job;
 
   return (
     <>
       <div className={classNames(css.delimiter, css.jobHeader)}>
-        <span data-test-running-job-profile>{jobProfileInfo.name}</span>
+        <span data-test-running-job-profile>{get(jobProfileInfo, 'name', 'default')}</span>
         <span data-test-running-job-file-name>{get(exportedFiles, '0.fileName')}</span>
       </div>
-
       <div className={css.delimiter}>
-        <span data-test-running-job-hr-id>{hrId}</span>
-        <span data-test-running-job-triggered-by>
-          <FormattedMessage
-            id="ui-data-export.triggeredBy"
-            values={{ userName: `${firstName} ${lastName}` }}
-          />
-        </span>
+        <span data-test-running-job-hr-id>{get(job, 'hrId', '')}</span>
+        {runBy && (
+          <span data-test-running-job-triggered-by>
+            <FormattedMessage
+              id="ui-data-export.triggeredBy"
+              values={{ userName: `${runBy.firstName} ${runBy.lastName}` }}
+            />
+          </span>
+        )}
       </div>
       <div className={css.delimiter}>
         <span data-test-running-job-date-label>
@@ -69,17 +60,11 @@ const JobDetails = props => {
           />
         </span>
       </div>
-      <>
-        <FormattedMessage
-          data-test-running-job-progress-status
-          id="ui-data-export.inProgressStatus"
-          tagName="div"
-        />
-        <Progress
-          current={current}
-          total={total}
-        />
-      </>
+      <FormattedMessage
+        data-test-running-job-progress-status
+        id="ui-data-export.inProgressStatus"
+        tagName="div"
+      />
     </>
   );
 };

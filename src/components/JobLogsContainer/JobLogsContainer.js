@@ -10,7 +10,6 @@ import {
   JobLogs,
   getItemFormatter,
   defaultJobLogsColumnMapping,
-  defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
   sortStrings,
 } from '@folio/stripes-data-transfer-components';
@@ -31,10 +30,13 @@ const columnMapping = {
 };
 
 const visibleColumns = [
-  ...defaultJobLogsVisibleColumns,
+  'fileName',
+  'jobProfileName',
+  'completedDate',
   'status',
 ];
 
+// TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
   const { intl } = props;
 
@@ -50,6 +52,7 @@ const JobLogsContainer = props => {
         {
           status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
           fileName: record => get(record.exportedFiles, '0.fileName'),
+          jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
         },
       )}
       visibleColumns={visibleColumns}
