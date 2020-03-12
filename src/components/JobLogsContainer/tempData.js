@@ -9,7 +9,7 @@ const jobsLogsData = [
     exportedFiles: [
       {
         fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
-        fileName: 'catrepbarcodes-20200116114002.mrc',
+        fileName: 'import_28-20181105141034.mrc',
       },
     ],
     sourcePath: 'path',
@@ -37,7 +37,7 @@ const jobsLogsData = [
     exportedFiles: [
       {
         fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
-        fileName: 'catrepbarcodes-20200116114002.mrc',
+        fileName: 'exportQueryFile_21-20181105142257.mrc',
       },
     ],
     sourcePath: 'path',

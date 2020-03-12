@@ -4,6 +4,7 @@ import {
   injectIntl,
   intlShape,
 } from 'react-intl';
+import { get } from 'lodash';
 
 import {
   JobLogs,
@@ -19,9 +20,10 @@ import {
   Callout,
 } from '@folio/stripes/components';
 import {
-  stripesConnect, stripesShape,
+  stripesConnect,
+  stripesShape,
 } from '@folio/stripes/core';
-import { getFileDownloadLinkRequest } from './jobLogsApi';
+import { getFileDownloadLinkRequest } from './fetchFileDownloadLink';
 import { tempData } from './tempData';
 
 const sortColumns = {
@@ -62,9 +64,10 @@ const JobLogsContainer = props => {
 
   const getFileDownloadLink = async record => {
     try {
+      const fileName = get(record.exportedFiles, '0.fileName');
       const downloadLink = await getFileDownloadLinkRequest(record, okapi);
 
-      await downloadFile(record.exportedFiles[0].fieldName, downloadLink);
+      await downloadFile(fileName, downloadLink);
     } catch (error) {
       handleDownloadError();
 
@@ -72,27 +75,26 @@ const JobLogsContainer = props => {
     }
   };
 
-  const downloadFile = (name, downloadLink) => {
+  const downloadFile = (fileName, downloadLink) => {
     const elem = window.document.createElement('a');
 
     elem.href = downloadLink;
-    elem.download = name;
+    elem.download = fileName;
     document.body.appendChild(elem);
     elem.click();
     document.body.removeChild(elem);
   };
 
-  const getFileNameField = record => {
-    return (
-      <Button
-        buttonStyle="link"
-        marginBottom0
-        onClick={() => getFileDownloadLink(record)}
-      >
-        {record.fileName}
-      </Button>
-    );
-  };
+  const getFileNameField = record => (
+    <Button
+      data-test-download-file-btn
+      buttonStyle="link"
+      marginBottom0
+      onClick={() => getFileDownloadLink(record)}
+    >
+      {get(record.exportedFiles, '0.fileName')}
+    </Button>
+  );
 
   return (
     <>
