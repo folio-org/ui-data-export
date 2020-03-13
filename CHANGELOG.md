@@ -1,6 +1,8 @@
 # Change history for ui-data-export
 
-## 1.0.0 (IN PROGRESS)
+## 1.1.0 (IN PROGRESS)
+
+## [1.0.0](https://github.com/folio-org/ui-data-export/tree/v1.0.0) (2020-03-13)
 * UI app created. Refs UIDEXP-8.
 * Handle security issue because of eslint version, remove excess eslint rules, upgrade babel and eslint-config-stripes versions. Refs UIDEXP-17.
 * Add dependency on @folio/stripes-data-transfer-components. Add file uploader feature on landing page. Refs UIDEXP-11.
