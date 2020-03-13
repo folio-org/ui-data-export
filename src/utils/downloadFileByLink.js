@@ -1,3 +1,5 @@
+import { isTestEnv } from './isTestEnv';
+
 export const downloadFileByLink = (fileName, downloadLink) => {
   if (!fileName || !downloadLink) return;
 
@@ -5,8 +7,9 @@ export const downloadFileByLink = (fileName, downloadLink) => {
 
   elem.href = downloadLink;
   elem.download = fileName;
-  elem.target = '_blank';
   document.body.appendChild(elem);
-  elem.click();
+
+  if (!isTestEnv()) elem.click();
+
   document.body.removeChild(elem);
 };
