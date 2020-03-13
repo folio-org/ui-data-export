@@ -23,7 +23,12 @@ import {
   stripesConnect,
   stripesShape,
 } from '@folio/stripes/core';
-import { getFileDownloadLinkRequest } from './fetchFileDownloadLink';
+
+import {
+  downloadFileByLink,
+  JOB_EXECUTION_STATUSES,
+} from '../../utils';
+import getFileDownloadLink from './fetchFileDownloadLink';
 import { tempData } from './tempData';
 
 const sortColumns = {
@@ -46,7 +51,8 @@ const visibleColumns = [
 
 const JobLogsContainer = props => {
   const {
-    intl, stripes: { okapi },
+    intl,
+    stripes: { okapi },
   } = props;
 
   const calloutRef = useRef(null);
@@ -62,12 +68,12 @@ const JobLogsContainer = props => {
     });
   };
 
-  const getFileDownloadLink = async record => {
+  const downloadExportFile = async record => {
     try {
       const fileName = get(record.exportedFiles, '0.fileName');
-      const downloadLink = await getFileDownloadLinkRequest(record, okapi);
+      const downloadLink = await getFileDownloadLink(record, okapi);
 
-      await downloadFile(fileName, downloadLink);
+      await downloadFileByLink(fileName, downloadLink);
     } catch (error) {
       handleDownloadError();
 
@@ -75,26 +81,21 @@ const JobLogsContainer = props => {
     }
   };
 
-  const downloadFile = (fileName, downloadLink) => {
-    const elem = window.document.createElement('a');
+  const getFileNameField = record => {
+    const successRec = record.status === JOB_EXECUTION_STATUSES.SUCCESS;
 
-    elem.href = downloadLink;
-    elem.download = fileName;
-    document.body.appendChild(elem);
-    elem.click();
-    document.body.removeChild(elem);
+    return (
+      <Button
+        data-test-download-file-btn
+        buttonStyle="link"
+        marginBottom0
+        style={successRec ? null : { pointerEvents: 'none' }}
+        onClick={successRec ? () => downloadExportFile(record) : null}
+      >
+        {get(record.exportedFiles, '0.fileName')}
+      </Button>
+    );
   };
-
-  const getFileNameField = record => (
-    <Button
-      data-test-download-file-btn
-      buttonStyle="link"
-      marginBottom0
-      onClick={() => getFileDownloadLink(record)}
-    >
-      {get(record.exportedFiles, '0.fileName')}
-    </Button>
-  );
 
   return (
     <>

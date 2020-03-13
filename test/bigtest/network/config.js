@@ -14,6 +14,6 @@ export default function config() {
 
   this.get('/data-export/jobExecutions/:jobLogId/download/:fileId', {
     fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
-    mockLink,
+    link: mockLink,
   }, 200);
 }
