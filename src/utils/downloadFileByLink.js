@@ -5,6 +5,7 @@ export const downloadFileByLink = (fileName, downloadLink) => {
 
   elem.href = downloadLink;
   elem.download = fileName;
+  elem.target = '_blank';
   document.body.appendChild(elem);
   elem.click();
   document.body.removeChild(elem);

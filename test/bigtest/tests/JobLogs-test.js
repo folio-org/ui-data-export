@@ -11,7 +11,7 @@ import { jobLogsContainerInteractor } from '../interactors';
 
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
 
-describe('Job logs list', () => {
+describe.only('Job logs list', () => {
   describe('default scenario', () => {
     setupApplication();
 
@@ -38,7 +38,6 @@ describe('Job logs list', () => {
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(0, 6)).to.equal('Fail');
         expect(getCellContent(1, 6)).to.equal('Success');
       });
 
@@ -60,6 +59,29 @@ describe('Job logs list', () => {
           expect(this.location.search.includes('direction=descending&sort=status')).to.be.true;
         });
       });
+    });
+
+    describe('clicking on file name with success flow', () => {
+      beforeEach(async function () {
+        await jobLogsContainerInteractor.fileNameBtns(1).click();
+      });
+
+      it('should not show error notification', () => {
+        expect(jobLogsContainerInteractor.callout.errorCalloutIsPresent).to.be.false;
+      });
+    });
+  });
+
+  describe('error scenario', () => {
+    setupApplication({ scenarios: ['fetch-get-download-link-error'] });
+
+    beforeEach(async function () {
+      this.visit('/data-export');
+      await jobLogsContainerInteractor.fileNameBtns(1).click();
+    });
+
+    it('should show error notification', () => {
+      expect(jobLogsContainerInteractor.callout.errorCalloutIsPresent).to.be.true;
     });
   });
 });
