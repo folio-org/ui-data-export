@@ -11,9 +11,17 @@ export default Factory.extend({
     return faker.random.number({
       min: 100000000,
       max: 999999999,
-    }).toString();
+    });
   },
-  fileName: i => `import_${i}.mrc`,
+  exportedFiles: Array.from({
+    length: faker.random.number({
+      min: 1,
+      max: 2,
+    }),
+  }, () => ({
+    fileId: faker.random.uuid(),
+    fileName: `import_${faker.random.uuid()}.mrc`,
+  })),
   status: () => JOB_EXECUTION_STATUSES.IN_PROGRESS,
   runBy: () => ({
     firstName: faker.name.firstName(),

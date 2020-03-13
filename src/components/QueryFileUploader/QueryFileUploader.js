@@ -100,7 +100,7 @@ const QueryFileUploaderComponent = props => {
 
       currentFileUploadXhr.current = new XMLHttpRequest();
 
-      await uploadFile({
+      const fileUploadResult = await uploadFile({
         xhr: currentFileUploadXhr.current,
         file: fileToUpload,
         url: createUrl(`${okapi.url}/data-export/fileDefinitions/${fileDefinition.id}/upload`),
@@ -110,7 +110,7 @@ const QueryFileUploaderComponent = props => {
 
       // TODO: replace jobProfile with real job profile data once backend is implemented
       await mutator.export.POST({
-        fileDefinition: { fileName: fileToUpload.name },
+        fileDefinition: fileUploadResult,
         jobProfile: {
           id: '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a',
           destination: 'stub_destination',

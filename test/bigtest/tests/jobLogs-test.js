@@ -13,7 +13,7 @@ const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(r
 
 describe('Job logs list', () => {
   describe('default scenario', () => {
-    setupApplication();
+    setupApplication({ scenarios: ['fetch-job-profiles-success'] });
 
     beforeEach(function () {
       this.visit('/data-export');
@@ -24,21 +24,21 @@ describe('Job logs list', () => {
     });
 
     it('should add status column to the end', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(6).text).to.equal(translations.status);
+      expect(jobLogsContainerInteractor.logsList.headers(3).text).to.equal(translations.status);
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 6)).to.equal('Fail');
-      expect(getCellContent(1, 6)).to.equal('Success');
+      expect(getCellContent(0, 3)).to.equal('Fail');
+      expect(getCellContent(1, 3)).to.equal('Success');
     });
 
     describe('clicking on status header', () => {
       beforeEach(async () => {
-        await jobLogsContainerInteractor.logsList.headers(6).click();
+        await jobLogsContainerInteractor.logsList.headers(3).click();
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(1, 6)).to.equal('Success');
+        expect(getCellContent(1, 3)).to.equal('Success');
       });
 
       it('should have the correct query in path', function () {
@@ -47,12 +47,12 @@ describe('Job logs list', () => {
 
       describe('clicking on status header', () => {
         beforeEach(async () => {
-          await jobLogsContainerInteractor.logsList.headers(6).click();
+          await jobLogsContainerInteractor.logsList.headers(3).click();
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(1, 6)).to.equal('Fail');
-          expect(getCellContent(0, 6)).to.equal('Success');
+          expect(getCellContent(1, 3)).to.equal('Fail');
+          expect(getCellContent(0, 3)).to.equal('Success');
         });
 
         it('should have the correct query in path', function () {
@@ -73,7 +73,7 @@ describe('Job logs list', () => {
   });
 
   describe('error scenario', () => {
-    setupApplication({ scenarios: ['fetch-get-download-link-error'] });
+    setupApplication({ scenarios: ['fetch-job-profiles-success', 'fetch-get-download-link-error'] });
 
     beforeEach(async function () {
       this.visit('/data-export');

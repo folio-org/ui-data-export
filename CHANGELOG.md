@@ -10,4 +10,5 @@
 * Update `stripes` to `v3.0.0`, `stripes-core` to `4.0.0` and `react-intl` to `2.9.0`. UIDEXP-30.
 * Add jobs log display with static data. UIDEXP-7.
 * Implement logic for periodical fetching of running jobs and logs. Refs UIDEXP-22.
+* Periodically update running jobs and logs lists. Refs UIDEXP-23.
 * Provide the way to download an export file from job logs. UIDEXP-29.

@@ -10,7 +10,8 @@ import css from './ItemFormatter.css';
 
 const ItemFormatter = job => (
   <div
-    key={job.hrId}
+    key={job.id}
+    className={css.jobContainer}
     data-test-running-job
   >
     <Job job={job}>

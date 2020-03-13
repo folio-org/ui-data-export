@@ -1,4 +1,7 @@
-import React, { useRef } from 'react';
+import React, {
+  useContext,
+  useRef,
+} from 'react';
 import {
   FormattedMessage,
   injectIntl,
@@ -10,11 +13,9 @@ import {
   JobLogs,
   getItemFormatter,
   defaultJobLogsColumnMapping,
-  defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
   sortStrings,
 } from '@folio/stripes-data-transfer-components';
-
 import {
   Button,
   Callout,
@@ -29,7 +30,7 @@ import {
   JOB_EXECUTION_STATUSES,
 } from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
-import { tempData } from './tempData';
+import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 
 const sortColumns = {
   ...defaultJobLogsSortColumns,
@@ -45,19 +46,24 @@ const columnMapping = {
 };
 
 const visibleColumns = [
-  ...defaultJobLogsVisibleColumns,
+  'fileName',
+  'jobProfileName',
+  'completedDate',
   'status',
 ];
 
+// TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
   const {
     intl,
     stripes: { okapi },
   } = props;
 
+  const {
+    logs,
+    hasLoaded,
+  } = useContext(DataFetcherContext);
   const calloutRef = useRef(null);
-
-  const hasLoaded = true;
 
   const handleDownloadError = () => {
     if (!calloutRef.current) return;
@@ -105,12 +111,13 @@ const JobLogsContainer = props => {
           {
             status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
             fileName: record => getFileNameField(record),
+            jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
           },
         )}
         visibleColumns={visibleColumns}
         sortColumns={sortColumns}
         hasLoaded={hasLoaded}
-        contentData={tempData}
+        contentData={logs}
       />
       <Callout ref={calloutRef} />
     </>
