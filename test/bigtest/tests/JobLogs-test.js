@@ -11,7 +11,7 @@ import { jobLogsContainerInteractor } from '../interactors';
 
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
 
-describe.only('Job logs list', () => {
+describe('Job logs list', () => {
   describe('default scenario', () => {
     setupApplication();
 
