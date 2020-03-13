@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   FormattedMessage,
   injectIntl,
   intlShape,
 } from 'react-intl';
+import { get } from 'lodash';
 
 import {
   JobLogs,
   getItemFormatter,
   defaultJobLogsColumnMapping,
-  defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
   sortStrings,
 } from '@folio/stripes-data-transfer-components';
 
-import { tempData } from './tempData';
+import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 
 const sortColumns = {
   ...defaultJobLogsSortColumns,
@@ -30,25 +30,35 @@ const columnMapping = {
 };
 
 const visibleColumns = [
-  ...defaultJobLogsVisibleColumns,
+  'fileName',
+  'jobProfileName',
+  'completedDate',
   'status',
 ];
 
+// TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
   const { intl } = props;
 
-  const hasLoaded = true;
+  const {
+    logs,
+    hasLoaded,
+  } = useContext(DataFetcherContext);
 
   return (
     <JobLogs
       columnMapping={columnMapping}
       formatter={getItemFormatter(
-        { status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }) },
+        {
+          status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
+          fileName: record => get(record.exportedFiles, '0.fileName'),
+          jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
+        },
       )}
       visibleColumns={visibleColumns}
       sortColumns={sortColumns}
       hasLoaded={hasLoaded}
-      contentData={tempData}
+      contentData={logs}
     />
   );
 };

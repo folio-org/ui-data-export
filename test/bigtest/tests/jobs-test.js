@@ -12,7 +12,9 @@ import {
   RunningJobsInteractor,
 } from '../interactors';
 
-import { sampleJobExecution } from '../network/scenarios/fetch-job-profiles-success';
+import { runningJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
+
+const [runningJobExecution] = runningJobExecutions;
 
 describe('Jobs lists', () => {
   const jobs = new JobsInteractor();
@@ -41,7 +43,7 @@ describe('Jobs lists', () => {
     });
 
     it('should display correct amount of running jobs', () => {
-      expect(runningJobs.jobItemsAmount).to.equal(3);
+      expect(runningJobs.jobItemsAmount).to.equal(2);
     });
 
     it('should display running job', () => {
@@ -49,22 +51,22 @@ describe('Jobs lists', () => {
     });
 
     it('should display correct job profile name', () => {
-      expect(runningJobs.jobItems(0).jobProfileName).to.equal(sampleJobExecution.jobProfileInfo.name);
+      expect(runningJobs.jobItems(0).jobProfileName).to.equal(runningJobExecution.jobProfileInfo.name);
     });
 
     it('should display correct file name', () => {
-      expect(runningJobs.jobItems(0).fileName).to.equal(sampleJobExecution.fileName);
+      expect(runningJobs.jobItems(0).fileName).to.equal(runningJobExecution.exportedFiles[0].fileName);
     });
 
     it('should display correct human readable id', () => {
-      expect(runningJobs.jobItems(0).hrId).to.equal(String(sampleJobExecution.hrId));
+      expect(runningJobs.jobItems(0).hrId).to.equal(String(runningJobExecution.hrId));
     });
 
     it('should display correct triggered by name', () => {
       const {
         firstName,
         lastName,
-      } = sampleJobExecution.runBy;
+      } = runningJobExecution.runBy;
 
       expect(runningJobs.jobItems(0).triggeredBy).to.equal(`Triggered by ${firstName} ${lastName}`);
     });
