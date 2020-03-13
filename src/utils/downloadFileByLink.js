@@ -7,6 +7,7 @@ export const downloadFileByLink = (fileName, downloadLink) => {
 
   elem.href = downloadLink;
   elem.download = fileName;
+  elem.style.display = 'none';
   document.body.appendChild(elem);
 
   if (!isTestEnv()) elem.click();

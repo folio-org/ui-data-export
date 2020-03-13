@@ -76,7 +76,8 @@
         "subPermissions": [
           "data-export.file-definitions.item.post",
           "data-export.file-definitions.upload.post",
-          "data-export.export.post"
+          "data-export.export.post",
+          "data-export.job-executions.items.download.get"
         ],
         "visible": true
       },

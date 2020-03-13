@@ -32,6 +32,8 @@ import {
 import getFileDownloadLink from './fetchFileDownloadLink';
 import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 
+import styles from './jobLogsContainer.css';
+
 const sortColumns = {
   ...defaultJobLogsSortColumns,
   status: {
@@ -88,17 +90,20 @@ const JobLogsContainer = props => {
   };
 
   const getFileNameField = record => {
-    const successRec = record.status === JOB_EXECUTION_STATUSES.SUCCESS;
+    const fileName = get(record.exportedFiles, '0.fileName');
+    const isSuccessfulRecord = record.status === JOB_EXECUTION_STATUSES.SUCCESS;
+
+    if (!isSuccessfulRecord) return fileName;
 
     return (
       <Button
         data-test-download-file-btn
         buttonStyle="link"
         marginBottom0
-        style={successRec ? null : { pointerEvents: 'none' }}
-        onClick={successRec ? () => downloadExportFile(record) : null}
+        buttonClass={styles.fileNameBtn}
+        onClick={() => downloadExportFile(record)}
       >
-        {get(record.exportedFiles, '0.fileName')}
+        {fileName}
       </Button>
     );
   };

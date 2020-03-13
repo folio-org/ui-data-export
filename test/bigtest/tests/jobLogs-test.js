@@ -63,7 +63,7 @@ describe('Job logs list', () => {
 
     describe('clicking on file name with success flow', () => {
       beforeEach(async function () {
-        await jobLogsContainerInteractor.fileNameBtns(1).click();
+        await jobLogsContainerInteractor.fileNameBtns(0).click();
       });
 
       it('should not show error notification', () => {
@@ -77,7 +77,7 @@ describe('Job logs list', () => {
 
     beforeEach(async function () {
       this.visit('/data-export');
-      await jobLogsContainerInteractor.fileNameBtns(1).click();
+      await jobLogsContainerInteractor.fileNameBtns(0).click();
     });
 
     it('should show error notification', () => {
