@@ -1,4 +1,7 @@
-import React, { useContext } from 'react';
+import React, {
+  useContext,
+  useRef,
+} from 'react';
 import {
   FormattedMessage,
   injectIntl,
@@ -13,8 +16,23 @@ import {
   defaultJobLogsSortColumns,
   sortStrings,
 } from '@folio/stripes-data-transfer-components';
+import {
+  Button,
+  Callout,
+} from '@folio/stripes/components';
+import {
+  stripesConnect,
+  stripesShape,
+} from '@folio/stripes/core';
 
+import {
+  downloadFileByLink,
+  JOB_EXECUTION_STATUSES,
+} from '../../utils';
+import getFileDownloadLink from './fetchFileDownloadLink';
 import { DataFetcherContext } from '../../contexts/DataFetcherContext';
+
+import styles from './jobLogsContainer.css';
 
 const sortColumns = {
   ...defaultJobLogsSortColumns,
@@ -38,31 +56,82 @@ const visibleColumns = [
 
 // TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
-  const { intl } = props;
+  const {
+    intl,
+    stripes: { okapi },
+  } = props;
 
   const {
     logs,
     hasLoaded,
   } = useContext(DataFetcherContext);
+  const calloutRef = useRef(null);
+
+  const handleDownloadError = () => {
+    if (!calloutRef.current) return;
+
+    calloutRef.current.sendCallout({
+      type: 'error',
+      message: <FormattedMessage id="ui-data-export.communicationProblem" />,
+    });
+  };
+
+  const downloadExportFile = async record => {
+    try {
+      const fileName = get(record.exportedFiles, '0.fileName');
+      const downloadLink = await getFileDownloadLink(record, okapi);
+
+      await downloadFileByLink(fileName, downloadLink);
+    } catch (error) {
+      handleDownloadError();
+
+      console.error(error); // eslint-disable-line no-console
+    }
+  };
+
+  const getFileNameField = record => {
+    const fileName = get(record.exportedFiles, '0.fileName');
+    const isSuccessfulRecord = record.status === JOB_EXECUTION_STATUSES.SUCCESS;
+
+    if (!isSuccessfulRecord) return fileName;
+
+    return (
+      <Button
+        data-test-download-file-btn
+        buttonStyle="link"
+        marginBottom0
+        buttonClass={styles.fileNameBtn}
+        onClick={() => downloadExportFile(record)}
+      >
+        {fileName}
+      </Button>
+    );
+  };
 
   return (
-    <JobLogs
-      columnMapping={columnMapping}
-      formatter={getItemFormatter(
-        {
-          status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
-          fileName: record => get(record.exportedFiles, '0.fileName'),
-          jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
-        },
-      )}
-      visibleColumns={visibleColumns}
-      sortColumns={sortColumns}
-      hasLoaded={hasLoaded}
-      contentData={logs}
-    />
+    <>
+      <JobLogs
+        columnMapping={columnMapping}
+        formatter={getItemFormatter(
+          {
+            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
+            fileName: record => getFileNameField(record),
+            jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
+          },
+        )}
+        visibleColumns={visibleColumns}
+        sortColumns={sortColumns}
+        hasLoaded={hasLoaded}
+        contentData={logs}
+      />
+      <Callout ref={calloutRef} />
+    </>
   );
 };
 
-JobLogsContainer.propTypes = { intl: intlShape };
+JobLogsContainer.propTypes = {
+  intl: intlShape,
+  stripes: stripesShape.isRequired,
+};
 
-export default injectIntl(JobLogsContainer);
+export default stripesConnect(injectIntl(JobLogsContainer));
