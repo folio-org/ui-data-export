@@ -23,5 +23,6 @@
     "modal.fileExtensions.actionButton": "Escolha outro arquivo para carregar",
     "status": "Status",
     "jobStatus.fail": "Falhou",
-    "jobStatus.success": "Sucesso"
+    "jobStatus.success": "Sucesso",
+    "communicationProblem": "Problema de comunicação do servidor. Por favor, tente novamente"
 }

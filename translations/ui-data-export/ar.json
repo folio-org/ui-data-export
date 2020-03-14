@@ -23,5 +23,6 @@
     "modal.fileExtensions.actionButton": "اختر ملفات أخرى للتحميل",
     "status": "الحالة",
     "jobStatus.fail": "فشل",
-    "jobStatus.success": "نجاح"
+    "jobStatus.success": "نجاح",
+    "communicationProblem": "Server communication problem. Please try again"
 }
