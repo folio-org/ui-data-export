@@ -23,5 +23,6 @@
     "modal.fileExtensions.actionButton": "Choose other file to upload",
     "status": "Estado",
     "jobStatus.fail": "Fallo",
-    "jobStatus.success": "Éxito"
+    "jobStatus.success": "Éxito",
+    "communicationProblem": "Server communication problem. Please try again"
 }

@@ -23,5 +23,6 @@
     "modal.fileExtensions.actionButton": "Choisir un autre fichier à téléverser",
     "status": "Statut",
     "jobStatus.fail": "Échec",
-    "jobStatus.success": "Succès"
+    "jobStatus.success": "Succès",
+    "communicationProblem": "Server communication problem. Please try again"
 }
