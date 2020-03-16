@@ -24,5 +24,5 @@
     "status": "Statut",
     "jobStatus.fail": "Échec",
     "jobStatus.success": "Succès",
-    "communicationProblem": "Server communication problem. Please try again"
+    "communicationProblem": "Problème de communication avec le serveur. Veuillez réessayer"
 }
