@@ -1,3 +1,13 @@
+export const testUserOzzy = {
+  firstName: 'Ozzy',
+  lastName: 'Campenshtorm',
+};
+
+export const testUserElliot = {
+  firstName: 'Elliot',
+  lastName: 'Lane',
+};
+
 export const runningJobExecutions = [
   {
     id: 'de96f7a1-8706-42e9-ba86-c44c44592511',
@@ -42,8 +52,8 @@ export const logJobExecutions = [
       total: 512,
     },
     runBy: {
-      firstName: 'Ozzy',
-      lastName: 'Campenshtorm',
+      firstName: testUserOzzy.firstName,
+      lastName: testUserOzzy.lastName,
     },
     startedDate: '2018-11-05T14:22:57.000+0000',
     completedDate: '2018-11-11T14:10:34.000+0000',
@@ -66,8 +76,8 @@ export const logJobExecutions = [
       total: 5000,
     },
     runBy: {
-      firstName: 'Elliot',
-      lastName: 'Lane',
+      firstName: testUserElliot.firstName,
+      lastName: testUserElliot.lastName,
     },
     completedDate: '2018-11-05T14:22:57.000+0000',
     startedDate: '2018-11-05T14:22:57.000+0000',
