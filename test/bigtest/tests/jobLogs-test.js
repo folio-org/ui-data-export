@@ -5,6 +5,7 @@ import {
   it,
 } from '@bigtest/mocha';
 
+import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import translations from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
 import { jobLogsContainerInteractor } from '../interactors';
@@ -24,21 +25,25 @@ describe('Job logs list', () => {
     });
 
     it('should add status column to the end', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(3).text).to.equal(translations.status);
+      expect(jobLogsContainerInteractor.logsList.headers(4).text).to.equal(translations.status);
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 3)).to.equal('Fail');
-      expect(getCellContent(1, 3)).to.equal('Success');
+      expect(getCellContent(0, 4)).to.equal('Fail');
+      expect(getCellContent(1, 4)).to.equal('Success');
+    });
+
+    it('should render ID column', () => {
+      expect(jobLogsContainerInteractor.logsList.headers(1).text).to.equal(commonTranslations.jobExecutionHrId);
     });
 
     describe('clicking on status header', () => {
       beforeEach(async () => {
-        await jobLogsContainerInteractor.logsList.headers(3).click();
+        await jobLogsContainerInteractor.logsList.headers(4).click();
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(1, 3)).to.equal('Success');
+        expect(getCellContent(1, 4)).to.equal('Success');
       });
 
       it('should have the correct query in path', function () {
@@ -47,12 +52,12 @@ describe('Job logs list', () => {
 
       describe('clicking on status header', () => {
         beforeEach(async () => {
-          await jobLogsContainerInteractor.logsList.headers(3).click();
+          await jobLogsContainerInteractor.logsList.headers(4).click();
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(1, 3)).to.equal('Fail');
-          expect(getCellContent(0, 3)).to.equal('Success');
+          expect(getCellContent(1, 4)).to.equal('Fail');
+          expect(getCellContent(0, 4)).to.equal('Success');
         });
 
         it('should have the correct query in path', function () {
@@ -68,6 +73,21 @@ describe('Job logs list', () => {
 
       it('should not show error notification', () => {
         expect(jobLogsContainerInteractor.callout.errorCalloutIsPresent).to.be.false;
+      });
+    });
+
+    describe('clicking on ID header', () => {
+      beforeEach(async () => {
+        await jobLogsContainerInteractor.logsList.headers(1).click();
+      });
+
+      it('should sort by number from ID field', () => {
+        expect(getCellContent(0, 1)).to.equal('2');
+        expect(getCellContent(1, 1)).to.equal('4');
+      });
+
+      it('should have the correct query in path', function () {
+        expect(this.location.search.includes('direction=ascending&sort=hrId')).to.be.true;
       });
     });
   });

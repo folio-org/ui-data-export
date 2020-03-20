@@ -49,6 +49,7 @@ const columnMapping = {
 
 const visibleColumns = [
   'fileName',
+  'hrId',
   'jobProfileName',
   'completedDate',
   'status',
