@@ -24,7 +24,7 @@ const formatTime = dateStr => {
   return <span>{datePart} {timePart} {todayPart}</span>;
 };
 
-// TODO: remove defaults for jobProfileInfo and runBy once backend is in place
+// TODO: remove defaults for jobProfileInfo once backend is in place
 const JobDetails = props => {
   const { job } = props;
 
@@ -32,7 +32,10 @@ const JobDetails = props => {
     jobProfileInfo,
     exportedFiles,
     hrId,
-    runBy,
+    runBy: {
+      firstName,
+      lastName,
+    },
     startedDate,
   } = job;
 
@@ -44,14 +47,12 @@ const JobDetails = props => {
       </div>
       <div className={css.delimiter}>
         <span data-test-running-job-hr-id>{hrId}</span>
-        {runBy && (
-          <span data-test-running-job-triggered-by>
-            <FormattedMessage
-              id="ui-data-export.triggeredBy"
-              values={{ userName: `${runBy.firstName} ${runBy.lastName}` }}
-            />
-          </span>
-        )}
+        <span data-test-running-job-triggered-by>
+          <FormattedMessage
+            id="ui-data-export.triggeredBy"
+            values={{ userName: `${firstName} ${lastName}` }}
+          />
+        </span>
       </div>
       <div className={css.delimiter}>
         <span data-test-running-job-date-label>

@@ -52,6 +52,7 @@ const visibleColumns = [
   'hrId',
   'jobProfileName',
   'completedDate',
+  'runBy',
   'status',
 ];
 
