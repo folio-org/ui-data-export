@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   Paneset,
   Pane,
-} from '@folio/stripes-components';
+} from '@folio/stripes/components';
 import { stripesConnect } from '@folio/stripes/core';
 import {
   DataFetcher,
