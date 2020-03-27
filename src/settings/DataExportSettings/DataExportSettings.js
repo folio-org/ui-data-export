@@ -3,10 +3,40 @@ import { FormattedMessage } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
 import { stripesShape } from '@folio/stripes/core';
+import {
+  ProfilesLabel,
+  SettingsLabel,
+} from '@folio/stripes-data-transfer-components';
+
+import { MappingProfiles } from '../MappingProfiles';
+
+const getSettingsLabel = (messageId, iconKey) => {
+  return (
+    <SettingsLabel
+      messageId={`ui-data-export.${messageId}`}
+      iconKey={iconKey}
+      app="data-export"
+    />
+  );
+};
+
+const sections = [
+  {
+    label: <ProfilesLabel
+      link="https://wiki.folio.org/display/FOLIOtips/Creating+and+using+profiles"
+      content={<div style={{ width: '150px' }} />}
+    />,
+    pages: [
+      {
+        route: 'mapping-profiles',
+        label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
+        component: MappingProfiles,
+      },
+    ],
+  },
+];
 
 export function DataExportSettings(props) {
-  const sections = [];
-
   return (
     <Settings
       {...props}
