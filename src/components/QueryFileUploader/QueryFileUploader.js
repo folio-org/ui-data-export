@@ -16,7 +16,7 @@ import {
   Layout,
   Callout,
   ConfirmationModal,
-} from '@folio/stripes-components';
+} from '@folio/stripes/components';
 import {
   useStripes,
   stripesConnect,

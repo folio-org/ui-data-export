@@ -23,7 +23,7 @@ describe('Settings', () => {
 
   it('should be visible', () => {
     expect(settingsDisplayInteractor.isPresent).to.be.true;
-    expect(settingsDisplayInteractor.text).to.equal('Data export');
+    expect(settingsDisplayInteractor.text).to.equal(translations['settings.index.paneTitle']);
   });
 
   it('should display profiles label', () => {
@@ -34,16 +34,16 @@ describe('Settings', () => {
     expect(settingsSectionsPane.sectionsLabels(0).isPresent).to.be.true;
   });
 
-  it('should display field mapping profile section', () => {
+  it('should display field mapping profiles section', () => {
     expect(settingsSectionsPane.sectionsLabels(0).text).to.equal(translations.mappingProfilesTitle);
   });
 
-  describe('clicking on field mapping profile navigation item', () => {
+  describe('clicking on field mapping profiles navigation item', () => {
     beforeEach(async () => {
       await settingsSectionsPane.navigationItems(0).click();
     });
 
-    it('should navigate to field mapping profile section', function () {
+    it('should navigate to field mapping profiles section', function () {
       expect(this.location.pathname.endsWith('mapping-profiles')).to.be.true;
     });
   });
