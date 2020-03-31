@@ -24,5 +24,6 @@
     "status": "Estado",
     "jobStatus.fail": "Fallo",
     "jobStatus.success": "Éxito",
-    "communicationProblem": "Server communication problem. Please try again"
+    "communicationProblem": "Server communication problem. Please try again",
+    "mappingProfilesTitle": "Field mapping profiles"
 }

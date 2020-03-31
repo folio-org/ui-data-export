@@ -24,5 +24,6 @@
     "status": "الحالة",
     "jobStatus.fail": "فشل",
     "jobStatus.success": "نجاح",
-    "communicationProblem": "توجد مشكلة في الاتصال بالخادم. يرجى إعادة المحاولة."
+    "communicationProblem": "توجد مشكلة في الاتصال بالخادم. يرجى إعادة المحاولة.",
+    "mappingProfilesTitle": "أوضاع تخطيط الحقل"
 }
