@@ -62,7 +62,7 @@ const jobsUrl = createUrl('data-export/jobExecutions', {
 }, false);
 
 const logsUrl = createUrl('data-export/jobExecutions', {
-  query: `status=(${JOB_EXECUTION_STATUSES.SUCCESS} OR ${JOB_EXECUTION_STATUSES.FAIL})`,
+  query: `status=(${JOB_EXECUTION_STATUSES.SUCCESS} OR ${JOB_EXECUTION_STATUSES.FAIL}) sortBy completedDate/sort.descending`,
   limit: 25,
 }, false);
 
