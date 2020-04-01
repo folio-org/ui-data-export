@@ -5,6 +5,7 @@
 * Populate runBy field on jobs logs and running jobs. UIDEXP-37.
 * Init second pane navigation in settings and link to field mapping profiles section. UIDEXP-39.
 * Add static search form on field mapping profiles settings page. UIDEXP-40.
+* Retrieve only latest logs on landing page. Fixes UIDEXP-56.
 
 ## [1.0.0](https://github.com/folio-org/ui-data-export/tree/v1.0.0) (2020-03-13)
 * UI app created. Refs UIDEXP-8.
