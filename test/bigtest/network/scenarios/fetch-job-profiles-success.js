@@ -48,7 +48,7 @@ export const logJobExecutions = [
       fileName: 'import_28-20181105141034.mrc',
     }],
     progress: {
-      jobExecutionId: '3d790a2a-86de-46f9-a9ae-c9109bba746b',
+      current: 5,
       total: 512,
     },
     runBy: {
@@ -72,7 +72,7 @@ export const logJobExecutions = [
       fileName: 'exportQueryFile_21-20181105142257.mrc',
     }],
     progress: {
-      jobExecutionId: '2e149aef-bb77-45aa-8a28-e139674b55e1',
+      current: 10,
       total: 5000,
     },
     runBy: {
