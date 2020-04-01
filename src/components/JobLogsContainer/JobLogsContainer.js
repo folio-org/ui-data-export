@@ -2,17 +2,14 @@ import React, {
   useContext,
   useRef,
 } from 'react';
-import {
-  FormattedMessage,
-  injectIntl,
-  intlShape,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { get } from 'lodash';
 
 import {
   JobLogs,
   getItemFormatter,
   defaultJobLogsColumnMapping,
+  defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
   sortStrings,
 } from '@folio/stripes-data-transfer-components';
@@ -23,6 +20,7 @@ import {
 import {
   stripesConnect,
   stripesShape,
+  IntlConsumer,
 } from '@folio/stripes/core';
 
 import {
@@ -48,20 +46,13 @@ const columnMapping = {
 };
 
 const visibleColumns = [
-  'fileName',
-  'hrId',
-  'jobProfileName',
-  'completedDate',
-  'runBy',
+  ...defaultJobLogsVisibleColumns,
   'status',
 ];
 
 // TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
-  const {
-    intl,
-    stripes: { okapi },
-  } = props;
+  const { stripes: { okapi } } = props;
 
   const {
     logs,
@@ -110,30 +101,38 @@ const JobLogsContainer = props => {
     );
   };
 
+  const getRecordsField = record => {
+    if (record.status === JOB_EXECUTION_STATUSES.FAIL) return null;
+
+    return record.progress.current;
+  };
+
   return (
-    <>
-      <JobLogs
-        columnMapping={columnMapping}
-        formatter={getItemFormatter(
-          {
-            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
-            fileName: record => getFileNameField(record),
-            jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
-          },
-        )}
-        visibleColumns={visibleColumns}
-        sortColumns={sortColumns}
-        hasLoaded={hasLoaded}
-        contentData={logs}
-      />
-      <Callout ref={calloutRef} />
-    </>
+    <IntlConsumer>
+      {intl => (
+        <>
+          <JobLogs
+            columnMapping={columnMapping}
+            formatter={getItemFormatter(
+              {
+                status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
+                fileName: record => getFileNameField(record),
+                jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
+                totalRecords: record => getRecordsField(record),
+              },
+            )}
+            visibleColumns={visibleColumns}
+            sortColumns={sortColumns}
+            hasLoaded={hasLoaded}
+            contentData={logs}
+          />
+          <Callout ref={calloutRef} />
+        </>
+      )}
+    </IntlConsumer>
   );
 };
 
-JobLogsContainer.propTypes = {
-  intl: intlShape,
-  stripes: stripesShape.isRequired,
-};
+JobLogsContainer.propTypes = { stripes: stripesShape.isRequired };
 
-export default stripesConnect(injectIntl(JobLogsContainer));
+export default stripesConnect(JobLogsContainer);
