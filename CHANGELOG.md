@@ -1,10 +1,14 @@
 # Change history for ui-data-export
 
 ## 1.1.0 (IN PROGRESS)
-* Populate jobId field on job logs, update `stripes-smart-components` to `v3.0.0` to avoid errors. UIDEXP-35.
-* Populate runBy field on jobs logs and running jobs. UIDEXP-37.
+
 * Init second pane navigation in settings and link to field mapping profiles section. UIDEXP-39.
 * Add static search form on field mapping profiles settings page. UIDEXP-40.
+
+## [1.0.1](https://github.com/folio-org/ui-data-export/tree/v1.0.1) (2020-04-02)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.0...v1.0.1)
+* Populate jobId field on job logs, update `stripes-smart-components` to `v3.0.0` to avoid errors. UIDEXP-35.
+* Populate runBy field on jobs logs and running jobs. UIDEXP-37.
 * Retrieve only latest logs on landing page. Fixes UIDEXP-56.
 * Populate records field on jobs logs. UIDEXP-36.
 
