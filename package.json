@@ -64,11 +64,6 @@
         "name": "app",
         "alt": "Data export loader for MARC records",
         "title": "Data export"
-      },
-      {
-        "name": "mappingProfiles",
-        "alt": "Field Mapping Profiles",
-        "title": "Field Mapping Profiles"
       }
     ],
     "okapiInterfaces": {

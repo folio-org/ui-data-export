@@ -8,14 +8,13 @@ import {
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
 
-import { MappingProfiles } from '../MappingProfiles';
+import { MappingProfilesContainer } from '../MappingProfilesContainer';
 
 const getSettingsLabel = (messageId, iconKey) => {
   return (
     <SettingsLabel
       messageId={`ui-data-export.${messageId}`}
       iconKey={iconKey}
-      app="data-export"
     />
   );
 };
@@ -30,7 +29,7 @@ const sections = [
       {
         route: 'mapping-profiles',
         label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
-        component: MappingProfiles,
+        component: MappingProfilesContainer,
       },
     ],
   },

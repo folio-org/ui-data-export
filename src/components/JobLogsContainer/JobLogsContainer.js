@@ -7,7 +7,7 @@ import { get } from 'lodash';
 
 import {
   JobLogs,
-  getItemFormatter,
+  getJobLogsItemFormatter,
   defaultJobLogsColumnMapping,
   defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
@@ -113,7 +113,7 @@ const JobLogsContainer = props => {
         <>
           <JobLogs
             columnMapping={columnMapping}
-            formatter={getItemFormatter(
+            formatter={getJobLogsItemFormatter(
               {
                 status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
                 fileName: record => getFileNameField(record),
