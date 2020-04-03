@@ -1,6 +1,9 @@
 # Change history for ui-data-export
 
-## 1.0.2 (IN PROGRESS)
+## 1.1.0 (IN PROGRESS)
+
+## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)
 * Provide missing "module.data-export.enabled" permission. Fixes UIDEXP-46.
 
 ## [1.0.1](https://github.com/folio-org/ui-data-export/tree/v1.0.1) (2020-04-02)
