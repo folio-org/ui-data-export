@@ -14,8 +14,8 @@
       "existingRecordType":"HOLDINGS",
       "format":"MARC",
       "userInfo":{
-      "  firstName":"Mark",
-      "  lastName":"K"
+        "firstName":"Mark",
+        "lastName":"K"
       },
       "metadata": { "updatedDate":"2018-11-04T11:22:31.000+0000" }
     }, {
@@ -23,8 +23,8 @@
       "existingRecordType":"HOLDINGS",
       "format":"MARC",
       "userInfo":{
-      "  firstName":"Kevin",
-      "  lastName":"Madison"
+        "firstName":"Kevin",
+        "lastName":"Madison"
       },
       "metadata":{ "updatedDate":"2018-12-07T11:46:21.000+0000" }
     }, {
