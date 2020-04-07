@@ -4,6 +4,7 @@
 * Init second pane navigation in settings and link to field mapping profiles section. UIDEXP-39.
 * Add static search form on field mapping profiles settings page. UIDEXP-40.
 * Add static mapping profiles list to field mapping settings pane. UIDEXP-41.
+* Accommodate UI to the change of the export job API endpoint. UIDEXP-44.
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)
