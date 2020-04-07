@@ -108,13 +108,10 @@ const QueryFileUploaderComponent = props => {
         onFileUploadProgress: handleFileUploadProgress,
       });
 
-      // TODO: replace jobProfile with real job profile data once backend is implemented
+      // TODO: replace jobProfileId with real one once backend is implemented
       await mutator.export.POST({
-        fileDefinition: fileUploadResult,
-        jobProfile: {
-          id: '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a',
-          destination: 'stub_destination',
-        },
+        fileDefinitionId: fileUploadResult.id,
+        jobProfileId: '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a',
       });
 
       setDropZone(false);
