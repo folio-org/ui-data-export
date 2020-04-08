@@ -104,7 +104,7 @@ const JobLogsContainer = props => {
   const getRecordsField = record => {
     if (record.status === JOB_EXECUTION_STATUSES.FAIL) return null;
 
-    return record.progress.current;
+    return get(record, 'progress.current', '');
   };
 
   return (
