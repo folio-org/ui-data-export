@@ -18,13 +18,13 @@
     "pause": "暂停",
     "resume": "恢复",
     "uploading": "上传中",
-    "modal.fileExtensions.blocked.header": "Invalid file",
-    "modal.fileExtensions.blocked.message": "Only file with csv extension can be uploaded",
-    "modal.fileExtensions.actionButton": "Choose other file to upload",
-    "status": "Status",
-    "jobStatus.fail": "Fail",
-    "jobStatus.success": "Success",
-    "communicationProblem": "Server communication problem. Please try again",
-    "mappingProfilesTitle": "Field mapping profiles",
-    "format": "Format"
+    "modal.fileExtensions.blocked.header": "无效文件",
+    "modal.fileExtensions.blocked.message": "只能上传具有csv扩展名的文件",
+    "modal.fileExtensions.actionButton": "选择其他文件上传",
+    "status": "状态",
+    "jobStatus.fail": "失败",
+    "jobStatus.success": "成功",
+    "communicationProblem": "服务器通信问题。请再试",
+    "mappingProfilesTitle": "字段映射配置文件",
+    "format": "格式"
 }
