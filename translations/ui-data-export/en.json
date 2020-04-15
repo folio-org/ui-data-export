@@ -3,6 +3,7 @@
   "settings.index.paneTitle": "Data export",
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",
+  "viewAllLogs": "View all",
   "uploaderTitle": "Drag and drop",
   "mappingProfilesTitle": "Field mapping profiles",
   "uploaderBtnText": "or choose file",

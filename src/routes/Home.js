@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   Paneset,
   Pane,
+  Button,
 } from '@folio/stripes/components';
 import { stripesConnect } from '@folio/stripes/core';
 import {
@@ -20,6 +21,17 @@ import { DataFetcherContext } from '../contexts/DataFetcherContext';
 import { JOB_EXECUTION_STATUSES } from '../utils/constants';
 
 function Home(props) {
+  const viewAllLogsButton = (
+    <Button
+      buttonStyle="primary paneHeaderNewButton"
+      data-test-view-all-logs-button
+      marginBottom0
+      to=""
+    >
+      <FormattedMessage id="ui-data-export.viewAllLogs" />
+    </Button>
+  );
+
   return (
     <Paneset>
       <DataFetcher
@@ -48,6 +60,7 @@ function Home(props) {
               <FormattedMessage id="ui-data-export.logsPaneTitle" />
             </span>
           )}
+          lastMenu={viewAllLogsButton}
         >
           <JobLogsContainer />
         </Pane>
