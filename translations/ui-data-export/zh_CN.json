@@ -26,5 +26,6 @@
     "jobStatus.success": "成功",
     "communicationProblem": "服务器通信问题。请再试",
     "mappingProfilesTitle": "字段映射配置文件",
-    "format": "格式"
+    "format": "格式",
+    "viewAllLogs": "View all"
 }

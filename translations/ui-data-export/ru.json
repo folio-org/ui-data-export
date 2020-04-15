@@ -26,5 +26,6 @@
     "jobStatus.success": "Success",
     "communicationProblem": "Возникла проблема при подключении к серверу. Пожалуйста, повторите попытку.",
     "mappingProfilesTitle": "Field mapping profiles",
-    "format": "Форматирование"
+    "format": "Форматирование",
+    "viewAllLogs": "View all"
 }

@@ -1,5 +1,5 @@
 {
-    "meta.title": "データエクスポート",
+    "meta.title": "データ・エクスポート",
     "settings.index.paneTitle": "Data export",
     "jobsPaneTitle": "Jobs",
     "logsPaneTitle": "Logs",
@@ -26,5 +26,6 @@
     "jobStatus.success": "Success",
     "communicationProblem": "Server communication problem. Please try again",
     "mappingProfilesTitle": "Field mapping profiles",
-    "format": "Format"
+    "format": "Format",
+    "viewAllLogs": "View all"
 }
