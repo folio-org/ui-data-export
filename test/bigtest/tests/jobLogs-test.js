@@ -32,6 +32,14 @@ describe('Job logs list', () => {
       expect(jobLogsContainerInteractor.logsList.headers(6).text).to.equal(translations.status);
     });
 
+    it('should display view all logs button', () => {
+      expect(jobLogsContainerInteractor.viewAllLogsButton.isPresent).to.be.true;
+    });
+
+    it('should display correct text on view all logs button', () => {
+      expect(jobLogsContainerInteractor.viewAllLogsButton.text).to.equal(translations.viewAllLogs);
+    });
+
     it('should be sorted by "completedDate" descending by default', () => {
       expect(getCellContent(0, 6)).to.equal('Fail');
       expect(getCellContent(1, 6)).to.equal('Success');
