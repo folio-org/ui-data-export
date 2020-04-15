@@ -26,5 +26,6 @@
     "jobStatus.success": "Success",
     "communicationProblem": "Server communication problem. Please try again",
     "mappingProfilesTitle": "Field mapping profiles",
-    "format": "فارمیٹ"
+    "format": "فارمیٹ",
+    "viewAllLogs": "View all"
 }
