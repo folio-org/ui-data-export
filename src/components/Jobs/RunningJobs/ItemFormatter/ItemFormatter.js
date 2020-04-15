@@ -9,44 +9,41 @@ import JobDetails from '../JobDetails';
 import css from './ItemFormatter.css';
 
 const ItemFormatter = job => (
-  <div
+  <Job
     key={job.id}
-    className={css.jobContainer}
-    data-test-running-job
+    job={job}
   >
-    <Job job={job}>
-      <JobDetails job={job} />
-      <div
-        data-test-running-job-buttons-container
-        className={css.buttonsContainer}
+    <JobDetails job={job} />
+    <div
+      data-test-running-job-buttons-container
+      className={css.buttonsContainer}
+    >
+      <Button
+        data-test-cancel-job-running
+        buttonStyle="primary"
+        marginBottom0
+        disabled
       >
-        <Button
-          data-test-cancel-job-running
-          buttonStyle="primary"
-          marginBottom0
-          disabled
-        >
-          <FormattedMessage id="ui-data-export.cancel" />
-        </Button>
-        <Button
-          data-test-pause-job-running
-          buttonStyle="primary"
-          marginBottom0
-          disabled
-        >
-          <FormattedMessage id="ui-data-export.pause" />
-        </Button>
-        <Button
-          data-test-resume-job-running
-          buttonStyle="primary"
-          marginBottom0
-          disabled
-        >
-          <FormattedMessage id="ui-data-export.resume" />
-        </Button>
-      </div>
-    </Job>
-  </div>
+        <FormattedMessage id="ui-data-export.cancel" />
+      </Button>
+      <Button
+        data-test-pause-job-running
+        buttonStyle="primary"
+        marginBottom0
+        disabled
+      >
+        <FormattedMessage id="ui-data-export.pause" />
+      </Button>
+      <Button
+        data-test-resume-job-running
+        buttonStyle="primary"
+        marginBottom0
+        disabled
+      >
+        <FormattedMessage id="ui-data-export.resume" />
+      </Button>
+    </div>
+  </Job>
 );
 
 export default ItemFormatter;
