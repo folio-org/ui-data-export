@@ -1,9 +1,3 @@
-.jobContainer {
-  &:not(:first-child) {
-    margin-top: 10px;
-  }
-}
-
 .buttonsContainer {
   display: flex;
   align-items: center;
