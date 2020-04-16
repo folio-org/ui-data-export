@@ -1,6 +1,6 @@
 {
     "meta.title": "Data export",
-    "settings.index.paneTitle": "Data export",
+    "settings.index.paneTitle": "Cuenta (tenant)",
     "jobsPaneTitle": "Jobs",
     "logsPaneTitle": "Logs",
     "uploaderTitle": "Drag and drop",
@@ -21,7 +21,7 @@
     "modal.fileExtensions.blocked.header": "Invalid file",
     "modal.fileExtensions.blocked.message": "Only file with csv extension can be uploaded",
     "modal.fileExtensions.actionButton": "Choose other file to upload",
-    "status": "Status",
+    "status": "Estado",
     "jobStatus.fail": "Fail",
     "jobStatus.success": "Success",
     "communicationProblem": "Server communication problem. Please try again",
