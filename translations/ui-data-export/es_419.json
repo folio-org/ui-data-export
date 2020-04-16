@@ -1,6 +1,6 @@
 {
     "meta.title": "Data export",
-    "settings.index.paneTitle": "Data export",
+    "settings.index.paneTitle": "Cuenta (tenant)",
     "jobsPaneTitle": "Trabajos",
     "logsPaneTitle": "Logs",
     "uploaderTitle": "Drag and drop",
