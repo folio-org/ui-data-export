@@ -18,7 +18,7 @@ import {
   JobLogsContainer,
 } from '../components';
 import { DataFetcherContext } from '../contexts/DataFetcherContext';
-import { JOB_EXECUTION_STATUSES } from '../utils/constants';
+import { JOB_EXECUTION_STATUSES } from '../utils';
 
 function Home(props) {
   const viewAllLogsButton = (

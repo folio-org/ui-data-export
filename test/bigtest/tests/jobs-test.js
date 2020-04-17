@@ -11,7 +11,6 @@ import {
   JobsInteractor,
   RunningJobsInteractor,
 } from '../interactors';
-
 import { runningJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
 
 const [runningJobExecution] = runningJobExecutions;
@@ -43,7 +42,7 @@ describe('Jobs lists', () => {
     });
 
     it('should display correct amount of running jobs', () => {
-      expect(runningJobs.jobItemsAmount).to.equal(2);
+      expect(runningJobs.jobItemsAmount).to.equal(runningJobExecutions.length);
     });
 
     it('should display running job', () => {

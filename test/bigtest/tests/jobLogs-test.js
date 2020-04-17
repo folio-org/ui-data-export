@@ -9,11 +9,9 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 import translations from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
 import { jobLogsContainerInteractor } from '../interactors';
-import {
-  testUserOzzy,
-  testUserElliot,
-} from '../network/scenarios/fetch-job-profiles-success';
+import { logJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
 
+const getUser = row => logJobExecutions[row].runBy;
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
 
 describe('Job logs list', () => {
@@ -41,8 +39,8 @@ describe('Job logs list', () => {
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 6)).to.equal('Fail');
-      expect(getCellContent(1, 6)).to.equal('Success');
+      expect(getCellContent(0, 6)).to.equal('Success');
+      expect(getCellContent(1, 6)).to.equal('Fail');
     });
 
     it('should render ID column', () => {
@@ -58,18 +56,18 @@ describe('Job logs list', () => {
     });
 
     it('should populate ID cells correctly', () => {
-      expect(getCellContent(0, 1)).to.equal('2');
-      expect(getCellContent(1, 1)).to.equal('4');
+      expect(getCellContent(0, 1)).to.equal('3');
+      expect(getCellContent(1, 1)).to.equal('2');
     });
 
     it('should populate records cells correctly', () => {
-      expect(getCellContent(0, 3)).to.equal('');
-      expect(getCellContent(1, 3)).to.equal('10');
+      expect(getCellContent(0, 3)).to.equal('10');
+      expect(getCellContent(1, 3)).to.equal('');
     });
 
     it('should populate run by user cells correctly', () => {
-      expect(getCellContent(0, 5)).to.equal(`${testUserOzzy.firstName} ${testUserOzzy.lastName}`);
-      expect(getCellContent(1, 5)).to.equal(`${testUserElliot.firstName} ${testUserElliot.lastName}`);
+      expect(getCellContent(0, 5)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
+      expect(getCellContent(1, 5)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
     });
 
     describe('clicking on status header', () => {
