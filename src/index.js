@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { match as matchShape } from 'react-router-prop-types';
 
 import {
@@ -7,6 +8,7 @@ import {
   Switch,
   stripesShape,
 } from '@folio/stripes/core';
+import { Pane } from '@folio/stripes/components';
 
 import { DataExportSettings } from './settings';
 import Home from './routes/Home';
@@ -27,6 +29,19 @@ export default function DataExport(props) {
         path={path}
         exact
         component={Home}
+      />
+      <Route
+        path={`${path}/job-logs`}
+        component={() => (
+          <Pane
+            data-test-all-logs-pane
+            paneTitle={(
+              <span data-test-title>
+                <FormattedMessage id="ui-data-export.logsPaneTitle" />
+              </span>
+            )}
+          />
+        )}
       />
     </Switch>
   );
