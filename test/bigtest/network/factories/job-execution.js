@@ -3,36 +3,33 @@ import {
   faker,
 } from '@bigtest/mirage';
 
-import { JOB_EXECUTION_STATUSES } from '../../../../src/utils/constants';
+import { JOB_EXECUTION_STATUSES } from '../../../../src/utils';
 
 export default Factory.extend({
   id: () => faker.random.uuid(),
-  hrId: () => {
-    return faker.random.number({
-      min: 100000000,
-      max: 999999999,
-    });
+  hrId: i => i,
+  exportedFiles() {
+    return Array.from({
+      length: faker.random.number({
+        min: 1,
+        max: 1,
+      }),
+    }, () => ({
+      fileId: faker.random.uuid(),
+      fileName: `import-${this.hrId}.mrc`,
+    }));
   },
-  exportedFiles: Array.from({
-    length: faker.random.number({
-      min: 1,
-      max: 2,
-    }),
-  }, () => ({
-    fileId: faker.random.uuid(),
-    fileName: `import_${faker.random.uuid()}.mrc`,
-  })),
   status: () => JOB_EXECUTION_STATUSES.IN_PROGRESS,
   runBy: () => ({
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
   }),
   jobProfileInfo: () => ({
-    id: () => faker.random.uuid(),
+    id: faker.random.uuid(),
     name: 'default',
   }),
   progress: () => {
-    const total = faker.random.number();
+    const total = faker.random.number({ max: 1000 });
 
     return {
       current: faker.random.number({ max: total }),
