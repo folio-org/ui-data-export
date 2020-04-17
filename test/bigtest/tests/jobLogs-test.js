@@ -8,7 +8,10 @@ import {
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import translations from '../../../translations/ui-data-export/en';
 import { setupApplication } from '../helpers';
-import { jobLogsContainerInteractor } from '../interactors';
+import {
+  jobLogsContainerInteractor,
+  allLogsPaneInteractor,
+} from '../interactors';
 import { logJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
 
 const getUser = row => logJobExecutions[row].runBy;
@@ -36,6 +39,21 @@ describe('Job logs list', () => {
 
     it('should display correct text on view all logs button', () => {
       expect(jobLogsContainerInteractor.viewAllLogsButton.text).to.equal(translations.viewAllLogs);
+    });
+
+    describe('clicking on view all logs button', () => {
+      beforeEach(async () => {
+        await jobLogsContainerInteractor.viewAllLogsButton.click();
+      });
+
+      it('should navigate to all logs pane', () => {
+        expect(allLogsPaneInteractor.isPresent).to.be.true;
+      });
+
+      it('should navigate to correct path', function () {
+        expect(this.location.pathname.includes('/data-export/job-logs')).to.be.true;
+        expect(this.location.search.includes('?sort=-completedDate')).to.be.true;
+      });
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
