@@ -25,7 +25,23 @@ const visibleColumns = [
 const MappingProfilesContainer = () => {
   return (
     <MappingProfiles
-      contentData={tempData.profiles}
+      // TODO: temp solution to simulate mutators and resources that should be removed after integration with backend
+      parentResources={{
+        query: {
+          sort: new URLSearchParams(window.location.search).get('sort') || '',
+          query: new URLSearchParams(window.location.search).get('query') || '',
+        },
+        mappingProfiles: {
+          records: tempData.profiles,
+          hasLoaded: true,
+          isPending: false,
+          other: { totalRecords: 4 },
+        },
+      }}
+      parentMutator={{
+        resultCount: { replace: () => { } },
+        resultOffset: { replace: () => { } },
+      }}
       formatter={getMappingProfilesItemFormatter({ format: record => record.format })}
       {...getMappingProfilesColumnProperties({
         visibleColumns,
