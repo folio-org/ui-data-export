@@ -7,9 +7,9 @@ import {
 
 import { SearchAndSortInteractor } from '@folio/stripes-data-transfer-components/interactors';
 import stripesDataTransferTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
-import translations from '../../../translations/ui-data-export/en';
+import translations from '../../../../translations/ui-data-export/en';
 
-import { setupApplication } from '../helpers';
+import { setupApplication } from '../../helpers';
 
 const mappingProfiles = new SearchAndSortInteractor();
 
