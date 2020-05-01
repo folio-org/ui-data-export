@@ -8,14 +8,14 @@ import { FullScreenForm } from '@folio/stripes-data-transfer-components';
 
 export const MappingProfilesForm = ({ onCancel }) => {
   return (
-    <FormattedMessage id="ui-data-export.mapping.newProfile">
+    <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
       {contentLabel => (
         <Layer
           isOpen
           contentLabel={contentLabel}
         >
           <FullScreenForm
-            paneTitle={<FormattedMessage id="ui-data-export.mapping.newProfile" />}
+            paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
             onSubmit={noop}
             onCancel={onCancel}
           />
