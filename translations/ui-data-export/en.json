@@ -27,5 +27,6 @@
   "modal.fileExtensions.blocked.message": "Only file with csv extension can be uploaded",
   "modal.fileExtensions.actionButton": "Choose other file to upload",
   "communicationProblem": "Server communication problem. Please try again",
-  "format": "Format"
+  "format": "Format",
+  "mappingProfiles.newProfile": "New field mapping profile"
 }

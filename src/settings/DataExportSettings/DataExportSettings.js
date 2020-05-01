@@ -8,7 +8,7 @@ import {
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
 
-import { MappingProfilesContainer } from '../MappingProfilesContainer';
+import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
 
 const getSettingsLabel = (messageId, iconKey) => {
   return (
