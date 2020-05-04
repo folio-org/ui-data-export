@@ -6,6 +6,7 @@
   "viewAllLogs": "View all",
   "uploaderTitle": "Drag and drop",
   "mappingProfilesTitle": "Field mapping profiles",
+  "jobProfilesTitle": "Job profiles",
   "uploaderBtnText": "or choose file",
   "uploaderSubTitle": "Select a file with records IDs or CQL queries",
   "uploaderActiveTitle": "Drop to start import",

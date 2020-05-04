@@ -35,16 +35,30 @@ describe('Settings', () => {
   });
 
   it('should display field mapping profiles section', () => {
-    expect(settingsSectionsPane.sectionsLabels(0).text).to.equal(translations.mappingProfilesTitle);
+    expect(settingsSectionsPane.sectionsLabels(1).text).to.equal(translations.mappingProfilesTitle);
+  });
+
+  it('should display job profiles section', () => {
+    expect(settingsSectionsPane.sectionsLabels(0).text).to.equal(translations.jobProfilesTitle);
   });
 
   describe('clicking on field mapping profiles navigation item', () => {
     beforeEach(async () => {
-      await settingsSectionsPane.navigationItems(0).click();
+      await settingsSectionsPane.navigationItems(1).click();
     });
 
     it('should navigate to field mapping profiles section', function () {
       expect(this.location.pathname.endsWith('mapping-profiles')).to.be.true;
+    });
+  });
+
+  describe('clicking on job profiles navigation item', () => {
+    beforeEach(async () => {
+      await settingsSectionsPane.navigationItems(0).click();
+    });
+
+    it('should navigate to job profiles section', function () {
+      expect(this.location.pathname.endsWith('job-profiles')).to.be.true;
     });
   });
 });
