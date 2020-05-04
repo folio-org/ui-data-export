@@ -9,6 +9,7 @@ import {
 } from '@folio/stripes-data-transfer-components';
 
 import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
+import { JobProfilesContainer } from '../JobProfiles/JobProfilesContainer';
 
 const getSettingsLabel = (messageId, iconKey) => {
   return (
@@ -26,6 +27,11 @@ const sections = [
       content={<div style={{ width: '150px' }} />}
     />,
     pages: [
+      {
+        route: 'job-profiles',
+        label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
+        component: JobProfilesContainer,
+      },
       {
         route: 'mapping-profiles',
         label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
