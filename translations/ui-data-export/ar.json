@@ -27,5 +27,7 @@
     "communicationProblem": "توجد مشكلة في الاتصال بالخادم. يرجى إعادة المحاولة.",
     "mappingProfilesTitle": "أوضاع تخطيط الحقل",
     "format": "تنسيق",
-    "viewAllLogs": "عرض الكل"
+    "viewAllLogs": "عرض الكل",
+    "mappingProfiles.newProfile": "وضع تخطيط حقل جديد",
+    "jobProfilesTitle": "Job profiles"
 }

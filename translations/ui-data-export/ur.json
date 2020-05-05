@@ -27,5 +27,7 @@
     "communicationProblem": "Server communication problem. Please try again",
     "mappingProfilesTitle": "Field mapping profiles",
     "format": "فارمیٹ",
-    "viewAllLogs": "View all"
+    "viewAllLogs": "View all",
+    "mappingProfiles.newProfile": "New field mapping profile",
+    "jobProfilesTitle": "کام کی نوعیت"
 }
