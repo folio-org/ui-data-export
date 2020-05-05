@@ -27,5 +27,7 @@
     "communicationProblem": "Возникла проблема при подключении к серверу. Пожалуйста, повторите попытку.",
     "mappingProfilesTitle": "Field mapping profiles",
     "format": "Форматирование",
-    "viewAllLogs": "View all"
+    "viewAllLogs": "View all",
+    "mappingProfiles.newProfile": "New field mapping profile",
+    "jobProfilesTitle": "Job profiles"
 }

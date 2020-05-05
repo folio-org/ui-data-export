@@ -27,5 +27,7 @@
     "communicationProblem": "Problema de comunicação do servidor. Por favor, tente novamente",
     "mappingProfilesTitle": "Perfis de mapeamento de campo",
     "format": "Formato",
-    "viewAllLogs": "Ver todos"
+    "viewAllLogs": "Ver todos",
+    "mappingProfiles.newProfile": "Novo perfil de mapeamento de campo",
+    "jobProfilesTitle": "Perfis de job"
 }

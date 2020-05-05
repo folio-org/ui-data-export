@@ -27,5 +27,7 @@
     "communicationProblem": "Server communication problem. Please try again",
     "mappingProfilesTitle": "Field mapping profiles",
     "format": "Format",
-    "viewAllLogs": "查看全部"
+    "viewAllLogs": "查看全部",
+    "mappingProfiles.newProfile": "New field mapping profile",
+    "jobProfilesTitle": "Job profiles"
 }

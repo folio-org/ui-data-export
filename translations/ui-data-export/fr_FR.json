@@ -27,5 +27,7 @@
     "communicationProblem": "Problème de communication avec le serveur. Veuillez réessayer",
     "mappingProfilesTitle": "Field mapping profiles",
     "format": "Format",
-    "viewAllLogs": "Tout afficher"
+    "viewAllLogs": "Tout afficher",
+    "mappingProfiles.newProfile": "New field mapping profile",
+    "jobProfilesTitle": "Profils de tâche"
 }
