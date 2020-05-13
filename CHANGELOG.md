@@ -12,6 +12,7 @@
 * Add navigation to all logs view on view all button click. UIDEXP-63.
 * Update mapping profiles container according to changes in shared components. STDTC-9.
 * Add job profiles section to second pane in setting. UIDEXP-79.
+* Update to Stripes v4. UIDEXP-101.
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)
