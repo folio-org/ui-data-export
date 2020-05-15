@@ -16,6 +16,6 @@ export class JobsInteractor {
   accordionsAmount = count('[data-test-accordion-section]');
 
   whenLoaded() {
-    return this.when(() => this.isPresent);
+    return this.when(() => this.container.isPresent);
   }
 }
