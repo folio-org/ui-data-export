@@ -29,5 +29,12 @@
     "format": "فارمیٹ",
     "viewAllLogs": "View all",
     "mappingProfiles.newProfile": "New field mapping profile",
-    "jobProfilesTitle": "کام کی نوعیت"
+    "jobProfilesTitle": "کام کی نوعیت",
+    "summary": "Summary",
+    "name": "Name",
+    "description": "Description",
+    "outputFormat": "Output format",
+    "transformations": "Transformations",
+    "marc": "MARC",
+    "protocol": "TCP/IP"
 }
