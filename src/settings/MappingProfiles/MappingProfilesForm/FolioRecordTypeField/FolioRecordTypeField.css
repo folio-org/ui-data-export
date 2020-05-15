@@ -1,0 +1,15 @@
+@import '@folio/stripes-components/lib/variables';
+
+.folioRecordTypeContainer {
+  margin-bottom: var(--control-margin-bottom);
+}
+
+.error {
+  padding: 0 var(--input-vertical-padding);
+  font-size: var(--font-size-medium);
+  color: var(--error);
+
+  &:last-child {
+    margin-bottom: var(--control-margin-bottom);
+  }
+}

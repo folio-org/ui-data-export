@@ -5,12 +5,10 @@ import {
   it,
 } from '@bigtest/mocha';
 
-import { FullScreenFormInteractor } from '@folio/stripes-data-transfer-components/interactors';
-
+import { MappingProfilesFormInteractor } from '../units/settings/MappingProfilesForm/interactors/MappingProfilesFormInteractor';
 import { setupApplication } from '../../helpers';
-import translations from '../../../../translations/ui-data-export/en';
 
-const fullScreenForm = new FullScreenFormInteractor();
+const form = new MappingProfilesFormInteractor();
 
 describe('Field mapping profiles form', () => {
   setupApplication();
@@ -20,16 +18,12 @@ describe('Field mapping profiles form', () => {
   });
 
   it('should display mapping profiles form', () => {
-    expect(fullScreenForm.isPresent).to.be.true;
-  });
-
-  it('should display correct pane title', () => {
-    expect(fullScreenForm.header.text).to.equal(translations['mappingProfiles.newProfile']);
+    expect(form.isPresent).to.be.true;
   });
 
   describe('clicking cancel button', () => {
     beforeEach(async () => {
-      await fullScreenForm.cancelButton.click();
+      await form.fullScreen.cancelButton.click();
     });
 
     it('should navigate mapping profiles settings page', function () {
@@ -39,7 +33,7 @@ describe('Field mapping profiles form', () => {
 
   describe('clicking on close button', () => {
     beforeEach(async () => {
-      await fullScreenForm.closeButton.click();
+      await form.fullScreen.closeButton.click();
     });
 
     it('should navigate mapping profiles settings page', function () {
