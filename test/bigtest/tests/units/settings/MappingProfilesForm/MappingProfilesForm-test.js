@@ -13,10 +13,8 @@ import sinon from 'sinon';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Paneset } from '@folio/stripes/components';
-import {
-  mountWithContext,
-  FOLIO_RECORD_TYPES,
-} from '@folio/stripes-data-transfer-components';
+import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
+import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
 
