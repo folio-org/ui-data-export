@@ -1,1 +1,1 @@
-export * from './MappingProfilesForm';
+export { default as MappingProfilesForm } from './MappingProfilesForm';

@@ -66,6 +66,10 @@ const MappingProfilesContainer = ({
         render={props => (
           <MappingProfilesForm
             {...props}
+            onSubmit={() => {
+              // TODO: Add transition to mapping profiles list, backend communication, etc.
+              // The functions receives form values as an argument
+            }}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
         )}

@@ -20,6 +20,11 @@
   "cancel": "Cancel",
   "pause": "Pause",
   "resume": "Resume",
+  "summary": "Summary",
+  "name": "Name",
+  "description": "Description",
+  "outputFormat": "Output format",
+  "transformations": "Transformations",
   "uploading": "Uploading",
   "status": "Status",
   "jobStatus.fail": "Fail",
@@ -29,5 +34,6 @@
   "modal.fileExtensions.actionButton": "Choose other file to upload",
   "communicationProblem": "Server communication problem. Please try again",
   "format": "Format",
-  "mappingProfiles.newProfile": "New field mapping profile"
+  "mappingProfiles.newProfile": "New field mapping profile",
+  "marc": "MARC"
 }
