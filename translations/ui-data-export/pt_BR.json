@@ -29,5 +29,12 @@
     "format": "Formato",
     "viewAllLogs": "Ver todos",
     "mappingProfiles.newProfile": "Novo perfil de mapeamento de campo",
-    "jobProfilesTitle": "Perfis de job"
+    "jobProfilesTitle": "Perfis de job",
+    "summary": "Resumo",
+    "name": "Nome",
+    "description": "Descrição",
+    "outputFormat": "Formato de saída",
+    "transformations": "Transformações",
+    "marc": "MARC",
+    "protocol": "TCP/IP"
 }

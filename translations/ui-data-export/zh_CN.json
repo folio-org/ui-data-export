@@ -29,5 +29,12 @@
     "format": "格式",
     "viewAllLogs": "查看全部",
     "mappingProfiles.newProfile": "New field mapping profile",
-    "jobProfilesTitle": "Job profiles"
+    "jobProfilesTitle": "Job profiles",
+    "summary": "Summary",
+    "name": "Name",
+    "description": "Description",
+    "outputFormat": "Output format",
+    "transformations": "Transformations",
+    "marc": "MARC",
+    "protocol": "TCP/IP"
 }

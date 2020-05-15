@@ -29,5 +29,12 @@
     "format": "تنسيق",
     "viewAllLogs": "عرض الكل",
     "mappingProfiles.newProfile": "وضع تخطيط حقل جديد",
-    "jobProfilesTitle": "Job profiles"
+    "jobProfilesTitle": "أوضاع الوظائف",
+    "summary": "ملخص",
+    "name": "الاسم",
+    "description": "الوصف",
+    "outputFormat": "تنسيق الإخراج",
+    "transformations": "تحولات",
+    "marc": "مارك",
+    "protocol": "TCP/IP"
 }

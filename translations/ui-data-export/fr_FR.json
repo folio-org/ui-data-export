@@ -29,5 +29,12 @@
     "format": "Format",
     "viewAllLogs": "Tout afficher",
     "mappingProfiles.newProfile": "New field mapping profile",
-    "jobProfilesTitle": "Profils de tâche"
+    "jobProfilesTitle": "Profils de tâche",
+    "summary": "Summary",
+    "name": "Name",
+    "description": "Description",
+    "outputFormat": "Output format",
+    "transformations": "Transformations",
+    "marc": "MARC",
+    "protocol": "TCP/IP"
 }

@@ -29,5 +29,12 @@
     "format": "Форматирование",
     "viewAllLogs": "View all",
     "mappingProfiles.newProfile": "New field mapping profile",
-    "jobProfilesTitle": "Job profiles"
+    "jobProfilesTitle": "Job profiles",
+    "summary": "Сводка",
+    "name": "Название",
+    "description": "Описание",
+    "outputFormat": "Output format",
+    "transformations": "Трансформации",
+    "marc": "MARC",
+    "protocol": "TCP/IP"
 }
