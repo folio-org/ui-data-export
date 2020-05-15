@@ -5,6 +5,7 @@ import {
   history as historyShape,
   location as locationShape,
 } from 'react-router-prop-types';
+import { noop } from 'lodash';
 
 import { Route } from '@folio/stripes/core';
 import {
@@ -17,18 +18,17 @@ import {
 import { MappingProfilesForm } from '../MappingProfilesForm';
 import tempData from './tempData';
 
-const customProperties = {
+const customProperties = getMappingProfilesColumnProperties({
   columnWidths: { format: '70px' },
   columnMapping: { format: <FormattedMessage id="ui-data-export.format" /> },
-};
-
-const visibleColumns = [
-  DEFAULT_MAPPING_PROFILES_COLUMNS.NAME,
-  DEFAULT_MAPPING_PROFILES_COLUMNS.FOLIO_RECORD,
-  'format',
-  DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED,
-  DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED_BY,
-];
+  visibleColumns: [
+    DEFAULT_MAPPING_PROFILES_COLUMNS.NAME,
+    DEFAULT_MAPPING_PROFILES_COLUMNS.FOLIO_RECORD,
+    'format',
+    DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED,
+    DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED_BY,
+  ],
+});
 
 const MappingProfilesContainer = ({
   history,
@@ -52,14 +52,11 @@ const MappingProfilesContainer = ({
           },
         }}
         parentMutator={{
-          resultCount: { replace: () => { } },
-          resultOffset: { replace: () => { } },
+          resultCount: { replace: noop },
+          resultOffset: { replace: noop },
         }}
         formatter={getMappingProfilesItemFormatter({ format: record => record.format })}
-        {...getMappingProfilesColumnProperties({
-          visibleColumns,
-          customProperties,
-        })}
+        {...customProperties}
       />
       <Route
         path={`${match.path}/create`}

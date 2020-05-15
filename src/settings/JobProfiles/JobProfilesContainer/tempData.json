@@ -1,9 +1,8 @@
 {
   "profiles":[
     {
-      "name":"AP Holdings 1",
-      "existingRecordType":"HOLDINGS",
-      "format":"MARC",
+      "name":"A Lorem impsum 1",
+      "protocol": "-",
       "userInfo":{
         "firstName":"Donald",
         "lastName":"S"
@@ -11,9 +10,8 @@
       "metadata": { "updatedDate":"2018-12-04T09:05:30.000+0000" }
     },
     {
-      "name":"AP Holdings 2",
-      "existingRecordType":"HOLDINGS",
-      "format":"MARC",
+      "name":"A Lorem impsum 1",
+      "protocol": "-",
       "userInfo":{
         "firstName":"Mark",
         "lastName":"K"
@@ -21,9 +19,8 @@
       "metadata": { "updatedDate":"2018-11-04T11:22:31.000+0000" }
     },
     {
-      "name":"A Lorem ipsum",
-      "existingRecordType":"HOLDINGS",
-      "format":"MARC",
+      "name":"B Lorem ipsum 1",
+      "protocol": "-",
       "userInfo":{
         "firstName":"Kevin",
         "lastName":"Madison"
@@ -31,9 +28,8 @@
       "metadata":{ "updatedDate":"2018-12-07T11:46:21.000+0000" }
     },
     {
-      "name":"C Lorem ipsum",
-      "existingRecordType":"INSTANCE",
-      "format":"MARC",
+      "name":"B Lorem ipsum 2",
+      "protocol": "-",
       "userInfo":{
         "firstName":"Denis",
         "lastName":"Lion"
