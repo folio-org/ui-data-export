@@ -33,7 +33,7 @@
     "summary": "Сводка",
     "name": "Название",
     "description": "Описание",
-    "outputFormat": "Output format",
+    "outputFormat": "Выходной формат",
     "transformations": "Трансформации",
     "marc": "MARC",
     "protocol": "TCP/IP"
