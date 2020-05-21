@@ -101,12 +101,6 @@ const JobLogsContainer = props => {
     );
   };
 
-  const getRecordsField = record => {
-    if (record.status === JOB_EXECUTION_STATUSES.FAIL) return null;
-
-    return get(record, 'progress.current', '');
-  };
-
   return (
     <IntlConsumer>
       {intl => (
@@ -118,7 +112,6 @@ const JobLogsContainer = props => {
                 status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
                 fileName: record => getFileNameField(record),
                 jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
-                totalRecords: record => getRecordsField(record),
               },
             )}
             visibleColumns={visibleColumns}

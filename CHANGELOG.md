@@ -15,6 +15,7 @@
 * Update to Stripes v4. UIDEXP-101.
 * Add mapping profiles form. UIDEXP-46.
 * Implement job profiles list. UIDEXP-80.
+* Accommodate UI to the changes in progress field structure for job execution. UIDEXP-106.
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)
