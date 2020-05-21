@@ -16,6 +16,7 @@ export const runningJobExecutions = [
 export const logJobExecutions = [
   {
     hrId: 2,
+    progress: { total: 500 },
     runBy: {
       firstName: 'Ozzy',
       lastName: 'Campenshtorm',
@@ -26,10 +27,7 @@ export const logJobExecutions = [
   },
   {
     hrId: 3,
-    progress: {
-      current: 10,
-      total: 5000,
-    },
+    progress: { total: 5000 },
     runBy: {
       firstName: 'Elliot',
       lastName: 'Lane',
