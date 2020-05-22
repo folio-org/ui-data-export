@@ -16,4 +16,9 @@ export default function config() {
     fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
     link: mockLink,
   }, 200);
+
+  this.get('/data-export/mappingProfiles', {
+    mappingProfiles: [],
+    totalRecords: 0,
+  });
 }

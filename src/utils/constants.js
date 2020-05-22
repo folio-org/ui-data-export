@@ -4,3 +4,9 @@ export const JOB_EXECUTION_STATUSES = {
   SUCCESS: 'SUCCESS',
   FAIL: 'FAIL',
 };
+
+export const FIND_ALL_CQL = 'cql.allRecords=1';
+
+export const INITIAL_RESULT_COUNT = 5000;
+
+export const RESULT_COUNT_INCREMENT = 100;
