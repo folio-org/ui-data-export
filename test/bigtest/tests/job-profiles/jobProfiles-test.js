@@ -13,10 +13,10 @@ import { setupApplication } from '../../helpers';
 const jobProfiles = new SearchAndSortInteractor();
 
 describe('Job profiles settings', () => {
-  setupApplication();
+  setupApplication({ scenarios: ['fetch-mapping-profiles-success'] });
 
   beforeEach(function () {
-    this.visit('/settings/data-export/job-profiles');
+    this.visit('/settings/data-export/job-profiles?sort=name');
   });
 
   it('should display job profiles pane', () => {
@@ -35,5 +35,19 @@ describe('Job profiles settings', () => {
     expect(jobProfiles.searchResults.getCellContent(0, 1)).to.equal('-');
     expect(jobProfiles.searchResults.getCellContent(0, 2)).to.equal('12/4/2018');
     expect(jobProfiles.searchResults.getCellContent(0, 3)).to.equal('Donald S');
+  });
+
+  describe('clicking on create new job profile button', () => {
+    beforeEach(async () => {
+      await jobProfiles.header.newButton.click();
+    });
+
+    it('should navigate to create job profile form saving query in path', function () {
+      expect(this.location.pathname.includes('/data-export/job-profiles/create')).to.be.true;
+    });
+
+    it('should save query in path after navigation', function () {
+      expect(this.location.search.includes('?sort=name')).to.be.true;
+    });
   });
 });

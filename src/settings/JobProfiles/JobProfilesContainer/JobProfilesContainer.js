@@ -1,7 +1,13 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { noop } from 'lodash';
+import {
+  match as matchShape,
+  history as historyShape,
+  location as locationShape,
+} from 'react-router-prop-types';
 
+import { Route } from '@folio/stripes/core';
 import { NoValue } from '@folio/stripes/components';
 import {
   JobProfiles,
@@ -10,6 +16,7 @@ import {
   getJobProfilesItemFormatter,
 } from '@folio/stripes-data-transfer-components';
 
+import { NewJobProfileRoute } from '../NewJobProfileRoute';
 import tempData from './tempData';
 
 const customProperties = getJobProfilesColumnProperties({
@@ -23,30 +30,51 @@ const customProperties = getJobProfilesColumnProperties({
   ],
 });
 
-const JobProfilesContainer = () => {
+const JobProfilesContainer = ({
+  history,
+  match,
+  location,
+}) => {
   return (
-    <JobProfiles
-      // TODO: temp solution to simulate mutators and resources that should be removed after integration with backend
-      parentResources={{
-        query: {
-          sort: new URLSearchParams(window.location.search).get('sort') || '',
-          query: new URLSearchParams(window.location.search).get('query') || '',
-        },
-        jobProfiles: {
-          records: tempData.profiles,
-          hasLoaded: true,
-          isPending: false,
-          other: { totalRecords: 4 },
-        },
-      }}
-      parentMutator={{
-        resultCount: { replace: noop },
-        resultOffset: { replace: noop },
-      }}
-      formatter={getJobProfilesItemFormatter({ protocol: () => <NoValue /> })}
-      {...customProperties}
-    />
+    <>
+      <JobProfiles
+        // TODO: temp solution to simulate mutators and resources that should be removed after integration with backend
+        parentResources={{
+          query: {
+            sort: new URLSearchParams(window.location.search).get('sort') || '',
+            query: new URLSearchParams(window.location.search).get('query') || '',
+          },
+          jobProfiles: {
+            records: tempData.profiles,
+            hasLoaded: true,
+            isPending: false,
+            other: { totalRecords: 4 },
+          },
+        }}
+        parentMutator={{
+          resultCount: { replace: noop },
+          resultOffset: { replace: noop },
+        }}
+        formatter={getJobProfilesItemFormatter({ protocol: () => <NoValue /> })}
+        {...customProperties}
+      />
+      <Route
+        path={`${match.path}/create`}
+        render={() => (
+          <NewJobProfileRoute
+            onSubmit={noop}
+            onCancel={() => history.push(`${match.path}${location.search}`)}
+          />
+        )}
+      />
+    </>
   );
+};
+
+JobProfilesContainer.propTypes = {
+  match: matchShape.isRequired,
+  history: historyShape.isRequired,
+  location: locationShape.isRequired,
 };
 
 export default JobProfilesContainer;

@@ -81,6 +81,7 @@
           "data-export.file-definitions.item.post",
           "data-export.file-definitions.upload.post",
           "data-export.export.post",
+          "data-export.mapping-profiles.collection.get",
           "data-export.job-executions.items.get",
           "data-export.job-executions.items.download.get"
         ],

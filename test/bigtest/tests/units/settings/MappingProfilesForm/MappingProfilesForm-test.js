@@ -36,7 +36,7 @@ describe('MappingProfilesForm', () => {
 
   const form = new MappingProfilesFormInteractor();
 
-  describe('rendering search form with stubbed submit handler', function () {
+  describe('rendering mapping profiles form with stubbed submit handler', function () {
     const handleSubmitSpy = sinon.spy();
 
     beforeEach(async function () {
@@ -119,7 +119,7 @@ describe('MappingProfilesForm', () => {
         await form.summary.description.fillAndBlur('value');
       });
 
-      it('should enable save button if there are no changes', () => {
+      it('should enable save button if there are changes', () => {
         expect(form.fullScreen.submitButton.$root.disabled).to.be.false;
       });
 
@@ -191,7 +191,7 @@ describe('MappingProfilesForm', () => {
     });
   });
 
-  describe('rendering search form with correct submit handler', function () {
+  describe('rendering mapping profiles form with correct submit handler', function () {
     let result;
     const name = 'Profile name';
     const description = 'Description value';
