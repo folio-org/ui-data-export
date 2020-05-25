@@ -1,13 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import {
   match as matchShape,
   history as historyShape,
   location as locationShape,
 } from 'react-router-prop-types';
-import { noop } from 'lodash';
 
-import { Route } from '@folio/stripes/core';
+import {
+  Route,
+  stripesConnect,
+} from '@folio/stripes/core';
+import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
   getMappingProfilesColumnProperties,
@@ -16,7 +20,11 @@ import {
 } from '@folio/stripes-data-transfer-components';
 
 import { MappingProfilesForm } from '../MappingProfilesForm';
-import tempData from './tempData';
+import {
+  INITIAL_RESULT_COUNT,
+  RESULT_COUNT_INCREMENT,
+  FIND_ALL_CQL,
+} from '../../../utils';
 
 const customProperties = getMappingProfilesColumnProperties({
   columnWidths: { format: '70px' },
@@ -30,32 +38,28 @@ const customProperties = getMappingProfilesColumnProperties({
   ],
 });
 
+const queryTemplate = '(sortby "%{query.query}")';
+const sortMap = {
+  name: 'name',
+  folioRecord: 'recordTypes',
+  format: 'outputFormat',
+  updated: 'metadata.updatedDate',
+  updatedBy: 'userInfo.firstName userInfo.lastName',
+};
+
 const MappingProfilesContainer = ({
   history,
   match,
   location,
+  mutator,
+  resources,
 }) => {
   return (
     <>
       <MappingProfiles
-        // TODO: temp solution to simulate mutators and resources that should be removed after integration with backend
-        parentResources={{
-          query: {
-            sort: new URLSearchParams(window.location.search).get('sort') || '',
-            query: new URLSearchParams(window.location.search).get('query') || '',
-          },
-          mappingProfiles: {
-            records: tempData.profiles,
-            hasLoaded: true,
-            isPending: false,
-            other: { totalRecords: 4 },
-          },
-        }}
-        parentMutator={{
-          resultCount: { replace: noop },
-          resultOffset: { replace: noop },
-        }}
-        formatter={getMappingProfilesItemFormatter({ format: record => record.format })}
+        parentResources={resources}
+        parentMutator={mutator}
+        formatter={getMappingProfilesItemFormatter({ format: ({ outputFormat }) => outputFormat })}
         {...customProperties}
       />
       <Route
@@ -77,8 +81,36 @@ const MappingProfilesContainer = ({
 
 MappingProfilesContainer.propTypes = {
   match: matchShape.isRequired,
+  mutator: PropTypes.object.isRequired,
   history: historyShape.isRequired,
   location: locationShape.isRequired,
+  resources: PropTypes.object.isRequired,
 };
 
-export default MappingProfilesContainer;
+MappingProfilesContainer.manifest = Object.freeze({
+  initializedFilterConfig: { initialValue: false },
+  query: { initialValue: {} },
+  resultCount: { initialValue: INITIAL_RESULT_COUNT },
+  mappingProfiles: {
+    type: 'okapi',
+    path: 'data-export/mappingProfiles',
+    records: 'mappingProfiles',
+    recordsRequired: '%{resultCount}',
+    perRequest: RESULT_COUNT_INCREMENT,
+    clientGeneratePk: false,
+    throwErrors: false,
+    GET: {
+      params: {
+        query: makeQueryFunction(
+          FIND_ALL_CQL,
+          queryTemplate,
+          sortMap,
+          [],
+        ),
+      },
+      staticFallback: { params: {} },
+    },
+  },
+});
+
+export default stripesConnect(MappingProfilesContainer);

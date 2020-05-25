@@ -13,7 +13,7 @@ import { setupApplication } from '../../helpers';
 const mappingProfiles = new SearchAndSortInteractor();
 
 describe('Field mapping profiles settings', () => {
-  setupApplication();
+  setupApplication({ scenarios: ['fetch-mapping-profiles-success'] });
 
   beforeEach(function () {
     this.visit('/settings/data-export/mapping-profiles');
@@ -37,6 +37,11 @@ describe('Field mapping profiles settings', () => {
     expect(mappingProfiles.searchResults.getCellContent(0, 2)).to.equal('MARC');
     expect(mappingProfiles.searchResults.getCellContent(0, 3)).to.equal('12/4/2018');
     expect(mappingProfiles.searchResults.getCellContent(0, 4)).to.equal('Donald S');
+  });
+
+  it('should not display values if they are not present in mapping profile', () => {
+    expect(mappingProfiles.searchResults.getCellContent(1, 2)).to.equal('');
+    expect(mappingProfiles.searchResults.getCellContent(1, 4)).to.equal('');
   });
 
   describe('clicking on create new mapping profile button', () => {
