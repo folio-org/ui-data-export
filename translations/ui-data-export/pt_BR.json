@@ -36,5 +36,8 @@
     "outputFormat": "Formato de saída",
     "transformations": "Transformações",
     "marc": "MARC",
-    "protocol": "TCP/IP"
+    "protocol": "TCP/IP",
+    "mappingProfile": "Mapping profile",
+    "jobProfiles.newProfile": "New job profile",
+    "selectMappingProfile": "Select mapping profile"
 }

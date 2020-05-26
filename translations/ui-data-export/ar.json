@@ -36,5 +36,8 @@
     "outputFormat": "تنسيق الإخراج",
     "transformations": "تحولات",
     "marc": "مارك",
-    "protocol": "TCP/IP"
+    "protocol": "TCP/IP",
+    "mappingProfile": "وضع التخطيط",
+    "jobProfiles.newProfile": "وضع وظيفة جديد",
+    "selectMappingProfile": "اختر وضع تخطيط"
 }
