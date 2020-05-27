@@ -37,7 +37,7 @@
     "transformations": "Transformações",
     "marc": "MARC",
     "protocol": "TCP/IP",
-    "mappingProfile": "Mapping profile",
-    "jobProfiles.newProfile": "New job profile",
-    "selectMappingProfile": "Select mapping profile"
+    "mappingProfile": "Perfil de mapeamento",
+    "jobProfiles.newProfile": "Novo perfil de job",
+    "selectMappingProfile": "Selecione o perfil de mapeamento"
 }
