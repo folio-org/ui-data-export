@@ -21,8 +21,8 @@ const folioRecordTypes = [
     label: <FormattedMessage id={FOLIO_RECORD_TYPES.HOLDINGS.captionId} />,
   },
   {
-    value: FOLIO_RECORD_TYPES.ITEMS.type,
-    label: <FormattedMessage id={FOLIO_RECORD_TYPES.ITEMS.captionId} />,
+    value: FOLIO_RECORD_TYPES.ITEM.type,
+    label: <FormattedMessage id={FOLIO_RECORD_TYPES.ITEM.captionId} />,
   },
 ];
 

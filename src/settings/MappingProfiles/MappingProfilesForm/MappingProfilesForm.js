@@ -91,9 +91,9 @@ const MappingProfilesForm = props => {
                         component={Select}
                         dataOptions={[{
                           label: intl.formatMessage({ id: 'ui-data-export.marc' }),
-                          value: 'marc',
+                          value: 'MARC',
                         }]}
-                        initialValue="marc"
+                        initialValue="MARC"
                         fullWidth
                         required
                       />

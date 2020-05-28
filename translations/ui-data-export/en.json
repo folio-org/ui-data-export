@@ -39,5 +39,6 @@
   "mappingProfiles.newProfile": "New field mapping profile",
   "jobProfiles.newProfile": "New job profile",
   "selectMappingProfile": "Select mapping profile",
+  "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>",
   "marc": "MARC"
 }

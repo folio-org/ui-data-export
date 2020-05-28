@@ -7,7 +7,10 @@ import {
 
 import { SearchAndSortInteractor } from '@folio/stripes-data-transfer-components/interactors';
 import stripesDataTransferTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
+import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
+
 import translations from '../../../../translations/ui-data-export/en';
+import { MappingProfilesFormInteractor } from '../units/settings/MappingProfilesForm/interactors/MappingProfilesFormInteractor';
 import { setupApplication } from '../../helpers';
 
 const mappingProfiles = new SearchAndSortInteractor();
@@ -16,7 +19,7 @@ describe('Field mapping profiles settings', () => {
   setupApplication({ scenarios: ['fetch-mapping-profiles-success'] });
 
   beforeEach(function () {
-    this.visit('/settings/data-export/mapping-profiles');
+    this.visit('/settings/data-export/mapping-profiles?sort=name');
   });
 
   it('should display mapping profiles pane', () => {
@@ -45,12 +48,37 @@ describe('Field mapping profiles settings', () => {
   });
 
   describe('clicking on create new mapping profile button', () => {
+    const form = new MappingProfilesFormInteractor();
+    const callout = new CalloutInteractor();
+
     beforeEach(async () => {
       await mappingProfiles.header.newButton.click();
     });
 
     it('should navigate to create mapping profile form', function () {
       expect(this.location.pathname.includes('/data-export/mapping-profiles/create')).to.be.true;
+    });
+
+    it('should save query in path after navigation', function () {
+      expect(this.location.search.includes('?sort=name')).to.be.true;
+    });
+
+    describe('filling form by correct data and pressing save button', () => {
+      beforeEach(async () => {
+        await form.summary.name.fillAndBlur('mapping profile');
+        await form.summary.recordType.checkboxes(1).clickInput();
+        await form.summary.description.fillAndBlur('description');
+        await form.fullScreen.submitButton.click();
+      });
+
+      it('should navigate to mapping profiles list', function () {
+        expect(this.location.pathname.endsWith('/data-export/mapping-profiles')).to.be.true;
+        expect(this.location.search.includes('?sort=name')).to.be.true;
+      });
+
+      it('should display success callout', function () {
+        expect(callout.successCalloutIsPresent).to.be.true;
+      });
     });
   });
 });

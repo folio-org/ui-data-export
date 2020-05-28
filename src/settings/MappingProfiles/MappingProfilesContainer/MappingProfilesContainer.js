@@ -19,12 +19,12 @@ import {
   getMappingProfilesItemFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { MappingProfilesForm } from '../MappingProfilesForm';
 import {
   INITIAL_RESULT_COUNT,
   RESULT_COUNT_INCREMENT,
   FIND_ALL_CQL,
 } from '../../../utils';
+import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
 
 const customProperties = getMappingProfilesColumnProperties({
   columnWidths: { format: '70px' },
@@ -51,8 +51,8 @@ const MappingProfilesContainer = ({
   history,
   match,
   location,
-  mutator,
   resources,
+  mutator,
 }) => {
   return (
     <>
@@ -65,13 +65,10 @@ const MappingProfilesContainer = ({
       <Route
         path={`${match.path}/create`}
         render={props => (
-          <MappingProfilesForm
+          <NewMappingProfileFormRoute
             {...props}
-            onSubmit={() => {
-              // TODO: Add transition to mapping profiles list, backend communication, etc.
-              // The functions receives form values as an argument
-            }}
             onCancel={() => history.push(`${match.path}${location.search}`)}
+            onSubmit={mutator.mappingProfiles.POST}
           />
         )}
       />
@@ -81,10 +78,10 @@ const MappingProfilesContainer = ({
 
 MappingProfilesContainer.propTypes = {
   match: matchShape.isRequired,
-  mutator: PropTypes.object.isRequired,
   history: historyShape.isRequired,
   location: locationShape.isRequired,
   resources: PropTypes.object.isRequired,
+  mutator: PropTypes.shape({ mappingProfiles: PropTypes.shape({ POST: PropTypes.func.isRequired }) }).isRequired,
 };
 
 MappingProfilesContainer.manifest = Object.freeze({
@@ -97,7 +94,7 @@ MappingProfilesContainer.manifest = Object.freeze({
     records: 'mappingProfiles',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,
-    clientGeneratePk: false,
+    clientGeneratePk: true,
     throwErrors: false,
     GET: {
       params: {
