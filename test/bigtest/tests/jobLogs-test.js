@@ -12,14 +12,14 @@ import {
   jobLogsContainerInteractor,
   allLogsPaneInteractor,
 } from '../interactors';
-import { logJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
+import { logJobExecutions } from '../network/scenarios/fetch-job-executions-success';
 
 const getUser = row => logJobExecutions[row].runBy;
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
 
 describe('Job logs list', () => {
   describe('default scenario', () => {
-    setupApplication({ scenarios: ['fetch-job-profiles-success'] });
+    setupApplication({ scenarios: ['fetch-job-executions-success'] });
 
     beforeEach(function () {
       this.visit('/data-export');
@@ -129,7 +129,7 @@ describe('Job logs list', () => {
   });
 
   describe('error scenario', () => {
-    setupApplication({ scenarios: ['fetch-job-profiles-success', 'fetch-get-download-link-error'] });
+    setupApplication({ scenarios: ['fetch-job-executions-success', 'fetch-get-download-link-error'] });
 
     beforeEach(async function () {
       this.visit('/data-export');

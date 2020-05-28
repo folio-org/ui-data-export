@@ -13,7 +13,7 @@ import { setupApplication } from '../../helpers';
 const jobProfiles = new SearchAndSortInteractor();
 
 describe('Job profiles settings', () => {
-  setupApplication({ scenarios: ['fetch-mapping-profiles-success'] });
+  setupApplication({ scenarios: ['fetch-mapping-profiles-success', 'fetch-job-profiles-success'] });
 
   beforeEach(function () {
     this.visit('/settings/data-export/job-profiles?sort=name');
@@ -32,7 +32,7 @@ describe('Job profiles settings', () => {
 
   it('should display correct fields values', () => {
     expect(jobProfiles.searchResults.getCellContent(0, 0)).to.equal('A Lorem impsum 1');
-    expect(jobProfiles.searchResults.getCellContent(0, 1)).to.equal('-');
+    expect(jobProfiles.searchResults.getCellContent(0, 1)).to.equal('');
     expect(jobProfiles.searchResults.getCellContent(0, 2)).to.equal('12/4/2018');
     expect(jobProfiles.searchResults.getCellContent(0, 3)).to.equal('Donald S');
   });
