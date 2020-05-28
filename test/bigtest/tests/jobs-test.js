@@ -11,7 +11,7 @@ import {
   JobsInteractor,
   RunningJobsInteractor,
 } from '../interactors';
-import { runningJobExecutions } from '../network/scenarios/fetch-job-profiles-success';
+import { runningJobExecutions } from '../network/scenarios/fetch-job-executions-success';
 
 const [runningJobExecution] = runningJobExecutions;
 
@@ -19,7 +19,7 @@ describe('Jobs lists', () => {
   const jobs = new JobsInteractor();
   const runningJobs = new RunningJobsInteractor();
 
-  setupApplication({ scenarios: ['fetch-job-profiles-success'] });
+  setupApplication({ scenarios: ['fetch-job-executions-success'] });
 
   beforeEach(async function () {
     this.visit('/data-export');

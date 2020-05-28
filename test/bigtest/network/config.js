@@ -23,4 +23,9 @@ export default function config() {
   });
 
   this.post('/data-export/mappingProfiles', {}, 201);
+
+  this.get('/data-export/jobProfiles', {
+    jobProfiles: [],
+    totalRecords: 0,
+  });
 }

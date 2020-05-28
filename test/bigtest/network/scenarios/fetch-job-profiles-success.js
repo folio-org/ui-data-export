@@ -1,53 +1,28 @@
-export const runningJobExecutions = [
-  {
-    hrId: 0,
-    jobProfileInfo: { name: 'default' },
-    exportedFiles: [{ fileName: 'import-0.mrc' }],
-    runBy: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    startedDate: '2020-01-27T10:10:18.743+0000',
-    status: 'IN_PROGRESS',
-  },
-  { status: 'IN_PROGRESS' },
-];
-
-export const logJobExecutions = [
-  {
-    hrId: 2,
-    progress: { total: 500 },
-    runBy: {
-      firstName: 'Ozzy',
-      lastName: 'Campenshtorm',
-    },
-    startedDate: '2018-11-05T14:22:57.000+0000',
-    completedDate: '2018-11-05T14:22:57.000+0000',
-    status: 'FAIL',
-  },
-  {
-    hrId: 3,
-    progress: { total: 5000 },
-    runBy: {
-      firstName: 'Elliot',
-      lastName: 'Lane',
-    },
-    startedDate: '2018-11-05T14:22:57.000+0000',
-    completedDate: '2018-11-11T14:10:34.000+0000',
-    status: 'SUCCESS',
-  },
-];
-
 export default server => {
-  [
-    ...runningJobExecutions,
-    ...logJobExecutions,
-  ].forEach(jobExecution => server.create('job-execution', { ...jobExecution }));
+  server.create('job-profile', {
+    id: 'b38e006e-99dd-11ea-bb37-0242ac130008',
+    name: 'A Lorem impsum 1',
+    destination: 'fileSystem',
+    description: 'Job profile description',
+    userInfo: {
+      firstName: 'Donald',
+      lastName: 'S',
+      userName: 'diku_admin',
+    },
+    mappingProfileId: '25d81cbe-9686-11ea-bb37-0242ac130002',
+    metadata: {
+      createdDate: '2018-12-04T11:22:07Z',
+      createdByUserId: 'dee12548-9cee-45fa-bbae-675c1cc0ce3b',
+      createdByUsername: 'janedoeuser',
+      updatedDate: '2018-12-04T13:28:54Z',
+      updatedByUserId: 'dee12548-9cee-45fa-bbae-675c1cc0ce3b',
+      updatedByUsername: '',
+    },
+  });
 
-  server.get('/data-export/jobExecutions', (schema, request) => {
-    const { url } = request;
-    const statuses = url.match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
+  server.createList('job-profile', 2);
 
-    return schema.jobExecutions.where(jobExecution => statuses.includes(jobExecution.status));
+  server.get('/data-export/jobProfiles', schema => {
+    return schema.jobProfiles.all();
   });
 };
