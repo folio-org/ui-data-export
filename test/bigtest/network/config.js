@@ -21,4 +21,6 @@ export default function config() {
     mappingProfiles: [],
     totalRecords: 0,
   });
+
+  this.post('/data-export/mappingProfiles', {}, 201);
 }

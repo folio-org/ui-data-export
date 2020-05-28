@@ -7,7 +7,7 @@ export default Factory.extend({
   id: () => faker.random.uuid(),
   name: i => `Name ${i}`,
   description: i => `Description ${i}`,
-  recordTypes: () => [faker.random.arrayElement(['INSTANCE', 'ITEM', 'ITEMS'])],
+  recordTypes: () => [faker.random.arrayElement(['INSTANCE', 'ITEM', 'HOLDINGS'])],
   outputFormat: 'MARC',
   transformations: [],
   metadata: { updatedDate: faker.date.past(0.1, faker.date.past(0.1)).toString() },

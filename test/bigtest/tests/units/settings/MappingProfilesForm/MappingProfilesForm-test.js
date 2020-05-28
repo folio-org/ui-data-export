@@ -106,7 +106,7 @@ describe('MappingProfilesForm', () => {
     it('should display correct folio record types', () => {
       expect(form.summary.recordType.checkboxes(0).label).to.equal(commonTranslations['recordTypes.instance']);
       expect(form.summary.recordType.checkboxes(1).label).to.equal(commonTranslations['recordTypes.holdings']);
-      expect(form.summary.recordType.checkboxes(2).label).to.equal(commonTranslations['recordTypes.items']);
+      expect(form.summary.recordType.checkboxes(2).label).to.equal(commonTranslations['recordTypes.item']);
     });
 
     it('should not mark fields as error by default', () => {
@@ -223,8 +223,8 @@ describe('MappingProfilesForm', () => {
       it('should fill data correctly', () => {
         expect(result.name).to.equal(name);
         expect(result.description).to.equal(description);
-        expect(result.outputFormat).to.equal('marc');
-        expect(isEqual(result.recordTypes, [FOLIO_RECORD_TYPES.ITEMS.type])).to.be.true;
+        expect(result.outputFormat).to.equal('MARC');
+        expect(isEqual(result.recordTypes, [FOLIO_RECORD_TYPES.ITEM.type])).to.be.true;
       });
     });
   });
