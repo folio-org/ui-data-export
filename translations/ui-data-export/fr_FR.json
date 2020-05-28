@@ -39,5 +39,6 @@
     "protocol": "TCP / IP",
     "mappingProfile": "Profil de mapping",
     "jobProfiles.newProfile": "Nouveau profil de tâche",
-    "selectMappingProfile": "Sélectionnez le profil de mapping"
+    "selectMappingProfile": "Sélectionnez le profil de mapping",
+    "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>"
 }

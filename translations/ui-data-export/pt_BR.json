@@ -39,5 +39,6 @@
     "protocol": "TCP/IP",
     "mappingProfile": "Perfil de mapeamento",
     "jobProfiles.newProfile": "Novo perfil de job",
-    "selectMappingProfile": "Selecione o perfil de mapeamento"
+    "selectMappingProfile": "Selecione o perfil de mapeamento",
+    "mappingProfiles.createdCallout": "O perfil de mapeamento de campo <b>{name}</b> foi criado <b>com sucesso</b>"
 }

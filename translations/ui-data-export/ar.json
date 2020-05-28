@@ -39,5 +39,6 @@
     "protocol": "TCP/IP",
     "mappingProfile": "وضع التخطيط",
     "jobProfiles.newProfile": "وضع وظيفة جديد",
-    "selectMappingProfile": "اختر وضع تخطيط"
+    "selectMappingProfile": "اختر وضع تخطيط",
+    "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>"
 }
