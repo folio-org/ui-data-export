@@ -20,7 +20,7 @@ import {
 import {
   useStripes,
   stripesConnect,
-} from '@folio/stripes-core';
+} from '@folio/stripes/core';
 
 import {
   generateFileDefinitionBody,
@@ -133,7 +133,7 @@ const QueryFileUploaderComponent = props => {
 
     calloutRef.current.sendCallout({
       type: 'error',
-      message: <FormattedMessage id="ui-data-import.communicationProblem" />,
+      message: <FormattedMessage id="ui-data-export.communicationProblem" />,
     });
   };
 

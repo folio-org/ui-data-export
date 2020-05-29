@@ -205,8 +205,8 @@ describe('MappingProfilesForm', () => {
 
         describe('checking and unchecking record type', () => {
           beforeEach(async () => {
-            await await form.summary.recordType.checkboxes(2).clickInput();
-            await await form.summary.recordType.checkboxes(2).clickInput();
+            await form.summary.recordType.checkboxes(2).clickInput();
+            await form.summary.recordType.checkboxes(2).clickInput();
           });
 
           it('should mark field as error and required', () => {
