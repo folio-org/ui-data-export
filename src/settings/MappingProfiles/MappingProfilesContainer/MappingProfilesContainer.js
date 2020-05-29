@@ -7,10 +7,7 @@ import {
   location as locationShape,
 } from 'react-router-prop-types';
 
-import {
-  Route,
-  stripesConnect,
-} from '@folio/stripes/core';
+import { Route } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
@@ -119,4 +116,4 @@ MappingProfilesContainer.manifest = Object.freeze({
   },
 });
 
-export default stripesConnect(MappingProfilesContainer);
+export default MappingProfilesContainer;
