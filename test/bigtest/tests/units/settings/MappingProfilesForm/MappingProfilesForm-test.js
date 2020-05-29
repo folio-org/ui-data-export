@@ -5,10 +5,7 @@ import {
   it,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
-import {
-  noop,
-  isEqual,
-} from 'lodash';
+import { noop } from 'lodash';
 import sinon from 'sinon';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -21,6 +18,22 @@ import stripesComponentsTranslations from '@folio/stripes-components/translation
 import translations from '../../../../../../translations/ui-data-export/en';
 import { MappingProfilesForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesForm';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
+
+const initialValues = {
+  recordTypes: [],
+  outputFormat: 'MARC',
+  transformations: [
+    {
+      displayName: 'Transformation field 1',
+      transformation: 'Transformation value 1',
+      order: 0,
+    },
+    {
+      displayName: 'Transformation field 2',
+      order: 1,
+    },
+  ],
+};
 
 describe('MappingProfilesForm', () => {
   const translationsProperties = [
@@ -46,6 +59,7 @@ describe('MappingProfilesForm', () => {
         <Paneset>
           <Router>
             <MappingProfilesForm
+              initialValues={initialValues}
               onSubmit={handleSubmitSpy}
               onCancel={noop}
             />
@@ -97,6 +111,18 @@ describe('MappingProfilesForm', () => {
       expect(form.summary.description.label).to.equal(translations.description);
       expect(form.summary.recordType.label).to.equal(`${commonTranslations.folioRecordType}*`);
       expect(form.summary.outputFormat.label).to.equal(`${translations.outputFormat}*`);
+    });
+
+    it('should display correct transformation fields headers', () => {
+      expect(form.transformations.list.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
+      expect(form.transformations.list.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
+    });
+
+    it('should display correct transformation fields values', () => {
+      expect(form.transformations.list.rows(0).cells(0).text).to.equal('Transformation field 1');
+      expect(form.transformations.valuesFields(0).val).to.equal('Transformation value 1');
+      expect(form.transformations.list.rows(1).cells(0).text).to.equal('Transformation field 2');
+      expect(form.transformations.valuesFields(1).val).to.equal('');
     });
 
     it('should disable save button if there are not changes', () => {
@@ -179,8 +205,8 @@ describe('MappingProfilesForm', () => {
 
         describe('checking and unchecking record type', () => {
           beforeEach(async () => {
-            await await form.summary.recordType.checkboxes(2).clickInput();
-            await await form.summary.recordType.checkboxes(2).clickInput();
+            await form.summary.recordType.checkboxes(2).clickInput();
+            await form.summary.recordType.checkboxes(2).clickInput();
           });
 
           it('should mark field as error and required', () => {
@@ -195,12 +221,14 @@ describe('MappingProfilesForm', () => {
     let result;
     const name = 'Profile name';
     const description = 'Description value';
+    const transformationValue = 'Transformation value 2';
 
     beforeEach(async function () {
       await mountWithContext(
         <Paneset>
           <Router>
             <MappingProfilesForm
+              initialValues={initialValues}
               onSubmit={values => {
                 result = values;
               }}
@@ -212,11 +240,12 @@ describe('MappingProfilesForm', () => {
       );
     });
 
-    describe('filling summary inputs and pressing submit', () => {
+    describe('filling form inputs and pressing submit', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur(name);
         await form.summary.recordType.checkboxes(2).clickInput();
         await form.summary.description.fillAndBlur(description);
+        await form.transformations.valuesFields(1).fillAndBlur(transformationValue);
         await form.fullScreen.submitButton.click();
       });
 
@@ -224,7 +253,14 @@ describe('MappingProfilesForm', () => {
         expect(result.name).to.equal(name);
         expect(result.description).to.equal(description);
         expect(result.outputFormat).to.equal('MARC');
-        expect(isEqual(result.recordTypes, [FOLIO_RECORD_TYPES.ITEM.type])).to.be.true;
+        expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.ITEM.type]);
+        expect(result.transformations).to.deep.equal([
+          initialValues.transformations[0],
+          {
+            ...initialValues.transformations[1],
+            transformation: transformationValue,
+          },
+        ]);
       });
     });
   });

@@ -8,10 +8,7 @@ import {
   location as locationShape,
 } from 'react-router-prop-types';
 
-import {
-  Route,
-  stripesConnect,
-} from '@folio/stripes/core';
+import { Route } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   JobProfiles,
@@ -107,4 +104,4 @@ JobProfilesContainer.manifest = Object.freeze({
   },
 });
 
-export default stripesConnect(JobProfilesContainer);
+export default JobProfilesContainer;

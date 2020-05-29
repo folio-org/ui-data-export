@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
-  injectIntl,
+  useIntl,
 } from 'react-intl';
 import { noop } from 'lodash';
 import { Field } from 'react-final-form';
@@ -23,6 +23,7 @@ import stripesFinalForm from '@folio/stripes/final-form';
 import { FullScreenForm } from '@folio/stripes-data-transfer-components';
 
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
+import { TransformationField } from './TransformationsField';
 import {
   required,
   requiredArray,
@@ -43,11 +44,12 @@ const validate = values => {
 const MappingProfilesForm = props => {
   const {
     onCancel,
-    intl,
     handleSubmit,
     pristine,
     submitting,
   } = props;
+
+  const intl = useIntl();
 
   return (
     <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
@@ -59,9 +61,9 @@ const MappingProfilesForm = props => {
           <FullScreenForm
             id="mapping-profiles-form"
             paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
+            isSubmitButtonDisabled={pristine || submitting}
             onSubmit={handleSubmit}
             onCancel={onCancel}
-            isSubmitButtonDisabled={pristine || submitting}
           >
             <div className={css.mappingProfilesFormContent}>
               <AccordionStatus>
@@ -93,7 +95,6 @@ const MappingProfilesForm = props => {
                           label: intl.formatMessage({ id: 'ui-data-export.marc' }),
                           value: 'MARC',
                         }]}
-                        initialValue="MARC"
                         fullWidth
                         required
                       />
@@ -108,7 +109,9 @@ const MappingProfilesForm = props => {
                       />
                     </div>
                   </Accordion>
-                  <Accordion label={<FormattedMessage id="ui-data-export.transformations" />} />
+                  <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
+                    <TransformationField />
+                  </Accordion>
                 </AccordionSet>
               </AccordionStatus>
             </div>
@@ -122,18 +125,13 @@ const MappingProfilesForm = props => {
 MappingProfilesForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  intl: PropTypes.object.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
 MappingProfilesForm.defaultProps = { onCancel: noop };
 
-export default injectIntl(stripesFinalForm({
+export default stripesFinalForm({
   validate,
-  subscription: {
-    pristine: true,
-    values: true,
-  },
-  initialValues: { folioRecordTypes: [] },
-})(MappingProfilesForm));
+  subscription: { values: true },
+})(MappingProfilesForm);

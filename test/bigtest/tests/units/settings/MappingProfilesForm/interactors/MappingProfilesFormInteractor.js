@@ -5,6 +5,7 @@ import { AccordionSetInteractor } from '@folio/stripes-components/lib/Accordion/
 import { FullScreenFormInteractor } from '@folio/stripes-data-transfer-components/interactors';
 
 import { SummaryContentInteractor } from './SummaryContentInteractor';
+import { TransformationsInteractor } from './TransformationsInteractor';
 
 @interactor
 export class MappingProfilesFormInteractor {
@@ -14,4 +15,5 @@ export class MappingProfilesFormInteractor {
   expandAllButton = new ExpandAllButtonInteractor();
   accordions = new AccordionSetInteractor('#mapping-profiles-form-accordions');
   summary = new SummaryContentInteractor();
+  transformations = new TransformationsInteractor();
 }

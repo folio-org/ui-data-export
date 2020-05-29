@@ -1,0 +1,76 @@
+{
+  "mappingProfileTransformations": [
+    {
+      "id" : "callNumber",
+      "path" : "$.holdings[*].callNumber",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Call number"
+    },
+    {
+      "id" : "callNumberPrefix",
+      "path" : "$.holdings[*].callNumberPrefix",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Call number - prefix"
+    },
+    {
+      "id" : "callNumberSuffix",
+      "path" : "$.holdings[*].callNumberSuffix",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Call number - suffix"
+    },
+    {
+      "id" : "electronicAccess.linkText",
+      "path" : "$.holdings[*].electronicAccess[*].linkTex",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Electronic access - Link text"
+    },
+    {
+      "id" : "electronicAccess.uri",
+      "path" : "$.holdings[*].electronicAccess[*].uri",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Electronic access - URI"
+    },
+    {
+      "id" : "permanentLocationId",
+      "path" : "$.holdings[*].permanentLocationId",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Permanent location"
+    },
+    {
+      "id" : "temporaryLocationId",
+      "path" : "$.holdings[*].temporaryLocationId",
+      "recordType" : "HOLDINGS",
+      "displayName" : "Holdings - Temporary location"
+    },
+    {
+      "id" : "effectiveCallNumberComponents.callNumber",
+      "path" : "$.items[*].effectiveCallNumberComponents.callNumber",
+      "recordType" : "ITEM",
+      "displayName" : "Items - Effective call number"
+    },
+    {
+      "id" : "effectiveLocationId",
+      "path" : "$.items[*].effectiveLocationId",
+      "recordType" : "ITEM",
+      "displayName" : "Items - Effective location"
+    },
+    {
+      "id" : "electronicAccess.linkText",
+      "path" : "$.items[*].electronicAccess[*].linkText",
+      "recordType" : "ITEM",
+      "displayName" : "Items - Electronic access - Link text"
+    },
+    {
+      "id" : "electronicAccess.uri",
+      "path" : "$.items[*].electronicAccess[*].uri",
+      "recordType" : "ITEM",
+      "displayName" : "Items - Electronic access - URI"
+    },
+    {
+      "id" : "materialTypeId",
+      "path" : "$.items[*].materialTypeId",
+      "recordType" : "ITEM",
+      "displayName" : "Items - Material types"
+    }
+  ]
+}

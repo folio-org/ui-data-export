@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
-  injectIntl,
+  useIntl,
 } from 'react-intl';
 import { noop } from 'lodash';
 import { Field } from 'react-final-form';
@@ -40,8 +40,9 @@ const JobProfilesForm = props => {
     submitting,
     hasLoaded,
     mappingProfiles,
-    intl,
   } = props;
+
+  const intl = useIntl();
 
   return (
     <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
@@ -117,7 +118,6 @@ JobProfilesForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
   mappingProfiles: PropTypes.arrayOf(PropTypes.object),
   hasLoaded: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
 };
 
 JobProfilesForm.defaultProps = {
@@ -126,7 +126,7 @@ JobProfilesForm.defaultProps = {
   mappingProfiles: [],
 };
 
-export default injectIntl(stripesFinalForm({
+export default stripesFinalForm({
   validate,
   subscription: { values: true },
-})(JobProfilesForm));
+})(JobProfilesForm);

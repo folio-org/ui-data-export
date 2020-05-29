@@ -2,7 +2,10 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
-import { stripesShape } from '@folio/stripes/core';
+import {
+  stripesShape,
+  stripesConnect,
+} from '@folio/stripes/core';
 import {
   ProfilesLabel,
   SettingsLabel,
@@ -30,12 +33,12 @@ const sections = [
       {
         route: 'job-profiles',
         label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
-        component: JobProfilesContainer,
+        component: stripesConnect(JobProfilesContainer),
       },
       {
         route: 'mapping-profiles',
         label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
-        component: MappingProfilesContainer,
+        component: stripesConnect(MappingProfilesContainer),
       },
     ],
   },

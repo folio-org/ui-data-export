@@ -7,6 +7,6 @@ export const JOB_EXECUTION_STATUSES = {
 
 export const FIND_ALL_CQL = 'cql.allRecords=1';
 
-export const INITIAL_RESULT_COUNT = 5000;
+export const INITIAL_RESULT_COUNT = 100;
 
 export const RESULT_COUNT_INCREMENT = 100;

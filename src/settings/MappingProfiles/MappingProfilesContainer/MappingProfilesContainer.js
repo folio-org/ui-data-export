@@ -7,10 +7,7 @@ import {
   location as locationShape,
 } from 'react-router-prop-types';
 
-import {
-  Route,
-  stripesConnect,
-} from '@folio/stripes/core';
+import { Route } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
@@ -25,6 +22,8 @@ import {
   FIND_ALL_CQL,
 } from '../../../utils';
 import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
+import { generateTransformationFieldsValues } from '../MappingProfilesForm/TransformationsField';
+import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
 
 const customProperties = getMappingProfilesColumnProperties({
   columnWidths: { format: '70px' },
@@ -47,6 +46,12 @@ const sortMap = {
   updatedBy: 'userInfo.firstName userInfo.lastName',
 };
 
+const initialValues = {
+  recordTypes: [],
+  outputFormat: 'MARC',
+  transformations: generateTransformationFieldsValues(mappingProfileTransformations),
+};
+
 const MappingProfilesContainer = ({
   history,
   match,
@@ -67,6 +72,7 @@ const MappingProfilesContainer = ({
         render={props => (
           <NewMappingProfileFormRoute
             {...props}
+            initialValues={initialValues}
             onCancel={() => history.push(`${match.path}${location.search}`)}
             onSubmit={mutator.mappingProfiles.POST}
           />
@@ -110,4 +116,4 @@ MappingProfilesContainer.manifest = Object.freeze({
   },
 });
 
-export default stripesConnect(MappingProfilesContainer);
+export default MappingProfilesContainer;
