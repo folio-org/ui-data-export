@@ -19,7 +19,8 @@
 * Mapping profiles list - integation with backend. UIDEXP-57.
 * Add job profiles form. UIDEXP-82.
 * Integrate new mapping profile form with backend. UIDEXP-88.
-* Job profiles list - integation with backend. UIDEXP-81.
+* Job profiles list - integration with backend. UIDEXP-81.
+* Implement mapping profiles form transformation fields. UIDEXP-47.
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)

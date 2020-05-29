@@ -53,7 +53,6 @@ export const FolioRecordTypeField = () => {
               type="checkbox"
               value={option.value}
               isEqual={isEqual}
-              initialValue={[]}
               render={fieldProps => {
                 return (
                   <Checkbox

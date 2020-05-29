@@ -23,6 +23,7 @@ import stripesFinalForm from '@folio/stripes/final-form';
 import { FullScreenForm } from '@folio/stripes-data-transfer-components';
 
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
+import { TransformationField } from './TransformationsField';
 import {
   required,
   requiredArray,
@@ -59,9 +60,9 @@ const MappingProfilesForm = props => {
           <FullScreenForm
             id="mapping-profiles-form"
             paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
+            isSubmitButtonDisabled={pristine || submitting}
             onSubmit={handleSubmit}
             onCancel={onCancel}
-            isSubmitButtonDisabled={pristine || submitting}
           >
             <div className={css.mappingProfilesFormContent}>
               <AccordionStatus>
@@ -93,7 +94,6 @@ const MappingProfilesForm = props => {
                           label: intl.formatMessage({ id: 'ui-data-export.marc' }),
                           value: 'MARC',
                         }]}
-                        initialValue="MARC"
                         fullWidth
                         required
                       />
@@ -108,7 +108,9 @@ const MappingProfilesForm = props => {
                       />
                     </div>
                   </Accordion>
-                  <Accordion label={<FormattedMessage id="ui-data-export.transformations" />} />
+                  <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
+                    <TransformationField />
+                  </Accordion>
                 </AccordionSet>
               </AccordionStatus>
             </div>
@@ -131,9 +133,5 @@ MappingProfilesForm.defaultProps = { onCancel: noop };
 
 export default injectIntl(stripesFinalForm({
   validate,
-  subscription: {
-    pristine: true,
-    values: true,
-  },
-  initialValues: { folioRecordTypes: [] },
+  subscription: { values: true },
 })(MappingProfilesForm));

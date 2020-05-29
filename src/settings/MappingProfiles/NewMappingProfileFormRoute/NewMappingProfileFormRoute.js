@@ -9,12 +9,16 @@ import { MappingProfilesForm } from '../MappingProfilesForm';
 const NewMappingProfileFormRoute = ({
   onSubmit,
   onCancel,
+  initialValues,
 }) => {
   const callout = useContext(CalloutContext);
 
   const handleSubmit = async values => {
     try {
-      await onSubmit(values);
+      await onSubmit({
+        ...values,
+        transformations: [],
+      });
 
       callout.sendCallout({
         message: <SafeHTMLMessage
@@ -29,6 +33,7 @@ const NewMappingProfileFormRoute = ({
 
   return (
     <MappingProfilesForm
+      initialValues={initialValues}
       onSubmit={handleSubmit}
       onCancel={onCancel}
     />
@@ -36,6 +41,7 @@ const NewMappingProfileFormRoute = ({
 };
 
 NewMappingProfileFormRoute.propTypes = {
+  initialValues: PropTypes.object.isRequired,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

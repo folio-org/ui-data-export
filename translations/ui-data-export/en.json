@@ -37,6 +37,8 @@
   "protocol": "TCP/IP",
   "mappingProfile": "Mapping profile",
   "mappingProfiles.newProfile": "New field mapping profile",
+  "mappingProfiles.transformations.fieldName": "Field name",
+  "mappingProfiles.transformations.transformation": "Transformation",
   "jobProfiles.newProfile": "New job profile",
   "selectMappingProfile": "Select mapping profile",
   "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>",
