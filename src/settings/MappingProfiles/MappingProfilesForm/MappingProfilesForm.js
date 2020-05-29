@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
-  injectIntl,
+  useIntl,
 } from 'react-intl';
 import { noop } from 'lodash';
 import { Field } from 'react-final-form';
@@ -44,11 +44,12 @@ const validate = values => {
 const MappingProfilesForm = props => {
   const {
     onCancel,
-    intl,
     handleSubmit,
     pristine,
     submitting,
   } = props;
+
+  const intl = useIntl();
 
   return (
     <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
@@ -124,14 +125,13 @@ const MappingProfilesForm = props => {
 MappingProfilesForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  intl: PropTypes.object.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
 MappingProfilesForm.defaultProps = { onCancel: noop };
 
-export default injectIntl(stripesFinalForm({
+export default stripesFinalForm({
   validate,
   subscription: { values: true },
-})(MappingProfilesForm));
+})(MappingProfilesForm);

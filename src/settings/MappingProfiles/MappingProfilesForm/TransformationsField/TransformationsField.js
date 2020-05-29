@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import { isEqual } from 'lodash';
@@ -10,10 +10,6 @@ import {
   Layout,
 } from '@folio/stripes/components';
 
-const columnMapping = {
-  fieldName: <FormattedMessage id="ui-data-export.mappingProfiles.transformations.fieldName" />,
-  transformation: <FormattedMessage id="ui-data-export.mappingProfiles.transformations.transformation" />,
-};
 const columnWidths = {
   fieldName: '45%',
   transformation: '55%',
@@ -36,6 +32,13 @@ const formatter = {
 };
 
 export const TransformationField = () => {
+  const intl = useIntl();
+
+  const columnMapping = {
+    fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
+    transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
+  };
+
   return (
     <FieldArray
       name="transformations"
