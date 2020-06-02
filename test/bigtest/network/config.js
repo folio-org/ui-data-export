@@ -22,6 +22,8 @@ export default function config() {
     totalRecords: 0,
   });
 
+  this.post('/data-export/jobProfiles', {}, 201);
+
   this.post('/data-export/mappingProfiles', {}, 201);
 
   this.get('/data-export/jobProfiles', {
