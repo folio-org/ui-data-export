@@ -40,5 +40,11 @@
     "mappingProfile": "Mapping profile",
     "jobProfiles.newProfile": "Новый профиль работы",
     "selectMappingProfile": "Select mapping profile",
-    "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>"
+    "mappingProfiles.createdCallout": "Профиль отображения поля <b>{name}</b> был успешно <b>создан</b>",
+    "mappingProfiles.transformations.fieldName": "Имя поля",
+    "mappingProfiles.transformations.transformation": "Преобразование",
+    "errors": "Errors",
+    "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
+    "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
 }

@@ -40,5 +40,11 @@
     "mappingProfile": "Perfil de mapeamento",
     "jobProfiles.newProfile": "Novo perfil de job",
     "selectMappingProfile": "Selecione o perfil de mapeamento",
-    "mappingProfiles.createdCallout": "O perfil de mapeamento de campo <b>{name}</b> foi criado <b>com sucesso</b>"
+    "mappingProfiles.createdCallout": "O perfil de mapeamento de campo <b>{name}</b> foi criado <b>com sucesso</b>",
+    "mappingProfiles.transformations.fieldName": "Nome do campo",
+    "mappingProfiles.transformations.transformation": "Transformação",
+    "errors": "Erros",
+    "mappingProfiles.errorCallout": "Ocorreu um erro ao criar o perfil de mapeamento de campo <b>{name}</b>",
+    "jobProfiles.createdCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
+    "jobProfiles.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>"
 }
