@@ -100,7 +100,7 @@ MappingProfilesContainer.manifest = Object.freeze({
     records: 'mappingProfiles',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,
-    clientGeneratePk: true,
+    clientGeneratePk: false,
     throwErrors: false,
     GET: {
       params: {

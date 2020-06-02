@@ -5,8 +5,11 @@ import {
   it,
 } from '@bigtest/mocha';
 
+import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
 import { SearchAndSortInteractor } from '@folio/stripes-data-transfer-components/interactors';
 import stripesDataTransferTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
+
+import { JobProfilesFormInteractor } from '../units/settings/JobProfilesForm/interactor';
 import translations from '../../../../translations/ui-data-export/en';
 import { setupApplication } from '../../helpers';
 
@@ -38,6 +41,9 @@ describe('Job profiles settings', () => {
   });
 
   describe('clicking on create new job profile button', () => {
+    const form = new JobProfilesFormInteractor();
+    const callout = new CalloutInteractor();
+
     beforeEach(async () => {
       await jobProfiles.header.newButton.click();
     });
@@ -48,6 +54,41 @@ describe('Job profiles settings', () => {
 
     it('should save query in path after navigation', function () {
       expect(this.location.search.includes('?sort=name')).to.be.true;
+    });
+
+    describe('filling form by correct data and pressing save button - success case', () => {
+      beforeEach(async () => {
+        await form.name.fillAndBlur('mapping profile');
+        await form.mappingProfile.selectOption('AP Holdings 1');
+        await form.fullScreen.submitButton.click();
+      });
+
+      it('should navigate to job profiles list', function () {
+        expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
+        expect(this.location.search.includes('?sort=name')).to.be.true;
+      });
+
+      it('should display success callout', function () {
+        expect(callout.successCalloutIsPresent).to.be.true;
+      });
+    });
+
+    describe('filling form by correct data and pressing save button - error case', () => {
+      beforeEach(async function () {
+        this.server.post('/data-export/jobProfiles', {}, 500);
+        await form.name.fillAndBlur('mapping profile');
+        await form.mappingProfile.selectOption('AP Holdings 1');
+        await form.fullScreen.submitButton.click();
+      });
+
+      it('should not navigate to job profiles list', function () {
+        expect(this.location.pathname.endsWith('/data-export/job-profiles/create')).to.be.true;
+        expect(this.location.search.includes('?sort=name')).to.be.true;
+      });
+
+      it('should display error callout', function () {
+        expect(callout.errorCalloutIsPresent).to.be.true;
+      });
     });
   });
 });

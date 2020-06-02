@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { noop } from 'lodash';
 import {
   match as matchShape,
   history as historyShape,
@@ -61,7 +60,7 @@ const JobProfilesContainer = ({
         path={`${match.path}/create`}
         render={() => (
           <NewJobProfileRoute
-            onSubmit={noop}
+            onSubmit={mutator.jobProfiles.POST}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
         )}
@@ -88,7 +87,7 @@ JobProfilesContainer.manifest = Object.freeze({
     records: 'jobProfiles',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,
-    clientGeneratePk: true,
+    clientGeneratePk: false,
     throwErrors: false,
     GET: {
       params: {
