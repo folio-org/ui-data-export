@@ -21,6 +21,7 @@
 * Integrate new mapping profile form with backend. UIDEXP-88.
 * Job profiles list - integration with backend. UIDEXP-81.
 * Implement mapping profiles form transformation fields. UIDEXP-47.
+* Add Error column to the list of completed jobs. UIDEXP-97.
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)

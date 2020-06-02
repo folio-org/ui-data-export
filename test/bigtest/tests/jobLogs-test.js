@@ -30,7 +30,7 @@ describe('Job logs list', () => {
     });
 
     it('should add status column to the end', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(6).text).to.equal(translations.status);
+      expect(jobLogsContainerInteractor.logsList.headers(7).text).to.equal(translations.status);
     });
 
     it('should display view all logs button', () => {
@@ -57,8 +57,8 @@ describe('Job logs list', () => {
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 6)).to.equal('Success');
-      expect(getCellContent(1, 6)).to.equal('Fail');
+      expect(getCellContent(0, 7)).to.equal('Success');
+      expect(getCellContent(1, 7)).to.equal('Fail');
     });
 
     it('should render ID column', () => {
@@ -71,6 +71,10 @@ describe('Job logs list', () => {
 
     it('should render run by user column', () => {
       expect(jobLogsContainerInteractor.logsList.headers(5).text).to.equal(commonTranslations.runBy);
+    });
+
+    it('should render errors column', () => {
+      expect(jobLogsContainerInteractor.logsList.headers(6).text).to.equal(translations.errors);
     });
 
     it('should populate ID cells correctly', () => {
@@ -88,13 +92,18 @@ describe('Job logs list', () => {
       expect(getCellContent(1, 5)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
     });
 
+    it('should populate errors cells correctly', () => {
+      expect(getCellContent(0, 6)).to.equal('10');
+      expect(getCellContent(1, 6)).to.equal('');
+    });
+
     describe('clicking on status header', () => {
       beforeEach(async () => {
-        await jobLogsContainerInteractor.logsList.headers(6).click();
+        await jobLogsContainerInteractor.logsList.headers(7).click();
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(1, 6)).to.equal('Success');
+        expect(getCellContent(1, 7)).to.equal('Success');
       });
 
       it('should have the correct query in path', function () {
@@ -103,12 +112,12 @@ describe('Job logs list', () => {
 
       describe('clicking on status header', () => {
         beforeEach(async () => {
-          await jobLogsContainerInteractor.logsList.headers(6).click();
+          await jobLogsContainerInteractor.logsList.headers(7).click();
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(1, 6)).to.equal('Fail');
-          expect(getCellContent(0, 6)).to.equal('Success');
+          expect(getCellContent(1, 7)).to.equal('Fail');
+          expect(getCellContent(0, 7)).to.equal('Success');
         });
 
         it('should have the correct query in path', function () {
