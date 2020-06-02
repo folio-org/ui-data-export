@@ -26,6 +26,7 @@
   "outputFormat": "Output format",
   "transformations": "Transformations",
   "uploading": "Uploading",
+  "errors": "Errors",
   "status": "Status",
   "jobStatus.fail": "Fail",
   "jobStatus.success": "Success",

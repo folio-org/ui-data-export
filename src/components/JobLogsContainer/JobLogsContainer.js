@@ -12,6 +12,7 @@ import {
   defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
   sortStrings,
+  sortNumbers,
 } from '@folio/stripes-data-transfer-components';
 import {
   Button,
@@ -34,19 +35,19 @@ import styles from './jobLogsContainer.css';
 
 const sortColumns = {
   ...defaultJobLogsSortColumns,
+  errors: {
+    sortFn: sortNumbers,
+    useFormatterFn: true,
+  },
   status: {
     sortFn: sortStrings,
     useFormatterFn: true,
   },
 };
 
-const columnMapping = {
-  ...defaultJobLogsColumnMapping,
-  status: <FormattedMessage id="ui-data-export.status" />,
-};
-
 const visibleColumns = [
   ...defaultJobLogsVisibleColumns,
+  'errors',
   'status',
 ];
 
@@ -106,12 +107,21 @@ const JobLogsContainer = props => {
       {intl => (
         <>
           <JobLogs
-            columnMapping={columnMapping}
+            columnMapping={{
+              ...defaultJobLogsColumnMapping,
+              errors: intl.formatMessage({ id: 'ui-data-export.errors' }),
+              status: intl.formatMessage({ id: 'ui-data-export.status' }),
+            }}
             formatter={getJobLogsItemFormatter(
               {
                 status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
                 fileName: record => getFileNameField(record),
                 jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
+                errors: record => {
+                  const { progress: { failed } } = record;
+
+                  return failed || '';
+                },
               },
             )}
             visibleColumns={visibleColumns}

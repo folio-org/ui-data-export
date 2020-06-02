@@ -27,7 +27,11 @@ export const logJobExecutions = [
   },
   {
     hrId: 3,
-    progress: { total: 5000 },
+    progress: {
+      exported: 4990,
+      failed: 10,
+      total: 5000,
+    },
     runBy: {
       firstName: 'Elliot',
       lastName: 'Lane',
