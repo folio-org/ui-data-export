@@ -40,5 +40,11 @@
     "mappingProfile": "وضع التخطيط",
     "jobProfiles.newProfile": "وضع وظيفة جديد",
     "selectMappingProfile": "اختر وضع تخطيط",
-    "mappingProfiles.createdCallout": "Field mapping profile <b>{name}</b> has been successfully <b>created</b>"
+    "mappingProfiles.createdCallout": "تم <b>إنشاء</b> وضع تخطيط الحقل <b>{name}</b> بنجاح",
+    "mappingProfiles.transformations.fieldName": "اسم الحقل",
+    "mappingProfiles.transformations.transformation": "تحويل",
+    "errors": "Errors",
+    "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
+    "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
 }
