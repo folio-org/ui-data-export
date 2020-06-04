@@ -45,6 +45,6 @@
     "mappingProfiles.transformations.transformation": "Transformation",
     "errors": "Erreurs",
     "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
-    "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
+    "jobProfiles.createdCallout": "Le profil de tâche <b> {name} </b> a été <b> créé </b> avec succès",
+    "jobProfiles.errorCallout": "Une erreur s'est produite lors de la création du profil de tâche <b> {name} </b>"
 }
