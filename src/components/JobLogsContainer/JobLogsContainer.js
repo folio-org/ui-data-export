@@ -24,10 +24,7 @@ import {
   IntlConsumer,
 } from '@folio/stripes/core';
 
-import {
-  downloadFileByLink,
-  JOB_EXECUTION_STATUSES,
-} from '../../utils';
+import { downloadFileByLink } from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
 import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 
@@ -85,9 +82,8 @@ const JobLogsContainer = props => {
 
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
-    const isSuccessfulRecord = record.status === JOB_EXECUTION_STATUSES.SUCCESS;
 
-    if (!isSuccessfulRecord) return fileName;
+    if (!record.progress.exported) return fileName;
 
     return (
       <Button

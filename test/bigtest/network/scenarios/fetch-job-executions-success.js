@@ -43,6 +43,21 @@ export const logJobExecutions = [
     completedDate: '2018-11-11T14:10:34.000+0000',
     status: 'SUCCESS',
   },
+  {
+    hrId: 1,
+    progress: {
+      exported: 500,
+      failed: 0,
+      total: 500,
+    },
+    runBy: {
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+    startedDate: '2018-11-04T14:22:57.000+0000',
+    completedDate: '2018-11-04T14:10:34.000+0000',
+    status: 'SUCCESS',
+  },
 ];
 
 export default server => {

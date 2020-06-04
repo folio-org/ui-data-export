@@ -85,16 +85,19 @@ describe('Job logs list', () => {
     it('should populate records cells correctly', () => {
       expect(getCellContent(0, 3)).to.equal('5000');
       expect(getCellContent(1, 3)).to.equal('');
+      expect(getCellContent(2, 3)).to.equal('500');
     });
 
     it('should populate run by user cells correctly', () => {
       expect(getCellContent(0, 5)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
       expect(getCellContent(1, 5)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
+      expect(getCellContent(2, 5)).to.equal(`${getUser(2).firstName} ${getUser(2).lastName}`);
     });
 
     it('should populate errors cells correctly', () => {
       expect(getCellContent(0, 6)).to.equal('10');
       expect(getCellContent(1, 6)).to.equal('');
+      expect(getCellContent(2, 6)).to.equal('');
     });
 
     describe('clicking on status header', () => {
@@ -116,7 +119,8 @@ describe('Job logs list', () => {
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(1, 7)).to.equal('Fail');
+          expect(getCellContent(2, 7)).to.equal('Fail');
+          expect(getCellContent(1, 7)).to.equal('Success');
           expect(getCellContent(0, 7)).to.equal('Success');
         });
 
