@@ -84,7 +84,7 @@ describe('Job logs list', () => {
 
     it('should populate records cells correctly', () => {
       expect(getCellContent(0, 3)).to.equal('5000');
-      expect(getCellContent(1, 3)).to.equal('500');
+      expect(getCellContent(1, 3)).to.equal('');
     });
 
     it('should populate run by user cells correctly', () => {
