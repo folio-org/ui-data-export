@@ -43,8 +43,8 @@
     "mappingProfiles.createdCallout": "Профиль отображения поля <b>{name}</b> был успешно <b>создан</b>",
     "mappingProfiles.transformations.fieldName": "Имя поля",
     "mappingProfiles.transformations.transformation": "Преобразование",
-    "errors": "Errors",
+    "errors": "Ошибки",
     "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
-    "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
+    "jobProfiles.createdCallout": "Профиль работы <b> {название}</b>был успешно <b> создан </b>",
+    "jobProfiles.errorCallout": "При создании профиля работы произошла ошибка <b>{название}</b>"
 }
