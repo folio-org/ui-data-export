@@ -10,7 +10,10 @@ export const runningJobExecutions = [
     startedDate: '2020-01-27T10:10:18.743+0000',
     status: 'IN_PROGRESS',
   },
-  { status: 'IN_PROGRESS' },
+  {
+    status: 'IN_PROGRESS',
+    startedDate: '2020-01-27T10:09:18.743+0000',
+  },
 ];
 
 export const logJobExecutions = [

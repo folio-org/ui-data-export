@@ -63,7 +63,7 @@ describe('Field mapping profiles settings', () => {
       expect(this.location.search.includes('?sort=name')).to.be.true;
     });
 
-    describe('filling form by correct data and pressing save button', () => {
+    describe('filling form by correct data and pressing save button - success case', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
@@ -78,6 +78,25 @@ describe('Field mapping profiles settings', () => {
 
       it('should display success callout', function () {
         expect(callout.successCalloutIsPresent).to.be.true;
+      });
+    });
+
+    describe('filling form by correct data and pressing save button - error case', () => {
+      beforeEach(async function () {
+        this.server.post('/data-export/mappingProfiles', {}, 500);
+        await form.summary.name.fillAndBlur('mapping profile');
+        await form.summary.recordType.checkboxes(1).clickInput();
+        await form.summary.description.fillAndBlur('description');
+        await form.fullScreen.submitButton.click();
+      });
+
+      it('should not navigate to mapping profiles list', function () {
+        expect(this.location.pathname.endsWith('/data-export/mapping-profiles/create')).to.be.true;
+        expect(this.location.search.includes('?sort=name')).to.be.true;
+      });
+
+      it('should display error callout', function () {
+        expect(callout.errorCalloutIsPresent).to.be.true;
       });
     });
   });

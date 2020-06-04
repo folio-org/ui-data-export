@@ -1,40 +1,34 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { omit } from 'lodash';
 
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { CalloutContext } from '@folio/stripes/core';
-
-import { MappingProfilesForm } from '../MappingProfilesForm';
+import { useSubmitProfile } from '../../utils/useSubmitProfile';
+import {
+  MappingProfilesForm,
+  normalizeTransformationFormValues,
+} from '../MappingProfilesForm';
 
 const NewMappingProfileFormRoute = ({
   onSubmit,
   onCancel,
   initialValues,
 }) => {
-  const callout = useContext(CalloutContext);
-
-  const handleSubmit = async values => {
-    try {
-      await onSubmit({
-        ...values,
-        transformations: [],
-      });
-
-      callout.sendCallout({
-        message: <SafeHTMLMessage
-          id="ui-data-export.mappingProfiles.createdCallout"
-          values={{ name: values.name }}
-        />,
-      });
-    } finally {
-      onCancel();
-    }
-  };
+  const handleSubmit = useSubmitProfile({
+    errorMessageId: 'ui-data-export.mappingProfiles.errorCallout',
+    successMessageId: 'ui-data-export.mappingProfiles.createdCallout',
+    onCancel,
+    onSubmit,
+  });
 
   return (
     <MappingProfilesForm
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={values => {
+        const mappingProfile = { ...omit(values, 'transformations') };
+
+        mappingProfile.transformations = normalizeTransformationFormValues(values.transformations);
+        handleSubmit(mappingProfile);
+      }}
       onCancel={onCancel}
     />
   );
