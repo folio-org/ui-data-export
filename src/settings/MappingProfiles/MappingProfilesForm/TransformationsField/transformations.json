@@ -20,7 +20,7 @@
     },
     {
       "id" : "electronicAccess.linkText",
-      "path" : "$.holdings[*].electronicAccess[*].linkTex",
+      "path" : "$.holdings[*].electronicAccess[*].linkText",
       "recordType" : "HOLDINGS",
       "displayName" : "Holdings - Electronic access - Link text"
     },
