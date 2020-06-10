@@ -57,6 +57,16 @@ describe('Jobs lists', () => {
       expect(runningJobs.jobItems(0).fileName).to.equal(runningJobExecution.exportedFiles[0].fileName);
     });
 
+    it('should display correct progress bars', () => {
+      expect(runningJobs.jobItems(0).progress.isPresent).to.be.true;
+      expect(runningJobs.jobItems(1).progress.isPresent).to.be.true;
+    });
+
+    it('should display correct progress bars status', () => {
+      expect(runningJobs.jobItems(0).progress.progressInfoText).to.equal('50%');
+      expect(runningJobs.jobItems(1).progress.progressInfoText).to.equal('10%');
+    });
+
     it('should display correct human readable id', () => {
       expect(runningJobs.jobItems(0).hrId).to.equal(String(runningJobExecution.hrId));
     });

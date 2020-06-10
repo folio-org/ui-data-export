@@ -7,10 +7,20 @@ export const runningJobExecutions = [
       firstName: 'John',
       lastName: 'Doe',
     },
+    progress: {
+      failed: 10,
+      exported: 40,
+      total: 100,
+    },
     startedDate: '2020-01-27T10:10:18.743+0000',
     status: 'IN_PROGRESS',
   },
   {
+    progress: {
+      failed: 0,
+      exported: 10,
+      total: 100,
+    },
     status: 'IN_PROGRESS',
     startedDate: '2020-01-27T10:09:18.743+0000',
   },

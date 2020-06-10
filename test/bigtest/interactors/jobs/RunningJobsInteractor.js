@@ -6,6 +6,8 @@ import {
   count,
 } from '@bigtest/interactor';
 
+import { ProgressInteractor } from '@folio/stripes-data-transfer-components/interactors';
+
 import RunningJobsControlButtonsInteractor from './RunningJobsControlButtonsInteractor';
 
 @interactor
@@ -16,7 +18,7 @@ class JobInteractor {
   status = text('[data-test-running-job-progress-status]');
   triggeredBy = text('[data-test-running-job-triggered-by]');
   buttons = scoped('[data-test-running-job-buttons-container]', RunningJobsControlButtonsInteractor);
-  progressBar = scoped('[data-test-progress-bar]');
+  progress = scoped('[data-test-progress-bar]', ProgressInteractor);
 
   whenLoaded() {
     return this.when(() => this.isPresent);
