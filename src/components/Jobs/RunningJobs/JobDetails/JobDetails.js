@@ -7,7 +7,10 @@ import {
 import classNames from 'classnames';
 import { get } from 'lodash';
 
-import { jobExecutionPropTypes } from '@folio/stripes-data-transfer-components';
+import {
+  jobExecutionPropTypes,
+  Progress,
+} from '@folio/stripes-data-transfer-components';
 
 import css from '@folio/stripes-data-transfer-components/lib/Jobs/Job/Job.css';
 
@@ -35,6 +38,11 @@ const JobDetails = props => {
     runBy: {
       firstName,
       lastName,
+    },
+    progress: {
+      total,
+      exported,
+      failed,
     },
     startedDate,
   } = job;
@@ -66,6 +74,10 @@ const JobDetails = props => {
         data-test-running-job-progress-status
         id="ui-data-export.inProgressStatus"
         tagName="div"
+      />
+      <Progress
+        current={exported + failed}
+        total={total}
       />
     </>
   );
