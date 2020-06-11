@@ -8,7 +8,6 @@ import {
 } from 'react-router-prop-types';
 
 import { Route } from '@folio/stripes/core';
-import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   JobProfiles,
   getJobProfilesColumnProperties,
@@ -16,14 +15,10 @@ import {
   getJobProfilesItemFormatter,
 } from '@folio/stripes-data-transfer-components';
 
+import { manifest } from '../../../components/ChooseJobProfile/manifest';
 import { NewJobProfileRoute } from '../NewJobProfileRoute';
-import {
-  INITIAL_RESULT_COUNT,
-  RESULT_COUNT_INCREMENT,
-  FIND_ALL_CQL,
-} from '../../../utils';
 
-const customProperties = getJobProfilesColumnProperties({
+export const customProperties = getJobProfilesColumnProperties({
   columnWidths: { protocol: '70px' },
   columnMapping: { protocol: <FormattedMessage id="ui-data-export.protocol" /> },
   visibleColumns: [
@@ -34,12 +29,7 @@ const customProperties = getJobProfilesColumnProperties({
   ],
 });
 
-const queryTemplate = '(sortby "%{query.query}")';
-const sortMap = {
-  name: 'name',
-  updated: 'metadata.updatedDate',
-  updatedBy: 'userInfo.firstName userInfo.lastName',
-};
+export const formatter = getJobProfilesItemFormatter({ protocol: () => '' });
 
 const JobProfilesContainer = ({
   history,
@@ -53,7 +43,7 @@ const JobProfilesContainer = ({
       <JobProfiles
         parentResources={resources}
         parentMutator={mutator}
-        formatter={getJobProfilesItemFormatter({ protocol: () => '' })}
+        formatter={formatter}
         {...customProperties}
       />
       <Route
@@ -77,30 +67,6 @@ JobProfilesContainer.propTypes = {
   resources: PropTypes.object.isRequired,
 };
 
-JobProfilesContainer.manifest = Object.freeze({
-  initializedFilterConfig: { initialValue: false },
-  query: { initialValue: {} },
-  resultCount: { initialValue: INITIAL_RESULT_COUNT },
-  jobProfiles: {
-    type: 'okapi',
-    path: 'data-export/jobProfiles',
-    records: 'jobProfiles',
-    recordsRequired: '%{resultCount}',
-    perRequest: RESULT_COUNT_INCREMENT,
-    clientGeneratePk: false,
-    throwErrors: false,
-    GET: {
-      params: {
-        query: makeQueryFunction(
-          FIND_ALL_CQL,
-          queryTemplate,
-          sortMap,
-          [],
-        ),
-      },
-      staticFallback: { params: {} },
-    },
-  },
-});
+JobProfilesContainer.manifest = Object.freeze(manifest);
 
 export default JobProfilesContainer;

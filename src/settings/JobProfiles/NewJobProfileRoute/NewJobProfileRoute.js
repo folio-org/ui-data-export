@@ -33,9 +33,9 @@ const NewJobProfileRoute = props => {
 
   return (
     <JobProfilesForm
-      onSubmit={handleSubmit}
       hasLoaded={mappingProfiles?.hasLoaded}
       mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
+      onSubmit={handleSubmit}
       onCancel={onCancel}
     />
   );

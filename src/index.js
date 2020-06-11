@@ -12,6 +12,7 @@ import { Pane } from '@folio/stripes/components';
 
 import { DataExportSettings } from './settings';
 import Home from './routes/Home';
+import ChooseJobProfile from './components/ChooseJobProfile';
 
 export default function DataExport(props) {
   const {
@@ -42,6 +43,10 @@ export default function DataExport(props) {
             )}
           />
         )}
+      />
+      <Route
+        path={`${path}/job-profile`}
+        component={ChooseJobProfile}
       />
     </Switch>
   );
