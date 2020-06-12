@@ -5,10 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import {
-  history as historyShape,
-  location as locationShape,
-} from 'react-router-prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
@@ -99,8 +95,8 @@ const ChooseJobProfileComponent = ({
 };
 
 ChooseJobProfileComponent.propTypes = {
-  history: historyShape.isRequired,
-  location: locationShape.isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  location: PropTypes.shape({ state: PropTypes.shape({ fileDefinitionId: PropTypes.string }) }).isRequired,
   mutator: PropTypes.shape({ export: PropTypes.shape({ POST: PropTypes.func.isRequired }) }).isRequired,
   resources: PropTypes.shape({}).isRequired,
 };

@@ -122,6 +122,7 @@ const MappingProfileDetails = props => {
                               items={record.recordTypes}
                               itemFormatter={recordType => (
                                 <FormattedMessage
+                                  key={recordType}
                                   id={FOLIO_RECORD_TYPES[recordType].captionId}
                                   tagName="li"
                                 />

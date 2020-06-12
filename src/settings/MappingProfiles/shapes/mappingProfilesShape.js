@@ -10,11 +10,9 @@ export const mappingProfilesShape = PropTypes.shape({
     transformations: PropTypes.arrayOf(PropTypes.object),
     metadata: PropTypes.shape({
       createdByUserId: PropTypes.string.isRequired,
-      createdByUsername: PropTypes.string.isRequired,
       createdDate: PropTypes.string.isRequired,
-      updatedByUserId: PropTypes.string,
-      updatedByUsername: PropTypes.string,
-      updatedDate: PropTypes.string,
+      updatedByUserId: PropTypes.string.isRequired,
+      updatedDate: PropTypes.string.isRequired,
     }).isRequired,
   })),
 });

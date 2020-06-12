@@ -20,14 +20,10 @@ const MappingProfileDetailsRoute = ({
 
 MappingProfileDetailsRoute.propTypes = {
   onCancel: PropTypes.func.isRequired,
-  resources: PropTypes.shape({
-    initializedFilterConfig: PropTypes.object,
-    mappingProfile: mappingProfilesShape,
-  }),
+  resources: PropTypes.shape({ mappingProfile: mappingProfilesShape }),
 };
 
 MappingProfileDetailsRoute.manifest = Object.freeze({
-  initializedFilterConfig: { initialValue: false },
   mappingProfile: {
     type: 'okapi',
     path: 'data-export/mappingProfiles/:{id}',
