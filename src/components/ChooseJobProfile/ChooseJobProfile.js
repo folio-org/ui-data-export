@@ -9,10 +9,10 @@ import {
   history as historyShape,
   location as locationShape,
 } from 'react-router-prop-types';
+
 import { stripesConnect } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-
 import {
   JobProfiles,
   getJobProfilesColumnProperties,
@@ -20,9 +20,9 @@ import {
   getJobProfilesItemFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { manifest as jobProfilesManifest } from './manifest';
+import { jobProfilesManifest } from '../../common';
 
-export const customProperties = getJobProfilesColumnProperties({
+const customProperties = getJobProfilesColumnProperties({
   columnWidths: { description: '40%' },
   columnMapping: { description: <FormattedMessage id="ui-data-export.description" /> },
   visibleColumns: [
@@ -33,9 +33,9 @@ export const customProperties = getJobProfilesColumnProperties({
   ],
 });
 
-export const formatter = getJobProfilesItemFormatter({});
+const formatter = getJobProfilesItemFormatter({});
 
-const ChooseJobProfile = ({
+const ChooseJobProfileComponent = ({
   resources,
   mutator,
   history,
@@ -74,11 +74,12 @@ const ChooseJobProfile = ({
         message={(
           <SafeHTMLMessage
             id="ui-data-export.jobProfiles.selectProfile.modal.message"
-            values={{ profile: <b>{selectedProfile.name}</b> }}
+            values={{ profile: selectedProfile.name }}
           />
         )}
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
         cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
+        onCancel={() => setConfirmationModalState(false)}
         onConfirm={async () => {
           try {
             await mutator.export.POST({
@@ -92,20 +93,19 @@ const ChooseJobProfile = ({
             console.error(error); // eslint-disable-line no-console
           }
         }}
-        onCancel={() => setConfirmationModalState(false)}
       />
     </>
   );
 };
 
-ChooseJobProfile.propTypes = {
+ChooseJobProfileComponent.propTypes = {
   history: historyShape.isRequired,
   location: locationShape.isRequired,
   mutator: PropTypes.shape({ export: PropTypes.shape({ POST: PropTypes.func.isRequired }) }).isRequired,
   resources: PropTypes.shape({}).isRequired,
 };
 
-ChooseJobProfile.manifest = Object.freeze({
+ChooseJobProfileComponent.manifest = Object.freeze({
   ...jobProfilesManifest,
   export: {
     type: 'okapi',
@@ -116,5 +116,5 @@ ChooseJobProfile.manifest = Object.freeze({
   },
 });
 
-export { ChooseJobProfile };
-export default stripesConnect(ChooseJobProfile);
+export { ChooseJobProfileComponent };
+export default stripesConnect(ChooseJobProfileComponent);

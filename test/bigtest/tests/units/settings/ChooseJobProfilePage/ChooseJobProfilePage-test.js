@@ -15,25 +15,14 @@ import {
   buildResources,
   buildMutator,
 } from '@folio/stripes-data-transfer-components/interactors';
-import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
-import { ChooseJobProfile } from '../../../../../../src/components/ChooseJobProfile';
-import { ChooseJobProfileInteractor } from './interactor';
 import translations from '../../../../../../translations/ui-data-export/en';
+import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { ChooseJobProfileComponent as ChooseJobProfile } from '../../../../../../src/components/ChooseJobProfile';
+import { ChooseJobProfileInteractor } from './interactor';
 
 const chooseJobProfile = new ChooseJobProfileInteractor();
-
-const translationsProperties = [
-  {
-    prefix: 'ui-data-export',
-    translations,
-  },
-  {
-    prefix: 'stripes-components',
-    translations: stripesComponentsTranslations,
-  },
-];
 
 const resources = buildResources({
   resourceName: 'jobProfiles',
@@ -64,7 +53,6 @@ describe('ChooseJobProfile', () => {
   describe('rendering ChooseJobProfile', () => {
     const exportProfileSpy = sinon.stub();
     const pushHistorySpy = sinon.spy();
-
     const mutator = buildMutator({ export: { POST: exportProfileSpy } });
     const location = { state: { fileDefinitionId: 'fileDefinitionId' } };
 
@@ -167,7 +155,7 @@ describe('ChooseJobProfile', () => {
           })).to.be.true;
         });
 
-        it('should navigate to the landing page in case of success', () => {
+        it('should navigate to the landing page', () => {
           expect(pushHistorySpy.calledWith('/data-export')).to.be.true;
         });
       });
@@ -179,10 +167,10 @@ describe('ChooseJobProfile', () => {
         });
 
         it('should close the confirmation modal', () => {
-          expect(chooseJobProfile.confirmationModal.isPresent).to.be.true;
+          expect(chooseJobProfile.confirmationModal.isPresent).to.be.false;
         });
 
-        it('should not navigate to the landing page in case of success', () => {
+        it('should not navigate to the landing page', () => {
           expect(pushHistorySpy.called).to.be.false;
         });
       });

@@ -5,14 +5,14 @@ import {
   RESULT_COUNT_INCREMENT,
   FIND_ALL_CQL,
   QUERY_TEMPLATE,
-} from '../../utils';
+} from '../utils';
 
 const sortMap = {
   updated: 'metadata.updatedDate',
   updatedBy: 'userInfo.firstName userInfo.lastName',
 };
 
-export const manifest = {
+export const jobProfilesManifest = {
   initializedFilterConfig: { initialValue: false },
   query: { initialValue: {} },
   resultCount: { initialValue: INITIAL_RESULT_COUNT },

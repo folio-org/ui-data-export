@@ -15,10 +15,10 @@ import {
   getJobProfilesItemFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { manifest } from '../../../components/ChooseJobProfile/manifest';
 import { NewJobProfileRoute } from '../NewJobProfileRoute';
+import { jobProfilesManifest } from '../../../common';
 
-export const customProperties = getJobProfilesColumnProperties({
+const customProperties = getJobProfilesColumnProperties({
   columnWidths: { protocol: '70px' },
   columnMapping: { protocol: <FormattedMessage id="ui-data-export.protocol" /> },
   visibleColumns: [
@@ -29,7 +29,7 @@ export const customProperties = getJobProfilesColumnProperties({
   ],
 });
 
-export const formatter = getJobProfilesItemFormatter({ protocol: () => '' });
+const formatter = getJobProfilesItemFormatter({ protocol: () => '' });
 
 const JobProfilesContainer = ({
   history,
@@ -67,6 +67,6 @@ JobProfilesContainer.propTypes = {
   resources: PropTypes.object.isRequired,
 };
 
-JobProfilesContainer.manifest = Object.freeze(manifest);
+JobProfilesContainer.manifest = Object.freeze(jobProfilesManifest);
 
 export default JobProfilesContainer;
