@@ -36,6 +36,7 @@ export default function DataExport(props) {
         component={() => (
           <Pane
             data-test-all-logs-pane
+            defaultWidth="fill"
             paneTitle={(
               <span data-test-title>
                 <FormattedMessage id="ui-data-export.logsPaneTitle" />
