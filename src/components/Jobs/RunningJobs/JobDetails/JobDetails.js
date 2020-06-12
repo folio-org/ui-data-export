@@ -77,7 +77,7 @@ const JobDetails = props => {
       />
       <Progress
         current={exported + failed}
-        total={total}
+        total={Number(total)}
       />
     </>
   );

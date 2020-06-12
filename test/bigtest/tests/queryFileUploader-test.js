@@ -98,11 +98,15 @@ describe('queryFileUploader component', () => {
     it.always('should not show error notification', () => {
       expect(queryFileUploaderInteractor.callout.errorCalloutIsPresent).to.be.false;
     });
+
+    it('should redirect to choose job profile page', function () {
+      expect(this.location.pathname.includes('/data-export/job-profile')).to.be.true;
+    });
   });
 
   describe('triggering drop on uploader area with file in case of error API response', () => {
     beforeEach(async function () {
-      this.server.post('/data-export/export', {}, 500);
+      this.server.post('/data-export/fileDefinitions', {}, 500);
 
       await initiateFileUpload([new File([], 'file.csv')]);
     });

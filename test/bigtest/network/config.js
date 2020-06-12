@@ -5,7 +5,7 @@ export const mockLink = 'https://test-aws-export-vk.s3.amazonaws.com/CatShip.mrc
 export default function config() {
   this.post('/data-export/export', {}, 200);
   this.post('/data-export/fileDefinitions', {}, 200);
-  this.post('/data-export/fileDefinitions/:id/upload', {}, 200);
+  this.post('/data-export/fileDefinitions/:id/upload', { id: 'id' }, 200);
 
   this.get('/data-export/jobExecutions', {
     jobExecutions: [],

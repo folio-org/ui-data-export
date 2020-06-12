@@ -1,35 +1,26 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
   describe,
-  beforeEach,
   it,
+  beforeEach,
+  before,
 } from '@bigtest/mocha';
+import { cleanup } from '@bigtest/react';
 import { expect } from 'chai';
 import { noop } from 'lodash';
 import sinon from 'sinon';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Paneset } from '@folio/stripes/components';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
-import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
+import { translationsProperties } from '../../../../helpers/translationsProperties';
 import { JobProfilesForm } from '../../../../../../src/settings/JobProfiles/JobProfilesForm';
 import { JobProfilesFormInteractor } from './interactor';
 
 describe('JobProfilesForm', () => {
-  const translationsProperties = [
-    {
-      prefix: 'ui-data-export',
-      translations,
-    },
-    {
-      prefix: 'stripes-components',
-      translations: stripesComponentsTranslations,
-    },
-  ];
-
   const mappingProfiles = [
     {
       value: 'id1',
@@ -42,6 +33,10 @@ describe('JobProfilesForm', () => {
   ];
 
   const form = new JobProfilesFormInteractor();
+
+  before(async () => {
+    await cleanup();
+  });
 
   describe('rendering job profiles form with stubbed handlers and loaded mapping profiles', function () {
     const handleSubmitSpy = sinon.spy();

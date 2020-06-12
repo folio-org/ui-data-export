@@ -1,21 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
   describe,
-  beforeEach,
   it,
+  beforeEach,
+  before,
 } from '@bigtest/mocha';
+import { cleanup } from '@bigtest/react';
 import { expect } from 'chai';
 import { noop } from 'lodash';
 import sinon from 'sinon';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Paneset } from '@folio/stripes/components';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
-import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
+import { translationsProperties } from '../../../../helpers/translationsProperties';
 import { MappingProfilesForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesForm';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
 
@@ -36,18 +38,11 @@ const initialValues = {
 };
 
 describe('MappingProfilesForm', () => {
-  const translationsProperties = [
-    {
-      prefix: 'ui-data-export',
-      translations,
-    },
-    {
-      prefix: 'stripes-components',
-      translations: stripesComponentsTranslations,
-    },
-  ];
-
   const form = new MappingProfilesFormInteractor();
+
+  before(async () => {
+    await cleanup();
+  });
 
   describe('rendering mapping profiles form with stubbed submit handler', function () {
     const handleSubmitSpy = sinon.spy();

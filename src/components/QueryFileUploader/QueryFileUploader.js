@@ -4,7 +4,12 @@ import React, {
   useEffect,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+  match as matchShape,
+  history as historyShape,
+} from 'react-router-prop-types';
 
 import {
   FileUploader,
@@ -30,7 +35,11 @@ import {
 import css from './QueryFileUploader.css';
 
 const QueryFileUploaderComponent = props => {
-  const { mutator } = props;
+  const {
+    mutator,
+    history,
+    match,
+  } = props;
 
   const [isDropZoneActive, setDropZoneActive] = useState(false);
   const [fileExtensionModalOpen, setFileExtensionModalOpen] = useState(false);
@@ -108,13 +117,10 @@ const QueryFileUploaderComponent = props => {
         onFileUploadProgress: handleFileUploadProgress,
       });
 
-      // TODO: replace jobProfileId with real one once backend is implemented
-      await mutator.export.POST({
-        fileDefinitionId: fileUploadResult.id,
-        jobProfileId: '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a',
+      history.push({
+        pathname: `${match.path}/job-profile`,
+        state: { fileDefinitionId: fileUploadResult.id },
       });
-
-      setDropZone(false);
     } catch (error) {
       handleUploadError();
       setDropZone(false);
@@ -183,10 +189,9 @@ const QueryFileUploaderComponent = props => {
 };
 
 QueryFileUploaderComponent.propTypes = {
-  mutator: PropTypes.shape({
-    fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired,
-    export: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired,
-  }).isRequired,
+  history: historyShape.isRequired,
+  match: matchShape.isRequired,
+  mutator: PropTypes.shape({ fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
 
 QueryFileUploaderComponent.manifest = Object.freeze({
@@ -196,13 +201,6 @@ QueryFileUploaderComponent.manifest = Object.freeze({
     throwErrors: false,
     fetch: false,
   },
-  export: {
-    type: 'okapi',
-    path: 'data-export/export',
-    clientGeneratePk: false,
-    throwErrors: false,
-    fetch: false,
-  },
 });
 
-export const QueryFileUploader = stripesConnect(QueryFileUploaderComponent);
+export const QueryFileUploader = stripesConnect(withRouter(QueryFileUploaderComponent));
