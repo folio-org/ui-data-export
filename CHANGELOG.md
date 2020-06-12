@@ -32,6 +32,7 @@
 * Add progress bar to running jobs. UIDEXP-38.
 * Implement selecting of the job profile before starting export. UIDEXP-87.
 * Add mapping profile details. UIDEXP-50.
+* Update translations
 
 ## [1.0.2](https://github.com/folio-org/ui-data-export/tree/v1.0.2) (2020-04-03)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.1...v1.0.2)

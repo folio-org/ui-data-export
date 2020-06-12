@@ -17,7 +17,7 @@ describe('Field mapping profile details', () => {
     this.visit('/settings/data-export/mapping-profiles/view/25d81cbe-9686-11ea-bb37-0242ac130002');
   });
 
-  it('should display mapping profiles form', () => {
+  it('should display mapping profile details', () => {
     expect(mappingProfileDetails.isPresent).to.be.true;
   });
 
@@ -26,7 +26,7 @@ describe('Field mapping profile details', () => {
       await mappingProfileDetails.fullScreen.closeButton.click();
     });
 
-    it('should navigate mapping profiles settings page', function () {
+    it('should navigate to mapping profiles settings page', function () {
       expect(this.location.pathname.endsWith('/data-export/mapping-profiles')).to.be.true;
     });
   });

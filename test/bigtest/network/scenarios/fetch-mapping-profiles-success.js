@@ -17,6 +17,8 @@ export const mappingProfileWithTransformations = {
   },
   outputFormat: 'MARC',
   metadata: {
+    createdByUserId: '25d81cbe-9686-11ea-bb37-0242ac130002',
+    updatedByUserId: '25d81cbe-9686-11ea-bb37-0242ac130002',
     createdDate: '2018-12-04T01:29:36.531+0000',
     updatedDate: '2018-12-04T01:29:36.531+0000',
   },
@@ -30,6 +32,8 @@ export const mappingProfile = {
   transformations: [],
   outputFormat: 'MARC',
   metadata: {
+    createdByUserId: '25d81cbe-9686-11ea-bb37-0242ac130005',
+    updatedByUserId: '25d81cbe-9686-11ea-bb37-0242ac130005',
     createdDate: '2018-12-04T01:29:36.531+0000',
     updatedDate: '2018-12-04T01:29:36.531+0000',
   },
@@ -39,9 +43,5 @@ export default server => {
   server.create('mapping-profile', mappingProfileWithTransformations);
   server.create('mapping-profile', mappingProfile);
 
-  server.get('/data-export/mappingProfiles', schema => {
-    const mappingProfiles = schema.mappingProfiles.all();
-
-    return mappingProfiles;
-  });
+  server.get('/data-export/mappingProfiles', schema => schema.mappingProfiles.all());
 };
