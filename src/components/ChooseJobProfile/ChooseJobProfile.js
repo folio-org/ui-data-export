@@ -88,6 +88,7 @@ const ChooseJobProfile = ({
 
             history.push('/data-export');
           } catch (error) {
+            setConfirmationModalState(false);
             console.error(error); // eslint-disable-line no-console
           }
         }}

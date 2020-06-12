@@ -1,9 +1,11 @@
 import React from 'react';
 import {
   describe,
-  beforeEach,
   it,
+  beforeEach,
+  before,
 } from '@bigtest/mocha';
+import { cleanup } from '@bigtest/react';
 import { expect } from 'chai';
 import { noop } from 'lodash';
 import sinon from 'sinon';
@@ -42,6 +44,10 @@ describe('JobProfilesForm', () => {
   ];
 
   const form = new JobProfilesFormInteractor();
+
+  before(async () => {
+    await cleanup();
+  });
 
   describe('rendering job profiles form with stubbed handlers and loaded mapping profiles', function () {
     const handleSubmitSpy = sinon.spy();

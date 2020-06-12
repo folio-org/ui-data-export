@@ -191,10 +191,7 @@ const QueryFileUploaderComponent = props => {
 QueryFileUploaderComponent.propTypes = {
   history: historyShape.isRequired,
   match: matchShape.isRequired,
-  mutator: PropTypes.shape({
-    fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired,
-    export: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired,
-  }).isRequired,
+  mutator: PropTypes.shape({ fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
 
 QueryFileUploaderComponent.manifest = Object.freeze({
