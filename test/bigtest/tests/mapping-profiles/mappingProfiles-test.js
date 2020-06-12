@@ -43,7 +43,6 @@ describe('Field mapping profiles settings', () => {
   });
 
   it('should not display values if they are not present in mapping profile', () => {
-    expect(mappingProfiles.searchResults.getCellContent(1, 2)).to.equal('');
     expect(mappingProfiles.searchResults.getCellContent(1, 4)).to.equal('');
   });
 
@@ -98,6 +97,20 @@ describe('Field mapping profiles settings', () => {
       it('should display error callout', function () {
         expect(callout.errorCalloutIsPresent).to.be.true;
       });
+    });
+  });
+
+  describe('clicking on mapping profiles list item', () => {
+    beforeEach(async () => {
+      await mappingProfiles.searchResults.list.rows(0).click();
+    });
+
+    it('should navigate to create mapping profile details', function () {
+      expect(this.location.pathname.includes('/data-export/mapping-profiles/view')).to.be.true;
+    });
+
+    it('should save query in path after navigation', function () {
+      expect(this.location.search.includes('?sort=name')).to.be.true;
     });
   });
 });

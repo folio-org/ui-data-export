@@ -24,6 +24,7 @@ import {
 import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
 import { generateTransformationFieldsValues } from '../MappingProfilesForm/TransformationsField';
 import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
+import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 
 const customProperties = getMappingProfilesColumnProperties({
   columnWidths: { format: '70px' },
@@ -66,6 +67,15 @@ const MappingProfilesContainer = ({
         parentMutator={mutator}
         formatter={getMappingProfilesItemFormatter({ format: ({ outputFormat }) => outputFormat })}
         {...customProperties}
+      />
+      <Route
+        path={`${match.path}/view/:id`}
+        render={props => (
+          <MappingProfileDetailsRoute
+            {...props}
+            onCancel={() => history.push(`${match.path}${location.search}`)}
+          />
+        )}
       />
       <Route
         path={`${match.path}/create`}
