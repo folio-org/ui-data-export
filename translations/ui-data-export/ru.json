@@ -46,5 +46,11 @@
     "errors": "Ошибки",
     "mappingProfiles.errorCallout": "При создании профиля отображения для поля <b>{name}</b> произошла ошибка",
     "jobProfiles.createdCallout": "Профиль работы <b> {название}</b>был успешно <b> создан </b>",
-    "jobProfiles.errorCallout": "При создании профиля работы произошла ошибка <b>{название}</b>"
+    "jobProfiles.errorCallout": "При создании профиля работы произошла ошибка <b>{название}</b>",
+    "run": "Run",
+    "jobProfiles.selectProfile.title": "Select job profile to run the export",
+    "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
+    "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
+    "mappingProfiles.transformations.addTransformation": "Add transformation",
+    "mappingProfiles.transformations.emptyMessage": "No transformations found"
 }

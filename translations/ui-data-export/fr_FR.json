@@ -46,5 +46,11 @@
     "errors": "Erreurs",
     "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
     "jobProfiles.createdCallout": "Le profil de tâche <b> {name} </b> a été <b> créé </b> avec succès",
-    "jobProfiles.errorCallout": "Une erreur s'est produite lors de la création du profil de tâche <b> {name} </b>"
+    "jobProfiles.errorCallout": "Une erreur s'est produite lors de la création du profil de tâche <b> {name} </b>",
+    "run": "Run",
+    "jobProfiles.selectProfile.title": "Select job profile to run the export",
+    "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
+    "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
+    "mappingProfiles.transformations.addTransformation": "Ajouter une transformation",
+    "mappingProfiles.transformations.emptyMessage": "Aucune transformation trouvée"
 }
