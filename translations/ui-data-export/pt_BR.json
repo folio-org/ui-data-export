@@ -6,7 +6,7 @@
     "uploaderTitle": "Arrastar e soltar",
     "uploaderBtnText": "ou escolha o arquivo",
     "uploaderSubTitle": "Selecione um arquivo com IDs de registros ou consultas CQL",
-    "uploaderActiveTitle": "Solte para iniciar a importação",
+    "uploaderActiveTitle": "Solte para iniciar a exportação",
     "runningJobs": "Executando",
     "triggeredBy": "Disparado por {userName}",
     "jobProfileLabel": "Perfil do job: {jobProfile}",
@@ -46,5 +46,14 @@
     "errors": "Erros",
     "mappingProfiles.errorCallout": "Ocorreu um erro ao criar o perfil de mapeamento de campo <b>{name}</b>",
     "jobProfiles.createdCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
-    "jobProfiles.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>"
+    "jobProfiles.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
+    "run": "Executar",
+    "jobProfiles.selectProfile.title": "Selecione o perfil do job para executar a exportação",
+    "jobProfiles.selectProfile.modal.title": "Tem certeza de que deseja executar este job?",
+    "jobProfiles.selectProfile.modal.message": "Você selecionou <b>{profile}</b> para executar a exportação",
+    "mappingProfiles.transformations.addTransformation": "Adicionar transformação",
+    "mappingProfiles.transformations.emptyMessage": "Nenhuma transformação encontrada",
+    "settings.profilesInfo": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados.",
+    "permission.app.enabled": "UI: O módulo de exportação de dados está ativado",
+    "permission.settings.enabled": "Configurações (exportação de dados): exibe a lista de páginas de configurações"
 }

@@ -46,5 +46,14 @@
     "errors": "Errors",
     "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
     "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
+    "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
+    "run": "Run",
+    "jobProfiles.selectProfile.title": "Select job profile to run the export",
+    "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
+    "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
+    "mappingProfiles.transformations.addTransformation": "Add transformation",
+    "mappingProfiles.transformations.emptyMessage": "No transformations found",
+    "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
+    "permission.app.enabled": "UI: Data export module is enabled",
+    "permission.settings.enabled": "Settings (data-export): display list of settings pages"
 }

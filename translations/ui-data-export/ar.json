@@ -46,5 +46,14 @@
     "errors": "أخطاء",
     "mappingProfiles.errorCallout": "حدث خطأ أثناء إنشاء وضع تخطيط الحقل <b>{name}</b>",
     "jobProfiles.createdCallout": "تم <b>إنشاء</b> وضع الوظيفة <b>{name}</b> بنجاح",
-    "jobProfiles.errorCallout": "حدث خطأ أثناء إنشاء وضع الوظيفة <b>{name}</b>"
+    "jobProfiles.errorCallout": "حدث خطأ أثناء إنشاء وضع الوظيفة <b>{name}</b>",
+    "run": "تشغيل",
+    "jobProfiles.selectProfile.title": "اختر وضع الوظيفة لتشغيل التصدير",
+    "jobProfiles.selectProfile.modal.title": "هل أنت متأكد من أنك تريد تشغيل هذه الوظيفة؟",
+    "jobProfiles.selectProfile.modal.message": "لقد قمت بتحديد <b>{profile}</b> لتشغيل التصدير",
+    "mappingProfiles.transformations.addTransformation": "إضافة تحويل",
+    "mappingProfiles.transformations.emptyMessage": "لم يتم العثور على تحويلات",
+    "settings.profilesInfo": "تضيف أوضاع تصدير البيانات المرونة وتوفر طريقة سهلة لتهيئة تصدير قابل للتكرار ويمكن تنفيذه بسهولة على مجموعات بيانات مختلفة.",
+    "permission.app.enabled": "واجهة المستخدم: تم تفعيل وحدة تصدير البيانات",
+    "permission.settings.enabled": "الإعدادات (تصدير-البيانات): اعرض قائمة بصفحات الإعدادات"
 }

@@ -6,7 +6,7 @@
     "uploaderTitle": "Glisser-déposer",
     "uploaderBtnText": "ou choisir un fichier",
     "uploaderSubTitle": "Sélectionnez un fichier avec des ID d'enregistrement ou des requêtes CQL",
-    "uploaderActiveTitle": "Déposer pour démarrer l'importation",
+    "uploaderActiveTitle": "Déposer pour démarrer l'exportation",
     "runningJobs": "En cours d'exécution",
     "triggeredBy": "Déclenché par {userName}",
     "jobProfileLabel": "Profil de tâche: {jobProfile}",
@@ -46,5 +46,14 @@
     "errors": "Erreurs",
     "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
     "jobProfiles.createdCallout": "Le profil de tâche <b> {name} </b> a été <b> créé </b> avec succès",
-    "jobProfiles.errorCallout": "Une erreur s'est produite lors de la création du profil de tâche <b> {name} </b>"
+    "jobProfiles.errorCallout": "Une erreur s'est produite lors de la création du profil de tâche <b> {name} </b>",
+    "run": "Run",
+    "jobProfiles.selectProfile.title": "Select job profile to run the export",
+    "jobProfiles.selectProfile.modal.title": "Voulez-vous vraiment exécuter cette tâche ?",
+    "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
+    "mappingProfiles.transformations.addTransformation": "Ajouter une transformation",
+    "mappingProfiles.transformations.emptyMessage": "Aucune transformation trouvée",
+    "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
+    "permission.app.enabled": "UI: Data export module is enabled",
+    "permission.settings.enabled": "Settings (data-export): display list of settings pages"
 }
