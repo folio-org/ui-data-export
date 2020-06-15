@@ -46,5 +46,11 @@
     "errors": "Erros",
     "mappingProfiles.errorCallout": "Ocorreu um erro ao criar o perfil de mapeamento de campo <b>{name}</b>",
     "jobProfiles.createdCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
-    "jobProfiles.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>"
+    "jobProfiles.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
+    "run": "Executar",
+    "jobProfiles.selectProfile.title": "Selecione o perfil do job para executar a exportação",
+    "jobProfiles.selectProfile.modal.title": "Tem certeza de que deseja executar este job?",
+    "jobProfiles.selectProfile.modal.message": "Você selecionou <b>{profile}</b> para executar a exportação",
+    "mappingProfiles.transformations.addTransformation": "Adicionar transformação",
+    "mappingProfiles.transformations.emptyMessage": "Nenhuma transformação encontrada"
 }
