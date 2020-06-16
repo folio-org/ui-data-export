@@ -35,10 +35,7 @@ const JobDetails = props => {
     jobProfileInfo,
     exportedFiles,
     hrId,
-    runBy: {
-      firstName,
-      lastName,
-    },
+    runBy,
     progress: {
       total,
       exported,
@@ -55,12 +52,16 @@ const JobDetails = props => {
       </div>
       <div className={css.delimiter}>
         <span data-test-running-job-hr-id>{hrId}</span>
-        <span data-test-running-job-triggered-by>
-          <FormattedMessage
-            id="ui-data-export.triggeredBy"
-            values={{ userName: `${firstName} ${lastName}` }}
-          />
-        </span>
+        {runBy &&
+          (
+            <span data-test-running-job-triggered-by>
+              <FormattedMessage
+                id="ui-data-export.triggeredBy"
+                values={{ userName: `${runBy.firstName} ${runBy.lastName}` }}
+              />
+            </span>
+          )
+        }
       </div>
       <div className={css.delimiter}>
         <span data-test-running-job-date-label>
