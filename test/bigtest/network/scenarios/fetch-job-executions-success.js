@@ -21,6 +21,7 @@ export const runningJobExecutions = [
       exported: 10,
       total: 100,
     },
+    runBy: null,
     status: 'IN_PROGRESS',
     startedDate: '2020-01-27T10:09:18.743+0000',
   },

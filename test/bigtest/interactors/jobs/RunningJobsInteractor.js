@@ -4,6 +4,7 @@ import {
   scoped,
   collection,
   count,
+  Interactor,
 } from '@bigtest/interactor';
 
 import { ProgressInteractor } from '@folio/stripes-data-transfer-components/interactors';
@@ -16,7 +17,7 @@ class JobInteractor {
   fileName = text('[data-test-running-job-file-name]');
   hrId = text('[data-test-running-job-hr-id]');
   status = text('[data-test-running-job-progress-status]');
-  triggeredBy = text('[data-test-running-job-triggered-by]');
+  triggeredBy = new Interactor('[data-test-running-job-triggered-by]');
   buttons = scoped('[data-test-running-job-buttons-container]', RunningJobsControlButtonsInteractor);
   progress = scoped('[data-test-progress-bar]', ProgressInteractor);
 

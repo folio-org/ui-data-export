@@ -71,13 +71,18 @@ describe('Jobs lists', () => {
       expect(runningJobs.jobItems(0).hrId).to.equal(String(runningJobExecution.hrId));
     });
 
-    it('should display correct triggered by name', () => {
+    it('should display correct triggered by name for existing user information', () => {
       const {
         firstName,
         lastName,
       } = runningJobExecution.runBy;
 
-      expect(runningJobs.jobItems(0).triggeredBy).to.equal(`Triggered by ${firstName} ${lastName}`);
+      expect(runningJobs.jobItems(0).triggeredBy.isPresent).to.be.true;
+      expect(runningJobs.jobItems(0).triggeredBy.text).to.equal(`Triggered by ${firstName} ${lastName}`);
+    });
+
+    it('should not display triggered by message in case of missed user information', () => {
+      expect(runningJobs.jobItems(1).triggeredBy.isPresent).to.be.false;
     });
 
     it('should display job profile name', () => {

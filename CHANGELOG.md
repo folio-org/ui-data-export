@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 2.1.0 (IN PROGRESS)
+* Fix error screen display in case of missed user information in job executions. UIDEXP-107.
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)
