@@ -16,11 +16,11 @@ import {
   KeyValue,
   Layer,
   List,
-  MetaSection,
   MultiColumnList,
   NoValue,
   Row,
 } from '@folio/stripes/components';
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import {
   FOLIO_RECORD_TYPES,
   FullScreenView,
@@ -45,6 +45,7 @@ const formatter = {
 const MappingProfileDetails = props => {
   const {
     onCancel,
+    stripes,
     mappingProfile: {
       hasLoaded,
       records,
@@ -97,11 +98,9 @@ const MappingProfileDetails = props => {
                   </Row>
                   <AccordionSet id="mapping-profile-details-accordions">
                     <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
-                      <MetaSection
-                        createdBy={record.metadata.createdByUserId}
-                        lastUpdatedBy={record.metadata.updatedByUserId}
-                        createdDate={record.metadata.createdDate}
-                        lastUpdatedDate={record.metadata.updatedDate}
+                      <ViewMetaData
+                        metadata={record.metadata}
+                        stripes={stripes}
                       />
                       <Row>
                         <Col xs>
@@ -177,6 +176,7 @@ const MappingProfileDetails = props => {
 MappingProfileDetails.propTypes = {
   onCancel: PropTypes.func,
   mappingProfile: mappingProfilesShape,
+  stripes: PropTypes.object,
 };
 
 MappingProfileDetails.defaultProps = {
