@@ -30,6 +30,28 @@ describe('Settings', () => {
     expect(settingsSectionsPane.profilesLabel.isPresent).to.be.true;
   });
 
+  it('should not display profiles inform popover', () => {
+    expect(settingsSectionsPane.profilesPopover.isPresent).to.be.false;
+  });
+
+  describe('clicking on inform button from profiles label', () => {
+    beforeEach(async () => {
+      await settingsSectionsPane.profilesLabel.infoButton.click();
+    });
+
+    it('should display profiles inform popover', () => {
+      expect(settingsSectionsPane.profilesPopover.isPresent).to.be.true;
+    });
+
+    it('should display correct message in inform popover', () => {
+      expect(settingsSectionsPane.profilesPopover.content.text).to.equal(translations['settings.profilesInfo']);
+    });
+
+    it('should have correct link in learn more button', () => {
+      expect(settingsSectionsPane.profilesPopover.linkHref).to.equal('https://wiki.folio.org/x/AyUuAg');
+    });
+  });
+
   it('should display section labels', () => {
     expect(settingsSectionsPane.sectionsLabels(0).isPresent).to.be.true;
   });

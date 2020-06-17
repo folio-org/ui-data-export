@@ -52,5 +52,6 @@
   "mappingProfiles.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
   "jobProfiles.createdCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
   "jobProfiles.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
-  "marc": "MARC"
+  "marc": "MARC",
+  "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets."
 }

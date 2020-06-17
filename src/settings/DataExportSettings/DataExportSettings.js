@@ -26,8 +26,8 @@ const getSettingsLabel = (messageId, iconKey) => {
 const sections = [
   {
     label: <ProfilesLabel
-      link="https://wiki.folio.org/display/FOLIOtips/Creating+and+using+profiles"
-      content={<div style={{ width: '150px' }} />}
+      link="https://wiki.folio.org/x/AyUuAg"
+      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
     />,
     pages: [
       {
