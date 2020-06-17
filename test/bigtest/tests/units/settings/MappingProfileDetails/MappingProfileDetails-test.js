@@ -23,6 +23,15 @@ import {
 
 describe('MappingProfileDetails', () => {
   const mappingProfileDetails = new MappingProfileDetailsInteractor();
+  const stripes = {
+    connect: Component => props => (
+      <Component
+        {... props}
+        mutator={{}}
+        resources={{}}
+      />
+    ),
+  };
 
   describe('rendering mapping profile details', function () {
     beforeEach(async function () {
@@ -30,6 +39,7 @@ describe('MappingProfileDetails', () => {
         <Paneset>
           <Router>
             <MappingProfileDetails
+              stripes={stripes}
               mappingProfile={{
                 hasLoaded: true,
                 records: [mappingProfileWithTransformations],
@@ -109,6 +119,7 @@ describe('MappingProfileDetails', () => {
         <Paneset>
           <Router>
             <MappingProfileDetails
+              stripes={stripes}
               mappingProfile={{
                 hasLoaded: true,
                 records: [mappingProfile],
@@ -136,6 +147,7 @@ describe('MappingProfileDetails', () => {
         <Paneset>
           <Router>
             <MappingProfileDetails
+              stripes={stripes}
               mappingProfile={{
                 hasLoaded: false,
                 records: [],
