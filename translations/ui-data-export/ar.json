@@ -52,5 +52,6 @@
     "jobProfiles.selectProfile.modal.title": "هل أنت متأكد من أنك تريد تشغيل هذه الوظيفة؟",
     "jobProfiles.selectProfile.modal.message": "لقد قمت بتحديد <b>{profile}</b> لتشغيل التصدير",
     "mappingProfiles.transformations.addTransformation": "إضافة تحويل",
-    "mappingProfiles.transformations.emptyMessage": "لم يتم العثور على تحويلات"
+    "mappingProfiles.transformations.emptyMessage": "لم يتم العثور على تحويلات",
+    "settings.profilesInfo": "تضيف أوضاع تصدير البيانات المرونة وتوفر طريقة سهلة لتهيئة تصدير قابل للتكرار ويمكن تنفيذه بسهولة على مجموعات بيانات مختلفة."
 }
