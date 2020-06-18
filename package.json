@@ -90,6 +90,13 @@
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.post"
         ],
+        "visible": false
+      },
+      {
+        "permissionName": "ui-data-export.app.enabled",
+        "subPermissions": [
+          "module.data-export.enabled"
+        ],
         "visible": true
       },
       {
@@ -97,6 +104,13 @@
         "displayName": "Settings (data-export): display list of settings pages",
         "subPermissions": [
           "settings.enabled"
+        ],
+        "visible": false
+      },
+      {
+        "permissionName": "ui-data-export.settings.enabled",
+        "subPermissions": [
+          "settings.data-export.enabled"
         ],
         "visible": true
       }
