@@ -4,6 +4,7 @@
 * Fix error screen display in case of missed user information in job executions. UIDEXP-107.
 * Update description and link in profiles info on the second settings pane. UIDEXP-53.
 * Display user name while viewing the mapping profile summary accordion. UIDEXP-115.
+* Fix transformation labels display on mapping details view page. UIDEXP-118.
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)
