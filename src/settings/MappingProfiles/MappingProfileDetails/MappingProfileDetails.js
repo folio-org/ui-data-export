@@ -38,7 +38,7 @@ const columnWidths = {
 };
 const visibleColumns = ['fieldName', 'transformation'];
 const formatter = {
-  fieldName: record => mappingProfileTransformations.find(({ id }) => id === record.fieldId).displayName,
+  fieldName: record => mappingProfileTransformations.find(({ path }) => path === record.path).displayName,
   transformation: record => record.transformation,
 };
 
