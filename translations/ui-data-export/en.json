@@ -1,6 +1,10 @@
 {
   "meta.title": "Data export",
   "settings.index.paneTitle": "Data export",
+
+  "permission.app.enabled": "UI: Data export module is enabled",
+  "permission.settings.enabled": "Settings (data-export): display list of settings pages",
+
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",
   "viewAllLogs": "View all",
