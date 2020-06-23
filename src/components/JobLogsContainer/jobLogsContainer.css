@@ -2,4 +2,16 @@
   margin-top: 0.25rem !important;
   margin-bottom: 0.25rem !important;
   color: inherit !important;
+  padding: 0.25em 10px !important;
+
+  &::before {
+    border-radius: 6px;
+  }
+}
+
+.fileNameBtn span {
+  white-space: normal;
+  width: 100%;
+  text-align: left;
+  word-break: break-all;
 }
