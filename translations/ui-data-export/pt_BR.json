@@ -53,5 +53,7 @@
     "jobProfiles.selectProfile.modal.message": "Você selecionou <b>{profile}</b> para executar a exportação",
     "mappingProfiles.transformations.addTransformation": "Adicionar transformação",
     "mappingProfiles.transformations.emptyMessage": "Nenhuma transformação encontrada",
-    "settings.profilesInfo": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados."
+    "settings.profilesInfo": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados.",
+    "permission.app.enabled": "UI: O módulo de exportação de dados está ativado",
+    "permission.settings.enabled": "Configurações (exportação de dados): exibe a lista de páginas de configurações"
 }
