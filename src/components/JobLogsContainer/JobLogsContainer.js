@@ -11,6 +11,7 @@ import {
   defaultJobLogsColumnMapping,
   defaultJobLogsVisibleColumns,
   defaultJobLogsSortColumns,
+  defaultJobLogsColumnWidths,
   sortStrings,
   sortNumbers,
 } from '@folio/stripes-data-transfer-components';
@@ -47,6 +48,11 @@ const visibleColumns = [
   'errors',
   'status',
 ];
+
+const columnWidths = {
+  ...defaultJobLogsColumnWidths,
+  fileName: '450px',
+};
 
 // TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
@@ -121,6 +127,7 @@ const JobLogsContainer = props => {
               },
             )}
             visibleColumns={visibleColumns}
+            columnWidths={columnWidths}
             sortColumns={sortColumns}
             hasLoaded={hasLoaded}
             contentData={logs}
