@@ -89,7 +89,9 @@ const JobLogsContainer = props => {
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
 
-    if (!record.progress.exported) return fileName;
+    if (!record.progress.exported) {
+      return <span className={styles.disabledFileName}>{fileName}</span>;
+    }
 
     return (
       <Button

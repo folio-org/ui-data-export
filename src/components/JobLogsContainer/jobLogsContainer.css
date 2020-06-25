@@ -15,3 +15,7 @@
   text-align: left;
   word-break: break-all;
 }
+
+.disabledFileName {
+  padding: 0.25em 10px !important;
+}
