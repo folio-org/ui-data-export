@@ -6,7 +6,7 @@
 * Display user name while viewing the mapping profile summary accordion. UIDEXP-115.
 * Fix transformation labels display on mapping details view page. UIDEXP-118.
 * Add long file names handling in job logs. UIDEXP-121.
-* Move `react-intl` from `^4.5` to `~4.6` to avoid the broken `4.7` series, https://github.com/formatjs/formatjs/issues/1744.
+* Fix drag and drop area translation. UIDEXP-123.
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)
