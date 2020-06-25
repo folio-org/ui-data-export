@@ -120,7 +120,6 @@ const JobLogsContainer = props => {
               {
                 status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
                 fileName: record => getFileNameField(record),
-                jobProfileName: record => get(record, 'jobProfileName.name', 'default'),
                 errors: record => {
                   const { progress: { failed } } = record;
 
