@@ -50,7 +50,7 @@ describe('Jobs lists', () => {
     });
 
     it('should display correct job profile name', () => {
-      expect(runningJobs.jobItems(0).jobProfileName).to.equal(runningJobExecution.jobProfileInfo.name);
+      expect(runningJobs.jobItems(0).jobProfileName).to.equal(runningJobExecution.jobProfileName);
     });
 
     it('should display correct file name', () => {

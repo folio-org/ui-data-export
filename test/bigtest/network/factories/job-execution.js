@@ -24,10 +24,8 @@ export default Factory.extend({
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
   }),
-  jobProfileInfo: () => ({
-    id: faker.random.uuid(),
-    name: 'default',
-  }),
+  jobProfileId: faker.random.uuid(),
+  jobProfileName: 'default',
   progress: () => {
     const total = faker.random.number({ max: 1000 });
 
