@@ -27,12 +27,11 @@ const formatTime = dateStr => {
   return <span>{datePart} {timePart} {todayPart}</span>;
 };
 
-// TODO: remove defaults for jobProfileInfo once backend is in place
 const JobDetails = props => {
   const { job } = props;
 
   const {
-    jobProfileInfo,
+    jobProfileName,
     exportedFiles,
     hrId,
     runBy,
@@ -47,7 +46,7 @@ const JobDetails = props => {
   return (
     <>
       <div className={classNames(css.delimiter, css.jobHeader)}>
-        <span data-test-running-job-profile>{get(jobProfileInfo, 'name', 'default')}</span>
+        <span data-test-running-job-profile>{jobProfileName}</span>
         <span data-test-running-job-file-name>{get(exportedFiles, '0.fileName')}</span>
       </div>
       <div className={css.delimiter}>

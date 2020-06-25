@@ -1,7 +1,7 @@
 export const runningJobExecutions = [
   {
     hrId: 0,
-    jobProfileInfo: { name: 'default' },
+    jobProfileName: 'default',
     exportedFiles: [{ fileName: 'import-0.mrc' }],
     runBy: {
       firstName: 'John',
