@@ -12,8 +12,8 @@ const MappingProfileDetailsRoute = ({
 }) => {
   return (
     <MappingProfileDetails
-      onCancel={onCancel}
       mappingProfile={mappingProfile || {}}
+      onCancel={onCancel}
     />
   );
 };

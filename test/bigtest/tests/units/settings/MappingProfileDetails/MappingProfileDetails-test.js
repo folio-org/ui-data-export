@@ -1,8 +1,10 @@
 import React from 'react';
+import { cleanup } from '@bigtest/react';
 import {
   describe,
   beforeEach,
   it,
+  before,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
 import { noop } from 'lodash';
@@ -32,6 +34,10 @@ describe('MappingProfileDetails', () => {
       />
     ),
   };
+
+  before(async () => {
+    await cleanup();
+  });
 
   describe('rendering mapping profile details', function () {
     beforeEach(async function () {
