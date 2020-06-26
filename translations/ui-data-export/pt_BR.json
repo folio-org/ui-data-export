@@ -6,7 +6,7 @@
     "uploaderTitle": "Arrastar e soltar",
     "uploaderBtnText": "ou escolha o arquivo",
     "uploaderSubTitle": "Selecione um arquivo com IDs de registros ou consultas CQL",
-    "uploaderActiveTitle": "Solte para iniciar a importação",
+    "uploaderActiveTitle": "Solte para iniciar a exportação",
     "runningJobs": "Executando",
     "triggeredBy": "Disparado por {userName}",
     "jobProfileLabel": "Perfil do job: {jobProfile}",
