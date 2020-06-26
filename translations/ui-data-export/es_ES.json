@@ -6,7 +6,7 @@
     "uploaderTitle": "Drag and drop",
     "uploaderBtnText": "or choose file",
     "uploaderSubTitle": "Select a file with records IDs or CQL queries",
-    "uploaderActiveTitle": "Drop to start import",
+    "uploaderActiveTitle": "Drop to start export",
     "runningJobs": "En proceso",
     "triggeredBy": "Activado por {userName}",
     "jobProfileLabel": "Job profile: {jobProfile}",
