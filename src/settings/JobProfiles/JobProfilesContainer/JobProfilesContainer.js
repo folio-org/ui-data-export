@@ -16,6 +16,7 @@ import {
 } from '@folio/stripes-data-transfer-components';
 
 import { NewJobProfileRoute } from '../NewJobProfileRoute';
+import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 
 const customProperties = getJobProfilesColumnProperties({
@@ -37,7 +38,10 @@ const JobProfilesContainer = ({
   location,
   resources,
   mutator,
+  stripes,
 }) => {
+  const JobProfileDetailsRouteConnected = React.useMemo(() => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }), []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <JobProfiles
@@ -45,6 +49,10 @@ const JobProfilesContainer = ({
         parentMutator={mutator}
         formatter={formatter}
         {...customProperties}
+      />
+      <Route
+        path={`${match.path}/view/:id`}
+        component={JobProfileDetailsRouteConnected}
       />
       <Route
         path={`${match.path}/create`}
@@ -65,6 +73,7 @@ JobProfilesContainer.propTypes = {
   location: locationShape.isRequired,
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
+  stripes: PropTypes.shape({ connect: PropTypes.func.isRequired }).isRequired,
 };
 
 JobProfilesContainer.manifest = Object.freeze(jobProfilesManifest);

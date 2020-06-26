@@ -30,4 +30,8 @@ export default function config() {
     jobProfiles: [],
     totalRecords: 0,
   });
+
+  this.get('/data-export/jobProfiles/:id', (schema, request) => schema.jobProfiles.find(request.params.id).attrs);
+
+  this.get('/data-export/mappingProfiles/:id', (schema, request) => schema.mappingProfiles.find(request.params.id).attrs);
 }
