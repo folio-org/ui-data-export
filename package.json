@@ -71,6 +71,7 @@
         "title": "Data export"
       }
     ],
+    "stripesDeps": ["@folio/stripes-data-transfer-components"],
     "okapiInterfaces": {
       "data-export": "2.0"
     },
