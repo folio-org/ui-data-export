@@ -12,15 +12,13 @@ import { mappingProfile } from '../../network/scenarios/fetch-mapping-profiles-s
 
 const jobProfileDetails = new JobProfileDetailsInteractor();
 
-describe('Job profile details', () => {
+describe('Job profile details: default job profile', () => {
   setupApplication();
 
   beforeEach(function () {
     const jobProfileRecord = this.server.create('job-profile', jobProfile);
 
-    this.server.create('mapping-profile', mappingProfile);
-
-    this.server.get('/data-export/mappingProfiles/:id', schema => schema.mappingProfiles.find(jobProfileRecord.mappingProfileId).attrs);
+    this.server.get('/data-export/mappingProfiles/:id', mappingProfile);
 
     this.visit(`/settings/data-export/job-profiles/view/${jobProfileRecord.id}`);
   });

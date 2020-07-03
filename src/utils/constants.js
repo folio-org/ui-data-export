@@ -12,3 +12,5 @@ export const QUERY_TEMPLATE = '(sortby "%{query.query}")';
 export const INITIAL_RESULT_COUNT = 100;
 
 export const RESULT_COUNT_INCREMENT = 100;
+
+export const DEFAULT_JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';

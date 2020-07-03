@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -19,6 +19,7 @@ import {
   Preloader,
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
+import { JobProfileDetailsActionMenu } from '../JobProfileDetailsActionMenu';
 
 const JobProfileDetails = props => {
   const {
@@ -26,8 +27,18 @@ const JobProfileDetails = props => {
     mappingProfile,
     isLoading,
     stripes,
+    isProfileAlreadyInUse,
     onCancel,
   } = props;
+
+  const renderActionMenu = useCallback(({ onToggle }) => {
+    return (
+      <JobProfileDetailsActionMenu
+        isProfileAlreadyInUse={isProfileAlreadyInUse}
+        onToggle={onToggle}
+      />
+    );
+  }, [isProfileAlreadyInUse]);
 
   return (
     <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
@@ -39,6 +50,7 @@ const JobProfileDetails = props => {
           <FullScreenView
             id="job-profile-details"
             paneTitle={jobProfile?.name && <SettingsLabel iconKey="jobProfiles">{jobProfile.name}</SettingsLabel>}
+            actionMenu={!isLoading && renderActionMenu}
             onCancel={onCancel}
           >
             {isLoading
@@ -112,6 +124,7 @@ const JobProfileDetails = props => {
 };
 
 JobProfileDetails.propTypes = {
+  isProfileAlreadyInUse: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   mappingProfile: PropTypes.object,
   jobProfile: PropTypes.object,

@@ -19,6 +19,7 @@ import {
   MultiColumnList,
   NoValue,
   Row,
+  Button,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
 import {
@@ -71,6 +72,7 @@ const MappingProfileDetails = props => {
           <FullScreenView
             id="mapping-profile-details"
             paneTitle={record.name}
+            actionMenu={<Button buttonStyle="dropdownItem fullWidth" />}
             onCancel={onCancel}
           >
             {!hasLoaded

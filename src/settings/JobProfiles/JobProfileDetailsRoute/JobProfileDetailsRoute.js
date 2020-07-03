@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   get,
@@ -6,27 +6,35 @@ import {
 } from 'lodash';
 
 import { JobProfileDetails } from '../JobProfileDetails';
+import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   resources: {
     jobProfile,
     mappingProfile,
+    jobExecutions,
   },
   history,
   location,
   match,
 }) => {
-  // `find` is used to make sure the matched job profile and mapping profile are displayed to avoid
+  // `find` is used to make sure the matched job profile, mapping profile and job executions are displayed to avoid
   // the flickering because of the disappearing of the previous and appearing of the new ones
   const jobProfileRecord = find([get(jobProfile, 'records.0', {})], { id: match.params.id });
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: jobProfileRecord?.mappingProfileId });
+  const isDefaultProfile = jobProfileRecord?.id === DEFAULT_JOB_PROFILE_ID;
+  const isProfileAlreadyInUse = isDefaultProfile || Boolean(find([get(jobExecutions, 'records.0', {})], { jobProfileId: match.params.id }));
+  const handleCancel = useCallback(() => {
+    history.push(`/settings/data-export/job-profiles${location.search}`);
+  }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <JobProfileDetails
       jobProfile={jobProfileRecord}
       mappingProfile={mappingProfileRecord}
-      isLoading={!jobProfileRecord || !mappingProfileRecord}
-      onCancel={() => history.push(`/settings/data-export/job-profiles${location.search}`)}
+      isProfileAlreadyInUse={isProfileAlreadyInUse}
+      isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && !jobExecutions.hasLoaded)}
+      onCancel={handleCancel}
     />
   );
 };
@@ -37,6 +45,7 @@ JobProfileDetailsRoute.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
   resources: PropTypes.shape({
     jobProfile: PropTypes.shape({}),
+    jobExecutions: PropTypes.shape({ hasLoaded: PropTypes.bool }),
     mappingProfile: PropTypes.shape({}),
   }).isRequired,
 };
@@ -53,6 +62,15 @@ JobProfileDetailsRoute.manifest = Object.freeze({
       const mappingProfileId = get(props.resources, 'jobProfile.records.0.mappingProfileId');
 
       return mappingProfileId ? `data-export/mappingProfiles/${mappingProfileId}` : null;
+    },
+  },
+  jobExecutions: {
+    type: 'okapi',
+    records: 'jobExecutions',
+    path: (queryParams, pathComponents) => {
+      const { id } = pathComponents;
+
+      return id !== DEFAULT_JOB_PROFILE_ID ? `data-export/jobExecutions?query=jobProfileId==${id}&limit=1` : null;
     },
   },
 });

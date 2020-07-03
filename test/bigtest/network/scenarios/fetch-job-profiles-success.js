@@ -1,5 +1,7 @@
+import { DEFAULT_JOB_PROFILE_ID } from '../../../../src/utils';
+
 export const jobProfile = {
-  id: 'b38e006e-99dd-11ea-bb37-0242ac130008',
+  id: DEFAULT_JOB_PROFILE_ID,
   name: 'A Lorem impsum 1',
   destination: 'fileSystem',
   description: 'Job profile description',
