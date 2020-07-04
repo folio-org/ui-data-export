@@ -46,7 +46,8 @@ describe('JobProfileDetails', () => {
               stripes={stripes}
               jobProfile={jobProfile}
               mappingProfile={mappingProfile}
-              isProfileAlreadyInUse
+              isDefaultProfile
+              isProfileUsed
               onCancel={noop}
             />
           </Router>
@@ -119,7 +120,8 @@ describe('JobProfileDetails', () => {
                 description: null,
               }}
               mappingProfile={mappingProfile}
-              isProfileAlreadyInUse={false}
+              isDefaultProfile={false}
+              isProfileUsed={false}
               onCancel={noop}
             />
           </Router>
@@ -153,7 +155,8 @@ describe('JobProfileDetails', () => {
             <JobProfileDetails
               stripes={stripes}
               isLoading
-              isProfileAlreadyInUse
+              isDefaultProfile={false}
+              isProfileUsed
               onCancel={noop}
             />
           </Router>

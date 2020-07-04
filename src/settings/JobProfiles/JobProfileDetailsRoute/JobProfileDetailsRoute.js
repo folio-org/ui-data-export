@@ -20,10 +20,12 @@ const JobProfileDetailsRoute = ({
 }) => {
   // `find` is used to make sure the matched job profile, mapping profile and job executions are displayed to avoid
   // the flickering because of the disappearing of the previous and appearing of the new ones
+  // TODO: try `useManifest` hook once it is ready to avoid that
   const jobProfileRecord = find([get(jobProfile, 'records.0', {})], { id: match.params.id });
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: jobProfileRecord?.mappingProfileId });
+  const isProfileUsed = Boolean(find([get(jobExecutions, 'records.0', {})], { jobProfileId: match.params.id }));
+
   const isDefaultProfile = jobProfileRecord?.id === DEFAULT_JOB_PROFILE_ID;
-  const isProfileAlreadyInUse = isDefaultProfile || Boolean(find([get(jobExecutions, 'records.0', {})], { jobProfileId: match.params.id }));
   const handleCancel = useCallback(() => {
     history.push(`/settings/data-export/job-profiles${location.search}`);
   }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -32,7 +34,8 @@ const JobProfileDetailsRoute = ({
     <JobProfileDetails
       jobProfile={jobProfileRecord}
       mappingProfile={mappingProfileRecord}
-      isProfileAlreadyInUse={isProfileAlreadyInUse}
+      isProfileUsed={isProfileUsed}
+      isDefaultProfile={isDefaultProfile}
       isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && !jobExecutions.hasLoaded)}
       onCancel={handleCancel}
     />

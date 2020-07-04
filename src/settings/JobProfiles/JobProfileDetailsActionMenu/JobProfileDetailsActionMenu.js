@@ -9,14 +9,15 @@ import {
 
 const JobProfileDetailsActionMenu = ({
   onToggle,
-  isProfileAlreadyInUse,
+  isProfileUsed,
+  isDefaultProfile,
 }) => {
   return (
     <>
       <Button
         data-test-edit-profile-button
         buttonStyle="dropdownItem"
-        disabled={isProfileAlreadyInUse}
+        disabled={isDefaultProfile || isProfileUsed}
         onClick={onToggle}
       >
         <Icon icon="edit">
@@ -35,7 +36,7 @@ const JobProfileDetailsActionMenu = ({
       <Button
         data-test-delete-profile-button
         buttonStyle="dropdownItem"
-        disabled={isProfileAlreadyInUse}
+        disabled={isDefaultProfile || isProfileUsed}
         onClick={onToggle}
       >
         <Icon icon="trash">
@@ -47,7 +48,8 @@ const JobProfileDetailsActionMenu = ({
 };
 
 JobProfileDetailsActionMenu.propTypes = {
-  isProfileAlreadyInUse: PropTypes.bool.isRequired,
+  isProfileUsed: PropTypes.bool.isRequired,
+  isDefaultProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
 

@@ -27,18 +27,20 @@ const JobProfileDetails = props => {
     mappingProfile,
     isLoading,
     stripes,
-    isProfileAlreadyInUse,
+    isProfileUsed,
+    isDefaultProfile,
     onCancel,
   } = props;
 
   const renderActionMenu = useCallback(({ onToggle }) => {
     return (
       <JobProfileDetailsActionMenu
-        isProfileAlreadyInUse={isProfileAlreadyInUse}
+        isProfileUsed={isProfileUsed}
+        isDefaultProfile={isDefaultProfile}
         onToggle={onToggle}
       />
     );
-  }, [isProfileAlreadyInUse]);
+  }, [isProfileUsed, isDefaultProfile]);
 
   return (
     <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
@@ -124,7 +126,8 @@ const JobProfileDetails = props => {
 };
 
 JobProfileDetails.propTypes = {
-  isProfileAlreadyInUse: PropTypes.bool.isRequired,
+  isProfileUsed: PropTypes.bool.isRequired,
+  isDefaultProfile: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   mappingProfile: PropTypes.object,
   jobProfile: PropTypes.object,

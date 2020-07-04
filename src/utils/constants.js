@@ -13,4 +13,5 @@ export const INITIAL_RESULT_COUNT = 100;
 
 export const RESULT_COUNT_INCREMENT = 100;
 
+// TODO: for now constant below is the only way to check whether the given profile is default one: once alternative solution is in place they should be removed (UIDEXP-128)
 export const DEFAULT_JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';

@@ -32,7 +32,7 @@ describe('Job profile details: default job profile', () => {
       await jobProfileDetails.fullScreen.closeButton.click();
     });
 
-    it('should navigate to mapping profiles settings page', function () {
+    it('should navigate to job profiles settings page', function () {
       expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
     });
   });
