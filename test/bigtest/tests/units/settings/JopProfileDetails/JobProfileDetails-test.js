@@ -37,7 +37,7 @@ describe('JobProfileDetails', () => {
     await cleanup();
   });
 
-  describe('rendering job profile details', () => {
+  describe('rendering details for a job profile which is already in use', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Paneset>
@@ -46,6 +46,8 @@ describe('JobProfileDetails', () => {
               stripes={stripes}
               jobProfile={jobProfile}
               mappingProfile={mappingProfile}
+              isDefaultProfile
+              isProfileUsed
               onCancel={noop}
             />
           </Router>
@@ -92,9 +94,21 @@ describe('JobProfileDetails', () => {
       expect(jobProfileDetails.summary.protocol.value.text).to.equal('-');
       expect(jobProfileDetails.summary.mappingProfile.value.text).to.equal(mappingProfile.name);
     });
+
+    describe('clicking on action menu button', () => {
+      beforeEach(async () => {
+        await jobProfileDetails.fullScreen.actionMenu.click();
+      });
+
+      it('should display action buttons in the proper state', () => {
+        expect(jobProfileDetails.editProfileButton.$root.disabled).to.be.true;
+        expect(jobProfileDetails.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.deleteProfileButton.$root.disabled).to.be.true;
+      });
+    });
   });
 
-  describe('rendering job profile details', () => {
+  describe('rendering details without description for a job profile which is not already in use', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Paneset>
@@ -106,6 +120,8 @@ describe('JobProfileDetails', () => {
                 description: null,
               }}
               mappingProfile={mappingProfile}
+              isDefaultProfile={false}
+              isProfileUsed={false}
               onCancel={noop}
             />
           </Router>
@@ -117,9 +133,21 @@ describe('JobProfileDetails', () => {
     it('should display no value in description', () => {
       expect(jobProfileDetails.summary.description.value.text).to.equal('-');
     });
+
+    describe('clicking on action menu button', () => {
+      beforeEach(async () => {
+        await jobProfileDetails.fullScreen.actionMenu.click();
+      });
+
+      it('should display action buttons enabled', () => {
+        expect(jobProfileDetails.editProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.deleteProfileButton.$root.disabled).to.be.false;
+      });
+    });
   });
 
-  describe('rendering job profile details', () => {
+  describe('rendering job profile details in loading state', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Paneset>
@@ -127,6 +155,8 @@ describe('JobProfileDetails', () => {
             <JobProfileDetails
               stripes={stripes}
               isLoading
+              isDefaultProfile={false}
+              isProfileUsed
               onCancel={noop}
             />
           </Router>
