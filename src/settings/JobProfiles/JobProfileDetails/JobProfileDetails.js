@@ -19,7 +19,8 @@ import {
   Preloader,
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
-import { JobProfileDetailsActionMenu } from '../JobProfileDetailsActionMenu';
+
+import { ProfileDetailsActionMenu } from '../../../components/ProfileDetailsActionMenu';
 
 const JobProfileDetails = props => {
   const {
@@ -34,9 +35,9 @@ const JobProfileDetails = props => {
 
   const renderActionMenu = useCallback(({ onToggle }) => {
     return (
-      <JobProfileDetailsActionMenu
-        isProfileUsed={isProfileUsed}
+      <ProfileDetailsActionMenu
         isDefaultProfile={isDefaultProfile}
+        isProfileUsed={isProfileUsed}
         onToggle={onToggle}
       />
     );

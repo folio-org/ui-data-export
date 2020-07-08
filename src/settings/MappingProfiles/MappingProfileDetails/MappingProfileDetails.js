@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
-import { noop } from 'lodash';
 
 import {
   Accordion,
@@ -19,7 +18,6 @@ import {
   MultiColumnList,
   NoValue,
   Row,
-  Button,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
 import {
@@ -28,10 +26,11 @@ import {
   Preloader,
 } from '@folio/stripes-data-transfer-components';
 
+import { ProfileDetailsActionMenu } from '../../../components/ProfileDetailsActionMenu';
 import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
-import { mappingProfilesShape } from '../shapes';
 
 import css from './MappingProfileDetails.css';
+import { mappingProfileShape } from '../shapes';
 
 const columnWidths = {
   fieldName: '45%',
@@ -45,15 +44,23 @@ const formatter = {
 
 const MappingProfileDetails = props => {
   const {
-    onCancel,
+    mappingProfile,
+    isLoading,
     stripes,
-    mappingProfile: {
-      hasLoaded,
-      records,
-    },
+    isProfileUsed,
+    isDefaultProfile,
+    onCancel,
   } = props;
 
-  const record = records?.[0] || {};
+  const renderActionMenu = useCallback(({ onToggle }) => {
+    return (
+      <ProfileDetailsActionMenu
+        isDefaultProfile={isDefaultProfile}
+        isProfileUsed={isProfileUsed}
+        onToggle={onToggle}
+      />
+    );
+  }, [isDefaultProfile, isProfileUsed]);
 
   const intl = useIntl();
 
@@ -71,11 +78,11 @@ const MappingProfileDetails = props => {
         >
           <FullScreenView
             id="mapping-profile-details"
-            paneTitle={record.name}
-            actionMenu={<Button buttonStyle="dropdownItem fullWidth" />}
+            paneTitle={mappingProfile?.name}
+            actionMenu={!isLoading && renderActionMenu}
             onCancel={onCancel}
           >
-            {!hasLoaded
+            {isLoading
               ? <Preloader />
               : (
                 <AccordionStatus>
@@ -87,7 +94,7 @@ const MappingProfileDetails = props => {
                         tag="h2"
                         margin="small"
                       >
-                        {record.name}
+                        {mappingProfile.name}
                       </Headline>
                     </Col>
                     <Col xs={3}>
@@ -101,7 +108,7 @@ const MappingProfileDetails = props => {
                   <AccordionSet id="mapping-profile-details-accordions">
                     <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
                       <ViewMetaData
-                        metadata={record.metadata}
+                        metadata={mappingProfile.metadata}
                         stripes={stripes}
                       />
                       <Row>
@@ -109,7 +116,7 @@ const MappingProfileDetails = props => {
                           <KeyValue
                             data-test-mapping-profile-name
                             label={<FormattedMessage id="ui-data-export.name" />}
-                            value={record.name}
+                            value={mappingProfile.name}
                           />
                         </Col>
                       </Row>
@@ -120,7 +127,7 @@ const MappingProfileDetails = props => {
                             label={<FormattedMessage id="stripes-data-transfer-components.folioRecordType" />}
                           >
                             <List
-                              items={record.recordTypes}
+                              items={mappingProfile.recordTypes}
                               itemFormatter={recordType => (
                                 <FormattedMessage
                                   key={recordType}
@@ -139,7 +146,7 @@ const MappingProfileDetails = props => {
                           <KeyValue
                             data-test-mapping-profile-output-format
                             label={<FormattedMessage id="ui-data-export.outputFormat" />}
-                            value={record.outputFormat}
+                            value={mappingProfile.outputFormat}
                           />
                         </Col>
                       </Row>
@@ -148,7 +155,7 @@ const MappingProfileDetails = props => {
                           <KeyValue
                             data-test-mapping-profile-description
                             label={<FormattedMessage id="ui-data-export.description" />}
-                            value={record.description || <NoValue />}
+                            value={mappingProfile.description || <NoValue />}
                           />
                         </Col>
                       </Row>
@@ -156,7 +163,7 @@ const MappingProfileDetails = props => {
                     <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
                       <MultiColumnList
                         id="mapping-profile-details-transformations"
-                        contentData={record.transformations}
+                        contentData={mappingProfile.transformations}
                         columnMapping={columnMapping}
                         columnWidths={columnWidths}
                         visibleColumns={visibleColumns}
@@ -176,17 +183,14 @@ const MappingProfileDetails = props => {
 };
 
 MappingProfileDetails.propTypes = {
-  onCancel: PropTypes.func,
-  mappingProfile: mappingProfilesShape,
+  isProfileUsed: PropTypes.bool.isRequired,
+  isDefaultProfile: PropTypes.bool.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  mappingProfile: mappingProfileShape,
+  isLoading: PropTypes.bool,
   stripes: PropTypes.object,
 };
 
-MappingProfileDetails.defaultProps = {
-  onCancel: noop,
-  mappingProfile: {
-    hasLoaded: false,
-    records: [],
-  },
-};
+MappingProfileDetails.defaultProps = { isLoading: false };
 
 export default MappingProfileDetails;

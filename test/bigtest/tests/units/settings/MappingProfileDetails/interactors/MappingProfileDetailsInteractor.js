@@ -8,6 +8,7 @@ import {
   PreloaderInteractor,
 } from '@folio/stripes-data-transfer-components/interactors';
 
+import { ProfileDetailsActionMenuInteractor } from '../../../../../interactors';
 import { SummaryContentInteractor } from './SummaryContentInteractor';
 import { TransformationsInteractor } from './TransformationsInteractor';
 
@@ -22,4 +23,5 @@ export class MappingProfileDetailsInteractor {
   transformations = new TransformationsInteractor();
   preloader = new PreloaderInteractor();
   metadata = new MetaSectionInteractor();
+  actionMenu = new ProfileDetailsActionMenuInteractor();
 }

@@ -39,17 +39,16 @@ describe('MappingProfileDetails', () => {
     await cleanup();
   });
 
-  describe('rendering mapping profile details', function () {
-    beforeEach(async function () {
+  describe('rendering details for a mapping profile which is already in use', () => {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>
             <MappingProfileDetails
               stripes={stripes}
-              mappingProfile={{
-                hasLoaded: true,
-                records: [mappingProfileWithTransformations],
-              }}
+              mappingProfile={mappingProfileWithTransformations}
+              isDefaultProfile
+              isProfileUsed
               onCancel={noop}
             />
           </Router>
@@ -67,7 +66,7 @@ describe('MappingProfileDetails', () => {
     });
 
     it('should display correct pane title', () => {
-      expect(mappingProfileDetails.fullScreen.headerTitle).to.equal('AP Holdings 1');
+      expect(mappingProfileDetails.fullScreen.headerTitle).to.equal(mappingProfileWithTransformations.name);
     });
 
     it('should display expand all button', () => {
@@ -117,19 +116,30 @@ describe('MappingProfileDetails', () => {
       expect(mappingProfileDetails.transformations.list.rows(0).cells(0).text).to.equal('Holdings - Call number');
       expect(mappingProfileDetails.transformations.list.rows(0).cells(1).text).to.equal('test');
     });
+
+    describe('clicking on action menu button', () => {
+      beforeEach(async () => {
+        await mappingProfileDetails.fullScreen.actionMenu.click();
+      });
+
+      it('should display action buttons in the proper state', () => {
+        expect(mappingProfileDetails.actionMenu.editProfileButton.$root.disabled).to.be.true;
+        expect(mappingProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(mappingProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.true;
+      });
+    });
   });
 
-  describe('rendering mapping profile details', function () {
-    beforeEach(async function () {
+  describe('rendering details for a mapping profile which is not already in use', () => {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>
             <MappingProfileDetails
               stripes={stripes}
-              mappingProfile={{
-                hasLoaded: true,
-                records: [mappingProfile],
-              }}
+              mappingProfile={mappingProfile}
+              isDefaultProfile={false}
+              isProfileUsed={false}
               onCancel={noop}
             />
           </Router>
@@ -145,19 +155,30 @@ describe('MappingProfileDetails', () => {
     it('should not display transformation list', () => {
       expect(mappingProfileDetails.transformations.list.isPresent).to.be.false;
     });
+
+    describe('clicking on action menu button', () => {
+      beforeEach(async () => {
+        await mappingProfileDetails.fullScreen.actionMenu.click();
+      });
+
+      it('should display action buttons enabled', () => {
+        expect(mappingProfileDetails.actionMenu.editProfileButton.$root.disabled).to.be.false;
+        expect(mappingProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(mappingProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.false;
+      });
+    });
   });
 
-  describe('rendering mapping profile details', function () {
-    beforeEach(async function () {
+  describe('rendering mapping profile details  in loading state', () => {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>
             <MappingProfileDetails
               stripes={stripes}
-              mappingProfile={{
-                hasLoaded: false,
-                records: [],
-              }}
+              isLoading
+              isDefaultProfile={false}
+              isProfileUsed
               onCancel={noop}
             />
           </Router>

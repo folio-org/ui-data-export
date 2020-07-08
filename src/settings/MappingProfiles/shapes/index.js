@@ -1,1 +1,1 @@
-export * from './mappingProfilesShape';
+export * from './mappingProfileShape';
