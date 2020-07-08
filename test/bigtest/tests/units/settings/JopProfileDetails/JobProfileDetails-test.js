@@ -101,9 +101,9 @@ describe('JobProfileDetails', () => {
       });
 
       it('should display action buttons in the proper state', () => {
-        expect(jobProfileDetails.editProfileButton.$root.disabled).to.be.true;
-        expect(jobProfileDetails.duplicateProfileButton.$root.disabled).to.be.false;
-        expect(jobProfileDetails.deleteProfileButton.$root.disabled).to.be.true;
+        expect(jobProfileDetails.actionMenu.editProfileButton.$root.disabled).to.be.true;
+        expect(jobProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.true;
       });
     });
   });
@@ -140,9 +140,9 @@ describe('JobProfileDetails', () => {
       });
 
       it('should display action buttons enabled', () => {
-        expect(jobProfileDetails.editProfileButton.$root.disabled).to.be.false;
-        expect(jobProfileDetails.duplicateProfileButton.$root.disabled).to.be.false;
-        expect(jobProfileDetails.deleteProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.actionMenu.editProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
+        expect(jobProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.false;
       });
     });
   });

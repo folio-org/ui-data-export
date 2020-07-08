@@ -1,5 +1,7 @@
+import { DEFAULT_MAPPING_PROFILE_ID } from '../../../../src/utils';
+
 export const mappingProfileWithTransformations = {
-  id: '25d81cbe-9686-11ea-bb37-0242ac130002',
+  id: DEFAULT_MAPPING_PROFILE_ID,
   name: 'AP Holdings 1',
   description: 'AP Holdings 1 description',
   recordTypes: ['HOLDINGS'],

@@ -7,7 +7,7 @@ import {
   Icon,
 } from '@folio/stripes/components';
 
-const JobProfileDetailsActionMenu = ({
+export const ProfileDetailsActionMenu = ({
   onToggle,
   isProfileUsed,
   isDefaultProfile,
@@ -47,10 +47,8 @@ const JobProfileDetailsActionMenu = ({
   );
 };
 
-JobProfileDetailsActionMenu.propTypes = {
+ProfileDetailsActionMenu.propTypes = {
   isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
-
-export default JobProfileDetailsActionMenu;

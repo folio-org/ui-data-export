@@ -7,14 +7,19 @@ import {
 
 import { MappingProfileDetailsInteractor } from '../units/settings/MappingProfileDetails/interactors/MappingProfileDetailsInteractor';
 import { setupApplication } from '../../helpers';
+import { mappingProfileWithTransformations } from '../../network/scenarios/fetch-mapping-profiles-success';
 
 const mappingProfileDetails = new MappingProfileDetailsInteractor();
 
-describe('Field mapping profile details', () => {
+describe('Field mapping profile details: default mapping profile', () => {
   setupApplication();
 
   beforeEach(function () {
-    this.visit('/settings/data-export/mapping-profiles/view/25d81cbe-9686-11ea-bb37-0242ac130002');
+    const mappingProfileRecord = this.server.create('mapping-profile', mappingProfileWithTransformations);
+
+    this.server.get('/data-export/mappingProfiles/:id', mappingProfileRecord);
+
+    this.visit(`/settings/data-export/mapping-profiles/view/${mappingProfileRecord}`);
   });
 
   it('should display mapping profile details', () => {
