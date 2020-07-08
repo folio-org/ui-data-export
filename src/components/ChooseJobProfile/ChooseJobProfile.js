@@ -11,25 +11,23 @@ import { ConfirmationModal } from '@folio/stripes/components';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import {
   JobProfiles,
-  getJobProfilesColumnProperties,
+  useJobProfilesProperties,
   DEFAULT_JOB_PROFILES_COLUMNS,
-  getJobProfilesItemFormatter,
+  useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
 import { jobProfilesManifest } from '../../common';
 
-const customProperties = getJobProfilesColumnProperties({
+const customProperties = {
   columnWidths: { description: '40%' },
-  columnMapping: { description: <FormattedMessage id="ui-data-export.description" /> },
+  columnMapping: { description: 'ui-data-export.description' },
   visibleColumns: [
     DEFAULT_JOB_PROFILES_COLUMNS.NAME,
     'description',
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED,
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED_BY,
   ],
-});
-
-const formatter = getJobProfilesItemFormatter({});
+};
 
 const ChooseJobProfileComponent = ({
   resources,
@@ -50,7 +48,7 @@ const ChooseJobProfileComponent = ({
       <JobProfiles
         parentResources={resources}
         parentMutator={mutator}
-        formatter={formatter}
+        formatter={useListFormatter({ description: record => record.description || '' })}
         hasSearchForm={false}
         lastMenu={<div />}
         titleId="ui-data-export.jobProfiles.selectProfile.title"
@@ -61,7 +59,7 @@ const ChooseJobProfileComponent = ({
             setSelectedProfile(profile);
           },
         }}
-        {...customProperties}
+        {...useJobProfilesProperties(customProperties)}
       />
       <ConfirmationModal
         id="choose-job-profile-confirmation-modal"

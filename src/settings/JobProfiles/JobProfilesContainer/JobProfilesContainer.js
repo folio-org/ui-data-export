@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import {
   match as matchShape,
   history as historyShape,
@@ -10,27 +9,25 @@ import {
 import { Route } from '@folio/stripes/core';
 import {
   JobProfiles,
-  getJobProfilesColumnProperties,
+  useJobProfilesProperties,
   DEFAULT_JOB_PROFILES_COLUMNS,
-  getJobProfilesItemFormatter,
+  useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
 import { NewJobProfileRoute } from '../NewJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 
-const customProperties = getJobProfilesColumnProperties({
+const customProperties = {
   columnWidths: { protocol: '70px' },
-  columnMapping: { protocol: <FormattedMessage id="ui-data-export.protocol" /> },
+  columnMapping: { protocol: 'ui-data-export.protocol' },
   visibleColumns: [
     DEFAULT_JOB_PROFILES_COLUMNS.NAME,
     'protocol',
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED,
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED_BY,
   ],
-});
-
-const formatter = getJobProfilesItemFormatter({ protocol: () => '' });
+};
 
 const JobProfilesContainer = ({
   history,
@@ -47,8 +44,8 @@ const JobProfilesContainer = ({
       <JobProfiles
         parentResources={resources}
         parentMutator={mutator}
-        formatter={formatter}
-        {...customProperties}
+        formatter={useListFormatter({ protocol: () => '' })}
+        {...useJobProfilesProperties(customProperties)}
       />
       <Route
         path={`${match.path}/view/:id`}

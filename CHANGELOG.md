@@ -11,6 +11,7 @@
 * Add job name display in job logs and executions. UIDEXP-116.
 * Implement job profile details page. UIDEXP-86.
 * Implement job profile details action menu. UIDEXP-84.
+* Fix accessibility string building for MCL components. UIDEXP-117.
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)

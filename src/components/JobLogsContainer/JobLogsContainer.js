@@ -2,18 +2,20 @@ import React, {
   useContext,
   useRef,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  useIntl,
+} from 'react-intl';
 import { get } from 'lodash';
 
 import {
   JobLogs,
-  getJobLogsItemFormatter,
-  defaultJobLogsColumnMapping,
-  defaultJobLogsVisibleColumns,
-  defaultJobLogsSortColumns,
-  defaultJobLogsColumnWidths,
+  useJobLogsProperties,
+  DEFAULT_JOB_LOGS_SORT_COLUMNS,
   sortStrings,
   sortNumbers,
+  useJobLogsListFormatter,
+  DEFAULT_JOB_LOGS_COLUMNS,
 } from '@folio/stripes-data-transfer-components';
 import {
   Button,
@@ -22,7 +24,6 @@ import {
 import {
   stripesConnect,
   stripesShape,
-  IntlConsumer,
 } from '@folio/stripes/core';
 
 import { downloadFileByLink } from '../../utils';
@@ -32,7 +33,7 @@ import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 import styles from './jobLogsContainer.css';
 
 const sortColumns = {
-  ...defaultJobLogsSortColumns,
+  ...DEFAULT_JOB_LOGS_SORT_COLUMNS,
   errors: {
     sortFn: sortNumbers,
     useFormatterFn: true,
@@ -43,15 +44,17 @@ const sortColumns = {
   },
 };
 
-const visibleColumns = [
-  ...defaultJobLogsVisibleColumns,
-  'errors',
-  'status',
-];
-
-const columnWidths = {
-  ...defaultJobLogsColumnWidths,
-  fileName: '450px',
+const customProperties = {
+  visibleColumns: [
+    ...DEFAULT_JOB_LOGS_COLUMNS,
+    'errors',
+    'status',
+  ],
+  columnWidths: { fileName: '450px' },
+  columnMapping: {
+    errors: 'ui-data-export.errors',
+    status: 'ui-data-export.status',
+  },
 };
 
 // TODO: remove formatter for jobProfileName once backend is in place
@@ -90,11 +93,19 @@ const JobLogsContainer = props => {
     const fileName = get(record.exportedFiles, '0.fileName');
 
     if (!record.progress.exported) {
-      return <span className={styles.disabledFileName}>{fileName}</span>;
+      return (
+        <span
+          title={fileName}
+          className={styles.disabledFileName}
+        >
+          {fileName}
+        </span>
+      );
     }
 
     return (
       <Button
+        title={fileName}
         data-test-download-file-btn
         buttonStyle="link"
         marginBottom0
@@ -106,37 +117,29 @@ const JobLogsContainer = props => {
     );
   };
 
-  return (
-    <IntlConsumer>
-      {intl => (
-        <>
-          <JobLogs
-            columnMapping={{
-              ...defaultJobLogsColumnMapping,
-              errors: intl.formatMessage({ id: 'ui-data-export.errors' }),
-              status: intl.formatMessage({ id: 'ui-data-export.status' }),
-            }}
-            formatter={getJobLogsItemFormatter(
-              {
-                status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
-                fileName: record => getFileNameField(record),
-                errors: record => {
-                  const { progress: { failed } } = record;
+  const intl = useIntl();
 
-                  return failed || '';
-                },
-              },
-            )}
-            visibleColumns={visibleColumns}
-            columnWidths={columnWidths}
-            sortColumns={sortColumns}
-            hasLoaded={hasLoaded}
-            contentData={logs}
-          />
-          <Callout ref={calloutRef} />
-        </>
-      )}
-    </IntlConsumer>
+  return (
+    <>
+      <JobLogs
+        formatter={useJobLogsListFormatter(
+          {
+            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
+            fileName: record => getFileNameField(record),
+            errors: record => {
+              const { progress: { failed } } = record;
+
+              return failed || '';
+            },
+          },
+        )}
+        sortColumns={sortColumns}
+        hasLoaded={hasLoaded}
+        contentData={logs}
+        {...useJobLogsProperties(customProperties)}
+      />
+      <Callout ref={calloutRef} />
+    </>
   );
 };
 
