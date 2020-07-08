@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import {
   match as matchShape,
   history as historyShape,
@@ -11,9 +10,9 @@ import { Route } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
-  getMappingProfilesColumnProperties,
+  useMappingProfilesProperties,
   DEFAULT_MAPPING_PROFILES_COLUMNS,
-  getMappingProfilesItemFormatter,
+  useMappingProfileListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
 import {
@@ -26,9 +25,9 @@ import { generateTransformationFieldsValues } from '../MappingProfilesForm/Trans
 import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 
-const customProperties = getMappingProfilesColumnProperties({
+const customProperties = {
   columnWidths: { format: '70px' },
-  columnMapping: { format: <FormattedMessage id="ui-data-export.format" /> },
+  columnMapping: { format: 'ui-data-export.format' },
   visibleColumns: [
     DEFAULT_MAPPING_PROFILES_COLUMNS.NAME,
     DEFAULT_MAPPING_PROFILES_COLUMNS.FOLIO_RECORD,
@@ -36,7 +35,7 @@ const customProperties = getMappingProfilesColumnProperties({
     DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED,
     DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED_BY,
   ],
-});
+};
 
 const queryTemplate = '(sortby "%{query.query}")';
 const sortMap = {
@@ -65,8 +64,8 @@ const MappingProfilesContainer = ({
       <MappingProfiles
         parentResources={resources}
         parentMutator={mutator}
-        formatter={getMappingProfilesItemFormatter({ format: ({ outputFormat }) => outputFormat })}
-        {...customProperties}
+        formatter={useMappingProfileListFormatter({ format: ({ outputFormat }) => outputFormat })}
+        {...useMappingProfilesProperties(customProperties)}
       />
       <Route
         path={`${match.path}/view/:id`}
