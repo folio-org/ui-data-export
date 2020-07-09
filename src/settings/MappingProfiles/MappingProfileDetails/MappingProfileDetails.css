@@ -1,3 +1,10 @@
 .recordTypesList {
   background-color: transparent !important;
 }
+
+.transformation {
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+}

@@ -13,6 +13,7 @@
 * Implement job profile details action menu. UIDEXP-84.
 * Fix accessibility string building for MCL components. UIDEXP-117.
 * Implement mapping profile details action menu. UIDEXP-75.
+* Fix spacing display of Transformation fields on mapping profile view page. UIDEXP-129.
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)
