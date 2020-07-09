@@ -1,6 +1,6 @@
 {
   "name": "@folio/data-export",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Data export manager",
   "main": "src/index.js",
   "repository": "folio-org/ui-data-export",
@@ -88,7 +88,8 @@
           "data-export.job-executions.items.get",
           "data-export.job-executions.items.download.get",
           "data-export.job-profiles.collection.get",
-          "data-export.job-profiles.item.post"
+          "data-export.job-profiles.item.post",
+          "data-export.job-profiles.item.get"
         ],
         "visible": true
       },
