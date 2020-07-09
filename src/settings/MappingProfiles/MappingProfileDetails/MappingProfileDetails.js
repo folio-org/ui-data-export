@@ -39,7 +39,14 @@ const columnWidths = {
 const visibleColumns = ['fieldName', 'transformation'];
 const formatter = {
   fieldName: record => mappingProfileTransformations.find(({ path }) => path === record.path).displayName,
-  transformation: record => record.transformation,
+  transformation: record => (
+    <pre
+      title={record.transformation}
+      className={css.transformation}
+    >
+      {record.transformation}
+    </pre>
+  ),
 };
 
 const MappingProfileDetails = props => {

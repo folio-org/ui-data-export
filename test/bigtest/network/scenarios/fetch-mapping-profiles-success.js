@@ -5,13 +5,22 @@ export const mappingProfileWithTransformations = {
   name: 'AP Holdings 1',
   description: 'AP Holdings 1 description',
   recordTypes: ['HOLDINGS'],
-  transformations: [{
-    fieldId: 'callNumber',
-    path: '$.holdings[*].callNumber',
-    enabled: true,
-    transformation: 'test',
-    recordType: 'HOLDINGS',
-  }],
+  transformations: [
+    {
+      fieldId: 'callNumber',
+      path: '$.holdings[*].callNumber',
+      enabled: true,
+      transformation: '$900  1',
+      recordType: 'HOLDINGS',
+    },
+    {
+      fieldId: 'callNumberPrefix',
+      path: '$.holdings[*].callNumberPrefix',
+      enabled: true,
+      transformation: '$901 2',
+      recordType: 'HOLDINGS',
+    },
+  ],
   userInfo: {
     firstName: 'Donald',
     lastName: 'S',

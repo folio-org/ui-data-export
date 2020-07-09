@@ -114,7 +114,9 @@ describe('MappingProfileDetails', () => {
 
     it('should display correct transformations values', () => {
       expect(mappingProfileDetails.transformations.list.rows(0).cells(0).text).to.equal('Holdings - Call number');
-      expect(mappingProfileDetails.transformations.list.rows(0).cells(1).text).to.equal('test');
+      expect(mappingProfileDetails.transformations.list.rows(0).cells(1).$root.textContent).to.equal('$900  1');
+      expect(mappingProfileDetails.transformations.list.rows(1).cells(0).text).to.equal('Holdings - Call number - prefix');
+      expect(mappingProfileDetails.transformations.list.rows(1).cells(1).text).to.equal('$901 2');
     });
 
     describe('clicking on action menu button', () => {
