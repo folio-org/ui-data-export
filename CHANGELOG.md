@@ -1,19 +1,23 @@
 # Change history for ui-data-export
 
 ## 2.1.0 (IN PROGRESS)
+* Add translations for permission names. UIDEXP-76.
+* Fix accessibility string building for MCL components. UIDEXP-117.
+* Implement mapping profile details action menu. UIDEXP-75.
+* Fix spacing display of Transformation fields on mapping profile view page. UIDEXP-129.
+
+## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
 * Fix error screen display in case of missed user information in job executions. UIDEXP-107.
 * Update description and link in profiles info on the second setting's pane. UIDEXP-53.
 * Display user name while viewing the mapping profile summary accordion. UIDEXP-115.
-* Add translations for permission names. UIDEXP-76.
 * Fix transformation labels display on mapping details view page. UIDEXP-118.
 * Add long file names handling in job logs. UIDEXP-121.
 * Fix drag and drop area translation. UIDEXP-123.
 * Add job name display in job logs and executions. UIDEXP-116.
 * Implement job profile details page. UIDEXP-86.
 * Implement job profile details action menu. UIDEXP-84.
-* Fix accessibility string building for MCL components. UIDEXP-117.
-* Implement mapping profile details action menu. UIDEXP-75.
-* Fix spacing display of Transformation fields on mapping profile view page. UIDEXP-129.
+* Update translations
 
 ## [2.0.0](https://github.com/folio-org/ui-data-export/tree/v2.0.0) (2020-06-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v1.0.2...v2.0.0)
