@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 2.1.0 (IN PROGRESS)
+* Refactor to miragejs from bigtest/mirage. UIDEXP-137.
 * Add translations for permission names. UIDEXP-76.
 * Fix accessibility string building for MCL components. UIDEXP-117.
 * Implement mapping profile details action menu. UIDEXP-75.
