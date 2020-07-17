@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { omit } from 'lodash';
 
-import { useSubmitProfile } from '../../utils/useSubmitProfile';
+import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import {
   MappingProfilesForm,
   normalizeTransformationFormValues,
@@ -13,11 +13,11 @@ const NewMappingProfileFormRoute = ({
   onCancel,
   initialValues,
 }) => {
-  const handleSubmit = useSubmitProfile({
+  const handleSubmit = useProfileHandlerWithCallout({
     errorMessageId: 'ui-data-export.mappingProfiles.errorCallout',
     successMessageId: 'ui-data-export.mappingProfiles.createdCallout',
+    onAction: onSubmit,
     onCancel,
-    onSubmit,
   });
 
   return (

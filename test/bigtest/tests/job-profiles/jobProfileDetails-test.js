@@ -5,6 +5,9 @@ import {
   it,
 } from '@bigtest/mocha';
 
+import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
+import { wait } from '@folio/stripes-data-transfer-components/interactors';
+
 import { JobProfileDetailsInteractor } from '../units/settings/JopProfileDetails/interactors/JobProfileDetailsInteractor';
 import { jobProfile } from '../../network/scenarios/fetch-job-profiles-success';
 import { setupApplication } from '../../helpers';
@@ -16,7 +19,10 @@ describe('Job profile details: default job profile', () => {
   setupApplication();
 
   beforeEach(function () {
-    const jobProfileRecord = this.server.create('job-profile', jobProfile);
+    const jobProfileRecord = this.server.create('job-profile', {
+      ...jobProfile,
+      ...{ id: 'custom_id' },
+    });
 
     this.server.get('/data-export/mappingProfiles/:id', mappingProfile);
 
@@ -25,6 +31,46 @@ describe('Job profile details: default job profile', () => {
 
   it('should display job profile details', () => {
     expect(jobProfileDetails.isPresent).to.be.true;
+  });
+
+  describe('navigating to deleting confirmation modal', () => {
+    const callout = new CalloutInteractor();
+
+    beforeEach(async () => {
+      await jobProfileDetails.actionMenu.click();
+      await jobProfileDetails.actionMenu.deleteProfileButton.click();
+      await wait();
+    });
+
+    describe('deleting job profile successfully', () => {
+      beforeEach(async () => {
+        await jobProfileDetails.deletingConfirmationModal.confirmButton.click();
+      });
+
+      it('should navigate to job profiles settings page', function () {
+        expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
+      });
+
+      it('should display success callout', function () {
+        expect(callout.successCalloutIsPresent).to.be.true;
+      });
+    });
+
+    describe('deleting job profile with errors', () => {
+      beforeEach(async function () {
+        this.server.delete('/data-export/jobProfiles/:id', {}, 500);
+
+        await jobProfileDetails.deletingConfirmationModal.confirmButton.click();
+      });
+
+      it('should navigate to job profiles settings page', function () {
+        expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
+      });
+
+      it('should display error callout', function () {
+        expect(callout.errorCalloutIsPresent).to.be.true;
+      });
+    });
   });
 
   describe('clicking on close button', () => {

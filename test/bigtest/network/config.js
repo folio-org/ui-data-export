@@ -32,6 +32,7 @@ export default function config() {
   });
 
   this.get('/data-export/jobProfiles/:id', (schema, request) => schema.jobProfiles.find(request.params.id).attrs);
+  this.delete('/data-export/jobProfiles/:id', {}, 204);
 
   this.get('/data-export/mappingProfiles/:id', (schema, request) => schema.mappingProfiles.find(request.params.id).attrs);
 }

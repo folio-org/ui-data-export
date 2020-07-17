@@ -2,6 +2,7 @@ import { interactor } from '@bigtest/interactor';
 
 import { AccordionSetInteractor } from '@folio/stripes-components/lib/Accordion/tests/interactor';
 import MetaSectionInteractor from '@folio/stripes-components/lib/MetaSection/tests/interactor';
+import ConfirmationModalInteractor from '@folio/stripes-components/lib/ConfirmationModal/tests/interactor';
 import {
   FullScreenViewInteractor,
   PreloaderInteractor,
@@ -20,4 +21,5 @@ export class JobProfileDetailsInteractor {
   preloader = new PreloaderInteractor();
   metadata = new MetaSectionInteractor();
   actionMenu = new ProfileDetailsActionMenuInteractor();
+  deletingConfirmationModal = new ConfirmationModalInteractor('#delete-job-profile-confirmation-modal');
 }
