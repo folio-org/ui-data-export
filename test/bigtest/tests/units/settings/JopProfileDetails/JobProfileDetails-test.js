@@ -11,7 +11,10 @@ import { expect } from 'chai';
 import { noop } from 'lodash';
 
 import { Paneset } from '@folio/stripes/components';
-import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
+import {
+  mountWithContext,
+  wait,
+} from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -49,6 +52,7 @@ describe('JobProfileDetails', () => {
               isDefaultProfile
               isProfileUsed
               onCancel={noop}
+              onDelete={noop}
             />
           </Router>
         </Paneset>,
@@ -134,6 +138,10 @@ describe('JobProfileDetails', () => {
       expect(jobProfileDetails.summary.description.value.text).to.equal('-');
     });
 
+    it('should not display delete confirmation modal', () => {
+      expect(jobProfileDetails.deletingConfirmationModal.isPresent).to.be.false;
+    });
+
     describe('clicking on action menu button', () => {
       beforeEach(async () => {
         await jobProfileDetails.fullScreen.actionMenu.click();
@@ -143,6 +151,38 @@ describe('JobProfileDetails', () => {
         expect(jobProfileDetails.actionMenu.editProfileButton.$root.disabled).to.be.false;
         expect(jobProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
         expect(jobProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.false;
+      });
+
+      describe('clicking on delete profiles button', () => {
+        const { deletingConfirmationModal } = jobProfileDetails;
+
+        beforeEach(async () => {
+          await jobProfileDetails.actionMenu.deleteProfileButton.click();
+          await wait(3000);
+        });
+
+        it('should display delete confirmation modal', () => {
+          expect(deletingConfirmationModal.isPresent).to.be.true;
+        });
+
+        it('should display delete confirmation modal with correct messages', () => {
+          const message = translations['jobProfiles.delete.confirmationModal.message'].replace('{name}', jobProfile.name);
+
+          expect(deletingConfirmationModal.$('[data-test-headline]').innerText).to.equal(translations['jobProfiles.delete.confirmationModal.title']);
+          expect(deletingConfirmationModal.$('[data-test-confirmation-modal-message]').innerHTML).to.equal(message);
+          expect(deletingConfirmationModal.cancelButton.text).to.equal(translations.cancel);
+          expect(deletingConfirmationModal.confirmButton.text).to.equal(translations.delete);
+        });
+
+        describe('clicking on cancel profiles button', () => {
+          beforeEach(async () => {
+            await deletingConfirmationModal.cancelButton.click();
+          });
+
+          it('should hide delete confirmation modal', () => {
+            expect(deletingConfirmationModal.isPresent).to.be.false;
+          });
+        });
       });
     });
   });

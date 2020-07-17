@@ -8,6 +8,7 @@ import {
   before,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
+import { noop } from 'lodash';
 
 import { Paneset } from '@folio/stripes/components';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
@@ -29,6 +30,7 @@ async function setupJobProfileDetailsRoute({
       <Router>
         <JobProfileDetailsRoute
           resources={resources}
+          mutator={{ jobProfile: { DELETE: noop } }}
           history={history}
           location={{}}
           match={{ params: matchParams }}

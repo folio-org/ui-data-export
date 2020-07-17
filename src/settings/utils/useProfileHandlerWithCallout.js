@@ -3,17 +3,18 @@ import React, { useContext } from 'react';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { CalloutContext } from '@folio/stripes/core';
 
-export const useSubmitProfile = ({
+export const useProfileHandlerWithCallout = ({
   errorMessageId,
   successMessageId,
   onCancel,
-  onSubmit,
+  onAction,
+  isCanceledAfterError = false,
 }) => {
   const callout = useContext(CalloutContext);
 
   return async values => {
     try {
-      await onSubmit(values);
+      await onAction(values);
 
       callout.sendCallout({
         message: <SafeHTMLMessage
@@ -31,6 +32,10 @@ export const useSubmitProfile = ({
         />,
         type: 'error',
       });
+
+      if (isCanceledAfterError) {
+        onCancel();
+      }
     }
   };
 };

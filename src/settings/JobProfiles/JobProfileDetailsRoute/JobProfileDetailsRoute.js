@@ -14,6 +14,7 @@ const JobProfileDetailsRoute = ({
     mappingProfile,
     jobExecutions,
   },
+  mutator: { jobProfile: { DELETE } },
   history,
   location,
   match,
@@ -38,6 +39,7 @@ const JobProfileDetailsRoute = ({
       isDefaultProfile={isDefaultProfile}
       isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && !jobExecutions.hasLoaded)}
       onCancel={handleCancel}
+      onDelete={() => DELETE({ id: jobProfileRecord?.id })}
     />
   );
 };
@@ -51,6 +53,11 @@ JobProfileDetailsRoute.propTypes = {
     jobExecutions: PropTypes.shape({ hasLoaded: PropTypes.bool }),
     mappingProfile: PropTypes.shape({}),
   }).isRequired,
+  mutator: PropTypes.shape({ jobProfile: PropTypes.shape({ DELETE: PropTypes.func.isRequired }).isRequired }).isRequired,
+};
+
+const shouldRefreshHandler = (_, action) => {
+  return action.meta?.name !== 'jobProfile' || action.meta?.originatingActionType.includes('DELETE') === false;
 };
 
 JobProfileDetailsRoute.manifest = Object.freeze({
@@ -58,6 +65,7 @@ JobProfileDetailsRoute.manifest = Object.freeze({
     type: 'okapi',
     path: 'data-export/jobProfiles/:{id}',
     throwErrors: false,
+    shouldRefresh: shouldRefreshHandler,
   },
   mappingProfile: {
     type: 'okapi',
@@ -66,6 +74,7 @@ JobProfileDetailsRoute.manifest = Object.freeze({
 
       return mappingProfileId ? `data-export/mappingProfiles/${mappingProfileId}` : null;
     },
+    shouldRefresh: shouldRefreshHandler,
   },
   jobExecutions: {
     type: 'okapi',
@@ -75,6 +84,7 @@ JobProfileDetailsRoute.manifest = Object.freeze({
 
       return id !== DEFAULT_JOB_PROFILE_ID ? `data-export/jobExecutions?query=jobProfileId==${id}&limit=1` : null;
     },
+    shouldRefresh: shouldRefreshHandler,
   },
 });
 

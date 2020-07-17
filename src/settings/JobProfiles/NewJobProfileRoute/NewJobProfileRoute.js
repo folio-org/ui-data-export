@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 
 import { JobProfilesForm } from '../JobProfilesForm';
-import { useSubmitProfile } from '../../utils/useSubmitProfile';
+import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 
 const getFormattedMappingProfiles = (mappingProfiles = []) => {
   return mappingProfiles.reduce((memo, current) => {
@@ -24,11 +24,11 @@ const NewJobProfileRoute = props => {
     resources: { mappingProfiles },
   } = props;
 
-  const handleSubmit = useSubmitProfile({
+  const handleSubmit = useProfileHandlerWithCallout({
     errorMessageId: 'ui-data-export.jobProfiles.errorCallout',
     successMessageId: 'ui-data-export.jobProfiles.createdCallout',
+    onAction: onSubmit,
     onCancel,
-    onSubmit,
   });
 
   return (
