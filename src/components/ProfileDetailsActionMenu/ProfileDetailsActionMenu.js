@@ -8,10 +8,17 @@ import {
 } from '@folio/stripes/components';
 
 export const ProfileDetailsActionMenu = ({
+  onDelete,
   onToggle,
   isProfileUsed,
   isDefaultProfile,
 }) => {
+  const buildButtonClickHandler = buttonClickHandler => () => {
+    buttonClickHandler();
+
+    onToggle();
+  };
+
   return (
     <>
       <Button
@@ -37,7 +44,7 @@ export const ProfileDetailsActionMenu = ({
         data-test-delete-profile-button
         buttonStyle="dropdownItem"
         disabled={isDefaultProfile || isProfileUsed}
-        onClick={onToggle}
+        onClick={buildButtonClickHandler(onDelete)}
       >
         <Icon icon="trash">
           <FormattedMessage id="stripes-data-transfer-components.delete" />
@@ -51,4 +58,5 @@ ProfileDetailsActionMenu.propTypes = {
   isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
