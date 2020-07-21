@@ -55,5 +55,10 @@
     "mappingProfiles.transformations.emptyMessage": "Nenhuma transformação encontrada",
     "settings.profilesInfo": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados.",
     "permission.app.enabled": "UI: O módulo de exportação de dados está ativado",
-    "permission.settings.enabled": "Configurações (exportação de dados): exibe a lista de páginas de configurações"
+    "permission.settings.enabled": "Configurações (exportação de dados): exibe a lista de páginas de configurações",
+    "jobProfiles.delete.successCallout": "O perfil do job <b>{name}</b> foi <b>excluído</b> com sucesso",
+    "jobProfiles.delete.errorCallout": "Ocorreu um erro ao excluir o perfil do job <b>{name}</b>",
+    "jobProfiles.delete.confirmationModal.title": "Excluir perfil de job",
+    "jobProfiles.delete.confirmationModal.message": "O perfil do job <b>{name}</b> será excluído",
+    "delete": "Excluir"
 }
