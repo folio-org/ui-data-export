@@ -10,7 +10,10 @@ export function setupApplication({
   translations,
 } = {}) {
   setupStripesCore({
-    mirageOptions,
+    mirageOptions: {
+      serverType: 'miragejs',
+      ...mirageOptions,
+    },
     scenarios,
     stripesConfig: { hasAllPerms },
     translations: {
