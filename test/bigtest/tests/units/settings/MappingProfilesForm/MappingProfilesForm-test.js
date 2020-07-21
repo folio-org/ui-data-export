@@ -18,8 +18,8 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 
 import translations from '../../../../../../translations/ui-data-export/en';
 import { translationsProperties } from '../../../../helpers/translationsProperties';
-import { MappingProfilesForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesForm';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
+import { MappingProfilesFormContainer } from '../../../../../../src/settings/MappingProfiles/MappingProfilesFormContainer';
 
 const initialValues = {
   recordTypes: [],
@@ -53,7 +53,7 @@ describe('MappingProfilesForm', () => {
       await mountWithContext(
         <Paneset>
           <Router>
-            <MappingProfilesForm
+            <MappingProfilesFormContainer
               initialValues={initialValues}
               onSubmit={handleSubmitSpy}
               onCancel={noop}
@@ -78,6 +78,10 @@ describe('MappingProfilesForm', () => {
 
     it('should display expand all button', () => {
       expect(form.expandAllButton.isPresent).to.be.true;
+    });
+
+    it('should display add transformation button', () => {
+      expect(form.addTransformationButton.isPresent).to.be.true;
     });
 
     it('should display accordions set', () => {
@@ -109,14 +113,14 @@ describe('MappingProfilesForm', () => {
     });
 
     it('should display correct transformation fields headers', () => {
-      expect(form.transformations.list.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
-      expect(form.transformations.list.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
+      expect(form.transformations.list.headers(1).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
+      expect(form.transformations.list.headers(2).text).to.equal(translations['mappingProfiles.transformations.transformation']);
     });
 
     it('should display correct transformation fields values', () => {
-      expect(form.transformations.list.rows(0).cells(0).text).to.equal('Transformation field 1');
+      expect(form.transformations.list.rows(0).cells(1).text).to.equal('Transformation field 1');
       expect(form.transformations.valuesFields(0).val).to.equal('Transformation value 1');
-      expect(form.transformations.list.rows(1).cells(0).text).to.equal('Transformation field 2');
+      expect(form.transformations.list.rows(1).cells(1).text).to.equal('Transformation field 2');
       expect(form.transformations.valuesFields(1).val).to.equal('');
     });
 
@@ -210,6 +214,26 @@ describe('MappingProfilesForm', () => {
         });
       });
     });
+
+    describe('clicking on add transformation button', () => {
+      beforeEach(async () => {
+        await form.addTransformationButton.click();
+      });
+
+      it('should open transformations modal', () => {
+        expect(form.transformationsModal.isPresent).to.be.true;
+      });
+
+      describe('clicking on cancel button', () => {
+        beforeEach(async () => {
+          await form.transformationsModal.cancelButton.click();
+        });
+
+        it('should close transformations modal', () => {
+          expect(form.transformationsModal.isPresent).to.be.false;
+        });
+      });
+    });
   });
 
   describe('rendering mapping profiles form with correct submit handler', function () {
@@ -222,7 +246,7 @@ describe('MappingProfilesForm', () => {
       await mountWithContext(
         <Paneset>
           <Router>
-            <MappingProfilesForm
+            <MappingProfilesFormContainer
               initialValues={initialValues}
               onSubmit={values => {
                 result = values;

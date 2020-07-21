@@ -21,8 +21,8 @@ import {
   FIND_ALL_CQL,
 } from '../../../utils';
 import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
-import { generateTransformationFieldsValues } from '../MappingProfilesForm/TransformationsField';
-import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
+import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
+import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 
 const customProperties = {

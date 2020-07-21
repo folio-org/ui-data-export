@@ -31,6 +31,7 @@
   "outputFormat": "Output format",
   "transformations": "Transformations",
   "uploading": "Uploading",
+  "recordType": "Record type",
   "errors": "Errors",
   "status": "Status",
   "jobStatus.fail": "Fail",
@@ -46,6 +47,11 @@
   "mappingProfiles.transformations.fieldName": "Field name",
   "mappingProfiles.transformations.transformation": "Transformation",
   "mappingProfiles.transformations.addTransformation": "Add transformation",
+  "mappingProfiles.transformations.selectTransformations": "Select transformations",
+  "mappingProfiles.transformations.selectField": "Select field",
+  "mappingProfiles.transformations.selectAllFields": "Select all fields",
+  "mappingProfiles.transformations.searchFields": "Search fields",
+  "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {field found} other {fields found}}",
   "mappingProfiles.transformations.emptyMessage": "No transformations found",
   "jobProfiles.newProfile": "New job profile",
   "jobProfiles.selectProfile.title": "Select job profile to run the export",
@@ -62,5 +68,10 @@
   "jobProfiles.delete.confirmationModal.message": "The job profile <b>{name}</b> will be deleted",
   "marc": "MARC",
   "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
-  "delete": "Delete"
+  "delete": "Delete",
+  "resetAll": "Reset all",
+  "searchAndFilter": "Search & filter",
+
+  "modal.resultsHeader": "Search results",
+  "modal.totalSelected": "Total selected: {count}"
 }

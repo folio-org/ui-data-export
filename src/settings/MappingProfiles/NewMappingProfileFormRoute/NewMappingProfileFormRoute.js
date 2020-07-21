@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { omit } from 'lodash';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
-import {
-  MappingProfilesForm,
-  normalizeTransformationFormValues,
-} from '../MappingProfilesForm';
+import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
+import { normalizeTransformationFormValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const NewMappingProfileFormRoute = ({
   onSubmit,
@@ -21,7 +19,7 @@ const NewMappingProfileFormRoute = ({
   });
 
   return (
-    <MappingProfilesForm
+    <MappingProfilesFormContainer
       initialValues={initialValues}
       onSubmit={values => {
         const mappingProfile = { ...omit(values, 'transformations') };
