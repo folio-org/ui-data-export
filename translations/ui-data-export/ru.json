@@ -60,5 +60,19 @@
     "jobProfiles.delete.errorCallout": "There was an error while deleting the job profile <b>{name}</b>",
     "jobProfiles.delete.confirmationModal.title": "Delete job profile",
     "jobProfiles.delete.confirmationModal.message": "The job profile <b>{name}</b> will be deleted",
-    "delete": "Delete"
+    "delete": "Delete",
+    "recordType": "Тип записи",
+    "mappingProfiles.transformations.selectTransformations": "Выбрать преобразования",
+    "mappingProfiles.transformations.selectField": "Выбрать поле",
+    "mappingProfiles.transformations.selectAllFields": "Выбрать все поля",
+    "mappingProfiles.transformations.searchFields": "Search fields",
+    "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {найденное поле} other {найденные поля}}",
+    "resetAll": "Сбросить все",
+    "searchAndFilter": "Поиск и фильтр",
+    "modal.resultsHeader": "Результаты поиска",
+    "modal.totalSelected": "Всего выбрано: {count}",
+    "mappingProfiles.delete.successCallout": "Mapping profile <b>{name}</b> has been successfully <b>deleted</b>",
+    "mappingProfiles.delete.errorCallout": "There was an error while deleting the mapping profile <b>{name}</b>",
+    "mappingProfiles.delete.confirmationModal.title": "Delete mapping profile",
+    "mappingProfiles.delete.confirmationModal.message": "The mapping profile <b>{name}</b> will be deleted"
 }
