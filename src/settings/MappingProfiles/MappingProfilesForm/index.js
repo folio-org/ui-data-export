@@ -1,2 +1,1 @@
-export { default as MappingProfilesForm } from './MappingProfilesForm';
-export { normalizeTransformationFormValues } from './TransformationsField/processTransformations';
+export { MappingProfilesForm } from './MappingProfilesForm';

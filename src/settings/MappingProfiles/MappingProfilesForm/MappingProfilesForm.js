@@ -15,15 +15,15 @@ import {
   ExpandAllButton,
   Row,
   Select,
-  Layer,
   TextField,
   TextArea,
+  Button,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FullScreenForm } from '@folio/stripes-data-transfer-components';
 
+import { TransformationField } from '../MappingProfilesTransformationsModal/TransformationsField';
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
-import { TransformationField } from './TransformationsField';
 import {
   required,
   requiredArray,
@@ -41,97 +41,101 @@ const validate = values => {
   return errors;
 };
 
-const MappingProfilesForm = props => {
+const MappingProfilesFormComponent = props => {
   const {
-    onCancel,
-    handleSubmit,
     pristine,
     submitting,
+    onAddTransformations,
+    handleSubmit,
+    onCancel,
   } = props;
 
   const intl = useIntl();
 
   return (
-    <FormattedMessage id="ui-data-export.mappingProfiles.newProfile">
-      {contentLabel => (
-        <Layer
-          isOpen
-          contentLabel={contentLabel}
-        >
-          <FullScreenForm
-            id="mapping-profiles-form"
-            paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
-            isSubmitButtonDisabled={pristine || submitting}
-            onSubmit={handleSubmit}
-            onCancel={onCancel}
-          >
-            <div className={css.mappingProfilesFormContent}>
-              <AccordionStatus>
-                <Row end="xs">
-                  <Col xs>
-                    <ExpandAllButton />
-                  </Col>
-                </Row>
-                <AccordionSet id="mapping-profiles-form-accordions">
-                  <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
-                    <div data-test-mapping-profile-form-name>
-                      <Field
-                        label={<FormattedMessage id="stripes-data-transfer-components.name" />}
-                        name="name"
-                        id="mapping-profile-name"
-                        component={TextField}
-                        fullWidth
-                        required
-                      />
-                    </div>
-                    <FolioRecordTypeField />
-                    <div data-test-mapping-profile-output-format>
-                      <Field
-                        label={<FormattedMessage id="ui-data-export.outputFormat" />}
-                        name="outputFormat"
-                        id="mapping-profile-output-format"
-                        component={Select}
-                        dataOptions={[{
-                          label: intl.formatMessage({ id: 'ui-data-export.marc' }),
-                          value: 'MARC',
-                        }]}
-                        fullWidth
-                        required
-                      />
-                    </div>
-                    <div data-test-mapping-profile-description>
-                      <Field
-                        label={<FormattedMessage id="ui-data-export.description" />}
-                        name="description"
-                        id="mapping-profile-description"
-                        component={TextArea}
-                        fullWidth
-                      />
-                    </div>
-                  </Accordion>
-                  <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
-                    <TransformationField />
-                  </Accordion>
-                </AccordionSet>
-              </AccordionStatus>
-            </div>
-          </FullScreenForm>
-        </Layer>
-      )}
-    </FormattedMessage>
+    <FullScreenForm
+      id="mapping-profiles-form"
+      paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
+      isSubmitButtonDisabled={pristine || submitting}
+      onSubmit={handleSubmit}
+      onCancel={onCancel}
+    >
+      <div className={css.mappingProfilesFormContent}>
+        <AccordionStatus>
+          <Row end="xs">
+            <Col xs>
+              <ExpandAllButton />
+            </Col>
+          </Row>
+          <AccordionSet id="mapping-profiles-form-accordions">
+            <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
+              <div data-test-mapping-profile-form-name>
+                <Field
+                  label={<FormattedMessage id="stripes-data-transfer-components.name" />}
+                  name="name"
+                  id="mapping-profile-name"
+                  component={TextField}
+                  fullWidth
+                  required
+                />
+              </div>
+              <FolioRecordTypeField />
+              <div data-test-mapping-profile-output-format>
+                <Field
+                  label={<FormattedMessage id="ui-data-export.outputFormat" />}
+                  name="outputFormat"
+                  id="mapping-profile-output-format"
+                  component={Select}
+                  dataOptions={[{
+                    label: intl.formatMessage({ id: 'ui-data-export.marc' }),
+                    value: 'MARC',
+                  }]}
+                  fullWidth
+                  required
+                />
+              </div>
+              <div data-test-mapping-profile-description>
+                <Field
+                  label={<FormattedMessage id="ui-data-export.description" />}
+                  name="description"
+                  id="mapping-profile-description"
+                  component={TextArea}
+                  fullWidth
+                />
+              </div>
+            </Accordion>
+            <Accordion
+              label={<FormattedMessage id="ui-data-export.transformations" />}
+              displayWhenOpen={(
+                <Button
+                  data-test-add-transformation
+                  marginBottom0
+                  onClick={onAddTransformations}
+                >
+                  <FormattedMessage id="ui-data-export.mappingProfiles.transformations.addTransformation" />
+                </Button>
+              )}
+            >
+              <TransformationField autosize={false} />
+            </Accordion>
+          </AccordionSet>
+        </AccordionStatus>
+      </div>
+    </FullScreenForm>
   );
 };
 
-MappingProfilesForm.propTypes = {
+MappingProfilesFormComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
-MappingProfilesForm.defaultProps = { onCancel: noop };
+MappingProfilesFormComponent.defaultProps = { onCancel: noop };
 
-export default stripesFinalForm({
+export const MappingProfilesForm = stripesFinalForm({
   validate,
   subscription: { values: true },
-})(MappingProfilesForm);
+})(MappingProfilesFormComponent);

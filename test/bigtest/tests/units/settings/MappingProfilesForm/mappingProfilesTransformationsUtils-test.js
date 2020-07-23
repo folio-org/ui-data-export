@@ -7,7 +7,7 @@ import { expect } from 'chai';
 import {
   generateTransformationFieldsValues,
   normalizeTransformationFormValues,
-} from '../../../../../../src/settings/MappingProfiles/MappingProfilesForm/TransformationsField';
+} from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/TransformationsField';
 
 describe('generateTransformationFieldsValues', () => {
   it('should generate initial transformation values correctly', () => {

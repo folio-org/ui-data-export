@@ -1,0 +1,21 @@
+.modalContent {
+  position: relative;
+  min-height: 50vh;
+  padding: 0;
+}
+
+.searchGroupWrap {
+  margin-bottom: 0.5rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (min-height: 570px) {
+  .modalContent {
+    min-height: 70vh;
+  }
+}

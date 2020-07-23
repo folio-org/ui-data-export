@@ -27,7 +27,7 @@ import {
 } from '@folio/stripes-data-transfer-components';
 
 import { ProfileDetailsActionMenu } from '../../../components/ProfileDetailsActionMenu';
-import { mappingProfileTransformations } from '../MappingProfilesForm/TransformationsField/transformations';
+import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 
 import css from './MappingProfileDetails.css';
 import { mappingProfileShape } from '../shapes';
