@@ -60,5 +60,19 @@
     "jobProfiles.delete.errorCallout": "حدث خطأ أثناء حذف وضع الوظيفة <b>{name}</b>",
     "jobProfiles.delete.confirmationModal.title": "حذف وضع الوظيفة",
     "jobProfiles.delete.confirmationModal.message": "سيتم حذف وضع الوظيفة <b>{name}</b>",
-    "delete": "حذف"
+    "delete": "حذف",
+    "recordType": "Record type",
+    "mappingProfiles.transformations.selectTransformations": "Select transformations",
+    "mappingProfiles.transformations.selectField": "Select field",
+    "mappingProfiles.transformations.selectAllFields": "Select all fields",
+    "mappingProfiles.transformations.searchFields": "Search fields",
+    "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {field found} other {fields found}}",
+    "resetAll": "Reset all",
+    "searchAndFilter": "Search & filter",
+    "modal.resultsHeader": "Search results",
+    "modal.totalSelected": "Total selected: {count}",
+    "mappingProfiles.delete.successCallout": "Mapping profile <b>{name}</b> has been successfully <b>deleted</b>",
+    "mappingProfiles.delete.errorCallout": "There was an error while deleting the mapping profile <b>{name}</b>",
+    "mappingProfiles.delete.confirmationModal.title": "Delete mapping profile",
+    "mappingProfiles.delete.confirmationModal.message": "The mapping profile <b>{name}</b> will be deleted"
 }
