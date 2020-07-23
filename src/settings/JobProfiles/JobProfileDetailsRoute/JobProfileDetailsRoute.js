@@ -6,7 +6,10 @@ import {
 } from 'lodash';
 
 import { JobProfileDetails } from '../JobProfileDetails';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
+import {
+  DEFAULT_JOB_PROFILE_ID,
+  buildShouldRefreshHandler,
+} from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   resources: {
@@ -56,16 +59,14 @@ JobProfileDetailsRoute.propTypes = {
   mutator: PropTypes.shape({ jobProfile: PropTypes.shape({ DELETE: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
 
-const shouldRefreshHandler = (_, action) => {
-  return action.meta?.name !== 'jobProfile' || action.meta?.originatingActionType.includes('DELETE') === false;
-};
+const resourceActionsToPreventRefresh = { jobProfile: ['DELETE'] };
 
 JobProfileDetailsRoute.manifest = Object.freeze({
   jobProfile: {
     type: 'okapi',
     path: 'data-export/jobProfiles/:{id}',
     throwErrors: false,
-    shouldRefresh: shouldRefreshHandler,
+    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
   mappingProfile: {
     type: 'okapi',
@@ -74,7 +75,7 @@ JobProfileDetailsRoute.manifest = Object.freeze({
 
       return mappingProfileId ? `data-export/mappingProfiles/${mappingProfileId}` : null;
     },
-    shouldRefresh: shouldRefreshHandler,
+    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
   jobExecutions: {
     type: 'okapi',
@@ -84,7 +85,7 @@ JobProfileDetailsRoute.manifest = Object.freeze({
 
       return id !== DEFAULT_JOB_PROFILE_ID ? `data-export/jobExecutions?query=jobProfileId==${id}&limit=1` : null;
     },
-    shouldRefresh: shouldRefreshHandler,
+    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
 });
 

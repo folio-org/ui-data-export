@@ -158,7 +158,7 @@ describe('JobProfileDetails', () => {
 
         beforeEach(async () => {
           await jobProfileDetails.actionMenu.deleteProfileButton.click();
-          await wait(3000);
+          await wait();
         });
 
         it('should display delete confirmation modal', () => {
@@ -174,7 +174,7 @@ describe('JobProfileDetails', () => {
           expect(deletingConfirmationModal.confirmButton.text).to.equal(translations.delete);
         });
 
-        describe('clicking on cancel profiles button', () => {
+        describe('clicking on cancel button', () => {
           beforeEach(async () => {
             await deletingConfirmationModal.cancelButton.click();
           });

@@ -8,6 +8,7 @@
 * Add job profiles deleting. UIDEXP-111.
 * Refactor to miragejs from bigtest/mirage. UIDEXP-137.
 * Implement add mapping profile transformations modal. UIDEXP-104.
+* Add mapping profiles deleting. UIDEXP-133.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)

@@ -11,7 +11,10 @@ import { noop } from 'lodash';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Paneset } from '@folio/stripes/components';
-import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
+import {
+  mountWithContext,
+  wait,
+} from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -50,6 +53,7 @@ describe('MappingProfileDetails', () => {
               isDefaultProfile
               isProfileUsed
               onCancel={noop}
+              onDelete={noop}
             />
           </Router>
         </Paneset>,
@@ -143,6 +147,7 @@ describe('MappingProfileDetails', () => {
               isDefaultProfile={false}
               isProfileUsed={false}
               onCancel={noop}
+              onDelete={noop}
             />
           </Router>
         </Paneset>,
@@ -152,6 +157,10 @@ describe('MappingProfileDetails', () => {
 
     it('should display no value in description', () => {
       expect(mappingProfileDetails.summary.description.value.text).to.equal('-');
+    });
+
+    it('should not display delete confirmation modal', () => {
+      expect(mappingProfileDetails.deletingConfirmationModal.isPresent).to.be.false;
     });
 
     it('should not display transformation list', () => {
@@ -168,10 +177,42 @@ describe('MappingProfileDetails', () => {
         expect(mappingProfileDetails.actionMenu.duplicateProfileButton.$root.disabled).to.be.false;
         expect(mappingProfileDetails.actionMenu.deleteProfileButton.$root.disabled).to.be.false;
       });
+
+      describe('clicking on delete profiles button', () => {
+        const { deletingConfirmationModal } = mappingProfileDetails;
+
+        beforeEach(async () => {
+          await mappingProfileDetails.actionMenu.deleteProfileButton.click();
+          await wait(3000);
+        });
+
+        it('should display delete confirmation modal', () => {
+          expect(deletingConfirmationModal.isPresent).to.be.true;
+        });
+
+        it('should display delete confirmation modal with correct messages', () => {
+          const message = translations['mappingProfiles.delete.confirmationModal.message'].replace('{name}', mappingProfile.name);
+
+          expect(deletingConfirmationModal.$('[data-test-headline]').innerText).to.equal(translations['mappingProfiles.delete.confirmationModal.title']);
+          expect(deletingConfirmationModal.$('[data-test-confirmation-modal-message]').innerHTML).to.equal(message);
+          expect(deletingConfirmationModal.cancelButton.text).to.equal(translations.cancel);
+          expect(deletingConfirmationModal.confirmButton.text).to.equal(translations.delete);
+        });
+
+        describe('clicking on cancel button', () => {
+          beforeEach(async () => {
+            await deletingConfirmationModal.cancelButton.click();
+          });
+
+          it('should hide delete confirmation modal', () => {
+            expect(deletingConfirmationModal.isPresent).to.be.false;
+          });
+        });
+      });
     });
   });
 
-  describe('rendering mapping profile details  in loading state', () => {
+  describe('rendering mapping profile details in loading state', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Paneset>
@@ -182,6 +223,7 @@ describe('MappingProfileDetails', () => {
               isDefaultProfile={false}
               isProfileUsed
               onCancel={noop}
+              onDelete={noop}
             />
           </Router>
         </Paneset>,
