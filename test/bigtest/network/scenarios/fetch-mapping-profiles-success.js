@@ -37,7 +37,7 @@ export const mappingProfileWithTransformations = {
 
 export const mappingProfile = {
   id: '25d81cbe-9686-11ea-bb37-0242ac130005',
-  name: 'AP Holdings & Items',
+  name: 'AP Holdings and Items',
   description: null,
   recordTypes: ['HOLDINGS', 'ITEM'],
   transformations: [],

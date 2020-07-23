@@ -8,7 +8,10 @@ import {
 import { stripesConnect } from '@folio/stripes-core';
 
 import { MappingProfileDetails } from '../MappingProfileDetails';
-import { DEFAULT_MAPPING_PROFILE_ID } from '../../../utils';
+import {
+  DEFAULT_MAPPING_PROFILE_ID,
+  buildShouldRefreshHandler,
+} from '../../../utils';
 import { mappingProfileShape } from '../shapes';
 
 const MappingProfileDetailsRoute = ({
@@ -17,6 +20,7 @@ const MappingProfileDetailsRoute = ({
     mappingProfile,
     jobProfiles,
   },
+  mutator: { mappingProfile: { DELETE } },
   match,
 }) => {
   // `find` is used to make sure the matched job profile, mapping profile are displayed to avoid
@@ -33,6 +37,7 @@ const MappingProfileDetailsRoute = ({
       isDefaultProfile={isDefaultProfile}
       isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
       onCancel={onCancel}
+      onDelete={() => DELETE({ id: mappingProfileRecord?.id })}
     />
   );
 };
@@ -44,12 +49,16 @@ MappingProfileDetailsRoute.propTypes = {
     mappingProfile: PropTypes.shape({ records: PropTypes.arrayOf(mappingProfileShape) }),
     jobProfiles: PropTypes.shape({ hasLoaded: PropTypes.bool }),
   }),
+  mutator: PropTypes.shape({ mappingProfile: PropTypes.shape({ DELETE: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
+
+const resourceActionsToPreventRefresh = { mappingProfile: ['DELETE'] };
 
 MappingProfileDetailsRoute.manifest = Object.freeze({
   mappingProfile: {
     type: 'okapi',
     path: 'data-export/mappingProfiles/:{id}',
+    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
   jobProfiles: {
     type: 'okapi',
@@ -59,6 +68,7 @@ MappingProfileDetailsRoute.manifest = Object.freeze({
 
       return id !== DEFAULT_MAPPING_PROFILE_ID ? `data-export/jobProfiles?query=mappingProfileId==${id}&limit=1` : null;
     },
+    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
 });
 

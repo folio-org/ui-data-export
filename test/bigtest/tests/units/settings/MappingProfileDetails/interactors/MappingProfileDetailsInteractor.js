@@ -7,6 +7,7 @@ import {
   FullScreenViewInteractor,
   PreloaderInteractor,
 } from '@folio/stripes-data-transfer-components/interactors';
+import ConfirmationModalInteractor from '@folio/stripes-components/lib/ConfirmationModal/tests/interactor';
 
 import { ProfileDetailsActionMenuInteractor } from '../../../../../interactors';
 import { SummaryContentInteractor } from './SummaryContentInteractor';
@@ -24,4 +25,5 @@ export class MappingProfileDetailsInteractor {
   preloader = new PreloaderInteractor();
   metadata = new MetaSectionInteractor();
   actionMenu = new ProfileDetailsActionMenuInteractor();
+  deletingConfirmationModal = new ConfirmationModalInteractor('#delete-mapping-profile-confirmation-modal');
 }

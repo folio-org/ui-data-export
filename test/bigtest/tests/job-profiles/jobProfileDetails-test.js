@@ -15,7 +15,7 @@ import { mappingProfile } from '../../network/scenarios/fetch-mapping-profiles-s
 
 const jobProfileDetails = new JobProfileDetailsInteractor();
 
-describe('Job profile details: default job profile', () => {
+describe('Job profile details', () => {
   setupApplication();
 
   beforeEach(function () {

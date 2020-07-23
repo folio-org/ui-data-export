@@ -88,13 +88,15 @@
           "data-export.file-definitions.upload.post",
           "data-export.mapping-profiles.item.get",
           "data-export.mapping-profiles.item.post",
+          "data-export.mapping-profiles.item.delete",
           "data-export.export.post",
           "data-export.mapping-profiles.collection.get",
           "data-export.job-executions.items.get",
           "data-export.job-executions.items.download.get",
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.get",
-          "data-export.job-profiles.item.post"
+          "data-export.job-profiles.item.post",
+          "data-export.job-profiles.item.delete"
         ],
         "visible": false
       },
