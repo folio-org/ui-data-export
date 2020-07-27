@@ -11,4 +11,12 @@ export const translationsProperties = [
     prefix: 'stripes-components',
     translations: stripesComponentsTranslations,
   },
+  {
+    prefix: 'stripes-smart-components',
+    translations: {
+      hideSearchPane: 'hideSearchPane',
+      showSearchPane: 'showSearchPane',
+      numberOfFilters: 'numberOfFilters',
+    },
+  },
 ];

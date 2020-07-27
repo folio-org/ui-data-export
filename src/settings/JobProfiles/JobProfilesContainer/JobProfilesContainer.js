@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
   match as matchShape,
@@ -37,7 +37,10 @@ const JobProfilesContainer = ({
   mutator,
   stripes,
 }) => {
-  const JobProfileDetailsRouteConnected = React.useMemo(() => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const JobProfileDetailsRouteConnected = useMemo(
+    () => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }),
+    [stripes],
+  );
 
   return (
     <>
