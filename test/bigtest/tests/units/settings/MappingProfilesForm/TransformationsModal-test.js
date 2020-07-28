@@ -23,11 +23,21 @@ const initialValues = {
     {
       displayName: 'Transformation field 1',
       transformation: 'Transformation value 1',
+      recordType: 'INSTANCE',
+      path: 'field1',
       order: 0,
     },
     {
       displayName: 'Transformation field 2',
+      recordType: 'ITEM',
+      path: 'field2',
       order: 1,
+    },
+    {
+      displayName: 'Transformation field 3',
+      recordType: 'HOLDINGS',
+      path: 'field3',
+      order: 2,
     },
   ],
 };
@@ -39,7 +49,7 @@ describe('MappingProfilesTransformationsModal', () => {
     await cleanup();
   });
 
-  describe('rendering mapping profiles form with stubbed submit handler', () => {
+  describe('rendering transformations modal', () => {
     beforeEach(async function () {
       await mountWithContext(
         <Router>
@@ -48,13 +58,7 @@ describe('MappingProfilesTransformationsModal', () => {
             initialTransformationsValues={initialValues}
           />
         </Router>,
-        [...translationsProperties, {
-          prefix: 'stripes-smart-components',
-          translations: {
-            hideSearchPane: 'hideSearchPane',
-            showSearchPane: 'showSearchPane',
-          },
-        }],
+        translationsProperties,
       );
     });
 
@@ -63,14 +67,14 @@ describe('MappingProfilesTransformationsModal', () => {
     });
 
     it('should display search pane', () => {
-      expect(modal.searchPane.isPresent).to.be.true;
-      expect(modal.searchPane.$('[data-test-pane-header-title]').innerText).to.equal(translations.searchAndFilter);
+      expect(modal.searchPane.isVisible).to.be.true;
+      expect(modal.searchPane.headerTitle.text).to.equal(translations.searchAndFilter);
     });
 
     it('should display results pane', () => {
       expect(modal.resultsPane.isPresent).to.be.true;
-      expect(modal.resultsPane.$('[data-test-pane-header-title]').innerText).to.equal(translations.transformations);
-      expect(modal.resultsPane.$('[data-test-pane-header-sub]').innerText).to.match(/\d+ fields found/);
+      expect(modal.resultsPane.headerTitle.text).to.equal(translations.transformations);
+      expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
     });
 
     it('should display filter accordions set', () => {
@@ -90,9 +94,9 @@ describe('MappingProfilesTransformationsModal', () => {
     });
 
     it('should display correct folio record types', () => {
-      expect(modal.recordTypeCheckboxes(0).label).to.equal(commonTranslations['recordTypes.instance']);
-      expect(modal.recordTypeCheckboxes(1).label).to.equal(commonTranslations['recordTypes.holdings']);
-      expect(modal.recordTypeCheckboxes(2).label).to.equal(commonTranslations['recordTypes.item']);
+      expect(modal.recordTypeFilters(0).label).to.equal(commonTranslations['recordTypes.instance']);
+      expect(modal.recordTypeFilters(1).label).to.equal(commonTranslations['recordTypes.holdings']);
+      expect(modal.recordTypeFilters(2).label).to.equal(commonTranslations['recordTypes.item']);
     });
 
     it('should display reset button', () => {
@@ -118,6 +122,10 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.expandSearchPaneButton.isPresent).to.be.false;
     });
 
+    it('should display correct amount of transformation fields', () => {
+      expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
+    });
+
     it('should display correct transformation fields headers', () => {
       expect(modal.transformations.list.headers(0).$('[data-test-select-all-fields]')).to.not.be.undefined;
       expect(modal.transformations.list.headers(1).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
@@ -139,7 +147,7 @@ describe('MappingProfilesTransformationsModal', () => {
       });
 
       it('should hide search pane', () => {
-        expect(modal.searchPane.isPresent).to.be.false;
+        expect(modal.searchPane.isVisible).to.be.false;
       });
 
       describe('clicking on expand search pane button', () => {
@@ -148,7 +156,35 @@ describe('MappingProfilesTransformationsModal', () => {
         });
 
         it('should display the search pane', () => {
-          expect(modal.searchPane.isPresent).to.be.true;
+          expect(modal.searchPane.isVisible).to.be.true;
+        });
+      });
+    });
+
+    describe('turning off certain record type filters', () => {
+      beforeEach(async () => {
+        await modal.recordTypeFilters(0).clickAndBlur();
+        await modal.recordTypeFilters(1).clickAndBlur();
+      });
+
+      it('should display correct amount of transformation fields', () => {
+        expect(modal.transformations.list.rowCount).to.equal(1);
+        expect(modal.resultsPane.subHeaderTitle.text).to.equal('1 field found');
+      });
+
+      it('should filter out the transformation list', () => {
+        expect(modal.transformations.list.rows(0).cells(1).text).to.equal('Transformation field 2');
+      });
+
+      describe('turning on filters again', () => {
+        beforeEach(async () => {
+          await modal.recordTypeFilters(0).clickAndBlur();
+          await modal.recordTypeFilters(1).clickAndBlur();
+        });
+
+        it('should display all transformation fields', () => {
+          expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
+          expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
         });
       });
     });

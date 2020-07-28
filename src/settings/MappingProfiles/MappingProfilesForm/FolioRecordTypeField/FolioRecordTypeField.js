@@ -1,33 +1,21 @@
-import React, { useState } from 'react';
+import React, {
+  memo,
+  useState,
+  useCallback,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
-import { isEqual } from 'lodash';
 import { Field } from 'react-final-form';
 
-import {
-  Label,
-  Checkbox,
-} from '@folio/stripes/components';
-import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
+import { Label } from '@folio/stripes/components';
+
+import { RecordTypeField } from '../../RecordTypeField';
 
 import css from './FolioRecordTypeField.css';
 
-const folioRecordTypes = [
-  {
-    value: FOLIO_RECORD_TYPES.INSTANCE.type,
-    label: <FormattedMessage id={FOLIO_RECORD_TYPES.INSTANCE.captionId} />,
-  },
-  {
-    value: FOLIO_RECORD_TYPES.HOLDINGS.type,
-    label: <FormattedMessage id={FOLIO_RECORD_TYPES.HOLDINGS.captionId} />,
-  },
-  {
-    value: FOLIO_RECORD_TYPES.ITEM.type,
-    label: <FormattedMessage id={FOLIO_RECORD_TYPES.ITEM.captionId} />,
-  },
-];
-
-export const FolioRecordTypeField = () => {
+export const FolioRecordTypeField = memo(() => {
   const [touched, setTouched] = useState(false);
+
+  const handleRecordTypeChange = useCallback(() => setTouched(true), []);
 
   return (
     <div
@@ -41,34 +29,11 @@ export const FolioRecordTypeField = () => {
       >
         <FormattedMessage id="stripes-data-transfer-components.folioRecordType" />
       </Label>
-      <div
+      <RecordTypeField
         id="folio-record-type"
-        data-test-checkboxes-container
-      >
-        {folioRecordTypes.map(option => (
-          <div key={option.value}>
-            <Field
-              name="recordTypes"
-              id={`folio-record-type-${option.value}`}
-              type="checkbox"
-              value={option.value}
-              isEqual={isEqual}
-              render={fieldProps => {
-                return (
-                  <Checkbox
-                    {...fieldProps.input}
-                    label={option.label}
-                    onChange={event => {
-                      setTouched(true);
-                      fieldProps.input.onChange(event);
-                    }}
-                  />
-                );
-              }}
-            />
-          </div>
-        ))}
-      </div>
+        name="recordTypes"
+        onChange={handleRecordTypeChange}
+      />
       <div
         role="alert"
         data-test-folio-record-type-error
@@ -82,4 +47,4 @@ export const FolioRecordTypeField = () => {
       </div>
     </div>
   );
-};
+});

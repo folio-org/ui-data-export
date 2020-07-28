@@ -44,10 +44,10 @@ describe('MappingProfilesForm', () => {
     await cleanup();
   });
 
-  describe('rendering mapping profiles form with stubbed submit handler', function () {
+  describe('rendering mapping profiles form with stubbed submit handler', () => {
     const handleSubmitSpy = sinon.spy();
 
-    beforeEach(async function () {
+    beforeEach(async () => {
       handleSubmitSpy.resetHistory();
 
       await mountWithContext(
@@ -236,13 +236,13 @@ describe('MappingProfilesForm', () => {
     });
   });
 
-  describe('rendering mapping profiles form with correct submit handler', function () {
+  describe('rendering mapping profiles form with correct submit handler', () => {
     let result;
     const name = 'Profile name';
     const description = 'Description value';
     const transformationValue = 'Transformation value 2';
 
-    beforeEach(async function () {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>
