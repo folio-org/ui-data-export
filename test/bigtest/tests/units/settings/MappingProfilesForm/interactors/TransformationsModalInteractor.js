@@ -1,16 +1,13 @@
 import {
   interactor,
   Interactor,
-  collection,
 } from '@bigtest/interactor';
 
 import ButtonInteractor from '@folio/stripes-components/lib/Button/tests/interactor';
-import CheckboxInteractor from '@folio/stripes-components/lib/Checkbox/tests/interactor';
-import TextFieldInteractor from '@folio/stripes-components/lib/TextField/tests/interactor';
-import { AccordionSetInteractor } from '@folio/stripes-components/lib/Accordion/tests/interactor';
 
 import { PaneInteractor } from '../../../../../interactors';
 import { TransformationsInteractor } from './TransformationsInteractor';
+import { TransformationsSearchFormInteractor } from './TransformationsSearchFormInteractor';
 
 @interactor
 export class TransformationsModalInteractor {
@@ -19,13 +16,10 @@ export class TransformationsModalInteractor {
   searchPane = new PaneInteractor('[data-test-transformations-search-pane]');
   collapseSearchPaneButton = new Interactor('[data-test-collapse-filter-pane-button]');
   expandSearchPaneButton = new Interactor('[data-test-expand-filter-pane-button]');
+  searchForm = new TransformationsSearchFormInteractor();
   resultsPane = new PaneInteractor('[data-test-transformations-results-pane]');
-  filterAccordions = new AccordionSetInteractor('#transformations-filter-accordions');
-  searchField = new TextFieldInteractor('[data-test-transformations-search-field]');
-  recordTypeFilters = collection('#transformations-record-type-accordion [data-test-checkbox]', CheckboxInteractor);
+  transformations = new TransformationsInteractor();
   totalSelected = new Interactor('[data-test-transformations-total-selected]');
   saveButton = new ButtonInteractor('[data-test-transformations-save]');
-  resetButton = new ButtonInteractor('[data-test-transformations-reset]');
   cancelButton = new ButtonInteractor('[data-test-transformations-cancel]');
-  transformations = new TransformationsInteractor();
 }
