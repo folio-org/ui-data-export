@@ -5,10 +5,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import {
-  ConfirmationModal,
-  Layer,
-} from '@folio/stripes/components';
+import { ConfirmationModal } from '@folio/stripes/components';
 import {
   FullScreenView,
   Preloader,
@@ -57,41 +54,37 @@ export const ProfileDetails = props => {
   return (
     <FormattedMessage id={`ui-data-export.${type}Profiles.newProfile`}>
       {contentLabel => (
-        <Layer
-          isOpen
+        <FullScreenView
+          id={`${type}-profile-details`}
           contentLabel={contentLabel}
+          paneTitle={profile?.name}
+          actionMenu={!isLoading && renderActionMenu}
+          onCancel={onCancel}
         >
-          <FullScreenView
-            id={`${type}-profile-details`}
-            paneTitle={profile?.name}
-            actionMenu={!isLoading && renderActionMenu}
-            onCancel={onCancel}
-          >
-            {isLoading
-              ? <Preloader />
-              : (
-                <>
-                  {children}
-                  <ConfirmationModal
-                    id={`delete-${type}-profile-confirmation-modal`}
-                    open={isConfirmationModalOpen}
-                    heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
-                    message={(
-                      <SafeHTMLMessage
-                        id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
-                        values={{ name: profile.name }}
-                      />
-                    )}
-                    confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
-                    cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
-                    onCancel={() => setConfirmationModalState(false)}
-                    onConfirm={() => handleDelete(profile)}
-                  />
-                </>
-              )
-            }
-          </FullScreenView>
-        </Layer>
+          {isLoading
+            ? <Preloader />
+            : (
+              <>
+                {children}
+                <ConfirmationModal
+                  id={`delete-${type}-profile-confirmation-modal`}
+                  open={isConfirmationModalOpen}
+                  heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
+                  message={(
+                    <SafeHTMLMessage
+                      id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
+                      values={{ name: profile.name }}
+                    />
+                  )}
+                  confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
+                  cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
+                  onCancel={() => setConfirmationModalState(false)}
+                  onConfirm={() => handleDelete(profile)}
+                />
+              </>
+            )
+          }
+        </FullScreenView>
       )}
     </FormattedMessage>
   );
