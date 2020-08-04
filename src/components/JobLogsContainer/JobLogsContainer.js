@@ -57,7 +57,6 @@ const customProperties = {
   },
 };
 
-// TODO: remove formatter for jobProfileName once backend is in place
 const JobLogsContainer = props => {
   const { stripes: { okapi } } = props;
 
