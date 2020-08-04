@@ -27,7 +27,11 @@ import { SearchForm } from './SearchForm';
 
 import css from './MappingProfilesTransformationsModal.css';
 
-const initialSearchFormValues = { filters: { recordTypes: recordTypes.map(recordType => recordType.value) } };
+const initialSearchFormValues = {
+  searchValue: '',
+  filters: { recordTypes: recordTypes.map(recordType => recordType.value) },
+};
+
 const fullWidthStyle = { style: { width: '100%' } };
 
 export const MappingProfilesTransformationsModal = ({
@@ -36,18 +40,29 @@ export const MappingProfilesTransformationsModal = ({
   onCancel,
 }) => {
   const [isFilterPaneOpen, setFilterPaneOpen] = useState(true);
+  const [searchValue, setSearchValue] = useState(initialSearchFormValues.searchValue);
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
 
   const totalSelectedCount = 0;
 
+  const resetSearchForm = useCallback(() => {
+    setSearchFilters(initialSearchFormValues.filters);
+    setSearchValue(initialSearchFormValues.searchValue);
+  }, []);
+
   useEffect(() => {
     if (!isOpen) {
       setFilterPaneOpen(true);
-      setSearchFilters(initialSearchFormValues.filters);
+      resetSearchForm();
     }
-  }, [isOpen]);
+  }, [isOpen, resetSearchForm]);
 
-  const searchResults = initialTransformationsValues.transformations
+  const searchValueResults = !searchValue
+    ? initialTransformationsValues.transformations
+    : initialTransformationsValues.transformations
+      .filter(value => value.displayName.toLowerCase().includes(searchValue));
+
+  const searchResults = searchValueResults
     .filter(value => get(searchFilters, 'recordTypes', []).includes(value.recordType));
 
   const toggleFilterPane = useCallback(() => setFilterPaneOpen(curState => !curState), []);
@@ -56,6 +71,10 @@ export const MappingProfilesTransformationsModal = ({
     ...curFilters,
     [key]: value,
   })), []);
+
+  const handleSearchFormSubmit = useCallback(values => {
+    setSearchValue(values.searchValue?.toLowerCase());
+  }, []);
 
   const renderFooter = () => {
     return (
@@ -108,7 +127,8 @@ export const MappingProfilesTransformationsModal = ({
           <SearchForm
             initialValues={initialSearchFormValues}
             onFiltersChange={handleFiltersChange}
-            onSubmit={noop}
+            onReset={resetSearchForm}
+            onSubmit={handleSearchFormSubmit}
           />
         </Pane>
         <Pane

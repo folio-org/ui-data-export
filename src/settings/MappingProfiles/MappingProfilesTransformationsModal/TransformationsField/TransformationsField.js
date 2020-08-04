@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import {
-  isEqual,
-  identity,
-} from 'lodash';
+import { isEqual } from 'lodash';
 
 import {
   TextField,
@@ -22,10 +19,7 @@ const columnWidths = {
 };
 const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
-export const TransformationField = ({
-  autosize,
-  prepareData,
-}) => {
+export const TransformationField = ({ contentData }) => {
   const intl = useIntl();
 
   const formatter = {
@@ -76,22 +70,18 @@ export const TransformationField = ({
         <MultiColumnList
           id="mapping-profiles-form-transformations"
           fields={fields}
-          contentData={prepareData(fields.value)}
+          // fields.value is used for now the usage inside MappingProfilesForm
+          // and should be removed once that usage is removed
+          contentData={contentData || fields.value}
           totalCount={fields.value.length}
           columnMapping={columnMapping}
           columnWidths={columnWidths}
           visibleColumns={visibleColumns}
           formatter={formatter}
-          autosize={autosize}
         />
       )}
     </FieldArray>
   );
 };
 
-TransformationField.propTypes = {
-  autosize: PropTypes.bool.isRequired,
-  prepareData: PropTypes.func,
-};
-
-TransformationField.defaultProps = { prepareData: identity };
+TransformationField.propTypes = { contentData: PropTypes.arrayOf(PropTypes.object.isRequired) };

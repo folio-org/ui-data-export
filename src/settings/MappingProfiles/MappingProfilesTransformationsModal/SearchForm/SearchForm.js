@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
 import stripesFinalForm from '@folio/stripes/final-form';
@@ -18,8 +19,10 @@ import { RecordTypeField } from '../../RecordTypeField';
 import css from './SearchForm.css';
 
 const SearchFormComponent = ({
+  form,
   values,
   handleSubmit,
+  onReset,
   onFiltersChange,
 }) => {
   const handleRecordTypeChange = useCallback((event, option) => {
@@ -32,24 +35,36 @@ const SearchFormComponent = ({
     onFiltersChange('recordTypes', nextFilters);
   }, [values.filters, onFiltersChange]);
 
+  const handleReset = useCallback(() => {
+    form.restart();
+    onReset();
+  }, [form, onReset]);
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={css.searchGroupWrap}>
+    <form
+      data-test-transformations-search-form
+      onSubmit={handleSubmit}
+    >
+      <div
+        data-test-transformations-search-form-field
+        className={css.searchGroupWrap}
+      >
         <FormattedMessage id="ui-data-export.mappingProfiles.transformations.searchFields">
           {label => (
-            <SearchField
-              data-test-transformations-search-field
+            <Field
+              name="searchValue"
               aria-label={label}
-              autoFocus
               marginBottom0
+              render={fieldProps => <SearchField {...fieldProps.input} />}
             />
           )}
         </FormattedMessage>
       </div>
       <div>
         <Button
-          data-test-transformations-reset
+          data-test-transformations-search-form-reset
           buttonStyle="none"
+          onClick={handleReset}
         >
           <Icon icon="times-circle-solid">
             <FormattedMessage id="ui-data-export.resetAll" />
@@ -80,7 +95,9 @@ SearchFormComponent.propTypes = {
       recordTypes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
+  form: PropTypes.shape({ restart: PropTypes.func.isRequired }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
   onFiltersChange: PropTypes.func.isRequired,
 };
 

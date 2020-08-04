@@ -116,7 +116,7 @@ const MappingProfilesFormComponent = props => {
                 </Button>
               )}
             >
-              <TransformationField autosize={false} />
+              <TransformationField />
             </Accordion>
           </AccordionSet>
         </AccordionStatus>
