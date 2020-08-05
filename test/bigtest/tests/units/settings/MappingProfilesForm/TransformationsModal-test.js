@@ -68,13 +68,13 @@ describe('MappingProfilesTransformationsModal', () => {
 
     it('should display search pane', () => {
       expect(modal.searchPane.isVisible).to.be.true;
-      expect(modal.searchPane.headerTitle.text).to.equal(translations.searchAndFilter);
+      expect(modal.searchPane.header.title).to.equal(translations.searchAndFilter);
     });
 
     it('should display results pane', () => {
       expect(modal.resultsPane.isPresent).to.be.true;
-      expect(modal.resultsPane.headerTitle.text).to.equal(translations.transformations);
-      expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
+      expect(modal.resultsPane.header.title).to.equal(translations.transformations);
+      expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
     });
 
     it('should display total selected count', () => {
@@ -156,7 +156,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       it('should display correct amount of transformation fields', () => {
         expect(modal.transformations.list.rowCount).to.equal(1);
-        expect(modal.resultsPane.subHeaderTitle.text).to.equal('1 field found');
+        expect(modal.resultsPane.header.sub).to.equal('1 field found');
       });
 
       it('should filter out the transformation list', () => {
@@ -171,7 +171,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
         it('should display all transformation fields', () => {
           expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-          expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
+          expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
         });
       });
     });
@@ -215,7 +215,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
           it('should display all transformation fields', () => {
             expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-            expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
+            expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
           });
 
           it('should reset the form UI', () => {
@@ -234,7 +234,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       it('should display all transformation fields', () => {
         expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-        expect(modal.resultsPane.subHeaderTitle.text).to.equal(`${initialValues.transformations.length} fields found`);
+        expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
       });
     });
   });

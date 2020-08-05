@@ -4,8 +4,8 @@ import {
 } from '@bigtest/interactor';
 
 import ButtonInteractor from '@folio/stripes-components/lib/Button/tests/interactor';
+import PaneInteractor from '@folio/stripes-components/lib/Pane/tests/interactor';
 
-import { PaneInteractor } from '../../../../../interactors';
 import { TransformationsInteractor } from './TransformationsInteractor';
 import { TransformationsSearchFormInteractor } from './TransformationsSearchFormInteractor';
 
