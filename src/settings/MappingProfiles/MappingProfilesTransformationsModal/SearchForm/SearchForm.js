@@ -92,7 +92,7 @@ const SearchFormComponent = ({
 SearchFormComponent.propTypes = {
   values: PropTypes.shape({
     filters: PropTypes.shape({ // eslint-disable-line object-curly-newline
-      recordTypes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+      recordTypes: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
   form: PropTypes.shape({ restart: PropTypes.func.isRequired }).isRequired,

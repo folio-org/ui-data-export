@@ -42,6 +42,22 @@ const initialValues = {
   ],
 };
 
+const totalSelectedMessage = selectedCount => {
+  return translations['modal.totalSelected'].replace('{count}', selectedCount);
+};
+
+const foundFieldsAmountMessage = fieldsAmount => {
+  if (fieldsAmount === 0) {
+    return translations['mappingProfiles.transformations.emptyMessage'];
+  }
+
+  if (fieldsAmount === 1) {
+    return '1 field found';
+  }
+
+  return `${fieldsAmount} fields found`;
+};
+
 describe('MappingProfilesTransformationsModal', () => {
   const modal = new TransformationsModalInteractor();
 
@@ -74,11 +90,11 @@ describe('MappingProfilesTransformationsModal', () => {
     it('should display results pane', () => {
       expect(modal.resultsPane.isPresent).to.be.true;
       expect(modal.resultsPane.header.title).to.equal(translations.transformations);
-      expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
+      expect(modal.resultsPane.header.sub).to.equal(foundFieldsAmountMessage(initialValues.transformations.length));
     });
 
     it('should display total selected count', () => {
-      expect(modal.totalSelected.text).to.equal('Total selected: 0');
+      expect(modal.totalSelected.text).to.equal(totalSelectedMessage(0));
     });
 
     it('should display search form', () => {
@@ -148,30 +164,150 @@ describe('MappingProfilesTransformationsModal', () => {
       });
     });
 
-    describe('turning off certain record type filters', () => {
+    it('should not select transformations by default', () => {
+      expect(modal.transformations.checkboxes(0).isChecked).to.be.false;
+      expect(modal.transformations.checkboxes(1).isChecked).to.be.false;
+      expect(modal.transformations.checkboxes(2).isChecked).to.be.false;
+    });
+
+    it('should not check select all checkbox by default', () => {
+      expect(modal.transformations.selectAllCheckbox.isChecked).to.be.false;
+    });
+
+    describe('clicking on select all checkbox', () => {
       beforeEach(async () => {
-        await modal.searchForm.recordTypeFilters(0).clickAndBlur();
-        await modal.searchForm.recordTypeFilters(1).clickAndBlur();
+        await modal.transformations.selectAllCheckbox.clickInput();
       });
 
-      it('should display correct amount of transformation fields', () => {
-        expect(modal.transformations.list.rowCount).to.equal(1);
-        expect(modal.resultsPane.header.sub).to.equal('1 field found');
+      it('should select all transformations', () => {
+        expect(modal.transformations.checkboxes(0).isChecked).to.be.true;
+        expect(modal.transformations.checkboxes(1).isChecked).to.be.true;
+        expect(modal.transformations.checkboxes(2).isChecked).to.be.true;
       });
 
-      it('should filter out the transformation list', () => {
-        expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[1].displayName);
+      it('should check select all checkbox', () => {
+        expect(modal.transformations.selectAllCheckbox.isChecked).to.be.true;
       });
 
-      describe('turning on filters again', () => {
+      it('should update total selected count', () => {
+        expect(modal.totalSelected.text).to.equal(totalSelectedMessage(3));
+      });
+
+      describe('clicking on checkbox from the first row', () => {
+        beforeEach(async () => {
+          await modal.transformations.checkboxes(0).clickInput();
+        });
+
+        it('should deselect the first item', () => {
+          expect(modal.transformations.checkboxes(0).isChecked).to.be.false;
+        });
+
+        it('should uncheck select all checkbox', () => {
+          expect(modal.transformations.selectAllCheckbox.isChecked).to.be.false;
+        });
+
+        it('should update total selected count', () => {
+          expect(modal.totalSelected.text).to.equal(totalSelectedMessage(2));
+        });
+
+        describe('turning off certain record type filter - Instances', () => {
+          beforeEach(async () => {
+            await modal.searchForm.recordTypeFilters(0).clickAndBlur();
+          });
+
+          it('should display correct amount of transformation fields', () => {
+            expect(modal.transformations.list.rowCount).to.equal(2);
+          });
+
+          it('should check select all checkbox', () => {
+            expect(modal.transformations.selectAllCheckbox.isChecked).to.be.true;
+          });
+        });
+
+        describe('clicking on select all checkbox', () => {
+          beforeEach(async () => {
+            await modal.transformations.selectAllCheckbox.clickInput();
+          });
+
+          it('should select all transformations (apply selection to unselected items)', () => {
+            expect(modal.transformations.checkboxes(0).isChecked).to.be.true;
+            expect(modal.transformations.checkboxes(1).isChecked).to.be.true;
+            expect(modal.transformations.checkboxes(2).isChecked).to.be.true;
+          });
+
+          it('should check select all checkbox', () => {
+            expect(modal.transformations.selectAllCheckbox.isChecked).to.be.true;
+          });
+
+          it('should update total selected count', () => {
+            expect(modal.totalSelected.text).to.equal(totalSelectedMessage(3));
+          });
+        });
+      });
+
+      describe('clicking on select all checkbox', () => {
+        beforeEach(async () => {
+          await modal.transformations.selectAllCheckbox.clickInput();
+        });
+
+        it('should deselect all transformations', () => {
+          expect(modal.transformations.checkboxes(0).isChecked).to.be.false;
+          expect(modal.transformations.checkboxes(1).isChecked).to.be.false;
+          expect(modal.transformations.checkboxes(2).isChecked).to.be.false;
+        });
+
+        it('should uncheck select all checkbox', () => {
+          expect(modal.transformations.selectAllCheckbox.isChecked).to.be.false;
+        });
+
+        it('should update total selected count', () => {
+          expect(modal.totalSelected.text).to.equal(totalSelectedMessage(0));
+        });
+      });
+
+      describe('turning off certain record type filters', () => {
         beforeEach(async () => {
           await modal.searchForm.recordTypeFilters(0).clickAndBlur();
           await modal.searchForm.recordTypeFilters(1).clickAndBlur();
         });
 
-        it('should display all transformation fields', () => {
-          expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-          expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
+        it('should display correct amount of transformation fields', () => {
+          expect(modal.transformations.list.rowCount).to.equal(1);
+          expect(modal.resultsPane.header.sub).to.equal(foundFieldsAmountMessage(1));
+        });
+
+        it('should filter out the transformation list', () => {
+          expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[1].displayName);
+        });
+
+        describe('clicking on select all checkbox', () => {
+          beforeEach(async () => {
+            await modal.transformations.selectAllCheckbox.clickInput();
+          });
+
+          it('should deselect all displayed transformations', () => {
+            expect(modal.transformations.checkboxes(0).isChecked).to.be.false;
+          });
+
+          it('should uncheck select all checkbox', () => {
+            expect(modal.transformations.selectAllCheckbox.isChecked).to.be.false;
+          });
+
+          it('should update total selected count', () => {
+            expect(modal.totalSelected.text).to.equal(totalSelectedMessage(2));
+          });
+        });
+
+        describe('turning on filters again', () => {
+          beforeEach(async () => {
+            await modal.searchForm.recordTypeFilters(0).clickAndBlur();
+            await modal.searchForm.recordTypeFilters(1).clickAndBlur();
+          });
+
+          it('should display all transformation fields', () => {
+            expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
+            expect(modal.resultsPane.header.sub).to.equal(foundFieldsAmountMessage(initialValues.transformations.length));
+          });
         });
       });
     });
@@ -215,7 +351,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
           it('should display all transformation fields', () => {
             expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-            expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
+            expect(modal.resultsPane.header.sub).to.equal(foundFieldsAmountMessage(initialValues.transformations.length));
           });
 
           it('should reset the form UI', () => {
@@ -234,7 +370,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       it('should display all transformation fields', () => {
         expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
-        expect(modal.resultsPane.header.sub).to.equal(`${initialValues.transformations.length} fields found`);
+        expect(modal.resultsPane.header.sub).to.equal(foundFieldsAmountMessage(initialValues.transformations.length));
       });
     });
   });

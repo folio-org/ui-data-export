@@ -42,8 +42,7 @@ export const MappingProfilesTransformationsModal = ({
   const [isFilterPaneOpen, setFilterPaneOpen] = useState(true);
   const [searchValue, setSearchValue] = useState(initialSearchFormValues.searchValue);
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
-
-  const totalSelectedCount = 0;
+  const [selectedTransformations, setSelectedTransformations] = useState({});
 
   const resetSearchForm = useCallback(() => {
     setSearchFilters(initialSearchFormValues.filters);
@@ -62,8 +61,18 @@ export const MappingProfilesTransformationsModal = ({
     : initialTransformationsValues.transformations
       .filter(value => value.displayName.toLowerCase().includes(searchValue));
 
-  const searchResults = searchValueResults
-    .filter(value => get(searchFilters, 'recordTypes', []).includes(value.recordType));
+  const searchResults = [];
+  let displayedCheckedItemsAmount = 0;
+
+  searchValueResults.forEach(transformation => {
+    if (get(searchFilters, 'recordTypes', []).includes(transformation.recordType)) {
+      searchResults.push(transformation);
+
+      if (selectedTransformations[transformation.order]) {
+        displayedCheckedItemsAmount++;
+      }
+    }
+  });
 
   const toggleFilterPane = useCallback(() => setFilterPaneOpen(curState => !curState), []);
 
@@ -71,6 +80,11 @@ export const MappingProfilesTransformationsModal = ({
     ...curFilters,
     [key]: value,
   })), []);
+
+  const handleSelectChange = useCallback(
+    transformations => setSelectedTransformations(transformations),
+    [],
+  );
 
   const handleSearchFormSubmit = useCallback(values => {
     setSearchValue(values.searchValue?.toLowerCase());
@@ -90,7 +104,7 @@ export const MappingProfilesTransformationsModal = ({
         <div data-test-transformations-total-selected>
           <FormattedMessage
             id="ui-data-export.modal.totalSelected"
-            values={{ count: totalSelectedCount }}
+            values={{ count: Object.keys(selectedTransformations).length }}
           />
         </div>
         <Button
@@ -148,8 +162,9 @@ export const MappingProfilesTransformationsModal = ({
           <TransformationsForm
             initialValues={initialTransformationsValues}
             searchResults={searchResults}
-            autosize
+            isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
             onSubmit={noop}
+            onSelectChange={handleSelectChange}
           />
         </Pane>
       </Paneset>
