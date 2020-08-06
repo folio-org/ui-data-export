@@ -13,6 +13,7 @@
 * Accommodate `FullScreenView` component usage according to [changes in stripes-data-transfer-components](https://github.com/folio-org/stripes-data-transfer-components/pull/88/files). UIDATIMP-535.
 * Implement search feature in mapping profile transformations. UIDEXP-130.
 * Update `stripes` to `v5.0.0` and `react-router-dom` to `5.2.0`. Move `stripes-data-transfer-components` to `dependencies`. Remove couple TODOs. UIDEXP-136.
+* Implement transformations selection. UIDEXP-71.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)

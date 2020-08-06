@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { isEqual } from 'lodash';
+import {
+  isEqual,
+  noop,
+} from 'lodash';
 
 import {
   TextField,
@@ -19,16 +22,35 @@ const columnWidths = {
 };
 const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
-export const TransformationField = ({ contentData }) => {
+export const TransformationField = ({
+  contentData,
+  isSelectAllChecked,
+  onSelectChange,
+  onSelectAll,
+}) => {
   const intl = useIntl();
 
   const formatter = {
-    isSelected: () => (
-      <Checkbox
-        data-test-select-field
-        aria-label={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectField' })}
+    isSelected: record => (
+      <Field
+        key={record.displayName}
+        name={`transformations[${record.order}].isSelected`}
         type="checkbox"
-      />
+      >
+        { ({ input }) => (
+          <Checkbox
+            name={input.name}
+            checked={input.checked}
+            aria-label={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectField' })}
+            data-test-select-field
+            marginBottom0
+            onChange={e => {
+              input.onChange(e);
+              onSelectChange();
+            }}
+          />
+        )}
+      </Field>
     ),
     fieldName: record => record.displayName,
     transformation: record => (
@@ -46,15 +68,18 @@ export const TransformationField = ({ contentData }) => {
     ),
   };
 
-  const isSelectedLabel = intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' });
+  const selectAllLabel = intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' });
 
   const columnMapping = {
     isSelected: (
       <Checkbox
+        id="select-all-checkbox"
         data-test-select-all-fields
+        checked={isSelectAllChecked}
         type="checkbox"
-        title={isSelectedLabel}
-        aria-label={isSelectedLabel}
+        title={selectAllLabel}
+        aria-label={selectAllLabel}
+        onChange={onSelectAll}
       />
     ),
     fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
@@ -83,5 +108,17 @@ export const TransformationField = ({ contentData }) => {
     </FieldArray>
   );
 };
+TransformationField.defaultProps = {
+  isSelectAllChecked: false,
+  // TODO: noop is a temp solution to support the previous version.
+  // Remove it in UIDEXP-73 and mark the field as required
+  onSelectChange: noop,
+  onSelectAll: noop,
+};
 
-TransformationField.propTypes = { contentData: PropTypes.arrayOf(PropTypes.object.isRequired) };
+TransformationField.propTypes = {
+  contentData: PropTypes.arrayOf(PropTypes.object.isRequired),
+  isSelectAllChecked: PropTypes.bool,
+  onSelectChange: PropTypes.func,
+  onSelectAll: PropTypes.func,
+};
