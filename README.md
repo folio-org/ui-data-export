@@ -32,6 +32,7 @@ See the [serve](https://github.com/folio-org/stripes-cli/blob/master/doc/command
 
 ## Additional information
 
+Project [code style guide](./CODESTYLEGUIDE.md).
 Other [modules](https://dev.folio.org/source-code/#client-side).
 
 See project [UIDEXP](https://issues.folio.org/projects/UIDEXP)
