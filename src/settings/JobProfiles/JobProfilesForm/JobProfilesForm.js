@@ -78,7 +78,7 @@ const JobProfilesForm = props => {
                     id="mapping-profile-id"
                     component={Select}
                     dataOptions={mappingProfiles}
-                    placeholder={intl.formatMessage({ id: 'ui-data-export.selectMappingProfile' })}
+                    placeholder={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.selectProfile' })}
                     fullWidth
                     required
                   />

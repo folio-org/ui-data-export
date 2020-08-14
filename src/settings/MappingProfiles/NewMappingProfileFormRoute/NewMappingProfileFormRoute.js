@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
@@ -9,15 +10,17 @@ const NewMappingProfileFormRoute = ({
   onCancel,
   initialValues,
 }) => {
+  const intl = useIntl();
   const handleSubmit = useProfileHandlerWithCallout({
-    errorMessageId: 'ui-data-export.mappingProfiles.errorCallout',
-    successMessageId: 'ui-data-export.mappingProfiles.createdCallout',
+    errorMessageId: 'ui-data-export.mappingProfiles.create.errorCallout',
+    successMessageId: 'ui-data-export.mappingProfiles.create.successCallout',
     onAction: onSubmit,
     onCancel,
   });
 
   return (
     <MappingProfilesFormContainer
+      contentLabel={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.newProfile' })}
       initialValues={initialValues}
       onSubmit={handleSubmit}
       onCancel={onCancel}

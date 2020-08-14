@@ -32,6 +32,17 @@ describe('Field mapping profile details', () => {
     expect(mappingProfileDetails.isPresent).to.be.true;
   });
 
+  describe('clicking on edit mapping profile button', () => {
+    beforeEach(async () => {
+      await mappingProfileDetails.actionMenu.click();
+      await mappingProfileDetails.actionMenu.editProfileButton.click();
+    });
+
+    it('should navigate to edit mapping profile page', function () {
+      expect(this.location.pathname.endsWith(`/data-export/mapping-profiles/edit/${mappingProfile.id}`)).to.be.true;
+    });
+  });
+
   describe('navigating to deleting confirmation modal', () => {
     const callout = new CalloutInteractor();
 
@@ -62,7 +73,7 @@ describe('Field mapping profile details', () => {
         await mappingProfileDetails.deletingConfirmationModal.confirmButton.click();
       });
 
-      it('should navigate to job profiles settings page', function () {
+      it('should navigate to mapping profiles settings page', function () {
         expect(this.location.pathname.endsWith('/data-export/mapping-profiles')).to.be.true;
       });
 

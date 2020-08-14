@@ -25,8 +25,8 @@ const NewJobProfileRoute = props => {
   } = props;
 
   const handleSubmit = useProfileHandlerWithCallout({
-    errorMessageId: 'ui-data-export.jobProfiles.errorCallout',
-    successMessageId: 'ui-data-export.jobProfiles.createdCallout',
+    errorMessageId: 'ui-data-export.jobProfiles.create.errorCallout',
+    successMessageId: 'ui-data-export.jobProfiles.create.successCallout',
     onAction: onSubmit,
     onCancel,
   });

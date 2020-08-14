@@ -183,7 +183,7 @@ describe('MappingProfileDetails', () => {
 
         beforeEach(async () => {
           await mappingProfileDetails.actionMenu.deleteProfileButton.click();
-          await wait(3000);
+          await wait();
         });
 
         it('should display delete confirmation modal', () => {
@@ -199,11 +199,10 @@ describe('MappingProfileDetails', () => {
           expect(deletingConfirmationModal.confirmButton.text).to.equal(translations.delete);
         });
 
-        // TODO: Enable tests after resolving STCOR-445
-        describe.skip('clicking on cancel button', () => {
+        describe('clicking on cancel button', () => {
           beforeEach(async () => {
             await deletingConfirmationModal.cancelButton.click();
-            await wait(2000);
+            await wait();
           });
 
           it('should hide delete confirmation modal', () => {

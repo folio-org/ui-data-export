@@ -52,6 +52,7 @@ describe('MappingProfilesForm', () => {
           <Paneset>
             <Router>
               <MappingProfilesFormContainer
+                contentLabel="Content label"
                 initialValues={initialValues}
                 onSubmit={handleSubmitSpy}
                 onCancel={handleCloseSpy}
@@ -279,6 +280,7 @@ describe('MappingProfilesForm', () => {
         <Paneset>
           <Router>
             <MappingProfilesFormContainer
+              contentLabel="Content label"
               initialValues={initialValues}
               onSubmit={values => {
                 result = values;

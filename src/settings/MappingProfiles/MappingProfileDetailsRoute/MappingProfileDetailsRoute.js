@@ -21,13 +21,15 @@ const MappingProfileDetailsRoute = ({
     jobProfiles,
   },
   mutator: { mappingProfile: { DELETE } },
-  match,
+  history,
+  match: { params },
+  location,
 }) => {
   // `find` is used to make sure the matched job profile, mapping profile are displayed to avoid
   // the flickering because of the disappearing of the previous and appearing of the new ones
   // TODO: try `useManifest` hook once it is ready to avoid that
-  const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: match.params.id });
-  const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: match.params.id }));
+  const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
+  const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: params.id }));
   const isDefaultProfile = mappingProfileRecord?.id === DEFAULT_MAPPING_PROFILE_ID;
 
   return (
@@ -36,6 +38,7 @@ const MappingProfileDetailsRoute = ({
       isProfileUsed={isProfileUsed}
       isDefaultProfile={isDefaultProfile}
       isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
+      onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
       onCancel={onCancel}
       onDelete={() => DELETE({ id: mappingProfileRecord?.id })}
     />
@@ -44,6 +47,8 @@ const MappingProfileDetailsRoute = ({
 
 MappingProfileDetailsRoute.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  location: PropTypes.shape({ search: PropTypes.string.isRequired }).isRequired,
   onCancel: PropTypes.func.isRequired,
   resources: PropTypes.shape({
     mappingProfile: PropTypes.shape({ records: PropTypes.arrayOf(mappingProfileShape) }),

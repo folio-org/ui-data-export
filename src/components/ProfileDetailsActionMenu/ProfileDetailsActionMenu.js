@@ -8,6 +8,7 @@ import {
 } from '@folio/stripes/components';
 
 export const ProfileDetailsActionMenu = ({
+  onEdit,
   onDelete,
   onToggle,
   isProfileUsed,
@@ -25,7 +26,7 @@ export const ProfileDetailsActionMenu = ({
         data-test-edit-profile-button
         buttonStyle="dropdownItem"
         disabled={isDefaultProfile || isProfileUsed}
-        onClick={onToggle}
+        onClick={buildButtonClickHandler(onEdit)}
       >
         <Icon icon="edit">
           <FormattedMessage id="stripes-data-transfer-components.edit" />
@@ -58,5 +59,6 @@ ProfileDetailsActionMenu.propTypes = {
   isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

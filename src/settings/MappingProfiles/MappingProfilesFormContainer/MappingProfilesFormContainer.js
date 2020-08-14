@@ -3,7 +3,6 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import { useIntl } from 'react-intl';
 
 import {
   Layer,
@@ -17,17 +16,20 @@ import { mappingProfileTransformations } from '../MappingProfilesTransformations
 import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 export const MappingProfilesFormContainer = props => {
-  const { onSubmit } = props;
+  const {
+    initialTransformations,
+    onSubmit,
+    contentLabel,
+  } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
-  const [selectedTransformations, setSelectedTransformations] = useState([]);
+  const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
   const initialTransformationsValues = { transformations: generateTransformationFieldsValues(mappingProfileTransformations) };
   const calloutRef = useRef(null);
-  const intl = useIntl();
 
   return (
     <Layer
       isOpen
-      contentLabel={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.newProfile' })}
+      contentLabel={contentLabel}
     >
       <MappingProfilesForm
         {...props}
@@ -48,7 +50,7 @@ export const MappingProfilesFormContainer = props => {
           if (calloutRef.current) {
             calloutRef.current.sendCallout({
               message: <SafeHTMLMessage
-                id="ui-data-export.mappingProfiles.transformations.savedCallout"
+                id="ui-data-export.mappingProfiles.transformations.save.successCallout"
                 values={{ count: transformations.length }}
               />,
             });
@@ -62,4 +64,10 @@ export const MappingProfilesFormContainer = props => {
   );
 };
 
-MappingProfilesFormContainer.propTypes = { onSubmit: PropTypes.func.isRequired };
+MappingProfilesFormContainer.propTypes = {
+  initialTransformations: PropTypes.arrayOf(PropTypes.object),
+  contentLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+MappingProfilesFormContainer.defaultProps = { initialTransformations: [] };

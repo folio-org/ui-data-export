@@ -10,23 +10,23 @@ import {
 } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/TransformationsField';
 
 describe('generateTransformationFieldsValues', () => {
-  it('should generate initial transformation values correctly', () => {
-    const data = [
-      {
-        id: 'electronicAccess.uri',
-        path: 'items[*].electronicAccess[*].uri',
-        recordType: 'ITEM',
-        displayName: 'Items - Electronic access - URI',
-      },
-      {
-        id: 'materialTypeId',
-        path: 'items[*].materialTypeId',
-        recordType: 'ITEM',
-        displayName: 'Items - Material types',
-      },
-    ];
+  const allTransformations = [
+    {
+      id: 'electronicAccess.uri',
+      path: 'items[*].electronicAccess[*].uri',
+      recordType: 'ITEM',
+      displayName: 'Items - Electronic access - URI',
+    },
+    {
+      id: 'materialTypeId',
+      path: 'items[*].materialTypeId',
+      recordType: 'ITEM',
+      displayName: 'Items - Material types',
+    },
+  ];
 
-    expect(generateTransformationFieldsValues(data)).to.deep.equal(
+  it('should generate initial transformation values correctly with empty profile transformations', () => {
+    expect(generateTransformationFieldsValues(allTransformations)).to.deep.equal(
       [
         {
           fieldId: 'electronicAccess.uri',
@@ -40,6 +40,40 @@ describe('generateTransformationFieldsValues', () => {
           path: 'items[*].materialTypeId',
           recordType: 'ITEM',
           displayName: 'Items - Material types',
+          order: 1,
+        },
+      ],
+    );
+  });
+
+  it('should generate initial transformation values correctly with non empty profile transformations', () => {
+    const profileTransformations = [
+      {
+        id: 'materialTypeId',
+        path: 'items[*].materialTypeId',
+        recordType: 'ITEM',
+        displayName: 'Items - Material types',
+        enabled: true,
+        transformation: 'Transformation value',
+      },
+    ];
+
+    expect(generateTransformationFieldsValues(allTransformations, profileTransformations)).to.deep.equal(
+      [
+        {
+          fieldId: 'electronicAccess.uri',
+          path: 'items[*].electronicAccess[*].uri',
+          recordType: 'ITEM',
+          displayName: 'Items - Electronic access - URI',
+          order: 0,
+        },
+        {
+          fieldId: 'materialTypeId',
+          path: 'items[*].materialTypeId',
+          recordType: 'ITEM',
+          displayName: 'Items - Material types',
+          isSelected: true,
+          transformation: 'Transformation value',
           order: 1,
         },
       ],

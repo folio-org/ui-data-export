@@ -4,7 +4,6 @@ import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
-import { noop } from 'lodash';
 import { Field } from 'react-final-form';
 
 import {
@@ -43,6 +42,7 @@ const validate = values => {
 
 const MappingProfilesFormComponent = props => {
   const {
+    title,
     pristine,
     submitting,
     transformations,
@@ -56,7 +56,7 @@ const MappingProfilesFormComponent = props => {
   return (
     <FullScreenForm
       id="mapping-profiles-form"
-      paneTitle={<FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />}
+      paneTitle={title}
       isSubmitButtonDisabled={pristine || submitting}
       onSubmit={handleSubmit}
       onCancel={onCancel}
@@ -130,17 +130,16 @@ MappingProfilesFormComponent.propTypes = {
   transformations: PropTypes.arrayOf(PropTypes.object),
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
+  title: PropTypes.node,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
-  onCancel: PropTypes.func,
+  onCancel: PropTypes.func.isRequired,
 };
 
-MappingProfilesFormComponent.defaultProps = {
-  transformations: [],
-  onCancel: noop,
-};
+MappingProfilesFormComponent.defaultProps = { title: <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" /> };
 
 export const MappingProfilesForm = stripesFinalForm({
   validate,
   subscription: { values: true },
+  navigationCheck: true,
 })(MappingProfilesFormComponent);
