@@ -12,8 +12,12 @@ import { noop } from 'lodash';
 import sinon from 'sinon';
 
 import { Paneset } from '@folio/stripes/components';
+import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
-import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
+import {
+  mountWithContext,
+  wait,
+} from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -24,17 +28,7 @@ import { MappingProfilesFormContainer } from '../../../../../../src/settings/Map
 const initialValues = {
   recordTypes: [],
   outputFormat: 'MARC',
-  transformations: [
-    {
-      displayName: 'Transformation field 1',
-      transformation: 'Transformation value 1',
-      order: 0,
-    },
-    {
-      displayName: 'Transformation field 2',
-      order: 1,
-    },
-  ],
+  transformations: [],
 };
 
 describe('MappingProfilesForm', () => {
@@ -51,15 +45,18 @@ describe('MappingProfilesForm', () => {
       handleSubmitSpy.resetHistory();
 
       await mountWithContext(
-        <Paneset>
-          <Router>
-            <MappingProfilesFormContainer
-              initialValues={initialValues}
-              onSubmit={handleSubmitSpy}
-              onCancel={noop}
-            />
-          </Router>
-        </Paneset>,
+        <>
+          <div id="OverlayContainer" />
+          <Paneset>
+            <Router>
+              <MappingProfilesFormContainer
+                initialValues={initialValues}
+                onSubmit={handleSubmitSpy}
+                onCancel={noop}
+              />
+            </Router>
+          </Paneset>
+        </>,
         translationsProperties,
       );
     });
@@ -112,16 +109,8 @@ describe('MappingProfilesForm', () => {
       expect(form.summary.outputFormat.label).to.equal(`${translations.outputFormat}*`);
     });
 
-    it('should display correct transformation fields headers', () => {
-      expect(form.transformations.list.headers(1).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
-      expect(form.transformations.list.headers(2).text).to.equal(translations['mappingProfiles.transformations.transformation']);
-    });
-
-    it('should display correct transformation fields values', () => {
-      expect(form.transformations.list.rows(0).cells(1).text).to.equal('Transformation field 1');
-      expect(form.transformations.valuesFields(0).val).to.equal('Transformation value 1');
-      expect(form.transformations.list.rows(1).cells(1).text).to.equal('Transformation field 2');
-      expect(form.transformations.valuesFields(1).val).to.equal('');
+    it('should not display empty transformation fields', () => {
+      expect(form.transformations.isPresent).to.be.false;
     });
 
     it('should disable save button if there are not changes', () => {
@@ -224,6 +213,28 @@ describe('MappingProfilesForm', () => {
         expect(form.transformationsModal.isPresent).to.be.true;
       });
 
+      describe('saving filled and checked transformation', () => {
+        const callout = new CalloutInteractor();
+
+        beforeEach(async () => {
+          await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+          await form.transformationsModal.transformations.checkboxes(0).clickInput();
+          await form.transformationsModal.saveButton.click();
+          await wait();
+        });
+
+        it('should display correct transformations table with filled values', () => {
+          expect(form.transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
+          expect(form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
+          expect(form.transformations.rows(0).cells(0).text).to.equal('Holdings - Call number');
+          expect(form.transformations.rows(0).cells(1).text).to.equal('Custom value');
+        });
+
+        it('should display success callout', () => {
+          expect(callout.successCalloutIsPresent).to.be.true;
+        });
+      });
+
       describe('clicking on cancel button', () => {
         beforeEach(async () => {
           await form.transformationsModal.cancelButton.click();
@@ -240,7 +251,6 @@ describe('MappingProfilesForm', () => {
     let result;
     const name = 'Profile name';
     const description = 'Description value';
-    const transformationValue = 'Transformation value 2';
 
     beforeEach(async () => {
       await mountWithContext(
@@ -264,7 +274,12 @@ describe('MappingProfilesForm', () => {
         await form.summary.name.fillAndBlur(name);
         await form.summary.recordType.checkboxes(2).clickInput();
         await form.summary.description.fillAndBlur(description);
-        await form.transformations.valuesFields(1).fillAndBlur(transformationValue);
+        await form.addTransformationButton.click();
+        await wait();
+        await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+        await form.transformationsModal.transformations.checkboxes(0).clickInput();
+        await form.transformationsModal.saveButton.click();
+        await wait();
         await form.fullScreen.submitButton.click();
       });
 
@@ -273,13 +288,13 @@ describe('MappingProfilesForm', () => {
         expect(result.description).to.equal(description);
         expect(result.outputFormat).to.equal('MARC');
         expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.ITEM.type]);
-        expect(result.transformations).to.deep.equal([
-          initialValues.transformations[0],
-          {
-            ...initialValues.transformations[1],
-            transformation: transformationValue,
-          },
-        ]);
+        expect(result.transformations).to.deep.equal([{
+          enabled: true,
+          fieldId: 'callNumber',
+          path: '$.holdings[*].callNumber',
+          recordType: 'HOLDINGS',
+          transformation: 'Custom value',
+        }]);
       });
     });
   });

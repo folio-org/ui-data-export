@@ -55,6 +55,7 @@ describe('normalizeTransformationFormValues', () => {
       recordType: 'ITEM',
       displayName: 'Items - Electronic access - URI',
       transformation: 'Transformation value 1',
+      isSelected: true,
       order: 0,
     },
     {
@@ -64,10 +65,11 @@ describe('normalizeTransformationFormValues', () => {
       displayName: 'Items - Material types',
       transformation: 'Transformation value 2',
       order: 1,
+      isSelected: false,
     },
   ];
 
-  it('should normalize transformation values correctly', () => {
+  it('should normalize transformation values correctly and filter unselected items', () => {
     expect(normalizeTransformationFormValues(data)).to.deep.equal(
       [
         {
@@ -75,31 +77,6 @@ describe('normalizeTransformationFormValues', () => {
           path: 'items[*].electronicAccess[*].uri',
           recordType: 'ITEM',
           transformation: 'Transformation value 1',
-          enabled: true,
-        },
-        {
-          fieldId: 'materialTypeId',
-          path: 'items[*].materialTypeId',
-          recordType: 'ITEM',
-          transformation: 'Transformation value 2',
-          enabled: true,
-        },
-      ],
-    );
-  });
-
-  it('should filter out items with empty transformation field', () => {
-    const modifiedData = data.map(item => ({ ...item }));
-
-    delete modifiedData[0].transformation;
-
-    expect(normalizeTransformationFormValues(modifiedData)).to.deep.equal(
-      [
-        {
-          fieldId: 'materialTypeId',
-          path: 'items[*].materialTypeId',
-          recordType: 'ITEM',
-          transformation: 'Transformation value 2',
           enabled: true,
         },
       ],

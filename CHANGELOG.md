@@ -15,6 +15,7 @@
 * Update `stripes` to `v5.0.0` and `react-router-dom` to `5.2.0`. Move `stripes-data-transfer-components` to `dependencies`. Remove couple TODOs. UIDEXP-136.
 * Implement transformations selection. UIDEXP-71.
 * Create code style guide document. UIDEXP-148.
+* Implement transformations saving. UIDEXP-73.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)

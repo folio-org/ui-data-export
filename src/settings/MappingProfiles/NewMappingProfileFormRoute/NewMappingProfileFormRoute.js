@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { omit } from 'lodash';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
-import { normalizeTransformationFormValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const NewMappingProfileFormRoute = ({
   onSubmit,
@@ -21,12 +19,7 @@ const NewMappingProfileFormRoute = ({
   return (
     <MappingProfilesFormContainer
       initialValues={initialValues}
-      onSubmit={values => {
-        const mappingProfile = { ...omit(values, 'transformations') };
-
-        mappingProfile.transformations = normalizeTransformationFormValues(values.transformations);
-        handleSubmit(mappingProfile);
-      }}
+      onSubmit={handleSubmit}
       onCancel={onCancel}
     />
   );

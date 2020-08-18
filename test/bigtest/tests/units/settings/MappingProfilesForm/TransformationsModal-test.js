@@ -8,6 +8,7 @@ import {
 } from '@bigtest/mocha';
 import { cleanup } from '@bigtest/react';
 import { expect } from 'chai';
+import { noop } from 'lodash';
 
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
@@ -60,6 +61,7 @@ const foundFieldsAmountMessage = fieldsAmount => {
 
 describe('MappingProfilesTransformationsModal', () => {
   const modal = new TransformationsModalInteractor();
+  let submitResult;
 
   before(async () => {
     await cleanup();
@@ -72,6 +74,8 @@ describe('MappingProfilesTransformationsModal', () => {
           <MappingProfilesTransformationsModal
             isOpen
             initialTransformationsValues={initialValues}
+            onSubmit={selectedTransformations => { submitResult = selectedTransformations; }}
+            onCancel={noop}
           />
         </Router>,
         translationsProperties,
@@ -142,6 +146,23 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.transformations.valuesFields(0).val).to.equal(initialValues.transformations[0].transformation);
       expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[1].displayName);
       expect(modal.transformations.valuesFields(1).val).to.equal('');
+    });
+
+    describe('saving filled and checked transformation', () => {
+      beforeEach(async () => {
+        await modal.transformations.valuesFields(0).fillAndBlur('Custom value');
+        await modal.transformations.checkboxes(0).clickInput();
+        await modal.saveButton.click();
+      });
+
+      it('should insert information about selected transformations to callback', () => {
+        expect(submitResult).to.deep.equal([{
+          transformation: 'Custom value',
+          recordType: 'INSTANCE',
+          path: 'field1',
+          enabled: true,
+        }]);
+      });
     });
 
     describe('clicking on collapse search pane button', () => {

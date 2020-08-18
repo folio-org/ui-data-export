@@ -10,9 +10,11 @@ const TransformationsFormComponent = memo(({
   searchResults,
   form,
   isSelectAllChecked,
-  handleSubmit,
+  stateRef,
   onSelectChange,
 }) => {
+  stateRef.current = form;
+
   const handleSelectChange = () => {
     const transformations = get(form.getState(), 'values.transformations', []);
     const selectedTransformations = transformations.reduce((result, transformation) => {
@@ -39,7 +41,7 @@ const TransformationsFormComponent = memo(({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <TransformationField
         contentData={searchResults}
         isSelectAllChecked={isSelectAllChecked}
@@ -54,7 +56,7 @@ TransformationsFormComponent.propTypes = {
   searchResults: PropTypes.arrayOf(PropTypes.object).isRequired,
   isSelectAllChecked: PropTypes.bool,
   form: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  stateRef: PropTypes.object,
   onSelectChange: PropTypes.func.isRequired,
 };
 

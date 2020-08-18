@@ -22,8 +22,8 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FullScreenForm } from '@folio/stripes-data-transfer-components';
 
-import { TransformationField } from '../MappingProfilesTransformationsModal/TransformationsField';
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
+import { TransformationsList } from '../TransformationsList';
 import {
   required,
   requiredArray,
@@ -45,6 +45,7 @@ const MappingProfilesFormComponent = props => {
   const {
     pristine,
     submitting,
+    transformations,
     onAddTransformations,
     handleSubmit,
     onCancel,
@@ -116,7 +117,7 @@ const MappingProfilesFormComponent = props => {
                 </Button>
               )}
             >
-              <TransformationField />
+              <TransformationsList transformations={transformations} />
             </Accordion>
           </AccordionSet>
         </AccordionStatus>
@@ -126,14 +127,18 @@ const MappingProfilesFormComponent = props => {
 };
 
 MappingProfilesFormComponent.propTypes = {
+  transformations: PropTypes.arrayOf(PropTypes.object),
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  pristine: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired,
 };
 
-MappingProfilesFormComponent.defaultProps = { onCancel: noop };
+MappingProfilesFormComponent.defaultProps = {
+  transformations: [],
+  onCancel: noop,
+};
 
 export const MappingProfilesForm = stripesFinalForm({
   validate,

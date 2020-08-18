@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import {
-  isEqual,
-  noop,
-} from 'lodash';
+import { isEqual } from 'lodash';
 
 import {
   TextField,
@@ -95,9 +92,7 @@ export const TransformationField = ({
         <MultiColumnList
           id="mapping-profiles-form-transformations"
           fields={fields}
-          // fields.value is used for now the usage inside MappingProfilesForm
-          // and should be removed once that usage is removed
-          contentData={contentData || fields.value}
+          contentData={contentData}
           totalCount={fields.value.length}
           columnMapping={columnMapping}
           columnWidths={columnWidths}
@@ -108,17 +103,12 @@ export const TransformationField = ({
     </FieldArray>
   );
 };
-TransformationField.defaultProps = {
-  isSelectAllChecked: false,
-  // TODO: noop is a temp solution to support the previous version.
-  // Remove it in UIDEXP-73 and mark the field as required
-  onSelectChange: noop,
-  onSelectAll: noop,
-};
+
+TransformationField.defaultProps = { isSelectAllChecked: false };
 
 TransformationField.propTypes = {
   contentData: PropTypes.arrayOf(PropTypes.object.isRequired),
   isSelectAllChecked: PropTypes.bool,
-  onSelectChange: PropTypes.func,
-  onSelectAll: PropTypes.func,
+  onSelectChange: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
 };

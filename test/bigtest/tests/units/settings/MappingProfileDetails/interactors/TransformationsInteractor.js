@@ -4,5 +4,5 @@ import MultiColumnListInteractor from '@folio/stripes-components/lib/MultiColumn
 
 @interactor
 export class TransformationsInteractor {
-  list = new MultiColumnListInteractor('#mapping-profile-details-transformations');
+  list = new MultiColumnListInteractor('#mapping-profile-transformations-list');
 }
