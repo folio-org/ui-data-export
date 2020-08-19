@@ -12,9 +12,9 @@ export function generateTransformationFieldsValues(transformations) {
 
 export function normalizeTransformationFormValues(transformations) {
   return transformations
+    .filter(transformation => Boolean(transformation?.isSelected))
     .map(transformation => ({
-      ...omit(transformation, 'displayName', 'order'),
-      enabled: Boolean(transformation.transformation),
-    }))
-    .filter(transformation => Boolean(transformation.transformation));
+      ...omit(transformation, ['isSelected', 'order', 'displayName']),
+      enabled: true,
+    }));
 }

@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage,
-  useIntl,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
@@ -14,35 +11,17 @@ import {
   Headline,
   KeyValue,
   List,
-  MultiColumnList,
   NoValue,
   Row,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
-import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 import { ProfileDetails } from '../../ProfileDetails';
 import { mappingProfileShape } from '../shapes';
+import { TransformationsList } from '../TransformationsList';
 
 import css from './MappingProfileDetails.css';
-
-const columnWidths = {
-  fieldName: '45%',
-  transformation: '55%',
-};
-const visibleColumns = ['fieldName', 'transformation'];
-const formatter = {
-  fieldName: record => mappingProfileTransformations.find(({ path }) => path === record.path).displayName,
-  transformation: record => (
-    <pre
-      title={record.transformation}
-      className={css.transformation}
-    >
-      {record.transformation}
-    </pre>
-  ),
-};
 
 const MappingProfileDetails = props => {
   const {
@@ -50,13 +29,6 @@ const MappingProfileDetails = props => {
     stripes,
     isLoading,
   } = props;
-
-  const intl = useIntl();
-
-  const columnMapping = {
-    fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
-    transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
-  };
 
   return (
     <ProfileDetails
@@ -141,15 +113,7 @@ const MappingProfileDetails = props => {
               </Row>
             </Accordion>
             <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
-              <MultiColumnList
-                id="mapping-profile-details-transformations"
-                contentData={mappingProfile.transformations}
-                columnMapping={columnMapping}
-                columnWidths={columnWidths}
-                visibleColumns={visibleColumns}
-                formatter={formatter}
-                isEmptyMessage={<FormattedMessage id="ui-data-export.mappingProfiles.transformations.emptyMessage" />}
-              />
+              <TransformationsList transformations={mappingProfile.transformations} />
             </Accordion>
           </AccordionSet>
         </AccordionStatus>

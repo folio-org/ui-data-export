@@ -70,6 +70,7 @@
   "mappingProfiles.delete.errorCallout": "There was an error while deleting the mapping profile <b>{name}</b>",
   "mappingProfiles.delete.confirmationModal.title": "Delete mapping profile",
   "mappingProfiles.delete.confirmationModal.message": "The mapping profile <b>{name}</b> will be deleted",
+  "mappingProfiles.transformations.savedCallout": "<b>{count, number}</b> <b>{count, plural, one {transformation has} other {transformations have}}</b> been successfully <b>added</b>",
   "marc": "MARC",
   "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
   "delete": "Delete",

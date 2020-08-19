@@ -21,8 +21,6 @@ import {
   FIND_ALL_CQL,
 } from '../../../utils';
 import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
-import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
-import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 
 const customProperties = {
@@ -49,7 +47,6 @@ const sortMap = {
 const initialValues = {
   recordTypes: [],
   outputFormat: 'MARC',
-  transformations: generateTransformationFieldsValues(mappingProfileTransformations),
 };
 
 const MappingProfilesContainer = ({

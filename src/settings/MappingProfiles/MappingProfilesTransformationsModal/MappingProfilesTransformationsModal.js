@@ -2,6 +2,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
+  useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -24,6 +25,7 @@ import {
 import { recordTypes } from '../RecordTypeField';
 import { TransformationsForm } from './TransformationsForm';
 import { SearchForm } from './SearchForm';
+import { normalizeTransformationFormValues } from './TransformationsField';
 
 import css from './MappingProfilesTransformationsModal.css';
 
@@ -38,11 +40,13 @@ export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
   onCancel,
+  onSubmit,
 }) => {
   const [isFilterPaneOpen, setFilterPaneOpen] = useState(true);
   const [searchValue, setSearchValue] = useState(initialSearchFormValues.searchValue);
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
   const [selectedTransformations, setSelectedTransformations] = useState({});
+  const transformationsFormStateRef = useRef(null);
 
   const resetSearchForm = useCallback(() => {
     setSearchFilters(initialSearchFormValues.filters);
@@ -90,6 +94,13 @@ export const MappingProfilesTransformationsModal = ({
     setSearchValue(values.searchValue?.toLowerCase());
   }, []);
 
+  const handleSaveButtonClick = () => {
+    const transformations = get(transformationsFormStateRef.current.getState(), 'values.transformations', []);
+    const normalizedTransformations = normalizeTransformationFormValues(transformations);
+
+    onSubmit(normalizedTransformations);
+  };
+
   const renderFooter = () => {
     return (
       <div className={css.modalFooter}>
@@ -111,6 +122,7 @@ export const MappingProfilesTransformationsModal = ({
           data-test-transformations-save
           buttonStyle="primary"
           marginBottom0
+          onClick={handleSaveButtonClick}
         >
           <FormattedMessage id="stripes-components.saveAndClose" />
         </Button>
@@ -160,11 +172,13 @@ export const MappingProfilesTransformationsModal = ({
           {...(!isFilterPaneOpen && fullWidthStyle)}
         >
           <TransformationsForm
+            id="transformations-form"
+            stateRef={transformationsFormStateRef}
             initialValues={initialTransformationsValues}
             searchResults={searchResults}
             isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
-            onSubmit={noop}
             onSelectChange={handleSelectChange}
+            onSubmit={noop}
           />
         </Pane>
       </Paneset>
@@ -176,4 +190,5 @@ MappingProfilesTransformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   initialTransformationsValues: PropTypes.object.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
