@@ -40,9 +40,11 @@ describe('MappingProfilesForm', () => {
 
   describe('rendering mapping profiles form with stubbed submit handler', () => {
     const handleSubmitSpy = sinon.spy();
+    const handleCloseSpy = sinon.spy();
 
     beforeEach(async () => {
       handleSubmitSpy.resetHistory();
+      handleCloseSpy.resetHistory();
 
       await mountWithContext(
         <>
@@ -52,7 +54,7 @@ describe('MappingProfilesForm', () => {
               <MappingProfilesFormContainer
                 initialValues={initialValues}
                 onSubmit={handleSubmitSpy}
-                onCancel={noop}
+                onCancel={handleCloseSpy}
               />
             </Router>
           </Paneset>
@@ -135,6 +137,26 @@ describe('MappingProfilesForm', () => {
 
       it('should enable save button if there are changes', () => {
         expect(form.fullScreen.submitButton.$root.disabled).to.be.false;
+      });
+
+      describe('clicking on close button', () => {
+        beforeEach(async () => {
+          await form.fullScreen.closeButton.click();
+        });
+
+        it('should call close handler', () => {
+          expect(handleCloseSpy.called).to.be.true;
+        });
+      });
+
+      describe('clicking on cancel button', () => {
+        beforeEach(async () => {
+          await form.fullScreen.cancelButton.click();
+        });
+
+        it('should call close handler', () => {
+          expect(handleCloseSpy.called).to.be.true;
+        });
       });
 
       describe('clicking on save button', () => {

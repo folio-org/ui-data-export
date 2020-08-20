@@ -16,6 +16,7 @@
 * Implement transformations selection. UIDEXP-71.
 * Create code style guide document. UIDEXP-148.
 * Implement transformations saving. UIDEXP-73.
+* Cover closing functionality of mapping profile form by tests. UIDEXP-99.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
