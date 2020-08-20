@@ -17,7 +17,7 @@ export const mappingProfileWithTransformations = {
       fieldId: 'callNumberPrefix',
       path: '$.holdings[*].callNumberPrefix',
       enabled: true,
-      transformation: '$901 2',
+      transformation: '$901  2',
       recordType: 'HOLDINGS',
     },
   ],

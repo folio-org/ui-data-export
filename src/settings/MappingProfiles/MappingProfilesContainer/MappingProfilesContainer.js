@@ -22,6 +22,7 @@ import {
 } from '../../../utils';
 import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
+import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
 
 const customProperties = {
   columnWidths: { format: '70px' },
@@ -72,6 +73,10 @@ const MappingProfilesContainer = ({
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
         )}
+      />
+      <Route
+        path={`${match.path}/edit/:id`}
+        component={EditMappingProfileRoute}
       />
       <Route
         path={`${match.path}/create`}

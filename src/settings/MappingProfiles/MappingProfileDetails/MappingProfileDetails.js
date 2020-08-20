@@ -28,12 +28,14 @@ const MappingProfileDetails = props => {
     mappingProfile,
     stripes,
     isLoading,
+    onEdit,
   } = props;
 
   return (
     <ProfileDetails
       profile={mappingProfile}
       type="mapping"
+      onEdit={onEdit}
       {...props}
     >
       {!isLoading && (
@@ -129,6 +131,7 @@ MappingProfileDetails.propTypes = {
   isLoading: PropTypes.bool,
   stripes: PropTypes.object,
   onCancel: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
