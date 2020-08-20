@@ -8,7 +8,7 @@ import {
 } from '@bigtest/mocha';
 import { cleanup } from '@bigtest/react';
 import { expect } from 'chai';
-import { noop } from 'lodash';
+import sinon from 'sinon';
 
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
@@ -62,12 +62,15 @@ const foundFieldsAmountMessage = fieldsAmount => {
 describe('MappingProfilesTransformationsModal', () => {
   const modal = new TransformationsModalInteractor();
   let submitResult;
+  const handleCloseSpy = sinon.spy();
 
   before(async () => {
     await cleanup();
   });
 
   describe('rendering transformations modal', () => {
+    handleCloseSpy.resetHistory();
+
     beforeEach(async () => {
       await mountWithContext(
         <Router>
@@ -75,7 +78,7 @@ describe('MappingProfilesTransformationsModal', () => {
             isOpen
             initialTransformationsValues={initialValues}
             onSubmit={selectedTransformations => { submitResult = selectedTransformations; }}
-            onCancel={noop}
+            onCancel={handleCloseSpy}
           />
         </Router>,
         translationsProperties,
@@ -146,6 +149,16 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.transformations.valuesFields(0).val).to.equal(initialValues.transformations[0].transformation);
       expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[1].displayName);
       expect(modal.transformations.valuesFields(1).val).to.equal('');
+    });
+
+    describe('clicking on close button', () => {
+      beforeEach(async () => {
+        await modal.cancelButton.click();
+      });
+
+      it('should call close handler', () => {
+        expect(handleCloseSpy.called).to.be.true;
+      });
     });
 
     describe('saving filled and checked transformation', () => {
