@@ -75,7 +75,7 @@ describe('Job profiles settings', () => {
 
     describe('filling form by correct data and pressing save button - error case', () => {
       beforeEach(async function () {
-        this.server.post('/data-export/jobProfiles', {}, 500);
+        this.server.post('/data-export/job-profiles', {}, 500);
         await form.name.fillAndBlur('mapping profile');
         await form.mappingProfile.selectOption('AP Holdings 1');
         await form.fullScreen.submitButton.click();

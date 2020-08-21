@@ -4,36 +4,36 @@ export const mockLink = 'https://test-aws-export-vk.s3.amazonaws.com/CatShip.mrc
 
 export default function config() {
   this.post('/data-export/export', {}, 200);
-  this.post('/data-export/fileDefinitions', {}, 200);
-  this.post('/data-export/fileDefinitions/:id/upload', { id: 'id' }, 200);
+  this.post('/data-export/file-definitions', {}, 200);
+  this.post('/data-export/file-definitions/:id/upload', { id: 'id' }, 200);
 
-  this.get('/data-export/jobExecutions', {
+  this.get('/data-export/job-executions', {
     jobExecutions: [],
     totalRecords: 3,
   }, 200);
 
-  this.get('/data-export/jobExecutions/:jobLogId/download/:fileId', {
+  this.get('/data-export/job-executions/:jobLogId/download/:fileId', {
     fileId: '448ae575-daec-49c1-8041-d64c8ed8e5b1',
     link: mockLink,
   }, 200);
 
-  this.get('/data-export/mappingProfiles', {
+  this.get('/data-export/mapping-profiles', {
     mappingProfiles: [],
     totalRecords: 0,
   });
 
-  this.post('/data-export/jobProfiles', {}, 201);
+  this.post('/data-export/job-profiles', {}, 201);
 
-  this.post('/data-export/mappingProfiles', {}, 201);
+  this.post('/data-export/mapping-profiles', {}, 201);
 
-  this.get('/data-export/jobProfiles', {
+  this.get('/data-export/job-profiles', {
     jobProfiles: [],
     totalRecords: 0,
   });
 
-  this.get('/data-export/jobProfiles/:id', (schema, request) => schema.jobProfiles.find(request.params.id).attrs);
-  this.delete('/data-export/jobProfiles/:id', {}, 204);
+  this.get('/data-export/job-profiles/:id', (schema, request) => schema.jobProfiles.find(request.params.id).attrs);
+  this.delete('/data-export/job-profiles/:id', {}, 204);
 
-  this.get('/data-export/mappingProfiles/:id', (schema, request) => schema.mappingProfiles.find(request.params.id).attrs);
-  this.delete('/data-export/mappingProfiles/:id', {}, 204);
+  this.get('/data-export/mapping-profiles/:id', (schema, request) => schema.mappingProfiles.find(request.params.id).attrs);
+  this.delete('/data-export/mapping-profiles/:id', {}, 204);
 }

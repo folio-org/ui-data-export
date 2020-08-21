@@ -107,7 +107,7 @@ MappingProfilesContainer.manifest = Object.freeze({
   resultCount: { initialValue: INITIAL_RESULT_COUNT },
   mappingProfiles: {
     type: 'okapi',
-    path: 'data-export/mappingProfiles',
+    path: 'data-export/mapping-profiles',
     records: 'mappingProfiles',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,

@@ -112,7 +112,7 @@ const QueryFileUploaderComponent = props => {
       const fileUploadResult = await uploadFile({
         xhr: currentFileUploadXhr.current,
         file: fileToUpload,
-        url: createUrl(`${okapi.url}/data-export/fileDefinitions/${fileDefinition.id}/upload`),
+        url: createUrl(`${okapi.url}/data-export/file-definitions/${fileDefinition.id}/upload`),
         okapi,
         onFileUploadProgress: handleFileUploadProgress,
       });
@@ -197,7 +197,7 @@ QueryFileUploaderComponent.propTypes = {
 QueryFileUploaderComponent.manifest = Object.freeze({
   fileDefinition: {
     type: 'okapi',
-    path: 'data-export/fileDefinitions',
+    path: 'data-export/file-definitions',
     throwErrors: false,
     fetch: false,
   },

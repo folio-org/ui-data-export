@@ -82,7 +82,7 @@ describe('Field mapping profiles settings', () => {
 
     describe('filling form by correct data and pressing save button - error case', () => {
       beforeEach(async function () {
-        this.server.post('/data-export/mappingProfiles', {}, 500);
+        this.server.post('/data-export/mapping-profiles', {}, 500);
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur('description');

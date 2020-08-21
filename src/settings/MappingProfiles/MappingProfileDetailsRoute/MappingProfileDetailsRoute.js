@@ -62,7 +62,7 @@ const resourceActionsToPreventRefresh = { mappingProfile: ['DELETE'] };
 MappingProfileDetailsRoute.manifest = Object.freeze({
   mappingProfile: {
     type: 'okapi',
-    path: 'data-export/mappingProfiles/:{id}',
+    path: 'data-export/mapping-profiles/:{id}',
     shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
   jobProfiles: {
@@ -71,7 +71,7 @@ MappingProfileDetailsRoute.manifest = Object.freeze({
     path: (queryParams, pathComponents) => {
       const { id } = pathComponents;
 
-      return id !== DEFAULT_MAPPING_PROFILE_ID ? `data-export/jobProfiles?query=mappingProfileId==${id}&limit=1` : null;
+      return id !== DEFAULT_MAPPING_PROFILE_ID ? `data-export/job-profiles?query=mappingProfileId==${id}&limit=1` : null;
     },
     shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },

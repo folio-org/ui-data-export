@@ -18,7 +18,7 @@ export const jobProfilesManifest = {
   resultCount: { initialValue: INITIAL_RESULT_COUNT },
   jobProfiles: {
     type: 'okapi',
-    path: 'data-export/jobProfiles',
+    path: 'data-export/job-profiles',
     records: 'jobProfiles',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,

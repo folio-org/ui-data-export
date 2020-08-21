@@ -54,5 +54,5 @@ export default server => {
   server.create('mapping-profile', mappingProfileWithTransformations);
   server.create('mapping-profile', mappingProfile);
 
-  server.get('/data-export/mappingProfiles', schema => schema.mappingProfiles.all());
+  server.get('/data-export/mapping-profiles', schema => schema.mappingProfiles.all());
 };

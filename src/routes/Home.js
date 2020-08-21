@@ -69,12 +69,12 @@ function Home(props) {
   );
 }
 
-const jobsUrl = createUrl('data-export/jobExecutions', {
+const jobsUrl = createUrl('data-export/job-executions', {
   query: `status=(${JOB_EXECUTION_STATUSES.IN_PROGRESS})`,
   limit: 50,
 }, false);
 
-const logsUrl = createUrl('data-export/jobExecutions', {
+const logsUrl = createUrl('data-export/job-executions', {
   query: `status=(${JOB_EXECUTION_STATUSES.SUCCESS} OR ${JOB_EXECUTION_STATUSES.FAIL}) sortBy completedDate/sort.descending`,
   limit: 25,
 }, false);

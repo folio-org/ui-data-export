@@ -19,8 +19,8 @@ describe('Field mapping profile details', () => {
   setupApplication();
 
   beforeEach(function () {
-    this.server.get('/data-export/mappingProfiles/:id', mappingProfile);
-    this.server.get('/data-export/jobProfiles?query=mappingProfileId==custom_id&limit=1', {
+    this.server.get('/data-export/mapping-profiles/:id', mappingProfile);
+    this.server.get('/data-export/job-profiles?query=mappingProfileId==custom_id&limit=1', {
       ...jobProfile,
       ...{ mappingProfileId: mappingProfile.id },
     });
@@ -68,7 +68,7 @@ describe('Field mapping profile details', () => {
 
     describe('deleting mapping profile with errors', () => {
       beforeEach(async function () {
-        this.server.delete('/data-export/mappingProfiles/:id', {}, 500);
+        this.server.delete('/data-export/mapping-profiles/:id', {}, 500);
 
         await mappingProfileDetails.deletingConfirmationModal.confirmButton.click();
       });

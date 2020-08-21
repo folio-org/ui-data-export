@@ -106,7 +106,7 @@ describe('queryFileUploader component', () => {
 
   describe('triggering drop on uploader area with file in case of error API response', () => {
     beforeEach(async function () {
-      this.server.post('/data-export/fileDefinitions', {}, 500);
+      this.server.post('/data-export/file-definitions', {}, 500);
 
       await initiateFileUpload([new File([], 'file.csv')]);
     });
