@@ -24,7 +24,7 @@ describe('Job profile details', () => {
       ...{ id: 'custom_id' },
     });
 
-    this.server.get('/data-export/mappingProfiles/:id', mappingProfile);
+    this.server.get('/data-export/mapping-profiles/:id', mappingProfile);
 
     this.visit(`/settings/data-export/job-profiles/view/${jobProfileRecord.id}`);
   });
@@ -58,7 +58,7 @@ describe('Job profile details', () => {
 
     describe('deleting job profile with errors', () => {
       beforeEach(async function () {
-        this.server.delete('/data-export/jobProfiles/:id', {}, 500);
+        this.server.delete('/data-export/job-profiles/:id', {}, 500);
 
         await jobProfileDetails.deletingConfirmationModal.confirmButton.click();
       });

@@ -56,7 +56,7 @@ NewJobProfileRoute.manifest = Object.freeze({
   mappingProfiles: {
     type: 'okapi',
     records: 'mappingProfiles',
-    path: 'data-export/mappingProfiles',
+    path: 'data-export/mapping-profiles',
     params: { limit: '10000' },
   },
 });

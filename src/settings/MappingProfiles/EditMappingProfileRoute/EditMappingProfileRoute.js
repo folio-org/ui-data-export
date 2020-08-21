@@ -73,7 +73,7 @@ export const EditMappingProfileRouteComponent = ({
 EditMappingProfileRouteComponent.manifest = Object.freeze({
   mappingProfile: {
     type: 'okapi',
-    path: 'data-export/mappingProfiles/:{id}',
+    path: 'data-export/mapping-profiles/:{id}',
     PUT: { throwErrors: false },
   },
 });

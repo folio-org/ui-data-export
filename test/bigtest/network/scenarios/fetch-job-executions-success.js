@@ -77,7 +77,7 @@ export default server => {
     ...logJobExecutions,
   ].forEach(jobExecution => server.create('job-execution', { ...jobExecution }));
 
-  server.get('/data-export/jobExecutions', (schema, request) => {
+  server.get('/data-export/job-executions', (schema, request) => {
     const { url } = request;
     const statuses = url.match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
 

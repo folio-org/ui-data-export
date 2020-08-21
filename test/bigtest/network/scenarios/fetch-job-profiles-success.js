@@ -26,7 +26,7 @@ export default server => {
 
   server.createList('job-profile', 2);
 
-  server.get('/data-export/jobProfiles', schema => {
+  server.get('/data-export/job-profiles', schema => {
     return schema.jobProfiles.all();
   });
 };
