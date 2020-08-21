@@ -170,8 +170,8 @@
   "item.callNumberPrefix": "Item - Effective call number - Prefix",
   "item.callNumberSuffix": "Item - Effective call number - Suffix",
   "item.callNumberType": "Item - Effective call number type",
-  "holdings.callNumber": "Holdings - Call number - Call number prefix",
-  "holdings.callNumberPrefix": "Holdings - Call number - Call number",
+  "holdings.callNumber": "Holdings - Call number - Call number",
+  "holdings.callNumberPrefix": "Holdings - Call number - Call number prefix",
   "holdings.callNumberSuffix": "Holdings - Call number - Call number suffix",
   "holdings.callNumberType": "Holdings - Call number - Call number type"
 }
