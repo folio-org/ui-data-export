@@ -91,6 +91,7 @@
           "data-export.file-definitions.upload.post",
           "data-export.mapping-profiles.item.get",
           "data-export.mapping-profiles.item.post",
+          "data-export.mapping-profiles.item.put",
           "data-export.mapping-profiles.item.delete",
           "data-export.export.post",
           "data-export.mapping-profiles.collection.get",
