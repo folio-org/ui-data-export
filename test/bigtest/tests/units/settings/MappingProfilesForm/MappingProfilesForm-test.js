@@ -207,8 +207,8 @@ describe('MappingProfilesForm', () => {
                 await form.fullScreen.submitButton.click();
               });
 
-              it('should call submit handler', () => {
-                expect(handleSubmitSpy.called).to.be.true;
+              it('should display record types mismatch message', () => {
+                expect(form.summary.recordType.errorLabel).to.equal(translations['mappingProfiles.validation.recordTypeMismatch']);
               });
             });
           });
@@ -296,7 +296,7 @@ describe('MappingProfilesForm', () => {
     describe('filling form inputs and pressing submit', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur(name);
-        await form.summary.recordType.checkboxes(2).clickInput();
+        await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur(description);
         await form.addTransformationButton.click();
         await wait();
@@ -311,7 +311,7 @@ describe('MappingProfilesForm', () => {
         expect(result.name).to.equal(name);
         expect(result.description).to.equal(description);
         expect(result.outputFormat).to.equal('MARC');
-        expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.ITEM.type]);
+        expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.HOLDINGS.type]);
         expect(result.transformations).to.deep.equal([{
           enabled: true,
           fieldId: 'callNumber',

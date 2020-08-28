@@ -39,9 +39,16 @@ export const FolioRecordTypeField = memo(() => {
         data-test-folio-record-type-error
       >
         <Field
-          name="folioRecordTypeError"
+          name="recordTypes"
           component={({ meta }) => {
-            return (touched || meta.touched) && meta.error ? <span className={css.error}>{meta.error}</span> : null;
+            if ((touched || meta.touched) && meta.error) {
+              return <span className={css.error}>{meta.error}</span>;
+            }
+            if (meta.submitError) {
+              return <span className={css.error}>{meta.submitError}</span>;
+            }
+
+            return null;
           }}
         />
       </div>

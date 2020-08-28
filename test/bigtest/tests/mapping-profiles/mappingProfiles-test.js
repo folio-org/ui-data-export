@@ -5,7 +5,10 @@ import {
   it,
 } from '@bigtest/mocha';
 
-import { SearchAndSortInteractor } from '@folio/stripes-data-transfer-components/interactors';
+import {
+  SearchAndSortInteractor,
+  wait,
+} from '@folio/stripes-data-transfer-components/interactors';
 import stripesDataTransferTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
 
@@ -67,6 +70,12 @@ describe('Field mapping profiles settings', () => {
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur('description');
+        await form.addTransformationButton.click();
+        await wait();
+        await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+        await form.transformationsModal.transformations.checkboxes(0).clickInput();
+        await form.transformationsModal.saveButton.click();
+        await wait();
         await form.fullScreen.submitButton.click();
       });
 
@@ -86,6 +95,12 @@ describe('Field mapping profiles settings', () => {
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur('description');
+        await form.addTransformationButton.click();
+        await wait();
+        await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+        await form.transformationsModal.transformations.checkboxes(0).clickInput();
+        await form.transformationsModal.saveButton.click();
+        await wait();
         await form.fullScreen.submitButton.click();
       });
 

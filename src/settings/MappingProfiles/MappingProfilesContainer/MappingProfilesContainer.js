@@ -46,6 +46,7 @@ const sortMap = {
 };
 
 const initialValues = {
+  transformations: [],
   recordTypes: [],
   outputFormat: 'MARC',
 };

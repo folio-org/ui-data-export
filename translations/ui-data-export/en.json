@@ -46,6 +46,7 @@
   "mappingProfiles.selectProfile": "Select mapping profile",
   "mappingProfiles.newProfile": "New field mapping profile",
   "mappingProfiles.editProfile": "Edit field mapping profile",
+  "mappingProfiles.validation.recordTypeMismatch": "Selected record types do not match specified transformations",
   "mappingProfiles.transformations.fieldName": "Field name",
   "mappingProfiles.transformations.transformation": "Transformation",
   "mappingProfiles.transformations.addTransformation": "Add transformation",

@@ -135,7 +135,6 @@ describe('EditMappingProfileRoute', () => {
       beforeEach(async () => {
         await editMappingProfileRoute.form.summary.name.fillAndBlur('Changed name');
         await editMappingProfileRoute.form.summary.description.fillAndBlur('Changed description');
-        await editMappingProfileRoute.form.summary.recordType.checkboxes(2).clickInput();
       });
 
       describe('submitting the form - success case', () => {
@@ -150,7 +149,7 @@ describe('EditMappingProfileRoute', () => {
             transformations: sinon.match.array.deepEquals(mappingProfile.transformations),
             name: 'Changed name',
             description: 'Changed description',
-            recordTypes: ['HOLDINGS', 'ITEM'],
+            recordTypes: ['HOLDINGS'],
           }))).to.be.true;
         });
 
