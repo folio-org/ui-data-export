@@ -3,6 +3,8 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { isEmpty } from 'lodash';
 
 import {
   Layer,
@@ -14,6 +16,25 @@ import { MappingProfilesTransformationsModal } from '../MappingProfilesTransform
 import { MappingProfilesForm } from '../MappingProfilesForm';
 import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
+
+const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
+  const recordTypesInFilledTransformations = [];
+
+  selectedTransformations.forEach(({
+    recordType,
+    transformation,
+  }) => {
+    if (transformation && !recordTypesInFilledTransformations.includes(recordType)) {
+      recordTypesInFilledTransformations.push(recordType);
+    }
+  });
+
+  const recordTypesDifference = selectedRecordTypes
+    .filter(recordType => !recordTypesInFilledTransformations.includes(recordType))
+    .concat(recordTypesInFilledTransformations.filter(recordType => !selectedRecordTypes.includes(recordType)));
+
+  return isEmpty(recordTypesDifference);
+};
 
 export const MappingProfilesFormContainer = props => {
   const {
@@ -34,10 +55,16 @@ export const MappingProfilesFormContainer = props => {
       <MappingProfilesForm
         {...props}
         transformations={selectedTransformations}
-        onSubmit={values => onSubmit({
-          ...values,
-          transformations: [...selectedTransformations],
-        })}
+        onSubmit={values => {
+          if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
+            return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
+          }
+
+          return onSubmit({
+            ...values,
+            transformations: [...selectedTransformations],
+          });
+        }}
         onAddTransformations={() => setTransformationModalOpen(true)}
       />
       <MappingProfilesTransformationsModal

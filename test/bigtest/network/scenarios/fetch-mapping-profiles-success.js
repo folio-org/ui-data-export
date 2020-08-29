@@ -39,7 +39,7 @@ export const mappingProfile = {
   id: '25d81cbe-9686-11ea-bb37-0242ac130005',
   name: 'AP Holdings and Items',
   description: null,
-  recordTypes: ['HOLDINGS', 'ITEM'],
+  recordTypes: ['HOLDINGS'],
   transformations: [],
   outputFormat: 'MARC',
   metadata: {

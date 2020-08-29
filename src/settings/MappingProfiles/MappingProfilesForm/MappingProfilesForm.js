@@ -34,8 +34,8 @@ const validate = values => {
   const errors = {};
 
   errors.name = required(values.name);
-  errors.folioRecordTypeError = requiredArray(values.recordTypes);
   errors.outputFormat = required(values.outputFormat);
+  errors.recordTypes = requiredArray(values.recordTypes);
 
   return errors;
 };
@@ -50,7 +50,6 @@ const MappingProfilesFormComponent = props => {
     handleSubmit,
     onCancel,
   } = props;
-
   const intl = useIntl();
 
   return (
@@ -140,6 +139,6 @@ MappingProfilesFormComponent.defaultProps = { title: <FormattedMessage id="ui-da
 
 export const MappingProfilesForm = stripesFinalForm({
   validate,
-  subscription: { values: true },
+  subscription: { values: false },
   navigationCheck: true,
 })(MappingProfilesFormComponent);
