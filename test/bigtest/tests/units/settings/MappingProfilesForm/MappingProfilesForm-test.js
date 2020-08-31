@@ -207,8 +207,24 @@ describe('MappingProfilesForm', () => {
                 await form.fullScreen.submitButton.click();
               });
 
-              it('should display record types mismatch message', () => {
-                expect(form.summary.recordType.errorLabel).to.equal(translations['mappingProfiles.validation.recordTypeMismatch']);
+              it('should not display record types mismatch message when no transformations are provided', () => {
+                expect(form.summary.recordType.errorLabel).to.equal('');
+              });
+
+              describe('filling transformation which does not match the selected record typ and submitting the form', () => {
+                beforeEach(async () => {
+                  await form.addTransformationButton.click();
+                  await wait();
+                  await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+                  await form.transformationsModal.transformations.checkboxes(0).clickInput();
+                  await form.transformationsModal.saveButton.click();
+                  await wait();
+                  await form.fullScreen.submitButton.click();
+                });
+
+                it('should display record types mismatch message', () => {
+                  expect(form.summary.recordType.errorLabel).to.equal(translations['mappingProfiles.validation.recordTypeMismatch']);
+                });
               });
             });
           });
