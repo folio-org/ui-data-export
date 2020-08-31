@@ -4,7 +4,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { isEmpty } from 'lodash';
+import {
+  isEmpty,
+  uniq,
+} from 'lodash';
 
 import {
   Layer,
@@ -18,20 +21,17 @@ import { mappingProfileTransformations } from '../MappingProfilesTransformations
 import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
-  const recordTypesInFilledTransformations = [];
+  if (isEmpty(selectedTransformations)) {
+    return true;
+  }
 
-  selectedTransformations.forEach(({
-    recordType,
-    transformation,
-  }) => {
-    if (transformation && !recordTypesInFilledTransformations.includes(recordType)) {
-      recordTypesInFilledTransformations.push(recordType);
-    }
-  });
+  const filledSelectedTransformations = selectedTransformations.filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
+
+  const recordTypesInTransformations = uniq(filledSelectedTransformations.map(({ recordType }) => recordType));
 
   const recordTypesDifference = selectedRecordTypes
-    .filter(recordType => !recordTypesInFilledTransformations.includes(recordType))
-    .concat(recordTypesInFilledTransformations.filter(recordType => !selectedRecordTypes.includes(recordType)));
+    .filter(recordType => !recordTypesInTransformations.includes(recordType))
+    .concat(recordTypesInTransformations.filter(recordType => !selectedRecordTypes.includes(recordType)));
 
   return isEmpty(recordTypesDifference);
 };
