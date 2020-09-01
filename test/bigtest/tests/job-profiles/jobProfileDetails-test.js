@@ -51,7 +51,7 @@ describe('Job profile details', () => {
         expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
       });
 
-      it('should display success callout', function () {
+      it('should display success callout', () => {
         expect(callout.successCalloutIsPresent).to.be.true;
       });
     });
@@ -67,7 +67,7 @@ describe('Job profile details', () => {
         expect(this.location.pathname.endsWith('/data-export/job-profiles')).to.be.true;
       });
 
-      it('should display error callout', function () {
+      it('should display error callout', () => {
         expect(callout.errorCalloutIsPresent).to.be.true;
       });
     });

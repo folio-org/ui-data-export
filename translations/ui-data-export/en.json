@@ -127,8 +127,8 @@
   "instance.identifiers": "Instance - Identifier - {value}",
   "instance.instanceTypeId": "Instance - Resource type - {value}",
   "instance.modeOfIssuanceId": "Instance - Mode of issuance - {value}",
-  "item.materialTypeId": "Item - Material type - {value}",
-  "item.permanentLoanTypeId": "Item - Permanent loan type - {value}",
+  "item.materialTypeId": "Item - Material type",
+  "item.permanentLoanTypeId": "Item - Permanent loan type",
 
   "item.id": "Item - ID",
   "item.hrid": "Item - HRID",

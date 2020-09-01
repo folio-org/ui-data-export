@@ -1,5 +1,29 @@
 import { DEFAULT_MAPPING_PROFILE_ID } from '../../../../src/utils';
 
+export const allMappingProfilesTransformations = [
+  {
+    fieldId: 'holdings.callnumber',
+    displayNameKey: 'holdings.callNumber',
+    path: '$.holdings[*].callNumber',
+    recordType: 'HOLDINGS',
+  },
+  {
+    fieldId: 'holdings.holdingnotetypeid.action.note',
+    displayNameKey: 'holdings.holdingNoteTypeId',
+    referenceDataValue: 'Action note',
+    path: "$.holdings[*].notes[?(@.holdingsNoteTypeId=='d6510242-5ec3-42ed-b593-3585d2e48fd6' && (!(@.staffOnly) || @.staffOnly == false))].note",
+    recordType: 'HOLDINGS',
+  },
+];
+
+export const generateTransformationsWithDisplayName = (intl, transformations) => transformations.map(transformation => ({
+  ...transformation,
+  displayName: intl.formatMessage(
+    { id: `ui-data-export.${transformation.displayNameKey}` },
+    { value: transformation.referenceDataValue },
+  ),
+}));
+
 export const mappingProfileWithTransformations = {
   id: DEFAULT_MAPPING_PROFILE_ID,
   name: 'AP Holdings 1',
@@ -7,15 +31,15 @@ export const mappingProfileWithTransformations = {
   recordTypes: ['HOLDINGS'],
   transformations: [
     {
-      fieldId: 'callNumber',
+      fieldId: 'holdings.callnumber',
       path: '$.holdings[*].callNumber',
       enabled: true,
       transformation: '$900  1',
       recordType: 'HOLDINGS',
     },
     {
-      fieldId: 'callNumberPrefix',
-      path: '$.holdings[*].callNumberPrefix',
+      fieldId: 'holdings.holdingnotetypeid.action.note',
+      path: "$.holdings[*].notes[?(@.holdingsNoteTypeId=='d6510242-5ec3-42ed-b593-3585d2e48fd6' && (!(@.staffOnly) || @.staffOnly == false))].note",
       enabled: true,
       transformation: '$901  2',
       recordType: 'HOLDINGS',
@@ -54,5 +78,6 @@ export default server => {
   server.create('mapping-profile', mappingProfileWithTransformations);
   server.create('mapping-profile', mappingProfile);
 
+  server.get('/data-export/transformation-fields', { transformationFields: allMappingProfilesTransformations });
   server.get('/data-export/mapping-profiles', schema => schema.mappingProfiles.all());
 };

@@ -51,11 +51,13 @@
     "react-final-form": "^6.3.5",
     "react-final-form-arrays": "^3.1.1",
     "react-router-prop-types": "^1.0.4",
+    "react-window": "^1.8.5",
     "redux-form": "^7.0.3"
   },
   "peerDependencies": {
-    "@folio/stripes": "^5.0.0",
     "@folio/react-intl-safe-html": "^2.0.0",
+    "@folio/stripes": "^5.0.0",
+    "react-virtualized-auto-sizer": "*",
     "react": "*",
     "react-intl": "^4.7.2",
     "react-router": "*",
@@ -100,7 +102,8 @@
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.get",
           "data-export.job-profiles.item.post",
-          "data-export.job-profiles.item.delete"
+          "data-export.job-profiles.item.delete",
+          "data-export.transformation-fields.collection.get"
         ],
         "visible": false
       },

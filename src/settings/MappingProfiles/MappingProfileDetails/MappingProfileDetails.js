@@ -25,6 +25,7 @@ import css from './MappingProfileDetails.css';
 
 const MappingProfileDetails = props => {
   const {
+    allTransformations,
     mappingProfile,
     stripes,
     isLoading,
@@ -115,7 +116,10 @@ const MappingProfileDetails = props => {
               </Row>
             </Accordion>
             <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
-              <TransformationsList transformations={mappingProfile.transformations} />
+              <TransformationsList
+                allTransformations={allTransformations}
+                transformations={mappingProfile.transformations}
+              />
             </Accordion>
           </AccordionSet>
         </AccordionStatus>
@@ -125,6 +129,7 @@ const MappingProfileDetails = props => {
 };
 
 MappingProfileDetails.propTypes = {
+  allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   mappingProfile: mappingProfileShape,

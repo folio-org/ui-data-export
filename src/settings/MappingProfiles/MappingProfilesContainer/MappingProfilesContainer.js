@@ -1,5 +1,10 @@
-import React from 'react';
+import React, {
+  useCallback,
+  useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import { get } from 'lodash';
 import {
   match as matchShape,
   history as historyShape,
@@ -20,7 +25,8 @@ import {
   RESULT_COUNT_INCREMENT,
   FIND_ALL_CQL,
 } from '../../../utils';
-import { NewMappingProfileFormRoute } from '../NewMappingProfileFormRoute';
+import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
+import { CreateMappingProfileFormRoute } from '../CreateMappingProfileFormRoute';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
 
@@ -52,12 +58,27 @@ const initialValues = {
 };
 
 const MappingProfilesContainer = ({
-  history,
-  match,
-  location,
+  history: { push },
+  match: { path },
+  location: { search },
   resources,
   mutator,
 }) => {
+  const intl = useIntl();
+  const allTransformations = useMemo(
+    () => get(resources.transformations.records, '0.transformationFields', [])
+      .map(transformation => ({
+        ...transformation,
+        displayName: intl.formatMessage(
+          { id: `ui-data-export.${transformation.displayNameKey}` },
+          { value: transformation.referenceDataValue },
+        ),
+      })),
+    [intl, resources.transformations.records],
+  );
+  const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
+  const handleCancel = useCallback(() => push(`${path}${search}`), [push, path, search]);
+
   return (
     <>
       <MappingProfiles
@@ -67,27 +88,54 @@ const MappingProfilesContainer = ({
         {...useMappingProfilesProperties(customProperties)}
       />
       <Route
-        path={`${match.path}/view/:id`}
+        path={`${path}/view/:id`}
         render={props => (
-          <MappingProfileDetailsRoute
-            {...props}
-            onCancel={() => history.push(`${match.path}${location.search}`)}
-          />
+          <FullScreenPreloader
+            isLoading={!isTransformationsLoaded}
+            onCancel={handleCancel}
+          >
+            <MappingProfileDetailsRoute
+              {...props}
+              allTransformations={allTransformations}
+              onCancel={handleCancel}
+            />
+          </FullScreenPreloader>
         )}
       />
       <Route
-        path={`${match.path}/edit/:id`}
-        component={EditMappingProfileRoute}
+        path={`${path}/edit/:id`}
+        render={editPageProps => {
+          const handleEditPageCancel = () => push(`/settings/data-export/mapping-profiles/view/${editPageProps.match.params.id}${editPageProps.location.search}`);
+
+          return (
+            <FullScreenPreloader
+              isLoading={!isTransformationsLoaded}
+              onCancel={handleEditPageCancel}
+            >
+              <EditMappingProfileRoute
+                {...editPageProps}
+                allTransformations={allTransformations}
+                onCancel={handleEditPageCancel}
+              />
+            </FullScreenPreloader>
+          );
+        }}
       />
       <Route
-        path={`${match.path}/create`}
+        path={`${path}/create`}
         render={props => (
-          <NewMappingProfileFormRoute
-            {...props}
-            initialValues={initialValues}
-            onCancel={() => history.push(`${match.path}${location.search}`)}
-            onSubmit={mutator.mappingProfiles.POST}
-          />
+          <FullScreenPreloader
+            isLoading={!isTransformationsLoaded}
+            onCancel={handleCancel}
+          >
+            <CreateMappingProfileFormRoute
+              {...props}
+              initialValues={initialValues}
+              allTransformations={allTransformations}
+              onCancel={handleCancel}
+              onSubmit={mutator.mappingProfiles.POST}
+            />
+          </FullScreenPreloader>
         )}
       />
     </>
@@ -125,6 +173,10 @@ MappingProfilesContainer.manifest = Object.freeze({
       },
       staticFallback: { params: {} },
     },
+  },
+  transformations: {
+    type: 'okapi',
+    path: 'data-export/transformation-fields',
   },
 });
 

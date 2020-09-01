@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { cleanup } from '@bigtest/react';
 import {
   describe,
@@ -23,11 +24,21 @@ import { MappingProfileDetails } from '../../../../../../src/settings/MappingPro
 import { MappingProfileDetailsInteractor } from './interactors/MappingProfileDetailsInteractor';
 import {
   mappingProfileWithTransformations,
-  mappingProfile,
+  mappingProfile as mappingProfileWithoutTransformations,
+  allMappingProfilesTransformations,
+  generateTransformationsWithDisplayName,
 } from '../../../../network/scenarios/fetch-mapping-profiles-success';
 
-describe('MappingProfileDetails', () => {
-  const mappingProfileDetails = new MappingProfileDetailsInteractor();
+function MappingProfileDetailsContainer({
+  allTransformations = [],
+  mappingProfile = mappingProfileWithTransformations,
+  isDefaultProfile = false,
+  isProfileUsed = false,
+  isLoading = false,
+  onCancel = noop,
+  onEdit = noop,
+  onDelete = noop,
+} = {}) {
   const stripes = {
     connect: Component => props => (
       <Component
@@ -38,6 +49,30 @@ describe('MappingProfileDetails', () => {
     ),
   };
 
+  const intl = useIntl();
+
+  return (
+    <Paneset>
+      <Router>
+        <MappingProfileDetails
+          isLoading={isLoading}
+          allTransformations={generateTransformationsWithDisplayName(intl, allTransformations)}
+          stripes={stripes}
+          mappingProfile={mappingProfile}
+          isDefaultProfile={isDefaultProfile}
+          isProfileUsed={isProfileUsed}
+          onCancel={onCancel}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      </Router>
+    </Paneset>
+  );
+}
+
+describe('MappingProfileDetails', () => {
+  const mappingProfileDetails = new MappingProfileDetailsInteractor();
+
   before(async () => {
     await cleanup();
   });
@@ -45,18 +80,11 @@ describe('MappingProfileDetails', () => {
   describe('rendering details for a mapping profile which is already in use', () => {
     beforeEach(async () => {
       await mountWithContext(
-        <Paneset>
-          <Router>
-            <MappingProfileDetails
-              stripes={stripes}
-              mappingProfile={mappingProfileWithTransformations}
-              isDefaultProfile
-              isProfileUsed
-              onCancel={noop}
-              onDelete={noop}
-            />
-          </Router>
-        </Paneset>,
+        <MappingProfileDetailsContainer
+          isDefaultProfile
+          isProfileUsed
+          allTransformations={allMappingProfilesTransformations}
+        />,
         translationsProperties,
       );
     });
@@ -117,9 +145,9 @@ describe('MappingProfileDetails', () => {
     });
 
     it('should display correct transformations values', () => {
-      expect(mappingProfileDetails.transformations.list.rows(0).cells(0).text).to.equal('Holdings - Call number');
+      expect(mappingProfileDetails.transformations.list.rows(0).cells(0).text).to.equal('Holdings - Call number - Call number');
       expect(mappingProfileDetails.transformations.list.rows(0).cells(1).$root.textContent).to.equal('$900  1');
-      expect(mappingProfileDetails.transformations.list.rows(1).cells(0).text).to.equal('Holdings - Call number - prefix');
+      expect(mappingProfileDetails.transformations.list.rows(1).cells(0).text).to.equal('Holdings - Notes - Action note');
       expect(mappingProfileDetails.transformations.list.rows(1).cells(1).text).to.equal('$901 2');
     });
 
@@ -139,18 +167,7 @@ describe('MappingProfileDetails', () => {
   describe('rendering details for a mapping profile which is not already in use', () => {
     beforeEach(async () => {
       await mountWithContext(
-        <Paneset>
-          <Router>
-            <MappingProfileDetails
-              stripes={stripes}
-              mappingProfile={mappingProfile}
-              isDefaultProfile={false}
-              isProfileUsed={false}
-              onCancel={noop}
-              onDelete={noop}
-            />
-          </Router>
-        </Paneset>,
+        <MappingProfileDetailsContainer mappingProfile={mappingProfileWithoutTransformations} />,
         translationsProperties,
       );
     });
@@ -191,7 +208,7 @@ describe('MappingProfileDetails', () => {
         });
 
         it('should display delete confirmation modal with correct messages', () => {
-          const message = translations['mappingProfiles.delete.confirmationModal.message'].replace('{name}', mappingProfile.name);
+          const message = translations['mappingProfiles.delete.confirmationModal.message'].replace('{name}', mappingProfileWithoutTransformations.name);
 
           expect(deletingConfirmationModal.$('[data-test-headline]').innerText).to.equal(translations['mappingProfiles.delete.confirmationModal.title']);
           expect(deletingConfirmationModal.$('[data-test-confirmation-modal-message]').innerHTML).to.equal(message);
@@ -216,18 +233,11 @@ describe('MappingProfileDetails', () => {
   describe('rendering mapping profile details in loading state', () => {
     beforeEach(async () => {
       await mountWithContext(
-        <Paneset>
-          <Router>
-            <MappingProfileDetails
-              stripes={stripes}
-              isLoading
-              isDefaultProfile={false}
-              isProfileUsed
-              onCancel={noop}
-              onDelete={noop}
-            />
-          </Router>
-        </Paneset>,
+        <MappingProfileDetailsContainer
+          isLoading
+          isProfileUsed
+          mappingProfile={mappingProfileWithoutTransformations}
+        />,
         translationsProperties,
       );
     });

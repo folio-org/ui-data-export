@@ -38,11 +38,11 @@ describe('JobProfilesForm', () => {
     await cleanup();
   });
 
-  describe('rendering job profiles form with stubbed handlers and loaded mapping profiles', function () {
+  describe('rendering job profiles form with stubbed handlers and loaded mapping profiles', () => {
     const handleSubmitSpy = sinon.spy();
     const handleCancelSpy = sinon.spy();
 
-    beforeEach(async function () {
+    beforeEach(async () => {
       handleSubmitSpy.resetHistory();
       handleCancelSpy.resetHistory();
 
@@ -168,12 +168,12 @@ describe('JobProfilesForm', () => {
     });
   });
 
-  describe('rendering job profiles form with not stubbed submit handler and loaded mapping profiles', function () {
+  describe('rendering job profiles form with not stubbed submit handler and loaded mapping profiles', () => {
     let result = {};
     const name = 'Profile name';
     const description = 'Description value';
 
-    beforeEach(async function () {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>
@@ -206,8 +206,8 @@ describe('JobProfilesForm', () => {
     });
   });
 
-  describe('rendering job profiles with not loaded state', function () {
-    beforeEach(async function () {
+  describe('rendering job profiles with not loaded state', () => {
+    beforeEach(async () => {
       await mountWithContext(
         <Paneset>
           <Router>

@@ -15,15 +15,16 @@ import {
 import { mappingProfileShape } from '../shapes';
 
 const MappingProfileDetailsRoute = ({
-  onCancel,
   resources: {
     mappingProfile,
     jobProfiles,
   },
+  allTransformations,
   mutator: { mappingProfile: { DELETE } },
   history,
   match: { params },
   location,
+  onCancel,
 }) => {
   // `find` is used to make sure the matched job profile, mapping profile are displayed to avoid
   // the flickering because of the disappearing of the previous and appearing of the new ones
@@ -34,6 +35,7 @@ const MappingProfileDetailsRoute = ({
 
   return (
     <MappingProfileDetails
+      allTransformations={allTransformations}
       mappingProfile={mappingProfileRecord}
       isProfileUsed={isProfileUsed}
       isDefaultProfile={isDefaultProfile}
@@ -49,6 +51,7 @@ MappingProfileDetailsRoute.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string.isRequired }).isRequired,
+  allTransformations: PropTypes.arrayOf(PropTypes.object),
   onCancel: PropTypes.func.isRequired,
   resources: PropTypes.shape({
     mappingProfile: PropTypes.shape({ records: PropTypes.arrayOf(mappingProfileShape) }),

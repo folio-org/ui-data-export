@@ -53,9 +53,13 @@ const SearchFormComponent = ({
           {label => (
             <Field
               name="searchValue"
-              aria-label={label}
               marginBottom0
-              render={fieldProps => <SearchField {...fieldProps.input} />}
+              render={fieldProps => (
+                <SearchField
+                  aria-label={label}
+                  {...fieldProps.input}
+                />
+              )}
             />
           )}
         </FormattedMessage>

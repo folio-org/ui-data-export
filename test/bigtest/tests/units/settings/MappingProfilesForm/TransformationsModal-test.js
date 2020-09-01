@@ -25,19 +25,19 @@ const initialValues = {
       displayName: 'Instances - Call number - prefix',
       transformation: 'Transformation value 1',
       recordType: 'INSTANCE',
-      path: 'field1',
+      fieldId: 'field1',
       order: 0,
     },
     {
       displayName: 'Items - Electronic access - Link text Items',
       recordType: 'ITEM',
-      path: 'field2',
+      fieldId: 'field2',
       order: 1,
     },
     {
       displayName: 'Holdings - Effective call number',
       recordType: 'HOLDINGS',
-      path: 'field3',
+      fieldId: 'field3',
       order: 2,
     },
   ],
@@ -74,6 +74,7 @@ describe('MappingProfilesTransformationsModal', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Router>
+          <div id="OverlayContainer" />
           <MappingProfilesTransformationsModal
             isOpen
             initialTransformationsValues={initialValues}
@@ -172,7 +173,7 @@ describe('MappingProfilesTransformationsModal', () => {
         expect(submitResult).to.deep.equal([{
           transformation: 'Custom value',
           recordType: 'INSTANCE',
-          path: 'field1',
+          fieldId: 'field1',
           enabled: true,
         }]);
       });

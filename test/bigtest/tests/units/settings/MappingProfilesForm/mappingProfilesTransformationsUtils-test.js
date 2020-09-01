@@ -12,16 +12,16 @@ import {
 describe('generateTransformationFieldsValues', () => {
   const allTransformations = [
     {
-      id: 'electronicAccess.uri',
+      fieldId: 'electronicAccess.uri',
       path: 'items[*].electronicAccess[*].uri',
       recordType: 'ITEM',
-      displayName: 'Items - Electronic access - URI',
+      displayNameKey: 'electronicAccess.uri',
     },
     {
-      id: 'materialTypeId',
+      fieldId: 'materialTypeId',
       path: 'items[*].materialTypeId',
       recordType: 'ITEM',
-      displayName: 'Items - Material types',
+      displayNameKey: 'materialTypeId',
     },
   ];
 
@@ -32,14 +32,14 @@ describe('generateTransformationFieldsValues', () => {
           fieldId: 'electronicAccess.uri',
           path: 'items[*].electronicAccess[*].uri',
           recordType: 'ITEM',
-          displayName: 'Items - Electronic access - URI',
+          displayNameKey: 'electronicAccess.uri',
           order: 0,
         },
         {
           fieldId: 'materialTypeId',
           path: 'items[*].materialTypeId',
           recordType: 'ITEM',
-          displayName: 'Items - Material types',
+          displayNameKey: 'materialTypeId',
           order: 1,
         },
       ],
@@ -49,12 +49,16 @@ describe('generateTransformationFieldsValues', () => {
   it('should generate initial transformation values correctly with non empty profile transformations', () => {
     const profileTransformations = [
       {
-        id: 'materialTypeId',
+        fieldId: 'materialTypeId',
         path: 'items[*].materialTypeId',
         recordType: 'ITEM',
-        displayName: 'Items - Material types',
         enabled: true,
         transformation: 'Transformation value',
+      },
+      {
+        fieldId: 'electronicAccess.uri',
+        path: 'items[*].electronicAccess[*].uri',
+        recordType: 'ITEM',
       },
     ];
 
@@ -64,14 +68,15 @@ describe('generateTransformationFieldsValues', () => {
           fieldId: 'electronicAccess.uri',
           path: 'items[*].electronicAccess[*].uri',
           recordType: 'ITEM',
-          displayName: 'Items - Electronic access - URI',
+          displayNameKey: 'electronicAccess.uri',
+          isSelected: false,
           order: 0,
         },
         {
           fieldId: 'materialTypeId',
           path: 'items[*].materialTypeId',
           recordType: 'ITEM',
-          displayName: 'Items - Material types',
+          displayNameKey: 'materialTypeId',
           isSelected: true,
           transformation: 'Transformation value',
           order: 1,
@@ -87,7 +92,8 @@ describe('normalizeTransformationFormValues', () => {
       fieldId: 'electronicAccess.uri',
       path: 'items[*].electronicAccess[*].uri',
       recordType: 'ITEM',
-      displayName: 'Items - Electronic access - URI',
+      displayNameKey: 'electronicAccess.uri',
+      referenceDataValue: 'Reference data',
       transformation: 'Transformation value 1',
       isSelected: true,
       order: 0,
@@ -96,7 +102,7 @@ describe('normalizeTransformationFormValues', () => {
       fieldId: 'materialTypeId',
       path: 'items[*].materialTypeId',
       recordType: 'ITEM',
-      displayName: 'Items - Material types',
+      displayNameKey: 'materialTypeId',
       transformation: 'Transformation value 2',
       order: 1,
       isSelected: false,
