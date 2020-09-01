@@ -156,5 +156,6 @@
     "holdings.callNumber": "Holdings - Call number - Call number",
     "holdings.callNumberPrefix": "Holdings - Call number - Call number prefix",
     "holdings.callNumberSuffix": "Holdings - Call number - Call number suffix",
-    "holdings.callNumberType": "Holdings - Call number - Call number type"
+    "holdings.callNumberType": "Holdings - Call number - Call number type",
+    "mappingProfiles.validation.recordTypeMismatch": "Selected record types do not match specified transformations"
 }
