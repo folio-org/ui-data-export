@@ -156,5 +156,6 @@
     "holdings.callNumber": "المقتنيات - رقم الاستدعاء - رقم الاستدعاء",
     "holdings.callNumberPrefix": "المقتنيات - رقم الاستدعاء - بادئة رقم الاستدعاء",
     "holdings.callNumberSuffix": "المقتنيات - رقم الاستدعاء - لاحقة رقم الاستدعاء",
-    "holdings.callNumberType": "المقتنيات - رقم الاستدعاء - نوع رقم الاستدعاء"
+    "holdings.callNumberType": "المقتنيات - رقم الاستدعاء - نوع رقم الاستدعاء",
+    "mappingProfiles.validation.recordTypeMismatch": "لا تتطابق أنواع التسجيلات المحددة مع التحويلات المحددة"
 }
