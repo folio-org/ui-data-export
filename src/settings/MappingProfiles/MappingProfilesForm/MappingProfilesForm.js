@@ -46,6 +46,7 @@ const MappingProfilesFormComponent = props => {
     pristine,
     submitting,
     transformations,
+    allTransformations,
     onAddTransformations,
     handleSubmit,
     onCancel,
@@ -116,7 +117,10 @@ const MappingProfilesFormComponent = props => {
                 </Button>
               )}
             >
-              <TransformationsList transformations={transformations} />
+              <TransformationsList
+                transformations={transformations}
+                allTransformations={allTransformations}
+              />
             </Accordion>
           </AccordionSet>
         </AccordionStatus>
@@ -127,6 +131,7 @@ const MappingProfilesFormComponent = props => {
 
 MappingProfilesFormComponent.propTypes = {
   transformations: PropTypes.arrayOf(PropTypes.object),
+  allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   title: PropTypes.node,

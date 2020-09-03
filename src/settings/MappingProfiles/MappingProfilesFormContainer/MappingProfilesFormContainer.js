@@ -17,7 +17,6 @@ import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
 import { MappingProfilesForm } from '../MappingProfilesForm';
-import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
 import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
@@ -38,13 +37,14 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
 
 export const MappingProfilesFormContainer = props => {
   const {
+    allTransformations,
     initialTransformations,
     onSubmit,
     contentLabel,
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
   const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
-  const initialTransformationsValues = { transformations: generateTransformationFieldsValues(mappingProfileTransformations) };
+  const initialTransformationsValues = React.useMemo(() => ({ transformations: generateTransformationFieldsValues(allTransformations) }), [allTransformations]);
   const calloutRef = useRef(null);
 
   return (
@@ -55,6 +55,7 @@ export const MappingProfilesFormContainer = props => {
       <MappingProfilesForm
         {...props}
         transformations={selectedTransformations}
+        allTransformations={allTransformations}
         onSubmit={values => {
           if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
@@ -92,6 +93,7 @@ export const MappingProfilesFormContainer = props => {
 };
 
 MappingProfilesFormContainer.propTypes = {
+  allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   initialTransformations: PropTypes.arrayOf(PropTypes.object),
   contentLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,

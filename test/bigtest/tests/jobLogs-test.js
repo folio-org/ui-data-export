@@ -131,7 +131,7 @@ describe('Job logs list', () => {
     });
 
     describe('clicking on file name with success flow', () => {
-      beforeEach(async function () {
+      beforeEach(async () => {
         await jobLogsContainerInteractor.fileNameBtns(0).click();
       });
 

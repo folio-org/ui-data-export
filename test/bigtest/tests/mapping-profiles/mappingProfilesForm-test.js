@@ -14,6 +14,7 @@ describe('Field mapping profiles form', () => {
   setupApplication();
 
   beforeEach(function () {
+    this.server.get('/data-export/transformation-fields', { transformationFields: [] });
     this.visit('/settings/data-export/mapping-profiles/create');
   });
 

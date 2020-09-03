@@ -1,0 +1,7 @@
+.mclHeaderRow {
+  composes: mclHeaderRow from '@folio/stripes-components/lib/MultiColumnList/MCLRenderer.css';
+}
+
+.mclHeaderCell {
+  composes: mclHeader from '@folio/stripes-components/lib/MultiColumnList/MCLRenderer.css';
+}

@@ -20,6 +20,7 @@ describe('Field mapping profile details', () => {
 
   beforeEach(function () {
     this.server.get('/data-export/mapping-profiles/:id', mappingProfile);
+    this.server.get('/data-export/transformation-fields', { transformationFields: [] });
     this.server.get('/data-export/job-profiles?query=mappingProfileId==custom_id&limit=1', {
       ...jobProfile,
       ...{ mappingProfileId: mappingProfile.id },
@@ -61,7 +62,7 @@ describe('Field mapping profile details', () => {
         expect(this.location.pathname.endsWith('/data-export/mapping-profiles')).to.be.true;
       });
 
-      it('should display success callout', function () {
+      it('should display success callout', () => {
         expect(callout.successCalloutIsPresent).to.be.true;
       });
     });
@@ -77,7 +78,7 @@ describe('Field mapping profile details', () => {
         expect(this.location.pathname.endsWith('/data-export/mapping-profiles')).to.be.true;
       });
 
-      it('should display error callout', function () {
+      it('should display error callout', () => {
         expect(callout.errorCalloutIsPresent).to.be.true;
       });
     });

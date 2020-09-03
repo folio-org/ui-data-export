@@ -1,38 +1,32 @@
 import { omit } from 'lodash';
 
 export function generateTransformationFieldsValues(allTransformations, profileTransformations = []) {
-  let profileTransformationsIndex = 0;
+  const generatedTransformations = allTransformations.map((transformation, i) => ({
+    ...transformation,
+    order: i,
+  }));
 
-  return allTransformations.map((transformation, i) => {
-    const field = {
-      fieldId: transformation.id,
-      path: transformation.path,
-      recordType: transformation.recordType,
-      displayName: transformation.displayName,
-      order: i,
-    };
+  profileTransformations.forEach(profileTransformation => {
+    const profileTransformationInAllTransformations = generatedTransformations
+      .find(transformation => transformation.fieldId === profileTransformation.fieldId);
 
-    if (profileTransformationsIndex === profileTransformations.length) {
-      return field;
+    if (profileTransformationInAllTransformations) {
+      profileTransformationInAllTransformations.isSelected = Boolean(profileTransformation.enabled);
+
+      if (profileTransformation.transformation) {
+        profileTransformationInAllTransformations.transformation = profileTransformation.transformation;
+      }
     }
-
-    const profileTransformation = profileTransformations[profileTransformationsIndex];
-
-    if (transformation.path === profileTransformation.path) {
-      field.transformation = profileTransformation.transformation;
-      field.isSelected = profileTransformation.enabled;
-      profileTransformationsIndex++;
-    }
-
-    return field;
   });
+
+  return generatedTransformations;
 }
 
 export function normalizeTransformationFormValues(transformations) {
   return transformations
     .filter(transformation => Boolean(transformation?.isSelected))
     .map(transformation => ({
-      ...omit(transformation, ['isSelected', 'order', 'displayName']),
+      ...omit(transformation, ['isSelected', 'order', 'displayNameKey', 'referenceDataValue', 'displayName']),
       enabled: true,
     }));
 }

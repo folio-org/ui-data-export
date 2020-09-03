@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {
   describe,
@@ -19,39 +20,42 @@ import {
   mountWithContext,
 } from '@folio/stripes-data-transfer-components/interactors';
 
-import { mappingProfileWithTransformations as mappingProfile } from '../../../../network/scenarios/fetch-mapping-profiles-success';
+import {
+  mappingProfileWithTransformations as mappingProfile,
+  allMappingProfilesTransformations,
+  generateTransformationsWithDisplayName,
+} from '../../../../network/scenarios/fetch-mapping-profiles-success';
 import { translationsProperties } from '../../../../helpers/translationsProperties';
 import { EditMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/EditMappingProfileRoute';
 import { EditMappingProfileRouteInteractor } from './interactors/EditMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
 
-async function setupEditMappingProfileRoute({
+function EditMappingProfileRouteContainer({
+  allTransformations = [],
   profile = mappingProfile,
   mutator = { PUT: noop },
-  history = { push: noop },
-  location = { search: '?sort=name' },
   sendCallout = noop,
+  onCancel = noop,
 } = {}) {
-  await mountWithContext(
+  const intl = useIntl();
+
+  return (
     <Router>
-      <div id="OverlayContainer" />
       <Paneset>
         <CalloutContext.Provider value={{ sendCallout }}>
           <EditMappingProfileRouteComponent
             contentLabel="Content label"
+            allTransformations={generateTransformationsWithDisplayName(intl, allTransformations)}
             resources={buildResources({
               resourceName: 'mappingProfile',
               records: [profile],
             })}
             mutator={buildMutator({ mappingProfile: mutator })}
-            history={history}
-            location={location}
-            match={{ params: { id: profile?.id } }}
+            onCancel={onCancel}
           />
         </CalloutContext.Provider>
       </Paneset>
-    </Router>,
-    translationsProperties,
+    </Router>
   );
 }
 
@@ -64,7 +68,10 @@ describe('EditMappingProfileRoute', () => {
 
   describe('rendering edit mapping profile page without profile data', () => {
     beforeEach(async () => {
-      await setupEditMappingProfileRoute({ profile: null });
+      await mountWithContext(
+        <EditMappingProfileRouteContainer profile={null} />,
+        translationsProperties,
+      );
     });
 
     it('should display preloader', () => {
@@ -73,20 +80,22 @@ describe('EditMappingProfileRoute', () => {
   });
 
   describe('rendering edit mapping profile page with profile data: success scenario', () => {
-    const historyPushSpy = sinon.spy();
     const handleSubmitSpy = sinon.stub().callsFake(Promise.resolve);
+    const handleCancelSpy = sinon.spy();
     const sendCalloutStub = sinon.spy();
-    const locationSearch = '?sort=name';
 
     beforeEach(async () => {
       sinon.resetHistory();
 
-      await setupEditMappingProfileRoute({
-        history: { push: historyPushSpy },
-        location: { search: locationSearch },
-        mutator: { PUT: handleSubmitSpy },
-        sendCallout: sendCalloutStub,
-      });
+      await mountWithContext(
+        <EditMappingProfileRouteContainer
+          allTransformations={allMappingProfilesTransformations}
+          mutator={{ PUT: handleSubmitSpy }}
+          sendCallout={sendCalloutStub}
+          onCancel={handleCancelSpy}
+        />,
+        translationsProperties,
+      );
     });
 
     it('should display the form', () => {
@@ -124,9 +133,9 @@ describe('EditMappingProfileRoute', () => {
 
       expect(transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
       expect(editMappingProfileRoute.form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
-      expect(transformations.rows(0).cells(0).text).to.equal('Holdings - Call number');
+      expect(transformations.rows(0).cells(0).text).to.equal('Holdings - Call number - Call number');
       expect(transformations.rows(0).cells(1).text).to.equal('$900 1');
-      expect(transformations.rows(1).cells(0).text).to.equal('Holdings - Call number - prefix');
+      expect(transformations.rows(1).cells(0).text).to.equal('Holdings - Notes - Action note');
       expect(transformations.rows(1).cells(1).text).to.equal('$901 2');
       expect(transformations.rowCount).to.equal(mappingProfile.transformations.length);
     });
@@ -158,8 +167,8 @@ describe('EditMappingProfileRoute', () => {
           expect(sendCalloutStub.args[0].type).to.be.undefined;
         });
 
-        it('should initiate navigation to the profile details page', () => {
-          expect(historyPushSpy.calledOnceWith(`/settings/data-export/mapping-profiles/view/${mappingProfile.id}${locationSearch}`)).to.be.true;
+        it('should call cancel callback', () => {
+          expect(handleCancelSpy.calledOnce).to.be.true;
         });
       });
 
@@ -177,8 +186,8 @@ describe('EditMappingProfileRoute', () => {
           expect(sendCalloutStub.calledWith(sinon.match({ type: 'error' })));
         });
 
-        it('should initiate navigation to the profile details page', () => {
-          expect(historyPushSpy.calledOnceWith(`/settings/data-export/mapping-profiles/view/${mappingProfile.id}${locationSearch}`)).to.be.true;
+        it('should call cancel callback', () => {
+          expect(handleCancelSpy.calledOnce).to.be.true;
         });
       });
     });
@@ -188,8 +197,8 @@ describe('EditMappingProfileRoute', () => {
         await editMappingProfileRoute.form.fullScreen.cancelButton.click();
       });
 
-      it('should initiate navigation to the profile details page', () => {
-        expect(historyPushSpy.calledOnceWith(`/settings/data-export/mapping-profiles/view/${mappingProfile.id}${locationSearch}`)).to.be.true;
+      it('should call cancel callback', () => {
+        expect(handleCancelSpy.calledOnce).to.be.true;
       });
     });
   });

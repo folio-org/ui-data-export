@@ -1,37 +1,43 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
 import { MultiColumnList } from '@folio/stripes/components';
 
-import { mappingProfileTransformations } from '../MappingProfilesTransformationsModal/TransformationsField/transformations';
-
 import css from './TransformationsList.css';
 
 const columnWidths = {
-  fieldName: '45%',
-  transformation: '55%',
+  fieldName: '50%',
+  transformation: '50%',
 };
 const visibleColumns = ['fieldName', 'transformation'];
-const formatter = {
-  fieldName: record => mappingProfileTransformations.find(({ path }) => path === record.path).displayName,
-  transformation: record => (
-    <pre
-      title={record.transformation}
-      className={css.transformation}
-    >
-      {record.transformation}
-    </pre>
-  ),
-};
 
-export const TransformationsList = ({ transformations }) => {
+export const TransformationsList = ({
+  transformations,
+  allTransformations,
+}) => {
   const intl = useIntl();
 
-  const columnMapping = {
+  const formatter = useMemo(() => ({
+    fieldName: record => {
+      const transformation = allTransformations.find(({ fieldId }) => fieldId === record.fieldId);
+
+      return transformation?.displayName;
+    },
+    transformation: record => (
+      <pre
+        title={record.transformation}
+        className={css.transformation}
+      >
+        {record.transformation}
+      </pre>
+    ),
+  }), [allTransformations]);
+
+  const columnMapping = useMemo(() => ({
     fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
     transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
-  };
+  }), [intl]);
 
   return (
     <MultiColumnList
@@ -46,5 +52,8 @@ export const TransformationsList = ({ transformations }) => {
   );
 };
 
-TransformationsList.propTypes = { transformations: PropTypes.arrayOf(PropTypes.object) };
+TransformationsList.propTypes = {
+  transformations: PropTypes.arrayOf(PropTypes.object),
+  allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 TransformationsList.defaultProps = { transformations: [] };

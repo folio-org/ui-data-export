@@ -68,7 +68,7 @@ describe('Job profiles settings', () => {
         expect(this.location.search.includes('?sort=name')).to.be.true;
       });
 
-      it('should display success callout', function () {
+      it('should display success callout', () => {
         expect(callout.successCalloutIsPresent).to.be.true;
       });
     });
@@ -86,7 +86,7 @@ describe('Job profiles settings', () => {
         expect(this.location.search.includes('?sort=name')).to.be.true;
       });
 
-      it('should display error callout', function () {
+      it('should display error callout', () => {
         expect(callout.errorCalloutIsPresent).to.be.true;
       });
     });

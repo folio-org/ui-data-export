@@ -1,25 +1,41 @@
-import React from 'react';
+import React, {
+  forwardRef,
+  useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList as List } from 'react-window';
 import { isEqual } from 'lodash';
 
 import {
   TextField,
-  MultiColumnList,
   Layout,
   Checkbox,
 } from '@folio/stripes/components';
 
+import { Row } from './Row';
+import { HeaderRow } from './HeaderRow';
+
 const columnWidths = {
   isSelected: '5%',
-  fieldName: '40%',
-  transformation: '55%',
+  fieldName: '45%',
+  transformation: '50%',
 };
 const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
-export const TransformationField = ({
+const outerElementType = forwardRef((props, ref) => (
+  <div
+    id="mapping-profiles-form-transformations"
+    ref={ref}
+    role="grid"
+    {...props}
+  />
+));
+
+export const TransformationField = React.memo(({
   contentData,
   isSelectAllChecked,
   onSelectChange,
@@ -27,14 +43,14 @@ export const TransformationField = ({
 }) => {
   const intl = useIntl();
 
-  const formatter = {
+  const formatter = useMemo(() => ({
     isSelected: record => (
       <Field
         key={record.displayName}
         name={`transformations[${record.order}].isSelected`}
         type="checkbox"
       >
-        { ({ input }) => (
+        {({ input }) => (
           <Checkbox
             name={input.name}
             checked={input.checked}
@@ -53,21 +69,23 @@ export const TransformationField = ({
     transformation: record => (
       <Layout
         className="full"
+        key={record.displayName}
         data-test-transformation-field
       >
         <Field
-          key={record.displayName}
           component={TextField}
           name={`transformations[${record.order}].transformation`}
           marginBottom0
         />
       </Layout>
     ),
-  };
+  }), [intl, onSelectChange]);
 
-  const selectAllLabel = intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' });
+  const selectAllLabel = useMemo(() => intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' }), [intl]);
 
-  const columnMapping = {
+  const fieldArraySubscription = useMemo(() => ({ values: false }), []);
+
+  const columnMapping = useMemo(() => ({
     isSelected: (
       <Checkbox
         id="select-all-checkbox"
@@ -81,28 +99,60 @@ export const TransformationField = ({
     ),
     fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
     transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
-  };
+  }), [intl, isSelectAllChecked, onSelectAll, selectAllLabel]);
 
   return (
     <FieldArray
       name="transformations"
       isEqual={isEqual}
+      subscription={fieldArraySubscription}
     >
-      {({ fields }) => (
-        <MultiColumnList
-          id="mapping-profiles-form-transformations"
-          fields={fields}
-          contentData={contentData}
-          totalCount={fields.value.length}
-          columnMapping={columnMapping}
-          columnWidths={columnWidths}
-          visibleColumns={visibleColumns}
-          formatter={formatter}
-        />
-      )}
+      {() => (!contentData.length ? intl.formatMessage({ id: 'stripes-components.tableEmpty' }) : (
+        <AutoSizer>
+          {({
+            height,
+            width,
+          }) => (
+            <List
+              outerElementType={outerElementType}
+              itemCount={contentData.length + 1}
+              itemSize={50}
+              width={width}
+              height={height}
+            >
+              {
+                ({
+                  index,
+                  style,
+                }) => (!index
+                  ? (
+                    <HeaderRow
+                      key="headerRow"
+                      style={style}
+                      columnMapping={columnMapping}
+                      visibleColumns={visibleColumns}
+                      columnWidths={columnWidths}
+                    />
+                  )
+                  : (
+                    <Row
+                      key={contentData[index - 1].displayNameKey}
+                      style={style}
+                      isOdd={Boolean(index % 2)}
+                      rowData={contentData[index - 1]}
+                      formatter={formatter}
+                      visibleColumns={visibleColumns}
+                      columnWidths={columnWidths}
+                    />
+                  ))
+              }
+            </List>
+          )}
+        </AutoSizer>
+      ))}
     </FieldArray>
   );
-};
+});
 
 TransformationField.defaultProps = { isSelectAllChecked: false };
 

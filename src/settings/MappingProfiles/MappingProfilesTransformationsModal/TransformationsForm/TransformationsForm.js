@@ -1,10 +1,15 @@
-import React, { memo } from 'react';
+import React, {
+  memo,
+  useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import stripesFinalForm from '@folio/stripes/final-form';
 
 import { TransformationField } from '../TransformationsField';
+
+import css from './TransformationsForm.css';
 
 const TransformationsFormComponent = memo(({
   searchResults,
@@ -15,8 +20,13 @@ const TransformationsFormComponent = memo(({
 }) => {
   stateRef.current = form;
 
-  const handleSelectChange = () => {
-    const transformations = get(form.getState(), 'values.transformations', []);
+  const {
+    change: changeFormField,
+    getState: getFormState,
+  } = form;
+
+  const handleSelectChange = useCallback(() => {
+    const transformations = get(getFormState(), 'values.transformations', []);
     const selectedTransformations = transformations.reduce((result, transformation) => {
       if (transformation?.isSelected) {
         result[transformation.order] = true;
@@ -26,22 +36,18 @@ const TransformationsFormComponent = memo(({
     }, {});
 
     onSelectChange(selectedTransformations);
-  };
+  }, [getFormState, onSelectChange]);
 
-  const handleSelectAll = () => {
+  const handleSelectAll = useCallback(() => {
     searchResults.forEach(transformation => {
-      const fieldState = form.getFieldState(`transformations[${transformation.order}].isSelected`);
-
-      if (Boolean(fieldState.value) === isSelectAllChecked) {
-        fieldState.change(!isSelectAllChecked);
-      }
+      changeFormField(`transformations[${transformation.order}].isSelected`, !isSelectAllChecked);
     });
 
     handleSelectChange();
-  };
+  }, [searchResults, isSelectAllChecked, handleSelectChange, changeFormField]);
 
   return (
-    <form>
+    <form className={css.form}>
       <TransformationField
         contentData={searchResults}
         isSelectAllChecked={isSelectAllChecked}
@@ -63,6 +69,6 @@ TransformationsFormComponent.propTypes = {
 TransformationsFormComponent.defaultProps = { isSelectAllChecked: false };
 
 export const TransformationsForm = stripesFinalForm({
-  subscription: { values: true },
+  subscription: { values: false },
   navigationCheck: false,
 })(TransformationsFormComponent);

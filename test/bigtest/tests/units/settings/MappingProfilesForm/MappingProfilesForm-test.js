@@ -31,6 +31,22 @@ const initialValues = {
   transformations: [],
 };
 
+const allMappingProfileTransformations = [
+  {
+    displayName: 'Instances - Call number - prefix',
+    transformation: 'Transformation value 1',
+    recordType: 'INSTANCE',
+    fieldId: 'fieldId1',
+    path: 'fieldPath1',
+  },
+  {
+    displayName: 'Items - Electronic access - Link text Items',
+    recordType: 'ITEM',
+    fieldId: 'fieldId2',
+    path: 'fieldPath2',
+  },
+];
+
 describe('MappingProfilesForm', () => {
   const form = new MappingProfilesFormInteractor();
 
@@ -52,6 +68,7 @@ describe('MappingProfilesForm', () => {
           <Paneset>
             <Router>
               <MappingProfilesFormContainer
+                allTransformations={allMappingProfileTransformations}
                 contentLabel="Content label"
                 initialValues={initialValues}
                 onSubmit={handleSubmitSpy}
@@ -211,7 +228,7 @@ describe('MappingProfilesForm', () => {
                 expect(form.summary.recordType.errorLabel).to.equal('');
               });
 
-              describe('filling transformation which does not match the selected record typ and submitting the form', () => {
+              describe('filling transformation which does not match the selected record type and submitting the form', () => {
                 beforeEach(async () => {
                   await form.addTransformationButton.click();
                   await wait();
@@ -265,7 +282,7 @@ describe('MappingProfilesForm', () => {
         it('should display correct transformations table with filled values', () => {
           expect(form.transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
           expect(form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
-          expect(form.transformations.rows(0).cells(0).text).to.equal('Holdings - Call number');
+          expect(form.transformations.rows(0).cells(0).text).to.equal('Instances - Call number - prefix');
           expect(form.transformations.rows(0).cells(1).text).to.equal('Custom value');
         });
 
@@ -293,18 +310,22 @@ describe('MappingProfilesForm', () => {
 
     beforeEach(async () => {
       await mountWithContext(
-        <Paneset>
-          <Router>
-            <MappingProfilesFormContainer
-              contentLabel="Content label"
-              initialValues={initialValues}
-              onSubmit={values => {
-                result = values;
-              }}
-              onCancel={noop}
-            />
-          </Router>
-        </Paneset>,
+        <>
+          <div id="OverlayContainer" />
+          <Paneset>
+            <Router>
+              <MappingProfilesFormContainer
+                allTransformations={allMappingProfileTransformations}
+                contentLabel="Content label"
+                initialValues={initialValues}
+                onSubmit={values => {
+                  result = values;
+                }}
+                onCancel={noop}
+              />
+            </Router>
+          </Paneset>
+        </>,
         translationsProperties,
       );
     });
@@ -312,7 +333,7 @@ describe('MappingProfilesForm', () => {
     describe('filling form inputs and pressing submit', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur(name);
-        await form.summary.recordType.checkboxes(1).clickInput();
+        await form.summary.recordType.checkboxes(0).clickInput();
         await form.summary.description.fillAndBlur(description);
         await form.addTransformationButton.click();
         await wait();
@@ -327,12 +348,12 @@ describe('MappingProfilesForm', () => {
         expect(result.name).to.equal(name);
         expect(result.description).to.equal(description);
         expect(result.outputFormat).to.equal('MARC');
-        expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.HOLDINGS.type]);
+        expect(result.recordTypes).to.deep.equal([FOLIO_RECORD_TYPES.INSTANCE.type]);
         expect(result.transformations).to.deep.equal([{
           enabled: true,
-          fieldId: 'callNumber',
-          path: '$.holdings[*].callNumber',
-          recordType: 'HOLDINGS',
+          fieldId: 'fieldId1',
+          path: 'fieldPath1',
+          recordType: 'INSTANCE',
           transformation: 'Custom value',
         }]);
       });
