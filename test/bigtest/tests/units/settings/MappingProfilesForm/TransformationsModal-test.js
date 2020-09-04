@@ -133,6 +133,10 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.expandSearchPaneButton.isPresent).to.be.false;
     });
 
+    it('should not display transformation fields list empty message', () => {
+      expect(modal.transformations.listEmpty.isPresent).to.be.false;
+    });
+
     it('should display correct amount of transformation fields', () => {
       expect(modal.transformations.list.rowCount).to.equal(initialValues.transformations.length);
     });
@@ -394,6 +398,21 @@ describe('MappingProfilesTransformationsModal', () => {
             expect(modal.searchForm.recordTypeFilters(0).isChecked).to.be.true;
           });
         });
+      });
+    });
+
+    describe('searching fields by non-empty search term which does not match any transformation field', () => {
+      beforeEach(async () => {
+        await modal.searchForm.searchField.fillAndBlur('should not match anything');
+        await modal.searchForm.submit();
+      });
+
+      it('should hide the transformation fields list', () => {
+        expect(modal.transformations.list.isPresent).to.be.false;
+      });
+
+      it('should display transformation fields list empty message', () => {
+        expect(modal.transformations.listEmpty.isPresent).to.be.true;
       });
     });
 

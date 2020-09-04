@@ -57,7 +57,7 @@ describe('Job logs list', () => {
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 7)).to.equal('Success');
+      expect(getCellContent(0, 7)).to.equal('Completed with errors');
       expect(getCellContent(1, 7)).to.equal('Fail');
     });
 
@@ -106,7 +106,9 @@ describe('Job logs list', () => {
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(1, 7)).to.equal('Success');
+        expect(getCellContent(0, 7)).to.equal('Completed');
+        expect(getCellContent(1, 7)).to.equal('Completed with errors');
+        expect(getCellContent(2, 7)).to.equal('Fail');
       });
 
       it('should have the correct query in path', function () {
@@ -119,9 +121,9 @@ describe('Job logs list', () => {
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(2, 7)).to.equal('Fail');
-          expect(getCellContent(1, 7)).to.equal('Success');
-          expect(getCellContent(0, 7)).to.equal('Success');
+          expect(getCellContent(0, 7)).to.equal('Fail');
+          expect(getCellContent(1, 7)).to.equal('Completed with errors');
+          expect(getCellContent(2, 7)).to.equal('Completed');
         });
 
         it('should have the correct query in path', function () {

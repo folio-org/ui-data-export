@@ -6,7 +6,10 @@ import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
-import { get } from 'lodash';
+import {
+  get,
+  camelCase,
+} from 'lodash';
 
 import {
   JobLogs,
@@ -123,7 +126,7 @@ const JobLogsContainer = props => {
       <JobLogs
         formatter={useJobLogsListFormatter(
           {
-            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${record.status.toLowerCase()}` }),
+            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
             fileName: record => getFileNameField(record),
             errors: record => {
               const { progress: { failed } } = record;

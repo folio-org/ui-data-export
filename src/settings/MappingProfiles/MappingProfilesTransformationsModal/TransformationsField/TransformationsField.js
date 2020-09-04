@@ -107,49 +107,51 @@ export const TransformationField = React.memo(({
       isEqual={isEqual}
       subscription={fieldArraySubscription}
     >
-      {() => (!contentData.length ? intl.formatMessage({ id: 'stripes-components.tableEmpty' }) : (
-        <AutoSizer>
-          {({
-            height,
-            width,
-          }) => (
-            <List
-              outerElementType={outerElementType}
-              itemCount={contentData.length + 1}
-              itemSize={50}
-              width={width}
-              height={height}
-            >
-              {
-                ({
-                  index,
-                  style,
-                }) => (!index
-                  ? (
-                    <HeaderRow
-                      key="headerRow"
-                      style={style}
-                      columnMapping={columnMapping}
-                      visibleColumns={visibleColumns}
-                      columnWidths={columnWidths}
-                    />
-                  )
-                  : (
-                    <Row
-                      key={contentData[index - 1].displayNameKey}
-                      style={style}
-                      isOdd={Boolean(index % 2)}
-                      rowData={contentData[index - 1]}
-                      formatter={formatter}
-                      visibleColumns={visibleColumns}
-                      columnWidths={columnWidths}
-                    />
-                  ))
-              }
-            </List>
-          )}
-        </AutoSizer>
-      ))}
+      {() => (
+        !contentData.length
+          ? <span data-test-list-empty>{intl.formatMessage({ id: 'stripes-components.tableEmpty' })}</span>
+          : (
+            <AutoSizer>
+              {({
+                height,
+                width,
+              }) => (
+                <List
+                  outerElementType={outerElementType}
+                  itemCount={contentData.length + 1}
+                  itemSize={50}
+                  width={width}
+                  height={height}
+                >
+                  {({
+                    index,
+                    style,
+                  }) => (!index
+                    ? (
+                      <HeaderRow
+                        key="headerRow"
+                        style={style}
+                        columnMapping={columnMapping}
+                        visibleColumns={visibleColumns}
+                        columnWidths={columnWidths}
+                      />
+                    ) : (
+                      <Row
+                        key={contentData[index - 1].displayNameKey}
+                        style={style}
+                        isOdd={Boolean(index % 2)}
+                        rowData={contentData[index - 1]}
+                        formatter={formatter}
+                        visibleColumns={visibleColumns}
+                        columnWidths={columnWidths}
+                      />
+                    ))
+                  }
+                </List>
+              )}
+            </AutoSizer>
+          )
+      )}
     </FieldArray>
   );
 });
