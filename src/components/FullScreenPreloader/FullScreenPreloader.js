@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import {
   FullScreenView,
@@ -13,13 +13,15 @@ export function FullScreenPreloader({
   children,
   ...props
 }) {
+  const intl = useIntl();
+
   if (!isLoading) {
     return children;
   }
 
   return (
     <FullScreenView
-      contentLabel={contentLabel}
+      contentLabel={contentLabel || intl.formatMessage({ id: 'stripes-data-transfer-components.loading' })}
       {...props}
     >
       <Preloader />
@@ -32,5 +34,3 @@ FullScreenPreloader.propTypes = {
   children: PropTypes.node.isRequired,
   contentLabel: PropTypes.node,
 };
-
-FullScreenPreloader.defaultProps = { contentLabel: <FormattedMessage id="stripes-data-transfer-components.loading" /> };

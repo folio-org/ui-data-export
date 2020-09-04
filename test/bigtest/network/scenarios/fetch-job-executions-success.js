@@ -52,7 +52,7 @@ export const logJobExecutions = [
     },
     startedDate: '2018-11-05T14:22:57.000+0000',
     completedDate: '2018-11-11T14:10:34.000+0000',
-    status: 'SUCCESS',
+    status: 'COMPLETED_WITH_ERRORS',
   },
   {
     hrId: 1,
@@ -67,7 +67,7 @@ export const logJobExecutions = [
     },
     startedDate: '2018-11-04T14:22:57.000+0000',
     completedDate: '2018-11-04T14:10:34.000+0000',
-    status: 'SUCCESS',
+    status: 'COMPLETED',
   },
 ];
 

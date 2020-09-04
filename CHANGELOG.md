@@ -23,6 +23,7 @@
 * Add validation between selected record types and transformations on form submit. UIDEXP-138.
 * Provide translations for the mapping profile transformation field names. UIDEXP-151.
 * Integrate mapping profiles transformations list with backend. UIDEXP-92.
+* Accommodate UI to the change for the retrieving of job logs API endpoint. UIDEXP-145.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)

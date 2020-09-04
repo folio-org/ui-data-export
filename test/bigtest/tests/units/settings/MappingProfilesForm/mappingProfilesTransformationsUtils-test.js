@@ -84,6 +84,31 @@ describe('generateTransformationFieldsValues', () => {
       ],
     );
   });
+
+  it('should not process in any way profile transformations with `fieldId` which does not match any profile in all transformations', () => {
+    const profileTransformations = [
+      {
+        fieldId: 'UNKNOWN_FIELD_ID',
+        path: 'items[*].materialTypeId',
+        recordType: 'ITEM',
+        enabled: true,
+        transformation: 'Transformation value',
+      },
+    ];
+
+    expect(generateTransformationFieldsValues(allTransformations, profileTransformations)).to.deep.equal(
+      [
+        {
+          ...allTransformations[0],
+          order: 0,
+        },
+        {
+          ...allTransformations[1],
+          order: 1,
+        },
+      ],
+    );
+  });
 });
 
 describe('normalizeTransformationFormValues', () => {
