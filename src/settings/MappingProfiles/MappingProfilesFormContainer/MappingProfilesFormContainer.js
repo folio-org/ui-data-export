@@ -17,7 +17,10 @@ import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
 import { MappingProfilesForm } from '../MappingProfilesForm';
-import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
+import {
+  generateTransformationFieldsValues,
+  updateTransformationsWithSelected,
+} from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -44,8 +47,18 @@ export const MappingProfilesFormContainer = props => {
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
   const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
-  const initialTransformationsValues = React.useMemo(() => ({ transformations: generateTransformationFieldsValues(allTransformations) }), [allTransformations]);
+  const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialTransformations) });
   const calloutRef = useRef(null);
+  const [initialSelectedTransformations] = useState(
+    () => selectedTransformations.reduce((res, selectedTransformation) => {
+      const { order } = modalTransformations.transformations
+        .find(transformation => selectedTransformation.fieldId === transformation.fieldId);
+
+      res[order] = true;
+
+      return res;
+    }, {}),
+  );
 
   return (
     <Layer
@@ -70,21 +83,23 @@ export const MappingProfilesFormContainer = props => {
       />
       <MappingProfilesTransformationsModal
         isOpen={transformationModalOpen}
-        initialTransformationsValues={initialTransformationsValues}
+        initialSelectedTransformations={initialSelectedTransformations}
+        initialTransformationsValues={modalTransformations}
         onCancel={() => setTransformationModalOpen(false)}
-        onSubmit={transformations => {
+        onSubmit={newSelectedTransformations => {
           setTransformationModalOpen(false);
 
           if (calloutRef.current) {
             calloutRef.current.sendCallout({
               message: <SafeHTMLMessage
                 id="ui-data-export.mappingProfiles.transformations.save.successCallout"
-                values={{ count: transformations.length }}
+                values={{ count: newSelectedTransformations.length }}
               />,
             });
           }
 
-          setSelectedTransformations(transformations);
+          setModalTransformations(({ transformations }) => ({ transformations: updateTransformationsWithSelected(transformations, newSelectedTransformations) }));
+          setSelectedTransformations(newSelectedTransformations);
         }}
       />
       <Callout ref={calloutRef} />

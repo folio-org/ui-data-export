@@ -30,3 +30,19 @@ export function normalizeTransformationFormValues(transformations) {
       enabled: true,
     }));
 }
+
+export function updateTransformationsWithSelected(allTransformations = [], selectedTransformations = []) {
+  const newAllTransformations = [...allTransformations];
+
+  selectedTransformations.forEach(selectedTransformation => {
+    const transformationIndex = newAllTransformations.findIndex(transformation => transformation.fieldId === selectedTransformation.fieldId);
+
+    newAllTransformations[transformationIndex] = {
+      ...newAllTransformations[transformationIndex],
+      transformation: selectedTransformation.transformation,
+      isSelected: true,
+    };
+  });
+
+  return newAllTransformations;
+}
