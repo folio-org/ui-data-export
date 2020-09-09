@@ -53,6 +53,7 @@ const JobProfilesForm = props => {
         >
           <FullScreenForm
             id="job-profiles-form"
+            noValidate
             paneTitle={<FormattedMessage id="ui-data-export.jobProfiles.newProfile" />}
             isSubmitButtonDisabled={pristine || submitting}
             onSubmit={handleSubmit}
