@@ -7,15 +7,18 @@ export function generateTransformationFieldsValues(allTransformations, profileTr
   }));
 
   profileTransformations.forEach(profileTransformation => {
-    const profileTransformationInAllTransformations = generatedTransformations
-      .find(transformation => transformation.fieldId === profileTransformation.fieldId);
+    const profileTransformationInAllTransformationsIndex = generatedTransformations
+      .findIndex(transformation => transformation.fieldId === profileTransformation.fieldId);
+    const profileTransformationInAllTransformations = Object.assign({}, generatedTransformations[profileTransformationInAllTransformationsIndex]);
 
-    if (profileTransformationInAllTransformations) {
+    if (profileTransformationInAllTransformationsIndex !== -1) {
       profileTransformationInAllTransformations.isSelected = Boolean(profileTransformation.enabled);
 
       if (profileTransformation.transformation) {
         profileTransformationInAllTransformations.transformation = profileTransformation.transformation;
       }
+
+      generatedTransformations[profileTransformationInAllTransformationsIndex] = profileTransformationInAllTransformations;
     }
   });
 
@@ -29,20 +32,4 @@ export function normalizeTransformationFormValues(transformations) {
       ...omit(transformation, ['isSelected', 'order', 'displayNameKey', 'referenceDataValue', 'displayName']),
       enabled: true,
     }));
-}
-
-export function updateTransformationsWithSelected(allTransformations = [], selectedTransformations = []) {
-  const newAllTransformations = [...allTransformations];
-
-  selectedTransformations.forEach(selectedTransformation => {
-    const transformationIndex = newAllTransformations.findIndex(transformation => transformation.fieldId === selectedTransformation.fieldId);
-
-    newAllTransformations[transformationIndex] = {
-      ...newAllTransformations[transformationIndex],
-      transformation: selectedTransformation.transformation,
-      isSelected: true,
-    };
-  });
-
-  return newAllTransformations;
 }

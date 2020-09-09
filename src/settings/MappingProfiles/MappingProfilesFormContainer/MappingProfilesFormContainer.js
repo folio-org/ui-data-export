@@ -17,10 +17,7 @@ import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
 import { MappingProfilesForm } from '../MappingProfilesForm';
-import {
-  generateTransformationFieldsValues,
-  updateTransformationsWithSelected,
-} from '../MappingProfilesTransformationsModal/TransformationsField';
+import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -98,7 +95,7 @@ export const MappingProfilesFormContainer = props => {
             });
           }
 
-          setModalTransformations(({ transformations }) => ({ transformations: updateTransformationsWithSelected(transformations, newSelectedTransformations) }));
+          setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
           setSelectedTransformations(newSelectedTransformations);
         }}
       />
