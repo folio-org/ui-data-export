@@ -67,7 +67,7 @@
     "modal.totalSelected": "Total sélectionné: {count}",
     "mappingProfiles.delete.successCallout": "Mapping profile <b>{name}</b> has been successfully <b>deleted</b>",
     "mappingProfiles.delete.errorCallout": "There was an error while deleting the mapping profile <b>{name}</b>",
-    "mappingProfiles.delete.confirmationModal.title": "Delete mapping profile",
+    "mappingProfiles.delete.confirmationModal.title": "Supprimer le profil de mapping",
     "mappingProfiles.delete.confirmationModal.message": "The mapping profile <b>{name}</b> will be deleted",
     "mappingProfiles.selectProfile": "Sélectionnez le profil de mapping",
     "mappingProfiles.editProfile": "Edit field mapping profile",
@@ -189,6 +189,6 @@
     "item.effectiveLocation.campus.code": "Item - Effective location - Campus - Code",
     "item.effectiveLocation.institution.name": "Item - Effective location - Institution",
     "item.effectiveLocation.institution.code": "Item - Effective location - Institution - Code",
-    "jobStatus.completed": "Completed",
-    "jobStatus.completedWithErrors": "Completed with errors"
+    "jobStatus.completed": "Terminé",
+    "jobStatus.completedWithErrors": "Terminé avec des erreurs"
 }

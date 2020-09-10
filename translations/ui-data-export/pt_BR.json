@@ -189,6 +189,6 @@
     "item.effectiveLocation.campus.code": "Item - Localização efetiva - Campus - Código",
     "item.effectiveLocation.institution.name": "Item - Localização efetiva - Instituição",
     "item.effectiveLocation.institution.code": "Item - Localização efetiva - Instituição - Código",
-    "jobStatus.completed": "Completed",
-    "jobStatus.completedWithErrors": "Completed with errors"
+    "jobStatus.completed": "Concluído",
+    "jobStatus.completedWithErrors": "Concluído com erros"
 }
