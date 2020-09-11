@@ -2,7 +2,7 @@ import React from 'react';
 
 import css from './HeaderRow.css';
 
-export const HeaderRow = React.memo(({
+export const HeaderGridRow = React.memo(({
   visibleColumns,
   style,
   columnMapping,

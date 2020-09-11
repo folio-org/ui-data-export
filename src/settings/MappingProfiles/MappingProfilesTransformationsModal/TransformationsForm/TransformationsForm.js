@@ -12,7 +12,7 @@ import {
   TransformationField,
 } from '../TransformationsField';
 
-import css from './TransformationsForm.css';
+import commonCss from '../../../../common/common.css';
 
 const TransformationsFormComponent = memo(({
   searchResults,
@@ -47,7 +47,7 @@ const TransformationsFormComponent = memo(({
   }, [searchResults, isSelectAllChecked, handleSelectChange, changeFormField]);
 
   return (
-    <form className={css.form}>
+    <form className={commonCss.fullScreen}>
       <TransformationField
         contentData={searchResults}
         isSelectAllChecked={isSelectAllChecked}

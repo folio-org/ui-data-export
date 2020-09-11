@@ -1,7 +1,4 @@
-import React, {
-  forwardRef,
-  useMemo,
-} from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
@@ -16,8 +13,10 @@ import {
   Checkbox,
 } from '@folio/stripes/components';
 
-import { Row } from './Row';
-import { HeaderRow } from './HeaderRow';
+import { GridRow } from './GridRow';
+import { HeaderGridRow } from './HeaderGridRow';
+
+import commonCss from '../../../../common/common.css';
 
 const columnWidths = {
   isSelected: '5%',
@@ -26,15 +25,6 @@ const columnWidths = {
 };
 const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
-const outerElementType = forwardRef((props, ref) => (
-  <div
-    id="mapping-profiles-form-transformations"
-    ref={ref}
-    role="grid"
-    {...props}
-  />
-));
-
 export const TransformationField = React.memo(({
   contentData,
   isSelectAllChecked,
@@ -42,6 +32,8 @@ export const TransformationField = React.memo(({
   onSelectAll,
 }) => {
   const intl = useIntl();
+  const headerRowHeight = 40;
+  const rowHeight = 50;
 
   const formatter = useMemo(() => ({
     isSelected: record => (
@@ -101,6 +93,13 @@ export const TransformationField = React.memo(({
     transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
   }), [intl, isSelectAllChecked, onSelectAll, selectAllLabel]);
 
+  const itemsData = useMemo(() => ({
+    contentData,
+    formatter,
+    visibleColumns,
+    columnWidths,
+  }), [contentData, formatter]);
+
   return (
     <FieldArray
       name="transformations"
@@ -111,45 +110,33 @@ export const TransformationField = React.memo(({
         !contentData.length
           ? <span data-test-list-empty>{intl.formatMessage({ id: 'stripes-components.tableEmpty' })}</span>
           : (
-            <AutoSizer>
-              {({
-                height,
-                width,
-              }) => (
-                <List
-                  outerElementType={outerElementType}
-                  itemCount={contentData.length + 1}
-                  itemSize={50}
-                  width={width}
-                  height={height}
-                >
-                  {({
-                    index,
-                    style,
-                  }) => (!index
-                    ? (
-                      <HeaderRow
-                        key="headerRow"
-                        style={style}
-                        columnMapping={columnMapping}
-                        visibleColumns={visibleColumns}
-                        columnWidths={columnWidths}
-                      />
-                    ) : (
-                      <Row
-                        key={contentData[index - 1].displayNameKey}
-                        style={style}
-                        isOdd={Boolean(index % 2)}
-                        rowData={contentData[index - 1]}
-                        formatter={formatter}
-                        visibleColumns={visibleColumns}
-                        columnWidths={columnWidths}
-                      />
-                    ))
-                  }
-                </List>
-              )}
-            </AutoSizer>
+            <div
+              className={commonCss.fullScreen}
+              id="mapping-profiles-form-transformations"
+              role="grid"
+            >
+              <HeaderGridRow
+                columnMapping={columnMapping}
+                visibleColumns={visibleColumns}
+                columnWidths={columnWidths}
+              />
+              <AutoSizer>
+                {({
+                  height,
+                  width,
+                }) => (
+                  <List
+                    itemCount={contentData.length}
+                    itemSize={rowHeight}
+                    width={width}
+                    height={height - headerRowHeight}
+                    itemData={itemsData}
+                  >
+                    {GridRow}
+                  </List>
+                )}
+              </AutoSizer>
+            </div>
           )
       )}
     </FieldArray>
