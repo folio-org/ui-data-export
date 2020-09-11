@@ -39,13 +39,14 @@ const fullWidthStyle = { style: { width: '100%' } };
 export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
+  initialSelectedTransformations,
   onCancel,
   onSubmit,
 }) => {
   const [isFilterPaneOpen, setFilterPaneOpen] = useState(true);
   const [searchValue, setSearchValue] = useState(initialSearchFormValues.searchValue);
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
-  const [selectedTransformations, setSelectedTransformations] = useState({});
+  const [selectedTransformations, setSelectedTransformations] = useState(initialSelectedTransformations);
   const transformationsFormStateRef = useRef(null);
 
   const resetSearchForm = useCallback(() => {
@@ -189,6 +190,9 @@ export const MappingProfilesTransformationsModal = ({
 MappingProfilesTransformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   initialTransformationsValues: PropTypes.object.isRequired,
+  initialSelectedTransformations: PropTypes.object,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
+
+MappingProfilesTransformationsModal.defaultProps = { initialSelectedTransformations: {} };

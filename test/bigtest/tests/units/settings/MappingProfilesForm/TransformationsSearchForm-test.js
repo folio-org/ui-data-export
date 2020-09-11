@@ -15,7 +15,7 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 
 import { SearchForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/SearchForm';
 import { recordTypes } from '../../../../../../src/settings/MappingProfiles/RecordTypeField';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { translationsProperties } from '../../../../helpers';
 import translations from '../../../../../../translations/ui-data-export/en';
 import { TransformationsSearchFormInteractor } from './interactors/TransformationsSearchFormInteractor';
 

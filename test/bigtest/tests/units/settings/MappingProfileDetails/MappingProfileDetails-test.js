@@ -19,7 +19,7 @@ import {
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { translationsProperties } from '../../../../helpers';
 import { MappingProfileDetails } from '../../../../../../src/settings/MappingProfiles/MappingProfileDetails';
 import { MappingProfileDetailsInteractor } from './interactors/MappingProfileDetailsInteractor';
 import {

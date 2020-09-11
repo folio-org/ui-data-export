@@ -17,7 +17,7 @@ const getFormattedMappingProfiles = (mappingProfiles = []) => {
   }, []);
 };
 
-const NewJobProfileRoute = props => {
+const CreateJobProfileRouteComponent = props => {
   const {
     onCancel,
     onSubmit,
@@ -41,7 +41,7 @@ const NewJobProfileRoute = props => {
   );
 };
 
-NewJobProfileRoute.propTypes = {
+CreateJobProfileRouteComponent.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   resources: PropTypes.shape({
@@ -52,7 +52,7 @@ NewJobProfileRoute.propTypes = {
   }).isRequired,
 };
 
-NewJobProfileRoute.manifest = Object.freeze({
+CreateJobProfileRouteComponent.manifest = Object.freeze({
   mappingProfiles: {
     type: 'okapi',
     records: 'mappingProfiles',
@@ -61,4 +61,4 @@ NewJobProfileRoute.manifest = Object.freeze({
   },
 });
 
-export default stripesConnect(NewJobProfileRoute);
+export const CreateJobProfileRoute = stripesConnect(CreateJobProfileRouteComponent);

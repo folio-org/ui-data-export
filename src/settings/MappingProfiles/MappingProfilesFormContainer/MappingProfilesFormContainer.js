@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import {
   isEmpty,
+  difference,
   uniq,
 } from 'lodash';
 
@@ -17,22 +18,22 @@ import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
 import { MappingProfilesForm } from '../MappingProfilesForm';
-import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
+import {
+  generateTransformationFieldsValues,
+  generateSelectedTransformations,
+} from '../MappingProfilesTransformationsModal/TransformationsField';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
     return true;
   }
 
-  const filledSelectedTransformations = selectedTransformations.filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
-
+  const filledSelectedTransformations = selectedTransformations
+    .filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
   const recordTypesInTransformations = uniq(filledSelectedTransformations.map(({ recordType }) => recordType));
 
-  const recordTypesDifference = selectedRecordTypes
-    .filter(recordType => !recordTypesInTransformations.includes(recordType))
-    .concat(recordTypesInTransformations.filter(recordType => !selectedRecordTypes.includes(recordType)));
-
-  return isEmpty(recordTypesDifference);
+  return isEmpty(difference(recordTypesInTransformations, selectedRecordTypes))
+    && isEmpty(difference(selectedRecordTypes, recordTypesInTransformations));
 };
 
 export const MappingProfilesFormContainer = props => {
@@ -44,8 +45,15 @@ export const MappingProfilesFormContainer = props => {
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
   const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
-  const initialTransformationsValues = React.useMemo(() => ({ transformations: generateTransformationFieldsValues(allTransformations) }), [allTransformations]);
+  const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialTransformations) });
   const calloutRef = useRef(null);
+  const [initialSelectedTransformations] = useState(
+    () => generateSelectedTransformations(
+      selectedTransformations,
+      selectedTransformation => modalTransformations.transformations
+        .find(transformation => selectedTransformation.fieldId === transformation.fieldId),
+    ),
+  );
 
   return (
     <Layer
@@ -70,21 +78,23 @@ export const MappingProfilesFormContainer = props => {
       />
       <MappingProfilesTransformationsModal
         isOpen={transformationModalOpen}
-        initialTransformationsValues={initialTransformationsValues}
+        initialSelectedTransformations={initialSelectedTransformations}
+        initialTransformationsValues={modalTransformations}
         onCancel={() => setTransformationModalOpen(false)}
-        onSubmit={transformations => {
+        onSubmit={newSelectedTransformations => {
           setTransformationModalOpen(false);
 
           if (calloutRef.current) {
             calloutRef.current.sendCallout({
               message: <SafeHTMLMessage
                 id="ui-data-export.mappingProfiles.transformations.save.successCallout"
-                values={{ count: transformations.length }}
+                values={{ count: newSelectedTransformations.length }}
               />,
             });
           }
 
-          setSelectedTransformations(transformations);
+          setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
+          setSelectedTransformations(newSelectedTransformations);
         }}
       />
       <Callout ref={calloutRef} />

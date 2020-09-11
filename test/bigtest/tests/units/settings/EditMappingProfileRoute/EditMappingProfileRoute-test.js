@@ -18,6 +18,7 @@ import {
   buildResources,
   buildMutator,
   mountWithContext,
+  wait,
 } from '@folio/stripes-data-transfer-components/interactors';
 
 import {
@@ -25,7 +26,11 @@ import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../network/scenarios/fetch-mapping-profiles-success';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import {
+  translationsProperties,
+  OverlayContainer,
+  getTotalSelectedMessage,
+} from '../../../../helpers';
 import { EditMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/EditMappingProfileRoute';
 import { EditMappingProfileRouteInteractor } from './interactors/EditMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -41,6 +46,7 @@ function EditMappingProfileRouteContainer({
 
   return (
     <Router>
+      <OverlayContainer />
       <Paneset>
         <CalloutContext.Provider value={{ sendCallout }}>
           <EditMappingProfileRouteComponent
@@ -199,6 +205,58 @@ describe('EditMappingProfileRoute', () => {
 
       it('should call cancel callback', () => {
         expect(handleCancelSpy.calledOnce).to.be.true;
+      });
+    });
+
+    describe('opening transformations modal', () => {
+      beforeEach(async () => {
+        await editMappingProfileRoute.form.addTransformationButton.click();
+        await wait();
+      });
+
+      it('should display proper amount of found transformations', () => {
+        expect(editMappingProfileRoute.form.transformationsModal.resultsPane.header.sub).to.match(/2 fields/);
+      });
+
+      it('should display proper total selected count', () => {
+        expect(editMappingProfileRoute.form.transformationsModal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 2));
+      });
+
+      it('should display correct transformation fields values', () => {
+        const { transformationsModal } = editMappingProfileRoute.form;
+
+        expect(transformationsModal.transformations.list.rows(0).cells(0).$('[data-test-select-field]:checked')).to.not.be.undefined;
+        expect(transformationsModal.transformations.list.rows(1).cells(0).$('[data-test-select-field]:checked')).to.not.be.undefined;
+        expect(transformationsModal.transformations.list.rows(0).cells(1).text).to.equal('Holdings - Call number - Call number');
+        expect(transformationsModal.transformations.valuesFields(0).val).to.equal('$900  1');
+        expect(transformationsModal.transformations.list.rows(1).cells(1).text).to.equal('Holdings - Notes - Action note');
+        expect(transformationsModal.transformations.valuesFields(1).val).to.equal('$901  2');
+      });
+
+      describe('changing transformations modal values', () => {
+        beforeEach(async () => {
+          await editMappingProfileRoute.form.transformationsModal.transformations.checkboxes(1).clickInput();
+        });
+
+        it('should display proper total selected count', () => {
+          expect(editMappingProfileRoute.form.transformationsModal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 1));
+        });
+
+        describe('saving filled and checked transformation', () => {
+          beforeEach(async () => {
+            await editMappingProfileRoute.form.transformationsModal.saveButton.click();
+          });
+
+          it('should display correct transformations table with filled values', () => {
+            const { transformations } = editMappingProfileRoute.form;
+
+            expect(transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
+            expect(editMappingProfileRoute.form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
+            expect(transformations.rows(0).cells(0).text).to.equal('Holdings - Call number - Call number');
+            expect(transformations.rows(0).cells(1).text).to.equal('$900 1');
+            expect(transformations.rowCount).to.equal(1);
+          });
+        });
       });
     });
   });

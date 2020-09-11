@@ -7,15 +7,18 @@ export function generateTransformationFieldsValues(allTransformations, profileTr
   }));
 
   profileTransformations.forEach(profileTransformation => {
-    const profileTransformationInAllTransformations = generatedTransformations
-      .find(transformation => transformation.fieldId === profileTransformation.fieldId);
+    const profileTransformationInAllTransformationsIndex = generatedTransformations
+      .findIndex(transformation => transformation.fieldId === profileTransformation.fieldId);
+    const profileTransformationInAllTransformations = Object.assign({}, generatedTransformations[profileTransformationInAllTransformationsIndex]);
 
-    if (profileTransformationInAllTransformations) {
+    if (profileTransformationInAllTransformationsIndex !== -1) {
       profileTransformationInAllTransformations.isSelected = Boolean(profileTransformation.enabled);
 
       if (profileTransformation.transformation) {
         profileTransformationInAllTransformations.transformation = profileTransformation.transformation;
       }
+
+      generatedTransformations[profileTransformationInAllTransformationsIndex] = profileTransformationInAllTransformations;
     }
   });
 
@@ -29,4 +32,16 @@ export function normalizeTransformationFormValues(transformations) {
       ...omit(transformation, ['isSelected', 'order', 'displayNameKey', 'referenceDataValue', 'displayName']),
       enabled: true,
     }));
+}
+
+export function generateSelectedTransformations(transformations, predicate) {
+  return transformations.reduce((result, transformation) => {
+    const matchedTransformation = predicate(transformation);
+
+    if (matchedTransformation) {
+      result[matchedTransformation.order] = true;
+    }
+
+    return result;
+  }, {});
 }

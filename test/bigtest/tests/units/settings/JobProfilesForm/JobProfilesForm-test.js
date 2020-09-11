@@ -16,7 +16,7 @@ import { mountWithContext } from '@folio/stripes-data-transfer-components/intera
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { translationsProperties } from '../../../../helpers';
 import { JobProfilesForm } from '../../../../../../src/settings/JobProfiles/JobProfilesForm';
 import { JobProfilesFormInteractor } from './interactor';
 
@@ -134,8 +134,7 @@ describe('JobProfilesForm', () => {
             await form.fullScreen.submitButton.click();
           });
 
-          // TODO: Update test according to changes in textinput fields
-          it.skip('should mark field as error and required', () => {
+          it('should mark field as error and required', () => {
             expect(form.mappingProfile.hasErrorStyle).to.be.true;
             expect(form.mappingProfile.errorText).to.equal(commonTranslations['validation.enterValue']);
           });

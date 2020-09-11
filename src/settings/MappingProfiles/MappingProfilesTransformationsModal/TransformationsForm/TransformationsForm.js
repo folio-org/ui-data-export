@@ -7,9 +7,12 @@ import { get } from 'lodash';
 
 import stripesFinalForm from '@folio/stripes/final-form';
 
-import { TransformationField } from '../TransformationsField';
+import {
+  generateSelectedTransformations,
+  TransformationField,
+} from '../TransformationsField';
 
-import css from './TransformationsForm.css';
+import commonCss from '../../../../common/common.css';
 
 const TransformationsFormComponent = memo(({
   searchResults,
@@ -27,13 +30,10 @@ const TransformationsFormComponent = memo(({
 
   const handleSelectChange = useCallback(() => {
     const transformations = get(getFormState(), 'values.transformations', []);
-    const selectedTransformations = transformations.reduce((result, transformation) => {
-      if (transformation?.isSelected) {
-        result[transformation.order] = true;
-      }
-
-      return result;
-    }, {});
+    const selectedTransformations = generateSelectedTransformations(
+      transformations,
+      transformation => transformation.isSelected && transformation,
+    );
 
     onSelectChange(selectedTransformations);
   }, [getFormState, onSelectChange]);
@@ -47,7 +47,7 @@ const TransformationsFormComponent = memo(({
   }, [searchResults, isSelectAllChecked, handleSelectChange, changeFormField]);
 
   return (
-    <form className={css.form}>
+    <form className={commonCss.fullScreen}>
       <TransformationField
         contentData={searchResults}
         isSelectAllChecked={isSelectAllChecked}

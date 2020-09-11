@@ -14,7 +14,7 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { NewJobProfileRoute } from '../NewJobProfileRoute';
+import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 
@@ -57,7 +57,7 @@ const JobProfilesContainer = ({
       <Route
         path={`${match.path}/create`}
         render={() => (
-          <NewJobProfileRoute
+          <CreateJobProfileRoute
             onSubmit={mutator.jobProfiles.POST}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
