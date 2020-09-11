@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import AutoSizer from 'react-virtualized-auto-sizer';
-import { FixedSizeList as List } from 'react-window';
+
 import { isEqual } from 'lodash';
 
 import {
@@ -13,10 +12,7 @@ import {
   Checkbox,
 } from '@folio/stripes/components';
 
-import { GridRow } from './GridRow';
-import { HeaderGridRow } from './HeaderGridRow';
-
-import commonCss from '../../../../common/common.css';
+import { MultiColumnList } from '../../../../components/MultiColumnList';
 
 const columnWidths = {
   isSelected: '5%',
@@ -107,37 +103,12 @@ export const TransformationField = React.memo(({
       subscription={fieldArraySubscription}
     >
       {() => (
-        !contentData.length
-          ? <span data-test-list-empty>{intl.formatMessage({ id: 'stripes-components.tableEmpty' })}</span>
-          : (
-            <div
-              className={commonCss.fullScreen}
-              id="mapping-profiles-form-transformations"
-              role="grid"
-            >
-              <HeaderGridRow
-                columnMapping={columnMapping}
-                visibleColumns={visibleColumns}
-                columnWidths={columnWidths}
-              />
-              <AutoSizer>
-                {({
-                  height,
-                  width,
-                }) => (
-                  <List
-                    itemCount={contentData.length}
-                    itemSize={rowHeight}
-                    width={width}
-                    height={height - headerRowHeight}
-                    itemData={itemsData}
-                  >
-                    {GridRow}
-                  </List>
-                )}
-              </AutoSizer>
-            </div>
-          )
+        <MultiColumnList
+          headerRowHeight={headerRowHeight}
+          rowHeight={rowHeight}
+          itemsData={itemsData}
+          columnMapping={columnMapping}
+        />
       )}
     </FieldArray>
   );

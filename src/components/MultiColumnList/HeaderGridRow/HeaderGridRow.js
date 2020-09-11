@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import css from './HeaderRow.css';
 
 export const HeaderGridRow = React.memo(({
   visibleColumns,
-  style,
   columnMapping,
   columnWidths,
 }) => {
@@ -13,7 +13,6 @@ export const HeaderGridRow = React.memo(({
       role="row"
       data-header-row-inner
       className={css.mclHeaderRow}
-      style={style}
     >
       {
         visibleColumns.map(column => (
@@ -30,3 +29,9 @@ export const HeaderGridRow = React.memo(({
     </div>
   );
 });
+
+HeaderGridRow.propTypes = {
+  visibleColumns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  columnMapping: PropTypes.object.isRequired,
+  columnWidths: PropTypes.object.isRequired,
+};
