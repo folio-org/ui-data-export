@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import {
   isEmpty,
+  difference,
   uniq,
 } from 'lodash';
 
@@ -27,15 +28,12 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
     return true;
   }
 
-  const filledSelectedTransformations = selectedTransformations.filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
-
+  const filledSelectedTransformations = selectedTransformations
+    .filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
   const recordTypesInTransformations = uniq(filledSelectedTransformations.map(({ recordType }) => recordType));
 
-  const recordTypesDifference = selectedRecordTypes
-    .filter(recordType => !recordTypesInTransformations.includes(recordType))
-    .concat(recordTypesInTransformations.filter(recordType => !selectedRecordTypes.includes(recordType)));
-
-  return isEmpty(recordTypesDifference);
+  return isEmpty(difference(recordTypesInTransformations, selectedRecordTypes))
+    && isEmpty(difference(selectedRecordTypes, recordTypesInTransformations));
 };
 
 export const MappingProfilesFormContainer = props => {
