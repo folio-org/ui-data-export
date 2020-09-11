@@ -33,3 +33,15 @@ export function normalizeTransformationFormValues(transformations) {
       enabled: true,
     }));
 }
+
+export function generateSelectedTransformations(transformations, predicate) {
+  return transformations.reduce((result, transformation) => {
+    const matchedTransformation = predicate(transformation);
+
+    if (matchedTransformation) {
+      result[matchedTransformation.order] = true;
+    }
+
+    return result;
+  }, {});
+}
