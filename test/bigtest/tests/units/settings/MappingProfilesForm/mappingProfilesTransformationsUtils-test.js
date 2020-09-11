@@ -5,6 +5,7 @@ import {
 import { expect } from 'chai';
 
 import {
+  generateSelectedTransformations,
   generateTransformationFieldsValues,
   normalizeTransformationFormValues,
 } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/TransformationsField';
@@ -77,8 +78,8 @@ describe('generateTransformationFieldsValues', () => {
           path: 'items[*].materialTypeId',
           recordType: 'ITEM',
           displayNameKey: 'materialTypeId',
-          isSelected: true,
           transformation: 'Transformation value',
+          isSelected: true,
           order: 1,
         },
       ],
@@ -129,8 +130,8 @@ describe('normalizeTransformationFormValues', () => {
       recordType: 'ITEM',
       displayNameKey: 'materialTypeId',
       transformation: 'Transformation value 2',
-      order: 1,
       isSelected: false,
+      order: 1,
     },
   ];
 
@@ -146,5 +147,29 @@ describe('normalizeTransformationFormValues', () => {
         },
       ],
     );
+  });
+});
+
+describe('generateSelectedTransformations', () => {
+  const data = [
+    {
+      isSelected: true,
+      order: 0,
+    },
+    {
+      isSelected: false,
+      order: 1,
+    },
+  ];
+
+  it('should contain all transformations in the selected list', () => {
+    expect(generateSelectedTransformations(data, transformation => transformation)).to.deep.equal({
+      0: true,
+      1: true,
+    });
+  });
+
+  it('should contain only transformations which fulfilled the predicate', () => {
+    expect(generateSelectedTransformations(data, transformation => transformation.isSelected && transformation)).to.deep.equal({ 0: true });
   });
 });

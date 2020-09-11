@@ -32,7 +32,7 @@ const TransformationsFormComponent = memo(({
     const transformations = get(getFormState(), 'values.transformations', []);
     const selectedTransformations = generateSelectedTransformations(
       transformations,
-      transformation => transformation?.isSelected && transformation,
+      transformation => transformation.isSelected && transformation,
     );
 
     onSelectChange(selectedTransformations);

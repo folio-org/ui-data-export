@@ -15,7 +15,11 @@ import stripesComponentsTranslations from '@folio/stripes-components/translation
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import { MappingProfilesTransformationsModal } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import {
+  translationsProperties,
+  getTotalSelectedMessage,
+  OverlayContainer,
+} from '../../../../helpers';
 import { TransformationsModalInteractor } from './interactors/TransformationsModalInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
 
@@ -41,10 +45,6 @@ const initialValues = {
       order: 2,
     },
   ],
-};
-
-const totalSelectedMessage = selectedCount => {
-  return translations['modal.totalSelected'].replace('{count}', selectedCount);
 };
 
 const foundFieldsAmountMessage = fieldsAmount => {
@@ -74,7 +74,7 @@ describe('MappingProfilesTransformationsModal', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Router>
-          <div id="OverlayContainer" />
+          <OverlayContainer />
           <MappingProfilesTransformationsModal
             isOpen
             initialTransformationsValues={initialValues}
@@ -102,7 +102,7 @@ describe('MappingProfilesTransformationsModal', () => {
     });
 
     it('should display total selected count', () => {
-      expect(modal.totalSelected.text).to.equal(totalSelectedMessage(0));
+      expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 0));
     });
 
     it('should display search form', () => {
@@ -229,7 +229,7 @@ describe('MappingProfilesTransformationsModal', () => {
       });
 
       it('should update total selected count', () => {
-        expect(modal.totalSelected.text).to.equal(totalSelectedMessage(3));
+        expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 3));
       });
 
       describe('clicking on checkbox from the first row', () => {
@@ -246,7 +246,7 @@ describe('MappingProfilesTransformationsModal', () => {
         });
 
         it('should update total selected count', () => {
-          expect(modal.totalSelected.text).to.equal(totalSelectedMessage(2));
+          expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 2));
         });
 
         describe('turning off certain record type filter - Instances', () => {
@@ -279,7 +279,7 @@ describe('MappingProfilesTransformationsModal', () => {
           });
 
           it('should update total selected count', () => {
-            expect(modal.totalSelected.text).to.equal(totalSelectedMessage(3));
+            expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 3));
           });
         });
       });
@@ -300,7 +300,7 @@ describe('MappingProfilesTransformationsModal', () => {
         });
 
         it('should update total selected count', () => {
-          expect(modal.totalSelected.text).to.equal(totalSelectedMessage(0));
+          expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 0));
         });
       });
 
@@ -333,7 +333,7 @@ describe('MappingProfilesTransformationsModal', () => {
           });
 
           it('should update total selected count', () => {
-            expect(modal.totalSelected.text).to.equal(totalSelectedMessage(2));
+            expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 2));
           });
         });
 

@@ -21,7 +21,11 @@ import {
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import {
+  translationsProperties,
+  OverlayContainer,
+  getTotalSelectedMessage,
+} from '../../../../helpers';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
 import { MappingProfilesFormContainer } from '../../../../../../src/settings/MappingProfiles/MappingProfilesFormContainer';
 
@@ -64,7 +68,7 @@ describe('MappingProfilesForm', () => {
 
       await mountWithContext(
         <>
-          <div id="OverlayContainer" />
+          <OverlayContainer />
           <Paneset>
             <Router>
               <MappingProfilesFormContainer
@@ -275,6 +279,7 @@ describe('MappingProfilesForm', () => {
         beforeEach(async () => {
           await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
           await form.transformationsModal.transformations.checkboxes(0).clickInput();
+          await form.transformationsModal.transformations.valuesFields(1).fillAndBlur('Custom value1');
           await form.transformationsModal.saveButton.click();
           await wait();
         });
@@ -288,6 +293,32 @@ describe('MappingProfilesForm', () => {
 
         it('should display success callout', () => {
           expect(callout.successCalloutIsPresent).to.be.true;
+        });
+
+        describe('reopening transformation modal', () => {
+          beforeEach(async () => {
+            await form.addTransformationButton.click();
+          });
+
+          it('should display proper amount of found transformations', () => {
+            expect(form.transformationsModal.resultsPane.header.sub).to.match(/2 fields/);
+          });
+
+          it('should display proper total selected count', () => {
+            expect(form.transformationsModal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 1));
+          });
+
+          it('should display correct transformation fields values', () => {
+            const { transformationsModal } = form;
+
+            expect(transformationsModal.transformations.list.rows(0).cells(0).$('[data-test-select-field]').checked).to.be.true;
+            expect(transformationsModal.transformations.list.rows(0).cells(1).text).to.equal('Instances - Call number - prefix');
+            expect(transformationsModal.transformations.valuesFields(0).val).to.equal('Custom value');
+
+            expect(transformationsModal.transformations.list.rows(1).cells(0).$('[data-test-select-field]').checked).to.be.false;
+            expect(transformationsModal.transformations.list.rows(1).cells(1).text).to.equal('Items - Electronic access - Link text Items');
+            expect(transformationsModal.transformations.valuesFields(1).val).to.equal('');
+          });
         });
       });
 
@@ -311,7 +342,7 @@ describe('MappingProfilesForm', () => {
     beforeEach(async () => {
       await mountWithContext(
         <>
-          <div id="OverlayContainer" />
+          <OverlayContainer />
           <Paneset>
             <Router>
               <MappingProfilesFormContainer

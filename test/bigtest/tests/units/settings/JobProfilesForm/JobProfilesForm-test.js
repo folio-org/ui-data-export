@@ -16,7 +16,7 @@ import { mountWithContext } from '@folio/stripes-data-transfer-components/intera
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { translationsProperties } from '../../../../helpers';
 import { JobProfilesForm } from '../../../../../../src/settings/JobProfiles/JobProfilesForm';
 import { JobProfilesFormInteractor } from './interactor';
 
