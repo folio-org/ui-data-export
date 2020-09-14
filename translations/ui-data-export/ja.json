@@ -6,7 +6,7 @@
     "uploaderTitle": "Drag and drop",
     "uploaderBtnText": "or choose file",
     "uploaderSubTitle": "Select a file with records IDs or CQL queries",
-    "uploaderActiveTitle": "Drop to start export",
+    "uploaderActiveTitle": "ドロップしてエクスポートを開始",
     "runningJobs": "Running",
     "triggeredBy": "Triggered by {userName}",
     "jobProfileLabel": "Job profile: {jobProfile}",
@@ -40,7 +40,7 @@
     "jobProfiles.newProfile": "New job profile",
     "mappingProfiles.transformations.fieldName": "Field name",
     "mappingProfiles.transformations.transformation": "Transformation",
-    "errors": "Errors",
+    "errors": "エラー",
     "run": "Run",
     "jobProfiles.selectProfile.title": "Select job profile to run the export",
     "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
@@ -190,5 +190,14 @@
     "item.effectiveLocation.institution.name": "Item - Effective location - Institution",
     "item.effectiveLocation.institution.code": "Item - Effective location - Institution - Code",
     "jobStatus.completed": "Completed",
-    "jobStatus.completedWithErrors": "Completed with errors"
+    "jobStatus.completedWithErrors": "Completed with errors",
+    "holdings.holdingsStatements.statement": "Holdings - Holdings statement",
+    "holdings.holdingsStatements.note": "Holdings - Holdings statement note - public",
+    "holdings.holdingsStatements.staffNote": "Holdings - Holdings statement note - staff",
+    "holdings.holdingsStatementsForSupplements.statement": "Holdings - Holdings statement for supplements",
+    "holdings.holdingsStatementsForSupplements.note": "Holdings - Holdings statement for supplements note - public",
+    "holdings.holdingsStatementsForSupplements.staffNote": "Holdings - Holdings statement for supplements note - staff",
+    "holdings.holdingsStatementsForIndexes.statement": "Holdings - Holdings statement for indexes",
+    "holdings.holdingsStatementsForIndexes.note": "Holdings - Holdings statement for indexes note - public",
+    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff"
 }

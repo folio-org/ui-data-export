@@ -190,5 +190,14 @@
     "item.effectiveLocation.institution.name": "Item - Localização efetiva - Instituição",
     "item.effectiveLocation.institution.code": "Item - Localização efetiva - Instituição - Código",
     "jobStatus.completed": "Concluído",
-    "jobStatus.completedWithErrors": "Concluído com erros"
+    "jobStatus.completedWithErrors": "Concluído com erros",
+    "holdings.holdingsStatements.statement": "Holdings - Holdings statement",
+    "holdings.holdingsStatements.note": "Holdings - Holdings statement note - public",
+    "holdings.holdingsStatements.staffNote": "Holdings - Holdings statement note - staff",
+    "holdings.holdingsStatementsForSupplements.statement": "Holdings - Holdings statement for supplements",
+    "holdings.holdingsStatementsForSupplements.note": "Holdings - Holdings statement for supplements note - public",
+    "holdings.holdingsStatementsForSupplements.staffNote": "Holdings - Holdings statement for supplements note - staff",
+    "holdings.holdingsStatementsForIndexes.statement": "Holdings - Holdings statement for indexes",
+    "holdings.holdingsStatementsForIndexes.note": "Holdings - Holdings statement for indexes note - public",
+    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff"
 }
