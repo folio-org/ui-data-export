@@ -70,7 +70,7 @@ describe('Field mapping profiles settings', () => {
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur('description');
-        await form.addTransformationButton.click();
+        await form.addTransformationsButton.click();
         await wait();
         await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
         await form.transformationsModal.transformations.checkboxes(0).clickInput();
@@ -95,7 +95,7 @@ describe('Field mapping profiles settings', () => {
         await form.summary.name.fillAndBlur('mapping profile');
         await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur('description');
-        await form.addTransformationButton.click();
+        await form.addTransformationsButton.click();
         await wait();
         await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
         await form.transformationsModal.transformations.checkboxes(0).clickInput();

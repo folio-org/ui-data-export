@@ -20,6 +20,7 @@ export const GridRow = React.memo(({
     >
       {data.visibleColumns.map(column => (
         <GridCell
+          key={column}
           width={data.columnWidths[column]}
           columnFormatter={data.formatter[column]}
           rowData={data.contentData[index]}

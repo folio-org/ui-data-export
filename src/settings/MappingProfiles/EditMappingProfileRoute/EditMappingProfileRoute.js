@@ -49,6 +49,7 @@ export const EditMappingProfileRouteComponent = ({
 
   return (
     <MappingProfilesFormContainer
+      isEditMode
       allTransformations={allTransformations}
       initialTransformations={mappingProfileRecord.transformations}
       contentLabel={contentLabel}

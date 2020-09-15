@@ -15,7 +15,7 @@ export class MappingProfilesFormInteractor {
 
   fullScreen = new FullScreenFormInteractor();
   expandAllButton = new ExpandAllButtonInteractor();
-  addTransformationButton = new ButtonInteractor('[data-test-add-transformation]');
+  addTransformationsButton = new ButtonInteractor('[data-test-add-transformations]');
   accordions = new AccordionSetInteractor('#mapping-profiles-form-accordions');
   summary = new SummaryContentInteractor();
   transformations = new MultiColumnListInteractor('#mapping-profile-transformations-list');

@@ -86,12 +86,14 @@ describe('EditMappingProfileRoute', () => {
   });
 
   describe('rendering edit mapping profile page with profile data: success scenario', () => {
-    const handleSubmitSpy = sinon.stub().callsFake(Promise.resolve);
-    const handleCancelSpy = sinon.spy();
-    const sendCalloutStub = sinon.spy();
+    let handleSubmitSpy;
+    let handleCancelSpy;
+    let sendCalloutStub;
 
     beforeEach(async () => {
-      sinon.resetHistory();
+      handleSubmitSpy = sinon.stub().callsFake(Promise.resolve.bind(Promise));
+      handleCancelSpy = sinon.spy();
+      sendCalloutStub = sinon.spy();
 
       await mountWithContext(
         <EditMappingProfileRouteContainer
@@ -110,6 +112,10 @@ describe('EditMappingProfileRoute', () => {
 
     it('should display shared full screen form elements', () => {
       expect(editMappingProfileRoute.form.fullScreen.isPresent).to.be.true;
+    });
+
+    it('should display add transformations button with proper wording', () => {
+      expect(editMappingProfileRoute.form.addTransformationsButton.text).to.equal(translations['mappingProfiles.transformations.editTransformations']);
     });
 
     it('should display correct pane title', () => {
@@ -170,7 +176,8 @@ describe('EditMappingProfileRoute', () => {
 
         it('should initiate displaying of success callout', () => {
           expect(sendCalloutStub.called).to.be.true;
-          expect(sendCalloutStub.args[0].type).to.be.undefined;
+          expect(sendCalloutStub.firstCall.args[0].type).to.be.undefined;
+          expect(sendCalloutStub.firstCall.args[0].message.props.id).to.equal('ui-data-export.mappingProfiles.edit.successCallout');
         });
 
         it('should call cancel callback', () => {
@@ -180,7 +187,7 @@ describe('EditMappingProfileRoute', () => {
 
       describe('submitting the form - error case', () => {
         beforeEach(async () => {
-          handleSubmitSpy.callsFake(Promise.reject);
+          handleSubmitSpy.callsFake(Promise.reject.bind(Promise));
           await editMappingProfileRoute.form.fullScreen.submitButton.click();
         });
 
@@ -210,7 +217,7 @@ describe('EditMappingProfileRoute', () => {
 
     describe('opening transformations modal', () => {
       beforeEach(async () => {
-        await editMappingProfileRoute.form.addTransformationButton.click();
+        await editMappingProfileRoute.form.addTransformationsButton.click();
         await wait();
       });
 
