@@ -101,20 +101,20 @@ describe('MappingProfilesForm', () => {
       expect(form.expandAllButton.isPresent).to.be.true;
     });
 
-    it('should display add transformation button', () => {
-      expect(form.addTransformationButton.isPresent).to.be.true;
+    it('should display add transformations button with proper wording', () => {
+      expect(form.addTransformationsButton.text).to.equal(translations['mappingProfiles.transformations.addTransformations']);
     });
 
     it('should display accordions set', () => {
       expect(form.accordions.isPresent).to.be.true;
     });
 
-    it('should display correct accordion headers ', () => {
+    it('should display correct accordion headers', () => {
       expect(form.accordions.set(0).label).to.equal(translations.summary);
       expect(form.accordions.set(1).label).to.equal(translations.transformations);
     });
 
-    it('should expand accordions by default ', () => {
+    it('should expand accordions by default', () => {
       expect(form.accordions.set(0).isOpen).to.be.true;
       expect(form.accordions.set(1).isOpen).to.be.true;
     });
@@ -234,7 +234,7 @@ describe('MappingProfilesForm', () => {
 
               describe('filling transformation which does not match the selected record type and submitting the form', () => {
                 beforeEach(async () => {
-                  await form.addTransformationButton.click();
+                  await form.addTransformationsButton.click();
                   await wait();
                   await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
                   await form.transformationsModal.transformations.checkboxes(0).clickInput();
@@ -266,7 +266,7 @@ describe('MappingProfilesForm', () => {
 
     describe('clicking on add transformation button', () => {
       beforeEach(async () => {
-        await form.addTransformationButton.click();
+        await form.addTransformationsButton.click();
       });
 
       it('should open transformations modal', () => {
@@ -297,7 +297,7 @@ describe('MappingProfilesForm', () => {
 
         describe('reopening transformation modal', () => {
           beforeEach(async () => {
-            await form.addTransformationButton.click();
+            await form.addTransformationsButton.click();
           });
 
           it('should display proper amount of found transformations', () => {
@@ -366,7 +366,7 @@ describe('MappingProfilesForm', () => {
         await form.summary.name.fillAndBlur(name);
         await form.summary.recordType.checkboxes(0).clickInput();
         await form.summary.description.fillAndBlur(description);
-        await form.addTransformationButton.click();
+        await form.addTransformationsButton.click();
         await wait();
         await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
         await form.transformationsModal.transformations.checkboxes(0).clickInput();

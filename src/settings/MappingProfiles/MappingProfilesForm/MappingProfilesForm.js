@@ -47,11 +47,14 @@ const MappingProfilesFormComponent = props => {
     submitting,
     transformations,
     allTransformations,
+    isEditMode,
     onAddTransformations,
     handleSubmit,
     onCancel,
   } = props;
   const intl = useIntl();
+
+  const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
 
   return (
     <FullScreenForm
@@ -109,11 +112,11 @@ const MappingProfilesFormComponent = props => {
               label={<FormattedMessage id="ui-data-export.transformations" />}
               displayWhenOpen={(
                 <Button
-                  data-test-add-transformation
+                  data-test-add-transformations
                   marginBottom0
                   onClick={onAddTransformations}
                 >
-                  <FormattedMessage id="ui-data-export.mappingProfiles.transformations.addTransformation" />
+                  <FormattedMessage id={`ui-data-export.mappingProfiles.transformations.${openTransformationModalButtonId}`} />
                 </Button>
               )}
             >
@@ -135,12 +138,16 @@ MappingProfilesFormComponent.propTypes = {
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   title: PropTypes.node,
+  isEditMode: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 
-MappingProfilesFormComponent.defaultProps = { title: <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" /> };
+MappingProfilesFormComponent.defaultProps = {
+  isEditMode: false,
+  title: <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />,
+};
 
 export const MappingProfilesForm = stripesFinalForm({
   validate,

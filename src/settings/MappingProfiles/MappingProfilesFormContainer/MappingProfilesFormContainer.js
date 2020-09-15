@@ -40,8 +40,9 @@ export const MappingProfilesFormContainer = props => {
   const {
     allTransformations,
     initialTransformations,
-    onSubmit,
     contentLabel,
+    isEditMode,
+    onSubmit,
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
   const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
@@ -86,10 +87,14 @@ export const MappingProfilesFormContainer = props => {
 
           if (calloutRef.current) {
             calloutRef.current.sendCallout({
-              message: <SafeHTMLMessage
-                id="ui-data-export.mappingProfiles.transformations.save.successCallout"
-                values={{ count: newSelectedTransformations.length }}
-              />,
+              message: isEditMode
+                ? <FormattedMessage id="ui-data-export.mappingProfiles.transformations.update.successCallout" />
+                : (
+                  <SafeHTMLMessage
+                    id="ui-data-export.mappingProfiles.transformations.save.successCallout"
+                    values={{ count: newSelectedTransformations.length }}
+                  />
+                ),
             });
           }
 
@@ -106,7 +111,11 @@ MappingProfilesFormContainer.propTypes = {
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   initialTransformations: PropTypes.arrayOf(PropTypes.object),
   contentLabel: PropTypes.string.isRequired,
+  isEditMode: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
 };
 
-MappingProfilesFormContainer.defaultProps = { initialTransformations: [] };
+MappingProfilesFormContainer.defaultProps = {
+  initialTransformations: [],
+  isEditMode: false,
+};
