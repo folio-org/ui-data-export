@@ -112,11 +112,22 @@ const JobLogsContainer = props => {
         buttonStyle="link"
         marginBottom0
         buttonClass={styles.fileNameBtn}
-        onClick={() => downloadExportFile(record)}
+        onClick={e => {
+          e.stopPropagation();
+          downloadExportFile(record);
+        }}
       >
         {fileName}
       </Button>
     );
+  };
+
+  const handleRowClick = (e, row) => {
+    if (row?.progress?.failed) {
+      const path = `/data-export/log/${row.id}`;
+
+      window.open(path, '_blank').focus();
+    }
   };
 
   const intl = useIntl();
@@ -138,6 +149,7 @@ const JobLogsContainer = props => {
         sortColumns={sortColumns}
         hasLoaded={hasLoaded}
         contentData={logs}
+        onRowClick={handleRowClick}
         {...useJobLogsProperties(customProperties)}
       />
       <Callout ref={calloutRef} />

@@ -13,6 +13,7 @@ import { Pane } from '@folio/stripes/components';
 import { DataExportSettings } from './settings';
 import Home from './routes/Home';
 import ChooseJobProfile from './components/ChooseJobProfile';
+import { ErrorLogsView } from './components/ErrorLogsView';
 
 export default function DataExport(props) {
   const {
@@ -48,6 +49,10 @@ export default function DataExport(props) {
       <Route
         path={`${path}/job-profile`}
         component={ChooseJobProfile}
+      />
+      <Route
+        paty={`${path}/log/:id`}
+        component={ErrorLogsView}
       />
     </Switch>
   );
