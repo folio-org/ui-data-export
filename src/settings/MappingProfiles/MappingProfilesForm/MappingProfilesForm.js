@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
   useIntl,
 } from 'react-intl';
 import { Field } from 'react-final-form';
+import { isEqual } from 'lodash';
 
 import {
   Accordion,
@@ -48,6 +49,7 @@ const MappingProfilesFormComponent = props => {
     transformations,
     allTransformations,
     isEditMode,
+    form,
     onAddTransformations,
     handleSubmit,
     onCancel,
@@ -55,6 +57,12 @@ const MappingProfilesFormComponent = props => {
   const intl = useIntl();
 
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
+
+  useEffect(() => {
+    if (form.getFieldState('transformations')) {
+      form.getFieldState('transformations').change(transformations);
+    }
+  }, [form, transformations]);
 
   return (
     <FullScreenForm
@@ -120,10 +128,19 @@ const MappingProfilesFormComponent = props => {
                 </Button>
               )}
             >
-              <TransformationsList
-                transformations={transformations}
-                allTransformations={allTransformations}
-              />
+              <Field
+                name="transformations"
+                id="mapping-profile-transformations"
+                isEqual={isEqual}
+              >
+                {({ input }) => (
+                  <TransformationsList
+                    name={input.name}
+                    transformations={transformations}
+                    allTransformations={allTransformations}
+                  />
+                )}
+              </Field>
             </Accordion>
           </AccordionSet>
         </AccordionStatus>
@@ -139,6 +156,7 @@ MappingProfilesFormComponent.propTypes = {
   submitting: PropTypes.bool.isRequired,
   title: PropTypes.node,
   isEditMode: PropTypes.bool,
+  form: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,

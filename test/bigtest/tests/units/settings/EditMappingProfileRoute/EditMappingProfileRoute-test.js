@@ -267,4 +267,41 @@ describe('EditMappingProfileRoute', () => {
       });
     });
   });
+
+  describe('rendering edit mapping profile page with profile without transformations', () => {
+    beforeEach(async () => {
+      await mountWithContext(
+        <EditMappingProfileRouteContainer
+          allTransformations={allMappingProfilesTransformations}
+          profile={{
+            ...mappingProfile,
+            transformations: null,
+          }}
+        />,
+        translationsProperties,
+      );
+    });
+
+    it('should display edit form', () => {
+      expect(editMappingProfileRoute.form.isPresent).to.be.true;
+    });
+
+    it('should disable submit button', () => {
+      expect(editMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.true;
+    });
+
+    describe('selecting transformations', () => {
+      beforeEach(async () => {
+        await editMappingProfileRoute.form.addTransformationsButton.click();
+        await wait();
+        await editMappingProfileRoute.form.transformationsModal.transformations.checkboxes(1).clickInput();
+        await editMappingProfileRoute.form.transformationsModal.saveButton.click();
+        await wait();
+      });
+
+      it('should enable submit button', () => {
+        expect(editMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.false;
+      });
+    });
+  });
 });

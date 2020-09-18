@@ -10,7 +10,6 @@ import { stripesConnect } from '@folio/stripes-core';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
-import { generateTransformationFieldsValues } from '../MappingProfilesTransformationsModal/TransformationsField';
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 
 export const EditMappingProfileRouteComponent = ({
@@ -44,14 +43,13 @@ export const EditMappingProfileRouteComponent = ({
 
   const initialValues = {
     ...omit(mappingProfileRecord, 'userInfo', 'metadata', 'transformations'),
-    transformations: generateTransformationFieldsValues(allTransformations, mappingProfileRecord.transformations),
+    transformations: mappingProfileRecord.transformations || [],
   };
 
   return (
     <MappingProfilesFormContainer
       isEditMode
       allTransformations={allTransformations}
-      initialTransformations={mappingProfileRecord.transformations}
       contentLabel={contentLabel}
       title={mappingProfileRecord.name}
       initialValues={initialValues}

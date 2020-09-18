@@ -39,14 +39,14 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
 export const MappingProfilesFormContainer = props => {
   const {
     allTransformations,
-    initialTransformations,
     contentLabel,
     isEditMode,
+    initialValues,
     onSubmit,
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
-  const [selectedTransformations, setSelectedTransformations] = useState(initialTransformations);
-  const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialTransformations) });
+  const [selectedTransformations, setSelectedTransformations] = useState(initialValues.transformations);
+  const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialValues.transformations) });
   const calloutRef = useRef(null);
   const [initialSelectedTransformations] = useState(
     () => generateSelectedTransformations(
@@ -70,10 +70,7 @@ export const MappingProfilesFormContainer = props => {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
           }
 
-          return onSubmit({
-            ...values,
-            transformations: [...selectedTransformations],
-          });
+          return onSubmit(values);
         }}
         onAddTransformations={() => setTransformationModalOpen(true)}
       />
@@ -108,14 +105,11 @@ export const MappingProfilesFormContainer = props => {
 };
 
 MappingProfilesFormContainer.propTypes = {
+  initialValues: PropTypes.object.isRequired,
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
-  initialTransformations: PropTypes.arrayOf(PropTypes.object),
   contentLabel: PropTypes.string.isRequired,
   isEditMode: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
 };
 
-MappingProfilesFormContainer.defaultProps = {
-  initialTransformations: [],
-  isEditMode: false,
-};
+MappingProfilesFormContainer.defaultProps = { isEditMode: false };

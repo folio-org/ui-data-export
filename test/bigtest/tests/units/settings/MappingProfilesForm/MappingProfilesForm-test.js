@@ -152,6 +152,34 @@ describe('MappingProfilesForm', () => {
       expect(form.summary.recordType.errorLabel).to.equal('');
     });
 
+    describe('changing transformations field value', () => {
+      beforeEach(async () => {
+        await form.addTransformationsButton.click();
+        await wait();
+        await form.transformationsModal.transformations.checkboxes(0).clickInput();
+        await form.transformationsModal.saveButton.click();
+        await wait();
+      });
+
+      it('should enable submit button if there are changes in transformations', () => {
+        expect(form.fullScreen.submitButton.$root.disabled).to.be.false;
+      });
+
+      describe('changing transformatins value and return to default(empty)', () => {
+        beforeEach(async () => {
+          await form.addTransformationsButton.click();
+          await wait();
+          await form.transformationsModal.transformations.checkboxes(0).clickInput();
+          await form.transformationsModal.saveButton.click();
+          await wait();
+        });
+
+        it('should disable save button', () => {
+          expect(form.fullScreen.submitButton.$root.disabled).to.be.true;
+        });
+      });
+    });
+
     describe('changing a field value', () => {
       beforeEach(async () => {
         await form.summary.description.fillAndBlur('value');

@@ -27,6 +27,7 @@
 * Implement mapping profile transformations editing. UIDEXP-131.
 * Provide translations for the mapping profile transformation field names. UIDEXP-159.
 * Implement transition to error logs page. UIDEXP-18.
+* Fix form state updating after transformations field change on mapping profile form. UIDEXP-153.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
