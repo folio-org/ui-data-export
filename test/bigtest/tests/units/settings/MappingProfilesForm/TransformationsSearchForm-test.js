@@ -13,13 +13,13 @@ import sinon from 'sinon';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
+import { RECORD_TYPES } from '../../../../../../src/utils';
 import { SearchForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/SearchForm';
-import { recordTypes } from '../../../../../../src/settings/MappingProfiles/RecordTypeField';
 import { translationsProperties } from '../../../../helpers';
 import translations from '../../../../../../translations/ui-data-export/en';
 import { TransformationsSearchFormInteractor } from './interactors/TransformationsSearchFormInteractor';
 
-const initialValues = { filters: { recordTypes: recordTypes.map(recordType => recordType.value) } };
+const initialValues = { filters: { recordTypes: RECORD_TYPES.map(recordType => recordType.value) } };
 
 describe('TransformationsSearchForm', () => {
   const searchForm = new TransformationsSearchFormInteractor();
@@ -93,15 +93,15 @@ describe('TransformationsSearchForm', () => {
       it('should update the form state for the filters correctly', () => {
         const expected = {
           searchValue: 'call',
-          filters: { recordTypes: [recordTypes[0].value] },
+          filters: { recordTypes: [RECORD_TYPES[0].value] },
         };
 
         expect(handleSubmitSpy.calledWith(expected)).to.be.true;
       });
 
       it('should call the provided on change filters callback with correct values', () => {
-        expect(handleFiltersChangeSpy.firstCall.args).to.deep.equal(['recordTypes', [recordTypes[0].value, recordTypes[2].value]]);
-        expect(handleFiltersChangeSpy.secondCall.args).to.deep.equal(['recordTypes', [recordTypes[0].value]]);
+        expect(handleFiltersChangeSpy.firstCall.args).to.deep.equal(['recordTypes', [RECORD_TYPES[0].value, RECORD_TYPES[2].value]]);
+        expect(handleFiltersChangeSpy.secondCall.args).to.deep.equal(['recordTypes', [RECORD_TYPES[0].value]]);
       });
 
       describe('clicking on reset search form button', () => {

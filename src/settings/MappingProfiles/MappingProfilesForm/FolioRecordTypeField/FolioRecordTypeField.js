@@ -8,7 +8,8 @@ import { Field } from 'react-final-form';
 
 import { Label } from '@folio/stripes/components';
 
-import { RecordTypeField } from '../../RecordTypeField';
+import { RECORD_TYPES } from '../../../../utils';
+import { CheckboxGroupField } from '../../CheckboxGroupField';
 
 import css from './FolioRecordTypeField.css';
 
@@ -29,9 +30,10 @@ export const FolioRecordTypeField = memo(() => {
       >
         <FormattedMessage id="stripes-data-transfer-components.folioRecordType" />
       </Label>
-      <RecordTypeField
+      <CheckboxGroupField
         id="folio-record-type"
         name="recordTypes"
+        options={RECORD_TYPES}
         onChange={handleRecordTypeChange}
       />
       <div

@@ -22,7 +22,11 @@ import {
   CollapseFilterPaneButton,
 } from '@folio/stripes/smart-components';
 
-import { recordTypes } from '../RecordTypeField';
+import {
+  RECORD_TYPES,
+  SELECTED_STATUS,
+  SELECTED_STATUSES,
+} from '../../../utils';
 import { TransformationsForm } from './TransformationsForm';
 import { SearchForm } from './SearchForm';
 import { normalizeTransformationFormValues } from './TransformationsField';
@@ -31,7 +35,15 @@ import css from './MappingProfilesTransformationsModal.css';
 
 const initialSearchFormValues = {
   searchValue: '',
-  filters: { recordTypes: recordTypes.map(recordType => recordType.value) },
+  filters: {
+    recordTypes: RECORD_TYPES.map(({ value }) => value),
+    statuses: SELECTED_STATUSES.map(({ value }) => value),
+  },
+};
+
+const statusesFilterMap = {
+  [SELECTED_STATUS.SELECTED]: ({ fieldId }, selectedTransformations) => Boolean(selectedTransformations[fieldId]),
+  [SELECTED_STATUS.UNSELECTED]: ({ fieldId }, selectedTransformations) => !selectedTransformations[fieldId],
 };
 
 const fullWidthStyle = { style: { width: '100%' } };
@@ -70,10 +82,13 @@ export const MappingProfilesTransformationsModal = ({
   let displayedCheckedItemsAmount = 0;
 
   searchValueResults.forEach(transformation => {
-    if (get(searchFilters, 'recordTypes', []).includes(transformation.recordType)) {
+    if (
+      get(searchFilters, 'recordTypes', []).includes(transformation.recordType)
+      && get(searchFilters, 'statuses', []).some(status => statusesFilterMap[status](transformation, selectedTransformations))
+    ) {
       searchResults.push(transformation);
 
-      if (selectedTransformations[transformation.order]) {
+      if (selectedTransformations[transformation.fieldId]) {
         displayedCheckedItemsAmount++;
       }
     }
