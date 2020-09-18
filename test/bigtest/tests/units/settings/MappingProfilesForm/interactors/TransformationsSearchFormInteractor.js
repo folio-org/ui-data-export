@@ -15,6 +15,7 @@ export class TransformationsSearchFormInteractor {
   searchField = new TextFieldInteractor('[data-test-transformations-search-form-field]');
   filterAccordions = new AccordionSetInteractor('#transformations-filter-accordions');
   recordTypeFilters = collection('#transformations-record-type-accordion [data-test-checkbox]', CheckboxInteractor);
+  statusFilters = collection('#transformations-status-accordion [data-test-checkbox]', CheckboxInteractor);
   resetButton = new ButtonInteractor('[data-test-transformations-search-form-reset]');
 
   submit() {

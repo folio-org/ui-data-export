@@ -13,13 +13,21 @@ import sinon from 'sinon';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
+import {
+  RECORD_TYPES,
+  SELECTED_STATUSES,
+} from '../../../../../../src/utils';
 import { SearchForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/SearchForm';
-import { recordTypes } from '../../../../../../src/settings/MappingProfiles/RecordTypeField';
 import { translationsProperties } from '../../../../helpers';
 import translations from '../../../../../../translations/ui-data-export/en';
 import { TransformationsSearchFormInteractor } from './interactors/TransformationsSearchFormInteractor';
 
-const initialValues = { filters: { recordTypes: recordTypes.map(recordType => recordType.value) } };
+const initialValues = {
+  filters: {
+    recordTypes: RECORD_TYPES.map(({ value }) => value),
+    statuses: SELECTED_STATUSES.map(({ value }) => value),
+  },
+};
 
 describe('TransformationsSearchForm', () => {
   const searchForm = new TransformationsSearchFormInteractor();
@@ -60,16 +68,22 @@ describe('TransformationsSearchForm', () => {
 
     it('should display correct filter accordions headers', () => {
       expect(searchForm.filterAccordions.set(0).label).to.equal(translations.recordType);
+      expect(searchForm.filterAccordions.set(1).label).to.equal(translations['mappingProfiles.transformations.status']);
     });
 
     it('should display search field', () => {
       expect(searchForm.searchField.isPresent).to.be.true;
     });
 
-    it('should display correct folio record types', () => {
+    it('should display correct folio record type filters', () => {
       expect(searchForm.recordTypeFilters(0).label).to.equal(commonTranslations['recordTypes.instance']);
       expect(searchForm.recordTypeFilters(1).label).to.equal(commonTranslations['recordTypes.holdings']);
       expect(searchForm.recordTypeFilters(2).label).to.equal(commonTranslations['recordTypes.item']);
+    });
+
+    it('should display correct status filters', () => {
+      expect(searchForm.statusFilters(0).label).to.equal(translations.selected);
+      expect(searchForm.statusFilters(1).label).to.equal(translations.unselected);
     });
 
     it('should display reset button', () => {
@@ -81,6 +95,7 @@ describe('TransformationsSearchForm', () => {
       beforeEach(async () => {
         await searchForm.recordTypeFilters(1).clickAndBlur();
         await searchForm.recordTypeFilters(2).clickAndBlur();
+        await searchForm.statusFilters(1).clickAndBlur();
         await searchForm.searchField.fillAndBlur('call');
         await searchForm.submit();
       });
@@ -88,20 +103,25 @@ describe('TransformationsSearchForm', () => {
       it('should uncheck filters', () => {
         expect(searchForm.recordTypeFilters(1).isChecked).to.be.false;
         expect(searchForm.recordTypeFilters(2).isChecked).to.be.false;
+        expect(searchForm.statusFilters(1).isChecked).to.be.false;
       });
 
       it('should update the form state for the filters correctly', () => {
         const expected = {
           searchValue: 'call',
-          filters: { recordTypes: [recordTypes[0].value] },
+          filters: {
+            recordTypes: [RECORD_TYPES[0].value],
+            statuses: [SELECTED_STATUSES[0].value],
+          },
         };
 
         expect(handleSubmitSpy.calledWith(expected)).to.be.true;
       });
 
       it('should call the provided on change filters callback with correct values', () => {
-        expect(handleFiltersChangeSpy.firstCall.args).to.deep.equal(['recordTypes', [recordTypes[0].value, recordTypes[2].value]]);
-        expect(handleFiltersChangeSpy.secondCall.args).to.deep.equal(['recordTypes', [recordTypes[0].value]]);
+        expect(handleFiltersChangeSpy.firstCall.args).to.deep.equal(['recordTypes', [RECORD_TYPES[0].value, RECORD_TYPES[2].value]]);
+        expect(handleFiltersChangeSpy.secondCall.args).to.deep.equal(['recordTypes', [RECORD_TYPES[0].value]]);
+        expect(handleFiltersChangeSpy.thirdCall.args).to.deep.equal(['statuses', [SELECTED_STATUSES[0].value]]);
       });
 
       describe('clicking on reset search form button', () => {
@@ -113,6 +133,7 @@ describe('TransformationsSearchForm', () => {
         it('should check filters', () => {
           expect(searchForm.recordTypeFilters(1).isChecked).to.be.true;
           expect(searchForm.recordTypeFilters(2).isChecked).to.be.true;
+          expect(searchForm.statusFilters(0).isChecked).to.be.true;
         });
 
         it('should call the provided callback', () => {
@@ -128,6 +149,7 @@ describe('TransformationsSearchForm', () => {
         beforeEach(async () => {
           await searchForm.recordTypeFilters(1).clickAndBlur();
           await searchForm.recordTypeFilters(2).clickAndBlur();
+          await searchForm.statusFilters(1).clickAndBlur();
           await searchForm.searchField.fillAndBlur('');
           await searchForm.submit();
         });
@@ -135,6 +157,7 @@ describe('TransformationsSearchForm', () => {
         it('should check filters', () => {
           expect(searchForm.recordTypeFilters(1).isChecked).to.be.true;
           expect(searchForm.recordTypeFilters(2).isChecked).to.be.true;
+          expect(searchForm.recordTypeFilters(1).isChecked).to.be.true;
         });
 
         it('should update the form to initial values', () => {

@@ -14,7 +14,11 @@ import {
   Button,
 } from '@folio/stripes/components';
 
-import { RecordTypeField } from '../../RecordTypeField';
+import {
+  RECORD_TYPES,
+  SELECTED_STATUSES,
+} from '../../../../utils';
+import { CheckboxGroupField } from '../../CheckboxGroupField';
 
 import css from './SearchForm.css';
 
@@ -25,15 +29,25 @@ const SearchFormComponent = ({
   onReset,
   onFiltersChange,
 }) => {
-  const handleRecordTypeChange = useCallback((event, option) => {
-    const { recordTypes } = values.filters;
+  const updateFilter = useCallback((filterKey, isChecked, option) => {
+    const filterValue = values.filters[filterKey];
 
-    const nextFilters = event.target.checked
-      ? recordTypes.concat(option.value)
-      : recordTypes.filter(filter => filter !== option.value);
+    const nextFilters = isChecked
+      ? filterValue.concat(option.value)
+      : filterValue.filter(value => value !== option.value);
 
-    onFiltersChange('recordTypes', nextFilters);
+    onFiltersChange(filterKey, nextFilters);
   }, [values.filters, onFiltersChange]);
+
+  const handleRecordTypesFilterChange = useCallback(
+    (event, option) => updateFilter('recordTypes', event.target.checked, option),
+    [updateFilter],
+  );
+
+  const handleStatusesFilterChange = useCallback(
+    (event, option) => updateFilter('statuses', event.target.checked, option),
+    [updateFilter],
+  );
 
   const handleReset = useCallback(() => {
     form.restart();
@@ -82,10 +96,24 @@ const SearchFormComponent = ({
           label={<FormattedMessage id="ui-data-export.recordType" />}
           separator={false}
         >
-          <RecordTypeField
+          <CheckboxGroupField
             name="filters.recordTypes"
             filtersLabelClass={css.filtersLabel}
-            onChange={handleRecordTypeChange}
+            options={RECORD_TYPES}
+            onChange={handleRecordTypesFilterChange}
+          />
+        </Accordion>
+        <Accordion
+          id="transformations-status-accordion"
+          header={FilterAccordionHeader}
+          label={<FormattedMessage id="ui-data-export.mappingProfiles.transformations.status" />}
+          separator={false}
+        >
+          <CheckboxGroupField
+            name="filters.statuses"
+            filtersLabelClass={css.filtersLabel}
+            options={SELECTED_STATUSES}
+            onChange={handleStatusesFilterChange}
           />
         </Accordion>
       </AccordionSet>
@@ -95,8 +123,9 @@ const SearchFormComponent = ({
 
 SearchFormComponent.propTypes = {
   values: PropTypes.shape({
-    filters: PropTypes.shape({ // eslint-disable-line object-curly-newline
+    filters: PropTypes.shape({
       recordTypes: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+      statuses: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
   form: PropTypes.shape({ restart: PropTypes.func.isRequired }).isRequired,

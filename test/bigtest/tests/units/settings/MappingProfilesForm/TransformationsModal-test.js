@@ -261,6 +261,26 @@ describe('MappingProfilesTransformationsModal', () => {
           it('should check select all checkbox', () => {
             expect(modal.transformations.selectAllCheckbox.isChecked).to.be.true;
           });
+
+          describe('turning off unselected status filter', () => {
+            beforeEach(async () => {
+              await modal.searchForm.statusFilters(1).clickAndBlur();
+            });
+
+            it('should display the same amount of results', () => {
+              expect(modal.transformations.list.rowCount).to.equal(2);
+            });
+          });
+
+          describe('turning off selected status filter', () => {
+            beforeEach(async () => {
+              await modal.searchForm.statusFilters(0).clickAndBlur();
+            });
+
+            it('should hide the transformation field list because of no results found', () => {
+              expect(modal.transformations.list.isPresent).to.be.false;
+            });
+          });
         });
 
         describe('clicking on select all checkbox', () => {

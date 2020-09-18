@@ -39,7 +39,7 @@ export function generateSelectedTransformations(transformations, predicate) {
     const matchedTransformation = predicate(transformation);
 
     if (matchedTransformation) {
-      result[matchedTransformation.order] = true;
+      result[matchedTransformation.fieldId] = true;
     }
 
     return result;
