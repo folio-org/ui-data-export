@@ -153,23 +153,23 @@ describe('normalizeTransformationFormValues', () => {
 describe('generateSelectedTransformations', () => {
   const data = [
     {
+      fieldId: 'fieldId1',
       isSelected: true,
-      order: 0,
     },
     {
-      isSelected: false,
+      fieldId: 'fieldId2',
       order: 1,
     },
   ];
 
   it('should contain all transformations in the selected list', () => {
     expect(generateSelectedTransformations(data, transformation => transformation)).to.deep.equal({
-      0: true,
-      1: true,
+      fieldId1: true,
+      fieldId2: true,
     });
   });
 
   it('should contain only transformations which fulfilled the predicate', () => {
-    expect(generateSelectedTransformations(data, transformation => transformation.isSelected && transformation)).to.deep.equal({ 0: true });
+    expect(generateSelectedTransformations(data, transformation => transformation.isSelected && transformation)).to.deep.equal({ fieldId1: true });
   });
 });
