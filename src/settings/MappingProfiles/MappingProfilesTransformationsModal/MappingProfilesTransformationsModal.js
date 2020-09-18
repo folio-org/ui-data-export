@@ -81,11 +81,20 @@ export const MappingProfilesTransformationsModal = ({
   const searchResults = [];
   let displayedCheckedItemsAmount = 0;
 
+  const filterMap = {
+    recordTypes: (filters, transformation) => filters.includes(transformation.recordType),
+    statuses: (filters, transformation) => filters.some(status => statusesFilterMap[status](transformation, selectedTransformations)),
+  };
+
   searchValueResults.forEach(transformation => {
-    if (
-      get(searchFilters, 'recordTypes', []).includes(transformation.recordType)
-      && get(searchFilters, 'statuses', []).some(status => statusesFilterMap[status](transformation, selectedTransformations))
-    ) {
+    const hasFilterMatch = Object.keys(filterMap)
+      .every(filterKey => {
+        const filter = get(searchFilters, filterKey, []);
+
+        return filterMap[filterKey](filter, transformation);
+      });
+
+    if (hasFilterMatch) {
       searchResults.push(transformation);
 
       if (selectedTransformations[transformation.fieldId]) {
