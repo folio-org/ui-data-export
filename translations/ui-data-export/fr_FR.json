@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.title": "Select job profile to run the export",
     "jobProfiles.selectProfile.modal.title": "Voulez-vous vraiment exécuter cette tâche ?",
     "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
-    "mappingProfiles.transformations.addTransformation": "Ajouter une transformation",
     "mappingProfiles.transformations.emptyMessage": "Aucune transformation trouvée",
     "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
     "permission.app.enabled": "UI: Data export module is enabled",
@@ -199,5 +198,11 @@
     "holdings.holdingsStatementsForSupplements.staffNote": "Holdings - Holdings statement for supplements note - staff",
     "holdings.holdingsStatementsForIndexes.statement": "Holdings - Holdings statement for indexes",
     "holdings.holdingsStatementsForIndexes.note": "Holdings - Holdings statement for indexes note - public",
-    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff"
+    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff",
+    "mappingProfiles.transformations.addTransformations": "Add transformations",
+    "mappingProfiles.transformations.editTransformations": "Edit transformations",
+    "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
+    "selected": "Selected",
+    "unselected": "Unselected",
+    "mappingProfiles.transformations.status": "Transformation status"
 }
