@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.title": "选择任务配置文件以运行导出",
     "jobProfiles.selectProfile.modal.title": "确定要运行这项任务吗？",
     "jobProfiles.selectProfile.modal.message": "已选择<b> {profile} </b>来运行导出",
-    "mappingProfiles.transformations.addTransformation": "添加转换",
     "mappingProfiles.transformations.emptyMessage": "找不到转换",
     "settings.profilesInfo": "数据导出配置文件增加了灵活性，并提供了一种可重复且可以在不同数据集上轻松执行的简单配置导出方式。",
     "permission.app.enabled": "UI：已启用数据导出模块",
@@ -199,5 +198,11 @@
     "holdings.holdingsStatementsForSupplements.staffNote": "Holdings - Holdings statement for supplements note - staff",
     "holdings.holdingsStatementsForIndexes.statement": "Holdings - Holdings statement for indexes",
     "holdings.holdingsStatementsForIndexes.note": "Holdings - Holdings statement for indexes note - public",
-    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff"
+    "holdings.holdingsStatementsForIndexes.staffNote": "Holdings - Holdings statement for indexes note - staff",
+    "mappingProfiles.transformations.addTransformations": "Add transformations",
+    "mappingProfiles.transformations.editTransformations": "Edit transformations",
+    "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
+    "selected": "已选择",
+    "unselected": "未选中",
+    "mappingProfiles.transformations.status": "转换状态"
 }
