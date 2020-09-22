@@ -202,7 +202,7 @@
     "mappingProfiles.transformations.addTransformations": "Add transformations",
     "mappingProfiles.transformations.editTransformations": "Edit transformations",
     "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
-    "selected": "Selected",
-    "unselected": "Unselected",
-    "mappingProfiles.transformations.status": "Transformation status"
+    "selected": "Sélectionné",
+    "unselected": "Non sélectionné",
+    "mappingProfiles.transformations.status": "État de la transformation"
 }
