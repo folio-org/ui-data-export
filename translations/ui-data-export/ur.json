@@ -8,7 +8,7 @@
     "uploaderSubTitle": "Select a file with records IDs or CQL queries",
     "uploaderActiveTitle": "Drop to start export",
     "runningJobs": "کام چل رہا ہے",
-    "triggeredBy": "آغاز {صارف نام}",
+    "triggeredBy": "آغاز {userName}",
     "jobProfileLabel": "کام کی نوعیت",
     "inProgressStatus": "کام جاری ہے",
     "beganRunning": "شروع {وقت}",
