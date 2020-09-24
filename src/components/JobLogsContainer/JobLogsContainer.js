@@ -37,9 +37,9 @@ const customProperties = {
   ],
   columnWidths: { fileName: '450px' },
   columnMapping: {
+    status: 'ui-data-export.status',
     totalRecords: 'ui-data-export.total',
     errors: 'ui-data-export.failed',
-    status: 'ui-data-export.status',
   },
 };
 
