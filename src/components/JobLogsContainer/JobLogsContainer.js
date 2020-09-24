@@ -12,7 +12,6 @@ import {
 import {
   useJobLogsProperties,
   useJobLogsListFormatter,
-  DEFAULT_JOB_LOGS_COLUMNS,
 } from '@folio/stripes-data-transfer-components';
 import {
   Button,
@@ -27,13 +26,19 @@ import styles from './jobLogsContainer.css';
 
 const customProperties = {
   visibleColumns: [
-    ...DEFAULT_JOB_LOGS_COLUMNS,
-    'errors',
+    'fileName',
     'status',
+    'totalRecords',
+    'errors',
+    'jobProfileName',
+    'completedDate',
+    'runBy',
+    'hrId',
   ],
   columnWidths: { fileName: '450px' },
   columnMapping: {
-    errors: 'ui-data-export.errors',
+    totalRecords: 'ui-data-export.total',
+    errors: 'ui-data-export.failed',
     status: 'ui-data-export.status',
   },
 };
