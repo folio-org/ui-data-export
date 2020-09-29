@@ -1,3 +1,7 @@
-import { Interactor } from '@bigtest/interactor';
+import { interactor } from '@bigtest/interactor';
 
-export const allLogsPaneInteractor = new Interactor('[data-test-all-logs-pane]');
+@interactor class AllLogsPaneInteractor {
+  static defaultScope = '#pane-results';
+}
+
+export const allLogsPaneInteractor = new AllLogsPaneInteractor();

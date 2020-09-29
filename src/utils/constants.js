@@ -11,6 +11,12 @@ export const JOB_EXECUTION_STATUSES = {
   FAIL: 'FAIL',
 };
 
+export const JOB_LOGS_STATUS_QUERY_VALUE = [
+  JOB_EXECUTION_STATUSES.COMPLETED,
+  JOB_EXECUTION_STATUSES.COMPLETED_WITH_ERRORS,
+  JOB_EXECUTION_STATUSES.FAIL,
+].join(' OR ');
+
 export const FIND_ALL_CQL = 'cql.allRecords=1';
 
 export const QUERY_TEMPLATE = '(sortby "%{query.query}")';

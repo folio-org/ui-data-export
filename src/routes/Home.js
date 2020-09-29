@@ -15,10 +15,13 @@ import {
 import {
   QueryFileUploader,
   Jobs,
-  JobLogsContainer,
+  RecentJobLogs,
 } from '../components';
 import { DataFetcherContext } from '../contexts/DataFetcherContext';
-import { JOB_EXECUTION_STATUSES } from '../utils';
+import {
+  JOB_EXECUTION_STATUSES,
+  JOB_LOGS_STATUS_QUERY_VALUE,
+} from '../utils';
 
 function Home(props) {
   const viewAllLogsButton = (
@@ -62,7 +65,7 @@ function Home(props) {
           )}
           lastMenu={viewAllLogsButton}
         >
-          <JobLogsContainer />
+          <RecentJobLogs />
         </Pane>
       </DataFetcher>
     </Paneset>
@@ -75,7 +78,7 @@ const jobsUrl = createUrl('data-export/job-executions', {
 }, false);
 
 const logsUrl = createUrl('data-export/job-executions', {
-  query: `status=(${[JOB_EXECUTION_STATUSES.COMPLETED, JOB_EXECUTION_STATUSES.COMPLETED_WITH_ERRORS, JOB_EXECUTION_STATUSES.FAIL].join(' OR ')}) sortBy completedDate/sort.descending`,
+  query: `status=(${JOB_LOGS_STATUS_QUERY_VALUE}) sortBy completedDate/sort.descending`,
   limit: 25,
 }, false);
 

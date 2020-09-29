@@ -1,1 +1,1 @@
-export { default as JobLogsContainer } from './JobLogsContainer';
+export * from './JobLogsContainer';

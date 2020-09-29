@@ -79,7 +79,7 @@ export default server => {
 
   server.get('/data-export/job-executions', (schema, request) => {
     const { url } = request;
-    const statuses = url.match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
+    const statuses = decodeURIComponent(url).match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
 
     return schema.jobExecutions.where(jobExecution => statuses.includes(jobExecution.status));
   });

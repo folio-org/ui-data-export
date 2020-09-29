@@ -1,7 +1,5 @@
-import React, {
-  useContext,
-  useRef,
-} from 'react';
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
   FormattedMessage,
   useIntl,
@@ -12,11 +10,7 @@ import {
 } from 'lodash';
 
 import {
-  JobLogs,
   useJobLogsProperties,
-  DEFAULT_JOB_LOGS_SORT_COLUMNS,
-  sortStrings,
-  sortNumbers,
   useJobLogsListFormatter,
   DEFAULT_JOB_LOGS_COLUMNS,
 } from '@folio/stripes-data-transfer-components';
@@ -24,28 +18,12 @@ import {
   Button,
   Callout,
 } from '@folio/stripes/components';
-import {
-  stripesConnect,
-  stripesShape,
-} from '@folio/stripes/core';
+import { useStripes } from '@folio/stripes/core';
 
 import { downloadFileByLink } from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
-import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 
 import styles from './jobLogsContainer.css';
-
-const sortColumns = {
-  ...DEFAULT_JOB_LOGS_SORT_COLUMNS,
-  errors: {
-    sortFn: sortNumbers,
-    useFormatterFn: true,
-  },
-  status: {
-    sortFn: sortStrings,
-    useFormatterFn: true,
-  },
-};
 
 const customProperties = {
   visibleColumns: [
@@ -60,13 +38,13 @@ const customProperties = {
   },
 };
 
-const JobLogsContainer = props => {
-  const { stripes: { okapi } } = props;
-
+export const JobLogsContainer = props => {
   const {
-    logs,
-    hasLoaded,
-  } = useContext(DataFetcherContext);
+    children,
+    ...rest
+  } = props;
+
+  const { okapi } = useStripes();
   const calloutRef = useRef(null);
 
   const handleDownloadError = () => {
@@ -132,31 +110,31 @@ const JobLogsContainer = props => {
 
   const intl = useIntl();
 
+  const listProps = {
+    ...useJobLogsProperties(customProperties),
+    resultsFormatter: useJobLogsListFormatter(
+      {
+        status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
+        fileName: record => getFileNameField(record),
+        errors: record => {
+          const { progress: { failed } } = record;
+
+          return failed || '';
+        },
+      },
+    ),
+  };
+
   return (
     <>
-      <JobLogs
-        formatter={useJobLogsListFormatter(
-          {
-            status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
-            fileName: record => getFileNameField(record),
-            errors: record => {
-              const { progress: { failed } } = record;
-
-              return failed || '';
-            },
-          },
-        )}
-        sortColumns={sortColumns}
-        hasLoaded={hasLoaded}
-        contentData={logs}
-        onRowClick={handleRowClick}
-        {...useJobLogsProperties(customProperties)}
-      />
+      {children({
+        listProps,
+        onRowClick: handleRowClick,
+        ...rest,
+      })}
       <Callout ref={calloutRef} />
     </>
   );
 };
 
-JobLogsContainer.propTypes = { stripes: stripesShape.isRequired };
-
-export default stripesConnect(JobLogsContainer);
+JobLogsContainer.propTypes = { children: PropTypes.func.isRequired };

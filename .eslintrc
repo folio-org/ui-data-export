@@ -94,6 +94,12 @@
       "unix"
     ],
     "prefer-object-spread": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "react/prop-types": [
       "error",
       {

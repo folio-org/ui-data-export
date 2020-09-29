@@ -125,7 +125,7 @@ const QueryFileUploaderComponent = props => {
       handleUploadError();
       setDropZone(false);
 
-      console.error(error); // eslint-disable-line no-console
+      console.error(error);
     }
   }
 
