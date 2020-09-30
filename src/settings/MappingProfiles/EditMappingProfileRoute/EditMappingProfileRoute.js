@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import {
-  get,
-  omit,
-} from 'lodash';
+import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes-core';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
+import { formatMappingProfileFormInitialValues } from '../utils';
 
 export const EditMappingProfileRouteComponent = ({
   resources: { mappingProfile },
@@ -41,18 +39,13 @@ export const EditMappingProfileRouteComponent = ({
     );
   }
 
-  const initialValues = {
-    ...omit(mappingProfileRecord, 'userInfo', 'metadata', 'transformations'),
-    transformations: mappingProfileRecord.transformations || [],
-  };
-
   return (
     <MappingProfilesFormContainer
       isEditMode
       allTransformations={allTransformations}
       contentLabel={contentLabel}
       title={mappingProfileRecord.name}
-      initialValues={initialValues}
+      initialValues={formatMappingProfileFormInitialValues(mappingProfileRecord)}
       onSubmit={handleSubmit}
       onCancel={onCancel}
     />

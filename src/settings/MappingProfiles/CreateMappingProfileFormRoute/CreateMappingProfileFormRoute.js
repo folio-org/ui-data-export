@@ -10,13 +10,14 @@ export const CreateMappingProfileFormRoute = ({
   initialValues,
   onSubmit,
   onCancel,
+  onSubmitNavigate,
 }) => {
   const intl = useIntl();
   const handleSubmit = useProfileHandlerWithCallout({
     errorMessageId: 'ui-data-export.mappingProfiles.create.errorCallout',
     successMessageId: 'ui-data-export.mappingProfiles.create.successCallout',
     onAction: onSubmit,
-    onCancel,
+    onCancel: onSubmitNavigate,
   });
 
   return (
@@ -35,4 +36,5 @@ CreateMappingProfileFormRoute.propTypes = {
   initialValues: PropTypes.object.isRequired,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onSubmitNavigate: PropTypes.func.isRequired,
 };

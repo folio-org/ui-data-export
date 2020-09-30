@@ -8,11 +8,12 @@ import {
 } from '@folio/stripes/components';
 
 export const ProfileDetailsActionMenu = ({
+  isProfileUsed,
+  isDefaultProfile,
   onEdit,
   onDelete,
   onToggle,
-  isProfileUsed,
-  isDefaultProfile,
+  onDuplicate,
 }) => {
   const buildButtonClickHandler = buttonClickHandler => () => {
     buttonClickHandler();
@@ -35,7 +36,7 @@ export const ProfileDetailsActionMenu = ({
       <Button
         data-test-duplicate-profile-button
         buttonStyle="dropdownItem"
-        onClick={onToggle}
+        onClick={buildButtonClickHandler(onDuplicate)}
       >
         <Icon icon="duplicate">
           <FormattedMessage id="stripes-data-transfer-components.duplicate" />
@@ -61,4 +62,5 @@ ProfileDetailsActionMenu.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onDuplicate: PropTypes.func.isRequired,
 };

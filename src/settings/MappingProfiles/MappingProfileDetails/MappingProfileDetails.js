@@ -30,6 +30,7 @@ const MappingProfileDetails = props => {
     stripes,
     isLoading,
     onEdit,
+    onDuplicate,
   } = props;
 
   return (
@@ -37,6 +38,7 @@ const MappingProfileDetails = props => {
       profile={mappingProfile}
       type="mapping"
       onEdit={onEdit}
+      onDuplicate={onDuplicate}
       {...props}
     >
       {!isLoading && (
@@ -138,6 +140,7 @@ MappingProfileDetails.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onDuplicate: PropTypes.func.isRequired,
 };
 
 MappingProfileDetails.defaultProps = { isLoading: false };

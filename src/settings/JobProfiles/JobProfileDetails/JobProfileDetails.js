@@ -30,6 +30,7 @@ const JobProfileDetails = props => {
       profile={jobProfile}
       type="job"
       onEdit={onEdit}
+      onDuplicate={noop}
       {...props}
     >
       {!isLoading && (

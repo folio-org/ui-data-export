@@ -26,6 +26,7 @@ export const ProfileDetails = props => {
     onCancel,
     onEdit,
     onDelete,
+    onDuplicate,
   } = props;
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
 
@@ -48,10 +49,11 @@ export const ProfileDetails = props => {
         isProfileUsed={isProfileUsed}
         onToggle={onToggle}
         onEdit={onEdit}
+        onDuplicate={onDuplicate}
         onDelete={() => setConfirmationModalState(true)}
       />
     );
-  }, [isDefaultProfile, isProfileUsed, onEdit]);
+  }, [isDefaultProfile, isProfileUsed, onEdit, onDuplicate]);
 
   return (
     <FormattedMessage id={`ui-data-export.${type}Profiles.newProfile`}>
@@ -104,5 +106,6 @@ ProfileDetails.propTypes = {
   ]).isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onDuplicate: PropTypes.func.isRequired,
   onEdit: PropTypes.func,
 };
