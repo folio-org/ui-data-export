@@ -1,7 +1,13 @@
-import { interactor } from '@bigtest/interactor';
+import {
+  interactor,
+  collection,
+} from '@bigtest/interactor';
+
+import { SearchAndSortInteractor } from '@folio/stripes-data-transfer-components/interactors';
 
 @interactor class AllLogsPaneInteractor {
-  static defaultScope = '#pane-results';
+  searchAndSort = new SearchAndSortInteractor();
+  fileNameBtns = collection('[data-test-download-file-btn]');
 }
 
 export const allLogsPaneInteractor = new AllLogsPaneInteractor();

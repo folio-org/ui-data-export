@@ -86,6 +86,7 @@
   "delete": "Delete",
   "resetAll": "Reset all",
   "searchAndFilter": "Search & filter",
+  "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
 
   "modal.resultsHeader": "Search results",
   "modal.totalSelected": "Total selected: {count}",

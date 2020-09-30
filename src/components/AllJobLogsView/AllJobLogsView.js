@@ -43,12 +43,14 @@ export const AllJobLogsViewComponent = ({
               app="data-export"
             />
           )}
-          resultCountMessageId="stripes-smart-components.searchResultsCountHeader"
+          resultCountMessageId="ui-data-export.searchResultsCountHeader"
           resourceName="jobExecutions"
           hasSearchForm={false}
           shouldSetInitialSort={false}
           lastMenu={<div />}
           defaultSort="completedDate"
+          initialResultCount={INITIAL_RESULT_COUNT}
+          resultCountIncrement={RESULT_COUNT_INCREMENT}
           shouldSetInitialSortOnMount={false}
           parentMutator={mutator}
           parentResources={resources}
