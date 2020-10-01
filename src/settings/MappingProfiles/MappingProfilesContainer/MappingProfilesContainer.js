@@ -29,6 +29,7 @@ import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 import { CreateMappingProfileFormRoute } from '../CreateMappingProfileFormRoute';
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
+import { DuplicateMappingProfileRoute } from '../DuplicateMappingProfileRoute';
 
 const customProperties = {
   columnWidths: { format: '70px' },
@@ -77,7 +78,19 @@ const MappingProfilesContainer = ({
     [intl, resources.transformations.records],
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
-  const handleCancel = useCallback(() => push(`${path}${search}`), [push, path, search]);
+
+  const handleNavigationToMappingProfilesList = useCallback(
+    () => push(`${path}${search}`),
+    [push, path, search],
+  );
+
+  const buildMappingProfileViewNavigationHandler = useCallback(
+    ({
+      match,
+      location,
+    }) => () => push(`/settings/data-export/mapping-profiles/view/${match.params.id}${location.search}`),
+    [push],
+  );
 
   return (
     <>
@@ -92,12 +105,12 @@ const MappingProfilesContainer = ({
         render={props => (
           <FullScreenPreloader
             isLoading={!isTransformationsLoaded}
-            onCancel={handleCancel}
+            onCancel={handleNavigationToMappingProfilesList}
           >
             <MappingProfileDetailsRoute
               {...props}
               allTransformations={allTransformations}
-              onCancel={handleCancel}
+              onCancel={handleNavigationToMappingProfilesList}
             />
           </FullScreenPreloader>
         )}
@@ -105,7 +118,7 @@ const MappingProfilesContainer = ({
       <Route
         path={`${path}/edit/:id`}
         render={editPageProps => {
-          const handleEditPageCancel = () => push(`/settings/data-export/mapping-profiles/view/${editPageProps.match.params.id}${editPageProps.location.search}`);
+          const handleEditPageCancel = buildMappingProfileViewNavigationHandler(editPageProps);
 
           return (
             <FullScreenPreloader
@@ -126,17 +139,39 @@ const MappingProfilesContainer = ({
         render={props => (
           <FullScreenPreloader
             isLoading={!isTransformationsLoaded}
-            onCancel={handleCancel}
+            onCancel={handleNavigationToMappingProfilesList}
           >
             <CreateMappingProfileFormRoute
               {...props}
               initialValues={initialValues}
               allTransformations={allTransformations}
-              onCancel={handleCancel}
+              onCancel={handleNavigationToMappingProfilesList}
               onSubmit={mutator.mappingProfiles.POST}
+              onSubmitNavigate={handleNavigationToMappingProfilesList}
             />
           </FullScreenPreloader>
         )}
+      />
+      <Route
+        path={`${path}/duplicate/:id`}
+        render={duplicatePageProps => {
+          const handleDuplicatePageCancel = buildMappingProfileViewNavigationHandler(duplicatePageProps);
+
+          return (
+            <FullScreenPreloader
+              isLoading={!isTransformationsLoaded}
+              onCancel={handleDuplicatePageCancel}
+            >
+              <DuplicateMappingProfileRoute
+                {...duplicatePageProps}
+                allTransformations={allTransformations}
+                onCancel={handleNavigationToMappingProfilesList}
+                onSubmit={mutator.mappingProfiles.POST}
+                onSubmitNavigate={handleNavigationToMappingProfilesList}
+              />
+            </FullScreenPreloader>
+          );
+        }}
       />
     </>
   );

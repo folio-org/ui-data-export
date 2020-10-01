@@ -44,6 +44,17 @@ describe('Field mapping profile details', () => {
     });
   });
 
+  describe('clicking on duplicate mapping profile button', () => {
+    beforeEach(async () => {
+      await mappingProfileDetails.actionMenu.click();
+      await mappingProfileDetails.actionMenu.duplicateProfileButton.click();
+    });
+
+    it('should navigate to edit mapping profile page', function () {
+      expect(this.location.pathname.endsWith(`/data-export/mapping-profiles/duplicate/${mappingProfile.id}`)).to.be.true;
+    });
+  });
+
   describe('navigating to deleting confirmation modal', () => {
     const callout = new CalloutInteractor();
 

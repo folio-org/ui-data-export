@@ -41,6 +41,7 @@ const MappingProfileDetailsRoute = ({
       isDefaultProfile={isDefaultProfile}
       isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
       onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
+      onDuplicate={() => history.push(`/settings/data-export/mapping-profiles/duplicate/${params.id}${location.search}`)}
       onCancel={onCancel}
       onDelete={() => DELETE({ id: mappingProfileRecord?.id })}
     />
