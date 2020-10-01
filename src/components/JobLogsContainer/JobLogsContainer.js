@@ -19,22 +19,16 @@ import {
 } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
 
-import { downloadFileByLink } from '../../utils';
+import {
+  DEFAULT_JOB_LOG_COLUMNS,
+  downloadFileByLink,
+} from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
 
 import styles from './jobLogsContainer.css';
 
 const customProperties = {
-  visibleColumns: [
-    'fileName',
-    'status',
-    'totalRecords',
-    'errors',
-    'jobProfileName',
-    'completedDate',
-    'runBy',
-    'hrId',
-  ],
+  visibleColumns: DEFAULT_JOB_LOG_COLUMNS,
   columnWidths: { fileName: '450px' },
   columnMapping: {
     status: 'ui-data-export.status',
