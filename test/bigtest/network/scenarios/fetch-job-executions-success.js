@@ -30,6 +30,7 @@ export const runningJobExecutions = [
 export const logJobExecutions = [
   {
     hrId: 2,
+    exportedFiles: [{ fileName: 'import-1.mrc' }],
     progress: { total: 500 },
     runBy: {
       firstName: 'Ozzy',
@@ -41,6 +42,7 @@ export const logJobExecutions = [
   },
   {
     hrId: 3,
+    exportedFiles: [{ fileName: 'import-2.mrc' }],
     progress: {
       exported: 4990,
       failed: 10,
@@ -56,6 +58,7 @@ export const logJobExecutions = [
   },
   {
     hrId: 1,
+    exportedFiles: [{ fileName: 'import-3.mrc' }],
     progress: {
       exported: 500,
       failed: 0,
@@ -79,7 +82,7 @@ export default server => {
 
   server.get('/data-export/job-executions', (schema, request) => {
     const { url } = request;
-    const statuses = url.match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
+    const statuses = decodeURIComponent(url).match(/status=\((?<statuses>.*)\)/).groups.statuses.split(' OR ');
 
     return schema.jobExecutions.where(jobExecution => statuses.includes(jobExecution.status));
   });

@@ -30,6 +30,7 @@
 * Fix form state updating after transformations field change on mapping profile form. UIDEXP-153.
 * Implement status filter behavior in add mapping profile transformations modal. UIDEXP-135.
 * Implement mapping profile duplicating. UIDEXP-134.
+* Implement view all logs list. UIDEXP-142.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
