@@ -81,7 +81,7 @@ export const ProfileDetails = props => {
                   id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
                   values={{ name: profile.name }}
                 />
-                  )}
+              )}
               confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
               cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
               onCancel={() => setConfirmationModalState(false)}
@@ -89,7 +89,7 @@ export const ProfileDetails = props => {
             />
           </>
         )
-          }
+      }
     </FullScreenView>
   );
 };
