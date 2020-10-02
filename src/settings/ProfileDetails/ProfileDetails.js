@@ -3,7 +3,10 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  useIntl,
+} from 'react-intl';
 
 import { ConfirmationModal } from '@folio/stripes/components';
 import {
@@ -29,6 +32,7 @@ export const ProfileDetails = props => {
     onDuplicate,
   } = props;
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
+  const intl = useIntl();
 
   const handleDelete = useProfileHandlerWithCallout({
     errorMessageId: `ui-data-export.${type}Profiles.delete.errorCallout`,
@@ -56,41 +60,37 @@ export const ProfileDetails = props => {
   }, [isDefaultProfile, isProfileUsed, onEdit, onDuplicate]);
 
   return (
-    <FormattedMessage id={`ui-data-export.${type}Profiles.newProfile`}>
-      {contentLabel => (
-        <FullScreenView
-          id={`${type}-profile-details`}
-          contentLabel={contentLabel}
-          paneTitle={profile?.name}
-          actionMenu={!isLoading && renderActionMenu}
-          onCancel={onCancel}
-        >
-          {isLoading
-            ? <Preloader />
-            : (
-              <>
-                {children}
-                <ConfirmationModal
-                  id={`delete-${type}-profile-confirmation-modal`}
-                  open={isConfirmationModalOpen}
-                  heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
-                  message={(
-                    <SafeHTMLMessage
-                      id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
-                      values={{ name: profile.name }}
-                    />
-                  )}
-                  confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
-                  cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
-                  onCancel={() => setConfirmationModalState(false)}
-                  onConfirm={() => handleDelete(profile)}
+    <FullScreenView
+      id={`${type}-profile-details`}
+      contentLabel={intl.formatMessage({ id: `ui-data-export.${type}Profiles.newProfile` })}
+      paneTitle={profile?.name}
+      actionMenu={!isLoading && renderActionMenu}
+      onCancel={onCancel}
+    >
+      {isLoading
+        ? <Preloader />
+        : (
+          <>
+            {children}
+            <ConfirmationModal
+              id={`delete-${type}-profile-confirmation-modal`}
+              open={isConfirmationModalOpen}
+              heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
+              message={(
+                <SafeHTMLMessage
+                  id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
+                  values={{ name: profile.name }}
                 />
-              </>
-            )
+                  )}
+              confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
+              cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
+              onCancel={() => setConfirmationModalState(false)}
+              onConfirm={() => handleDelete(profile)}
+            />
+          </>
+        )
           }
-        </FullScreenView>
-      )}
-    </FormattedMessage>
+    </FullScreenView>
   );
 };
 
