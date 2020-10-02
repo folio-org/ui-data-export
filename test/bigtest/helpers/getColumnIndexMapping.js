@@ -1,8 +1,4 @@
-import { DEFAULT_JOB_LOG_COLUMNS } from '../../../src/utils/constants';
-
-export const getColumnIndexMapping = (
-  columns = DEFAULT_JOB_LOG_COLUMNS,
-) => {
+export const getColumnIndexMapping = (columns = []) => {
   return columns.reduce((accumulator, currColumn, index) => {
     accumulator[currColumn] = index;
 

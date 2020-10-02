@@ -16,10 +16,11 @@ import {
   allLogsPaneInteractor,
 } from '../interactors';
 import { logJobExecutions } from '../network/scenarios/fetch-job-executions-success';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../src/utils/constants';
 
 const getUser = row => logJobExecutions[row].runBy;
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
-const columnIndexMapping = getColumnIndexMapping();
+const columnIndexMapping = getColumnIndexMapping(DEFAULT_JOB_LOG_COLUMNS);
 
 describe('Job logs list', () => {
   describe('default scenario', () => {

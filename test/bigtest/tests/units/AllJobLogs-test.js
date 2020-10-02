@@ -31,6 +31,7 @@ import {
   getColumnIndexMapping,
 } from '../../helpers';
 import { logJobExecutions } from '../../network/scenarios/fetch-job-executions-success';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils/constants';
 
 const {
   searchResults,
@@ -38,7 +39,7 @@ const {
 } = allLogsPaneInteractor.searchAndSort;
 const { getCellContent } = searchResults;
 const getUser = row => logJobExecutions[row].runBy;
-const columnIndexMapping = getColumnIndexMapping();
+const columnIndexMapping = getColumnIndexMapping(DEFAULT_JOB_LOG_COLUMNS);
 
 describe('AllJobLogsView', () => {
   before(async () => {
