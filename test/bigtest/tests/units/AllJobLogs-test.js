@@ -28,8 +28,10 @@ import { AllJobLogsViewComponent } from '../../../../src/components/AllJobLogsVi
 import {
   OverlayContainer,
   translationsProperties,
+  getColumnIndexMapping,
 } from '../../helpers';
 import { logJobExecutions } from '../../network/scenarios/fetch-job-executions-success';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils/constants';
 
 const {
   searchResults,
@@ -37,6 +39,7 @@ const {
 } = allLogsPaneInteractor.searchAndSort;
 const { getCellContent } = searchResults;
 const getUser = row => logJobExecutions[row].runBy;
+const columnIndexMapping = getColumnIndexMapping(DEFAULT_JOB_LOG_COLUMNS);
 
 describe('AllJobLogsView', () => {
   before(async () => {
@@ -93,43 +96,43 @@ describe('AllJobLogsView', () => {
   });
 
   it('should be sorted by "completedDate" descending', () => {
-    expect(searchResults.list.headers(4).$root.getAttribute('aria-sort')).to.equal('descending');
+    expect(searchResults.list.headers(columnIndexMapping.completedDate).$root.getAttribute('aria-sort')).to.equal('descending');
   });
 
   it('should render list columns', () => {
-    expect(searchResults.list.headers(1).text).to.equal(commonTranslations.jobExecutionHrId);
-    expect(searchResults.list.headers(3).text).to.equal(commonTranslations.records);
-    expect(searchResults.list.headers(5).text).to.equal(commonTranslations.runBy);
-    expect(searchResults.list.headers(6).text).to.equal(translations.errors);
+    expect(searchResults.list.headers(columnIndexMapping.hrId).text).to.equal(commonTranslations.jobExecutionHrId);
+    expect(searchResults.list.headers(columnIndexMapping.totalRecords).text).to.equal(translations.total);
+    expect(searchResults.list.headers(columnIndexMapping.runBy).text).to.equal(commonTranslations.runBy);
+    expect(searchResults.list.headers(columnIndexMapping.errors).text).to.equal(translations.failed);
   });
 
   it('should populate ID cells', () => {
-    expect(getCellContent(0, 1)).to.equal('2');
-    expect(getCellContent(1, 1)).to.equal('3');
-    expect(getCellContent(2, 1)).to.equal('1');
+    expect(getCellContent(0, columnIndexMapping.hrId)).to.equal('2');
+    expect(getCellContent(1, columnIndexMapping.hrId)).to.equal('3');
+    expect(getCellContent(2, columnIndexMapping.hrId)).to.equal('1');
   });
 
   it('should populate records cells', () => {
-    expect(getCellContent(0, 3)).to.equal('');
-    expect(getCellContent(1, 3)).to.equal('5000');
-    expect(getCellContent(2, 3)).to.equal('500');
+    expect(getCellContent(0, columnIndexMapping.totalRecords)).to.equal('');
+    expect(getCellContent(1, columnIndexMapping.totalRecords)).to.equal('5000');
+    expect(getCellContent(2, columnIndexMapping.totalRecords)).to.equal('500');
   });
 
   it('should populate run by user cells', () => {
-    expect(getCellContent(0, 5)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
-    expect(getCellContent(1, 5)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
-    expect(getCellContent(2, 5)).to.equal(`${getUser(2).firstName} ${getUser(2).lastName}`);
+    expect(getCellContent(0, columnIndexMapping.runBy)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
+    expect(getCellContent(1, columnIndexMapping.runBy)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
+    expect(getCellContent(2, columnIndexMapping.runBy)).to.equal(`${getUser(2).firstName} ${getUser(2).lastName}`);
   });
 
-  it('should populate errors cells', () => {
-    expect(getCellContent(0, 6)).to.equal('');
-    expect(getCellContent(1, 6)).to.equal('10');
-    expect(getCellContent(2, 6)).to.equal('');
+  it('should populate failed cells', () => {
+    expect(getCellContent(0, columnIndexMapping.errors)).to.equal('');
+    expect(getCellContent(1, columnIndexMapping.errors)).to.equal('10');
+    expect(getCellContent(2, columnIndexMapping.errors)).to.equal('');
   });
 
   describe('clicking on status column header', () => {
     beforeEach(async () => {
-      await searchResults.list.headers(7).click();
+      await searchResults.list.headers(columnIndexMapping.status).click();
     });
 
     it('should have the correct query in path', function () {
@@ -138,7 +141,7 @@ describe('AllJobLogsView', () => {
 
     describe('clicking on status header', () => {
       beforeEach(async () => {
-        await searchResults.list.headers(7).click();
+        await searchResults.list.headers(columnIndexMapping.status).click();
       });
 
       it('should have the correct query in path', function () {

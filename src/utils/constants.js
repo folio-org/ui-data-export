@@ -59,3 +59,14 @@ export const SELECTED_STATUSES = [
     label: <FormattedMessage id={`ui-data-export.${SELECTED_STATUS.UNSELECTED}`} />,
   },
 ];
+
+export const DEFAULT_JOB_LOG_COLUMNS = [
+  'fileName',
+  'status',
+  'totalRecords',
+  'errors',
+  'jobProfileName',
+  'completedDate',
+  'runBy',
+  'hrId',
+];

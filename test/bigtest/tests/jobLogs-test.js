@@ -7,15 +7,20 @@ import {
 
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import translations from '../../../translations/ui-data-export/en';
-import { setupApplication } from '../helpers';
+import {
+  getColumnIndexMapping,
+  setupApplication,
+} from '../helpers';
 import {
   jobLogsContainerInteractor,
   allLogsPaneInteractor,
 } from '../interactors';
 import { logJobExecutions } from '../network/scenarios/fetch-job-executions-success';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../src/utils/constants';
 
 const getUser = row => logJobExecutions[row].runBy;
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
+const columnIndexMapping = getColumnIndexMapping(DEFAULT_JOB_LOG_COLUMNS);
 
 describe('Job logs list', () => {
   describe('default scenario', () => {
@@ -29,8 +34,8 @@ describe('Job logs list', () => {
       expect(jobLogsContainerInteractor.logsList.isPresent).to.be.true;
     });
 
-    it('should add status column to the end', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(7).text).to.equal(translations.status);
+    it('should add status column', () => {
+      expect(jobLogsContainerInteractor.logsList.headers(columnIndexMapping.status).text).to.equal(translations.status);
     });
 
     it('should display view all logs button', () => {
@@ -57,58 +62,58 @@ describe('Job logs list', () => {
     });
 
     it('should be sorted by "completedDate" descending by default', () => {
-      expect(getCellContent(0, 7)).to.equal('Completed with errors');
-      expect(getCellContent(1, 7)).to.equal('Fail');
+      expect(getCellContent(0, columnIndexMapping.status)).to.equal('Completed with errors');
+      expect(getCellContent(1, columnIndexMapping.status)).to.equal('Fail');
     });
 
     it('should render ID column', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(1).text).to.equal(commonTranslations.jobExecutionHrId);
+      expect(jobLogsContainerInteractor.logsList.headers(columnIndexMapping.hrId).text).to.equal(commonTranslations.jobExecutionHrId);
     });
 
-    it('should render records column', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(3).text).to.equal(commonTranslations.records);
+    it('should render total column', () => {
+      expect(jobLogsContainerInteractor.logsList.headers(columnIndexMapping.totalRecords).text).to.equal(translations.total);
     });
 
     it('should render run by user column', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(5).text).to.equal(commonTranslations.runBy);
+      expect(jobLogsContainerInteractor.logsList.headers(columnIndexMapping.runBy).text).to.equal(commonTranslations.runBy);
     });
 
-    it('should render errors column', () => {
-      expect(jobLogsContainerInteractor.logsList.headers(6).text).to.equal(translations.errors);
+    it('should render failed column', () => {
+      expect(jobLogsContainerInteractor.logsList.headers(columnIndexMapping.errors).text).to.equal(translations.failed);
     });
 
     it('should populate ID cells correctly', () => {
-      expect(getCellContent(0, 1)).to.equal('3');
-      expect(getCellContent(1, 1)).to.equal('2');
+      expect(getCellContent(0, columnIndexMapping.hrId)).to.equal('3');
+      expect(getCellContent(1, columnIndexMapping.hrId)).to.equal('2');
     });
 
-    it('should populate records cells correctly', () => {
-      expect(getCellContent(0, 3)).to.equal('5000');
-      expect(getCellContent(1, 3)).to.equal('');
-      expect(getCellContent(2, 3)).to.equal('500');
+    it('should populate total cells correctly', () => {
+      expect(getCellContent(0, columnIndexMapping.totalRecords)).to.equal('5000');
+      expect(getCellContent(1, columnIndexMapping.totalRecords)).to.equal('');
+      expect(getCellContent(2, columnIndexMapping.totalRecords)).to.equal('500');
     });
 
     it('should populate run by user cells correctly', () => {
-      expect(getCellContent(0, 5)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
-      expect(getCellContent(1, 5)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
-      expect(getCellContent(2, 5)).to.equal(`${getUser(2).firstName} ${getUser(2).lastName}`);
+      expect(getCellContent(0, columnIndexMapping.runBy)).to.equal(`${getUser(1).firstName} ${getUser(1).lastName}`);
+      expect(getCellContent(1, columnIndexMapping.runBy)).to.equal(`${getUser(0).firstName} ${getUser(0).lastName}`);
+      expect(getCellContent(2, columnIndexMapping.runBy)).to.equal(`${getUser(2).firstName} ${getUser(2).lastName}`);
     });
 
-    it('should populate errors cells correctly', () => {
-      expect(getCellContent(0, 6)).to.equal('10');
-      expect(getCellContent(1, 6)).to.equal('');
-      expect(getCellContent(2, 6)).to.equal('');
+    it('should populate failed cells correctly', () => {
+      expect(getCellContent(0, columnIndexMapping.errors)).to.equal('10');
+      expect(getCellContent(1, columnIndexMapping.errors)).to.equal('');
+      expect(getCellContent(2, columnIndexMapping.errors)).to.equal('');
     });
 
     describe('clicking on status header', () => {
       beforeEach(async () => {
-        await jobLogsContainerInteractor.logsList.headers(7).click();
+        await jobLogsContainerInteractor.logsList.headers(columnIndexMapping.status).click();
       });
 
       it('should sort by status in ascending order', () => {
-        expect(getCellContent(0, 7)).to.equal('Completed');
-        expect(getCellContent(1, 7)).to.equal('Completed with errors');
-        expect(getCellContent(2, 7)).to.equal('Fail');
+        expect(getCellContent(0, columnIndexMapping.status)).to.equal('Completed');
+        expect(getCellContent(1, columnIndexMapping.status)).to.equal('Completed with errors');
+        expect(getCellContent(2, columnIndexMapping.status)).to.equal('Fail');
       });
 
       it('should have the correct query in path', function () {
@@ -117,13 +122,13 @@ describe('Job logs list', () => {
 
       describe('clicking on status header', () => {
         beforeEach(async () => {
-          await jobLogsContainerInteractor.logsList.headers(7).click();
+          await jobLogsContainerInteractor.logsList.headers(columnIndexMapping.status).click();
         });
 
         it('should sort by status in descending order', () => {
-          expect(getCellContent(0, 7)).to.equal('Fail');
-          expect(getCellContent(1, 7)).to.equal('Completed with errors');
-          expect(getCellContent(2, 7)).to.equal('Completed');
+          expect(getCellContent(0, columnIndexMapping.status)).to.equal('Fail');
+          expect(getCellContent(1, columnIndexMapping.status)).to.equal('Completed with errors');
+          expect(getCellContent(2, columnIndexMapping.status)).to.equal('Completed');
         });
 
         it('should have the correct query in path', function () {

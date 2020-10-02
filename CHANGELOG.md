@@ -31,6 +31,7 @@
 * Implement status filter behavior in add mapping profile transformations modal. UIDEXP-135.
 * Implement mapping profile duplicating. UIDEXP-134.
 * Implement view all logs list. UIDEXP-142.
+* Rearrange columns order in Logs table. UIDEXP-150.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
