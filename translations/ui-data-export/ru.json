@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "Новый профиль задания",
     "mappingProfiles.transformations.fieldName": "Имя поля",
     "mappingProfiles.transformations.transformation": "Преобразование",
-    "errors": "Ошибки",
     "run": "Запустить",
     "jobProfiles.selectProfile.title": "Выбрать профиль задания для запуска экспорта",
     "jobProfiles.selectProfile.modal.title": "Вы уверены, что хотите запустить это задание?",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
     "selected": "Выбран",
     "unselected": "Выделение отменено",
-    "mappingProfiles.transformations.status": "Transformation status"
+    "mappingProfiles.transformations.status": "Transformation status",
+    "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
+    "failed": "Failed",
+    "total": "Total"
 }

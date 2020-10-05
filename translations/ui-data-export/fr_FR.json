@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "Nouveau profil de tâche",
     "mappingProfiles.transformations.fieldName": "Nom du champ",
     "mappingProfiles.transformations.transformation": "Transformation",
-    "errors": "Erreurs",
     "run": "Run",
     "jobProfiles.selectProfile.title": "Select job profile to run the export",
     "jobProfiles.selectProfile.modal.title": "Voulez-vous vraiment exécuter cette tâche ?",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
     "selected": "Sélectionné",
     "unselected": "Non sélectionné",
-    "mappingProfiles.transformations.status": "État de la transformation"
+    "mappingProfiles.transformations.status": "État de la transformation",
+    "searchResultsCountHeader": "{count, number} {count, plural, one { enregistrement trouvé } other { enregistrements trouvés }}",
+    "failed": "Échoué",
+    "total": "Total:"
 }

@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "新規ジョブ・プロファイル",
     "mappingProfiles.transformations.fieldName": "Field name",
     "mappingProfiles.transformations.transformation": "Transformation",
-    "errors": "エラー",
     "run": "Run",
     "jobProfiles.selectProfile.title": "Select job profile to run the export",
     "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
     "selected": "Selected",
     "unselected": "Unselected",
-    "mappingProfiles.transformations.status": "Transformation status"
+    "mappingProfiles.transformations.status": "Transformation status",
+    "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
+    "failed": "Failed",
+    "total": "Total"
 }

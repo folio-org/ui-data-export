@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "新任务配置文件",
     "mappingProfiles.transformations.fieldName": "字段名称",
     "mappingProfiles.transformations.transformation": "转换",
-    "errors": "错误",
     "run": "运行",
     "jobProfiles.selectProfile.title": "选择任务配置文件以运行导出",
     "jobProfiles.selectProfile.modal.title": "确定要运行这项任务吗？",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "转换已更新",
     "selected": "已选择",
     "unselected": "未选中",
-    "mappingProfiles.transformations.status": "转换状态"
+    "mappingProfiles.transformations.status": "转换状态",
+    "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
+    "failed": "Failed",
+    "total": "Total"
 }

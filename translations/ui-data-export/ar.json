@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "وضع وظيفة جديد",
     "mappingProfiles.transformations.fieldName": "اسم الحقل",
     "mappingProfiles.transformations.transformation": "تحويل",
-    "errors": "أخطاء",
     "run": "تشغيل",
     "jobProfiles.selectProfile.title": "اختر وضع الوظيفة لتشغيل التصدير",
     "jobProfiles.selectProfile.modal.title": "هل أنت متأكد من أنك تريد تشغيل هذه الوظيفة؟",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "تم تحديث التحولات",
     "selected": "المحدد",
     "unselected": "غير محدد",
-    "mappingProfiles.transformations.status": "حالة التحويل"
+    "mappingProfiles.transformations.status": "حالة التحويل",
+    "searchResultsCountHeader": "تم العثور على {count, number} {count, plural, one { تسجيلة } other { تسجيلة }}",
+    "failed": "فشل",
+    "total": "الإجمالي"
 }
