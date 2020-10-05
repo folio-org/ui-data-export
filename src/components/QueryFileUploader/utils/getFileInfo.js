@@ -5,7 +5,7 @@ export const getFileInfo = file => {
   const fileType = getFileExtension(file).substring(1);
 
   return {
-    isTypeSupported: !!SUPPORTED_FILE_EXTENSIONS[fileType.toUpperCase()],
+    isTypeSupported: Boolean(SUPPORTED_FILE_EXTENSIONS[fileType.toUpperCase()]),
     fileType,
   };
 };
