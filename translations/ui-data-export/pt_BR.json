@@ -40,7 +40,6 @@
     "jobProfiles.newProfile": "Novo perfil de job",
     "mappingProfiles.transformations.fieldName": "Nome do campo",
     "mappingProfiles.transformations.transformation": "Transformação",
-    "errors": "Erros",
     "run": "Executar",
     "jobProfiles.selectProfile.title": "Selecione o perfil do job para executar a exportação",
     "jobProfiles.selectProfile.modal.title": "Tem certeza de que deseja executar este job?",
@@ -204,5 +203,8 @@
     "mappingProfiles.transformations.update.successCallout": "As transformações foram atualizadas",
     "selected": "Selecionado",
     "unselected": "Não selecionado",
-    "mappingProfiles.transformations.status": "Status de transformação"
+    "mappingProfiles.transformations.status": "Status de transformação",
+    "searchResultsCountHeader": "{count, number} {count, plural, one {registro encontrado} other {registros encontrados}}",
+    "failed": "Falhou",
+    "total": "Total"
 }
