@@ -29,7 +29,7 @@ import {
 
 import {
   generateFileDefinitionBody,
-  checkFileHaveCsvExtension,
+  getFileInfo,
 } from './utils';
 
 import css from './QueryFileUploader.css';
@@ -92,9 +92,12 @@ const QueryFileUploaderComponent = props => {
 
     if (!fileToUpload) return;
 
-    const haveCsvExtension = checkFileHaveCsvExtension(fileToUpload);
+    const {
+      isTypeSupported,
+      fileType,
+    } = getFileInfo(fileToUpload);
 
-    if (!haveCsvExtension) {
+    if (!isTypeSupported) {
       showFileExtensionModal();
 
       return;
@@ -112,7 +115,7 @@ const QueryFileUploaderComponent = props => {
       const fileUploadResult = await uploadFile({
         xhr: currentFileUploadXhr.current,
         file: fileToUpload,
-        url: createUrl(`${okapi.url}/data-export/file-definitions/${fileDefinition.id}/upload`),
+        url: createUrl(`${okapi.url}/data-export/file-definitions/${fileDefinition.id}/upload`, { type: fileType }),
         okapi,
         onFileUploadProgress: handleFileUploadProgress,
       });
