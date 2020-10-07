@@ -28,9 +28,7 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
     return true;
   }
 
-  const filledSelectedTransformations = selectedTransformations
-    .filter(filledSelectedTransformation => filledSelectedTransformation.transformation);
-  const recordTypesInTransformations = uniq(filledSelectedTransformations.map(({ recordType }) => recordType));
+  const recordTypesInTransformations = uniq(selectedTransformations.map(({ recordType }) => recordType));
 
   return isEmpty(difference(recordTypesInTransformations, selectedRecordTypes))
     && isEmpty(difference(selectedRecordTypes, recordTypesInTransformations));
