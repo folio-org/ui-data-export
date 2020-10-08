@@ -114,7 +114,7 @@
     "item.permanentLoanTypeId": "Item - Permanent loan type",
     "item.id": "Item - ID",
     "item.hrid": "Item - HRID",
-    "item.barcode": "Item - Barcode",
+    "item.barcode": "Item - Codice a barre",
     "item.chronology": "Item - Chronology",
     "item.enumeration": "Item - Enumeration",
     "item.volume": "Item - Volume",
