@@ -26,21 +26,21 @@ import translations from '../../../../../../translations/ui-data-export/en';
 const initialValues = {
   transformations: [
     {
-      displayName: 'Instances - Call number - prefix',
-      transformation: 'Transformation value 1',
-      recordType: 'INSTANCE',
+      displayName: 'Holdings - Effective call number',
+      recordType: 'HOLDINGS',
       fieldId: 'field1',
       order: 0,
     },
     {
-      displayName: 'Items - Electronic access - Link text Items',
-      recordType: 'ITEM',
+      displayName: 'Instances - Call number - prefix',
+      transformation: 'Transformation value 1',
+      recordType: 'INSTANCE',
       fieldId: 'field2',
       order: 1,
     },
     {
-      displayName: 'Holdings - Effective call number',
-      recordType: 'HOLDINGS',
+      displayName: 'Items - Electronic access - Link text Items',
+      recordType: 'ITEM',
       fieldId: 'field3',
       order: 2,
     },
@@ -151,9 +151,9 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.transformations.list.rows(0).cells(0).$('[data-test-select-field]')).to.not.be.undefined;
       expect(modal.transformations.list.rows(1).cells(0).$('[data-test-select-field]')).to.not.be.undefined;
       expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[0].displayName);
-      expect(modal.transformations.valuesFields(0).val).to.equal(initialValues.transformations[0].transformation);
+      expect(modal.transformations.valuesFields(1).val).to.equal(initialValues.transformations[1].transformation);
       expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[1].displayName);
-      expect(modal.transformations.valuesFields(1).val).to.equal('');
+      expect(modal.transformations.valuesFields(2).val).to.equal('');
     });
 
     describe('clicking on close button', () => {
@@ -168,8 +168,8 @@ describe('MappingProfilesTransformationsModal', () => {
 
     describe('saving filled and checked transformation', () => {
       beforeEach(async () => {
-        await modal.transformations.valuesFields(0).fillAndBlur('Custom value');
-        await modal.transformations.checkboxes(0).clickInput();
+        await modal.transformations.valuesFields(1).fillAndBlur('Custom value');
+        await modal.transformations.checkboxes(1).clickInput();
         await modal.saveButton.click();
       });
 
@@ -177,7 +177,7 @@ describe('MappingProfilesTransformationsModal', () => {
         expect(submitResult).to.deep.equal([{
           transformation: 'Custom value',
           recordType: 'INSTANCE',
-          fieldId: 'field1',
+          fieldId: 'field2',
           enabled: true,
         }]);
       });
@@ -232,13 +232,13 @@ describe('MappingProfilesTransformationsModal', () => {
         expect(modal.totalSelected.text).to.equal(getTotalSelectedMessage(translations, 3));
       });
 
-      describe('clicking on checkbox from the first row', () => {
+      describe('clicking on checkbox from the second row', () => {
         beforeEach(async () => {
-          await modal.transformations.checkboxes(0).clickInput();
+          await modal.transformations.checkboxes(1).clickInput();
         });
 
         it('should deselect the first item', () => {
-          expect(modal.transformations.checkboxes(0).isChecked).to.be.false;
+          expect(modal.transformations.checkboxes(1).isChecked).to.be.false;
         });
 
         it('should uncheck select all checkbox', () => {
@@ -336,7 +336,7 @@ describe('MappingProfilesTransformationsModal', () => {
         });
 
         it('should filter out the transformation list', () => {
-          expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[1].displayName);
+          expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[2].displayName);
         });
 
         describe('clicking on select all checkbox', () => {
@@ -383,7 +383,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       it('should display correct transformations', () => {
         expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[0].displayName);
-        expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[2].displayName);
+        expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[1].displayName);
       });
 
       describe('applying filter', () => {
@@ -400,7 +400,7 @@ describe('MappingProfilesTransformationsModal', () => {
         });
 
         it('should display correct transformations', () => {
-          expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[2].displayName);
+          expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[0].displayName);
         });
 
         describe('clicking on reset search form button', () => {
