@@ -1,6 +1,11 @@
-import React, { useMemo } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
+import { orderBy } from 'lodash';
 
 import { MultiColumnList } from '@folio/stripes/components';
 
@@ -16,6 +21,7 @@ export const TransformationsList = ({
   transformations,
   allTransformations,
 }) => {
+  const [sortedTransformations, setSortedTransformations] = useState([]);
   const intl = useIntl();
 
   const formatter = useMemo(() => ({
@@ -39,14 +45,22 @@ export const TransformationsList = ({
     transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
   }), [intl]);
 
+  useEffect(() => {
+    const formattedTransformations = transformations.map(transformation => ({
+      fieldName: formatter.fieldName(transformation),
+      transformation: formatter.transformation(transformation),
+    }));
+
+    setSortedTransformations(orderBy(formattedTransformations, 'fieldName', 'asc'));
+  }, [transformations, formatter]);
+
   return (
     <MultiColumnList
       id="mapping-profile-transformations-list"
-      contentData={transformations}
+      contentData={sortedTransformations}
       columnMapping={columnMapping}
       columnWidths={columnWidths}
       visibleColumns={visibleColumns}
-      formatter={formatter}
       isEmptyMessage={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.emptyMessage' })}
     />
   );
