@@ -4,7 +4,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import { get } from 'lodash';
+import {
+  get,
+  orderBy,
+} from 'lodash';
 import {
   match as matchShape,
   history as historyShape,
@@ -67,14 +70,14 @@ const MappingProfilesContainer = ({
 }) => {
   const intl = useIntl();
   const allTransformations = useMemo(
-    () => get(resources.transformations.records, '0.transformationFields', [])
+    () => orderBy(get(resources.transformations.records, '0.transformationFields', [])
       .map(transformation => ({
         ...transformation,
         displayName: intl.formatMessage(
           { id: `ui-data-export.${transformation.displayNameKey}` },
           { value: transformation.referenceDataValue },
         ),
-      })),
+      })), 'displayName', 'asc'),
     [intl, resources.transformations.records],
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
