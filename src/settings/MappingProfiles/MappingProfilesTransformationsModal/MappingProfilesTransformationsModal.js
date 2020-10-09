@@ -9,7 +9,6 @@ import { FormattedMessage } from 'react-intl';
 import {
   get,
   noop,
-  orderBy,
 } from 'lodash';
 
 import {
@@ -60,7 +59,6 @@ export const MappingProfilesTransformationsModal = ({
   const [searchValue, setSearchValue] = useState(initialSearchFormValues.searchValue);
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
   const [selectedTransformations, setSelectedTransformations] = useState(initialSelectedTransformations);
-  const [sortedInitialTransformationsValues, setSortedInitialTransformationsValues] = useState(initialTransformationsValues);
   const transformationsFormStateRef = useRef(null);
 
   const resetSearchForm = useCallback(() => {
@@ -76,8 +74,8 @@ export const MappingProfilesTransformationsModal = ({
   }, [isOpen, resetSearchForm]);
 
   const searchValueResults = !searchValue
-    ? sortedInitialTransformationsValues.transformations
-    : sortedInitialTransformationsValues.transformations
+    ? initialTransformationsValues.transformations
+    : initialTransformationsValues.transformations
       .filter(value => value.displayName.toLowerCase().includes(searchValue));
 
   const searchResults = [];
@@ -127,12 +125,6 @@ export const MappingProfilesTransformationsModal = ({
 
     onSubmit(normalizedTransformations);
   };
-
-  useEffect(() => {
-    const transformations = orderBy(initialTransformationsValues.transformations, 'displayName', 'asc');
-
-    setSortedInitialTransformationsValues({ transformations });
-  }, [initialTransformationsValues]);
 
   const renderFooter = () => {
     return (
@@ -207,7 +199,7 @@ export const MappingProfilesTransformationsModal = ({
           <TransformationsForm
             id="transformations-form"
             stateRef={transformationsFormStateRef}
-            initialValues={sortedInitialTransformationsValues}
+            initialValues={initialTransformationsValues}
             searchResults={searchResults}
             isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
             onSelectChange={handleSelectChange}
