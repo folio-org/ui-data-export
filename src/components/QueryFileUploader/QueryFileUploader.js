@@ -108,14 +108,14 @@ const QueryFileUploaderComponent = props => {
     try {
       // post file upload definition with all files metadata as
       // individual file upload should have upload definition id in the URL
-      const fileDefinition = await mutator.fileDefinition.POST(generateFileDefinitionBody(fileToUpload));
+      const fileDefinition = await mutator.fileDefinition.POST(generateFileDefinitionBody(fileToUpload, fileType));
 
       currentFileUploadXhr.current = new XMLHttpRequest();
 
       const fileUploadResult = await uploadFile({
         xhr: currentFileUploadXhr.current,
         file: fileToUpload,
-        url: createUrl(`${okapi.url}/data-export/file-definitions/${fileDefinition.id}/upload`, { type: fileType }),
+        url: createUrl(`${okapi.url}/data-export/file-definitions/${fileDefinition.id}/upload`),
         okapi,
         onFileUploadProgress: handleFileUploadProgress,
       });
