@@ -35,6 +35,7 @@
 * Update `react-intl` to `v5.7.0`. UIDEXP-157.
 * Fix mapping profile form validation in case of not filled transformation values.UIDEXP-166.
 * Alphabetically order field names on the transformations form. UIDEXP-162.
+* Fix date and time display in Safari. UIDEXP-175.
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
