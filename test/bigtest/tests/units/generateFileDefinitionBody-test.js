@@ -7,7 +7,7 @@ import { expect } from 'chai';
 import { generateFileDefinitionBody } from '../../../../src/components/QueryFileUploader/utils/generateFileDefinitionBody';
 
 describe('generateFileDefinitionBody', () => {
-  it.only('should create correct file definition body', () => {
+  it('should create correct file definition body', () => {
     const file = {
       size: 1024,
       name: 'File name',
