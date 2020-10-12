@@ -1,12 +1,12 @@
 import React from 'react';
-import {
-  FormattedMessage,
-  FormattedTime,
-  FormattedDate,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { get } from 'lodash';
 
+import {
+  FormattedTime,
+  FormattedDate,
+} from '@folio/stripes/components';
 import {
   jobExecutionPropTypes,
   Progress,
