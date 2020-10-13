@@ -29,7 +29,7 @@ import {
 
 import {
   generateFileDefinitionBody,
-  checkFileHaveCsvExtension,
+  getFileInfo,
 } from './utils';
 
 import css from './QueryFileUploader.css';
@@ -92,9 +92,12 @@ const QueryFileUploaderComponent = props => {
 
     if (!fileToUpload) return;
 
-    const haveCsvExtension = checkFileHaveCsvExtension(fileToUpload);
+    const {
+      isTypeSupported,
+      fileType,
+    } = getFileInfo(fileToUpload);
 
-    if (!haveCsvExtension) {
+    if (!isTypeSupported) {
       showFileExtensionModal();
 
       return;
@@ -105,7 +108,7 @@ const QueryFileUploaderComponent = props => {
     try {
       // post file upload definition with all files metadata as
       // individual file upload should have upload definition id in the URL
-      const fileDefinition = await mutator.fileDefinition.POST(generateFileDefinitionBody(fileToUpload));
+      const fileDefinition = await mutator.fileDefinition.POST(generateFileDefinitionBody(fileToUpload, fileType));
 
       currentFileUploadXhr.current = new XMLHttpRequest();
 

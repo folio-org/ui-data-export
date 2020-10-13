@@ -12,11 +12,13 @@ describe('generateFileDefinitionBody', () => {
       size: 1024,
       name: 'File name',
     };
-    const okapiHeaders = generateFileDefinitionBody(file);
+    const fileType = 'cql';
+    const okapiHeaders = generateFileDefinitionBody(file, fileType);
 
     expect(okapiHeaders).to.deep.equal({
       fileName: file.name,
       size: 1,
+      uploadFormat: fileType,
     });
   });
 });

@@ -159,4 +159,14 @@ describe('queryFileUploader component', () => {
       expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
     });
   });
+
+  describe('error modal not showing with cql type file', () => {
+    beforeEach(async () => {
+      await initiateFileUpload([new File([], 'file.cql')]);
+    });
+
+    it('should not render error modal', () => {
+      expect(queryFileUploaderInteractor.fileExtensionModal.isPresent).to.be.false;
+    });
+  });
 });

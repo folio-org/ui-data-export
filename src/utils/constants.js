@@ -70,3 +70,8 @@ export const DEFAULT_JOB_LOG_COLUMNS = [
   'runBy',
   'hrId',
 ];
+
+export const SUPPORTED_FILE_EXTENSIONS = {
+  CSV: 'csv',
+  CQL: 'cql',
+};

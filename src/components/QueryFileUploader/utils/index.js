@@ -1,2 +1,2 @@
 export * from './generateFileDefinitionBody';
-export * from './checkFileHaveCsvExtension';
+export * from './getFileInfo';
