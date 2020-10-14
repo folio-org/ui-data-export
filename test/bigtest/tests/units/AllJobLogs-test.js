@@ -31,7 +31,7 @@ import {
   getColumnIndexMapping,
 } from '../../helpers';
 import { logJobExecutions } from '../../network/scenarios/fetch-job-executions-success';
-import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils/constants';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils';
 
 const {
   searchResults,
