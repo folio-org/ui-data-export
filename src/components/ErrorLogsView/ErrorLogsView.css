@@ -1,0 +1,6 @@
+@import '@folio/stripes-components/lib/variables';
+
+.errorLogsContainer {
+  font-size: 16px;
+  padding: var(--padding-all-gutter);
+}
