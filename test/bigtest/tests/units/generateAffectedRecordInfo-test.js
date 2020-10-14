@@ -52,7 +52,7 @@ describe('generateAffectedRecordInfo', () => {
   });
 
   it('should return correct record info with 2 level nesting', () => {
-    expect(generateAffectedRecordInfo(errorLogs[2].affectedRecord)).eql([
+    expect(generateAffectedRecordInfo(errorLogs[2].affectedRecord)).to.eql([
       '{',
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',

@@ -3,8 +3,4 @@
 .errorLogsContainer {
   font-size: 16px;
   padding: var(--padding-all-gutter);
-
-  & pre {
-    margin: 0;
-  }
 }
