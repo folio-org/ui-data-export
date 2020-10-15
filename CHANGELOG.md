@@ -1,6 +1,9 @@
 # Change history for ui-data-export
 
-## 3.0.0 (IN PROGRESS)
+## 3.1.0 (IN PROGRESS)
+
+## [3.0.0](https://github.com/folio-org/ui-data-export/tree/v3.0.0) (2020-10-15)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.1...v3.0.0)
 * Add translations for permission names. UIDEXP-76.
 * Fix accessibility string building for MCL components. UIDEXP-117.
 * Implement mapping profile details action menu. UIDEXP-75.
@@ -38,6 +41,7 @@
 * Fix date and time display in Safari. UIDEXP-175.
 * Implement support of triggering export using CQL query files. UIDEXP-156.
 * Render error logs details on the error logs page. UIDEXP-144.
+* Update translations
 
 ## [2.0.1](https://github.com/folio-org/ui-data-export/tree/v2.0.1) (2020-07-09)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.0...v2.0.1)
