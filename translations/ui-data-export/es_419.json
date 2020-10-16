@@ -204,7 +204,7 @@
     "selected": "Selected",
     "unselected": "Unselected",
     "mappingProfiles.transformations.status": "Transformation status",
-    "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
-    "failed": "Failed",
+    "searchResultsCountHeader": "{count, number} {count, plural, one { record found } other { registros encontrados }}",
+    "failed": "Ha fallado",
     "total": "Total"
 }
