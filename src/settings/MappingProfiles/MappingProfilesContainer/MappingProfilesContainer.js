@@ -132,6 +132,7 @@ const MappingProfilesContainer = ({
                 {...editPageProps}
                 allTransformations={allTransformations}
                 onCancel={handleEditPageCancel}
+                onSave={handleNavigationToMappingProfilesList}
               />
             </FullScreenPreloader>
           );

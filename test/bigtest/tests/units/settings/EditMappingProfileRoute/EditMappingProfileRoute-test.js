@@ -41,6 +41,7 @@ function EditMappingProfileRouteContainer({
   mutator = { PUT: noop },
   sendCallout = noop,
   onCancel = noop,
+  onSave = noop,
 } = {}) {
   const intl = useIntl();
 
@@ -58,6 +59,7 @@ function EditMappingProfileRouteContainer({
             })}
             mutator={buildMutator({ mappingProfile: mutator })}
             onCancel={onCancel}
+            onSave={onSave}
           />
         </CalloutContext.Provider>
       </Paneset>
@@ -88,11 +90,13 @@ describe('EditMappingProfileRoute', () => {
   describe('rendering edit mapping profile page with profile data: success scenario', () => {
     let handleSubmitSpy;
     let handleCancelSpy;
+    let handleSaveSpy;
     let sendCalloutStub;
 
     beforeEach(async () => {
       handleSubmitSpy = sinon.stub().callsFake(Promise.resolve.bind(Promise));
       handleCancelSpy = sinon.spy();
+      handleSaveSpy = sinon.spy();
       sendCalloutStub = sinon.spy();
 
       await mountWithContext(
@@ -101,6 +105,7 @@ describe('EditMappingProfileRoute', () => {
           mutator={{ PUT: handleSubmitSpy }}
           sendCallout={sendCalloutStub}
           onCancel={handleCancelSpy}
+          onSave={handleSaveSpy}
         />,
         translationsProperties,
       );
@@ -180,8 +185,8 @@ describe('EditMappingProfileRoute', () => {
           expect(sendCalloutStub.firstCall.args[0].message.props.id).to.equal('ui-data-export.mappingProfiles.edit.successCallout');
         });
 
-        it('should call cancel callback', () => {
-          expect(handleCancelSpy.calledOnce).to.be.true;
+        it('should call save callback', () => {
+          expect(handleSaveSpy.calledOnce).to.be.true;
         });
       });
 
@@ -199,8 +204,8 @@ describe('EditMappingProfileRoute', () => {
           expect(sendCalloutStub.calledWith(sinon.match({ type: 'error' })));
         });
 
-        it('should call cancel callback', () => {
-          expect(handleCancelSpy.calledOnce).to.be.true;
+        it('should call save callback', () => {
+          expect(handleSaveSpy.calledOnce).to.be.true;
         });
       });
     });
