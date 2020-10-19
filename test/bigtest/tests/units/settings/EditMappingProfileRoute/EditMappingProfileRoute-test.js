@@ -41,7 +41,7 @@ function EditMappingProfileRouteContainer({
   mutator = { PUT: noop },
   sendCallout = noop,
   onCancel = noop,
-  onSave = noop,
+  onSubmitNavigate = noop,
 } = {}) {
   const intl = useIntl();
 
@@ -59,7 +59,7 @@ function EditMappingProfileRouteContainer({
             })}
             mutator={buildMutator({ mappingProfile: mutator })}
             onCancel={onCancel}
-            onSave={onSave}
+            onSubmitNavigate={onSubmitNavigate}
           />
         </CalloutContext.Provider>
       </Paneset>
@@ -105,7 +105,7 @@ describe('EditMappingProfileRoute', () => {
           mutator={{ PUT: handleSubmitSpy }}
           sendCallout={sendCalloutStub}
           onCancel={handleCancelSpy}
-          onSave={handleSaveSpy}
+          onSubmitNavigate={handleSaveSpy}
         />,
         translationsProperties,
       );
