@@ -19,7 +19,7 @@
     "resume": "استئناف",
     "uploading": "تحميل",
     "modal.fileExtensions.blocked.header": "ملف غير صالح",
-    "modal.fileExtensions.blocked.message": "يمكن فقط تحميل الملفات ذات امتداد csv",
+    "modal.fileExtensions.blocked.message": "يمكن فقط تحميل الملفات ذات امتداد .csv أو .cql",
     "modal.fileExtensions.actionButton": "اختر ملفات أخرى للتحميل",
     "status": "الحالة",
     "jobStatus.fail": "فشل",
