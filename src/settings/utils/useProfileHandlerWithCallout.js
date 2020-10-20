@@ -6,7 +6,7 @@ import { CalloutContext } from '@folio/stripes/core';
 export const useProfileHandlerWithCallout = ({
   errorMessageId,
   successMessageId,
-  onCancel,
+  onActionComplete,
   onAction,
   isCanceledAfterError = false,
 }) => {
@@ -23,7 +23,7 @@ export const useProfileHandlerWithCallout = ({
         />,
       });
 
-      onCancel();
+      onActionComplete();
     } catch {
       callout.sendCallout({
         message: <SafeHTMLMessage
@@ -34,7 +34,7 @@ export const useProfileHandlerWithCallout = ({
       });
 
       if (isCanceledAfterError) {
-        onCancel();
+        onActionComplete();
       }
     }
   };

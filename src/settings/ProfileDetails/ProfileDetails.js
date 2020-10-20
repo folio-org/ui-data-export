@@ -39,7 +39,7 @@ export const ProfileDetails = props => {
     successMessageId: `ui-data-export.${type}Profiles.delete.successCallout`,
     isCanceledAfterError: true,
     onAction: onDelete,
-    onCancel: () => {
+    onActionComplete: () => {
       setConfirmationModalState(false);
 
       onCancel();

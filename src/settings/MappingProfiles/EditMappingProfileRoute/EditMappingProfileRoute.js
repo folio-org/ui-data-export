@@ -15,6 +15,7 @@ export const EditMappingProfileRouteComponent = ({
   mutator,
   allTransformations,
   onCancel,
+  onSubmitNavigate,
 }) => {
   const intl = useIntl();
   const contentLabel = intl.formatMessage({ id: 'ui-data-export.mappingProfiles.editProfile' });
@@ -24,7 +25,7 @@ export const EditMappingProfileRouteComponent = ({
     successMessageId: 'ui-data-export.mappingProfiles.edit.successCallout',
     isCanceledAfterError: true,
     onAction: mutator.mappingProfile.PUT,
-    onCancel,
+    onActionComplete: onSubmitNavigate,
   });
 
   const mappingProfileRecord = get(mappingProfile, 'records.0');
@@ -65,6 +66,7 @@ EditMappingProfileRouteComponent.propTypes = {
   mutator: PropTypes.shape({ mappingProfile: PropTypes.shape({ PUT: PropTypes.func.isRequired }) }).isRequired,
   allTransformations: PropTypes.arrayOf(PropTypes.object),
   onCancel: PropTypes.func.isRequired,
+  onSubmitNavigate: PropTypes.func.isRequired,
 };
 
 export const EditMappingProfileRoute = stripesConnect(EditMappingProfileRouteComponent);

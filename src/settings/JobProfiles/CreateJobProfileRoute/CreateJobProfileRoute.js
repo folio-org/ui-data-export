@@ -28,7 +28,7 @@ const CreateJobProfileRouteComponent = props => {
     errorMessageId: 'ui-data-export.jobProfiles.create.errorCallout',
     successMessageId: 'ui-data-export.jobProfiles.create.successCallout',
     onAction: onSubmit,
-    onCancel,
+    onActionComplete: onCancel,
   });
 
   return (

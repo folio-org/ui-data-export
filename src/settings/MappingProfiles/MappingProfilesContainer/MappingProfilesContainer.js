@@ -131,7 +131,8 @@ const MappingProfilesContainer = ({
               <EditMappingProfileRoute
                 {...editPageProps}
                 allTransformations={allTransformations}
-                onCancel={handleEditPageCancel}
+                onCancel={handleNavigationToMappingProfilesList}
+                onSubmitNavigate={handleNavigationToMappingProfilesList}
               />
             </FullScreenPreloader>
           );
