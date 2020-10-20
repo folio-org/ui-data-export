@@ -17,7 +17,7 @@ export const CreateMappingProfileFormRoute = ({
     errorMessageId: 'ui-data-export.mappingProfiles.create.errorCallout',
     successMessageId: 'ui-data-export.mappingProfiles.create.successCallout',
     onAction: onSubmit,
-    onCancel: onSubmitNavigate,
+    onActionComplete: onSubmitNavigate,
   });
 
   return (
