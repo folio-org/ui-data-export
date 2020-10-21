@@ -2,6 +2,7 @@
 
 ## 3.1.0 (IN PROGRESS)
 * Fix `Save & Close` button on the Edit mapping profile page not closing the profile. UIDEXP-167.
+* Fix inability to view error logs for an empty file. UIDEXP-182.
 
 ## [3.0.0](https://github.com/folio-org/ui-data-export/tree/v3.0.0) (2020-10-15)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.1...v3.0.0)

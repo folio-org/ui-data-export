@@ -21,6 +21,7 @@ import { useStripes } from '@folio/stripes/core';
 
 import {
   DEFAULT_JOB_LOG_COLUMNS,
+  JOB_EXECUTION_STATUSES,
   downloadFileByLink,
 } from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
@@ -100,7 +101,7 @@ export const JobLogsContainer = props => {
   };
 
   const handleRowClick = (e, row) => {
-    if (row?.progress?.failed) {
+    if (row.status !== JOB_EXECUTION_STATUSES.COMPLETED) {
       const path = `/data-export/log/${row.id}`;
 
       window.open(path, '_blank').focus();

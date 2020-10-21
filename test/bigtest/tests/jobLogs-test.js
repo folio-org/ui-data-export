@@ -4,6 +4,7 @@ import {
   beforeEach,
   it,
 } from '@bigtest/mocha';
+import sinon from 'sinon';
 
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import translations from '../../../translations/ui-data-export/en';
@@ -144,6 +145,49 @@ describe('Job logs list', () => {
 
       it('should not show error notification', () => {
         expect(jobLogsContainerInteractor.callout.errorCalloutIsPresent).to.be.false;
+      });
+    });
+
+    describe('clicking on a row', () => {
+      const windowOpenStub = sinon.stub(window, 'open').returns({ focus: sinon.stub() });
+
+      describe('with failed status', () => {
+        beforeEach(async () => {
+          await jobLogsContainerInteractor.logsList.rows(1).click();
+        });
+
+        it('should open error log', () => {
+          const [url, blank] = windowOpenStub.getCall(0).args;
+
+          expect(url).to.equal(`/data-export/log/${logJobExecutions[0].id}`);
+          expect(blank).to.equal('_blank');
+          windowOpenStub.resetHistory();
+        });
+      });
+
+      describe('with completed with errors status', () => {
+        beforeEach(async () => {
+          await jobLogsContainerInteractor.logsList.rows(0).click();
+        });
+
+        it('should open error log', () => {
+          const [url, blank] = windowOpenStub.getCall(0).args;
+
+          expect(url).to.equal(`/data-export/log/${logJobExecutions[1].id}`);
+          expect(blank).to.equal('_blank');
+          windowOpenStub.resetHistory();
+        });
+      });
+
+      describe('with completed status', () => {
+        beforeEach(async () => {
+          await jobLogsContainerInteractor.logsList.rows(2).click();
+        });
+
+        it('should not open error log', () => {
+          expect(windowOpenStub.called).to.be.false;
+          windowOpenStub.restore();
+        });
       });
     });
   });

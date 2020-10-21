@@ -30,6 +30,7 @@ export const runningJobExecutions = [
 export const logJobExecutions = [
   {
     hrId: 2,
+    id: 'c92c6c12-82fc-42b9-b445-c530f24582b9',
     exportedFiles: [{ fileName: 'import-1.mrc' }],
     progress: { total: 500 },
     runBy: {
@@ -42,6 +43,7 @@ export const logJobExecutions = [
   },
   {
     hrId: 3,
+    id: '5d535173-0914-40c2-a9fa-96eea64ceed7',
     exportedFiles: [{ fileName: 'import-2.mrc' }],
     progress: {
       exported: 4990,
@@ -58,6 +60,7 @@ export const logJobExecutions = [
   },
   {
     hrId: 1,
+    id: '1bd03301-d9d5-4e0e-bc04-aea8065a3f86',
     exportedFiles: [{ fileName: 'import-3.mrc' }],
     progress: {
       exported: 500,
