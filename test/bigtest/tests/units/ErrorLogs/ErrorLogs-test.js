@@ -16,7 +16,7 @@ import {
 } from '@folio/stripes-data-transfer-components/interactors';
 
 import { ErrorLogsViewComponent } from '../../../../../src/components/ErrorLogsView';
-import { translationsProperties } from '../../../helpers';
+import { translationsProperties } from '../../../../helpers';
 import { errorLogs } from '../../../fixtures/errorLogs';
 import { errorLogsInteractor } from './interactor';
 

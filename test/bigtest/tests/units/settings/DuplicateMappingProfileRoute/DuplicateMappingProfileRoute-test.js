@@ -27,10 +27,10 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../network/scenarios/fetch-mapping-profiles-success';
 import {
-  translationsProperties,
   OverlayContainer,
   getTotalSelectedMessage,
 } from '../../../../helpers';
+import { translationsProperties } from '../../../../../helpers';
 import { DuplicateMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/DuplicateMappingProfileRoute';
 import { DuplicateMappingProfileRouteInteractor } from './interactors/DuplicateMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';

@@ -34,7 +34,7 @@ describe('Settings', () => {
   });
 
   it('should not display profiles inform popover', () => {
-    expect(settingsSectionsPane.profilesPopover.isPresent).to.be.false;
+    expect(settingsSectionsPane.profilesPopover.content.isPresent).to.be.false;
   });
 
   it('should display section labels', () => {
@@ -79,11 +79,7 @@ describe('Settings', () => {
       await wait();
     });
 
-    it('should display profiles inform popover', () => {
-      expect(settingsSectionsPane.profilesPopover.isPresent).to.be.true;
-    });
-
-    it('should display correct message in inform popover', () => {
+    it('should not display profiles inform popover with correct message', () => {
       expect(settingsSectionsPane.profilesPopover.content.text).to.equal(translations['settings.profilesInfo']);
     });
 

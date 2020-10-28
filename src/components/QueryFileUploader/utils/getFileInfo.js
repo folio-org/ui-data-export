@@ -1,5 +1,5 @@
 import { getFileExtension } from '@folio/stripes-data-transfer-components';
-import { SUPPORTED_FILE_EXTENSIONS } from '../../../utils/constants';
+import { SUPPORTED_FILE_EXTENSIONS } from '../../../utils';
 
 export const getFileInfo = file => {
   const fileType = getFileExtension(file).slice(1);

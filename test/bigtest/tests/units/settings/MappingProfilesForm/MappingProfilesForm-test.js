@@ -22,10 +22,10 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 
 import translations from '../../../../../../translations/ui-data-export/en';
 import {
-  translationsProperties,
   OverlayContainer,
   getTotalSelectedMessage,
 } from '../../../../helpers';
+import { translationsProperties } from '../../../../../helpers';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
 import { MappingProfilesFormContainer } from '../../../../../../src/settings/MappingProfiles/MappingProfilesFormContainer';
 

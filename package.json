@@ -16,10 +16,14 @@
     "build": "stripes build --output ./output",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "test": "stripes test karma",
-    "test-coverage": "stripes test karma --coverage"
+    "test:jest": "jest --ci --coverage",
+    "test:bigtest": "stripes test karma",
+    "test:bigtest:coverage": "stripes test karma --coverage",
+    "test:bigtest:ci": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
+    "test": "yarn run test:jest && yarn run test:bigtest:ci"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@bigtest/interactor": "^0.7.2",
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
@@ -27,13 +31,22 @@
     "@folio/stripes": "^5.0.0",
     "@folio/stripes-cli": "^1.18.0",
     "@folio/stripes-core": "^6.0.0",
+    "@testing-library/dom": "^7.26.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/user-event": "^12.1.10",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^26.1.0",
     "chai": "^4.2.0",
     "core-js": "^3.6.1",
     "eslint": "^6.2.1",
     "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-jest": "^24.0.0",
     "faker": "^4.1.0",
     "inflected": "^2.0.4",
+    "jest": "^26.1.0",
+    "jest-css-modules": "^2.1.0",
+    "jest-junit": "^11.0.1",
     "miragejs": "^0.1.40",
     "mocha": "^5.2.0",
     "react": "^16.5.0",
@@ -56,12 +69,12 @@
   "peerDependencies": {
     "@folio/react-intl-safe-html": "^2.0.0",
     "@folio/stripes": "^5.0.0",
-    "react-virtualized-auto-sizer": "*",
+    "pretender": "*",
     "react": "*",
     "react-intl": "^5.7.0",
     "react-router": "*",
     "react-router-dom": "*",
-    "pretender": "*"
+    "react-virtualized-auto-sizer": "*"
   },
   "stripes": {
     "stripesDeps": [
