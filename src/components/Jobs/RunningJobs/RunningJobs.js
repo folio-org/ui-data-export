@@ -15,13 +15,15 @@ const RunningJobs = () => {
   } = useContext(DataFetcherContext);
 
   return (
-    <JobsListAccordion
-      jobs={sortRunningJobs(jobs)}
-      hasLoaded={hasLoaded}
-      itemFormatter={ItemFormatter}
-      titleId="ui-data-export.runningJobs"
-      emptyMessageId="ui-data-export.noRunningJobsMessage"
-    />
+    <div data-test-running-jobs>
+      <JobsListAccordion
+        jobs={sortRunningJobs(jobs)}
+        hasLoaded={hasLoaded}
+        itemFormatter={ItemFormatter}
+        titleId="ui-data-export.runningJobs"
+        emptyMessageId="ui-data-export.noRunningJobsMessage"
+      />
+    </div>
   );
 };
 
