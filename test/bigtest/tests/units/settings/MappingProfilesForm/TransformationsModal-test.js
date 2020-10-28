@@ -16,10 +16,10 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 
 import { MappingProfilesTransformationsModal } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal';
 import {
-  translationsProperties,
   getTotalSelectedMessage,
   OverlayContainer,
 } from '../../../../helpers';
+import { translationsProperties } from '../../../../../helpers';
 import { TransformationsModalInteractor } from './interactors/TransformationsModalInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
 

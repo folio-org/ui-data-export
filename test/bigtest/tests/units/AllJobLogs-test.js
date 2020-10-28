@@ -27,9 +27,9 @@ import { allLogsPaneInteractor } from '../../interactors';
 import { AllJobLogsViewComponent } from '../../../../src/components/AllJobLogsView';
 import {
   OverlayContainer,
-  translationsProperties,
   getColumnIndexMapping,
 } from '../../helpers';
+import { translationsProperties } from '../../../helpers';
 import { logJobExecutions } from '../../network/scenarios/fetch-job-executions-success';
 import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils';
 

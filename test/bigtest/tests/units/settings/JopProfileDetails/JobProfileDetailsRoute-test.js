@@ -13,7 +13,7 @@ import { noop } from 'lodash';
 import { Paneset } from '@folio/stripes/components';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
 
-import { translationsProperties } from '../../../../helpers/translationsProperties';
+import { translationsProperties } from '../../../../../helpers';
 import { JobProfileDetailsRoute } from '../../../../../../src/settings/JobProfiles/JobProfileDetailsRoute';
 import { JobProfileDetailsInteractor } from './interactors/JobProfileDetailsInteractor';
 import { mappingProfile } from '../../../../network/scenarios/fetch-mapping-profiles-success';

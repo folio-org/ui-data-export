@@ -61,7 +61,7 @@ export const JobLogsContainer = props => {
       const fileName = get(record.exportedFiles, '0.fileName');
       const downloadLink = await getFileDownloadLink(record, okapi);
 
-      await downloadFileByLink(fileName, downloadLink);
+      downloadFileByLink(fileName, downloadLink);
     } catch (error) {
       handleDownloadError();
 

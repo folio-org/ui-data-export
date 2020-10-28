@@ -2,6 +2,9 @@
   "globals": {
     "process": true
   },
+  "env": {
+    "jest/globals": true
+  },
   "extends": "@folio/eslint-config-stripes",
   "parser": "babel-eslint",
   "parserOptions": {
@@ -9,7 +12,7 @@
       "legacyDecorators": true
     }
   },
-  "plugins": ["babel"],
+  "plugins": ["babel", "jest"],
   "root": true,
   "rules": {
     "key-spacing": [

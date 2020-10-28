@@ -18,7 +18,7 @@ import {
   SELECTED_STATUSES,
 } from '../../../../../../src/utils';
 import { SearchForm } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal/SearchForm';
-import { translationsProperties } from '../../../../helpers';
+import { translationsProperties } from '../../../../../helpers';
 import translations from '../../../../../../translations/ui-data-export/en';
 import { TransformationsSearchFormInteractor } from './interactors/TransformationsSearchFormInteractor';
 

@@ -1,6 +1,6 @@
 import stripesComponentsTranslations from '@folio/stripes-components/translations/stripes-components/en';
 
-import translations from '../../../translations/ui-data-export/en';
+import translations from '../../translations/ui-data-export/en';
 
 export const translationsProperties = [
   {
