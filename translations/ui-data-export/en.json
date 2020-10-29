@@ -46,6 +46,7 @@
   "communicationProblem": "Server communication problem. Please try again",
   "format": "Format",
   "protocol": "TCP/IP",
+  "copyOf": "Copy of {value}",
   "mappingProfile": "Mapping profile",
   "mappingProfiles.selectProfile": "Select mapping profile",
   "mappingProfiles.newProfile": "New field mapping profile",
