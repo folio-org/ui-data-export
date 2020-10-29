@@ -26,11 +26,11 @@ import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../network/scenarios/fetch-mapping-profiles-success';
+import { getTotalSelectedMessage } from '../../../../helpers';
 import {
   OverlayContainer,
-  getTotalSelectedMessage,
-} from '../../../../helpers';
-import { translationsProperties } from '../../../../../helpers';
+  translationsProperties,
+} from '../../../../../helpers';
 import { DuplicateMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/DuplicateMappingProfileRoute';
 import { DuplicateMappingProfileRouteInteractor } from './interactors/DuplicateMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -129,7 +129,7 @@ describe('DuplicateMappingProfileRoute', () => {
     });
 
     it('should have correct name field value', () => {
-      expect(duplicateMappingProfileRoute.form.summary.name.val).to.equal(mappingProfile.name);
+      expect(duplicateMappingProfileRoute.form.summary.name.val).to.equal(`Copy of ${mappingProfile.name}`);
     });
 
     it('should have correct folio record types field value', () => {
@@ -142,8 +142,8 @@ describe('DuplicateMappingProfileRoute', () => {
       expect(duplicateMappingProfileRoute.form.summary.description.val).to.equal(mappingProfile.description);
     });
 
-    it('should disable save button if there are not changes', () => {
-      expect(duplicateMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.true;
+    it('should have enabled save button if there are no changes', () => {
+      expect(duplicateMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.false;
     });
 
     it('should display correct transformations table with filled values', () => {

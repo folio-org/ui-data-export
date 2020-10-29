@@ -26,11 +26,11 @@ import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../network/scenarios/fetch-mapping-profiles-success';
+import { getTotalSelectedMessage } from '../../../../helpers';
 import {
   OverlayContainer,
-  getTotalSelectedMessage,
-} from '../../../../helpers';
-import { translationsProperties } from '../../../../../helpers';
+  translationsProperties,
+} from '../../../../../helpers';
 import { EditMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/EditMappingProfileRoute';
 import { EditMappingProfileRouteInteractor } from './interactors/EditMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
@@ -141,7 +141,7 @@ describe('EditMappingProfileRoute', () => {
       expect(editMappingProfileRoute.form.summary.description.val).to.equal(mappingProfile.description);
     });
 
-    it('should disable save button if there are not changes', () => {
+    it('should disable save button if there are no changes', () => {
       expect(editMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.true;
     });
 
