@@ -49,6 +49,7 @@ const MappingProfilesFormComponent = props => {
     transformations,
     allTransformations,
     isEditMode,
+    isFormDirty,
     form,
     onAddTransformations,
     handleSubmit,
@@ -57,6 +58,7 @@ const MappingProfilesFormComponent = props => {
   const intl = useIntl();
 
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
+  const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
 
   useEffect(() => {
     if (form.getFieldState('transformations')) {
@@ -68,7 +70,7 @@ const MappingProfilesFormComponent = props => {
     <FullScreenForm
       id="mapping-profiles-form"
       paneTitle={title}
-      isSubmitButtonDisabled={pristine || submitting}
+      isSubmitButtonDisabled={isSubmitButtonDisabled}
       onSubmit={handleSubmit}
       onCancel={onCancel}
     >
@@ -156,6 +158,7 @@ MappingProfilesFormComponent.propTypes = {
   submitting: PropTypes.bool.isRequired,
   title: PropTypes.node,
   isEditMode: PropTypes.bool,
+  isFormDirty: PropTypes.bool,
   form: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
@@ -164,6 +167,7 @@ MappingProfilesFormComponent.propTypes = {
 
 MappingProfilesFormComponent.defaultProps = {
   isEditMode: false,
+  isFormDirty: false,
   title: <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />,
 };
 
