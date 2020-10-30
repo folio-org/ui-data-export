@@ -19,7 +19,7 @@
     "resume": "恢复",
     "uploading": "上传中",
     "modal.fileExtensions.blocked.header": "无效文件",
-    "modal.fileExtensions.blocked.message": "只能上传具有csv扩展名的文件",
+    "modal.fileExtensions.blocked.message": "只能上传具有csv或cql扩展名的文件",
     "modal.fileExtensions.actionButton": "选择其他文件上传",
     "status": "状态",
     "jobStatus.fail": "失败",
@@ -204,7 +204,7 @@
     "selected": "已选择",
     "unselected": "未选中",
     "mappingProfiles.transformations.status": "转换状态",
-    "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
-    "failed": "Failed",
-    "total": "Total"
+    "searchResultsCountHeader": "{count, number} {count, plural, one {记录找到} other {记录找到}}",
+    "failed": "失败",
+    "total": "总计"
 }
