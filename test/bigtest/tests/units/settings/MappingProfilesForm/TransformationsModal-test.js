@@ -15,11 +15,11 @@ import stripesComponentsTranslations from '@folio/stripes-components/translation
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import { MappingProfilesTransformationsModal } from '../../../../../../src/settings/MappingProfiles/MappingProfilesTransformationsModal';
+import { getTotalSelectedMessage } from '../../../../helpers';
 import {
-  getTotalSelectedMessage,
   OverlayContainer,
-} from '../../../../helpers';
-import { translationsProperties } from '../../../../../helpers';
+  translationsProperties,
+} from '../../../../../helpers';
 import { TransformationsModalInteractor } from './interactors/TransformationsModalInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
 

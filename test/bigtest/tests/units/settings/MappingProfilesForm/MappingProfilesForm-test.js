@@ -21,11 +21,11 @@ import {
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
 import translations from '../../../../../../translations/ui-data-export/en';
+import { getTotalSelectedMessage } from '../../../../helpers';
 import {
   OverlayContainer,
-  getTotalSelectedMessage,
-} from '../../../../helpers';
-import { translationsProperties } from '../../../../../helpers';
+  translationsProperties,
+} from '../../../../../helpers';
 import { MappingProfilesFormInteractor } from './interactors/MappingProfilesFormInteractor';
 import { MappingProfilesFormContainer } from '../../../../../../src/settings/MappingProfiles/MappingProfilesFormContainer';
 
@@ -137,7 +137,7 @@ describe('MappingProfilesForm', () => {
       expect(form.transformations.isPresent).to.be.false;
     });
 
-    it('should disable save button if there are not changes', () => {
+    it('should disable save button if there are no changes', () => {
       expect(form.fullScreen.submitButton.$root.disabled).to.be.true;
     });
 

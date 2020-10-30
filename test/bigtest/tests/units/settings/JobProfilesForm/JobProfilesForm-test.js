@@ -91,7 +91,7 @@ describe('JobProfilesForm', () => {
       expect(form.protocol.label).to.equal(translations.protocol);
     });
 
-    it('should disable save button if there are not changes', () => {
+    it('should disable save button if there are no changes', () => {
       expect(form.fullScreen.submitButton.$root.disabled).to.be.true;
     });
 
@@ -205,7 +205,7 @@ describe('JobProfilesForm', () => {
     });
   });
 
-  describe('rendering job profiles with not loaded state', () => {
+  describe('rendering job profiles in loading state', () => {
     beforeEach(async () => {
       await mountWithContext(
         <Paneset>

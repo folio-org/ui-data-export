@@ -8,6 +8,7 @@ import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
 export const CreateMappingProfileFormRoute = ({
   allTransformations,
   initialValues,
+  isFormDirty,
   onSubmit,
   onCancel,
   onSubmitNavigate,
@@ -24,6 +25,7 @@ export const CreateMappingProfileFormRoute = ({
     <MappingProfilesFormContainer
       allTransformations={allTransformations}
       initialValues={initialValues}
+      isFormDirty={isFormDirty}
       contentLabel={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.newProfile' })}
       onSubmit={handleSubmit}
       onCancel={onCancel}
@@ -34,6 +36,7 @@ export const CreateMappingProfileFormRoute = ({
 CreateMappingProfileFormRoute.propTypes = {
   allTransformations: PropTypes.arrayOf(PropTypes.object),
   initialValues: PropTypes.object.isRequired,
+  isFormDirty: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onSubmitNavigate: PropTypes.func.isRequired,

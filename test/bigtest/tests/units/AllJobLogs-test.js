@@ -25,11 +25,11 @@ import commonTranslations from '@folio/stripes-data-transfer-components/translat
 import translations from '../../../../translations/ui-data-export/en';
 import { allLogsPaneInteractor } from '../../interactors';
 import { AllJobLogsViewComponent } from '../../../../src/components/AllJobLogsView';
+import { getColumnIndexMapping } from '../../helpers';
 import {
   OverlayContainer,
-  getColumnIndexMapping,
-} from '../../helpers';
-import { translationsProperties } from '../../../helpers';
+  translationsProperties,
+} from '../../../helpers';
 import { logJobExecutions } from '../../network/scenarios/fetch-job-executions-success';
 import { DEFAULT_JOB_LOG_COLUMNS } from '../../../../src/utils';
 

@@ -29,10 +29,19 @@ export const DuplicateMappingProfileRouteComponent = ({
     );
   }
 
+  const newMappingProfileRecord = {
+    ...mappingProfileRecord,
+    name: intl.formatMessage(
+      { id: 'ui-data-export.copyOf' },
+      { value: mappingProfileRecord.name },
+    ),
+  };
+
   return (
     <CreateMappingProfileFormRoute
+      isFormDirty
       allTransformations={allTransformations}
-      initialValues={formatMappingProfileFormInitialValues(mappingProfileRecord, ['id'])}
+      initialValues={formatMappingProfileFormInitialValues(newMappingProfileRecord, ['id'])}
       onSubmit={onSubmit}
       onCancel={onCancel}
       onSubmitNavigate={onSubmitNavigate}
