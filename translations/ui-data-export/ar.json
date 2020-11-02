@@ -206,5 +206,6 @@
     "mappingProfiles.transformations.status": "حالة التحويل",
     "searchResultsCountHeader": "تم العثور على {count, number} {count, plural, one { تسجيلة } other { تسجيلة }}",
     "failed": "فشل",
-    "total": "الإجمالي"
+    "total": "الإجمالي",
+    "copyOf": "نسخة من {value}"
 }

@@ -206,5 +206,6 @@
     "mappingProfiles.transformations.status": "변환 상태",
     "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
     "failed": "Failed",
-    "total": "Total"
+    "total": "Total",
+    "copyOf": "Copy of {value}"
 }

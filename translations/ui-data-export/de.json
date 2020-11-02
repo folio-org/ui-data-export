@@ -118,7 +118,7 @@
     "item.chronology": "Item - Chronology",
     "item.enumeration": "Item - Enumeration",
     "item.volume": "Item - Volume",
-    "item.copyNumber": "Item - Copy number",
+    "item.copyNumber": "Exemplar - Exemplarnummer",
     "item.numberOfPieces": "Item - Number of pieces",
     "item.descriptionOfPieces": "Item - Description of pieces",
     "item.holdingsRecordId": "Item - Holdings ID",
@@ -206,5 +206,6 @@
     "mappingProfiles.transformations.status": "Transformation status",
     "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
     "failed": "Failed",
-    "total": "Total"
+    "total": "Total",
+    "copyOf": "Copy of {value}"
 }
