@@ -206,5 +206,6 @@
     "mappingProfiles.transformations.status": "转换状态",
     "searchResultsCountHeader": "{count, number} {count, plural, one {记录找到} other {记录找到}}",
     "failed": "失败",
-    "total": "总计"
+    "total": "总计",
+    "copyOf": "Copy of {value}"
 }
