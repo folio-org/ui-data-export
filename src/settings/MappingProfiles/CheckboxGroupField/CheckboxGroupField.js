@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { Field } from 'react-final-form';
 
-import { Checkbox } from '@folio/stripes/components';
+import {
+  Checkbox,
+  Row,
+} from '@folio/stripes/components';
 
 export const CheckboxGroupField = memo(({
   id,
@@ -11,6 +14,7 @@ export const CheckboxGroupField = memo(({
   options,
   filtersLabelClass,
   onChange,
+  disabledFields,
 }) => {
   return (
     <div id={id}>
@@ -22,15 +26,19 @@ export const CheckboxGroupField = memo(({
             value={option.value}
             isEqual={isEqual}
             render={fieldProps => (
-              <Checkbox
-                {...fieldProps.input}
-                label={option.label}
-                innerClass={filtersLabelClass}
-                onChange={event => {
-                  onChange(event, option);
-                  fieldProps.input.onChange(event);
-                }}
-              />
+              <Row>
+                <Checkbox
+                  {...fieldProps.input}
+                  label={option.label}
+                  innerClass={filtersLabelClass}
+                  disabled={disabledFields[option.value]}
+                  onChange={event => {
+                    onChange(event, option);
+                    fieldProps.input.onChange(event);
+                  }}
+                />
+                {option.endAdornment}
+              </Row>
             )}
           />
         </div>
@@ -45,4 +53,7 @@ CheckboxGroupField.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string,
   filtersLabelClass: PropTypes.string,
+  disabledFields: PropTypes.object,
 };
+
+CheckboxGroupField.defaultProps = { disabledFields: {} };

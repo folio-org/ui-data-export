@@ -52,6 +52,7 @@ export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
   initialSelectedTransformations,
+  disabledTypes,
   onCancel,
   onSubmit,
 }) => {
@@ -62,9 +63,12 @@ export const MappingProfilesTransformationsModal = ({
   const transformationsFormStateRef = useRef(null);
 
   const resetSearchForm = useCallback(() => {
-    setSearchFilters(initialSearchFormValues.filters);
+    setSearchFilters({
+      ...initialSearchFormValues.filters,
+      recordTypes: initialSearchFormValues.filters.recordTypes.filter(record => !disabledTypes?.[record]),
+    });
     setSearchValue(initialSearchFormValues.searchValue);
-  }, []);
+  }, [disabledTypes]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -176,7 +180,11 @@ export const MappingProfilesTransformationsModal = ({
           hidden={!isFilterPaneOpen}
         >
           <SearchForm
-            initialValues={initialSearchFormValues}
+            initialValues={{
+              searchValue,
+              filters: searchFilters,
+            }}
+            disabledTypes={disabledTypes}
             onFiltersChange={handleFiltersChange}
             onReset={resetSearchForm}
             onSubmit={handleSearchFormSubmit}

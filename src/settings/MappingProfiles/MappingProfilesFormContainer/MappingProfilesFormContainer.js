@@ -1,6 +1,7 @@
 import React, {
   useState,
   useRef,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -22,6 +23,7 @@ import {
   generateTransformationFieldsValues,
   generateSelectedTransformations,
 } from '../MappingProfilesTransformationsModal/TransformationsField';
+import { DISABLING_CHECKBOX_MAPPING } from '../../../utils';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -53,6 +55,20 @@ export const MappingProfilesFormContainer = props => {
         .find(transformation => selectedTransformation.fieldId === transformation.fieldId),
     ),
   );
+  const [disabledRecordType, setDisabledRecordType] = useState(null);
+  const [initiallyDisabledRecord] = useState(() => {
+    const disabledFields = {};
+
+    if (initialValues.recordTypes) {
+      initialValues.recordTypes.forEach(record => {
+        if (DISABLING_CHECKBOX_MAPPING[record]) {
+          disabledFields[DISABLING_CHECKBOX_MAPPING[record]] = true;
+        }
+      });
+    }
+
+    return disabledFields;
+  });
 
   return (
     <Layer
@@ -63,6 +79,7 @@ export const MappingProfilesFormContainer = props => {
         {...props}
         transformations={selectedTransformations}
         allTransformations={allTransformations}
+        initiallyDisabledRecord={initiallyDisabledRecord}
         onSubmit={values => {
           if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
@@ -71,11 +88,13 @@ export const MappingProfilesFormContainer = props => {
           return onSubmit(values);
         }}
         onAddTransformations={() => setTransformationModalOpen(true)}
+        onTypeDisable={disabledType => setDisabledRecordType(disabledType)}
       />
       <MappingProfilesTransformationsModal
         isOpen={transformationModalOpen}
         initialSelectedTransformations={initialSelectedTransformations}
         initialTransformationsValues={modalTransformations}
+        disabledTypes={disabledRecordType}
         onCancel={() => setTransformationModalOpen(false)}
         onSubmit={newSelectedTransformations => {
           setTransformationModalOpen(false);

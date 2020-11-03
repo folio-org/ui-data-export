@@ -28,6 +28,7 @@ const SearchFormComponent = ({
   handleSubmit,
   onReset,
   onFiltersChange,
+  disabledTypes,
 }) => {
   const updateFilter = useCallback((filterKey, isChecked, option) => {
     const filterValue = values.filters[filterKey];
@@ -100,6 +101,7 @@ const SearchFormComponent = ({
             name="filters.recordTypes"
             filtersLabelClass={css.filtersLabel}
             options={RECORD_TYPES}
+            disabledFields={disabledTypes}
             onChange={handleRecordTypesFilterChange}
           />
         </Accordion>
@@ -128,6 +130,7 @@ SearchFormComponent.propTypes = {
       statuses: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
+  disabledTypes: PropTypes.object,
   form: PropTypes.shape({ restart: PropTypes.func.isRequired }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
