@@ -60,7 +60,7 @@ describe('JobProfileDetails', () => {
     });
 
     it('should display preloader', () => {
-      expect(jobProfileDetails.preloader.isSpinnerPresent).to.be.true;
+      expect(jobProfileDetails.preloader.spinner.isPresent).to.be.true;
     });
   });
 
@@ -77,7 +77,7 @@ describe('JobProfileDetails', () => {
     });
 
     it('should display preloader', () => {
-      expect(jobProfileDetails.preloader.isSpinnerPresent).to.be.true;
+      expect(jobProfileDetails.preloader.spinner.isPresent).to.be.true;
     });
   });
 
@@ -101,7 +101,7 @@ describe('JobProfileDetails', () => {
     });
 
     it('should display preloader', () => {
-      expect(jobProfileDetails.preloader.isSpinnerPresent).to.be.true;
+      expect(jobProfileDetails.preloader.spinner.isPresent).to.be.true;
     });
   });
 });

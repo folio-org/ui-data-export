@@ -77,7 +77,7 @@ describe('ErrorLogsView', () => {
     });
 
     it('should display preloader', () => {
-      expect(preloader.isSpinnerPresent).to.be.true;
+      expect(preloader.spinner.isPresent).to.be.true;
     });
   });
 });

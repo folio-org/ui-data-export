@@ -243,7 +243,7 @@ describe('MappingProfileDetails', () => {
     });
 
     it('should display preloader', () => {
-      expect(mappingProfileDetails.preloader.isSpinnerPresent).to.be.true;
+      expect(mappingProfileDetails.preloader.spinner.isPresent).to.be.true;
     });
   });
 });
