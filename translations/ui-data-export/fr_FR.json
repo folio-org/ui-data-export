@@ -207,5 +207,5 @@
     "searchResultsCountHeader": "{count, number} {count, plural, one { enregistrement trouvé } other { enregistrements trouvés }}",
     "failed": "Échoué",
     "total": "Total:",
-    "copyOf": "Copy of {value}"
+    "copyOf": "Copie de {value}"
 }
