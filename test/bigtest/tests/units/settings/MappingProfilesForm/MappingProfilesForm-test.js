@@ -143,7 +143,7 @@ describe('MappingProfilesForm', () => {
 
     it('should display correct folio record types', () => {
       expect(form.summary.recordType.checkboxes(0).label).to.equal(commonTranslations['recordTypes.srs']);
-      expect(form.summary.recordType.checkboxes(1).label).to.equal(translations['recordTypes.instance']);
+      expect(form.summary.recordType.checkboxes(1).label).to.equal(translations['mappingProfiles.recordType.instance']);
       expect(form.summary.recordType.checkboxes(2).label).to.equal(commonTranslations['recordTypes.holdings']);
       expect(form.summary.recordType.checkboxes(3).label).to.equal(commonTranslations['recordTypes.item']);
     });
@@ -243,17 +243,17 @@ describe('MappingProfilesForm', () => {
             expect(handleSubmitSpy.called).to.be.false;
           });
 
-          describe('checking an Inventory record type', () => {
+          describe('checking a SRS record type', () => {
             beforeEach(async () => {
-              await form.summary.recordType.checkboxes(1).clickInput();
+              await form.summary.recordType.checkboxes(0).clickInput();
             });
 
             it('should hide error message', () => {
               expect(form.summary.recordType.errorLabel).to.equal('');
             });
 
-            it('should disable SRS record type', () => {
-              expect(form.summary.recordType.checkboxes(0).isDisabled).to.be.true;
+            it('should disable Instance record type', () => {
+              expect(form.summary.recordType.checkboxes(1).isDisabled).to.be.true;
             });
 
             describe('clicking on save button', () => {
@@ -263,6 +263,17 @@ describe('MappingProfilesForm', () => {
 
               it('should not display record types mismatch message when no transformations are provided', () => {
                 expect(form.summary.recordType.errorLabel).to.equal('');
+              });
+
+              describe('opening transformation modal', () => {
+                beforeEach(async () => {
+                  await form.addTransformationsButton.click();
+                  await wait();
+                });
+
+                it('should disable Instance record type on transformation modal', () => {
+                  expect(form.transformationsModal.searchForm.recordTypeFilters(0).isDisabled).to.be.true;
+                });
               });
 
               describe('filling transformation which does not match the selected record type and submitting the form', () => {
@@ -284,19 +295,13 @@ describe('MappingProfilesForm', () => {
           });
         });
 
-        describe('checking an SRS record type', () => {
+        describe('checking an Instance record type', () => {
           beforeEach(async () => {
             await form.summary.recordType.checkboxes(0).clickInput();
-            await form.addTransformationsButton.click();
-            await wait();
           });
 
-          it('should disable Instance record type', () => {
+          it('should disable SRS record type', () => {
             expect(form.summary.recordType.checkboxes(1).isDisabled).to.be.true;
-          });
-
-          it('should disable Instance record type on transformation modal', () => {
-            expect(form.transformationsModal.searchForm.recordTypeFilters(0).isDisabled).to.be.true;
           });
         });
 
