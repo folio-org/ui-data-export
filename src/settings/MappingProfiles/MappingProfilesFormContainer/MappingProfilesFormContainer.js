@@ -1,7 +1,6 @@
 import React, {
   useState,
   useRef,
-  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -23,7 +22,7 @@ import {
   generateTransformationFieldsValues,
   generateSelectedTransformations,
 } from '../MappingProfilesTransformationsModal/TransformationsField';
-import { DISABLING_CHECKBOX_MAPPING } from '../../../utils';
+import { RECORD_TYPES_DISABLING_MAPPING } from '../../../utils';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -61,8 +60,8 @@ export const MappingProfilesFormContainer = props => {
 
     if (initialValues.recordTypes) {
       initialValues.recordTypes.forEach(record => {
-        if (DISABLING_CHECKBOX_MAPPING[record]) {
-          disabledFields[DISABLING_CHECKBOX_MAPPING[record]] = true;
+        if (RECORD_TYPES_DISABLING_MAPPING[record]) {
+          disabledFields[RECORD_TYPES_DISABLING_MAPPING[record]] = true;
         }
       });
     }

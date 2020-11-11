@@ -132,9 +132,9 @@ describe('EditMappingProfileRoute', () => {
     });
 
     it('should have correct folio record types field value', () => {
-      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(0).isChecked).to.be.false;
-      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(1).isChecked).to.be.true;
-      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(2).isChecked).to.be.false;
+      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(1).isChecked).to.be.false;
+      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(2).isChecked).to.be.true;
+      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(3).isChecked).to.be.false;
     });
 
     it('should have correct description field value', () => {

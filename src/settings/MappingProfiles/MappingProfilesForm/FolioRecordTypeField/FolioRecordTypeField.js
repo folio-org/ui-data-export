@@ -8,16 +8,12 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import PropTypes from 'prop-types';
 
-import {
-  InfoPopover,
-  Label,
-} from '@folio/stripes/components';
+import { Label } from '@folio/stripes/components';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import {
-  RECORD_TYPES,
-  DISABLING_CHECKBOX_MAPPING,
+  RECORD_TYPES_DISABLING_MAPPING,
+  FORM_RECORD_TYPES,
 } from '../../../../utils';
 import { CheckboxGroupField } from '../../CheckboxGroupField';
 
@@ -40,7 +36,7 @@ export const FolioRecordTypeField = memo(({
     if (disabledTypes[value] !== undefined) {
       setDisabledTypes({
         ...disabledTypes,
-        [DISABLING_CHECKBOX_MAPPING[value]]: checked,
+        [RECORD_TYPES_DISABLING_MAPPING[value]]: checked,
       });
     }
   }, [disabledTypes]);
@@ -64,14 +60,7 @@ export const FolioRecordTypeField = memo(({
       <CheckboxGroupField
         id="folio-record-type"
         name="recordTypes"
-        options={[{
-          value: FOLIO_RECORD_TYPES.SRS.type,
-          label: <FormattedMessage id={FOLIO_RECORD_TYPES.SRS.captionId} />,
-          endAdornment: <InfoPopover
-            content={<SafeHTMLMessage id="ui-data-export.mappingProfiles.srs.info" />}
-            iconSize="medium"
-          />,
-        }, ...RECORD_TYPES]}
+        options={FORM_RECORD_TYPES}
         disabledFields={disabledTypes}
         onChange={handleRecordTypeChange}
       />
@@ -99,9 +88,7 @@ export const FolioRecordTypeField = memo(({
 
 FolioRecordTypeField.propTypes = {
   initiallyDisabledRecord: PropTypes.object.isRequired,
-  onTypeDisable: PropTypes.func.isRequired
+  onTypeDisable: PropTypes.func.isRequired,
 };
 
-FolioRecordTypeField.defaultProps = {
-  initiallyDisabledRecord: {}
-}
+FolioRecordTypeField.defaultProps = { initiallyDisabledRecord: {} };

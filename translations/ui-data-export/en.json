@@ -74,6 +74,7 @@
   "mappingProfiles.transformations.save.successCallout": "<b>{count, number}</b> <b>{count, plural, one {transformation has} other {transformations have}}</b> been successfully <b>added</b>",
   "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
   "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
+  "mappingProfiles.recordType.instance": "Inventory instance (selected fields)",
   "jobProfiles.newProfile": "New job profile",
   "jobProfiles.selectProfile.title": "Select job profile to run the export",
   "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",

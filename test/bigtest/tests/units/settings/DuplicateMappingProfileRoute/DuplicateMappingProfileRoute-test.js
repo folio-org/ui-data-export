@@ -133,9 +133,9 @@ describe('DuplicateMappingProfileRoute', () => {
     });
 
     it('should have correct folio record types field value', () => {
-      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(0).isChecked).to.be.false;
-      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(1).isChecked).to.be.true;
-      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(2).isChecked).to.be.false;
+      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(1).isChecked).to.be.false;
+      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(2).isChecked).to.be.true;
+      expect(duplicateMappingProfileRoute.form.summary.recordType.checkboxes(3).isChecked).to.be.false;
     });
 
     it('should have correct description field value', () => {

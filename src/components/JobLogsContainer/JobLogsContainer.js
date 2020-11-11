@@ -26,7 +26,7 @@ import {
 } from '../../utils';
 import getFileDownloadLink from './fetchFileDownloadLink';
 
-import styles from './jobLogsContainer.css';
+import styles from './JobLogsContainer.css';
 
 const customProperties = {
   visibleColumns: DEFAULT_JOB_LOG_COLUMNS,
