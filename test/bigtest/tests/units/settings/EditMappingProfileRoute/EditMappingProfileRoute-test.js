@@ -132,6 +132,7 @@ describe('EditMappingProfileRoute', () => {
     });
 
     it('should have correct folio record types field value', () => {
+      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(0).isChecked).to.be.false;
       expect(editMappingProfileRoute.form.summary.recordType.checkboxes(1).isChecked).to.be.false;
       expect(editMappingProfileRoute.form.summary.recordType.checkboxes(2).isChecked).to.be.true;
       expect(editMappingProfileRoute.form.summary.recordType.checkboxes(3).isChecked).to.be.false;
@@ -306,6 +307,37 @@ describe('EditMappingProfileRoute', () => {
 
       it('should enable submit button', () => {
         expect(editMappingProfileRoute.form.fullScreen.submitButton.$root.disabled).to.be.false;
+      });
+    });
+  });
+
+  describe('rendering edit mapping profile page with SRS type selected', () => {
+    beforeEach(async () => {
+      await mountWithContext(
+        <EditMappingProfileRouteContainer
+          allTransformations={allMappingProfilesTransformations}
+          profile={{
+            ...mappingProfile,
+            recordTypes: ['SRS'],
+            transformations: null,
+          }}
+        />,
+        translationsProperties,
+      );
+    });
+
+    it('should disable Instance record type', () => {
+      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(1).isDisabled).to.be.true;
+    });
+
+    describe('opening transformation modal', () => {
+      beforeEach(async () => {
+        await editMappingProfileRoute.form.addTransformationsButton.click();
+        await wait();
+      });
+
+      it('should disable Instance record type on transformation modal', () => {
+        expect(editMappingProfileRoute.form.transformationsModal.searchForm.recordTypeFilters(0).isDisabled).to.be.true;
       });
     });
   });
