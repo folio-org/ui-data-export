@@ -2,8 +2,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
-import { InfoPopover } from '@folio/stripes-components';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 export const JOB_EXECUTION_STATUSES = {
   NEW: 'NEW',
