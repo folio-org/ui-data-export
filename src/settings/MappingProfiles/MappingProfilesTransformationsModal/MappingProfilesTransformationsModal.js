@@ -52,7 +52,7 @@ export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
   initialSelectedTransformations,
-  disabledTypes,
+  disabledRecordTypes,
   onCancel,
   onSubmit,
 }) => {
@@ -65,10 +65,10 @@ export const MappingProfilesTransformationsModal = ({
   const resetSearchForm = useCallback(() => {
     setSearchFilters({
       ...initialSearchFormValues.filters,
-      recordTypes: initialSearchFormValues.filters.recordTypes.filter(record => !disabledTypes?.[record]),
+      recordTypes: initialSearchFormValues.filters.recordTypes.filter(record => !disabledRecordTypes[record]),
     });
     setSearchValue(initialSearchFormValues.searchValue);
-  }, [disabledTypes]);
+  }, [disabledRecordTypes]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -184,7 +184,7 @@ export const MappingProfilesTransformationsModal = ({
               searchValue,
               filters: searchFilters,
             }}
-            disabledTypes={disabledTypes}
+            disabledRecordTypes={disabledRecordTypes}
             onFiltersChange={handleFiltersChange}
             onReset={resetSearchForm}
             onSubmit={handleSearchFormSubmit}
@@ -223,8 +223,12 @@ MappingProfilesTransformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   initialTransformationsValues: PropTypes.object.isRequired,
   initialSelectedTransformations: PropTypes.object,
+  disabledRecordTypes: PropTypes.object,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
-MappingProfilesTransformationsModal.defaultProps = { initialSelectedTransformations: {} };
+MappingProfilesTransformationsModal.defaultProps = {
+  initialSelectedTransformations: {},
+  disabledRecordTypes: {},
+};

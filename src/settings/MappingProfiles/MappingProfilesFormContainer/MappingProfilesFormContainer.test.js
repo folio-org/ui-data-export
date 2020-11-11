@@ -21,20 +21,19 @@ import {
 import { renderWithIntl } from '../../../../test/jest/helpers';
 import { translationsProperties } from '../../../../test/helpers';
 
-const MappingProfileForm = ({
+const MappingProfileFormContainer = ({
   allTransformations,
   contentLabel = 'label',
   isEditMode = false,
   initialValues = {
     transformations: [],
     records: [],
+    recordTypes: [],
     outputFormat: 'MARC',
   },
   onSubmit = noop,
 }) => {
   const intl = useIntl();
-
-  console.error = jest.fn();
 
   return (
     <SettingsComponentBuilder>
@@ -53,7 +52,7 @@ describe('MappingProfileFormContainer', () => {
   describe('rendering MappingProfileForm', () => {
     beforeEach(() => {
       renderWithIntl(
-        <MappingProfileForm
+        <MappingProfileFormContainer
           allTransformations={allMappingProfilesTransformations}
         />,
         translationsProperties,
@@ -80,13 +79,13 @@ describe('MappingProfileFormContainer', () => {
       expect(getByText(labels[7], 'Description')).toBeVisible();
     });
 
-    it('should disable Instance record type option when selecting SRS', () => {
+    it('should disable instance record type option when selecting SRS', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'Source record storage (entire record)' }));
 
       expect(screen.getByDisplayValue('INSTANCE')).toBeDisabled();
     });
 
-    it('should disable Instance record type option in Transformation list when selecting SRS', () => {
+    it('should disable instance record type option in transformation list when selecting SRS', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'Source record storage (entire record)' }));
       userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
       const modalRecordFilters = screen.getByRole('region', { name: 'Record type filter list' });
@@ -94,13 +93,13 @@ describe('MappingProfileFormContainer', () => {
       expect(getByRole(modalRecordFilters, 'checkbox', { name: 'Instance' })).toBeDisabled();
     });
 
-    it('should disable SRS record type option when selecting Instance', () => {
+    it('should disable SRS record type option when selecting instance', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'Inventory instance (selected fields)' }));
 
       expect(screen.getByRole('checkbox', { name: 'Source record storage (entire record)' })).toBeDisabled();
     });
 
-    it('should close transformations modal when clicking Cancel', () => {
+    it('should close transformations modal when clicking on cancel button', () => {
       userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
       const modal = document.querySelector('.modalRoot');
 

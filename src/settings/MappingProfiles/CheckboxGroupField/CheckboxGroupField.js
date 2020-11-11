@@ -37,7 +37,7 @@ export const CheckboxGroupField = memo(({
                     fieldProps.input.onChange(event);
                   }}
                 />
-                {option.endAdornment}
+                {option.details}
               </Row>
             )}
           />

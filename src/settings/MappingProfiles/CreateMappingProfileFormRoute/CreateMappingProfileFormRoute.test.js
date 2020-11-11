@@ -24,6 +24,7 @@ function CreateMappingProfileFormRouteContainer({
   initialValues = {
     transformations: [],
     records: [],
+    recordTypes: [],
     outputFormat: 'MARC',
   },
   isFormDirty = true,
@@ -63,7 +64,7 @@ describe('CreateMappingProfileFormRoute', () => {
       );
     });
 
-    it('should create a mapping profile with a name and record type present', async () => {
+    it('should initiate creating of mapping profile with correct values', async () => {
       const name = 'New mapping profile';
 
       await userEvent.type(screen.getByLabelText('Name*'), name);
@@ -81,7 +82,7 @@ describe('CreateMappingProfileFormRoute', () => {
       await waitFor(() => expect(onSubmitNavigate).toHaveBeenCalled());
     });
 
-    it('should display validation errors when Name field is empty', () => {
+    it('should display validation error when name field is empty', () => {
       onSubmit.mockRestore();
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'Save & close' }));

@@ -11,29 +11,29 @@ import PropTypes from 'prop-types';
 import { Label } from '@folio/stripes/components';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
-import {
-  RECORD_TYPES_DISABLING_MAPPING,
-  FORM_RECORD_TYPES,
-} from '../../../../utils';
+import { RECORD_TYPES } from './utils/constants';
+import { RECORD_TYPES_DISABLING_MAPPING } from '../../../../utils';
 import { CheckboxGroupField } from '../../CheckboxGroupField';
 
 import css from './FolioRecordTypeField.css';
 
 export const FolioRecordTypeField = memo(({
-  initiallyDisabledRecord,
+  initiallyDisabledTypes,
   onTypeDisable,
 }) => {
   const [touched, setTouched] = useState(false);
   const [disabledTypes, setDisabledTypes] = useState({
     [FOLIO_RECORD_TYPES.SRS.type]: false,
     [FOLIO_RECORD_TYPES.INSTANCE.type]: false,
-    ...initiallyDisabledRecord,
+    ...initiallyDisabledTypes,
   });
 
   const handleRecordTypeChange = useCallback(({ target: { checked } }, { value }) => {
     setTouched(true);
 
-    if (disabledTypes[value] !== undefined) {
+    const isFieldCanBeDisabled = disabledTypes[value] !== undefined;
+
+    if (isFieldCanBeDisabled) {
       setDisabledTypes({
         ...disabledTypes,
         [RECORD_TYPES_DISABLING_MAPPING[value]]: checked,
@@ -60,7 +60,7 @@ export const FolioRecordTypeField = memo(({
       <CheckboxGroupField
         id="folio-record-type"
         name="recordTypes"
-        options={FORM_RECORD_TYPES}
+        options={RECORD_TYPES}
         disabledFields={disabledTypes}
         onChange={handleRecordTypeChange}
       />
@@ -87,8 +87,8 @@ export const FolioRecordTypeField = memo(({
 });
 
 FolioRecordTypeField.propTypes = {
-  initiallyDisabledRecord: PropTypes.object.isRequired,
+  initiallyDisabledTypes: PropTypes.object,
   onTypeDisable: PropTypes.func.isRequired,
 };
 
-FolioRecordTypeField.defaultProps = { initiallyDisabledRecord: {} };
+FolioRecordTypeField.defaultProps = { initiallyDisabledTypes: {} };

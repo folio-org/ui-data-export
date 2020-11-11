@@ -1,6 +1,7 @@
 import React, {
   useState,
   useRef,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -15,6 +16,7 @@ import {
   Callout,
 } from '@folio/stripes/components';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
 import { MappingProfilesForm } from '../MappingProfilesForm';
@@ -54,20 +56,21 @@ export const MappingProfilesFormContainer = props => {
         .find(transformation => selectedTransformation.fieldId === transformation.fieldId),
     ),
   );
-  const [disabledRecordType, setDisabledRecordType] = useState(null);
-  const [initiallyDisabledRecord] = useState(() => {
+  const [disabledRecordTypes, setDisabledRecordTypes] = useState({
+    [FOLIO_RECORD_TYPES.SRS.type]: false,
+    [FOLIO_RECORD_TYPES.INSTANCE.type]: false,
+  });
+  const initiallyDisabledRecords = useMemo(() => {
     const disabledFields = {};
 
-    if (initialValues.recordTypes) {
-      initialValues.recordTypes.forEach(record => {
-        if (RECORD_TYPES_DISABLING_MAPPING[record]) {
-          disabledFields[RECORD_TYPES_DISABLING_MAPPING[record]] = true;
-        }
-      });
-    }
+    initialValues.recordTypes.forEach(record => {
+      if (RECORD_TYPES_DISABLING_MAPPING[record]) {
+        disabledFields[RECORD_TYPES_DISABLING_MAPPING[record]] = true;
+      }
+    });
 
     return disabledFields;
-  });
+  }, [initialValues]);
 
   return (
     <Layer
@@ -78,7 +81,7 @@ export const MappingProfilesFormContainer = props => {
         {...props}
         transformations={selectedTransformations}
         allTransformations={allTransformations}
-        initiallyDisabledRecord={initiallyDisabledRecord}
+        initiallyDisabledRecords={initiallyDisabledRecords}
         onSubmit={values => {
           if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
@@ -87,13 +90,13 @@ export const MappingProfilesFormContainer = props => {
           return onSubmit(values);
         }}
         onAddTransformations={() => setTransformationModalOpen(true)}
-        onTypeDisable={disabledType => setDisabledRecordType(disabledType)}
+        onTypeDisable={disabledType => setDisabledRecordTypes(disabledType)}
       />
       <MappingProfilesTransformationsModal
         isOpen={transformationModalOpen}
         initialSelectedTransformations={initialSelectedTransformations}
         initialTransformationsValues={modalTransformations}
-        disabledTypes={disabledRecordType}
+        disabledRecordTypes={disabledRecordTypes}
         onCancel={() => setTransformationModalOpen(false)}
         onSubmit={newSelectedTransformations => {
           setTransformationModalOpen(false);

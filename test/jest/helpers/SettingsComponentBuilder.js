@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { noop } from 'lodash';
+
 import { Paneset } from '@folio/stripes-components';
 import { CalloutContext } from '@folio/stripes-core';
-import { noop } from 'lodash';
 
 import { OverlayContainer } from '../../helpers';
 

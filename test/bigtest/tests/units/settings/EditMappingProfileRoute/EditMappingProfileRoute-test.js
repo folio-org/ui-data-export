@@ -310,35 +310,4 @@ describe('EditMappingProfileRoute', () => {
       });
     });
   });
-
-  describe('rendering edit mapping profile page with SRS type selected', () => {
-    beforeEach(async () => {
-      await mountWithContext(
-        <EditMappingProfileRouteContainer
-          allTransformations={allMappingProfilesTransformations}
-          profile={{
-            ...mappingProfile,
-            recordTypes: ['SRS'],
-            transformations: null,
-          }}
-        />,
-        translationsProperties,
-      );
-    });
-
-    it('should disable Instance record type', () => {
-      expect(editMappingProfileRoute.form.summary.recordType.checkboxes(1).isDisabled).to.be.true;
-    });
-
-    describe('opening transformation modal', () => {
-      beforeEach(async () => {
-        await editMappingProfileRoute.form.addTransformationsButton.click();
-        await wait();
-      });
-
-      it('should disable Instance record type on transformation modal', () => {
-        expect(editMappingProfileRoute.form.transformationsModal.searchForm.recordTypeFilters(0).isDisabled).to.be.true;
-      });
-    });
-  });
 });
