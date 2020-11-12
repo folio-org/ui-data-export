@@ -66,7 +66,7 @@ describe('MappingProfileFormContainer', () => {
       expect(getByText(headers[1], 'Transformations')).toBeVisible();
     });
 
-    it('should place Summary fields in correct order', () => {
+    it('should place summary fields in correct order', () => {
       const labels = document.querySelectorAll('[data-test-accordion-section] label');
 
       expect(getByText(labels[0], 'Name')).toBeVisible();

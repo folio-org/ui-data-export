@@ -13,8 +13,8 @@ export const CheckboxGroupField = memo(({
   name,
   options,
   filtersLabelClass,
-  onChange,
   disabledFields,
+  onChange,
 }) => {
   return (
     <div id={id}>

@@ -51,7 +51,7 @@ const MappingProfilesFormComponent = props => {
     isEditMode,
     isFormDirty,
     form,
-    initiallyDisabledRecords,
+    initiallyDisabledRecordTypes,
     onAddTransformations,
     handleSubmit,
     onCancel,
@@ -110,7 +110,7 @@ const MappingProfilesFormComponent = props => {
                 />
               </div>
               <FolioRecordTypeField
-                initiallyDisabledTypes={initiallyDisabledRecords}
+                initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
                 onTypeDisable={onTypeDisable}
               />
               <div data-test-mapping-profile-description>
@@ -165,7 +165,7 @@ MappingProfilesFormComponent.propTypes = {
   isEditMode: PropTypes.bool,
   isFormDirty: PropTypes.bool,
   form: PropTypes.object.isRequired,
-  initiallyDisabledRecords: PropTypes.object,
+  initiallyDisabledRecordTypes: PropTypes.object,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,

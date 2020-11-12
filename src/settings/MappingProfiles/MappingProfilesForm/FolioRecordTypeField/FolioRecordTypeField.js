@@ -18,14 +18,14 @@ import { CheckboxGroupField } from '../../CheckboxGroupField';
 import css from './FolioRecordTypeField.css';
 
 export const FolioRecordTypeField = memo(({
-  initiallyDisabledTypes,
+  initiallyDisabledRecordTypes,
   onTypeDisable,
 }) => {
   const [touched, setTouched] = useState(false);
   const [disabledTypes, setDisabledTypes] = useState({
     [FOLIO_RECORD_TYPES.SRS.type]: false,
     [FOLIO_RECORD_TYPES.INSTANCE.type]: false,
-    ...initiallyDisabledTypes,
+    ...initiallyDisabledRecordTypes,
   });
 
   const handleRecordTypeChange = useCallback(({ target: { checked } }, { value }) => {
@@ -87,8 +87,8 @@ export const FolioRecordTypeField = memo(({
 });
 
 FolioRecordTypeField.propTypes = {
-  initiallyDisabledTypes: PropTypes.object,
+  initiallyDisabledRecordTypes: PropTypes.object,
   onTypeDisable: PropTypes.func.isRequired,
 };
 
-FolioRecordTypeField.defaultProps = { initiallyDisabledTypes: {} };
+FolioRecordTypeField.defaultProps = { initiallyDisabledRecordTypes: {} };

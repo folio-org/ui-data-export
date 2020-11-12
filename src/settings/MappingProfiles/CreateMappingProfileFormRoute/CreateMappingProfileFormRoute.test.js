@@ -28,6 +28,7 @@ function CreateMappingProfileFormRouteContainer({
     outputFormat: 'MARC',
   },
   isFormDirty = true,
+  sendCallout = noop,
   onSubmit = noop,
   onCancel = noop,
   onSubmitNavigate = noop,
@@ -35,7 +36,7 @@ function CreateMappingProfileFormRouteContainer({
   const intl = useIntl();
 
   return (
-    <SettingsComponentBuilder>
+    <SettingsComponentBuilder sendCallout={sendCallout}>
       <CreateMappingProfileFormRoute
         allTransformations={generateTransformationsWithDisplayName(intl, allTransformations)}
         initialValues={initialValues}
@@ -50,15 +51,17 @@ function CreateMappingProfileFormRouteContainer({
 
 describe('CreateMappingProfileFormRoute', () => {
   describe('creating new mapping profile', () => {
-    const onSubmitNavigate = jest.fn();
-    const onSubmit = jest.fn();
+    const onSubmitNavigateMock = jest.fn();
+    const onSubmitMock = jest.fn();
+    const sendCalloutMock = jest.fn();
 
     beforeEach(() => {
       renderWithIntl(
         <CreateMappingProfileFormRouteContainer
           allTransformations={allMappingProfilesTransformations}
-          onSubmitNavigate={onSubmitNavigate}
-          onSubmit={onSubmit}
+          sendCallout={sendCalloutMock}
+          onSubmitNavigate={onSubmitNavigateMock}
+          onSubmit={onSubmitMock}
         />,
         translationsProperties,
       );
@@ -71,7 +74,7 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
 
-      expect(onSubmit).toHaveBeenCalledWith({
+      expect(onSubmitMock).toHaveBeenCalledWith({
         name,
         outputFormat: 'MARC',
         recordTypes: ['HOLDINGS'],
@@ -79,17 +82,34 @@ describe('CreateMappingProfileFormRoute', () => {
         transformations: [],
       });
 
-      await waitFor(() => expect(onSubmitNavigate).toHaveBeenCalled());
+      await waitFor(() => {
+        expect(sendCalloutMock).toBeCalledWith(
+          expect.not.objectContaining({ type: expect.stringMatching('error') }),
+        );
+        expect(onSubmitNavigateMock).toHaveBeenCalled();
+      });
     });
 
     it('should display validation error when name field is empty', () => {
-      onSubmit.mockRestore();
+      onSubmitMock.mockRestore();
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
 
       expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'Please enter a value')).toBeVisible();
       expect(screen.getByLabelText('Name*')).not.toBeValid();
-      expect(onSubmit).not.toBeCalled();
+      expect(onSubmitMock).not.toBeCalled();
+    });
+
+    it('should call error notification rendering when submit failed', async () => {
+      onSubmitMock.mockImplementationOnce(() => Promise.reject());
+
+      await userEvent.type(screen.getByLabelText('Name*'), 'Name');
+      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
+      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+
+      await waitFor(() => expect(sendCalloutMock).toBeCalledWith(
+        expect.objectContaining({ type: expect.stringMatching('error') }),
+      ));
     });
   });
 });

@@ -60,7 +60,7 @@ export const MappingProfilesFormContainer = props => {
     [FOLIO_RECORD_TYPES.SRS.type]: false,
     [FOLIO_RECORD_TYPES.INSTANCE.type]: false,
   });
-  const initiallyDisabledRecords = useMemo(() => {
+  const initiallyDisabledRecordTypes = useMemo(() => {
     const disabledFields = {};
 
     initialValues.recordTypes.forEach(record => {
@@ -81,7 +81,7 @@ export const MappingProfilesFormContainer = props => {
         {...props}
         transformations={selectedTransformations}
         allTransformations={allTransformations}
-        initiallyDisabledRecords={initiallyDisabledRecords}
+        initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
         onSubmit={values => {
           if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
