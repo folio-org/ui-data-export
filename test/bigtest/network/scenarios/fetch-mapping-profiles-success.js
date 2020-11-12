@@ -20,7 +20,7 @@ export const generateTransformationsWithDisplayName = (intl, transformations) =>
   ...transformation,
   displayName: intl.formatMessage(
     { id: `ui-data-export.${transformation.displayNameKey}` },
-    { value: transformation.referenceDataValue },
+    { value: transformation.referenceDataValue }
   ),
 }));
 

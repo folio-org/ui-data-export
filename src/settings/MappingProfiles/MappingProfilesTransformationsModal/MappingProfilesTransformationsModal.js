@@ -120,7 +120,7 @@ export const MappingProfilesTransformationsModal = ({
 
   const handleSelectChange = useCallback(
     transformations => setSelectedTransformations(transformations),
-    [],
+    []
   );
 
   const handleSearchFormSubmit = useCallback(values => {

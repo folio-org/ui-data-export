@@ -82,7 +82,7 @@ describe('MappingProfilesTransformationsModal', () => {
             onCancel={handleCloseSpy}
           />
         </Router>,
-        translationsProperties,
+        translationsProperties
       );
     });
 

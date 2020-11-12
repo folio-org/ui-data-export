@@ -56,7 +56,7 @@ describe('JobProfileDetails', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -130,7 +130,7 @@ describe('JobProfileDetails', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -202,7 +202,7 @@ describe('JobProfileDetails', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 

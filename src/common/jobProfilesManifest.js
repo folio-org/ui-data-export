@@ -30,7 +30,7 @@ export const jobProfilesManifest = {
           FIND_ALL_CQL,
           QUERY_TEMPLATE,
           sortMap,
-          [],
+          []
         ),
       },
       staticFallback: { params: {} },

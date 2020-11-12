@@ -53,8 +53,8 @@ export const MappingProfilesFormContainer = props => {
     () => generateSelectedTransformations(
       selectedTransformations,
       selectedTransformation => modalTransformations.transformations
-        .find(transformation => selectedTransformation.fieldId === transformation.fieldId),
-    ),
+        .find(transformation => selectedTransformation.fieldId === transformation.fieldId)
+    )
   );
   const [disabledRecordTypes, setDisabledRecordTypes] = useState({
     [FOLIO_RECORD_TYPES.SRS.type]: false,

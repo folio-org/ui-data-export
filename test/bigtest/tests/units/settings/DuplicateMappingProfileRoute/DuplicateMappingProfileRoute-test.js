@@ -79,7 +79,7 @@ describe('DuplicateMappingProfileRoute', () => {
     beforeEach(async () => {
       await mountWithContext(
         <DuplicateMappingProfileRouteContainer profile={null} />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -108,7 +108,7 @@ describe('DuplicateMappingProfileRoute', () => {
           onCancel={handleCancelSpy}
           onSubmitNavigate={handleSubmitNavigateSpy}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 

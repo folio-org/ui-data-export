@@ -81,7 +81,7 @@ describe('MappingProfilesForm', () => {
             </Router>
           </Paneset>
         </>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -386,7 +386,7 @@ describe('MappingProfilesForm', () => {
             </Router>
           </Paneset>
         </>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
