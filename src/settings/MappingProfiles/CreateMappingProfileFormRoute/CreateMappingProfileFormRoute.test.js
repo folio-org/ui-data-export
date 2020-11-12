@@ -83,9 +83,8 @@ describe('CreateMappingProfileFormRoute', () => {
       });
 
       await waitFor(() => {
-        expect(sendCalloutMock).toBeCalledWith(
-          expect.not.objectContaining({ type: expect.stringMatching('error') }),
-        );
+        expect(sendCalloutMock.mock.calls[0][0]).not.toHaveProperty('type');
+        expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.create.successCallout');
         expect(onSubmitNavigateMock).toHaveBeenCalled();
       });
     });
@@ -107,9 +106,12 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
 
-      await waitFor(() => expect(sendCalloutMock).toBeCalledWith(
-        expect.objectContaining({ type: expect.stringMatching('error') }),
-      ));
+      await waitFor(() => {
+        expect(sendCalloutMock).toBeCalledWith(
+          expect.objectContaining({ type: 'error' }),
+        );
+        expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.create.errorCallout');
+      });
     });
   });
 });
