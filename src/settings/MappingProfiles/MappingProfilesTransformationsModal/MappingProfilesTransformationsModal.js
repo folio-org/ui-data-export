@@ -2,7 +2,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  useRef,
+  useRef, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -61,6 +61,10 @@ export const MappingProfilesTransformationsModal = ({
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
   const [selectedTransformations, setSelectedTransformations] = useState(initialSelectedTransformations);
   const transformationsFormStateRef = useRef(null);
+  const initialFormValues = useMemo(() => ({
+    searchValue: initialSearchFormValues.searchValue,
+    filters: searchFilters,
+  }), [searchFilters]);
 
   const resetSearchForm = useCallback(() => {
     setSearchFilters({
@@ -180,10 +184,7 @@ export const MappingProfilesTransformationsModal = ({
           hidden={!isFilterPaneOpen}
         >
           <SearchForm
-            initialValues={{
-              searchValue,
-              filters: searchFilters,
-            }}
+            initialValues={initialFormValues}
             disabledRecordTypes={disabledRecordTypes}
             onFiltersChange={handleFiltersChange}
             onReset={resetSearchForm}
