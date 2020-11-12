@@ -100,7 +100,7 @@ describe('CreateMappingProfileFormRoute', () => {
       expect(onSubmitMock).not.toBeCalled();
     });
 
-    it('should call error notification rendering when submit failed', async () => {
+    it('should initiate displaying of error callout', async () => {
       onSubmitMock.mockImplementationOnce(() => Promise.reject());
 
       await userEvent.type(screen.getByLabelText('Name*'), 'Name');
