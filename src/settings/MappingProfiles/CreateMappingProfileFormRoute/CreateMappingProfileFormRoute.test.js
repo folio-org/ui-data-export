@@ -67,6 +67,10 @@ describe('CreateMappingProfileFormRoute', () => {
       );
     });
 
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should initiate creating of mapping profile with correct values', async () => {
       const name = 'New mapping profile';
 
@@ -90,7 +94,6 @@ describe('CreateMappingProfileFormRoute', () => {
     });
 
     it('should display validation error when name field is empty', () => {
-      onSubmitMock.mockRestore();
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
 
