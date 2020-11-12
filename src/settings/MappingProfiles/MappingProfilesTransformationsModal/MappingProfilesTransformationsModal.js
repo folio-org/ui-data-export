@@ -2,7 +2,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  useRef,
+  useRef, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -52,6 +52,7 @@ export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
   initialSelectedTransformations,
+  disabledRecordTypes,
   onCancel,
   onSubmit,
 }) => {
@@ -60,11 +61,18 @@ export const MappingProfilesTransformationsModal = ({
   const [searchFilters, setSearchFilters] = useState(initialSearchFormValues.filters);
   const [selectedTransformations, setSelectedTransformations] = useState(initialSelectedTransformations);
   const transformationsFormStateRef = useRef(null);
+  const initialFormValues = useMemo(() => ({
+    searchValue: initialSearchFormValues.searchValue,
+    filters: searchFilters,
+  }), [searchFilters]);
 
   const resetSearchForm = useCallback(() => {
-    setSearchFilters(initialSearchFormValues.filters);
+    setSearchFilters({
+      ...initialSearchFormValues.filters,
+      recordTypes: initialSearchFormValues.filters.recordTypes.filter(record => !disabledRecordTypes[record]),
+    });
     setSearchValue(initialSearchFormValues.searchValue);
-  }, []);
+  }, [disabledRecordTypes]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -176,7 +184,8 @@ export const MappingProfilesTransformationsModal = ({
           hidden={!isFilterPaneOpen}
         >
           <SearchForm
-            initialValues={initialSearchFormValues}
+            initialValues={initialFormValues}
+            disabledRecordTypes={disabledRecordTypes}
             onFiltersChange={handleFiltersChange}
             onReset={resetSearchForm}
             onSubmit={handleSearchFormSubmit}
@@ -215,8 +224,12 @@ MappingProfilesTransformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   initialTransformationsValues: PropTypes.object.isRequired,
   initialSelectedTransformations: PropTypes.object,
+  disabledRecordTypes: PropTypes.object,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
-MappingProfilesTransformationsModal.defaultProps = { initialSelectedTransformations: {} };
+MappingProfilesTransformationsModal.defaultProps = {
+  initialSelectedTransformations: {},
+  disabledRecordTypes: {},
+};

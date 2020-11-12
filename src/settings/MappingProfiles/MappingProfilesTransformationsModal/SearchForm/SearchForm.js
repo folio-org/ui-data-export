@@ -25,6 +25,7 @@ import css from './SearchForm.css';
 const SearchFormComponent = ({
   form,
   values,
+  disabledRecordTypes,
   handleSubmit,
   onReset,
   onFiltersChange,
@@ -100,6 +101,7 @@ const SearchFormComponent = ({
             name="filters.recordTypes"
             filtersLabelClass={css.filtersLabel}
             options={RECORD_TYPES}
+            disabledFields={disabledRecordTypes}
             onChange={handleRecordTypesFilterChange}
           />
         </Accordion>
@@ -128,6 +130,7 @@ SearchFormComponent.propTypes = {
       statuses: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
+  disabledRecordTypes: PropTypes.object,
   form: PropTypes.shape({ restart: PropTypes.func.isRequired }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,

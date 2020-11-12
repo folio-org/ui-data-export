@@ -68,7 +68,7 @@ describe('Field mapping profiles settings', () => {
     describe('filling form by correct data and pressing save button - success case', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur('mapping profile');
-        await form.summary.recordType.checkboxes(1).clickInput();
+        await form.summary.recordType.checkboxes(2).clickInput();
         await form.summary.description.fillAndBlur('description');
         await form.addTransformationsButton.click();
         await wait();
@@ -93,7 +93,7 @@ describe('Field mapping profiles settings', () => {
       beforeEach(async function () {
         this.server.post('/data-export/mapping-profiles', {}, 500);
         await form.summary.name.fillAndBlur('mapping profile');
-        await form.summary.recordType.checkboxes(1).clickInput();
+        await form.summary.recordType.checkboxes(2).clickInput();
         await form.summary.description.fillAndBlur('description');
         await form.addTransformationsButton.click();
         await wait();

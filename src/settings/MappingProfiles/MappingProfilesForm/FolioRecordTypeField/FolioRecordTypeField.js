@@ -2,21 +2,48 @@ import React, {
   memo,
   useState,
   useCallback,
+  useEffect,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
+import PropTypes from 'prop-types';
 
 import { Label } from '@folio/stripes/components';
+import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
-import { RECORD_TYPES } from '../../../../utils';
+import { RECORD_TYPES } from './utils/constants';
+import { RECORD_TYPES_DISABLING_MAPPING } from '../../../../utils';
 import { CheckboxGroupField } from '../../CheckboxGroupField';
 
 import css from './FolioRecordTypeField.css';
 
-export const FolioRecordTypeField = memo(() => {
+export const FolioRecordTypeField = memo(({
+  initiallyDisabledRecordTypes,
+  onTypeDisable,
+}) => {
   const [touched, setTouched] = useState(false);
+  const [disabledTypes, setDisabledTypes] = useState({
+    [FOLIO_RECORD_TYPES.SRS.type]: false,
+    [FOLIO_RECORD_TYPES.INSTANCE.type]: false,
+    ...initiallyDisabledRecordTypes,
+  });
 
-  const handleRecordTypeChange = useCallback(() => setTouched(true), []);
+  const handleRecordTypeChange = useCallback(({ target: { checked } }, { value }) => {
+    setTouched(true);
+
+    const isFieldCanBeDisabled = disabledTypes[value] !== undefined;
+
+    if (isFieldCanBeDisabled) {
+      setDisabledTypes({
+        ...disabledTypes,
+        [RECORD_TYPES_DISABLING_MAPPING[value]]: checked,
+      });
+    }
+  }, [disabledTypes]);
+
+  useEffect(() => {
+    onTypeDisable(disabledTypes);
+  }, [disabledTypes, onTypeDisable]);
 
   return (
     <div
@@ -34,6 +61,7 @@ export const FolioRecordTypeField = memo(() => {
         id="folio-record-type"
         name="recordTypes"
         options={RECORD_TYPES}
+        disabledFields={disabledTypes}
         onChange={handleRecordTypeChange}
       />
       <div
@@ -57,3 +85,10 @@ export const FolioRecordTypeField = memo(() => {
     </div>
   );
 });
+
+FolioRecordTypeField.propTypes = {
+  initiallyDisabledRecordTypes: PropTypes.object,
+  onTypeDisable: PropTypes.func.isRequired,
+};
+
+FolioRecordTypeField.defaultProps = { initiallyDisabledRecordTypes: {} };

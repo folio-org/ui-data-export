@@ -142,9 +142,10 @@ describe('MappingProfilesForm', () => {
     });
 
     it('should display correct folio record types', () => {
-      expect(form.summary.recordType.checkboxes(0).label).to.equal(commonTranslations['recordTypes.instance']);
-      expect(form.summary.recordType.checkboxes(1).label).to.equal(commonTranslations['recordTypes.holdings']);
-      expect(form.summary.recordType.checkboxes(2).label).to.equal(commonTranslations['recordTypes.item']);
+      expect(form.summary.recordType.checkboxes(0).label).to.equal(commonTranslations['recordTypes.srs']);
+      expect(form.summary.recordType.checkboxes(1).label).to.equal(translations['mappingProfiles.recordType.instance']);
+      expect(form.summary.recordType.checkboxes(2).label).to.equal(commonTranslations['recordTypes.holdings']);
+      expect(form.summary.recordType.checkboxes(3).label).to.equal(commonTranslations['recordTypes.item']);
     });
 
     it('should not mark fields as error by default', () => {
@@ -165,7 +166,7 @@ describe('MappingProfilesForm', () => {
         expect(form.fullScreen.submitButton.$root.disabled).to.be.false;
       });
 
-      describe('changing transformatins value and return to default(empty)', () => {
+      describe('changing transformations value and return to default(empty)', () => {
         beforeEach(async () => {
           await form.addTransformationsButton.click();
           await wait();
@@ -242,9 +243,9 @@ describe('MappingProfilesForm', () => {
             expect(handleSubmitSpy.called).to.be.false;
           });
 
-          describe('checking a record type', () => {
+          describe('checking a SRS record type', () => {
             beforeEach(async () => {
-              await form.summary.recordType.checkboxes(2).clickInput();
+              await form.summary.recordType.checkboxes(0).clickInput();
             });
 
             it('should hide error message', () => {
@@ -392,7 +393,7 @@ describe('MappingProfilesForm', () => {
     describe('filling form inputs and pressing submit', () => {
       beforeEach(async () => {
         await form.summary.name.fillAndBlur(name);
-        await form.summary.recordType.checkboxes(0).clickInput();
+        await form.summary.recordType.checkboxes(1).clickInput();
         await form.summary.description.fillAndBlur(description);
         await form.addTransformationsButton.click();
         await wait();

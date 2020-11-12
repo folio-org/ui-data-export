@@ -51,9 +51,11 @@ const MappingProfilesFormComponent = props => {
     isEditMode,
     isFormDirty,
     form,
+    initiallyDisabledRecordTypes,
     onAddTransformations,
     handleSubmit,
     onCancel,
+    onTypeDisable,
   } = props;
   const intl = useIntl();
 
@@ -93,7 +95,6 @@ const MappingProfilesFormComponent = props => {
                   required
                 />
               </div>
-              <FolioRecordTypeField />
               <div data-test-mapping-profile-output-format>
                 <Field
                   label={<FormattedMessage id="ui-data-export.outputFormat" />}
@@ -108,6 +109,10 @@ const MappingProfilesFormComponent = props => {
                   required
                 />
               </div>
+              <FolioRecordTypeField
+                initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
+                onTypeDisable={onTypeDisable}
+              />
               <div data-test-mapping-profile-description>
                 <Field
                   label={<FormattedMessage id="ui-data-export.description" />}
@@ -160,9 +165,11 @@ MappingProfilesFormComponent.propTypes = {
   isEditMode: PropTypes.bool,
   isFormDirty: PropTypes.bool,
   form: PropTypes.object.isRequired,
+  initiallyDisabledRecordTypes: PropTypes.object,
   handleSubmit: PropTypes.func.isRequired,
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onTypeDisable: PropTypes.func.isRequired,
 };
 
 MappingProfilesFormComponent.defaultProps = {
