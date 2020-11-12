@@ -63,7 +63,7 @@ describe('CreateMappingProfileFormRoute', () => {
           onSubmitNavigate={onSubmitNavigateMock}
           onSubmit={onSubmitMock}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -111,7 +111,7 @@ describe('CreateMappingProfileFormRoute', () => {
 
       await waitFor(() => {
         expect(sendCalloutMock).toBeCalledWith(
-          expect.objectContaining({ type: 'error' }),
+          expect.objectContaining({ type: 'error' })
         );
         expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.create.errorCallout');
       });

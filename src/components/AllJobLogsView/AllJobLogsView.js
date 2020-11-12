@@ -88,7 +88,7 @@ AllJobLogsViewComponent.manifest = Object.freeze({
           findAllCql,
           findAllCql,
           sortMap,
-          [],
+          []
         ),
       },
       staticFallback: { params: {} },

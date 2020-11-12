@@ -85,7 +85,7 @@ describe('MappingProfileDetails', () => {
           isProfileUsed
           allTransformations={allMappingProfilesTransformations}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -168,7 +168,7 @@ describe('MappingProfileDetails', () => {
     beforeEach(async () => {
       await mountWithContext(
         <MappingProfileDetailsContainer mappingProfile={mappingProfileWithoutTransformations} />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -238,7 +238,7 @@ describe('MappingProfileDetails', () => {
           isProfileUsed
           mappingProfile={mappingProfileWithoutTransformations}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 

@@ -54,7 +54,7 @@ describe('TransformationsSearchForm', () => {
             onSubmit={handleSubmitSpy}
           />
         </Router>,
-        translationsProperties,
+        translationsProperties
       );
     });
 

@@ -121,7 +121,7 @@ export const JobLogsContainer = props => {
 
           return failed || '';
         },
-      },
+      }
     ),
   };
 

@@ -42,12 +42,12 @@ const SearchFormComponent = ({
 
   const handleRecordTypesFilterChange = useCallback(
     (event, option) => updateFilter('recordTypes', event.target.checked, option),
-    [updateFilter],
+    [updateFilter]
   );
 
   const handleStatusesFilterChange = useCallback(
     (event, option) => updateFilter('statuses', event.target.checked, option),
-    [updateFilter],
+    [updateFilter]
   );
 
   const handleReset = useCallback(() => {

@@ -62,7 +62,7 @@ describe('ChooseJobProfile', () => {
             location={location}
           />
         </Router>,
-        translationsProperties,
+        translationsProperties
       );
     });
 

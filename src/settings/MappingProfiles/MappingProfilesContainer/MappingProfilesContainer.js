@@ -75,16 +75,16 @@ const MappingProfilesContainer = ({
         ...transformation,
         displayName: intl.formatMessage(
           { id: `ui-data-export.${transformation.displayNameKey}` },
-          { value: transformation.referenceDataValue },
+          { value: transformation.referenceDataValue }
         ),
       })), 'displayName', 'asc'),
-    [intl, resources.transformations.records],
+    [intl, resources.transformations.records]
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
 
   const handleNavigationToMappingProfilesList = useCallback(
     () => push(`${path}${search}`),
-    [push, path, search],
+    [push, path, search]
   );
 
   const buildMappingProfileViewNavigationHandler = useCallback(
@@ -92,7 +92,7 @@ const MappingProfilesContainer = ({
       match,
       location,
     }) => () => push(`/settings/data-export/mapping-profiles/view/${match.params.id}${location.search}`),
-    [push],
+    [push]
   );
 
   return (
@@ -207,7 +207,7 @@ MappingProfilesContainer.manifest = Object.freeze({
           FIND_ALL_CQL,
           queryTemplate,
           sortMap,
-          [],
+          []
         ),
       },
       staticFallback: { params: {} },

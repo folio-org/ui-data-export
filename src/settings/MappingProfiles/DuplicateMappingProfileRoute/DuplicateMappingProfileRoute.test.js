@@ -63,7 +63,7 @@ describe('DuplicateMappingProfileRoute', () => {
     beforeEach(() => {
       renderWithIntl(
         <DuplicateMappingProfileRouteContainer allTransformations={allMappingProfilesTransformations} />,
-        translationsProperties,
+        translationsProperties
       );
     });
 

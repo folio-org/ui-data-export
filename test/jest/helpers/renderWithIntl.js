@@ -6,5 +6,5 @@ import { Harness } from '@folio/stripes-data-transfer-components/testUtils';
 export const renderWithIntl = (children, translations = []) => render(
   <Harness translations={translations}>
     {children}
-  </Harness>,
+  </Harness>
 );

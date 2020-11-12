@@ -37,7 +37,7 @@ async function setupJobProfileDetailsRoute({
         />
       </Router>
     </Paneset>,
-    translationsProperties,
+    translationsProperties
   );
 }
 

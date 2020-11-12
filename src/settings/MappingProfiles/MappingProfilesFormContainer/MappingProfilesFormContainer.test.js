@@ -55,7 +55,7 @@ describe('MappingProfileFormContainer', () => {
         <MappingProfileFormContainer
           allTransformations={allMappingProfilesTransformations}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 

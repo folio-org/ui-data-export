@@ -57,7 +57,7 @@ describe('JobProfilesForm', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -184,7 +184,7 @@ describe('JobProfilesForm', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -218,7 +218,7 @@ describe('JobProfilesForm', () => {
             />
           </Router>
         </Paneset>,
-        translationsProperties,
+        translationsProperties
       );
     });
 

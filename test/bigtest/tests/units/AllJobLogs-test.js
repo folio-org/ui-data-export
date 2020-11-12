@@ -75,7 +75,7 @@ describe('AllJobLogsView', () => {
           <OverlayContainer />
         </Router>
       </StripesContext.Provider>,
-      translationsProperties,
+      translationsProperties
     );
   });
 

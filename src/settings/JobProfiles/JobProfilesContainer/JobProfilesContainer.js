@@ -39,7 +39,7 @@ const JobProfilesContainer = ({
 }) => {
   const JobProfileDetailsRouteConnected = useMemo(
     () => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }),
-    [stripes],
+    [stripes]
   );
 
   return (

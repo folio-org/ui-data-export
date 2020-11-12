@@ -78,7 +78,7 @@ describe('EditMappingProfileRoute', () => {
     beforeEach(async () => {
       await mountWithContext(
         <EditMappingProfileRouteContainer profile={null} />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -107,7 +107,7 @@ describe('EditMappingProfileRoute', () => {
           onCancel={handleCancelSpy}
           onSubmitNavigate={handleSaveSpy}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -284,7 +284,7 @@ describe('EditMappingProfileRoute', () => {
             transformations: null,
           }}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 

@@ -35,7 +35,7 @@ describe('ErrorLogsView', () => {
           })}
           mutator={buildMutator()}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -72,7 +72,7 @@ describe('ErrorLogsView', () => {
           })}
           mutator={buildMutator()}
         />,
-        translationsProperties,
+        translationsProperties
       );
     });
 
@@ -94,8 +94,8 @@ describe('ErrorLogsView manifest path function', () => {
         null,
         null,
         null,
-        { location: { pathname: `/data-export/log/${recordId}` } },
-      ),
+        { location: { pathname: `/data-export/log/${recordId}` } }
+      )
     ).to.equal(`data-export/logs?query=(jobExecutionId==${recordId})`);
   });
 });

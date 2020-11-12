@@ -43,7 +43,7 @@ describe('generateTransformationFieldsValues', () => {
           displayNameKey: 'materialTypeId',
           order: 1,
         },
-      ],
+      ]
     );
   });
 
@@ -82,7 +82,7 @@ describe('generateTransformationFieldsValues', () => {
           isSelected: true,
           order: 1,
         },
-      ],
+      ]
     );
   });
 
@@ -107,7 +107,7 @@ describe('generateTransformationFieldsValues', () => {
           ...allTransformations[1],
           order: 1,
         },
-      ],
+      ]
     );
   });
 });
@@ -145,7 +145,7 @@ describe('normalizeTransformationFormValues', () => {
           transformation: 'Transformation value 1',
           enabled: true,
         },
-      ],
+      ]
     );
   });
 });
