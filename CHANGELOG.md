@@ -1,13 +1,17 @@
 # Change history for ui-data-export
 
 ## 3.1.0 (IN PROGRESS)
-* Fix `Save & Close` button on the Edit mapping profile page not closing the profile. UIDEXP-167.
-* Fix inability to view error logs for an empty file. UIDEXP-182.
 * Setup jest/react-testing-library and cover `ChooseJobProfile` component and util methods with tests. UIDEXP-179.
 * Adjust `ui-data-export` after the change in the `JobsListAccordion` in `stripes-data-transfer-components` with regard to data-test attribute. UIDATIMP-574.
 * Add "Copy of" to the mapping profile name upon duplication. UIDEXP-181.
 * Bump `babel-eslint` to `v10.0.3`, adjust tests after updates to `Preloader` interactor. UIDATIMP-580.
 * Add Source Record Storage option to the mapping profile. UIDEPX-178.
+
+## [3.0.1](https://github.com/folio-org/ui-data-export/tree/v3.0.1) (2020-11-12)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.0...v3.0.1)
+* Fix `Save & Close` button on the Edit mapping profile page not closing the profile. UIDEXP-167.
+* Fix inability to view error logs for an empty file. UIDEXP-182.
+* Update translations
 
 ## [3.0.0](https://github.com/folio-org/ui-data-export/tree/v3.0.0) (2020-10-15)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v2.0.1...v3.0.0)
