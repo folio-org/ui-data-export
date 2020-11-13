@@ -7,6 +7,9 @@
 * Bump `babel-eslint` to `v10.0.3`, adjust tests after updates to `Preloader` interactor. UIDATIMP-580.
 * Add Source Record Storage option to the mapping profile. UIDEPX-178.
 * Handle `ESLint` inconsistencies with `stripes-data-transfer-components` module. UIDEXP-206.
+
+## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)
 * Handle missing job progress field. UIDEXP-208.
 
 ## [3.0.1](https://github.com/folio-org/ui-data-export/tree/v3.0.1) (2020-11-12)
