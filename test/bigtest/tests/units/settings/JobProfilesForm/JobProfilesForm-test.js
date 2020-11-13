@@ -223,7 +223,7 @@ describe('JobProfilesForm', () => {
     });
 
     it('should display preloader', () => {
-      expect(form.preloader.isPresent).to.be.true;
+      expect(form.preloader.spinner.isPresent).to.be.true;
     });
 
     it('should not display input fields', () => {
