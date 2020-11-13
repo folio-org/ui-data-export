@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 3.1.0 (IN PROGRESS)
+* Handle missing job progress field. UIDEXP-208.
 
 ## [3.0.1](https://github.com/folio-org/ui-data-export/tree/v3.0.1) (2020-11-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.0...v3.0.1)

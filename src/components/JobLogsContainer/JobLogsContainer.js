@@ -72,7 +72,7 @@ export const JobLogsContainer = props => {
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
 
-    if (!record.progress.exported) {
+    if (!record.progress?.exported) {
       return (
         <span
           title={fileName}
@@ -117,7 +117,7 @@ export const JobLogsContainer = props => {
         status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
         fileName: record => getFileNameField(record),
         errors: record => {
-          const { progress: { failed } } = record;
+          const failed = record.progress?.failed;
 
           return failed || '';
         },
