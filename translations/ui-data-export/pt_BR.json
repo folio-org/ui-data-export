@@ -207,5 +207,7 @@
     "searchResultsCountHeader": "{count, number} {count, plural, one {registro encontrado} other {registros encontrados}}",
     "failed": "Falhou",
     "total": "Total",
-    "copyOf": "Cópia de {value}"
+    "copyOf": "Cópia de {value}",
+    "mappingProfiles.srs.info": "Se a opção <b>Armazenamento de registro de origem (registro inteiro)</b> for selecionada e a instância não tiver um registro SRS subjacente, um registro MARC será gerado de acordo com as regras de mapeamento padrão.",
+    "mappingProfiles.recordType.instance": "Instância de acervo (campos selecionados)"
 }

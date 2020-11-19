@@ -207,5 +207,7 @@
     "searchResultsCountHeader": "تم العثور على {count, number} {count, plural, one { تسجيلة } other { تسجيلة }}",
     "failed": "فشل",
     "total": "الإجمالي",
-    "copyOf": "نسخة من {value}"
+    "copyOf": "نسخة من {value}",
+    "mappingProfiles.srs.info": "إذا تم تحديد خيار <b>تخزين تسجيلة المصدر (التسجيلة بالكامل)</b> ولم يكن للوعاء تسجيلة SRS أساسية، سيتم توليد تسجيلة مارك وفقاً لقزاعد التخطيط الافتراضية.",
+    "mappingProfiles.recordType.instance": "وعاء المخزون (الحقول المحددة)"
 }

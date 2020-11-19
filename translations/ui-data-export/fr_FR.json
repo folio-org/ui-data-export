@@ -55,8 +55,8 @@
     "delete": "Supprimer",
     "recordType": "Record type",
     "mappingProfiles.transformations.selectTransformations": "Select transformations",
-    "mappingProfiles.transformations.selectField": "Select field",
-    "mappingProfiles.transformations.selectAllFields": "Select all fields",
+    "mappingProfiles.transformations.selectField": "Sélectionnez un champ",
+    "mappingProfiles.transformations.selectAllFields": "Sélectionnez tous les champs",
     "mappingProfiles.transformations.searchFields": "Search fields",
     "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {field found} other {fields found}}",
     "resetAll": "Reset all",
@@ -207,5 +207,7 @@
     "searchResultsCountHeader": "{count, number} {count, plural, one { enregistrement trouvé } other { enregistrements trouvés }}",
     "failed": "Échoué",
     "total": "Total:",
-    "copyOf": "Copie de {value}"
+    "copyOf": "Copie de {value}",
+    "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
+    "mappingProfiles.recordType.instance": "Inventory instance (selected fields)"
 }
