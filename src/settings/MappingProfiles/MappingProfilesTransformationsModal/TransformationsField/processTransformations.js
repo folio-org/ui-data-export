@@ -1,5 +1,7 @@
 import { omit } from 'lodash';
 
+import { splitIntoRawTransformation } from '../../MappingProfilesFormContainer/processRawTransformations';
+
 export function generateTransformationFieldsValues(allTransformations, profileTransformations = []) {
   const generatedTransformations = allTransformations.map((transformation, i) => ({
     ...transformation,
@@ -9,7 +11,10 @@ export function generateTransformationFieldsValues(allTransformations, profileTr
   profileTransformations.forEach(profileTransformation => {
     const profileTransformationInAllTransformationsIndex = generatedTransformations
       .findIndex(transformation => transformation.fieldId === profileTransformation.fieldId);
-    const profileTransformationInAllTransformations = Object.assign({}, generatedTransformations[profileTransformationInAllTransformationsIndex]);
+    const profileTransformationInAllTransformations = {
+      ...generatedTransformations[profileTransformationInAllTransformationsIndex],
+      rawTransformation: profileTransformation?.rawTransformation || splitIntoRawTransformation(profileTransformation.transformation),
+    };
 
     if (profileTransformationInAllTransformationsIndex !== -1) {
       profileTransformationInAllTransformations.isSelected = Boolean(profileTransformation.enabled);

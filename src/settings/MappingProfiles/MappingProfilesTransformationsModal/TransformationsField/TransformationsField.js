@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-
 import { isEqual } from 'lodash';
 
-import {
-  TextField,
-  Layout,
-  Checkbox,
-} from '@folio/stripes/components';
+import { Checkbox } from '@folio/stripes/components';
 
 import { MultiColumnList } from '../../../../components/MultiColumnList';
+import { TransformationFieldGroup } from './TransformationFieldGroup';
 
 const columnWidths = {
   isSelected: '5%',
@@ -55,17 +51,7 @@ export const TransformationField = React.memo(({
     ),
     fieldName: record => record.displayName,
     transformation: record => (
-      <Layout
-        className="full"
-        key={record.displayName}
-        data-test-transformation-field
-      >
-        <Field
-          component={TextField}
-          name={`transformations[${record.order}].transformation`}
-          marginBottom0
-        />
-      </Layout>
+      <TransformationFieldGroup record={record} />
     ),
   }), [intl, onSelectChange]);
 

@@ -8,6 +8,7 @@
 * Add Source Record Storage option to the mapping profile. UIDEPX-178.
 * Handle `ESLint` inconsistencies with `stripes-data-transfer-components` module. UIDEXP-206.
 * Fix inability to create mapping profile with SRS and Holdings/Item types. UIDEXP-209.
+* Modify transformation form to ensure proper data entry for MARC Bib mappings. UIDEXP-180.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)

@@ -1,0 +1,17 @@
+.fieldGroupWrap {
+  display: flex;
+}
+
+.field {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  width: 29%;
+
+  &.indicator {
+     width: 21%;
+     min-width: 55px;
+   }
+}
+
+
+
