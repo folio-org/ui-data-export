@@ -8,7 +8,10 @@ import {
   getAllByRole,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { waitForElementToBeRemoved } from '@testing-library/dom';
+import {
+  queryByText,
+  waitForElementToBeRemoved,
+} from '@testing-library/dom';
 
 import '../../../../test/jest/__mock__';
 
@@ -50,10 +53,13 @@ const MappingProfileFormContainer = ({
 
 describe('MappingProfileFormContainer', () => {
   describe('rendering MappingProfileForm', () => {
+    const onSubmitMock = jest.fn();
+
     beforeEach(() => {
       renderWithIntl(
         <MappingProfileFormContainer
           allTransformations={allMappingProfilesTransformations}
+          onSubmit={onSubmitMock}
         />,
         translationsProperties
       );
@@ -184,6 +190,19 @@ describe('MappingProfileFormContainer', () => {
         userEvent.click(getByRole(modal, 'button', { name: 'Save & close' }));
 
         expect(formSubmitButton).toBeDisabled();
+      });
+
+      it('should not display validation for record types when SRS and holdings types are checked', () => {
+        const folioRecordTypeContainer = document.querySelector('[data-test-folio-record-type]');
+
+        userEvent.type(screen.getByLabelText('Name*'), 'Name');
+        userEvent.click(getByRole(folioRecordTypeContainer, 'checkbox', { name: 'Holdings' }));
+        userEvent.click(screen.getByRole('checkbox', { name: 'Source record storage (entire record)' }));
+        userEvent.click(getByRole(footer, 'button', { name: 'Save & close' }));
+
+        expect(queryByText(document.querySelector('[data-test-folio-record-type]'),
+          'Selected record types do not match specified transformations')).toBeNull();
+        expect(onSubmitMock).toBeCalled();
       });
 
       describe('reopening transformation modal', () => {
