@@ -33,8 +33,10 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
 
   const recordTypesInTransformations = uniq(selectedTransformations.map(({ recordType }) => recordType));
 
-  return isEmpty(difference(recordTypesInTransformations, selectedRecordTypes))
-    && isEmpty(difference(selectedRecordTypes, recordTypesInTransformations));
+  const validatedRecords = selectedRecordTypes.filter(recordType => recordType !== FOLIO_RECORD_TYPES.SRS.type);
+
+  return isEmpty(difference(recordTypesInTransformations, validatedRecords))
+    && isEmpty(difference(validatedRecords, recordTypesInTransformations));
 };
 
 export const MappingProfilesFormContainer = props => {
