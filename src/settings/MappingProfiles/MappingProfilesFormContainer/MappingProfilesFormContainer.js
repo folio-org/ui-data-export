@@ -25,10 +25,7 @@ import {
   generateSelectedTransformations,
 } from '../MappingProfilesTransformationsModal/TransformationsField';
 import { RECORD_TYPES_DISABLING_MAPPING } from '../../../utils';
-import {
-  omitRawTransformations,
-  parseRawTransformation,
-} from './processRawTransformations';
+import { omitRawTransformations } from './processRawTransformations';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -121,7 +118,7 @@ export const MappingProfilesFormContainer = props => {
           }
 
           setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
-          setSelectedTransformations(parseRawTransformation(newSelectedTransformations));
+          setSelectedTransformations(newSelectedTransformations);
         }}
       />
       <Callout ref={calloutRef} />

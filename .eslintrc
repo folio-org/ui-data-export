@@ -50,6 +50,11 @@
         "next": [
           "return"
         ]
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
       }
     ],
     "semi": "off",

@@ -1,6 +1,9 @@
 import { omit } from 'lodash';
 
-import { splitIntoRawTransformation } from '../../MappingProfilesFormContainer/processRawTransformations';
+import {
+  parseRawTransformation,
+  splitIntoRawTransformation,
+} from '../../MappingProfilesFormContainer/processRawTransformations';
 
 export function generateTransformationFieldsValues(allTransformations, profileTransformations = []) {
   const generatedTransformations = allTransformations.map((transformation, i) => ({
@@ -13,7 +16,7 @@ export function generateTransformationFieldsValues(allTransformations, profileTr
       .findIndex(transformation => transformation.fieldId === profileTransformation.fieldId);
     const profileTransformationInAllTransformations = {
       ...generatedTransformations[profileTransformationInAllTransformationsIndex],
-      rawTransformation: profileTransformation?.rawTransformation || splitIntoRawTransformation(profileTransformation.transformation),
+      rawTransformation: profileTransformation.rawTransformation || splitIntoRawTransformation(profileTransformation.transformation),
     };
 
     if (profileTransformationInAllTransformationsIndex !== -1) {
@@ -35,6 +38,7 @@ export function normalizeTransformationFormValues(transformations) {
     .filter(transformation => Boolean(transformation?.isSelected))
     .map(transformation => ({
       ...omit(transformation, ['isSelected', 'order', 'displayNameKey', 'referenceDataValue', 'displayName']),
+      transformation: parseRawTransformation(transformation),
       enabled: true,
     }));
 }

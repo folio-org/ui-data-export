@@ -1,20 +1,16 @@
 import { omit } from 'lodash';
 
-export const parseRawTransformation = transformations => {
-  transformations.forEach(transformation => {
-    const {
-      rawTransformation: {
-        marcField = '',
-        indicator1 = ' ',
-        indicator2 = ' ',
-        subfield = '',
-      },
-    } = transformation;
+export const parseRawTransformation = transformation => {
+  // TODO: remove this check once transformations validation is in place.
+  const { rawTransformation = {} } = transformation;
+  const {
+    marcField = '',
+    indicator1 = ' ',
+    indicator2 = ' ',
+    subfield = '',
+  } = rawTransformation;
 
-    transformation.transformation = `${marcField}${indicator1}${indicator2}${subfield}`;
-  });
-
-  return transformations;
+  return `${marcField}${indicator1}${indicator2}${subfield}`;
 };
 
 export const splitIntoRawTransformation = transformation => {
@@ -24,6 +20,7 @@ export const splitIntoRawTransformation = transformation => {
   if (rawTransformation?.indicator1 === ' ') {
     rawTransformation.indicator1 = '';
   }
+
   if (rawTransformation?.indicator2 === ' ') {
     rawTransformation.indicator2 = '';
   }
@@ -31,11 +28,11 @@ export const splitIntoRawTransformation = transformation => {
   return rawTransformation;
 };
 
-export const omitRawTransformations = profileData => {
-  const transformations = profileData.transformations.map(transformation => ({ ...omit(transformation, ['rawTransformation']) }));
+export const omitRawTransformations = profile => {
+  const transformations = profile.transformations.map(transformation => ({ ...omit(transformation, ['rawTransformation']) }));
 
   return {
-    ...profileData,
+    ...profile,
     transformations,
   };
 };
