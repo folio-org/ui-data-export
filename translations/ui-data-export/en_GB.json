@@ -207,5 +207,7 @@
     "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
     "failed": "Failed",
     "total": "Total",
-    "copyOf": "Copy of {value}"
+    "copyOf": "Copy of {value}",
+    "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
+    "mappingProfiles.recordType.instance": "Inventory instance (selected fields)"
 }
