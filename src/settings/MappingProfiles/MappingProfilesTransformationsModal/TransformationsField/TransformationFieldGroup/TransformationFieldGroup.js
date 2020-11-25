@@ -12,11 +12,11 @@ export const TransformationFieldGroup = ({ record }) => {
     <div
       key={record.displayName}
       className={css.fieldGroupWrap}
-      data-testId="transformation-field-group"
+      data-testid="transformation-field-group"
     >
       <div
         className={css.field}
-        data-testId="transformation-marcField"
+        data-testid="transformation-marcField"
       >
         <Field
           component={TextField}
@@ -26,7 +26,7 @@ export const TransformationFieldGroup = ({ record }) => {
       </div>
       <div
         className={classNames(css.field, css.indicator)}
-        data-testId="transformation-indicator1"
+        data-testid="transformation-indicator1"
       >
         <Field
           component={TextField}
@@ -36,7 +36,7 @@ export const TransformationFieldGroup = ({ record }) => {
       </div>
       <div
         className={classNames(css.field, css.indicator)}
-        data-testId="transformation-indicator2"
+        data-testid="transformation-indicator2"
       >
         <Field
           component={TextField}
@@ -46,7 +46,7 @@ export const TransformationFieldGroup = ({ record }) => {
       </div>
       <div
         className={css.field}
-        data-testId="transformation-subfield"
+        data-testid="transformation-subfield"
       >
         <Field
           component={TextField}
@@ -62,5 +62,5 @@ TransformationFieldGroup.propTypes = {
   record: PropTypes.shape({
     displayName: PropTypes.string.isRequired,
     order: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };

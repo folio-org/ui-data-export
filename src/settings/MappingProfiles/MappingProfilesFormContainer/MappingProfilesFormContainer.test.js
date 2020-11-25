@@ -23,6 +23,7 @@ import {
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { renderWithIntl } from '../../../../test/jest/helpers';
 import { translationsProperties } from '../../../../test/helpers';
+import { getTransformationFieldGroups } from '../../../../test/jest/helpers/getTransformationFieldGroups';
 
 const MappingProfileFormContainer = ({
   allTransformations,
@@ -150,11 +151,17 @@ describe('MappingProfileFormContainer', () => {
         userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
         userEvent.click(screen.getByLabelText('Select all fields'));
 
-        transformationFields = document.querySelectorAll('[data-test-transformation-field]');
+        transformationFields = getTransformationFieldGroups();
         modal = document.querySelector('.modalRoot');
 
-        userEvent.type(getByRole(transformationFields[0], 'textbox'), 'Transformation 1');
-        userEvent.type(getByRole(transformationFields[1], 'textbox'), 'Transformation 2');
+        userEvent.type(transformationFields[0].marcField, '123');
+        userEvent.type(transformationFields[0].indicator1, '1');
+        userEvent.type(transformationFields[0].indicator2, '0');
+        userEvent.type(transformationFields[0].subfield, '$r');
+
+        userEvent.type(transformationFields[1].marcField, '900');
+        userEvent.type(transformationFields[1].subfield, '$1');
+
         userEvent.click(getByRole(modal, 'button', { name: 'Save & close' }));
 
         transformationListRows = getAllByRole(screen.getByRole('rowgroup'), 'row');
@@ -164,8 +171,8 @@ describe('MappingProfileFormContainer', () => {
 
       it('should select all and add transformations with values', () => {
         expect(transformationListRows.length).toBe(2);
-        expect(getByText(transformationListRows[0], 'Transformation 1')).toBeVisible();
-        expect(getByText(transformationListRows[1], 'Transformation 2')).toBeVisible();
+        expect(getByText(transformationListRows[0], '12310$r')).toBeVisible();
+        expect(getByText(transformationListRows[1], '900 $1')).toBeVisible();
       });
 
       it('should enable submit button', () => {
@@ -223,8 +230,16 @@ describe('MappingProfileFormContainer', () => {
         });
 
         it('should display correct transformation fields values', () => {
-          expect(getByRole(transformationFields[0], 'textbox').value).toBe('Transformation 1');
-          expect(getByRole(transformationFields[1], 'textbox').value).toBe('Transformation 2');
+          expect(transformationFields[0].marcField.value).toBe('123');
+          expect(transformationFields[0].indicator1.value).toBe('1');
+          expect(transformationFields[0].indicator2.value).toBe('0');
+          expect(transformationFields[0].subfield.value).toBe('$r');
+
+          expect(transformationFields[1].marcField.value).toBe('900');
+          expect(transformationFields[1].indicator1.value).toBe('');
+          expect(transformationFields[1].indicator2.value).toBe('');
+          expect(transformationFields[1].indicator2.value).toBe('');
+          expect(transformationFields[1].subfield.value).toBe('$1');
         });
       });
     });
