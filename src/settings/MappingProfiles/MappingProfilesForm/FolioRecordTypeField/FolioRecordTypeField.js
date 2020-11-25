@@ -74,6 +74,7 @@ export const FolioRecordTypeField = memo(({
             if ((touched || meta.touched) && meta.error) {
               return <span className={css.error}>{meta.error}</span>;
             }
+
             if (meta.submitError) {
               return <span className={css.error}>{meta.submitError}</span>;
             }

@@ -25,6 +25,7 @@ import {
   generateSelectedTransformations,
 } from '../MappingProfilesTransformationsModal/TransformationsField';
 import { RECORD_TYPES_DISABLING_MAPPING } from '../../../utils';
+import { omitRawTransformations } from './processRawTransformations';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
   if (isEmpty(selectedTransformations)) {
@@ -89,7 +90,7 @@ export const MappingProfilesFormContainer = props => {
             return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
           }
 
-          return onSubmit(values);
+          return onSubmit(omitRawTransformations(values));
         }}
         onAddTransformations={() => setTransformationModalOpen(true)}
         onTypeDisable={disabledType => setDisabledRecordTypes(disabledType)}

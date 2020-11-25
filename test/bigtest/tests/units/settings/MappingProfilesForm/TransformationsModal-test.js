@@ -33,7 +33,13 @@ const initialValues = {
     },
     {
       displayName: 'Instances - Call number - prefix',
-      transformation: 'Transformation value 1',
+      transformation: '33300$a',
+      rawTransformation: {
+        marcField: '333',
+        indicator1: '0',
+        indicator2: '0',
+        subfield: '$a',
+      },
       recordType: 'INSTANCE',
       fieldId: 'field2',
       order: 1,
@@ -151,9 +157,15 @@ describe('MappingProfilesTransformationsModal', () => {
       expect(modal.transformations.list.rows(0).cells(0).$('[data-test-select-field]')).to.not.be.undefined;
       expect(modal.transformations.list.rows(1).cells(0).$('[data-test-select-field]')).to.not.be.undefined;
       expect(modal.transformations.list.rows(0).cells(1).text).to.equal(initialValues.transformations[0].displayName);
-      expect(modal.transformations.valuesFields(1).val).to.equal(initialValues.transformations[1].transformation);
+      expect(modal.transformations.valuesFields(1).marcField.val).to.equal('333');
+      expect(modal.transformations.valuesFields(1).indicator1.val).to.equal('0');
+      expect(modal.transformations.valuesFields(1).indicator2.val).to.equal('0');
+      expect(modal.transformations.valuesFields(1).subfield.val).to.equal('$a');
       expect(modal.transformations.list.rows(1).cells(1).text).to.equal(initialValues.transformations[1].displayName);
-      expect(modal.transformations.valuesFields(2).val).to.equal('');
+      expect(modal.transformations.valuesFields(2).marcField.val).to.equal('');
+      expect(modal.transformations.valuesFields(2).indicator1.val).to.equal('');
+      expect(modal.transformations.valuesFields(2).indicator2.val).to.equal('');
+      expect(modal.transformations.valuesFields(2).subfield.val).to.equal('');
     });
 
     describe('clicking on close button', () => {
@@ -168,14 +180,21 @@ describe('MappingProfilesTransformationsModal', () => {
 
     describe('saving filled and checked transformation', () => {
       beforeEach(async () => {
-        await modal.transformations.valuesFields(1).fillAndBlur('Custom value');
+        await modal.transformations.valuesFields(1).marcField.fillAndBlur('123');
+        await modal.transformations.valuesFields(1).subfield.fillAndBlur('$r');
         await modal.transformations.checkboxes(1).clickInput();
         await modal.saveButton.click();
       });
 
       it('should insert information about selected transformations to callback', () => {
         expect(submitResult).to.deep.equal([{
-          transformation: 'Custom value',
+          transformation: '12300$r',
+          rawTransformation: {
+            marcField: '123',
+            indicator1: '0',
+            indicator2: '0',
+            subfield: '$r',
+          },
           recordType: 'INSTANCE',
           fieldId: 'field2',
           enabled: true,

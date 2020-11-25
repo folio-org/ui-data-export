@@ -265,7 +265,8 @@ describe('MappingProfilesForm', () => {
                 beforeEach(async () => {
                   await form.addTransformationsButton.click();
                   await wait();
-                  await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+                  await form.transformationsModal.transformations.valuesFields(0).marcField.fillAndBlur('123');
+                  await form.transformationsModal.transformations.valuesFields(0).subfield.fillAndBlur('$r');
                   await form.transformationsModal.transformations.checkboxes(0).clickInput();
                   await form.transformationsModal.saveButton.click();
                   await wait();
@@ -306,9 +307,11 @@ describe('MappingProfilesForm', () => {
         const callout = new CalloutInteractor();
 
         beforeEach(async () => {
-          await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+          await form.transformationsModal.transformations.valuesFields(0).marcField.fillAndBlur('123');
+          await form.transformationsModal.transformations.valuesFields(0).subfield.fillAndBlur('$r');
           await form.transformationsModal.transformations.checkboxes(0).clickInput();
-          await form.transformationsModal.transformations.valuesFields(1).fillAndBlur('Custom value1');
+          await form.transformationsModal.transformations.valuesFields(1).marcField.fillAndBlur('333');
+          await form.transformationsModal.transformations.valuesFields(1).subfield.fillAndBlur('$12');
           await form.transformationsModal.saveButton.click();
           await wait();
         });
@@ -317,7 +320,7 @@ describe('MappingProfilesForm', () => {
           expect(form.transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
           expect(form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
           expect(form.transformations.rows(0).cells(0).text).to.equal('Instances - Call number - prefix');
-          expect(form.transformations.rows(0).cells(1).text).to.equal('Custom value');
+          expect(form.transformations.rows(0).cells(1).text).to.equal('123 $r');
         });
 
         it('should display success callout', () => {
@@ -342,11 +345,17 @@ describe('MappingProfilesForm', () => {
 
             expect(transformationsModal.transformations.list.rows(0).cells(0).$('[data-test-select-field]').checked).to.be.true;
             expect(transformationsModal.transformations.list.rows(0).cells(1).text).to.equal('Instances - Call number - prefix');
-            expect(transformationsModal.transformations.valuesFields(0).val).to.equal('Custom value');
+            expect(transformationsModal.transformations.valuesFields(0).marcField.val).to.equal('123');
+            expect(transformationsModal.transformations.valuesFields(0).indicator1.val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(0).indicator2.val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(0).subfield.val).to.equal('$r');
 
             expect(transformationsModal.transformations.list.rows(1).cells(0).$('[data-test-select-field]').checked).to.be.false;
             expect(transformationsModal.transformations.list.rows(1).cells(1).text).to.equal('Items - Electronic access - Link text Items');
-            expect(transformationsModal.transformations.valuesFields(1).val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(1).marcField.val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(1).indicator1.val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(1).indicator2.val).to.equal('');
+            expect(transformationsModal.transformations.valuesFields(1).subfield.val).to.equal('');
           });
         });
       });
@@ -397,7 +406,8 @@ describe('MappingProfilesForm', () => {
         await form.summary.description.fillAndBlur(description);
         await form.addTransformationsButton.click();
         await wait();
-        await form.transformationsModal.transformations.valuesFields(0).fillAndBlur('Custom value');
+        await form.transformationsModal.transformations.valuesFields(0).marcField.fillAndBlur('123');
+        await form.transformationsModal.transformations.valuesFields(0).subfield.fillAndBlur('$r');
         await form.transformationsModal.transformations.checkboxes(0).clickInput();
         await form.transformationsModal.saveButton.click();
         await wait();
@@ -414,7 +424,7 @@ describe('MappingProfilesForm', () => {
           fieldId: 'fieldId1',
           path: 'fieldPath1',
           recordType: 'INSTANCE',
-          transformation: 'Custom value',
+          transformation: '123  $r',
         }]);
       });
     });

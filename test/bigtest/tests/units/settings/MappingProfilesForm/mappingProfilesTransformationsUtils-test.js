@@ -54,12 +54,13 @@ describe('generateTransformationFieldsValues', () => {
         path: 'items[*].materialTypeId',
         recordType: 'ITEM',
         enabled: true,
-        transformation: 'Transformation value',
+        transformation: '12300$a',
       },
       {
         fieldId: 'electronicAccess.uri',
         path: 'items[*].electronicAccess[*].uri',
         recordType: 'ITEM',
+        transformation: '44401$12',
       },
     ];
 
@@ -72,15 +73,28 @@ describe('generateTransformationFieldsValues', () => {
           displayNameKey: 'electronicAccess.uri',
           isSelected: false,
           order: 0,
+          transformation: '44401$12',
+          rawTransformation: {
+            marcField: '444',
+            indicator1: '0',
+            indicator2: '1',
+            subfield: '$12',
+          },
         },
         {
           fieldId: 'materialTypeId',
           path: 'items[*].materialTypeId',
           recordType: 'ITEM',
           displayNameKey: 'materialTypeId',
-          transformation: 'Transformation value',
           isSelected: true,
           order: 1,
+          transformation: '12300$a',
+          rawTransformation: {
+            marcField: '123',
+            indicator1: '0',
+            indicator2: '0',
+            subfield: '$a',
+          },
         },
       ]
     );
@@ -120,7 +134,12 @@ describe('normalizeTransformationFormValues', () => {
       recordType: 'ITEM',
       displayNameKey: 'electronicAccess.uri',
       referenceDataValue: 'Reference data',
-      transformation: 'Transformation value 1',
+      rawTransformation: {
+        marcField: '444',
+        indicator1: '0',
+        indicator2: '1',
+        subfield: '$12',
+      },
       isSelected: true,
       order: 0,
     },
@@ -142,7 +161,13 @@ describe('normalizeTransformationFormValues', () => {
           fieldId: 'electronicAccess.uri',
           path: 'items[*].electronicAccess[*].uri',
           recordType: 'ITEM',
-          transformation: 'Transformation value 1',
+          transformation: '44401$12',
+          rawTransformation: {
+            marcField: '444',
+            indicator1: '0',
+            indicator2: '1',
+            subfield: '$12',
+          },
           enabled: true,
         },
       ]

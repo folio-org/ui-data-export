@@ -152,9 +152,9 @@ describe('EditMappingProfileRoute', () => {
       expect(transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
       expect(editMappingProfileRoute.form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
       expect(transformations.rows(0).cells(0).text).to.equal('Holdings - Call number - Call number');
-      expect(transformations.rows(0).cells(1).text).to.equal('$900 1');
+      expect(transformations.rows(0).cells(1).text).to.equal('11100$a');
       expect(transformations.rows(1).cells(0).text).to.equal('Holdings - Notes - Action note');
-      expect(transformations.rows(1).cells(1).text).to.equal('$901 2');
+      expect(transformations.rows(1).cells(1).text).to.equal('123 1$12');
       expect(transformations.rowCount).to.equal(mappingProfile.transformations.length);
     });
 
@@ -241,9 +241,15 @@ describe('EditMappingProfileRoute', () => {
         expect(transformationsModal.transformations.list.rows(0).cells(0).$('[data-test-select-field]:checked')).to.not.be.undefined;
         expect(transformationsModal.transformations.list.rows(1).cells(0).$('[data-test-select-field]:checked')).to.not.be.undefined;
         expect(transformationsModal.transformations.list.rows(0).cells(1).text).to.equal('Holdings - Call number - Call number');
-        expect(transformationsModal.transformations.valuesFields(0).val).to.equal('$900  1');
+        expect(transformationsModal.transformations.valuesFields(0).marcField.val).to.equal('111');
+        expect(transformationsModal.transformations.valuesFields(0).indicator1.val).to.equal('0');
+        expect(transformationsModal.transformations.valuesFields(0).indicator2.val).to.equal('0');
+        expect(transformationsModal.transformations.valuesFields(0).subfield.val).to.equal('$a');
         expect(transformationsModal.transformations.list.rows(1).cells(1).text).to.equal('Holdings - Notes - Action note');
-        expect(transformationsModal.transformations.valuesFields(1).val).to.equal('$901  2');
+        expect(transformationsModal.transformations.valuesFields(1).marcField.val).to.equal('123');
+        expect(transformationsModal.transformations.valuesFields(1).indicator1.val).to.equal('');
+        expect(transformationsModal.transformations.valuesFields(1).indicator2.val).to.equal('1');
+        expect(transformationsModal.transformations.valuesFields(1).subfield.val).to.equal('$12');
       });
 
       describe('changing transformations modal values', () => {
@@ -266,7 +272,7 @@ describe('EditMappingProfileRoute', () => {
             expect(transformations.headers(0).text).to.equal(translations['mappingProfiles.transformations.fieldName']);
             expect(editMappingProfileRoute.form.transformations.headers(1).text).to.equal(translations['mappingProfiles.transformations.transformation']);
             expect(transformations.rows(0).cells(0).text).to.equal('Holdings - Call number - Call number');
-            expect(transformations.rows(0).cells(1).text).to.equal('$900 1');
+            expect(transformations.rows(0).cells(1).text).to.equal('11100$a');
             expect(transformations.rowCount).to.equal(1);
           });
         });
