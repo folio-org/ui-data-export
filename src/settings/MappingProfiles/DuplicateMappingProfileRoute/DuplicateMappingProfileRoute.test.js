@@ -14,6 +14,7 @@ import {
   buildResources,
   buildMutator,
 } from '@folio/stripes-data-transfer-components/testUtils';
+import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { DuplicateMappingProfileRouteComponent } from './DuplicateMappingProfileRoute';
 import { translationsProperties } from '../../../../test/helpers';
@@ -22,9 +23,10 @@ import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
-import { renderWithIntl } from '../../../../test/jest/helpers';
-import { SettingsComponentBuilder } from '../../../../test/jest/helpers/SettingsComponentBuilder';
-import { getTransformationFieldGroups } from '../../../../test/jest/helpers/getTransformationFieldGroups';
+import {
+  SettingsComponentBuilder,
+  getTransformationFieldGroups,
+} from '../../../../test/jest/helpers';
 
 const instanceTransformation = {
   fieldId: 'instance.title',

@@ -3,9 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { noop } from 'lodash';
 
 import { Paneset } from '@folio/stripes-components';
-import { CalloutContext } from '@folio/stripes-core';
 
 import { OverlayContainer } from '../../helpers';
+import { CalloutContext } from '../../../src/contexts/CalloutContext';
 
 export const SettingsComponentBuilder = ({
   children,

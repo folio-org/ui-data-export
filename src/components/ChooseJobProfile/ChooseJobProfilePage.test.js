@@ -14,10 +14,10 @@ import {
   buildResources,
   buildMutator,
 } from '@folio/stripes-data-transfer-components/testUtils';
+import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { ChooseJobProfileComponent as ChooseJobProfile } from './ChooseJobProfile';
 import { translationsProperties } from '../../../test/helpers';
-import { renderWithIntl } from '../../../test/jest/helpers';
 
 const resources = buildResources({
   resourceName: 'jobProfiles',

@@ -13,7 +13,6 @@ import { noop } from 'lodash';
 import sinon from 'sinon';
 
 import { Paneset } from '@folio/stripes/components';
-import { CalloutContext } from '@folio/stripes/core';
 import {
   buildResources,
   buildMutator,
@@ -34,6 +33,7 @@ import {
 import { EditMappingProfileRouteComponent } from '../../../../../../src/settings/MappingProfiles/EditMappingProfileRoute';
 import { EditMappingProfileRouteInteractor } from './interactors/EditMappingProfileRouteInteractor';
 import translations from '../../../../../../translations/ui-data-export/en';
+import { CalloutContext } from '../../../../../../src/contexts/CalloutContext';
 
 function EditMappingProfileRouteContainer({
   allTransformations = [],
