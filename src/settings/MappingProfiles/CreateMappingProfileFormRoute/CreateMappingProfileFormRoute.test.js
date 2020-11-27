@@ -10,14 +10,15 @@ import userEvent from '@testing-library/user-event';
 
 import '../../../../test/jest/__mock__';
 
+import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
+
 import { CreateMappingProfileFormRoute } from './CreateMappingProfileFormRoute';
 import { translationsProperties } from '../../../../test/helpers';
 import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
-import { renderWithIntl } from '../../../../test/jest/helpers';
-import { SettingsComponentBuilder } from '../../../../test/jest/helpers/SettingsComponentBuilder';
+import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 
 function CreateMappingProfileFormRouteContainer({
   allTransformations = [],

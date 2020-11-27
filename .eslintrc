@@ -54,7 +54,9 @@
       {
         "blankLine": "always",
         "prev": "block-like",
-        "next": "*"
+        "next": [
+          "if"
+        ]
       }
     ],
     "semi": "off",

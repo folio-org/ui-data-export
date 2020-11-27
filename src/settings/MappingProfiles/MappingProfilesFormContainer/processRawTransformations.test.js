@@ -58,7 +58,7 @@ describe('splitIntoRawTransformation', () => {
     });
   });
 
-  it('should return correct raw transformation when indicator2 is empty s are present and subfield containing 1 digit', () => {
+  it('should return correct raw transformation when indicator2 is empty and subfield containing 1 digit', () => {
     expect(splitIntoRawTransformation('9001 $1')).toEqual({
       marcField: '900',
       indicator1: '1',

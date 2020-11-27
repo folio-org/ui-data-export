@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { CalloutContext } from '@folio/stripes/core';
+
+import { CalloutContext } from '../../contexts/CalloutContext';
 
 export const useProfileHandlerWithCallout = ({
   errorMessageId,

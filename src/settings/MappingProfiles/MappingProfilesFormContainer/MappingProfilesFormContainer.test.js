@@ -15,15 +15,18 @@ import {
 
 import '../../../../test/jest/__mock__';
 
-import { SettingsComponentBuilder } from '../../../../test/jest/helpers/SettingsComponentBuilder';
+import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
+
+import {
+  SettingsComponentBuilder,
+  getTransformationFieldGroups,
+} from '../../../../test/jest/helpers';
 import { MappingProfilesFormContainer } from './MappingProfilesFormContainer';
 import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
-import { renderWithIntl } from '../../../../test/jest/helpers';
 import { translationsProperties } from '../../../../test/helpers';
-import { getTransformationFieldGroups } from '../../../../test/jest/helpers/getTransformationFieldGroups';
 
 const MappingProfileFormContainer = ({
   allTransformations,

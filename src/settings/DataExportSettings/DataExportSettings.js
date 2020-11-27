@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
@@ -10,9 +10,11 @@ import {
   ProfilesLabel,
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
+import { Callout } from '@folio/stripes-components';
 
 import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
 import { JobProfilesContainer } from '../JobProfiles/JobProfilesContainer';
+import { CalloutContext } from '../../contexts/CalloutContext';
 
 const getSettingsLabel = (messageId, iconKey) => {
   return (
@@ -45,13 +47,20 @@ const sections = [
 ];
 
 export function DataExportSettings(props) {
+  const calloutRef = useRef(null);
+
   return (
-    <Settings
-      {...props}
-      navPaneWidth="15%"
-      sections={sections}
-      paneTitle={<FormattedMessage id="ui-data-export.settings.index.paneTitle" />}
-    />
+    <>
+      <CalloutContext.Provider value={calloutRef.current}>
+        <Settings
+          {...props}
+          navPaneWidth="15%"
+          sections={sections}
+          paneTitle={<FormattedMessage id="ui-data-export.settings.index.paneTitle" />}
+        />
+      </CalloutContext.Provider>
+      <Callout ref={calloutRef} />
+    </>
   );
 }
 
