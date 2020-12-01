@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
@@ -45,6 +46,7 @@ export const JobLogsContainer = props => {
   } = props;
 
   const { okapi } = useStripes();
+  const history = useHistory();
   const calloutRef = useRef(null);
 
   const handleDownloadError = () => {
@@ -104,7 +106,7 @@ export const JobLogsContainer = props => {
     if (row.status !== JOB_EXECUTION_STATUSES.COMPLETED) {
       const path = `/data-export/log/${row.id}`;
 
-      window.open(path, '_blank').focus();
+      history.push(path);
     }
   };
 

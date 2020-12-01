@@ -4,7 +4,6 @@ import {
   beforeEach,
   it,
 } from '@bigtest/mocha';
-import sinon from 'sinon';
 
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import translations from '../../../translations/ui-data-export/en';
@@ -17,7 +16,8 @@ import {
   allLogsPaneInteractor,
 } from '../interactors';
 import { logJobExecutions } from '../network/scenarios/fetch-job-executions-success';
-import { DEFAULT_JOB_LOG_COLUMNS } from '../../../src/utils/constants';
+import { DEFAULT_JOB_LOG_COLUMNS } from '../../../src/utils';
+import { errorLogsInteractor } from './units/ErrorLogs/interactor';
 
 const getUser = row => logJobExecutions[row].runBy;
 const getCellContent = (row, cell) => jobLogsContainerInteractor.logsList.rows(row).cells(cell).content;
@@ -149,19 +149,13 @@ describe('Job logs list', () => {
     });
 
     describe('clicking on a row', () => {
-      const windowOpenStub = sinon.stub(window, 'open').returns({ focus: sinon.stub() });
-
       describe('with failed status', () => {
         beforeEach(async () => {
           await jobLogsContainerInteractor.logsList.rows(1).click();
         });
 
         it('should open error log', () => {
-          const [url, blank] = windowOpenStub.getCall(0).args;
-
-          expect(url).to.equal(`/data-export/log/${logJobExecutions[0].id}`);
-          expect(blank).to.equal('_blank');
-          windowOpenStub.resetHistory();
+          expect(errorLogsInteractor.isPresent).to.be.true;
         });
       });
 
@@ -171,11 +165,7 @@ describe('Job logs list', () => {
         });
 
         it('should open error log', () => {
-          const [url, blank] = windowOpenStub.getCall(0).args;
-
-          expect(url).to.equal(`/data-export/log/${logJobExecutions[1].id}`);
-          expect(blank).to.equal('_blank');
-          windowOpenStub.resetHistory();
+          expect(errorLogsInteractor.isPresent).to.be.true;
         });
       });
 
@@ -185,8 +175,7 @@ describe('Job logs list', () => {
         });
 
         it('should not open error log', () => {
-          expect(windowOpenStub.called).to.be.false;
-          windowOpenStub.restore();
+          expect(errorLogsInteractor.isPresent).to.be.false;
         });
       });
     });
