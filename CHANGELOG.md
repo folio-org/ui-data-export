@@ -11,6 +11,7 @@
 * Modify transformation form to ensure proper data entry for MARC Bib mappings. UIDEXP-180.
 * Migrate to local callout solution. UIDEXP-143.
 * Move pretender to dev dependencies. UIDEXP-186.
+* Change failed job row click behavior, so it redirects to a page within same tab. UIDEXP-200.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)

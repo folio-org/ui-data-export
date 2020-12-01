@@ -2,10 +2,7 @@ import React from 'react';
 import { matchPath } from 'react-router-dom';
 
 import { stripesConnect } from '@folio/stripes/core';
-import {
-  OverlayView,
-  Preloader,
-} from '@folio/stripes-data-transfer-components';
+import { Preloader } from '@folio/stripes-data-transfer-components';
 
 import { generateAffectedRecordInfo } from './utils';
 
@@ -22,27 +19,25 @@ export const ErrorLogsViewComponent = ({ resources: { log } }) => {
   }
 
   return (
-    <OverlayView>
-      <div
-        data-test-error-logs-container
-        className={css.errorLogsContainer}
-      >
-        {errorLogRecords.map(errorLogRecord => (
-          <div
-            key={errorLogRecord.id}
-            data-test-error-log
-          >
-            <div data-test-error-log-info>{errorLogRecord.createdDate} {errorLogRecord.logLevel} {errorLogRecord.reason}</div>
-            {errorLogRecord.affectedRecord && (
-              <div data-test-error-log-affected-record>
-                {generateAffectedRecordInfo(errorLogRecord.affectedRecord)
-                  .map((item, i) => <div key={i}>{item}</div>)}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </OverlayView>
+    <div
+      data-test-error-logs-container
+      className={css.errorLogsContainer}
+    >
+      {errorLogRecords.map(errorLogRecord => (
+        <div
+          key={errorLogRecord.id}
+          data-test-error-log
+        >
+          <div data-test-error-log-info>{errorLogRecord.createdDate} {errorLogRecord.logLevel} {errorLogRecord.reason}</div>
+          {errorLogRecord.affectedRecord && (
+            <div data-test-error-log-affected-record>
+              {generateAffectedRecordInfo(errorLogRecord.affectedRecord)
+                .map((item, i) => <div key={i}>{item}</div>)}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
   );
 };
 
