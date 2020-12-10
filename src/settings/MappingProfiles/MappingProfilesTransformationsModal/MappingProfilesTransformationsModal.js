@@ -130,7 +130,8 @@ export const MappingProfilesTransformationsModal = ({
       }
 
       setSelectedTransformations(transformations);
-    }, [isSubmitButtonDisabled]);
+    }, [isSubmitButtonDisabled]
+  );
 
   const handleSearchFormSubmit = useCallback(values => {
     setSearchValue(values.searchValue?.toLowerCase());
@@ -147,8 +148,9 @@ export const MappingProfilesTransformationsModal = ({
   const handleSaveButtonClick = () => {
     const transformations = get(transformationsFormStateRef.current.getState(), 'values.transformations', []);
     const validatedTransformations = validateTransformations(transformations);
+    const isTransformationFormValid = isEmpty(validatedTransformations);
 
-    if (isEmpty(validatedTransformations)) {
+    if (isTransformationFormValid) {
       const normalizedTransformations = normalizeTransformationFormValues(transformations);
 
       setInvalidTransformations({});

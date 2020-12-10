@@ -3,7 +3,7 @@ import '../../../../test/jest/__mock__';
 import {
   validateTransformations,
   validateRawTransformation,
-  isRawTransformationIsEmpty,
+  isRawTransformationEmpty, isInstanceTransformationEmpty,
 } from './validateTransformations';
 
 describe('validateRawTransformation', () => {
@@ -44,13 +44,13 @@ describe('validateRawTransformation', () => {
     expect(validateRawTransformation(transformation)).toBe(false);
   });
 
-  it('should validate raw transformation as invalid when marcField length is not less than 3', () => {
+  it('should validate raw transformation as invalid when marcField length is less than 3', () => {
     const transformation = { rawTransformation: { marcField: '13' } };
 
     expect(validateRawTransformation(transformation)).toBe(false);
   });
 
-  it('should validate raw transformation as invalid when marcField length is not more than 3', () => {
+  it('should validate raw transformation as invalid when marcField length is more than 3', () => {
     const transformation = { rawTransformation: { marcField: '1344' } };
 
     expect(validateRawTransformation(transformation)).toBe(false);
@@ -203,7 +203,7 @@ describe('validateRawTransformation', () => {
 });
 
 describe('validateTransformations', () => {
-  it('should return correct invalidTransformations', () => {
+  it('should return correct invalid transformations', () => {
     const transformations = [
       {
         isSelected: true,
@@ -250,24 +250,24 @@ describe('validateTransformations', () => {
   });
 });
 
-describe('isRawTransformationIsEmpty', () => {
+describe('isRawTransformationEmpty', () => {
   it('should return true when passing undefined', () => {
-    expect(isRawTransformationIsEmpty(undefined)).toBe(true);
+    expect(isRawTransformationEmpty(undefined)).toBe(true);
   });
 
   it('should return true when passing empty object', () => {
-    expect(isRawTransformationIsEmpty({})).toBe(true);
+    expect(isRawTransformationEmpty({})).toBe(true);
   });
 
   it('should return true when passing object with some empty fields present', () => {
-    expect(isRawTransformationIsEmpty({
+    expect(isRawTransformationEmpty({
       marcField: '',
       subfield: '',
     })).toBe(true);
   });
 
-  it('should return true when passing object with some all fields present', () => {
-    expect(isRawTransformationIsEmpty({
+  it('should return true when passing object with all fields present', () => {
+    expect(isRawTransformationEmpty({
       marcField: '',
       indicator1: '',
       indicator2: '',
@@ -275,11 +275,45 @@ describe('isRawTransformationIsEmpty', () => {
     })).toBe(true);
   });
 
-  it('should return false when passing object non empty fields', () => {
-    expect(isRawTransformationIsEmpty({
+  it('should return false when passing object with non empty fields', () => {
+    expect(isRawTransformationEmpty({
       marcField: 'abc',
       indicator1: '',
       subfield: '',
     })).toBe(false);
+  });
+});
+
+describe('isInstanceTransformationEmpty', () => {
+  it('should return true, when empty instance transformation is passed', () => {
+    const transformation = {
+      recordType: 'INSTANCE',
+      rawTransformation: {
+        marcField: '',
+        indicator1: '',
+        indicator2: '',
+        subfield: '',
+      },
+    };
+
+    expect(isInstanceTransformationEmpty(transformation)).toBe(true);
+  });
+
+  it('should return false, when non empty instance transformation is passed', () => {
+    const transformation = {
+      recordType: 'INSTANCE',
+      rawTransformation: { marcField: 'abc' },
+    };
+
+    expect(isInstanceTransformationEmpty(transformation)).toBe(false);
+  });
+
+  it('should return false, when non instance transformation is passed', () => {
+    const transformation = {
+      recordType: 'ITEM',
+      rawTransformation: { marcField: 'abc' },
+    };
+
+    expect(isInstanceTransformationEmpty(transformation)).toBe(false);
   });
 });

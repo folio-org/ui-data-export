@@ -6,7 +6,17 @@ const transformationRegexMap = {
   subfield: /^(\$([0-9]{1,2}|[a-zA-Z]))?$/,
 };
 
-export const isRawTransformationIsEmpty = rawTransformation => {
+export const isInstanceTransformationEmpty = transformation => {
+  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
+    if (isRawTransformationEmpty(transformation.rawTransformation)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+export const isRawTransformationEmpty = rawTransformation => {
   if (!rawTransformation) {
     return true;
   }
@@ -22,10 +32,8 @@ export const isRawTransformationIsEmpty = rawTransformation => {
 };
 
 export const validateRawTransformation = transformation => {
-  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
-    if (isRawTransformationIsEmpty(transformation.rawTransformation)) {
-      return true;
-    }
+  if (isInstanceTransformationEmpty(transformation)) {
+    return true;
   }
 
   if (transformation.rawTransformation) {
@@ -51,7 +59,6 @@ export const validateRawTransformation = transformation => {
 
 export const validateTransformations = transformations => {
   const modifiedTransformations = transformations.filter(transformation => transformation.rawTransformation || transformation.isSelected);
-
   const invalidTransformations = {};
 
   modifiedTransformations.forEach(transformation => {

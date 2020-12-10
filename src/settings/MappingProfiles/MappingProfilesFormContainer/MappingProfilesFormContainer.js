@@ -52,10 +52,10 @@ export const MappingProfilesFormContainer = props => {
   const [selectedTransformations, setSelectedTransformations] = useState(initialValues.transformations);
   const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialValues.transformations) });
   const calloutRef = useRef(null);
-  const generateSelectedTransformationsPredicate = selectedTransformation => modalTransformations.transformations
+  const getSelectedTransformationsInAllTransformations = selectedTransformation => modalTransformations.transformations
     .find(transformation => selectedTransformation.fieldId === transformation.fieldId);
   const [initialSelectedTransformations, setInitialSelectedTransformations] = useState(
-    () => generateSelectedTransformations(selectedTransformations, generateSelectedTransformationsPredicate)
+    () => generateSelectedTransformations(selectedTransformations, getSelectedTransformationsInAllTransformations)
   );
   const [disabledRecordTypes, setDisabledRecordTypes] = useState({
     [FOLIO_RECORD_TYPES.SRS.type]: false,
@@ -117,7 +117,7 @@ export const MappingProfilesFormContainer = props => {
 
           setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
           setSelectedTransformations(newSelectedTransformations);
-          setInitialSelectedTransformations(generateSelectedTransformations(newSelectedTransformations, generateSelectedTransformationsPredicate));
+          setInitialSelectedTransformations(generateSelectedTransformations(newSelectedTransformations, getSelectedTransformationsInAllTransformations));
         }}
       />
       <Callout ref={calloutRef} />

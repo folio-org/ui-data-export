@@ -246,15 +246,13 @@ describe('MappingProfileFormContainer', () => {
         });
 
         describe('unchecking transformation, clicking cancel and reopening modal', () => {
-          beforeEach(() => {
+          it('should display correct selected field count', () => {
             const selectTransformationCheckboxes = screen.getAllByLabelText('Select field');
 
             userEvent.click(selectTransformationCheckboxes[0]);
             userEvent.click(getByRole(modal, 'button', { name: 'Cancel' }));
             userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
-          });
 
-          it('should display correct selected field count', () => {
             const totalSelected = document.querySelector('[data-test-transformations-total-selected]');
 
             expect(getByText(totalSelected, 'Total selected: 2')).toBeVisible();

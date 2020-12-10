@@ -1,13 +1,10 @@
 import { omit } from 'lodash';
 
-import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
-import { isRawTransformationIsEmpty } from '../MappingProfilesTransformationsModal/validateTransformations';
+import { isInstanceTransformationEmpty } from '../MappingProfilesTransformationsModal/validateTransformations';
 
 export const parseRawTransformation = transformation => {
-  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
-    if (isRawTransformationIsEmpty(transformation.rawTransformation)) {
-      return '';
-    }
+  if (isInstanceTransformationEmpty(transformation)) {
+    return '';
   }
 
   const { rawTransformation = {} } = transformation;

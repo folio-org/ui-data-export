@@ -10,16 +10,16 @@
   width: 29%;
 
   &:nth-of-type(4) {
-      margin-right: calc(var(--font-size-x-small)*2);
-   }
+    margin-right: calc(var(--font-size-x-small)*2);
+  }
 
   &.indicator {
-     width: 21%;
-     min-width: 55px;
-   }
+    width: 21%;
+    min-width: 55px;
+  }
 }
 
 .icon {
-  color: var(--error);
   margin-left: -1.4rem;
+  color: var(--error);
 }
