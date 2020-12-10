@@ -244,6 +244,22 @@ describe('MappingProfileFormContainer', () => {
           expect(transformationFields[1].indicator2.value).toBe('');
           expect(transformationFields[1].subfield.value).toBe('$1');
         });
+
+        describe('unchecking transformation, clicking cancel and reopening modal', () => {
+          beforeEach(() => {
+            const selectTransformationCheckboxes = screen.getAllByLabelText('Select field');
+
+            userEvent.click(selectTransformationCheckboxes[0]);
+            userEvent.click(getByRole(modal, 'button', { name: 'Cancel' }));
+            userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
+          });
+
+          it('should display correct selected field count', () => {
+            const totalSelected = document.querySelector('[data-test-transformations-total-selected]');
+
+            expect(getByText(totalSelected, 'Total selected: 2')).toBeVisible();
+          });
+        });
       });
     });
   });

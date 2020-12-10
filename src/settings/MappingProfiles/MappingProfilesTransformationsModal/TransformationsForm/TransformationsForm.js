@@ -17,7 +17,10 @@ import commonCss from '../../../../common/common.css';
 const TransformationsFormComponent = memo(({
   searchResults,
   form,
+  invalidTransformations = {},
   isSelectAllChecked,
+  isSubmitButtonDisabled,
+  setIsSubmitButtonDisabled,
   stateRef,
   onSelectChange,
 }) => {
@@ -50,7 +53,10 @@ const TransformationsFormComponent = memo(({
     <form className={commonCss.fullScreen}>
       <TransformationField
         contentData={searchResults}
+        invalidTransformations={invalidTransformations}
         isSelectAllChecked={isSelectAllChecked}
+        isSubmitButtonDisabled={isSubmitButtonDisabled}
+        setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         onSelectChange={handleSelectChange}
         onSelectAll={handleSelectAll}
       />
@@ -60,9 +66,12 @@ const TransformationsFormComponent = memo(({
 
 TransformationsFormComponent.propTypes = {
   searchResults: PropTypes.arrayOf(PropTypes.object).isRequired,
+  invalidTransformations: PropTypes.objectOf(PropTypes.bool),
   isSelectAllChecked: PropTypes.bool,
   form: PropTypes.object.isRequired,
   stateRef: PropTypes.object,
+  isSubmitButtonDisabled: PropTypes.bool.isRequired,
+  setIsSubmitButtonDisabled: PropTypes.func.isRequired,
   onSelectChange: PropTypes.func.isRequired,
 };
 

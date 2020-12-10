@@ -1,7 +1,15 @@
 import { omit } from 'lodash';
 
+import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
+import { isRawTransformationIsEmpty } from '../MappingProfilesTransformationsModal/validateTransformations';
+
 export const parseRawTransformation = transformation => {
-  // TODO: remove this check once transformations validation is done in scope of UIDEXP-187.
+  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
+    if (isRawTransformationIsEmpty(transformation.rawTransformation)) {
+      return '';
+    }
+  }
+
   const { rawTransformation = {} } = transformation;
   const {
     marcField = '',
@@ -24,7 +32,7 @@ export const parseRawTransformation = transformation => {
 };
 
 export const splitIntoRawTransformation = transformation => {
-  const regex = /^(?<marcField>\d{3})(?<indicator1>[\d\s])(?<indicator2>[\d\s])(?<subfield>\$([0-9]{1,2}|[a-zA-Z]))?$/;
+  const regex = /^(?<marcField>\d{3})(?<indicator1>[\d\sa-zA-Z])(?<indicator2>[\d\sa-zA-Z])(?<subfield>\$([0-9]{1,2}|[a-zA-Z]))?$/;
   const rawTransformation = transformation.match(regex)?.groups;
 
   if (rawTransformation?.indicator1 === ' ') {

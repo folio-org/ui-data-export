@@ -307,6 +307,8 @@ describe('EditMappingProfileRoute', () => {
         await editMappingProfileRoute.form.addTransformationsButton.click();
         await wait();
         await editMappingProfileRoute.form.transformationsModal.transformations.checkboxes(1).clickInput();
+        await editMappingProfileRoute.form.transformationsModal.transformations.valuesFields(1).marcField.fillAndBlur('123');
+        await editMappingProfileRoute.form.transformationsModal.transformations.valuesFields(1).subfield.fillAndBlur('$r');
         await editMappingProfileRoute.form.transformationsModal.saveButton.click();
         await wait();
       });
