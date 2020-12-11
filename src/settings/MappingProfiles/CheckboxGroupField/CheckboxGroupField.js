@@ -5,7 +5,7 @@ import { Field } from 'react-final-form';
 
 import {
   Checkbox,
-  Row,
+  Layout,
 } from '@folio/stripes/components';
 
 export const CheckboxGroupField = memo(({
@@ -26,7 +26,7 @@ export const CheckboxGroupField = memo(({
             value={option.value}
             isEqual={isEqual}
             render={fieldProps => (
-              <Row>
+              <Layout className="display-flex">
                 <Checkbox
                   {...fieldProps.input}
                   label={option.label}
@@ -38,7 +38,7 @@ export const CheckboxGroupField = memo(({
                   }}
                 />
                 {option.details}
-              </Row>
+              </Layout>
             )}
           />
         </div>
