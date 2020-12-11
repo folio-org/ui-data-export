@@ -63,6 +63,7 @@
   "mappingProfiles.transformations.searchFields": "Search fields",
   "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {field found} other {fields found}}",
   "mappingProfiles.transformations.emptyMessage": "No transformations found",
+  "mappingProfiles.transformations.invalidTransformationMessage": "Please check your input",
   "mappingProfiles.create.successCallout": "The field mapping profile <b>{name}</b> has been successfully <b>created</b>",
   "mappingProfiles.create.errorCallout": "There was an error while creating the field mapping profile <b>{name}</b>",
   "mappingProfiles.edit.successCallout": "The field mapping profile <b>{name}</b> has been successfully <b>saved</b>",

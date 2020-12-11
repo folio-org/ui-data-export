@@ -19,7 +19,10 @@ const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
 export const TransformationField = React.memo(({
   contentData,
-  isSelectAllChecked,
+  invalidTransformations = {},
+  isSelectAllChecked = false,
+  isSubmitButtonDisabled,
+  setIsSubmitButtonDisabled,
   onSelectChange,
   onSelectAll,
 }) => {
@@ -27,7 +30,7 @@ export const TransformationField = React.memo(({
   const headerRowHeight = 40;
   const rowHeight = 50;
 
-  const formatter = useMemo(() => ({
+  const formatter = {
     isSelected: record => (
       <Field
         key={record.displayName}
@@ -51,9 +54,14 @@ export const TransformationField = React.memo(({
     ),
     fieldName: record => record.displayName,
     transformation: record => (
-      <TransformationFieldGroup record={record} />
+      <TransformationFieldGroup
+        record={record}
+        isTransformationInvalid={invalidTransformations[record.order]}
+        isSubmitButtonDisabled={isSubmitButtonDisabled}
+        setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+      />
     ),
-  }), [intl, onSelectChange]);
+  };
 
   const selectAllLabel = useMemo(() => intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' }), [intl]);
 
@@ -100,11 +108,12 @@ export const TransformationField = React.memo(({
   );
 });
 
-TransformationField.defaultProps = { isSelectAllChecked: false };
-
 TransformationField.propTypes = {
   contentData: PropTypes.arrayOf(PropTypes.object.isRequired),
+  invalidTransformations: PropTypes.objectOf(PropTypes.bool),
   isSelectAllChecked: PropTypes.bool,
+  isSubmitButtonDisabled: PropTypes.bool.isRequired,
+  setIsSubmitButtonDisabled: PropTypes.func.isRequired,
   onSelectChange: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
 };

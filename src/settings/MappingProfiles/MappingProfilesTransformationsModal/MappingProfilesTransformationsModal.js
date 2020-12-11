@@ -2,13 +2,15 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  useRef, useMemo,
+  useRef,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import {
   get,
   noop,
+  isEmpty,
 } from 'lodash';
 
 import {
@@ -30,6 +32,7 @@ import {
 import { TransformationsForm } from './TransformationsForm';
 import { SearchForm } from './SearchForm';
 import { normalizeTransformationFormValues } from './TransformationsField';
+import { validateTransformations } from './validateTransformations';
 
 import css from './MappingProfilesTransformationsModal.css';
 
@@ -65,6 +68,8 @@ export const MappingProfilesTransformationsModal = ({
     searchValue: initialSearchFormValues.searchValue,
     filters: searchFilters,
   }), [searchFilters]);
+  const [invalidTransformations, setInvalidTransformations] = useState({});
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 
   const resetSearchForm = useCallback(() => {
     setSearchFilters({
@@ -119,19 +124,43 @@ export const MappingProfilesTransformationsModal = ({
   })), []);
 
   const handleSelectChange = useCallback(
-    transformations => setSelectedTransformations(transformations),
-    []
+    transformations => {
+      if (isSubmitButtonDisabled) {
+        setIsSubmitButtonDisabled(false);
+      }
+
+      setSelectedTransformations(transformations);
+    }, [isSubmitButtonDisabled]
   );
 
   const handleSearchFormSubmit = useCallback(values => {
     setSearchValue(values.searchValue?.toLowerCase());
   }, []);
 
+  const handleCancel = () => {
+    setInvalidTransformations({});
+    setIsSubmitButtonDisabled(false);
+    setSelectedTransformations(initialSelectedTransformations);
+
+    onCancel();
+  };
+
   const handleSaveButtonClick = () => {
     const transformations = get(transformationsFormStateRef.current.getState(), 'values.transformations', []);
-    const normalizedTransformations = normalizeTransformationFormValues(transformations);
+    const validatedTransformations = validateTransformations(transformations);
+    const isTransformationFormValid = isEmpty(validatedTransformations);
 
-    onSubmit(normalizedTransformations);
+    if (isTransformationFormValid) {
+      const normalizedTransformations = normalizeTransformationFormValues(transformations);
+
+      setInvalidTransformations({});
+      setIsSubmitButtonDisabled(false);
+
+      onSubmit(normalizedTransformations);
+    } else {
+      setInvalidTransformations(validatedTransformations);
+      setIsSubmitButtonDisabled(true);
+    }
   };
 
   const renderFooter = () => {
@@ -141,7 +170,7 @@ export const MappingProfilesTransformationsModal = ({
           data-test-transformations-cancel
           className="left"
           marginBottom0
-          onClick={onCancel}
+          onClick={handleCancel}
         >
           <FormattedMessage id="stripes-components.cancel" />
         </Button>
@@ -154,6 +183,7 @@ export const MappingProfilesTransformationsModal = ({
         <Button
           data-test-transformations-save
           buttonStyle="primary"
+          disabled={isSubmitButtonDisabled}
           marginBottom0
           onClick={handleSaveButtonClick}
         >
@@ -173,7 +203,7 @@ export const MappingProfilesTransformationsModal = ({
       dismissible
       enforceFocus={false}
       size="large"
-      onClose={onCancel}
+      onClose={handleCancel}
     >
       <Paneset>
         <Pane
@@ -210,7 +240,10 @@ export const MappingProfilesTransformationsModal = ({
             stateRef={transformationsFormStateRef}
             initialValues={initialTransformationsValues}
             searchResults={searchResults}
+            invalidTransformations={invalidTransformations}
             isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
+            isSubmitButtonDisabled={isSubmitButtonDisabled}
+            setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
             onSelectChange={handleSelectChange}
             onSubmit={noop}
           />

@@ -1,5 +1,6 @@
 import {
   getByTestId,
+  queryAllByTestId,
   screen,
 } from '@testing-library/react';
 
@@ -11,5 +12,6 @@ export const getTransformationFieldGroups = () => {
     indicator1: getByTestId(group, 'transformation-indicator1').querySelector('input'),
     indicator2: getByTestId(group, 'transformation-indicator2').querySelector('input'),
     subfield: getByTestId(group, 'transformation-subfield').querySelector('input'),
+    isInvalid: Boolean(queryAllByTestId(group, 'transformation-invalid').length),
   }));
 };
