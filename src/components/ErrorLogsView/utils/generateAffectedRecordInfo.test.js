@@ -1,8 +1,9 @@
+import '../../../../test/jest/__mock__';
 import { generateAffectedRecordInfo } from './generateAffectedRecordInfo';
 import { errorLogs } from '../../../../test/bigtest/fixtures/errorLogs';
 
 describe('generateAffectedRecordInfo', () => {
-  it('should return correct record info with no nesting', () => {
+  it('should return correct instance record info without affected records (affectedRecords field is provided but empty)', () => {
     const logs = {
       id: '5bf370e0-8cca-4d9c-82e4-5170ab2a0a39',
       hrid: 'inst000000000022',
@@ -16,6 +17,22 @@ describe('generateAffectedRecordInfo', () => {
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',
       '"Instance Title": "A semantic web primer"',
+      '}',
+    ]);
+  });
+
+  it('should return correct item record info without affected records (affectedRecords field is not provided)', () => {
+    const logs = {
+      id: '5bf370e0-8cca-4d9c-82e4-5170ab2a0a39',
+      hrid: 'inst000000000022',
+      title: 'A semantic web primer',
+      recordType: 'ITEM',
+    };
+
+    expect(generateAffectedRecordInfo(logs)).toEqual([
+      '{',
+      '"Item UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
+      '"Item HRID": "inst000000000022"',
       '}',
     ]);
   });
@@ -57,6 +74,31 @@ describe('generateAffectedRecordInfo', () => {
       '"Associated Item HRID": "item000000000015"',
       '"Associated Item UUID": "7212ba6a-8dcf-45a1-be9a-ffaa847c4423"',
       '"Associated Item HRID": "item000000000014"',
+      '}',
+    ]);
+  });
+
+  it('should provide title only for instance', () => {
+    const logs = {
+      id: '5bf370e0-8cca-4d9c-82e4-5170ab2a0a39',
+      hrid: 'inst000000000022',
+      recordType: 'HOLDINGS',
+      affectedRecords: [{
+        id: 'e3ff6133-b9a2-4d4c-a1c9-dc1867d4df19',
+        hrid: 'hold000000000009',
+        title: 'A semantic web primer',
+        recordType: 'INSTANCE',
+        affectedRecords: [],
+      }],
+    };
+
+    expect(generateAffectedRecordInfo(logs)).toEqual([
+      '{',
+      '"Holdings UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
+      '"Holdings HRID": "inst000000000022"',
+      '"Associated Instance UUID": "e3ff6133-b9a2-4d4c-a1c9-dc1867d4df19"',
+      '"Associated Instance HRID": "hold000000000009"',
+      '"Instance Title": "A semantic web primer"',
       '}',
     ]);
   });
