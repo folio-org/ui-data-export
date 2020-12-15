@@ -48,9 +48,9 @@ describe('ErrorLogsView', () => {
     });
 
     it('should display proper log info', () => {
-      expect(errorLogsInteractor.logs(0).logInfo).to.equal('2020-10-13T09:35:16.481+0000 ERROR reason1');
-      expect(errorLogsInteractor.logs(1).logInfo).to.equal('2020-10-13T09:35:16.485+0000 ERROR reason2');
-      expect(errorLogsInteractor.logs(2).logInfo).to.equal('2020-10-13T09:35:16.484+0000 ERROR reason3');
+      expect(errorLogsInteractor.logs(0).logInfo).to.equal('2020-10-13T09:35:16.481+0000 ERROR An error occurred during fields mapping for srs record with id: value1, reason: value2, cause: value3');
+      expect(errorLogsInteractor.logs(1).logInfo).to.equal('2020-10-13T09:35:16.485+0000 ERROR UUIDs not found in SRS or inventory: value1');
+      expect(errorLogsInteractor.logs(2).logInfo).to.equal('2020-10-13T09:35:16.484+0000 ERROR Error while getting holdings by instance id: value1, message: value2');
     });
 
     it('should display info about affected record only for the one record', () => {

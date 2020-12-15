@@ -4,7 +4,8 @@ export const errorLogs = [
     jobExecutionId: '83c24106-8c34-44d4-a5d1-62e684718735',
     createdDate: '2020-10-13T09:35:16.481+0000',
     logLevel: 'ERROR',
-    reason: 'reason1',
+    errorMessageCode: 'error.mapping.fieldsMappingSrs',
+    errorMessageValues: ['value1', 'value2', 'value3'],
   },
   {
     id: '5b04fa21-284e-4dbf-8c2e-9f5d3597841a',
@@ -12,13 +13,16 @@ export const errorLogs = [
     createdDate: '2020-10-13T09:35:16.485+0000',
     logLevel: 'ERROR',
     reason: 'reason2',
+    errorMessageCode: 'error.uuidsNotFound',
+    errorMessageValues: ['value1'],
   },
   {
     id: '77288642-2aa5-463f-8983-f0dc4c3cf9ae',
     jobExecutionId: '83c24106-8c34-44d4-a5d1-62e684718735',
     createdDate: '2020-10-13T09:35:16.484+0000',
     logLevel: 'ERROR',
-    reason: 'reason3',
+    errorMessageCode: 'error.inventory.gettingHoldingsByInstanceId',
+    errorMessageValues: ['value1', 'value2'],
     affectedRecord: {
       id: '5bf370e0-8cca-4d9c-82e4-5170ab2a0a39',
       hrid: 'inst000000000022',
