@@ -13,6 +13,7 @@
 * Move pretender to dev dependencies. UIDEXP-186.
 * Change failed job row click behavior, so it redirects to a page within same tab. UIDEXP-200.
 * Add validation to the mapping profile transformations. UIDEXP-187.
+* Display title only for instances on error logs page. UIDEXP-211.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)

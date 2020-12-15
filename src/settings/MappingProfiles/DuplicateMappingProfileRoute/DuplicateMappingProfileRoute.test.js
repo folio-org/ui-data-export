@@ -81,7 +81,6 @@ describe('DuplicateMappingProfileRoute', () => {
     });
 
     it('should have enabled save button if there are no changes', () => {
-      screen.debug(screen.getByRole('button', { name: 'Save & close' }));
       expect(screen.getByRole('button', { name: 'Save & close' })).toBeEnabled();
     });
 
