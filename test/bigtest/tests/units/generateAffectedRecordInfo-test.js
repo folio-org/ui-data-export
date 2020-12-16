@@ -3,9 +3,19 @@ import {
   it,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
+import { useIntl } from 'react-intl';
+
+import { getHookExecutionResult } from '@folio/stripes-data-transfer-components/interactors';
 
 import { generateAffectedRecordInfo } from '../../../../src/components/ErrorLogsView/utils';
+import { translationsProperties } from '../../../helpers';
 import { errorLogs } from '../../fixtures/errorLogs';
+
+const useGenerateAffectedRecordInfo = ({ logs }) => {
+  const intl = useIntl();
+
+  return { recordInfo: generateAffectedRecordInfo(logs, intl.formatMessage) };
+};
 
 describe('generateAffectedRecordInfo', () => {
   it('should return correct record info with no nesting', () => {
@@ -16,8 +26,9 @@ describe('generateAffectedRecordInfo', () => {
       recordType: 'INSTANCE',
       affectedRecords: [],
     };
+    const { recordInfo } = getHookExecutionResult(useGenerateAffectedRecordInfo, [{ logs }], translationsProperties);
 
-    expect(generateAffectedRecordInfo(logs)).to.eql([
+    expect(recordInfo).to.eql([
       '{',
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',
@@ -39,8 +50,9 @@ describe('generateAffectedRecordInfo', () => {
         affectedRecords: [],
       }],
     };
+    const { recordInfo } = getHookExecutionResult(useGenerateAffectedRecordInfo, [{ logs }], translationsProperties);
 
-    expect(generateAffectedRecordInfo(logs)).to.eql([
+    expect(recordInfo).to.eql([
       '{',
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',
@@ -52,7 +64,9 @@ describe('generateAffectedRecordInfo', () => {
   });
 
   it('should return correct record info with 2 level nesting', () => {
-    expect(generateAffectedRecordInfo(errorLogs[2].affectedRecord)).to.eql([
+    const { recordInfo } = getHookExecutionResult(useGenerateAffectedRecordInfo, [{ logs: errorLogs[2].affectedRecord }], translationsProperties);
+
+    expect(recordInfo).to.eql([
       '{',
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',
