@@ -2,41 +2,80 @@ import { capitalize } from 'lodash';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
-const populateAffectedRecords = (records, result) => {
+const populateAffectedRecords = ({
+  records,
+  affectedRecordInfo,
+  formatMessage,
+}) => {
   if (!records) return;
 
   records.forEach(record => {
-    const recordType = formatRecordType(record.recordType);
-
-    result.push(`"Associated ${recordType} UUID": "${record.id}"`);
-    result.push(`"Associated ${recordType} HRID": "${record.hrid}"`);
-
-    generateHRIDIfInstanceRecord(record, result);
-    populateAffectedRecords(record.affectedRecords, result);
+    affectedRecordInfo.push(...generateAffectedRecordLevel({
+      record,
+      isAssociatedRecord: true,
+      formatMessage,
+    }));
+    populateAffectedRecords({
+      records: record.affectedRecords,
+      affectedRecordInfo,
+      formatMessage,
+    });
   });
 };
 
-export const generateAffectedRecordInfo = affectedRecord => {
-  const result = ['{'];
-  const recordType = formatRecordType(affectedRecord.recordType);
+export const generateAffectedRecordInfo = (affectedRecord, formatMessage) => {
+  const affectedRecordInfo = ['{'];
 
-  result.push(`"${recordType} UUID": "${affectedRecord.id}"`);
-  result.push(`"${recordType} HRID": "${affectedRecord.hrid}"`);
+  affectedRecordInfo.push(...generateAffectedRecordLevel({
+    record: affectedRecord,
+    formatMessage,
+  }));
+  populateAffectedRecords({
+    records: affectedRecord.affectedRecords,
+    affectedRecordInfo,
+    formatMessage,
+  });
 
-  generateHRIDIfInstanceRecord(affectedRecord, result);
-  populateAffectedRecords(affectedRecord.affectedRecords, result);
+  affectedRecordInfo.push('}');
 
-  result.push('}');
-
-  return result;
+  return affectedRecordInfo;
 };
 
-const generateHRIDIfInstanceRecord = (affectedRecord, result) => {
-  const { recordType } = affectedRecord;
+const generateAffectedRecordLevel = ({
+  record,
+  formatMessage,
+  isAssociatedRecord = false,
+}) => {
+  const affectedRecordLevel = [];
+  const recordType = formatRecordType(record.recordType);
+  const messageIdPrefix = `ui-data-export.errorLogs.record${isAssociatedRecord ? 'Associated' : ''}`;
 
-  if (recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
-    result.push(`"${formatRecordType(recordType)} Title": "${affectedRecord.title}"`);
+  affectedRecordLevel.push(formatMessage(
+    { id: `${messageIdPrefix}.UUID` },
+    {
+      value: record.id,
+      recordType,
+    }
+  ));
+  affectedRecordLevel.push(formatMessage(
+    { id: `${messageIdPrefix}.HRID` },
+    {
+      value: record.hrid,
+      recordType,
+    }
+  ));
+
+  if (record.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
+    affectedRecordLevel.push(formatMessage(
+      { id: `${messageIdPrefix}.Title` },
+      {
+        value: record.title,
+        recordType,
+      }
+    ));
   }
+
+  return affectedRecordLevel;
 };
 
 const formatRecordType = recordType => capitalize(recordType);

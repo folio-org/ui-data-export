@@ -47,7 +47,7 @@ export const ErrorLogsViewComponent = ({ resources: { log } }) => {
           </div>
           {errorLogRecord.affectedRecord && (
             <div data-test-error-log-affected-record>
-              {generateAffectedRecordInfo(errorLogRecord.affectedRecord)
+              {generateAffectedRecordInfo(errorLogRecord.affectedRecord, intl.formatMessage)
                 .map((item, i) => <div key={i}>{item}</div>)}
             </div>
           )}

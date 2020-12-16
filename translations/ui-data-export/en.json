@@ -96,6 +96,12 @@
   "modal.resultsHeader": "Search results",
   "modal.totalSelected": "Total selected: {count}",
 
+  "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
+  "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
+  "errorLogs.record.Title": "\"{recordType} Title\": \"{value}\"",
+  "errorLogs.recordAssociated.HRID": "\"Associated {recordType} HRID\": \"{value}\"",
+  "errorLogs.recordAssociated.UUID": "\"Associated {recordType} UUID\": \"{value}\"",
+  "errorLogs.recordAssociated.Title": "\"Associated {recordType} Title\": \"{value}\"",
 
   "instance.electronic.access.linkText.default": "Instance - Electronic access - Link Text",
   "instance.electronic.access.materialsSpecification.default": "Instance - Electronic access - Materials specified",

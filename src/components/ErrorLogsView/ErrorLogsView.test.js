@@ -25,14 +25,11 @@ describe('ErrorLogsView', () => {
     });
 
     it('should render correct error info', () => {
-      const errorLogContainer = document.querySelector('[data-test-error-log]');
-      const {
-        createdDate,
-        logLevel,
-        errorMessageValues,
-      } = errorLogs[0];
+      const errorLogContainers = document.querySelectorAll('[data-test-error-log]');
 
-      expect(getByText(errorLogContainer, `${createdDate} ${logLevel} An error occurred during fields mapping for srs record with id: ${errorMessageValues[0]}, reason: ${errorMessageValues[1]}, cause: ${errorMessageValues[2]}`)).toBeInTheDocument();
+      expect(getByText(errorLogContainers[0], `${errorLogs[0].createdDate} ${errorLogs[0].logLevel} An error occurred during fields mapping for srs record with id: ${errorLogs[0].errorMessageValues[0]}, reason: ${errorLogs[0].errorMessageValues[1]}, cause: ${errorLogs[0].errorMessageValues[2]}`)).toBeInTheDocument();
+      expect(getByText(errorLogContainers[1], `${errorLogs[1].createdDate} ${errorLogs[1].logLevel} UUIDs not found in SRS or inventory: ${errorLogs[1].errorMessageValues[0]}`)).toBeInTheDocument();
+      expect(getByText(errorLogContainers[2], `${errorLogs[2].createdDate} ${errorLogs[2].logLevel} Error while getting holdings by instance id: ${errorLogs[2].errorMessageValues[0]}, message: ${errorLogs[2].errorMessageValues[1]}`)).toBeInTheDocument();
     });
   });
 });
