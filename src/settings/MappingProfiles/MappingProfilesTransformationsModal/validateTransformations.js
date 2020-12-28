@@ -58,7 +58,7 @@ export const validateRawTransformation = transformation => {
 };
 
 export const validateTransformations = transformations => {
-  const modifiedTransformations = transformations.filter(transformation => transformation.rawTransformation || transformation.isSelected);
+  const modifiedTransformations = transformations.filter(transformation => !isRawTransformationEmpty(transformation.rawTransformation) || transformation.isSelected);
   const invalidTransformations = {};
 
   modifiedTransformations.forEach(transformation => {
