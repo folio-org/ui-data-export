@@ -5,6 +5,8 @@ import {
   screen,
   getAllByRole,
   getByText,
+  getByRole,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -30,13 +32,13 @@ import {
 
 const instanceTransformation = {
   fieldId: 'instance.title',
-  transformation: '90011$12',
+  transformation: '900 1$12',
   displayNameKey: 'instance.title',
   path: '$.instance[*].title',
   recordType: 'INSTANCE',
 };
 
-function DuplicateMappingProfileRouteContainer({
+const DuplicateMappingProfileRouteContainer = ({
   allTransformations = [],
   profile = {
     ...mappingProfile,
@@ -47,7 +49,7 @@ function DuplicateMappingProfileRouteContainer({
   onSubmit = noop,
   onCancel = noop,
   onSubmitNavigate = noop,
-} = {}) {
+} = {}) => {
   const intl = useIntl();
 
   return (
@@ -65,7 +67,7 @@ function DuplicateMappingProfileRouteContainer({
       />
     </SettingsComponentBuilder>
   );
-}
+};
 
 describe('DuplicateMappingProfileRoute', () => {
   describe('rendering duplicate mapping profile page with profile data: success scenario', () => {
@@ -91,7 +93,7 @@ describe('DuplicateMappingProfileRoute', () => {
     it('should display transformation value', () => {
       const transformationListRows = getAllByRole(screen.getByRole('rowgroup'), 'row');
 
-      expect(getByText(transformationListRows[0], '90011$12')).toBeVisible();
+      expect(getByText(transformationListRows[0], '900 1$12')).toBeVisible();
     });
 
     it('should fill transformation field group on transformation modal correctly', () => {
@@ -99,9 +101,26 @@ describe('DuplicateMappingProfileRoute', () => {
       const transformationFields = getTransformationFieldGroups();
 
       expect(transformationFields[2].marcField.value).toBe('900');
-      expect(transformationFields[2].indicator1.value).toBe('1');
+      expect(transformationFields[2].indicator1.value).toBe('');
       expect(transformationFields[2].indicator2.value).toBe('1');
       expect(transformationFields[2].subfield.value).toBe('$12');
+    });
+
+    it('should not show validation error when clearing transformation with empty indicator field', () => {
+      userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
+      const transformationFields = getTransformationFieldGroups();
+      const modal = document.querySelector('[data-test-transformations-modal]');
+
+      userEvent.type(transformationFields[2].marcField, '');
+      userEvent.type(transformationFields[0].indicator2, '');
+      userEvent.type(transformationFields[0].subfield, '');
+
+      userEvent.click(screen.getByLabelText('Select all fields'));
+      userEvent.click(screen.getByLabelText('Select all fields'));
+
+      userEvent.click(getByRole(modal, 'button', { name: 'Save & close' }));
+
+      return waitForElementToBeRemoved(() => document.querySelector('[data-test-transformations-modal]'));
     });
   });
 });

@@ -15,6 +15,7 @@
 * Add validation to the mapping profile transformations. UIDEXP-187.
 * Display title only for instances on error logs page. UIDEXP-211.
 * Replace translation keys with translations on Error logs page. UIDEXP-213.
+* Fix incorrect field validation when clearing filled transformation. UIDEXP-217.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)
