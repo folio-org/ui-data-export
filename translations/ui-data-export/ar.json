@@ -250,5 +250,13 @@
     "error.mapping.fieldsMappingSrs": "حدث خطأ أثناء تخطيط الحقول لتسجيلة srs بالمعرف: {value1} ، السبب: {value2} ، السبب: {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "ملف تعريف التخطيط مفقود أثناء عملية التصدير",
-    "error.mappingProfile.invalidSrsRecordTypeCombination": "لا يمكن دمج نوع تسجيلة SRS مع نوع تسجيلة INSTANCE أثناء عملية التصدير"
+    "error.mappingProfile.invalidSrsRecordTypeCombination": "لا يمكن دمج نوع تسجيلة SRS مع نوع تسجيلة INSTANCE أثناء عملية التصدير",
+    "jobStatus.success": "",
+    "selectMappingProfile": "",
+    "mappingProfiles.createdCallout": "",
+    "errors": "",
+    "mappingProfiles.errorCallout": "",
+    "jobProfiles.createdCallout": "",
+    "jobProfiles.errorCallout": "",
+    "mappingProfiles.transformations.addTransformation": ""
 }

@@ -250,5 +250,13 @@
     "error.mapping.fieldsMappingSrs": "An error occurred during fields mapping for srs record with id: {value1}, reason: {value2}, cause: {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Mapping profile is missing during export process",
-    "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process"
+    "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
+    "jobStatus.success": "",
+    "selectMappingProfile": "",
+    "mappingProfiles.createdCallout": "",
+    "errors": "",
+    "mappingProfiles.errorCallout": "",
+    "jobProfiles.createdCallout": "",
+    "jobProfiles.errorCallout": "",
+    "mappingProfiles.transformations.addTransformation": ""
 }
