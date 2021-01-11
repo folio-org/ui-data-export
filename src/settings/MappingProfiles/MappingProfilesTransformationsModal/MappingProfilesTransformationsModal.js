@@ -68,7 +68,7 @@ export const MappingProfilesTransformationsModal = ({
     searchValue: initialSearchFormValues.searchValue,
     filters: searchFilters,
   }), [searchFilters]);
-  const [invalidTransformations, setInvalidTransformations] = useState({});
+  const [validatedTransformations, setValidatedTransformations] = useState({});
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 
   const resetSearchForm = useCallback(() => {
@@ -138,7 +138,7 @@ export const MappingProfilesTransformationsModal = ({
   }, []);
 
   const handleCancel = () => {
-    setInvalidTransformations({});
+    setValidatedTransformations({});
     setIsSubmitButtonDisabled(false);
     setSelectedTransformations(initialSelectedTransformations);
 
@@ -147,18 +147,18 @@ export const MappingProfilesTransformationsModal = ({
 
   const handleSaveButtonClick = () => {
     const transformations = get(transformationsFormStateRef.current.getState(), 'values.transformations', []);
-    const validatedTransformations = validateTransformations(transformations);
-    const isTransformationFormValid = isEmpty(validatedTransformations);
+    const invalidTransformations = validateTransformations(transformations);
+    const isTransformationFormValid = isEmpty(invalidTransformations);
 
     if (isTransformationFormValid) {
       const normalizedTransformations = normalizeTransformationFormValues(transformations);
 
-      setInvalidTransformations({});
+      setValidatedTransformations({});
       setIsSubmitButtonDisabled(false);
 
       onSubmit(normalizedTransformations);
     } else {
-      setInvalidTransformations(validatedTransformations);
+      setValidatedTransformations(invalidTransformations);
       setIsSubmitButtonDisabled(true);
     }
   };
@@ -240,7 +240,7 @@ export const MappingProfilesTransformationsModal = ({
             stateRef={transformationsFormStateRef}
             initialValues={initialTransformationsValues}
             searchResults={searchResults}
-            invalidTransformations={invalidTransformations}
+            validatedTransformations={validatedTransformations}
             isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
             isSubmitButtonDisabled={isSubmitButtonDisabled}
             setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}

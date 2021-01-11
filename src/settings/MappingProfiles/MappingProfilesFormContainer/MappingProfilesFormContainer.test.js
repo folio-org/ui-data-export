@@ -157,13 +157,13 @@ describe('MappingProfileFormContainer', () => {
         transformationFields = getTransformationFieldGroups();
         modal = document.querySelector('.modalRoot');
 
-        userEvent.type(transformationFields[0].marcField, '123');
-        userEvent.type(transformationFields[0].indicator1, '1');
-        userEvent.type(transformationFields[0].indicator2, '0');
-        userEvent.type(transformationFields[0].subfield, '$r');
+        userEvent.type(transformationFields[0].marcField.input, '123');
+        userEvent.type(transformationFields[0].indicator1.input, '1');
+        userEvent.type(transformationFields[0].indicator2.input, '0');
+        userEvent.type(transformationFields[0].subfield.input, '$r');
 
-        userEvent.type(transformationFields[1].marcField, '900');
-        userEvent.type(transformationFields[1].subfield, '$1');
+        userEvent.type(transformationFields[1].marcField.input, '900');
+        userEvent.type(transformationFields[1].subfield.input, '$1');
 
         userEvent.click(getByRole(modal, 'button', { name: 'Save & close' }));
 
@@ -233,16 +233,16 @@ describe('MappingProfileFormContainer', () => {
         });
 
         it('should display correct transformation fields values', () => {
-          expect(transformationFields[0].marcField.value).toBe('123');
-          expect(transformationFields[0].indicator1.value).toBe('1');
-          expect(transformationFields[0].indicator2.value).toBe('0');
-          expect(transformationFields[0].subfield.value).toBe('$r');
+          expect(transformationFields[0].marcField.input.value).toBe('123');
+          expect(transformationFields[0].indicator1.input.value).toBe('1');
+          expect(transformationFields[0].indicator2.input.value).toBe('0');
+          expect(transformationFields[0].subfield.input.value).toBe('$r');
 
-          expect(transformationFields[1].marcField.value).toBe('900');
-          expect(transformationFields[1].indicator1.value).toBe('');
-          expect(transformationFields[1].indicator2.value).toBe('');
-          expect(transformationFields[1].indicator2.value).toBe('');
-          expect(transformationFields[1].subfield.value).toBe('$1');
+          expect(transformationFields[1].marcField.input.value).toBe('900');
+          expect(transformationFields[1].indicator1.input.value).toBe('');
+          expect(transformationFields[1].indicator2.input.value).toBe('');
+          expect(transformationFields[1].indicator2.input.value).toBe('');
+          expect(transformationFields[1].subfield.input.value).toBe('$1');
         });
 
         describe('unchecking transformation, clicking cancel and reopening modal', () => {

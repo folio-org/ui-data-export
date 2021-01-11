@@ -3,10 +3,20 @@ import '../../../../test/jest/__mock__';
 import {
   validateTransformations,
   validateRawTransformation,
-  isRawTransformationEmpty, isInstanceTransformationEmpty,
+  isRawTransformationEmpty,
+  isInstanceTransformationEmpty,
+  checkTransformationValidity,
 } from './validateTransformations';
 
 describe('validateRawTransformation', () => {
+  const validTransformation = {
+    marcField: true,
+    indicator1: true,
+    indicator2: true,
+    subfield: true,
+    isTransformationValid: true,
+  };
+
   it('should validate raw transformation as valid when all fields are valid', () => {
     const transformation = {
       rawTransformation: {
@@ -17,7 +27,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when indicator1 is empty and indicator2 is absent', () => {
@@ -29,43 +39,63 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when indicators and subfield are absent', () => {
     const transformation = { rawTransformation: { marcField: '300' } };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as invalid when marcField contains letters', () => {
     const transformation = { rawTransformation: { marcField: '13a' } };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      marcField: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when marcField length is less than 3', () => {
     const transformation = { rawTransformation: { marcField: '13' } };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      marcField: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when marcField length is more than 3', () => {
     const transformation = { rawTransformation: { marcField: '1344' } };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      marcField: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when marcField is empty', () => {
     const transformation = { rawTransformation: { marcField: '' } };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      marcField: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when marcField is absent', () => {
     const transformation = { rawTransformation: {} };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      marcField: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when indicators have more than one character', () => {
@@ -77,7 +107,12 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      indicator1: false,
+      indicator2: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as valid when indicators are letters', () => {
@@ -89,7 +124,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when indicators are whitespaces', () => {
@@ -101,7 +136,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when subfield contains $ and single digit', () => {
@@ -112,7 +147,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when subfield contains $ and two digits', () => {
@@ -123,7 +158,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as valid when subfield contains $ and single letter', () => {
@@ -134,7 +169,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
   });
 
   it('should validate raw transformation as invalid when subfield contains $ and more than one letter', () => {
@@ -145,7 +180,11 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      subfield: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when subfield contains $ and more than two digits', () => {
@@ -156,7 +195,11 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      subfield: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when subfield contains only $', () => {
@@ -167,7 +210,11 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      subfield: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as invalid when subfield does not have $ at the beginning', () => {
@@ -178,13 +225,17 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(false);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      subfield: false,
+      isTransformationValid: false,
+    });
   });
 
   it('should validate raw transformation as valid when all fields are absent and record has an instance type', () => {
     const transformation = { recordType: 'INSTANCE' };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual({ isTransformationValid: true });
   });
 
   it('should validate raw transformation as valid when all fields are present but empty and record has an instance type', () => {
@@ -198,7 +249,7 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toBe(true);
+    expect(validateRawTransformation(transformation)).toEqual({ isTransformationValid: true });
   });
 });
 
@@ -242,8 +293,20 @@ describe('validateTransformations', () => {
       },
     ];
     const invalidTransformations = {
-      0: true,
-      4: true,
+      0: {
+        marcField: false,
+        indicator1: true,
+        indicator2: true,
+        subfield: true,
+        isTransformationValid: false,
+      },
+      4: {
+        marcField: false,
+        indicator1: true,
+        indicator2: true,
+        subfield: true,
+        isTransformationValid: false,
+      },
     };
 
     expect(validateTransformations(transformations)).toMatchObject(invalidTransformations);
@@ -315,5 +378,49 @@ describe('isInstanceTransformationEmpty', () => {
     };
 
     expect(isInstanceTransformationEmpty(transformation)).toBe(false);
+  });
+});
+
+describe('checkTransformationValidity', () => {
+  it('should return correct validity object when all fields are valid', () => {
+    const validatedTransformations = {
+      marcField: true,
+      indicator1: true,
+      indicator2: true,
+      subfield: true,
+    };
+
+    expect(checkTransformationValidity(validatedTransformations)).toEqual({
+      ...validatedTransformations,
+      isTransformationValid: true,
+    });
+  });
+
+  it('should return correct validity object when all fields are invalid', () => {
+    const validatedTransformations = {
+      marcField: false,
+      indicator1: false,
+      indicator2: false,
+      subfield: false,
+    };
+
+    expect(checkTransformationValidity(validatedTransformations)).toEqual({
+      ...validatedTransformations,
+      isTransformationValid: false,
+    });
+  });
+
+  it('should return correct validity object when both valid and invalid fields are present', () => {
+    const validatedTransformations = {
+      marcField: false,
+      indicator1: false,
+      indicator2: true,
+      subfield: true,
+    };
+
+    expect(checkTransformationValidity(validatedTransformations)).toEqual({
+      ...validatedTransformations,
+      isTransformationValid: false,
+    });
   });
 });

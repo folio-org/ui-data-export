@@ -19,7 +19,7 @@ const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
 export const TransformationField = React.memo(({
   contentData,
-  invalidTransformations = {},
+  validatedTransformations = {},
   isSelectAllChecked = false,
   isSubmitButtonDisabled,
   setIsSubmitButtonDisabled,
@@ -56,7 +56,7 @@ export const TransformationField = React.memo(({
     transformation: record => (
       <TransformationFieldGroup
         record={record}
-        isTransformationInvalid={invalidTransformations[record.order]}
+        validatedTransformations={validatedTransformations[record.order]}
         isSubmitButtonDisabled={isSubmitButtonDisabled}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
       />
@@ -110,7 +110,12 @@ export const TransformationField = React.memo(({
 
 TransformationField.propTypes = {
   contentData: PropTypes.arrayOf(PropTypes.object.isRequired),
-  invalidTransformations: PropTypes.objectOf(PropTypes.bool),
+  validatedTransformations: PropTypes.objectOf(PropTypes.shape({
+    marcField: PropTypes.bool,
+    indicator1: PropTypes.bool,
+    indicator2: PropTypes.bool,
+    subfield: PropTypes.bool,
+  })),
   isSelectAllChecked: PropTypes.bool,
   isSubmitButtonDisabled: PropTypes.bool.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
