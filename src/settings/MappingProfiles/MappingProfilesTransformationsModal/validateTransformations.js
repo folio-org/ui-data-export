@@ -6,6 +6,19 @@ const transformationRegexMap = {
   subfield: /^(\$([0-9]{1,2}|[a-zA-Z]))?$/,
 };
 
+export const checkTransformationValidity = ({
+  marcField,
+  indicator1,
+  indicator2,
+  subfield,
+}) => ({
+  marcField,
+  indicator1,
+  indicator2,
+  subfield,
+  isTransformationValid: marcField && indicator1 && indicator2 && subfield,
+});
+
 export const isInstanceTransformationEmpty = transformation => {
   if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
     if (isRawTransformationEmpty(transformation.rawTransformation)) {
@@ -33,28 +46,23 @@ export const isRawTransformationEmpty = rawTransformation => {
 
 export const validateRawTransformation = transformation => {
   if (isInstanceTransformationEmpty(transformation)) {
-    return true;
+    return { isTransformationValid: true };
   }
 
-  if (transformation.rawTransformation) {
-    const {
-      rawTransformation: {
-        marcField,
-        indicator1 = '',
-        indicator2 = '',
-        subfield = '',
-      },
-    } = transformation;
+  const { rawTransformation = {} } = transformation;
+  const {
+    marcField = '',
+    indicator1 = '',
+    indicator2 = '',
+    subfield = '',
+  } = rawTransformation;
 
-    return (
-      transformationRegexMap.marcField.test(marcField) &&
-      transformationRegexMap.indicator.test(indicator1) &&
-      transformationRegexMap.indicator.test(indicator2) &&
-      transformationRegexMap.subfield.test(subfield)
-    );
-  }
-
-  return false;
+  return checkTransformationValidity({
+    marcField: transformationRegexMap.marcField.test(marcField),
+    indicator1: transformationRegexMap.indicator.test(indicator1),
+    indicator2: transformationRegexMap.indicator.test(indicator2),
+    subfield: transformationRegexMap.subfield.test(subfield),
+  });
 };
 
 export const validateTransformations = transformations => {
@@ -62,10 +70,10 @@ export const validateTransformations = transformations => {
   const invalidTransformations = {};
 
   modifiedTransformations.forEach(transformation => {
-    const isTransformationValid = validateRawTransformation(transformation);
+    const validatedFields = validateRawTransformation(transformation);
 
-    if (!isTransformationValid) {
-      invalidTransformations[transformation.order] = true;
+    if (!validatedFields.isTransformationValid) {
+      invalidTransformations[transformation.order] = validatedFields;
     }
   });
 

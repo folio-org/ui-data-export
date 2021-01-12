@@ -17,6 +17,10 @@
     width: 21%;
     min-width: 55px;
   }
+
+  &.isInvalid > div > div {
+    border-color: var(--error);
+  }
 }
 
 .icon {

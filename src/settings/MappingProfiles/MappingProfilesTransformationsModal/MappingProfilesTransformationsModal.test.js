@@ -136,10 +136,10 @@ describe('MappingProfilesTransformationsModal', () => {
       beforeEach(() => {
         transformationFields = getTransformationFieldGroups();
         submitButton = getByRole(modal, 'button', { name: 'Save & close' });
-        userEvent.type(transformationFields[0].marcField, '123');
-        userEvent.type(transformationFields[0].indicator1, '1');
-        userEvent.type(transformationFields[0].indicator2, '0');
-        userEvent.type(transformationFields[0].subfield, '$r');
+        userEvent.type(transformationFields[0].marcField.input, '123');
+        userEvent.type(transformationFields[0].indicator1.input, '1');
+        userEvent.type(transformationFields[0].indicator2.input, '0');
+        userEvent.type(transformationFields[0].subfield.input, '$r');
       });
 
       it('should enable submit button', () => {
@@ -171,33 +171,46 @@ describe('MappingProfilesTransformationsModal', () => {
           expect(transformationFields[1].isInvalid).toBe(false);
         });
 
-        it('should validate item record type transformation as invalid', () => {
+        it('should validate item record type transformation and mark marcField as invalid', () => {
           expect(transformationFields[2].isInvalid).toBe(true);
+          expect(transformationFields[2].marcField.isInvalid).toBe(true);
+          expect(transformationFields[2].indicator1.isInvalid).toBe(false);
+          expect(transformationFields[2].indicator2.isInvalid).toBe(false);
+          expect(transformationFields[2].subfield.isInvalid).toBe(false);
         });
 
         describe('filling empty invalid field with invalid transformation', () => {
           beforeEach(() => {
-            userEvent.type(transformationFields[2].marcField, '123');
-            userEvent.type(transformationFields[2].subfield, '12');
+            userEvent.type(transformationFields[2].marcField.input, '123');
+            userEvent.type(transformationFields[2].subfield.input, '12');
             userEvent.click(submitButton);
             transformationFields = getTransformationFieldGroups();
           });
 
-          it('should mark field as invalid', () => {
+          it('should mark transformation field group and subfield as invalid', () => {
             expect(transformationFields[2].isInvalid).toBe(true);
+            expect(transformationFields[2].marcField.isInvalid).toBe(false);
+            expect(transformationFields[2].indicator1.isInvalid).toBe(false);
+            expect(transformationFields[2].indicator2.isInvalid).toBe(false);
+            expect(transformationFields[2].subfield.isInvalid).toBe(true);
           });
         });
 
         describe('filling empty invalid field with valid transformation', () => {
           beforeEach(() => {
-            userEvent.type(transformationFields[2].marcField, '900');
-            userEvent.type(transformationFields[2].indicator1, 'r');
-            userEvent.type(transformationFields[2].indicator2, '1');
-            userEvent.type(transformationFields[2].subfield, '$90');
+            userEvent.type(transformationFields[2].marcField.input, '900');
+            userEvent.type(transformationFields[2].indicator1.input, 'r');
+            userEvent.type(transformationFields[2].indicator2.input, '1');
+            userEvent.type(transformationFields[2].subfield.input, '$90');
             userEvent.click(submitButton);
           });
 
           it('should validate fields as valid and initiate modal submit', () => {
+            transformationFields = getTransformationFieldGroups();
+            expect(transformationFields[2].marcField.isInvalid).toBe(false);
+            expect(transformationFields[2].indicator1.isInvalid).toBe(false);
+            expect(transformationFields[2].indicator2.isInvalid).toBe(false);
+            expect(transformationFields[2].subfield.isInvalid).toBe(false);
             expect(onSubmitMock).toBeCalledWith([{
               enabled: true,
               fieldId: 'field1',

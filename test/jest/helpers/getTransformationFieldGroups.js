@@ -8,10 +8,22 @@ export const getTransformationFieldGroups = () => {
   const allGroups = screen.getAllByTestId('transformation-field-group');
 
   return allGroups.map(group => ({
-    marcField: getByTestId(group, 'transformation-marcField').querySelector('input'),
-    indicator1: getByTestId(group, 'transformation-indicator1').querySelector('input'),
-    indicator2: getByTestId(group, 'transformation-indicator2').querySelector('input'),
-    subfield: getByTestId(group, 'transformation-subfield').querySelector('input'),
+    marcField: {
+      input: getByTestId(group, 'transformation-marcField').querySelector('input'),
+      isInvalid: getByTestId(group, 'transformation-marcField').classList.contains('isInvalid'),
+    },
+    indicator1: {
+      input: getByTestId(group, 'transformation-indicator1').querySelector('input'),
+      isInvalid: getByTestId(group, 'transformation-indicator1').classList.contains('isInvalid'),
+    },
+    indicator2: {
+      input: getByTestId(group, 'transformation-indicator2').querySelector('input'),
+      isInvalid: getByTestId(group, 'transformation-indicator2').classList.contains('isInvalid'),
+    },
+    subfield: {
+      input: getByTestId(group, 'transformation-subfield').querySelector('input'),
+      isInvalid: getByTestId(group, 'transformation-subfield').classList.contains('isInvalid'),
+    },
     isInvalid: Boolean(queryAllByTestId(group, 'transformation-invalid').length),
   }));
 };

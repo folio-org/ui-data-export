@@ -100,10 +100,10 @@ describe('DuplicateMappingProfileRoute', () => {
       userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
       const transformationFields = getTransformationFieldGroups();
 
-      expect(transformationFields[2].marcField.value).toBe('900');
-      expect(transformationFields[2].indicator1.value).toBe('');
-      expect(transformationFields[2].indicator2.value).toBe('1');
-      expect(transformationFields[2].subfield.value).toBe('$12');
+      expect(transformationFields[2].marcField.input.value).toBe('900');
+      expect(transformationFields[2].indicator1.input.value).toBe('');
+      expect(transformationFields[2].indicator2.input.value).toBe('1');
+      expect(transformationFields[2].subfield.input.value).toBe('$12');
     });
 
     it('should not show validation error when clearing transformation with empty indicator field', () => {
@@ -111,9 +111,9 @@ describe('DuplicateMappingProfileRoute', () => {
       const transformationFields = getTransformationFieldGroups();
       const modal = document.querySelector('[data-test-transformations-modal]');
 
-      userEvent.type(transformationFields[2].marcField, '');
-      userEvent.type(transformationFields[0].indicator2, '');
-      userEvent.type(transformationFields[0].subfield, '');
+      userEvent.type(transformationFields[2].marcField.input, '');
+      userEvent.type(transformationFields[0].indicator2.input, '');
+      userEvent.type(transformationFields[0].subfield.input, '');
 
       userEvent.click(screen.getByLabelText('Select all fields'));
       userEvent.click(screen.getByLabelText('Select all fields'));

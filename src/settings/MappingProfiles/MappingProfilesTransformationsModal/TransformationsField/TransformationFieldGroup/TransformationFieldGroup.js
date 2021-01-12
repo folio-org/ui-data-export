@@ -14,7 +14,13 @@ import css from './TransformationFieldGroup.css';
 
 export const TransformationFieldGroup = ({
   record,
-  isTransformationInvalid = false,
+  validatedTransformations = {
+    marcField: true,
+    indicator1: true,
+    indicator2: true,
+    subfield: true,
+    isTransformationValid: true,
+  },
   isSubmitButtonDisabled,
   setIsSubmitButtonDisabled,
 }) => {
@@ -31,9 +37,13 @@ export const TransformationFieldGroup = ({
     testId,
     maxLength,
     isIndicator = false,
+    isValid = true,
   }) => (
     <div
-      className={classNames(css.field, { [css.indicator]: isIndicator })}
+      className={classNames(css.field, {
+        [css.indicator]: isIndicator,
+        [css.isInvalid]: !isValid,
+      })}
       data-testid={testId}
     >
       <Field
@@ -42,6 +52,7 @@ export const TransformationFieldGroup = ({
           <TextField
             {...fieldProps.input}
             maxLength={maxLength}
+            aria-invalid={!isValid}
             marginBottom0
             onChange={event => {
               handleChange();
@@ -63,25 +74,29 @@ export const TransformationFieldGroup = ({
         name: `transformations[${record.order}].rawTransformation.marcField`,
         testId: 'transformation-marcField',
         maxLength: 3,
+        isValid: validatedTransformations.marcField,
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator1`,
         testId: 'transformation-indicator1',
         maxLength: 1,
         isIndicator: true,
+        isValid: validatedTransformations.indicator1,
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator2`,
         testId: 'transformation-indicator2',
         maxLength: 1,
         isIndicator: true,
+        isValid: validatedTransformations.indicator2,
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.subfield`,
         testId: 'transformation-subfield',
         maxLength: 3,
+        isValid: validatedTransformations.subfield,
       })}
-      {isTransformationInvalid && (
+      {!validatedTransformations.isTransformationValid && (
         <Popover
           renderTrigger={({
             ref,
@@ -109,7 +124,13 @@ TransformationFieldGroup.propTypes = {
     displayName: PropTypes.string.isRequired,
     order: PropTypes.number.isRequired,
   }).isRequired,
-  isTransformationInvalid: PropTypes.bool,
+  validatedTransformations: PropTypes.shape({
+    marcField: PropTypes.bool,
+    indicator1: PropTypes.bool,
+    indicator2: PropTypes.bool,
+    subfield: PropTypes.bool,
+    isTransformationValid: PropTypes.bool,
+  }),
   isSubmitButtonDisabled: PropTypes.bool.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
 };
