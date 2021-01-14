@@ -10,6 +10,8 @@ import {
   IconButton,
 } from '@folio/stripes-components';
 
+import { checkTransformationValidity } from '../../validateTransformations';
+
 import css from './TransformationFieldGroup.css';
 
 export const TransformationFieldGroup = ({
@@ -21,20 +23,31 @@ export const TransformationFieldGroup = ({
     subfield: true,
     isTransformationValid: true,
   },
-  isSubmitButtonDisabled,
+  setValidatedTransformations,
   setIsSubmitButtonDisabled,
 }) => {
   const intl = useIntl();
 
-  const handleChange = useCallback(() => {
-    if (isSubmitButtonDisabled) {
-      setIsSubmitButtonDisabled(false);
+  const handleChange = useCallback((type, isValid) => {
+    setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));
+
+    if (!isValid) {
+      setValidatedTransformations(transformations => {
+        return {
+          ...transformations,
+          [record.order]: checkTransformationValidity({
+            ...transformations[record.order],
+            [type]: true,
+          }),
+        };
+      });
     }
-  }, [isSubmitButtonDisabled, setIsSubmitButtonDisabled]);
+  }, [record.order, setIsSubmitButtonDisabled, setValidatedTransformations]);
 
   const renderTransformationField = ({
     name,
     testId,
+    type,
     maxLength,
     isIndicator = false,
     isValid = true,
@@ -55,7 +68,7 @@ export const TransformationFieldGroup = ({
             aria-invalid={!isValid}
             marginBottom0
             onChange={event => {
-              handleChange();
+              handleChange(type, isValid);
               fieldProps.input.onChange(event);
             }}
           />
@@ -73,12 +86,14 @@ export const TransformationFieldGroup = ({
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.marcField`,
         testId: 'transformation-marcField',
+        type: 'marcField',
         maxLength: 3,
         isValid: validatedTransformations.marcField,
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator1`,
         testId: 'transformation-indicator1',
+        type: 'indicator1',
         maxLength: 1,
         isIndicator: true,
         isValid: validatedTransformations.indicator1,
@@ -86,6 +101,7 @@ export const TransformationFieldGroup = ({
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator2`,
         testId: 'transformation-indicator2',
+        type: 'indicator2',
         maxLength: 1,
         isIndicator: true,
         isValid: validatedTransformations.indicator2,
@@ -93,6 +109,7 @@ export const TransformationFieldGroup = ({
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.subfield`,
         testId: 'transformation-subfield',
+        type: 'subfield',
         maxLength: 3,
         isValid: validatedTransformations.subfield,
       })}
@@ -131,6 +148,6 @@ TransformationFieldGroup.propTypes = {
     subfield: PropTypes.bool,
     isTransformationValid: PropTypes.bool,
   }),
-  isSubmitButtonDisabled: PropTypes.bool.isRequired,
+  setValidatedTransformations: PropTypes.func.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
 };

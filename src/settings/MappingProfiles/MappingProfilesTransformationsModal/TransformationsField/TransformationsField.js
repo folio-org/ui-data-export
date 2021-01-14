@@ -21,7 +21,7 @@ export const TransformationField = React.memo(({
   contentData,
   validatedTransformations = {},
   isSelectAllChecked = false,
-  isSubmitButtonDisabled,
+  setValidatedTransformations,
   setIsSubmitButtonDisabled,
   onSelectChange,
   onSelectAll,
@@ -57,7 +57,7 @@ export const TransformationField = React.memo(({
       <TransformationFieldGroup
         record={record}
         validatedTransformations={validatedTransformations[record.order]}
-        isSubmitButtonDisabled={isSubmitButtonDisabled}
+        setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
       />
     ),
@@ -117,7 +117,7 @@ TransformationField.propTypes = {
     subfield: PropTypes.bool,
   })),
   isSelectAllChecked: PropTypes.bool,
-  isSubmitButtonDisabled: PropTypes.bool.isRequired,
+  setValidatedTransformations: PropTypes.func.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
   onSelectChange: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
