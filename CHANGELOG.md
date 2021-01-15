@@ -17,6 +17,7 @@
 * Replace translation keys with translations on Error logs page. UIDEXP-213.
 * Fix incorrect field validation when clearing filled transformation. UIDEXP-217.
 * Add a visual cue to invalid entry on transformation form. UIDEXP-220.
+* Update `stripes` to `v6.0.0`. UIDEXP-221.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)
