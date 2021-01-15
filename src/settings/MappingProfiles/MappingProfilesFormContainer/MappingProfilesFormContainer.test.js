@@ -6,6 +6,8 @@ import {
   getByText,
   screen,
   getAllByRole,
+  getByPlaceholderText,
+  queryByPlaceholderText,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -230,6 +232,34 @@ describe('MappingProfileFormContainer', () => {
           const totalSelected = document.querySelector('[data-test-transformations-total-selected]');
 
           expect(getByText(totalSelected, 'Total selected: 2')).toBeVisible();
+        });
+
+        it('should have correct placeholders', () => {
+          expect(transformationFields.length).toEqual(2);
+
+          expect(getByPlaceholderText(transformationFields[0].marcField.container, '900')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].indicator1.container, '0')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].indicator2.container, '0')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].subfield.container, '$a')).toBeInTheDocument();
+
+          expect(queryByPlaceholderText(transformationFields[1].marcField.container, '900')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[1].indicator1.container, '0')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[1].indicator2.container, '0')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[1].subfield.container, '$a')).toBeNull();
+        });
+
+        it('should have correct placeholders after the first transformation is selected and hidden after the selected items filter is unchecked', () => {
+          userEvent.click(screen.getAllByRole('checkbox', { name: 'Select field' })[0]);
+          userEvent.click(screen.getByRole('checkbox', { name: 'Selected' }));
+
+          transformationFields = getTransformationFieldGroups();
+
+          expect(transformationFields.length).toEqual(1);
+
+          expect(getByPlaceholderText(transformationFields[0].marcField.container, '900')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].indicator1.container, '0')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].indicator2.container, '0')).toBeInTheDocument();
+          expect(getByPlaceholderText(transformationFields[0].subfield.container, '$a')).toBeInTheDocument();
         });
 
         it('should display correct transformation fields values', () => {
