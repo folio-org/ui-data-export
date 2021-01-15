@@ -54,8 +54,8 @@ const fullWidthStyle = { style: { width: '100%' } };
 export const MappingProfilesTransformationsModal = ({
   isOpen,
   initialTransformationsValues,
-  initialSelectedTransformations,
-  disabledRecordTypes,
+  initialSelectedTransformations = {},
+  disabledRecordTypes = {},
   onCancel,
   onSubmit,
 }) => {
@@ -242,7 +242,7 @@ export const MappingProfilesTransformationsModal = ({
             searchResults={searchResults}
             validatedTransformations={validatedTransformations}
             isSelectAllChecked={displayedCheckedItemsAmount === searchResults.length}
-            isSubmitButtonDisabled={isSubmitButtonDisabled}
+            setValidatedTransformations={setValidatedTransformations}
             setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
             onSelectChange={handleSelectChange}
             onSubmit={noop}
@@ -260,9 +260,4 @@ MappingProfilesTransformationsModal.propTypes = {
   disabledRecordTypes: PropTypes.object,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-};
-
-MappingProfilesTransformationsModal.defaultProps = {
-  initialSelectedTransformations: {},
-  disabledRecordTypes: {},
 };

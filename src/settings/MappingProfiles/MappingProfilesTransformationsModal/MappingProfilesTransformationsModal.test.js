@@ -181,18 +181,38 @@ describe('MappingProfilesTransformationsModal', () => {
 
         describe('filling empty invalid field with invalid transformation', () => {
           beforeEach(() => {
-            userEvent.type(transformationFields[2].marcField.input, '123');
             userEvent.type(transformationFields[2].subfield.input, '12');
             userEvent.click(submitButton);
             transformationFields = getTransformationFieldGroups();
           });
 
-          it('should mark transformation field group and subfield as invalid', () => {
+          it('should mark transformation field group, marc field and subfield as invalid', () => {
             expect(transformationFields[2].isInvalid).toBe(true);
-            expect(transformationFields[2].marcField.isInvalid).toBe(false);
+            expect(transformationFields[2].marcField.isInvalid).toBe(true);
             expect(transformationFields[2].indicator1.isInvalid).toBe(false);
             expect(transformationFields[2].indicator2.isInvalid).toBe(false);
             expect(transformationFields[2].subfield.isInvalid).toBe(true);
+          });
+
+          describe('changing marc field', () => {
+            beforeEach(() => {
+              userEvent.type(transformationFields[2].marcField.input, '900');
+              transformationFields = getTransformationFieldGroups();
+            });
+
+            it('should mark marc field as valid and keep subfield and transformation group as invalid', () => {
+              expect(transformationFields[2].isInvalid).toBe(true);
+              expect(transformationFields[2].marcField.isInvalid).toBe(false);
+              expect(transformationFields[2].subfield.isInvalid).toBe(true);
+            });
+
+            it('should mark subfield as valid as well as transformation group after addressing every invalid field', () => {
+              userEvent.type(transformationFields[2].subfield.input, '$12');
+              transformationFields = getTransformationFieldGroups();
+
+              expect(transformationFields[2].isInvalid).toBe(false);
+              expect(transformationFields[2].subfield.isInvalid).toBe(false);
+            });
           });
         });
 

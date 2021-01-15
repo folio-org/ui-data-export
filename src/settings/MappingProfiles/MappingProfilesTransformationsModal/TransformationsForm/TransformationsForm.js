@@ -18,10 +18,10 @@ const TransformationsFormComponent = memo(({
   searchResults,
   form,
   validatedTransformations = {},
-  isSelectAllChecked,
-  isSubmitButtonDisabled,
-  setIsSubmitButtonDisabled,
+  isSelectAllChecked = false,
   stateRef,
+  setValidatedTransformations,
+  setIsSubmitButtonDisabled,
   onSelectChange,
 }) => {
   stateRef.current = form;
@@ -55,7 +55,7 @@ const TransformationsFormComponent = memo(({
         contentData={searchResults}
         validatedTransformations={validatedTransformations}
         isSelectAllChecked={isSelectAllChecked}
-        isSubmitButtonDisabled={isSubmitButtonDisabled}
+        setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         onSelectChange={handleSelectChange}
         onSelectAll={handleSelectAll}
@@ -75,12 +75,10 @@ TransformationsFormComponent.propTypes = {
   isSelectAllChecked: PropTypes.bool,
   form: PropTypes.object.isRequired,
   stateRef: PropTypes.object,
-  isSubmitButtonDisabled: PropTypes.bool.isRequired,
+  setValidatedTransformations: PropTypes.func.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
   onSelectChange: PropTypes.func.isRequired,
 };
-
-TransformationsFormComponent.defaultProps = { isSelectAllChecked: false };
 
 export const TransformationsForm = stripesFinalForm({
   subscription: { values: false },
