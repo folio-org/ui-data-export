@@ -1,9 +1,15 @@
-import React, { useMemo } from 'react';
+import React, {
+  memo,
+  useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { isEqual } from 'lodash';
+import {
+  isEqual,
+  isEmpty,
+} from 'lodash';
 
 import { Checkbox } from '@folio/stripes/components';
 
@@ -17,7 +23,7 @@ const columnWidths = {
 };
 const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
 
-export const TransformationField = React.memo(({
+export const TransformationField = memo(({
   contentData,
   validatedTransformations = {},
   isSelectAllChecked = false,
@@ -84,7 +90,15 @@ export const TransformationField = React.memo(({
   }), [intl, isSelectAllChecked, onSelectAll, selectAllLabel]);
 
   const itemsData = useMemo(() => ({
-    contentData,
+    contentData: isEmpty(contentData)
+      ? contentData
+      : [
+        {
+          ...contentData[0],
+          isFirst: true,
+        },
+        ...contentData.slice(1),
+      ],
     formatter,
     visibleColumns,
     columnWidths,

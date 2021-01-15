@@ -14,6 +14,13 @@ import { checkTransformationValidity } from '../../validateTransformations';
 
 import css from './TransformationFieldGroup.css';
 
+const GROUP_PLACEHOLDER = {
+  marcField: '900',
+  indicator1: '0',
+  indicator2: '0',
+  subfield: '$a',
+};
+
 export const TransformationFieldGroup = ({
   record,
   validatedTransformations = {
@@ -27,6 +34,8 @@ export const TransformationFieldGroup = ({
   setIsSubmitButtonDisabled,
 }) => {
   const intl = useIntl();
+
+  const groupPlaceholder = record.isFirst ? GROUP_PLACEHOLDER : {};
 
   const handleChange = useCallback((type, isValid) => {
     setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));
@@ -46,6 +55,7 @@ export const TransformationFieldGroup = ({
 
   const renderTransformationField = ({
     name,
+    placeholder,
     testId,
     type,
     maxLength,
@@ -64,6 +74,7 @@ export const TransformationFieldGroup = ({
         render={fieldProps => (
           <TextField
             {...fieldProps.input}
+            placeholder={placeholder}
             maxLength={maxLength}
             aria-invalid={!isValid}
             marginBottom0
@@ -85,6 +96,7 @@ export const TransformationFieldGroup = ({
     >
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.marcField`,
+        placeholder: groupPlaceholder.marcField,
         testId: 'transformation-marcField',
         type: 'marcField',
         maxLength: 3,
@@ -92,6 +104,7 @@ export const TransformationFieldGroup = ({
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator1`,
+        placeholder: groupPlaceholder.indicator1,
         testId: 'transformation-indicator1',
         type: 'indicator1',
         maxLength: 1,
@@ -100,6 +113,7 @@ export const TransformationFieldGroup = ({
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.indicator2`,
+        placeholder: groupPlaceholder.indicator2,
         testId: 'transformation-indicator2',
         type: 'indicator2',
         maxLength: 1,
@@ -108,6 +122,7 @@ export const TransformationFieldGroup = ({
       })}
       {renderTransformationField({
         name: `transformations[${record.order}].rawTransformation.subfield`,
+        placeholder: groupPlaceholder.subfield,
         testId: 'transformation-subfield',
         type: 'subfield',
         maxLength: 3,
@@ -140,6 +155,7 @@ TransformationFieldGroup.propTypes = {
   record: PropTypes.shape({
     displayName: PropTypes.string.isRequired,
     order: PropTypes.number.isRequired,
+    isFirst: PropTypes.bool,
   }).isRequired,
   validatedTransformations: PropTypes.shape({
     marcField: PropTypes.bool,
