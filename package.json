@@ -53,6 +53,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-intl": "^5.7.0",
+    "react-query": "^3.6.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.3",
     "sinon": "^7.1.1"
@@ -72,6 +73,7 @@
     "@folio/stripes": "^6.0.0",
     "react": "*",
     "react-intl": "^5.7.0",
+    "react-query": "^3.6.0",
     "react-router": "*",
     "react-router-dom": "*",
     "react-virtualized-auto-sizer": "*"

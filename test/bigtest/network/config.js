@@ -11,7 +11,7 @@ export default function config() {
 
   this.get('/data-export/job-executions', {
     jobExecutions: [],
-    totalRecords: 3,
+    totalRecords: 0,
   }, 200);
 
   this.get('/data-export/job-executions/:jobLogId/download/:fileId', {

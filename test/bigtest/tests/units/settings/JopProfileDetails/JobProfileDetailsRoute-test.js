@@ -1,5 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Pretender from 'pretender';
+import { expect } from 'chai';
+import { noop } from 'lodash';
+
 import { cleanup } from '@bigtest/react';
 import {
   describe,
@@ -7,8 +11,6 @@ import {
   it,
   before,
 } from '@bigtest/mocha';
-import { expect } from 'chai';
-import { noop } from 'lodash';
 
 import { Paneset } from '@folio/stripes/components';
 import { mountWithContext } from '@folio/stripes-data-transfer-components/interactors';
@@ -20,43 +22,60 @@ import { mappingProfile } from '../../../../network/scenarios/fetch-mapping-prof
 import { jobProfile } from '../../../../network/scenarios/fetch-job-profiles-success';
 import { DEFAULT_JOB_PROFILE_ID } from '../../../../../../src/utils';
 
-async function setupJobProfileDetailsRoute({
-  resources,
+const setupJobProfileDetailsRoute = async function ({
   matchParams = {},
   history = {},
 } = {}) {
   await mountWithContext(
-    <Paneset>
-      <Router>
+    <Router>
+      <Paneset>
         <JobProfileDetailsRoute
-          resources={resources}
           mutator={{ jobProfile: { DELETE: noop } }}
           history={history}
           location={{}}
           match={{ params: matchParams }}
         />
-      </Router>
-    </Paneset>,
+      </Paneset>
+    </Router>,
     translationsProperties
   );
-}
+};
 
 describe('JobProfileDetails', () => {
   const jobProfileDetails = new JobProfileDetailsInteractor();
+  let server;
 
   before(async () => {
     await cleanup();
   });
 
+  beforeEach(() => {
+    server = new Pretender();
+
+    server.get('/data-export/job-profiles/:id', () => [
+      200,
+      { 'content-type': 'application/json' },
+      'null',
+    ]);
+    server.get('/data-export/mapping-profiles/:id', () => [
+      200,
+      { 'content-type': 'application/json' },
+      'null',
+    ]);
+    server.get('/data-export/job-executions', () => [
+      200,
+      { 'content-type': 'application/json' },
+      'null',
+    ]);
+  });
+
+  afterEach(() => {
+    server.shutdown();
+  });
+
   describe('rendering details for a job profile without job profile data', () => {
     beforeEach(async () => {
-      await setupJobProfileDetailsRoute({
-        resources: {
-          jobProfile: { records: [] },
-          mappingProfile: { records: [] },
-          jobExecutions: { records: [] },
-        },
-      });
+      await setupJobProfileDetailsRoute();
     });
 
     it('should display preloader', () => {
@@ -66,14 +85,13 @@ describe('JobProfileDetails', () => {
 
   describe('rendering details for a job profile without mapping profile data', () => {
     beforeEach(async () => {
-      await setupJobProfileDetailsRoute({
-        resources: {
-          jobProfile: { records: [jobProfile] },
-          mappingProfile: { records: [] },
-          jobExecutions: { records: [] },
-        },
-        matchParams: { id: DEFAULT_JOB_PROFILE_ID },
-      });
+      server.get('/data-export/job-profiles/:id', () => [
+        200,
+        { 'content-type': 'application/json' },
+        JSON.stringify(jobProfile),
+      ]);
+
+      await setupJobProfileDetailsRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
     });
 
     it('should display preloader', () => {
@@ -85,19 +103,21 @@ describe('JobProfileDetails', () => {
     beforeEach(async () => {
       const nonDefaultJobProfileId = 'job-profile-id';
 
-      await setupJobProfileDetailsRoute({
-        resources: {
-          jobProfile: {
-            records: [{
-              ...jobProfile,
-              id: nonDefaultJobProfileId,
-            }],
-          },
-          mappingProfile: { records: [mappingProfile] },
-          jobExecutions: { records: [] },
-        },
-        matchParams: { id: nonDefaultJobProfileId },
-      });
+      server.get('/data-export/job-profiles/:id', () => [
+        200,
+        { 'content-type': 'application/json' },
+        JSON.stringify({
+          ...jobProfile,
+          id: nonDefaultJobProfileId,
+        }),
+      ]);
+      server.get('/data-export/mapping-profiles/:id', () => [
+        200,
+        { 'content-type': 'application/json' },
+        JSON.stringify(mappingProfile),
+      ]);
+
+      await setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
     });
 
     it('should display preloader', () => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { noop } from 'lodash';
 import { expect } from 'chai';
 import Pretender from 'pretender';
 import { cleanup } from '@bigtest/react';
@@ -18,7 +17,6 @@ import {
   buildMutator,
 } from '@folio/stripes-data-transfer-components/interactors';
 import CalloutInteractor from '@folio/stripes-components/lib/Callout/tests/interactor';
-import { StripesContext } from '@folio/stripes-core/src/StripesContext';
 import { Paneset } from '@folio/stripes/components';
 import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 
@@ -56,25 +54,18 @@ describe('AllJobLogsView', () => {
 
   beforeEach(async () => {
     await mountWithContext(
-      <StripesContext.Provider
-        value={{
-          okapi: { url: '' },
-          logger: { log: noop },
-        }}
-      >
-        <Router>
-          <Paneset>
-            <AllJobLogsViewComponent
-              resources={buildResources({
-                resourceName: 'jobExecutions',
-                records: logJobExecutions,
-              })}
-              mutator={buildMutator()}
-            />
-          </Paneset>
-          <OverlayContainer />
-        </Router>
-      </StripesContext.Provider>,
+      <Router>
+        <Paneset>
+          <AllJobLogsViewComponent
+            resources={buildResources({
+              resourceName: 'jobExecutions',
+              records: logJobExecutions,
+            })}
+            mutator={buildMutator()}
+          />
+        </Paneset>
+        <OverlayContainer />
+      </Router>,
       translationsProperties
     );
   });

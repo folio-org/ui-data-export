@@ -19,10 +19,12 @@ describe('Job profile details', () => {
   setupApplication();
 
   beforeEach(function () {
-    const jobProfileRecord = this.server.create('job-profile', {
+    const jobProfileRecord = {
       ...jobProfile,
       ...{ id: 'custom_id' },
-    });
+    };
+
+    this.server.get('/data-export/job-profiles/:id', jobProfileRecord);
 
     this.server.get('/data-export/mapping-profiles/:id', mappingProfile);
 
