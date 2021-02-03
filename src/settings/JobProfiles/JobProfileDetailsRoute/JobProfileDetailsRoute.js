@@ -1,33 +1,34 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-  get,
-  find,
-} from 'lodash';
+import { useQuery } from 'react-query';
+
+import { useOkapiKy } from '@folio/stripes/core';
 
 import { JobProfileDetails } from '../JobProfileDetails';
-import {
-  DEFAULT_JOB_PROFILE_ID,
-  buildShouldRefreshHandler,
-} from '../../../utils';
+import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
-  resources: {
-    jobProfile,
-    mappingProfile,
-    jobExecutions,
-  },
   mutator: { jobProfile: { DELETE } },
   history,
   location,
   match,
 }) => {
-  // `find` is used to make sure the matched job profile, mapping profile and job executions are displayed to avoid
-  // the flickering because of the disappearing of the previous and appearing of the new ones
-  // TODO: try `useManifest` hook once it is ready to avoid that
-  const jobProfileRecord = find([get(jobProfile, 'records.0', {})], { id: match.params.id });
-  const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: jobProfileRecord?.mappingProfileId });
-  const isProfileUsed = Boolean(find([get(jobExecutions, 'records.0', {})], { jobProfileId: match.params.id }));
+  const ky = useOkapiKy();
+
+  const { data: jobProfileRecord } = useQuery(
+    ['data-export', 'job-profile', match.params.id],
+    () => ky(`data-export/job-profiles/${match.params.id}`).json()
+  );
+  const { data: mappingProfileRecord } = useQuery(
+    ['data-export', 'mapping-profile', jobProfileRecord?.mappingProfileId],
+    () => ky(`data-export/mapping-profiles/${jobProfileRecord?.mappingProfileId}`).json(),
+    { enabled: Boolean(jobProfileRecord?.mappingProfileId) }
+  );
+  const jobExecutionsQuery = useQuery(
+    ['data-export', 'job-executions', match.params.id],
+    () => ky(`data-export/job-executions?query=jobProfileId==${match.params.id}&limit=1`).json(),
+    { enabled: match.params.id !== DEFAULT_JOB_PROFILE_ID }
+  );
 
   const isDefaultProfile = jobProfileRecord?.id === DEFAULT_JOB_PROFILE_ID;
   const handleCancel = useCallback(() => {
@@ -38,9 +39,9 @@ const JobProfileDetailsRoute = ({
     <JobProfileDetails
       jobProfile={jobProfileRecord}
       mappingProfile={mappingProfileRecord}
-      isProfileUsed={isProfileUsed}
+      isProfileUsed={Boolean(jobExecutionsQuery.data?.totalRecords)}
       isDefaultProfile={isDefaultProfile}
-      isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && !jobExecutions.hasLoaded)}
+      isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && jobExecutionsQuery.isLoading)}
       onCancel={handleCancel}
       onDelete={() => DELETE({ id: jobProfileRecord?.id })}
     />
@@ -51,41 +52,15 @@ JobProfileDetailsRoute.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
-  resources: PropTypes.shape({
-    jobProfile: PropTypes.shape({}),
-    jobExecutions: PropTypes.shape({ hasLoaded: PropTypes.bool }),
-    mappingProfile: PropTypes.shape({}),
-  }).isRequired,
   mutator: PropTypes.shape({ jobProfile: PropTypes.shape({ DELETE: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
-
-const resourceActionsToPreventRefresh = { jobProfile: ['DELETE'] };
 
 JobProfileDetailsRoute.manifest = Object.freeze({
   jobProfile: {
     type: 'okapi',
     path: 'data-export/job-profiles/:{id}',
     throwErrors: false,
-    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
-  },
-  mappingProfile: {
-    type: 'okapi',
-    path: (queryParams, pathComponents, resourceData, logger, props) => {
-      const mappingProfileId = get(props.resources, 'jobProfile.records.0.mappingProfileId');
-
-      return mappingProfileId ? `data-export/mapping-profiles/${mappingProfileId}` : null;
-    },
-    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
-  },
-  jobExecutions: {
-    type: 'okapi',
-    records: 'jobExecutions',
-    path: (queryParams, pathComponents) => {
-      const { id } = pathComponents;
-
-      return id !== DEFAULT_JOB_PROFILE_ID ? `data-export/job-executions?query=jobProfileId==${id}&limit=1` : null;
-    },
-    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
+    fetch: false,
   },
 });
 

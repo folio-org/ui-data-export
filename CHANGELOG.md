@@ -20,6 +20,7 @@
 * Update `stripes` to `v6.0.0`. UIDEXP-221.
 * Clear the validation error after user adjusts data entry in transformation field. UIDEXP-218.
 * Add placeholder to the transformation form. UIDEXP-219.
+* Use react-query for job profile details page. UIDEXP-224.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)
