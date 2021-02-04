@@ -79,8 +79,7 @@ describe('generateAffectedRecordInfo', () => {
 
   it('should return correct record info with 2 level nesting', () => {
     const { recordInfo } = getHookExecutionResult(useGenerateAffectedRecordInfo, [{ logs: errorLogs[2].affectedRecord }], translationsProperties);
-
-    expect(recordInfo).toEqual([
+    const generatedRecord = [
       '{',
       '"Instance UUID": "5bf370e0-8cca-4d9c-82e4-5170ab2a0a39"',
       '"Instance HRID": "inst000000000022"',
@@ -92,7 +91,9 @@ describe('generateAffectedRecordInfo', () => {
       '"Associated Item UUID": "7212ba6a-8dcf-45a1-be9a-ffaa847c4423"',
       '"Associated Item HRID": "item000000000014"',
       '}',
-    ]);
+    ];
+
+    expect(recordInfo).toMatchObject(expect.arrayContaining(generatedRecord));
   });
 
   it('should provide title only for instance', () => {

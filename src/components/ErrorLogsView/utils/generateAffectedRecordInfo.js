@@ -1,5 +1,7 @@
+import React from 'react';
 import { capitalize } from 'lodash';
 
+import { TextLink } from '@folio/stripes/components';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
 const populateAffectedRecords = ({
@@ -73,6 +75,21 @@ const generateAffectedRecordLevel = ({
         recordType,
       }
     ));
+  }
+
+  if (record.inventoryRecordLink) {
+    affectedRecordLevel.push(
+      <>
+        {formatMessage({ id: 'ui-data-export.errorLogs.inventoryRecordLink' })}
+        <TextLink
+          href={record.inventoryRecordLink}
+          target="_blank"
+          data-testId="record-link"
+        >
+          {record.inventoryRecordLink}
+        </TextLink>
+      </>
+    );
   }
 
   return affectedRecordLevel;

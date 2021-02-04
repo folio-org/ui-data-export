@@ -102,6 +102,7 @@
   "errorLogs.recordAssociated.HRID": "\"Associated {recordType} HRID\": \"{value}\"",
   "errorLogs.recordAssociated.UUID": "\"Associated {recordType} UUID\": \"{value}\"",
   "errorLogs.recordAssociated.Title": "\"Associated {recordType} Title\": \"{value}\"",
+  "errorLogs.inventoryRecordLink": "\"Inventory record link\": ",
 
   "instance.electronic.access.linkText.default": "Instance - Electronic access - Link Text",
   "instance.electronic.access.materialsSpecification.default": "Instance - Electronic access - Materials specified",
