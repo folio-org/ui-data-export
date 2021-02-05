@@ -28,6 +28,7 @@ export const errorLogs = [
       hrid: 'inst000000000022',
       title: 'A semantic web primer',
       recordType: 'INSTANCE',
+      inventoryRecordLink: 'https://folio-snapshot-load.dev.folio.org/inventory/view/e54b1f4d-7d05-4b1a-9368-3c36b75d8ac6',
       affectedRecords: [{
         id: 'e3ff6133-b9a2-4d4c-a1c9-dc1867d4df19',
         hrid: 'hold000000000009',
