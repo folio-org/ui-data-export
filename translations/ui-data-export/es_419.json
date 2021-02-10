@@ -209,7 +209,7 @@
     "total": "Total",
     "copyOf": "Copia de {value}",
     "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
-    "mappingProfiles.recordType.instance": "Inventory instance (selected fields)",
+    "mappingProfiles.recordType.instance": "Instancia de inventario (campos seleccionados)",
     "mappingProfiles.transformations.invalidTransformationMessage": "Please check your input",
     "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
     "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
@@ -228,9 +228,9 @@
     "error.configurations.queryRules": "Error while query the rules from mod configuration: {value1}",
     "error.configurations.queryConfigs": "Error while query the configs from mod configuration by query: {value1}",
     "error.genericError": "Generic error",
-    "error.inventory.gettingInstancesByIds": "Error while getting instances by ids: {value1}",
-    "error.inventory.gettingReferenceData": "Error while getting reference data from inventory during the export process by calling {value1}",
-    "error.inventory.gettingHoldingsByInstanceId": "Error while getting holdings by instance id: {value1}, message: {value2}",
+    "error.inventory.gettingInstancesByIds": "Error al obtener el ID de la instancias: {value1}",
+    "error.inventory.gettingReferenceData": "Error al obtener los datos de referencia desde el inventario durante el proceso de exportación llamado {value1}",
+    "error.inventory.gettingHoldingsByInstanceId": "Error al obtener el holding por la instancia, mensaje: {value1}",
     "error.inventory.gettingItemsByHoldingsId": "Error while getting items by holding ids {value1}",
     "error.callingUri": "Exception while calling {value1}: message: {value2}",
     "error.user.gettingById": "Error while getting user with id = {value1}, message: {value2}",
@@ -250,5 +250,6 @@
     "error.mapping.fieldsMappingSrs": "An error occurred during fields mapping for srs record with id: {value1}, reason: {value2}, cause: {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Mapping profile is missing during export process",
-    "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process"
+    "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
+    "errorLogs.inventoryRecordLink": "\"Inventory record link\": "
 }

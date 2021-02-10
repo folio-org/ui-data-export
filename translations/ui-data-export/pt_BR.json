@@ -250,5 +250,6 @@
     "error.mapping.fieldsMappingSrs": "Ocorreu um erro durante o mapeamento de campos para registro SRS com id: {value1}, razão: {value2}, causa: {valor3}, motivo: {valor2}, causa: {value3}.",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Falta o perfil de mapeamento durante o processo de exportação",
-    "error.mappingProfile.invalidSrsRecordTypeCombination": "O tipo de registro SRS não pode ser combinado com o tipo de registro INSTANCE durante o processo de exportação"
+    "error.mappingProfile.invalidSrsRecordTypeCombination": "O tipo de registro SRS não pode ser combinado com o tipo de registro INSTANCE durante o processo de exportação",
+    "errorLogs.inventoryRecordLink": "\"Inventory record link\": "
 }
