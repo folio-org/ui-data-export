@@ -250,5 +250,6 @@
     "error.mapping.fieldsMappingSrs": "ID为{value1} srs记录的字段映射时发生错误，原因： {value2} ，原因： {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "导出过程中缺少映射配置文件",
-    "error.mappingProfile.invalidSrsRecordTypeCombination": "在导出过程中，SRS记录类型不能与实例记录类型组合在一起"
+    "error.mappingProfile.invalidSrsRecordTypeCombination": "在导出过程中，SRS记录类型不能与实例记录类型组合在一起",
+    "errorLogs.inventoryRecordLink": "\"Inventory record link\": "
 }
