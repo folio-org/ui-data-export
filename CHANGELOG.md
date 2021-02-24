@@ -22,6 +22,7 @@
 * Add placeholder to the transformation form. UIDEXP-219.
 * Use react-query for job profile details page. UIDEXP-224.
 * Display a link to the inventory record on Error logs page. UIDEXP-203.
+* Update `stripes-cli` to `v2.0.0`. UIDEXP-227.
 
 ## [3.0.2](https://github.com/folio-org/ui-data-export/tree/v3.0.2) (2020-11-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.1...v3.0.2)
