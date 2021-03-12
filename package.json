@@ -1,6 +1,6 @@
 {
   "name": "@folio/data-export",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Data export manager",
   "main": "src/index.js",
   "repository": "folio-org/ui-data-export",
@@ -59,7 +59,7 @@
     "sinon": "^7.1.1"
   },
   "dependencies": {
-    "@folio/stripes-data-transfer-components": "^3.0.0",
+    "@folio/stripes-data-transfer-components": "^4.0.0",
     "classnames": "^2.2.5",
     "lodash": "^4.16.4",
     "prop-types": "^15.6.0",
@@ -97,7 +97,7 @@
       }
     ],
     "okapiInterfaces": {
-      "data-export": "3.0"
+      "data-export": "4.0"
     },
     "permissionSets": [
       {
