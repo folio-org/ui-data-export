@@ -136,7 +136,7 @@
     "instance.languages": "Instance - Langue",
     "instance.title": "Instance - Titre de la ressource",
     "instance.metadata.createdDate": "Instance - Date de création",
-    "instance.metadata.updatedDate": "Instance - Date mise à jour",
+    "instance.metadata.updatedDate": "Instance - Date de mise à jour",
     "instance.metadata.createdByUserId": "Instance - Créée par",
     "instance.metadata.updatedByUserId": "Instance - Updated by",
     "holdings.id": "Holdings - ID",
