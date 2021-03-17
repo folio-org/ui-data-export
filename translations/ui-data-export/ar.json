@@ -246,7 +246,7 @@
     "error.mapping.dateParse": "حدث خطأ أثناء تحليل التاريخ أثناء عملية التخطيط",
     "error.mapping.undefined": "خطأ غير محدد أثناء عملية التخطيط",
     "error.mapping.fieldsMappingInventory": "حدث خطأ أثناء تخطيط الحقول لتسجيلة المخزون",
-    "error.mapping.fieldsMappingInventoryWithReason": "حدث خطأ أثناء تخطيط الحقول لتسجيلة المخزون: السبب: {value1} ، السبب: {value2}",
+    "error.mapping.fieldsMappingInventoryWithReason": "حدث خطأ أثناء تخطيط الحقول لتسجيلة المخزون: الحقل المتأثر: fieldName - {value1} ، fieldValue - {value2}",
     "error.mapping.fieldsMappingSrs": "حدث خطأ أثناء تخطيط الحقول لتسجيلة srs بالمعرف: {value1} ، السبب: {value2} ، السبب: {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "ملف تعريف التخطيط مفقود أثناء عملية التصدير",
