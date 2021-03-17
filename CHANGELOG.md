@@ -1,9 +1,9 @@
 # Change history for ui-data-export
 
-## 4.0.0 (IN PROGRESS)
+## 4.1.0 (IN PROGRESS)
 
-## [3.1.0](https://github.com/folio-org/ui-data-export/tree/v3.1.0) (2021-03-12)
-[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.2...v3.1.0)
+## [4.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-03-12)
+[Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.2...v4.0.0)
 * Setup jest/react-testing-library and cover `ChooseJobProfile` component and util methods with tests. UIDEXP-179.
 * Adjust `ui-data-export` after the change in the `JobsListAccordion` in `stripes-data-transfer-components` with regard to data-test attribute. UIDATIMP-574.
 * Add "Copy of" to the mapping profile name upon duplication. UIDEXP-181.
