@@ -105,7 +105,7 @@
     "holdings.holdingNoteTypeId": "Tenencias - Notas - {value}",
     "holdings.holdingNoteTypeId.staffOnly": "Holdings - Notas - {value} - Sólo personal",
     "item.itemNoteTypeId": "Artículo - Notas - {value}",
-    "item.itemNoteTypeId.staffOnly": "Artículo - Notas - {valor} - Sólo personal",
+    "item.itemNoteTypeId.staffOnly": "Artículo - Notas - {value} - Sólo personal",
     "instance.alternativeTitleTypeName": "Instancia - Título alternativo - {value}",
     "instance.identifiers": "Instancia - Identificador - {value}",
     "instance.instanceTypeId": "Instancia - Tipo de recurso - {value}",
