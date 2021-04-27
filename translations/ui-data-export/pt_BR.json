@@ -246,7 +246,7 @@
     "error.mapping.dateParse": "Erro ocorrido durante a análise da data no processo de mapeamento",
     "error.mapping.undefined": "Erro desconhecido durante o processo de mapeamento",
     "error.mapping.fieldsMappingInventory": "Ocorreu um erro durante o mapeamento de campos para registro de inventário",
-    "error.mapping.fieldsMappingInventoryWithReason": "Ocorreu um erro durante o mapeamento de campos para registro de inventário: motivo: {value1} , causa: {value2}",
+    "error.mapping.fieldsMappingInventoryWithReason": "Ocorreu um erro durante o mapeamento de campos para registro bibliográfico: motivo: {value1} , causa: {value2}",
     "error.mapping.fieldsMappingSrs": "Ocorreu um erro durante o mapeamento de campos para registro SRS com id: {value1}, razão: {value2}, causa: {valor3}, motivo: {valor2}, causa: {value3}.",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Falta o perfil de mapeamento durante o processo de exportação",
