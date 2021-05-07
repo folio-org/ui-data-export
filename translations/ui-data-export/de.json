@@ -225,7 +225,7 @@
     "error.fileDefinition.fileAlreadyUploaded": "File already uploaded for this FileDefinition",
     "error.nothingToExport": "No exported records: nothing to export",
     "error.jobExecution.failToUpdateJob": "Fail to prepare job execution for export",
-    "error.configurations.queryRules": "Error while query the rules from mod configuration: {value1}",
+    "error.configurations.queryRules": "Fehler beim Abfragen der Regeln aus mod-configuration: {value1}",
     "error.configurations.queryConfigs": "Error while query the configs from mod configuration by query: {value1}",
     "error.genericError": "Generic error",
     "error.inventory.gettingInstancesByIds": "Error while getting instances by ids: {value1}",
