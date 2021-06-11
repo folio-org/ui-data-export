@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 4.1.0 (IN PROGRESS)
+* Handle broken BigTest test. UIDEXP-237.
 
 ## [4.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-03-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v3.0.2...v4.0.0)
