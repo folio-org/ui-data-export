@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 4.2.0 (IN PROGRESS)
+* Fix Error when cloning mapping profile from the prior relases. UIDEXP-242.
 
 ## [4.1.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-06-11)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v4.0.0...v4.1.0)
