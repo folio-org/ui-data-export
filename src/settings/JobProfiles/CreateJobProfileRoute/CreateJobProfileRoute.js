@@ -7,14 +7,14 @@ import { JobProfilesForm } from '../JobProfilesForm';
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 
 const getFormattedMappingProfiles = (mappingProfiles = []) => {
-  return mappingProfiles.reduce((memo, current) => {
-    memo.push({
-      label: current.name,
-      value: current.id,
-    });
-
-    return memo;
-  }, []);
+  return mappingProfiles
+    .map(profile => (
+      {
+        label: profile.name,
+        value: profile.id,
+      }
+    ))
+    .sort((a, b) => a.label.localeCompare(b.label));
 };
 
 const CreateJobProfileRouteComponent = props => {
