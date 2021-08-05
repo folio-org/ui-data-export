@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## 4.2.0 (IN PROGRESS)
+* Mapping profiles list not ordered alphabetically on the new job profile form. UIDEXP-241.
 
 ## [4.1.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-06-11)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v4.0.0...v4.1.0)

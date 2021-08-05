@@ -19,3 +19,7 @@ artifacts
 
 # Dependency directories
 node_modules/
+
+# stripes
+.stripesclirc
+stripes.config.js.local
