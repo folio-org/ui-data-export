@@ -144,5 +144,16 @@
       }
     ],
     "react/jsx-no-useless-fragment": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*test.*", "test/**"],
+      "rules": {
+        "react/prop-types": "off",
+        "padding-line-between-statements": "off",
+        "object-curly-newline": "off",
+        "object-property-newline": "off"
+      }
+    }
+  ]
 }

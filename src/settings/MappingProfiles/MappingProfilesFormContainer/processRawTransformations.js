@@ -29,6 +29,8 @@ export const parseRawTransformation = transformation => {
 };
 
 export const splitIntoRawTransformation = transformation => {
+  if (typeof transformation !== 'string') return undefined;
+
   const regex = /^(?<marcField>\d{3})(?<indicator1>[\d\sa-zA-Z])(?<indicator2>[\d\sa-zA-Z])(?<subfield>\$([0-9]{1,2}|[a-zA-Z]))?$/;
   const rawTransformation = transformation.match(regex)?.groups;
 
