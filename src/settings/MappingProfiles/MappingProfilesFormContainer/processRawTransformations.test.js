@@ -51,6 +51,15 @@ describe('parseRawTransformation', () => {
 });
 
 describe('splitIntoRawTransformation', () => {
+  it.each([
+    null,
+    undefined,
+    [1, 2, 'abc'],
+    { a: 1, b: 2 },
+  ])('should return `undefined` when argument is not a string but e.g. %p', arg => {
+    expect(splitIntoRawTransformation(arg)).not.toBeDefined();
+  });
+
   it('should return correct raw transformation when all fields are present and subfield containing 2 digits', () => {
     expect(splitIntoRawTransformation('90012$12')).toEqual({
       marcField: '900',
