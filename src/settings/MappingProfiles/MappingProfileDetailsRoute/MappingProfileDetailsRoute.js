@@ -5,7 +5,7 @@ import {
   find,
 } from 'lodash';
 
-import { stripesConnect } from '@folio/stripes-core';
+import { stripesConnect } from '@folio/stripes/core';
 
 import { MappingProfileDetails } from '../MappingProfileDetails';
 import {
