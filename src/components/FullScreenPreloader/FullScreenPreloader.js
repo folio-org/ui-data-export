@@ -23,6 +23,7 @@ export function FullScreenPreloader({
     <FullScreenView
       contentLabel={contentLabel || intl.formatMessage({ id: 'stripes-data-transfer-components.loading' })}
       {...props}
+      data-testid="preloader"
     >
       <Preloader />
     </FullScreenView>
