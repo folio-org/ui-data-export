@@ -45,6 +45,7 @@ describe('JobProfileDetails', () => {
       translationsProperties
     );
   };
+
   it('should display job profile details', () => {
     renderJobProfileDetails();
 
@@ -73,20 +74,22 @@ describe('JobProfileDetails', () => {
 
     labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
   });
+
   it('should display action buttons in the proper state', () => {
     renderJobProfileDetails();
-    const actionButton = document.querySelector('[data-test-pane-header-actions-button]');
+    const actionButton = screen.getByText('Actions');
 
     userEvent.click(actionButton);
 
-    const deleteButton = document.querySelector('[data-test-delete-profile-button]');
-    const duplicateButton = document.querySelector('[data-test-duplicate-profile-button]');
-    const editButton = document.querySelector('[data-test-edit-profile-button]');
+    const deleteButton = screen.getByText(commonTranslations.delete);
+    const duplicateButton = screen.getByText(commonTranslations.duplicate);
+    const editButton = screen.getByText(commonTranslations.edit);
 
-    expect(deleteButton).toBeDisabled();
+    expect(deleteButton).toBeEnabled();
     expect(duplicateButton).toBeEnabled();
-    expect(editButton).toBeDisabled();
+    expect(editButton).toBeEnabled();
   });
+
   describe('rendering details without description for a job profile which is not already in use', () => {
     const renderJobProfileWitoutDescription = () => {
       renderWithIntl(
@@ -106,34 +109,37 @@ describe('JobProfileDetails', () => {
         translationsProperties
       );
     };
+
     it('should display no value in description', () => {
       renderJobProfileWitoutDescription();
       const description = document.querySelector('[data-test-job-profile-description]');
 
       expect(within(description).getByText('-')).toBeVisible();
     });
+
     it('should display action buttons in the proper state', () => {
       renderJobProfileWitoutDescription();
-      const actionButton = document.querySelector('[data-test-pane-header-actions-button]');
+      const actionButton = screen.getByText('Actions');
 
       userEvent.click(actionButton);
 
-      const deleteButton = document.querySelector('[data-test-delete-profile-button]');
-      const duplicateButton = document.querySelector('[data-test-duplicate-profile-button]');
-      const editButton = document.querySelector('[data-test-edit-profile-button]');
+      const deleteButton = screen.getByText(commonTranslations.delete);
+      const duplicateButton = screen.getByText(commonTranslations.duplicate);
+      const editButton = screen.getByText(commonTranslations.edit);
 
       expect(deleteButton).toBeEnabled();
       expect(duplicateButton).toBeEnabled();
       expect(editButton).toBeEnabled();
     });
+
     describe('clicking on delete profiles button', () => {
       it('should display delete confirmation modal', async () => {
         renderJobProfileWitoutDescription();
-        const actionButton = document.querySelector('[data-test-pane-header-actions-button]');
+        const actionButton = screen.getByText('Actions');
 
         userEvent.click(actionButton);
 
-        const deleteButton = document.querySelector('[data-test-delete-profile-button]');
+        const deleteButton = screen.getByText(commonTranslations.delete);
 
         userEvent.click(deleteButton);
 
@@ -146,6 +152,7 @@ describe('JobProfileDetails', () => {
       });
     });
   });
+
   describe('rendering job profile details in loading state', () => {
     const renderJobProfileWithLoading = () => {
       renderWithIntl(
