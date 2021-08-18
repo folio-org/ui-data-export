@@ -113,9 +113,24 @@ describe('CreateMappingProfileFormRoute', () => {
     it('should initiate displaying of error callout', async () => {
       onSubmitMock.mockImplementationOnce(() => Promise.reject());
 
-      await userEvent.type(screen.getByLabelText('Name*'), 'Name');
+      const submitFormButton = screen.getByRole('button', { name: 'Save & close' });
+
+      userEvent.type(screen.getByLabelText('Name*'), 'Name');
       userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+      userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
+
+      const modal = screen.getByRole('document');
+      const saveTransrormationsButton = within(modal).getByRole('button', { name: 'Save & close' });
+      const tableRow = screen.getByRole('row', { name: 'Select field Holdings - Call number - Call number' });
+      const checkbox = within(tableRow).getByRole('checkbox');
+      const textFields = within(tableRow).getAllByRole('textbox');
+
+      userEvent.click(checkbox);
+      userEvent.type(textFields[0], '500');
+      userEvent.type(textFields[3], '$a');
+      userEvent.click(saveTransrormationsButton);
+
+      userEvent.click(submitFormButton);
 
       await waitFor(() => {
         expect(sendCalloutMock).toBeCalledWith(
