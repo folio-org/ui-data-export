@@ -93,7 +93,7 @@
     "instance.electronic.access.publicNote": "Instance - Electronic access - {value} - URL Public note",
     "instance.electronic.access.uri": "Instance - Electronic access - {value} - URI",
     "holdings.electronic.access.linkText": "Holdings - Electronic access - {value} - Link Text",
-    "holdings.electronic.access.materialsSpecification": "Holdings - Electronic access - {value} - Materials specified",
+    "holdings.electronic.access.materialsSpecification": "Existencias - Acceso electrónico - {valor} - Materiales especificados",
     "holdings.electronic.access.publicNote": "Holdings - Electronic access - {value} - URL Public note",
     "holdings.electronic.access.uri": "Holdings - Electronic access - {value} - URI",
     "item.electronic.access.linkText": "Item - Electronic access - {value} - Link Text",
