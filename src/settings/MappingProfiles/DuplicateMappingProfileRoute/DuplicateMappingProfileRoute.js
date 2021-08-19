@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import { stripesConnect } from '@folio/stripes-core';
+import { stripesConnect } from '@folio/stripes/core';
 import { get } from 'lodash';
 
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
