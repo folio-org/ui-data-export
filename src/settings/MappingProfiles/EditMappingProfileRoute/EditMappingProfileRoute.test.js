@@ -91,15 +91,19 @@ describe('rendering edit mapping profile page without profile data', () => {
       translationsProperties
     );
 
-    const renderEditMappingProfileRouteWithMocks = () => renderWithIntl(
-      <EditMappingProfileRouteContainer
-        allTransformations={allMappingProfilesTransformations}
-        sendCallout={sendCalloutMock}
-        onSubmitNavigate={handleSubmitNavigateMock}
-        onCancel={handleCancelMock}
-      />,
-      translationsProperties
-    );
+    const renderEditMappingProfileRouteWithMocks = mutator => {
+      return renderWithIntl(
+        <EditMappingProfileRouteContainer
+          allTransformations={allMappingProfilesTransformations}
+          sendCallout={sendCalloutMock}
+          mutator={mutator}
+          onSubmitNavigate={handleSubmitNavigateMock}
+          onCancel={handleCancelMock}
+          {...(mutator ? { mutator } : {})}
+        />,
+        translationsProperties
+      );
+    };
 
     beforeEach(() => {
       jest.clearAllMocks();
@@ -175,12 +179,25 @@ describe('rendering edit mapping profile page without profile data', () => {
 
         userEvent.type(nameField(), 'New name');
 
-        expect(saveAndCloseBtn()).toBeEnabled();
-
         userEvent.click(saveAndCloseBtn());
 
         await waitFor(() => {
           expect(handleSubmitNavigateMock).toHaveBeenCalled();
+        });
+      });
+
+      it('should initiate displaying of error callout', async () => {
+        renderEditMappingProfileRouteWithMocks({ PUT: () => Promise.reject() });
+
+        userEvent.type(nameField(), 'New name 2');
+
+        userEvent.click(saveAndCloseBtn());
+
+        await waitFor(() => {
+          expect(sendCalloutMock).toBeCalledWith(
+            expect.objectContaining({ type: 'error' })
+          );
+          expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.edit.errorCallout');
         });
       });
     });
