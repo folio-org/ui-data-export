@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  getByTestId,
-  getByText,
-  queryByTestId,
-} from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import '../../../test/jest/__mock__';
 
@@ -13,41 +9,57 @@ import { ErrorLogsView } from './ErrorLogsView';
 import { translationsProperties } from '../../../test/helpers';
 import { errorLogs } from '../../../test/bigtest/fixtures/errorLogs';
 
+const logs = [
+  log => `${log.createdDate} ${log.logLevel} An error occurred during fields mapping for srs record with id: ${log.errorMessageValues[0]}, reason: ${log.errorMessageValues[1]}, cause: ${log.errorMessageValues[2]}`,
+  log => `${log.createdDate} ${log.logLevel} UUIDs not found in SRS or inventory: ${log.errorMessageValues[0]}`,
+  log => `${log.createdDate} ${log.logLevel} Error while getting holdings by instance id: ${log.errorMessageValues[0]}, message: ${log.errorMessageValues[1]}`,
+];
+
+const renderErrorLogView = ({ records, hasLoaded } = {}) => {
+  return renderWithIntl(
+    <ErrorLogsView resources={{
+      log: {
+        records,
+        hasLoaded,
+      },
+    }}
+    />,
+    translationsProperties
+  );
+};
+
 describe('ErrorLogsView', () => {
-  let errorLogContainers;
-
   describe('rendering ErrorLogsView', () => {
-    beforeEach(() => {
-      renderWithIntl(
-        <ErrorLogsView resources={{
-          log: {
-            records: errorLogs,
-            hasLoaded: true,
-          },
-        }}
-        />,
-        translationsProperties
-      );
+    it('should render correct error info', async () => {
+      renderErrorLogView({ hasLoaded: true, records: errorLogs });
 
-      errorLogContainers = document.querySelectorAll('[data-test-error-log]');
+      for (const [index, log] of errorLogs.entries()) {
+        expect(await screen.findByText(logs[index](log))).toBeInTheDocument();
+      }
     });
 
-    it('should render correct error info', () => {
-      expect(getByText(errorLogContainers[0], `${errorLogs[0].createdDate} ${errorLogs[0].logLevel} An error occurred during fields mapping for srs record with id: ${errorLogs[0].errorMessageValues[0]}, reason: ${errorLogs[0].errorMessageValues[1]}, cause: ${errorLogs[0].errorMessageValues[2]}`)).toBeInTheDocument();
-      expect(getByText(errorLogContainers[1], `${errorLogs[1].createdDate} ${errorLogs[1].logLevel} UUIDs not found in SRS or inventory: ${errorLogs[1].errorMessageValues[0]}`)).toBeInTheDocument();
-      expect(getByText(errorLogContainers[2], `${errorLogs[2].createdDate} ${errorLogs[2].logLevel} Error while getting holdings by instance id: ${errorLogs[2].errorMessageValues[0]}, message: ${errorLogs[2].errorMessageValues[1]}`)).toBeInTheDocument();
+    it('should not render correct info if hasn`t loaded', async () => {
+      renderErrorLogView({ hasLoaded: false, records: errorLogs });
+
+      for (const [index, log] of errorLogs.entries()) {
+        expect(screen.queryByText(logs[index](log))).not.toBeInTheDocument();
+      }
     });
 
-    it('should display record link', () => {
-      const link = getByTestId(errorLogContainers[2], 'record-link');
+    it('should display record link', async () => {
+      renderErrorLogView({ hasLoaded: true, records: errorLogs });
+
+      const link = await screen.findByText(errorLogs[2].affectedRecord.inventoryRecordLink);
 
       expect(link).toBeInTheDocument();
-      expect(link.href).toEqual(errorLogs[2].affectedRecord.inventoryRecordLink);
-      expect(getByText(link, errorLogs[2].affectedRecord.inventoryRecordLink)).toBeInTheDocument();
     });
 
-    it('should not display a link, if its not present in affected record', () => {
-      expect(queryByTestId(errorLogContainers[0], 'record-link')).not.toBeInTheDocument();
+    it('should not display a link, if its not present in affected record', async () => {
+      renderErrorLogView({ hasLoaded: true, records: [errorLogs[1]] });
+
+      const link = screen.queryByText(errorLogs[2].affectedRecord.inventoryRecordLink);
+
+      expect(link).not.toBeInTheDocument();
     });
   });
 });
