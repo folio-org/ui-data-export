@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { noop } from 'lodash';
 import {
   screen,
-  getByText,
+  getByText, waitFor,
 } from '@testing-library/react';
 
 import '../../../../test/jest/__mock__';
@@ -47,7 +47,7 @@ const EditMappingProfileRouteContainer = ({
     recordTypes: ['INSTANCE'],
     transformations: [instanceTransformation],
   },
-  mutator = { PUT: noop },
+  mutator = { PUT: () => Promise.resolve() },
   onCancel = noop,
   onSubmitNavigate = noop,
   sendCallout = noop,
@@ -167,6 +167,22 @@ describe('rendering edit mapping profile page without profile data', () => {
       userEvent.click(transformationsBtn('Edit transformations'));
 
       expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
+    });
+
+    describe('submitting the form', () => {
+      it('should call submit callback', async () => {
+        renderEditMappingProfileRouteWithMocks();
+
+        userEvent.type(nameField(), 'New name');
+
+        expect(saveAndCloseBtn()).toBeEnabled();
+
+        userEvent.click(saveAndCloseBtn());
+
+        await waitFor(() => {
+          expect(handleSubmitNavigateMock).toHaveBeenCalled();
+        });
+      });
     });
   });
 });
