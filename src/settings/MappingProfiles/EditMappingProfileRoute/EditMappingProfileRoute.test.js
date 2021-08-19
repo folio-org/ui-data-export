@@ -165,14 +165,6 @@ describe('rendering edit mapping profile page without profile data', () => {
       });
     });
 
-    it('click edit btn', () => {
-      renderEditMappingProfileRoute();
-
-      userEvent.click(transformationsBtn('Edit transformations'));
-
-      expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
-    });
-
     describe('submitting the form', () => {
       it('should call submit callback', async () => {
         renderEditMappingProfileRouteWithMocks();
@@ -183,6 +175,10 @@ describe('rendering edit mapping profile page without profile data', () => {
 
         await waitFor(() => {
           expect(handleSubmitNavigateMock).toHaveBeenCalled();
+          expect(sendCalloutMock).toHaveBeenCalled();
+          expect(sendCalloutMock).not.toBeCalledWith(
+            expect.objectContaining({ type: 'error' })
+          );
         });
       });
 
