@@ -1,0 +1,2401 @@
+{
+  "beganRunning": [
+    {
+      "type": 0,
+      "value": "开始"
+    },
+    {
+      "type": 1,
+      "value": "time"
+    }
+  ],
+  "cancel": [
+    {
+      "type": 0,
+      "value": "取消"
+    }
+  ],
+  "communicationProblem": [
+    {
+      "type": 0,
+      "value": "服务器通信问题。请再试"
+    }
+  ],
+  "copyOf": [
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "复本"
+    }
+  ],
+  "delete": [
+    {
+      "type": 0,
+      "value": "删除"
+    }
+  ],
+  "description": [
+    {
+      "type": 0,
+      "value": "描述"
+    }
+  ],
+  "error.binaryFile.notGenerated": [
+    {
+      "type": 0,
+      "value": "没有导出内容：未生成二进制文件"
+    }
+  ],
+  "error.callingUri": [
+    {
+      "type": 0,
+      "value": "调用"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "异常：消息： "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.configurations.queryConfigs": [
+    {
+      "type": 0,
+      "value": "通过查询"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "从mod配置查询配置时出错"
+    }
+  ],
+  "error.configurations.queryHost": [
+    {
+      "type": 0,
+      "value": "在主机的mod-config中找不到配置。将没有链接指向该任务的失败记录。"
+    }
+  ],
+  "error.configurations.queryRules": [
+    {
+      "type": 0,
+      "value": "从mod配置"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "查询规则时出错： "
+    }
+  ],
+  "error.fileDefinition.fileAlreadyUploaded": [
+    {
+      "type": 0,
+      "value": "已为此文件定义上传文件"
+    }
+  ],
+  "error.fileDefinition.invalid": [
+    {
+      "type": 0,
+      "value": "无效的导出文件定义"
+    }
+  ],
+  "error.fileDefinition.invalidWithId": [
+    {
+      "type": 0,
+      "value": "ID为"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "的无效导出文件定义"
+    }
+  ],
+  "error.fileDefinition.notFound": [
+    {
+      "type": 0,
+      "value": "找不到文件定义"
+    }
+  ],
+  "error.genericError": [
+    {
+      "type": 0,
+      "value": "通用错误"
+    }
+  ],
+  "error.invalidUuidFormat": [
+    {
+      "type": 0,
+      "value": "无效的UUID格式： "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.inventory.gettingHoldingsByInstanceId": [
+    {
+      "type": 0,
+      "value": "通过实例ID： "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "获取馆藏时出错，消息： "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.inventory.gettingInstancesByIds": [
+    {
+      "type": 0,
+      "value": "通过ID： "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "获取实例时出错"
+    }
+  ],
+  "error.inventory.gettingItemsByHoldingsId": [
+    {
+      "type": 0,
+      "value": "通过馆藏ID "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "获取单件时出错"
+    }
+  ],
+  "error.inventory.gettingReferenceData": [
+    {
+      "type": 0,
+      "value": "在导出过程中通过调用"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "从典藏中获取参考数据时出错"
+    }
+  ],
+  "error.jobExecution.failToUpdateJob": [
+    {
+      "type": 0,
+      "value": "无法为导出准备任务执行"
+    }
+  ],
+  "error.mapping.dateParse": [
+    {
+      "type": 0,
+      "value": "映射过程中解析日期时发生错误"
+    }
+  ],
+  "error.mapping.fieldsMappingInventory": [
+    {
+      "type": 0,
+      "value": "典藏记录的字段映射时发生错误"
+    }
+  ],
+  "error.mapping.fieldsMappingInventoryWithReason": [
+    {
+      "type": 0,
+      "value": "典藏记录的字段映射期间发生错误：受影响的字段：字段名- "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": " ，字段值- "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.mapping.fieldsMappingSrs": [
+    {
+      "type": 0,
+      "value": "ID为"
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": " srs记录的字段映射时发生错误，原因： "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    },
+    {
+      "type": 0,
+      "value": " ，原因： "
+    },
+    {
+      "type": 1,
+      "value": "value3"
+    }
+  ],
+  "error.mapping.undefined": [
+    {
+      "type": 0,
+      "value": "映射过程中的未定义错误"
+    }
+  ],
+  "error.mappingProfile.defaultNotFound": [
+    {
+      "type": 0,
+      "value": "找不到默认的映射配置文件"
+    }
+  ],
+  "error.mappingProfile.invalidSrsRecordTypeCombination": [
+    {
+      "type": 0,
+      "value": "在导出过程中，SRS记录类型不能与实例记录类型组合在一起"
+    }
+  ],
+  "error.mappingProfile.missing": [
+    {
+      "type": 0,
+      "value": "导出过程中缺少映射配置文件"
+    }
+  ],
+  "error.messagePlaceholder": [
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.nothingToExport": [
+    {
+      "type": 0,
+      "value": "没有导出记录：没有要导出的内容"
+    }
+  ],
+  "error.readingFromInputFile": [
+    {
+      "type": 0,
+      "value": "使用uuid从输入文件读取时错误或文件为空"
+    }
+  ],
+  "error.s3.bucketIsNotProvided": [
+    {
+      "type": 0,
+      "value": "未提供S3存储桶"
+    }
+  ],
+  "error.s3.bucketNameNotFound": [
+    {
+      "type": 0,
+      "value": "在系统属性中找不到S3存储桶名称"
+    }
+  ],
+  "error.savingRecordToFile": [
+    {
+      "type": 0,
+      "value": "将记录保存到文件时出错"
+    }
+  ],
+  "error.someRecordsFailed": [
+    {
+      "type": 0,
+      "value": "导出已完成，但有错误：某些记录无法导出：失败的记录数： "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.uploadedFile.invalidExtension": [
+    {
+      "type": 0,
+      "value": "文件扩展名不符合CSV格式"
+    }
+  ],
+  "error.user.gettingById": [
+    {
+      "type": 0,
+      "value": "获取ID = "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": "的用户时出错，消息： "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.user.notFound": [
+    {
+      "type": 0,
+      "value": "找不到用户"
+    }
+  ],
+  "error.uuidsNotFound": [
+    {
+      "type": 0,
+      "value": "在SRS或典藏中找不到UUID： "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "errorLogs.inventoryRecordLink": [
+    {
+      "type": 0,
+      "value": "“典藏记录链接”："
+    }
+  ],
+  "errorLogs.record.HRID": [
+    {
+      "type": 0,
+      "value": "“ "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": " HRID”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "errorLogs.record.Title": [
+    {
+      "type": 0,
+      "value": "“ "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "标题”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "errorLogs.record.UUID": [
+    {
+      "type": 0,
+      "value": "“ "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": " UUID”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "errorLogs.recordAssociated.HRID": [
+    {
+      "type": 0,
+      "value": "“关联的"
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": " HRID”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "errorLogs.recordAssociated.Title": [
+    {
+      "type": 0,
+      "value": "“关联的"
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "标题”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "errorLogs.recordAssociated.UUID": [
+    {
+      "type": 0,
+      "value": "“关联的"
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": " UUID”：“ "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " ”"
+    }
+  ],
+  "failed": [
+    {
+      "type": 0,
+      "value": "失败"
+    }
+  ],
+  "format": [
+    {
+      "type": 0,
+      "value": "格式"
+    }
+  ],
+  "holdings.callNumber": [
+    {
+      "type": 0,
+      "value": "馆藏-索书号-索书号"
+    }
+  ],
+  "holdings.callNumberPrefix": [
+    {
+      "type": 0,
+      "value": "馆藏-索书号-索书号前缀"
+    }
+  ],
+  "holdings.callNumberSuffix": [
+    {
+      "type": 0,
+      "value": "馆藏-索书号-索书号后缀"
+    }
+  ],
+  "holdings.callNumberType": [
+    {
+      "type": 0,
+      "value": "馆藏-索书号-索书号类型"
+    }
+  ],
+  "holdings.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -链接文本"
+    }
+  ],
+  "holdings.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问-链接文本"
+    }
+  ],
+  "holdings.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -特定资料"
+    }
+  ],
+  "holdings.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问-特定资料"
+    }
+  ],
+  "holdings.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URL公共附注"
+    }
+  ],
+  "holdings.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问-URL公共附注"
+    }
+  ],
+  "holdings.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URI"
+    }
+  ],
+  "holdings.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "馆藏-电子访问-URI"
+    }
+  ],
+  "holdings.holdingNoteTypeId": [
+    {
+      "type": 0,
+      "value": "馆藏-附注- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "holdings.holdingNoteTypeId.staffOnly": [
+    {
+      "type": 0,
+      "value": "馆藏-附注- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -仅员工"
+    }
+  ],
+  "holdings.holdingsStatements.note": [
+    {
+      "type": 0,
+      "value": "馆藏-馆藏说明附注-公共"
+    }
+  ],
+  "holdings.holdingsStatements.staffNote": [
+    {
+      "type": 0,
+      "value": "馆藏-馆藏说明附注-员工"
+    }
+  ],
+  "holdings.holdingsStatements.statement": [
+    {
+      "type": 0,
+      "value": "馆藏-馆藏说明"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.note": [
+    {
+      "type": 0,
+      "value": "馆藏-用于索引附注的馆藏说明-公共"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.staffNote": [
+    {
+      "type": 0,
+      "value": "馆藏-用于索引附注的馆藏说明-员工"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.statement": [
+    {
+      "type": 0,
+      "value": "馆藏-用于索引的馆藏说明"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.note": [
+    {
+      "type": 0,
+      "value": "馆藏-用于补编附注的馆藏说明-公共"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.staffNote": [
+    {
+      "type": 0,
+      "value": "馆藏-用于补编附注的馆藏说明-员工"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.statement": [
+    {
+      "type": 0,
+      "value": "馆藏-用于补编附注的馆藏说明"
+    }
+  ],
+  "holdings.hrid": [
+    {
+      "type": 0,
+      "value": "馆藏-HRID"
+    }
+  ],
+  "holdings.id": [
+    {
+      "type": 0,
+      "value": "馆藏-ID"
+    }
+  ],
+  "holdings.instanceId": [
+    {
+      "type": 0,
+      "value": "馆藏-实例-ID"
+    }
+  ],
+  "holdings.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "馆藏-创建者"
+    }
+  ],
+  "holdings.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "馆藏-创建日期"
+    }
+  ],
+  "holdings.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "馆藏-更新者"
+    }
+  ],
+  "holdings.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "馆藏-更新日期"
+    }
+  ],
+  "holdings.permanentLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-校区-代码"
+    }
+  ],
+  "holdings.permanentLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-校区"
+    }
+  ],
+  "holdings.permanentLocation.code": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-代码"
+    }
+  ],
+  "holdings.permanentLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-机构-代码"
+    }
+  ],
+  "holdings.permanentLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-机构"
+    }
+  ],
+  "holdings.permanentLocation.library.code": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-图书馆-代码"
+    }
+  ],
+  "holdings.permanentLocation.library.name": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地-图书馆"
+    }
+  ],
+  "holdings.permanentLocation.name": [
+    {
+      "type": 0,
+      "value": "馆藏-永久馆藏地"
+    }
+  ],
+  "holdings.temporaryLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-校区-代码"
+    }
+  ],
+  "holdings.temporaryLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-校区"
+    }
+  ],
+  "holdings.temporaryLocation.code": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-代码"
+    }
+  ],
+  "holdings.temporaryLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "馆藏-临时位置馆藏地-机构-代码"
+    }
+  ],
+  "holdings.temporaryLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-机构"
+    }
+  ],
+  "holdings.temporaryLocation.library.code": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-图书馆-代码"
+    }
+  ],
+  "holdings.temporaryLocation.library.name": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地-图书馆"
+    }
+  ],
+  "holdings.temporaryLocation.name": [
+    {
+      "type": 0,
+      "value": "馆藏-临时馆藏地"
+    }
+  ],
+  "inProgressStatus": [
+    {
+      "type": 0,
+      "value": "进行中"
+    }
+  ],
+  "instance.alternativeTitleTypeName": [
+    {
+      "type": 0,
+      "value": "实例-交替题名- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.contributorName": [
+    {
+      "type": 0,
+      "value": "实例-贡献者- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.contributorName.primary": [
+    {
+      "type": 0,
+      "value": "实例-贡献者- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -主要"
+    }
+  ],
+  "instance.editions": [
+    {
+      "type": 0,
+      "value": "实例-版本"
+    }
+  ],
+  "instance.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "实例-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -链接文本"
+    }
+  ],
+  "instance.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "实例-电子访问-链接文本"
+    }
+  ],
+  "instance.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "实例-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -特定资料"
+    }
+  ],
+  "instance.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "实例-电子访问-特定资料"
+    }
+  ],
+  "instance.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "实例-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URL公共附注"
+    }
+  ],
+  "instance.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "实例-电子访问-URL公共附注"
+    }
+  ],
+  "instance.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "实例-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URI"
+    }
+  ],
+  "instance.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "实例-电子访问-URI"
+    }
+  ],
+  "instance.hrid": [
+    {
+      "type": 0,
+      "value": "实例-HRID"
+    }
+  ],
+  "instance.id": [
+    {
+      "type": 0,
+      "value": "实例-ID"
+    }
+  ],
+  "instance.identifiers": [
+    {
+      "type": 0,
+      "value": "实例-标识符- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.instanceTypeId": [
+    {
+      "type": 0,
+      "value": "实例-资源类型- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.languages": [
+    {
+      "type": 0,
+      "value": "实例-语言"
+    }
+  ],
+  "instance.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "实例-创建者"
+    }
+  ],
+  "instance.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "实例-创建日期"
+    }
+  ],
+  "instance.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "实例-更新者"
+    }
+  ],
+  "instance.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "实例-更新日期"
+    }
+  ],
+  "instance.modeOfIssuanceId": [
+    {
+      "type": 0,
+      "value": "实例-发行方式- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.source": [
+    {
+      "type": 0,
+      "value": "实例-来源"
+    }
+  ],
+  "instance.subjects": [
+    {
+      "type": 0,
+      "value": "实例-主题"
+    }
+  ],
+  "instance.title": [
+    {
+      "type": 0,
+      "value": "实例-资源题名"
+    }
+  ],
+  "item.barcode": [
+    {
+      "type": 0,
+      "value": "单件-条码"
+    }
+  ],
+  "item.callNumber": [
+    {
+      "type": 0,
+      "value": "单件-有效的索书号"
+    }
+  ],
+  "item.callNumberPrefix": [
+    {
+      "type": 0,
+      "value": "单件-有效的索书号-前缀"
+    }
+  ],
+  "item.callNumberSuffix": [
+    {
+      "type": 0,
+      "value": "单件-有效的索书号-后缀"
+    }
+  ],
+  "item.callNumberType": [
+    {
+      "type": 0,
+      "value": "单件-有效的索书号类型"
+    }
+  ],
+  "item.chronology": [
+    {
+      "type": 0,
+      "value": "单件-年"
+    }
+  ],
+  "item.copyNumber": [
+    {
+      "type": 0,
+      "value": "单件-复本号"
+    }
+  ],
+  "item.descriptionOfPieces": [
+    {
+      "type": 0,
+      "value": "单件-件的描述"
+    }
+  ],
+  "item.effectiveLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-校区-代码"
+    }
+  ],
+  "item.effectiveLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-校区"
+    }
+  ],
+  "item.effectiveLocation.code": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-代码"
+    }
+  ],
+  "item.effectiveLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-机构-代码"
+    }
+  ],
+  "item.effectiveLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-机构"
+    }
+  ],
+  "item.effectiveLocation.library.code": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-图书馆-代码"
+    }
+  ],
+  "item.effectiveLocation.library.name": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地-图书馆"
+    }
+  ],
+  "item.effectiveLocation.name": [
+    {
+      "type": 0,
+      "value": "单件-有效馆藏地"
+    }
+  ],
+  "item.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "单件-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -链接文本"
+    }
+  ],
+  "item.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "单件-电子访问-链接文本"
+    }
+  ],
+  "item.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "单件-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -特定资料"
+    }
+  ],
+  "item.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "单件-电子访问-特定资料"
+    }
+  ],
+  "item.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "单件-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URL公共附注"
+    }
+  ],
+  "item.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "单件-电子访问-URL公共附注"
+    }
+  ],
+  "item.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "单件-电子访问- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -URI"
+    }
+  ],
+  "item.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "单件-电子访问-URI"
+    }
+  ],
+  "item.enumeration": [
+    {
+      "type": 0,
+      "value": "单件-期"
+    }
+  ],
+  "item.holdingsRecordId": [
+    {
+      "type": 0,
+      "value": "单件-馆藏ID"
+    }
+  ],
+  "item.hrid": [
+    {
+      "type": 0,
+      "value": "单件-HRID"
+    }
+  ],
+  "item.id": [
+    {
+      "type": 0,
+      "value": "单件-ID"
+    }
+  ],
+  "item.itemNoteTypeId": [
+    {
+      "type": 0,
+      "value": "单件-附注- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "item.itemNoteTypeId.staffOnly": [
+    {
+      "type": 0,
+      "value": "单件-附注- "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " -仅员工"
+    }
+  ],
+  "item.materialTypeId": [
+    {
+      "type": 0,
+      "value": "单件-资料类型"
+    }
+  ],
+  "item.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "单件-创建者"
+    }
+  ],
+  "item.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "单件-创建日期"
+    }
+  ],
+  "item.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "单件-更新者"
+    }
+  ],
+  "item.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "单件-更新日期"
+    }
+  ],
+  "item.numberOfPieces": [
+    {
+      "type": 0,
+      "value": "单件-件数"
+    }
+  ],
+  "item.permanentLoanTypeId": [
+    {
+      "type": 0,
+      "value": "单件-永久借阅类型"
+    }
+  ],
+  "item.permanentLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-校区-代码"
+    }
+  ],
+  "item.permanentLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-校区"
+    }
+  ],
+  "item.permanentLocation.code": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-代码"
+    }
+  ],
+  "item.permanentLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-机构-代码"
+    }
+  ],
+  "item.permanentLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-机构"
+    }
+  ],
+  "item.permanentLocation.library.code": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-图书馆-代码"
+    }
+  ],
+  "item.permanentLocation.library.name": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地-图书馆"
+    }
+  ],
+  "item.permanentLocation.name": [
+    {
+      "type": 0,
+      "value": "单件-永久馆藏地"
+    }
+  ],
+  "item.status": [
+    {
+      "type": 0,
+      "value": "单件-状态"
+    }
+  ],
+  "item.volume": [
+    {
+      "type": 0,
+      "value": "单件-卷"
+    }
+  ],
+  "item.yearCaption": [
+    {
+      "type": 0,
+      "value": "单件-年，标题"
+    }
+  ],
+  "jobProfileLabel": [
+    {
+      "type": 0,
+      "value": "任务配置文件："
+    },
+    {
+      "type": 1,
+      "value": "jobProfile"
+    }
+  ],
+  "jobProfiles.create.errorCallout": [
+    {
+      "type": 0,
+      "value": "创建任务配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "出错"
+    }
+  ],
+  "jobProfiles.create.successCallout": [
+    {
+      "type": 0,
+      "value": "任务配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "创建"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "jobProfiles.delete.confirmationModal.message": [
+    {
+      "type": 0,
+      "value": "任务配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "将被删除"
+    }
+  ],
+  "jobProfiles.delete.confirmationModal.title": [
+    {
+      "type": 0,
+      "value": "删除任务配置文件"
+    }
+  ],
+  "jobProfiles.delete.errorCallout": [
+    {
+      "type": 0,
+      "value": "删除任务配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "出错"
+    }
+  ],
+  "jobProfiles.delete.successCallout": [
+    {
+      "type": 0,
+      "value": "任务配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "删除"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "jobProfiles.newProfile": [
+    {
+      "type": 0,
+      "value": "新任务配置文件"
+    }
+  ],
+  "jobProfiles.selectProfile.modal.message": [
+    {
+      "type": 0,
+      "value": "已选择"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "profile"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "来运行导出"
+    }
+  ],
+  "jobProfiles.selectProfile.modal.title": [
+    {
+      "type": 0,
+      "value": "确定要运行这项任务吗？"
+    }
+  ],
+  "jobProfiles.selectProfile.title": [
+    {
+      "type": 0,
+      "value": "选择任务配置文件以运行导出"
+    }
+  ],
+  "jobProfilesTitle": [
+    {
+      "type": 0,
+      "value": "任务配置文件"
+    }
+  ],
+  "jobStatus.completed": [
+    {
+      "type": 0,
+      "value": "已完成"
+    }
+  ],
+  "jobStatus.completedWithErrors": [
+    {
+      "type": 0,
+      "value": "含错完成"
+    }
+  ],
+  "jobStatus.fail": [
+    {
+      "type": 0,
+      "value": "失败"
+    }
+  ],
+  "jobsPaneTitle": [
+    {
+      "type": 0,
+      "value": "任务"
+    }
+  ],
+  "logsPaneTitle": [
+    {
+      "type": 0,
+      "value": "日志"
+    }
+  ],
+  "mappingProfile": [
+    {
+      "type": 0,
+      "value": "映射配置文件"
+    }
+  ],
+  "mappingProfiles.create.errorCallout": [
+    {
+      "type": 0,
+      "value": "创建字段映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "出错"
+    }
+  ],
+  "mappingProfiles.create.successCallout": [
+    {
+      "type": 0,
+      "value": "字段映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "创建"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.delete.confirmationModal.message": [
+    {
+      "type": 0,
+      "value": "映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "将被删除"
+    }
+  ],
+  "mappingProfiles.delete.confirmationModal.title": [
+    {
+      "type": 0,
+      "value": "删除映射配置文件"
+    }
+  ],
+  "mappingProfiles.delete.errorCallout": [
+    {
+      "type": 0,
+      "value": "删除映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "出错"
+    }
+  ],
+  "mappingProfiles.delete.successCallout": [
+    {
+      "type": 0,
+      "value": "映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "删除"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.edit.errorCallout": [
+    {
+      "type": 0,
+      "value": "保存映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "发生错误"
+    }
+  ],
+  "mappingProfiles.edit.successCallout": [
+    {
+      "type": 0,
+      "value": "字段映射配置文件"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "type": 1,
+          "value": "name"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "保存"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.editProfile": [
+    {
+      "type": 0,
+      "value": "编辑字段映射配置文件"
+    }
+  ],
+  "mappingProfiles.newProfile": [
+    {
+      "type": 0,
+      "value": "新字段映射配置文件"
+    }
+  ],
+  "mappingProfiles.recordType.instance": [
+    {
+      "type": 0,
+      "value": "典藏实例（选定字段）"
+    }
+  ],
+  "mappingProfiles.selectProfile": [
+    {
+      "type": 0,
+      "value": "选择映射配置文件"
+    }
+  ],
+  "mappingProfiles.srs.info": [
+    {
+      "type": 0,
+      "value": "如果选择选项"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "源记录存储（整个记录） "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "并且实例没有基础SRS记录，则将根据默认映射规则生成MARC记录。"
+    }
+  ],
+  "mappingProfiles.transformations.addTransformations": [
+    {
+      "type": 0,
+      "value": "添加转换"
+    }
+  ],
+  "mappingProfiles.transformations.editTransformations": [
+    {
+      "type": 0,
+      "value": "编辑转换"
+    }
+  ],
+  "mappingProfiles.transformations.emptyMessage": [
+    {
+      "type": 0,
+      "value": "找不到转换"
+    }
+  ],
+  "mappingProfiles.transformations.fieldName": [
+    {
+      "type": 0,
+      "value": "字段名称"
+    }
+  ],
+  "mappingProfiles.transformations.invalidTransformationMessage": [
+    {
+      "type": 0,
+      "value": "请检查您的输入"
+    }
+  ],
+  "mappingProfiles.transformations.save.successCallout": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "style": null,
+          "type": 2,
+          "value": "count"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "offset": 0,
+          "options": {
+            "one": {
+              "value": [
+                {
+                  "type": 0,
+                  "value": "转换"
+                }
+              ]
+            },
+            "other": {
+              "value": [
+                {
+                  "type": 0,
+                  "value": "转换"
+                }
+              ]
+            }
+          },
+          "pluralType": "cardinal",
+          "type": 6,
+          "value": "count"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": "已成功"
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "添加"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.transformations.searchFields": [
+    {
+      "type": 0,
+      "value": "搜索字段"
+    }
+  ],
+  "mappingProfiles.transformations.searchResultsCountHeader": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "找到的字段"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "找到的字段"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "count"
+    }
+  ],
+  "mappingProfiles.transformations.selectAllFields": [
+    {
+      "type": 0,
+      "value": "选择所有字段"
+    }
+  ],
+  "mappingProfiles.transformations.selectField": [
+    {
+      "type": 0,
+      "value": "选择字段"
+    }
+  ],
+  "mappingProfiles.transformations.selectTransformations": [
+    {
+      "type": 0,
+      "value": "选择转换"
+    }
+  ],
+  "mappingProfiles.transformations.status": [
+    {
+      "type": 0,
+      "value": "转换状态"
+    }
+  ],
+  "mappingProfiles.transformations.transformation": [
+    {
+      "type": 0,
+      "value": "转换"
+    }
+  ],
+  "mappingProfiles.transformations.update.successCallout": [
+    {
+      "type": 0,
+      "value": "转换已更新"
+    }
+  ],
+  "mappingProfiles.validation.recordTypeMismatch": [
+    {
+      "type": 0,
+      "value": "所选记录类型与指定的转换不匹配"
+    }
+  ],
+  "mappingProfilesTitle": [
+    {
+      "type": 0,
+      "value": "字段映射配置文件"
+    }
+  ],
+  "marc": [
+    {
+      "type": 0,
+      "value": "MARC"
+    }
+  ],
+  "meta.title": [
+    {
+      "type": 0,
+      "value": "数据导出"
+    }
+  ],
+  "modal.fileExtensions.actionButton": [
+    {
+      "type": 0,
+      "value": "选择其他文件上传"
+    }
+  ],
+  "modal.fileExtensions.blocked.header": [
+    {
+      "type": 0,
+      "value": "无效文件"
+    }
+  ],
+  "modal.fileExtensions.blocked.message": [
+    {
+      "type": 0,
+      "value": "只能上传具有csv或cql扩展名的文件"
+    }
+  ],
+  "modal.resultsHeader": [
+    {
+      "type": 0,
+      "value": "搜索结果"
+    }
+  ],
+  "modal.totalSelected": [
+    {
+      "type": 0,
+      "value": "已选总数： "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    }
+  ],
+  "name": [
+    {
+      "type": 0,
+      "value": "名称"
+    }
+  ],
+  "noRunningJobsMessage": [
+    {
+      "type": 0,
+      "value": "没有要显示的正在运行任务"
+    }
+  ],
+  "outputFormat": [
+    {
+      "type": 0,
+      "value": "输出格式"
+    }
+  ],
+  "pause": [
+    {
+      "type": 0,
+      "value": "暂停"
+    }
+  ],
+  "permission.app.enabled": [
+    {
+      "type": 0,
+      "value": "UI：已启用数据导出模块"
+    }
+  ],
+  "permission.settings.enabled": [
+    {
+      "type": 0,
+      "value": "设置（数据导出）：设置页面显示清单"
+    }
+  ],
+  "protocol": [
+    {
+      "type": 0,
+      "value": "TCP / IP"
+    }
+  ],
+  "recordType": [
+    {
+      "type": 0,
+      "value": "记录类型"
+    }
+  ],
+  "resetAll": [
+    {
+      "type": 0,
+      "value": "全部重置"
+    }
+  ],
+  "resume": [
+    {
+      "type": 0,
+      "value": "恢复"
+    }
+  ],
+  "run": [
+    {
+      "type": 0,
+      "value": "运行"
+    }
+  ],
+  "runningJobs": [
+    {
+      "type": 0,
+      "value": "运行中"
+    }
+  ],
+  "searchAndFilter": [
+    {
+      "type": 0,
+      "value": "搜索和筛选"
+    }
+  ],
+  "searchResultsCountHeader": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "记录找到"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "记录找到"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "count"
+    }
+  ],
+  "selected": [
+    {
+      "type": 0,
+      "value": "已选择"
+    }
+  ],
+  "settings.index.paneTitle": [
+    {
+      "type": 0,
+      "value": "数据导出"
+    }
+  ],
+  "settings.profilesInfo": [
+    {
+      "type": 0,
+      "value": "数据导出配置文件增加了灵活性，并提供了一种可重复且可以在不同数据集上轻松执行的简单配置导出方式。"
+    }
+  ],
+  "status": [
+    {
+      "type": 0,
+      "value": "状态"
+    }
+  ],
+  "summary": [
+    {
+      "type": 0,
+      "value": "摘要"
+    }
+  ],
+  "today": [
+    {
+      "type": 0,
+      "value": "今天"
+    }
+  ],
+  "total": [
+    {
+      "type": 0,
+      "value": "总计"
+    }
+  ],
+  "transformations": [
+    {
+      "type": 0,
+      "value": "转换"
+    }
+  ],
+  "triggeredBy": [
+    {
+      "type": 0,
+      "value": "由"
+    },
+    {
+      "type": 1,
+      "value": "userName"
+    },
+    {
+      "type": 0,
+      "value": "触发"
+    }
+  ],
+  "unselected": [
+    {
+      "type": 0,
+      "value": "未选中"
+    }
+  ],
+  "uploaderActiveTitle": [
+    {
+      "type": 0,
+      "value": "放开开始导入"
+    }
+  ],
+  "uploaderBtnText": [
+    {
+      "type": 0,
+      "value": "或选择文件"
+    }
+  ],
+  "uploaderSubTitle": [
+    {
+      "type": 0,
+      "value": "选择具有记录ID或CQL查询的文件"
+    }
+  ],
+  "uploaderTitle": [
+    {
+      "type": 0,
+      "value": "拖放"
+    }
+  ],
+  "uploading": [
+    {
+      "type": 0,
+      "value": "上传中"
+    }
+  ],
+  "viewAllLogs": [
+    {
+      "type": 0,
+      "value": "查看全部"
+    }
+  ]
+}

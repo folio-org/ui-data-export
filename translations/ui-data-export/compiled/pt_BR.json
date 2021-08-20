@@ -1,0 +1,2277 @@
+{
+  "beganRunning": [
+    {
+      "type": 0,
+      "value": "Começou "
+    },
+    {
+      "type": 1,
+      "value": "time"
+    }
+  ],
+  "cancel": [
+    {
+      "type": 0,
+      "value": "Cancelar"
+    }
+  ],
+  "communicationProblem": [
+    {
+      "type": 0,
+      "value": "Problema de comunicação do servidor. Por favor, tente novamente"
+    }
+  ],
+  "copyOf": [
+    {
+      "type": 0,
+      "value": "Cópia de "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "delete": [
+    {
+      "type": 0,
+      "value": "Excluir"
+    }
+  ],
+  "description": [
+    {
+      "type": 0,
+      "value": "Descrição"
+    }
+  ],
+  "error.binaryFile.notGenerated": [
+    {
+      "type": 0,
+      "value": "Nada a exportar: nenhum arquivo binário gerado"
+    }
+  ],
+  "error.callingUri": [
+    {
+      "type": 0,
+      "value": "Exceção ao chamar "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": ": mensagem: "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.configurations.queryConfigs": [
+    {
+      "type": 0,
+      "value": "Erro ao consultar as configurações a partir da configuração mod pela consulta: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.configurations.queryHost": [
+    {
+      "type": 0,
+      "value": "Nenhuma configuração em mod-config encontrada para o host. Não haverá links para registros com falha para este job."
+    }
+  ],
+  "error.configurations.queryRules": [
+    {
+      "type": 0,
+      "value": "Erro ao consultar as regras da configuração do mod: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.fileDefinition.fileAlreadyUploaded": [
+    {
+      "type": 0,
+      "value": "Arquivo já carregado para esta Definição de Arquivo"
+    }
+  ],
+  "error.fileDefinition.invalid": [
+    {
+      "type": 0,
+      "value": "Definição de arquivo de exportação inválido"
+    }
+  ],
+  "error.fileDefinition.invalidWithId": [
+    {
+      "type": 0,
+      "value": "Definição de arquivo de exportação inválido com id: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.fileDefinition.notFound": [
+    {
+      "type": 0,
+      "value": "Definição de arquivo não encontrada"
+    }
+  ],
+  "error.genericError": [
+    {
+      "type": 0,
+      "value": "Erro genérico"
+    }
+  ],
+  "error.invalidUuidFormat": [
+    {
+      "type": 0,
+      "value": "Formato UUID inválido: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.inventory.gettingHoldingsByInstanceId": [
+    {
+      "type": 0,
+      "value": "Erro ao obter holdings por id de instância: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": " , mensagem: "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.inventory.gettingInstancesByIds": [
+    {
+      "type": 0,
+      "value": "Erro ao obter instâncias pelo IDs: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.inventory.gettingItemsByHoldingsId": [
+    {
+      "type": 0,
+      "value": "Erro ao obter itens pelo Holding ID "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.inventory.gettingReferenceData": [
+    {
+      "type": 0,
+      "value": "Erro ao obter dados de referência do inventário durante o processo de exportação, pelo valor "
+    },
+    {
+      "type": 1,
+      "value": "valor1"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "error.jobExecution.failToUpdateJob": [
+    {
+      "type": 0,
+      "value": "Falha na preparação da execução do trabalho para exportação"
+    }
+  ],
+  "error.mapping.dateParse": [
+    {
+      "type": 0,
+      "value": "Erro ocorrido durante a análise da data no processo de mapeamento"
+    }
+  ],
+  "error.mapping.fieldsMappingInventory": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro durante o mapeamento de campos para registro de inventário"
+    }
+  ],
+  "error.mapping.fieldsMappingInventoryWithReason": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro durante o mapeamento de campos para registro bibliográfico: motivo: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": " , causa: "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.mapping.fieldsMappingSrs": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro durante o mapeamento de campos para registro SRS com id: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": ", razão: "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    },
+    {
+      "type": 0,
+      "value": ", causa: "
+    },
+    {
+      "type": 1,
+      "value": "valor3"
+    },
+    {
+      "type": 0,
+      "value": ", motivo: "
+    },
+    {
+      "type": 1,
+      "value": "valor2"
+    },
+    {
+      "type": 0,
+      "value": ", causa: "
+    },
+    {
+      "type": 1,
+      "value": "value3"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "error.mapping.undefined": [
+    {
+      "type": 0,
+      "value": "Erro desconhecido durante o processo de mapeamento"
+    }
+  ],
+  "error.mappingProfile.defaultNotFound": [
+    {
+      "type": 0,
+      "value": "Perfil de mapeamento padrão não encontrado"
+    }
+  ],
+  "error.mappingProfile.invalidSrsRecordTypeCombination": [
+    {
+      "type": 0,
+      "value": "O tipo de registro SRS não pode ser combinado com o tipo de registro INSTANCE durante o processo de exportação"
+    }
+  ],
+  "error.mappingProfile.missing": [
+    {
+      "type": 0,
+      "value": "Falta o perfil de mapeamento durante o processo de exportação"
+    }
+  ],
+  "error.messagePlaceholder": [
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.nothingToExport": [
+    {
+      "type": 0,
+      "value": "Nenhum registro exportado: nada para exportar"
+    }
+  ],
+  "error.readingFromInputFile": [
+    {
+      "type": 0,
+      "value": "Erro durante a leitura do arquivo de entrada com uuids ou arquivo está vazio"
+    }
+  ],
+  "error.s3.bucketIsNotProvided": [
+    {
+      "type": 0,
+      "value": "Bucket S3 não foi fornecido"
+    }
+  ],
+  "error.s3.bucketNameNotFound": [
+    {
+      "type": 0,
+      "value": "O nome do bucket S3 não foi encontrado nas Propriedades do Sistema"
+    }
+  ],
+  "error.savingRecordToFile": [
+    {
+      "type": 0,
+      "value": "Erro ao salvar o registro no arquivo"
+    }
+  ],
+  "error.someRecordsFailed": [
+    {
+      "type": 0,
+      "value": "A exportação foi concluída com erros: alguns registros falharam ao exportar: número de registros com falha: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "error.uploadedFile.invalidExtension": [
+    {
+      "type": 0,
+      "value": "A extensão do nome do arquivo não corresponde ao formato csv"
+    }
+  ],
+  "error.user.gettingById": [
+    {
+      "type": 0,
+      "value": "Erro ao obter usuário com id = "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    },
+    {
+      "type": 0,
+      "value": ", mensagem: "
+    },
+    {
+      "type": 1,
+      "value": "value2"
+    }
+  ],
+  "error.user.notFound": [
+    {
+      "type": 0,
+      "value": "Usuário não encontrado"
+    }
+  ],
+  "error.uuidsNotFound": [
+    {
+      "type": 0,
+      "value": "UUIDs não encontrados no SRS ou no app Acervo: "
+    },
+    {
+      "type": 1,
+      "value": "value1"
+    }
+  ],
+  "errorLogs.inventoryRecordLink": [
+    {
+      "type": 0,
+      "value": "\"Link de registro do acervo\": "
+    }
+  ],
+  "errorLogs.record.HRID": [
+    {
+      "type": 0,
+      "value": "\"HRID do "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "errorLogs.record.Title": [
+    {
+      "type": 0,
+      "value": "\"Título do "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "errorLogs.record.UUID": [
+    {
+      "type": 0,
+      "value": "\"UUID do "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "errorLogs.recordAssociated.HRID": [
+    {
+      "type": 0,
+      "value": "\"HRIF associado para "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "errorLogs.recordAssociated.Title": [
+    {
+      "type": 0,
+      "value": "\"Título associado para "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "errorLogs.recordAssociated.UUID": [
+    {
+      "type": 0,
+      "value": "\"UUID associado para "
+    },
+    {
+      "type": 1,
+      "value": "recordType"
+    },
+    {
+      "type": 0,
+      "value": "\": \""
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "\""
+    }
+  ],
+  "failed": [
+    {
+      "type": 0,
+      "value": "Falhou"
+    }
+  ],
+  "format": [
+    {
+      "type": 0,
+      "value": "Formato"
+    }
+  ],
+  "holdings.callNumber": [
+    {
+      "type": 0,
+      "value": "Holdings - Número de chamada - Número de chamada"
+    }
+  ],
+  "holdings.callNumberPrefix": [
+    {
+      "type": 0,
+      "value": "Holdings - Número de chamada - Prefixo de número de chamada"
+    }
+  ],
+  "holdings.callNumberSuffix": [
+    {
+      "type": 0,
+      "value": "Holdings - Número da chamada - Sufixo do número da chamada"
+    }
+  ],
+  "holdings.callNumberType": [
+    {
+      "type": 0,
+      "value": "Holdings - Número da chamada - Tipo de número da chamada"
+    }
+  ],
+  "holdings.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Texto do link"
+    }
+  ],
+  "holdings.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - Link Text"
+    }
+  ],
+  "holdings.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Materiais especificados"
+    }
+  ],
+  "holdings.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - Materiais especificados"
+    }
+  ],
+  "holdings.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Nota pública de URL"
+    }
+  ],
+  "holdings.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - Nota pública do URL"
+    }
+  ],
+  "holdings.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - URI"
+    }
+  ],
+  "holdings.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "Holdings - Acesso eletrônico - URI"
+    }
+  ],
+  "holdings.holdingNoteTypeId": [
+    {
+      "type": 0,
+      "value": "Holdings - Notas - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "holdings.holdingNoteTypeId.staffOnly": [
+    {
+      "type": 0,
+      "value": "Holdings - Notas - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Somente equipe"
+    }
+  ],
+  "holdings.holdingsStatements.note": [
+    {
+      "type": 0,
+      "value": "Holdings - Nota de declaração de holdings - público"
+    }
+  ],
+  "holdings.holdingsStatements.staffNote": [
+    {
+      "type": 0,
+      "value": "Holdings - Nota de declaração de holdings - equipe"
+    }
+  ],
+  "holdings.holdingsStatements.statement": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.note": [
+    {
+      "type": 0,
+      "value": "Holdings - Demonstração de holdings para notas de índices - público"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.staffNote": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings para nota de índices - equipe"
+    }
+  ],
+  "holdings.holdingsStatementsForIndexes.statement": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings para índices"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.note": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings para nota de suplementos - público"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.staffNote": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings para nota de suplementos - equipe"
+    }
+  ],
+  "holdings.holdingsStatementsForSupplements.statement": [
+    {
+      "type": 0,
+      "value": "Holdings - Declaração de holdings para suplementos"
+    }
+  ],
+  "holdings.hrid": [
+    {
+      "type": 0,
+      "value": "Holdings - HRID"
+    }
+  ],
+  "holdings.id": [
+    {
+      "type": 0,
+      "value": "Holdings - ID"
+    }
+  ],
+  "holdings.instanceId": [
+    {
+      "type": 0,
+      "value": "Holdings - Acervo - ID"
+    }
+  ],
+  "holdings.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "Holdings - Criado por"
+    }
+  ],
+  "holdings.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "Holdings - Data de criação"
+    }
+  ],
+  "holdings.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "Holdings - Atualizado por"
+    }
+  ],
+  "holdings.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "Holdings - Data de atualização"
+    }
+  ],
+  "holdings.permanentLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Campus - Código"
+    }
+  ],
+  "holdings.permanentLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Campus"
+    }
+  ],
+  "holdings.permanentLocation.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Código"
+    }
+  ],
+  "holdings.permanentLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Instituição - Código"
+    }
+  ],
+  "holdings.permanentLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Instituição"
+    }
+  ],
+  "holdings.permanentLocation.library.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Biblioteca - Código"
+    }
+  ],
+  "holdings.permanentLocation.library.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente - Biblioteca"
+    }
+  ],
+  "holdings.permanentLocation.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização permanente"
+    }
+  ],
+  "holdings.temporaryLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Campus - Código"
+    }
+  ],
+  "holdings.temporaryLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Campus"
+    }
+  ],
+  "holdings.temporaryLocation.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Código"
+    }
+  ],
+  "holdings.temporaryLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Instituição - Código"
+    }
+  ],
+  "holdings.temporaryLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Instituição"
+    }
+  ],
+  "holdings.temporaryLocation.library.code": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Biblioteca - Código"
+    }
+  ],
+  "holdings.temporaryLocation.library.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária - Biblioteca"
+    }
+  ],
+  "holdings.temporaryLocation.name": [
+    {
+      "type": 0,
+      "value": "Holdings - Localização temporária"
+    }
+  ],
+  "inProgressStatus": [
+    {
+      "type": 0,
+      "value": "Em andamento"
+    }
+  ],
+  "instance.alternativeTitleTypeName": [
+    {
+      "type": 0,
+      "value": "Acervo - Título alternativo - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.contributorName": [
+    {
+      "type": 0,
+      "value": "Acervo - Contribuidor - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.contributorName.primary": [
+    {
+      "type": 0,
+      "value": "Acervo - Contribuidor - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - primário"
+    }
+  ],
+  "instance.editions": [
+    {
+      "type": 0,
+      "value": "Acervo - Edição"
+    }
+  ],
+  "instance.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Texto do link"
+    }
+  ],
+  "instance.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - Texto do link"
+    }
+  ],
+  "instance.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Materiais especificados"
+    }
+  ],
+  "instance.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - Materiais especificados"
+    }
+  ],
+  "instance.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Nota pública do URL"
+    }
+  ],
+  "instance.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - Nota pública do URL"
+    }
+  ],
+  "instance.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - URI"
+    }
+  ],
+  "instance.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "Acervo - Acesso eletrônico - URI"
+    }
+  ],
+  "instance.hrid": [
+    {
+      "type": 0,
+      "value": "Acervo - HRID"
+    }
+  ],
+  "instance.id": [
+    {
+      "type": 0,
+      "value": "Acervo - ID"
+    }
+  ],
+  "instance.identifiers": [
+    {
+      "type": 0,
+      "value": "Acervo - Identificador - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.instanceTypeId": [
+    {
+      "type": 0,
+      "value": "Acervo - Tipo de recurso - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.languages": [
+    {
+      "type": 0,
+      "value": "Acervo - Idioma"
+    }
+  ],
+  "instance.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "Acervo - Criado por"
+    }
+  ],
+  "instance.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "Acervo - Data de criação"
+    }
+  ],
+  "instance.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "Acervo - Atualizado por"
+    }
+  ],
+  "instance.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "Acervo - Data de atualização"
+    }
+  ],
+  "instance.modeOfIssuanceId": [
+    {
+      "type": 0,
+      "value": "Acervo - Modo de emissão - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "instance.source": [
+    {
+      "type": 0,
+      "value": "Acervo - Fonte"
+    }
+  ],
+  "instance.subjects": [
+    {
+      "type": 0,
+      "value": "Acervo - Assuntos"
+    }
+  ],
+  "instance.title": [
+    {
+      "type": 0,
+      "value": "Acervo - Título do recurso"
+    }
+  ],
+  "item.barcode": [
+    {
+      "type": 0,
+      "value": "Item - Código de Barras"
+    }
+  ],
+  "item.callNumber": [
+    {
+      "type": 0,
+      "value": "Item - número de chamada efetivo"
+    }
+  ],
+  "item.callNumberPrefix": [
+    {
+      "type": 0,
+      "value": "Item - Número de chamada efetivo - Prefixo"
+    }
+  ],
+  "item.callNumberSuffix": [
+    {
+      "type": 0,
+      "value": "Item - Número de chamada efetivo - Sufixo"
+    }
+  ],
+  "item.callNumberType": [
+    {
+      "type": 0,
+      "value": "Item - Tipo de número de chamada efetivo"
+    }
+  ],
+  "item.chronology": [
+    {
+      "type": 0,
+      "value": "Item - Cronologia"
+    }
+  ],
+  "item.copyNumber": [
+    {
+      "type": 0,
+      "value": "Item - Número do exemplar"
+    }
+  ],
+  "item.descriptionOfPieces": [
+    {
+      "type": 0,
+      "value": "Item - Descrição das peças"
+    }
+  ],
+  "item.effectiveLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Campus - Código"
+    }
+  ],
+  "item.effectiveLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Campus"
+    }
+  ],
+  "item.effectiveLocation.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Código"
+    }
+  ],
+  "item.effectiveLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Instituição - Código"
+    }
+  ],
+  "item.effectiveLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Instituição"
+    }
+  ],
+  "item.effectiveLocation.library.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Biblioteca - Código"
+    }
+  ],
+  "item.effectiveLocation.library.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva - Biblioteca"
+    }
+  ],
+  "item.effectiveLocation.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização efetiva"
+    }
+  ],
+  "item.electronic.access.linkText": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Texto do link"
+    }
+  ],
+  "item.electronic.access.linkText.default": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - Texto do link"
+    }
+  ],
+  "item.electronic.access.materialsSpecification": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Materiais especificados"
+    }
+  ],
+  "item.electronic.access.materialsSpecification.default": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - Materiais especificados"
+    }
+  ],
+  "item.electronic.access.publicNote": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Nota pública do URL"
+    }
+  ],
+  "item.electronic.access.publicNote.default": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - Nota pública do URL"
+    }
+  ],
+  "item.electronic.access.uri": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - URI"
+    }
+  ],
+  "item.electronic.access.uri.default": [
+    {
+      "type": 0,
+      "value": "Item - Acesso eletrônico - URI"
+    }
+  ],
+  "item.enumeration": [
+    {
+      "type": 0,
+      "value": "Item - Enumeração"
+    }
+  ],
+  "item.holdingsRecordId": [
+    {
+      "type": 0,
+      "value": "Item - ID de holdings"
+    }
+  ],
+  "item.hrid": [
+    {
+      "type": 0,
+      "value": "Item - HRID"
+    }
+  ],
+  "item.id": [
+    {
+      "type": 0,
+      "value": "Item - ID"
+    }
+  ],
+  "item.itemNoteTypeId": [
+    {
+      "type": 0,
+      "value": "Item - Notas - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    }
+  ],
+  "item.itemNoteTypeId.staffOnly": [
+    {
+      "type": 0,
+      "value": "Item - Notas - "
+    },
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": " - Apenas equipe"
+    }
+  ],
+  "item.materialTypeId": [
+    {
+      "type": 0,
+      "value": "Item - Tipo de material"
+    }
+  ],
+  "item.metadata.createdByUserId": [
+    {
+      "type": 0,
+      "value": "Item - Criado por"
+    }
+  ],
+  "item.metadata.createdDate": [
+    {
+      "type": 0,
+      "value": "Item - Data de criação"
+    }
+  ],
+  "item.metadata.updatedByUserId": [
+    {
+      "type": 0,
+      "value": "Item - Atualizado por"
+    }
+  ],
+  "item.metadata.updatedDate": [
+    {
+      "type": 0,
+      "value": "Item - Data de atualização"
+    }
+  ],
+  "item.numberOfPieces": [
+    {
+      "type": 0,
+      "value": "Item - Número de peças"
+    }
+  ],
+  "item.permanentLoanTypeId": [
+    {
+      "type": 0,
+      "value": "Item - Tipo de empréstimo permanente"
+    }
+  ],
+  "item.permanentLocation.campus.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Campus - Código"
+    }
+  ],
+  "item.permanentLocation.campus.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Campus"
+    }
+  ],
+  "item.permanentLocation.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Código"
+    }
+  ],
+  "item.permanentLocation.institution.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Instituição - Código"
+    }
+  ],
+  "item.permanentLocation.institution.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Instituição"
+    }
+  ],
+  "item.permanentLocation.library.code": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Biblioteca - Código"
+    }
+  ],
+  "item.permanentLocation.library.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente - Biblioteca"
+    }
+  ],
+  "item.permanentLocation.name": [
+    {
+      "type": 0,
+      "value": "Item - Localização permanente"
+    }
+  ],
+  "item.status": [
+    {
+      "type": 0,
+      "value": "Item - Status"
+    }
+  ],
+  "item.volume": [
+    {
+      "type": 0,
+      "value": "Item - Volume"
+    }
+  ],
+  "item.yearCaption": [
+    {
+      "type": 0,
+      "value": "Item - Ano, legenda"
+    }
+  ],
+  "jobProfileLabel": [
+    {
+      "type": 0,
+      "value": "Perfil do job: "
+    },
+    {
+      "type": 1,
+      "value": "jobProfile"
+    }
+  ],
+  "jobProfiles.create.errorCallout": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro ao criar o perfil do job "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "jobProfiles.create.successCallout": [
+    {
+      "type": 0,
+      "value": "O perfil do job "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " foi "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "criado com sucesso"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "jobProfiles.delete.confirmationModal.message": [
+    {
+      "type": 0,
+      "value": "O perfil do job "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " será excluído"
+    }
+  ],
+  "jobProfiles.delete.confirmationModal.title": [
+    {
+      "type": 0,
+      "value": "Excluir perfil de job"
+    }
+  ],
+  "jobProfiles.delete.errorCallout": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro ao excluir o perfil do job "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "jobProfiles.delete.successCallout": [
+    {
+      "type": 0,
+      "value": "O perfil do job "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " foi "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "excluído"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " com sucesso"
+    }
+  ],
+  "jobProfiles.newProfile": [
+    {
+      "type": 0,
+      "value": "Novo perfil de job"
+    }
+  ],
+  "jobProfiles.selectProfile.modal.message": [
+    {
+      "type": 0,
+      "value": "Você selecionou "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "profile"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " para executar a exportação"
+    }
+  ],
+  "jobProfiles.selectProfile.modal.title": [
+    {
+      "type": 0,
+      "value": "Tem certeza de que deseja executar este job?"
+    }
+  ],
+  "jobProfiles.selectProfile.title": [
+    {
+      "type": 0,
+      "value": "Selecione o perfil do job para executar a exportação"
+    }
+  ],
+  "jobProfilesTitle": [
+    {
+      "type": 0,
+      "value": "Perfis de job"
+    }
+  ],
+  "jobStatus.completed": [
+    {
+      "type": 0,
+      "value": "Concluído"
+    }
+  ],
+  "jobStatus.completedWithErrors": [
+    {
+      "type": 0,
+      "value": "Concluído com erros"
+    }
+  ],
+  "jobStatus.fail": [
+    {
+      "type": 0,
+      "value": "Falhou"
+    }
+  ],
+  "jobsPaneTitle": [
+    {
+      "type": 0,
+      "value": "Jobs"
+    }
+  ],
+  "logsPaneTitle": [
+    {
+      "type": 0,
+      "value": "Logs"
+    }
+  ],
+  "mappingProfile": [
+    {
+      "type": 0,
+      "value": "Perfil de mapeamento"
+    }
+  ],
+  "mappingProfiles.create.errorCallout": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro ao criar o perfil de mapeamento de campo "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.create.successCallout": [
+    {
+      "type": 0,
+      "value": "O perfil de mapeamento de campo "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " foi "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "criado com sucesso"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.delete.confirmationModal.message": [
+    {
+      "type": 0,
+      "value": "O perfil de mapeamento "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " será excluído"
+    }
+  ],
+  "mappingProfiles.delete.confirmationModal.title": [
+    {
+      "type": 0,
+      "value": "Excluir perfil de mapeamento"
+    }
+  ],
+  "mappingProfiles.delete.errorCallout": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro ao excluir o perfil de mapeamento "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.delete.successCallout": [
+    {
+      "type": 0,
+      "value": "O perfil de mapeamento "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " foi "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "excluído"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " com sucesso"
+    }
+  ],
+  "mappingProfiles.edit.errorCallout": [
+    {
+      "type": 0,
+      "value": "Ocorreu um erro ao salvar o perfil de mapeamento "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.edit.successCallout": [
+    {
+      "type": 0,
+      "value": "O perfil de mapeamento de campo "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "name"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " foi "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "salvo com sucesso"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    }
+  ],
+  "mappingProfiles.editProfile": [
+    {
+      "type": 0,
+      "value": "Editar perfil de mapeamento de campo"
+    }
+  ],
+  "mappingProfiles.newProfile": [
+    {
+      "type": 0,
+      "value": "Novo perfil de mapeamento de campo"
+    }
+  ],
+  "mappingProfiles.recordType.instance": [
+    {
+      "type": 0,
+      "value": "Instância de acervo (campos selecionados)"
+    }
+  ],
+  "mappingProfiles.selectProfile": [
+    {
+      "type": 0,
+      "value": "Selecione o perfil de mapeamento"
+    }
+  ],
+  "mappingProfiles.srs.info": [
+    {
+      "type": 0,
+      "value": "Se a opção "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Armazenamento de registro de origem (registro inteiro)"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " for selecionada e a instância não tiver um registro SRS subjacente, um registro MARC será gerado de acordo com as regras de mapeamento padrão."
+    }
+  ],
+  "mappingProfiles.transformations.addTransformations": [
+    {
+      "type": 0,
+      "value": "Adicionar transformações"
+    }
+  ],
+  "mappingProfiles.transformations.editTransformations": [
+    {
+      "type": 0,
+      "value": "Editar transformações"
+    }
+  ],
+  "mappingProfiles.transformations.emptyMessage": [
+    {
+      "type": 0,
+      "value": "Nenhuma transformação encontrada"
+    }
+  ],
+  "mappingProfiles.transformations.fieldName": [
+    {
+      "type": 0,
+      "value": "Nome do campo"
+    }
+  ],
+  "mappingProfiles.transformations.invalidTransformationMessage": [
+    {
+      "type": 0,
+      "value": "Por favor, verifique sua entrada"
+    }
+  ],
+  "mappingProfiles.transformations.save.successCallout": [
+    {
+      "children": [
+        {
+          "style": null,
+          "type": 2,
+          "value": "count"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": " "
+        },
+        {
+          "offset": 0,
+          "options": {
+            "one": {
+              "value": [
+                {
+                  "type": 0,
+                  "value": "transformação foi"
+                }
+              ]
+            },
+            "other": {
+              "value": [
+                {
+                  "type": 0,
+                  "value": "transformações foram"
+                }
+              ]
+            }
+          },
+          "pluralType": "cardinal",
+          "type": 6,
+          "value": "count"
+        },
+        {
+          "type": 0,
+          "value": " "
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "adicionadas"
+        }
+      ],
+      "type": 8,
+      "value": "b"
+    },
+    {
+      "type": 0,
+      "value": " com sucesso"
+    }
+  ],
+  "mappingProfiles.transformations.searchFields": [
+    {
+      "type": 0,
+      "value": "Campos de pesquisa"
+    }
+  ],
+  "mappingProfiles.transformations.searchResultsCountHeader": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "campo encontrado"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "campos encontrados"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "count"
+    }
+  ],
+  "mappingProfiles.transformations.selectAllFields": [
+    {
+      "type": 0,
+      "value": "Selecionar todos os campos"
+    }
+  ],
+  "mappingProfiles.transformations.selectField": [
+    {
+      "type": 0,
+      "value": "Selecionar campo"
+    }
+  ],
+  "mappingProfiles.transformations.selectTransformations": [
+    {
+      "type": 0,
+      "value": "Selecionar transformações"
+    }
+  ],
+  "mappingProfiles.transformations.status": [
+    {
+      "type": 0,
+      "value": "Status de transformação"
+    }
+  ],
+  "mappingProfiles.transformations.transformation": [
+    {
+      "type": 0,
+      "value": "Transformação"
+    }
+  ],
+  "mappingProfiles.transformations.update.successCallout": [
+    {
+      "type": 0,
+      "value": "As transformações foram atualizadas"
+    }
+  ],
+  "mappingProfiles.validation.recordTypeMismatch": [
+    {
+      "type": 0,
+      "value": "Os tipos de registro selecionados não correspondem às transformações especificadas"
+    }
+  ],
+  "mappingProfilesTitle": [
+    {
+      "type": 0,
+      "value": "Perfis de mapeamento de campo"
+    }
+  ],
+  "marc": [
+    {
+      "type": 0,
+      "value": "MARC"
+    }
+  ],
+  "meta.title": [
+    {
+      "type": 0,
+      "value": "Exportação de dados"
+    }
+  ],
+  "modal.fileExtensions.actionButton": [
+    {
+      "type": 0,
+      "value": "Escolha outro arquivo para carregar"
+    }
+  ],
+  "modal.fileExtensions.blocked.header": [
+    {
+      "type": 0,
+      "value": "Arquivo inválido"
+    }
+  ],
+  "modal.fileExtensions.blocked.message": [
+    {
+      "type": 0,
+      "value": "Somente arquivos com extensão .csv ou .cql podem ser carregados"
+    }
+  ],
+  "modal.resultsHeader": [
+    {
+      "type": 0,
+      "value": "Resultados da pesquisa"
+    }
+  ],
+  "modal.totalSelected": [
+    {
+      "type": 0,
+      "value": "Total selecionado: "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    }
+  ],
+  "name": [
+    {
+      "type": 0,
+      "value": "Nome"
+    }
+  ],
+  "noRunningJobsMessage": [
+    {
+      "type": 0,
+      "value": "Nenhum job em execução para exibir"
+    }
+  ],
+  "outputFormat": [
+    {
+      "type": 0,
+      "value": "Formato de saída"
+    }
+  ],
+  "pause": [
+    {
+      "type": 0,
+      "value": "Pausa"
+    }
+  ],
+  "permission.app.enabled": [
+    {
+      "type": 0,
+      "value": "UI: O módulo de exportação de dados está ativado"
+    }
+  ],
+  "permission.settings.enabled": [
+    {
+      "type": 0,
+      "value": "Configurações (exportação de dados): exibe a lista de páginas de configurações"
+    }
+  ],
+  "protocol": [
+    {
+      "type": 0,
+      "value": "TCP/IP"
+    }
+  ],
+  "recordType": [
+    {
+      "type": 0,
+      "value": "Tipo de registro"
+    }
+  ],
+  "resetAll": [
+    {
+      "type": 0,
+      "value": "Retirar filtros"
+    }
+  ],
+  "resume": [
+    {
+      "type": 0,
+      "value": "Continuar"
+    }
+  ],
+  "run": [
+    {
+      "type": 0,
+      "value": "Executar"
+    }
+  ],
+  "runningJobs": [
+    {
+      "type": 0,
+      "value": "Executando"
+    }
+  ],
+  "searchAndFilter": [
+    {
+      "type": 0,
+      "value": "Pesquisar & filtrar"
+    }
+  ],
+  "searchResultsCountHeader": [
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " "
+    },
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "registro encontrado"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "registros encontrados"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "count"
+    }
+  ],
+  "selected": [
+    {
+      "type": 0,
+      "value": "Selecionado"
+    }
+  ],
+  "settings.index.paneTitle": [
+    {
+      "type": 0,
+      "value": "Exportação de dados"
+    }
+  ],
+  "settings.profilesInfo": [
+    {
+      "type": 0,
+      "value": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados."
+    }
+  ],
+  "status": [
+    {
+      "type": 0,
+      "value": "Status"
+    }
+  ],
+  "summary": [
+    {
+      "type": 0,
+      "value": "Resumo"
+    }
+  ],
+  "today": [
+    {
+      "type": 0,
+      "value": "Hoje"
+    }
+  ],
+  "total": [
+    {
+      "type": 0,
+      "value": "Total"
+    }
+  ],
+  "transformations": [
+    {
+      "type": 0,
+      "value": "Transformações"
+    }
+  ],
+  "triggeredBy": [
+    {
+      "type": 0,
+      "value": "Disparado por "
+    },
+    {
+      "type": 1,
+      "value": "userName"
+    }
+  ],
+  "unselected": [
+    {
+      "type": 0,
+      "value": "Não selecionado"
+    }
+  ],
+  "uploaderActiveTitle": [
+    {
+      "type": 0,
+      "value": "Solte para iniciar a exportação"
+    }
+  ],
+  "uploaderBtnText": [
+    {
+      "type": 0,
+      "value": "ou escolha o arquivo"
+    }
+  ],
+  "uploaderSubTitle": [
+    {
+      "type": 0,
+      "value": "Selecione um arquivo com IDs de registros ou consultas CQL"
+    }
+  ],
+  "uploaderTitle": [
+    {
+      "type": 0,
+      "value": "Arrastar e soltar"
+    }
+  ],
+  "uploading": [
+    {
+      "type": 0,
+      "value": "Carregando"
+    }
+  ],
+  "viewAllLogs": [
+    {
+      "type": 0,
+      "value": "Ver todos"
+    }
+  ]
+}
