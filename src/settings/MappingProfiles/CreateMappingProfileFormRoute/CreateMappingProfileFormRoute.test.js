@@ -19,6 +19,7 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
+import { recordTypesHoldings, saveAndCloseBtn } from '../test/setup';
 
 function CreateMappingProfileFormRouteContainer({
   allTransformations = [],
@@ -76,8 +77,8 @@ describe('CreateMappingProfileFormRoute', () => {
       const name = 'New mapping profile';
 
       await userEvent.type(screen.getByLabelText('Name*'), name);
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+      userEvent.click(recordTypesHoldings());
+      userEvent.click(saveAndCloseBtn());
 
       expect(onSubmitMock).toHaveBeenCalledWith({
         name,
@@ -95,8 +96,8 @@ describe('CreateMappingProfileFormRoute', () => {
     });
 
     it('should display validation error when name field is empty', () => {
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+      userEvent.click(recordTypesHoldings());
+      userEvent.click(saveAndCloseBtn());
 
       expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'Please enter a value')).toBeVisible();
       expect(screen.getByLabelText('Name*')).not.toBeValid();
@@ -107,8 +108,8 @@ describe('CreateMappingProfileFormRoute', () => {
       onSubmitMock.mockImplementationOnce(() => Promise.reject());
 
       await userEvent.type(screen.getByLabelText('Name*'), 'Name');
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+      userEvent.click(recordTypesHoldings());
+      userEvent.click(saveAndCloseBtn());
 
       await waitFor(() => {
         expect(sendCalloutMock).toBeCalledWith(

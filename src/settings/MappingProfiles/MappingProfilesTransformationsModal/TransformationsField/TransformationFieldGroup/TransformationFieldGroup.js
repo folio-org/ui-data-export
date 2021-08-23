@@ -8,7 +8,7 @@ import {
   TextField,
   Popover,
   IconButton,
-} from '@folio/stripes-components';
+} from '@folio/stripes/components';
 
 import { checkTransformationValidity } from '../../validateTransformations';
 
