@@ -10,7 +10,7 @@ import {
   ProfilesLabel,
   SettingsLabel,
 } from '@folio/stripes-data-transfer-components';
-import { Callout } from '@folio/stripes-components';
+import { Callout } from '@folio/stripes/components';
 
 import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
 import { JobProfilesContainer } from '../JobProfiles/JobProfilesContainer';

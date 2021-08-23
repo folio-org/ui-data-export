@@ -20,6 +20,7 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
+import { recordTypesHoldings } from '../test/setup';
 
 function CreateMappingProfileFormRouteContainer({
   allTransformations = [],
@@ -78,7 +79,7 @@ describe('CreateMappingProfileFormRoute', () => {
       const submitFormButton = screen.getByRole('button', { name: 'Save & close' });
 
       userEvent.type(screen.getByLabelText('Name*'), name);
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
+      userEvent.click(recordTypesHoldings());
       userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
 
       const modal = screen.getByRole('document');
@@ -102,8 +103,8 @@ describe('CreateMappingProfileFormRoute', () => {
     });
 
     it('should display validation error when name field is empty', () => {
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Save & close' }));
+      userEvent.click(recordTypesHoldings());
+      userEvent.click(saveAndCloseBtn());
 
       expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'Please enter a value')).toBeVisible();
       expect(screen.getByLabelText('Name*')).not.toBeValid();
