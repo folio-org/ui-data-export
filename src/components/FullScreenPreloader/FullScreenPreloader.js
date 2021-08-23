@@ -32,6 +32,6 @@ export function FullScreenPreloader({
 
 FullScreenPreloader.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   contentLabel: PropTypes.node,
 };
