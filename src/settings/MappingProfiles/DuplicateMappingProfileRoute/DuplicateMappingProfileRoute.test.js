@@ -3,12 +3,10 @@ import { useIntl } from 'react-intl';
 import { noop } from 'lodash';
 import {
   screen,
-  getAllByRole,
   getByText,
   getByRole,
   waitForElementToBeRemoved,
   waitFor,
-  within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
