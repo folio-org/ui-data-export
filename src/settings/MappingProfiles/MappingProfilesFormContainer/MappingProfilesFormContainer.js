@@ -28,8 +28,10 @@ import { RECORD_TYPES_DISABLING_MAPPING } from '../../../utils';
 import { omitRawTransformations } from './processRawTransformations';
 
 const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecordTypes = []) => {
-  if (isEmpty(selectedTransformations)) {
-    return true;
+  const isOnlySrsSelected = selectedRecordTypes.length === 1 && selectedRecordTypes[0] === FOLIO_RECORD_TYPES.SRS.type;
+
+  if (isEmpty(selectedTransformations) && !isOnlySrsSelected) {
+    return false;
   }
 
   const recordTypesInTransformations = uniq(selectedTransformations.map(({ recordType }) => recordType));
@@ -73,6 +75,34 @@ export const MappingProfilesFormContainer = props => {
     return disabledFields;
   }, [initialValues]);
 
+  const onFromSubmit = values => {
+    if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
+      return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
+    }
+
+    return onSubmit(omitRawTransformations(values));
+  };
+
+  const onModalSubmit = newSelectedTransformations => {
+    setTransformationModalOpen(false);
+
+    if (calloutRef.current) {
+      calloutRef.current.sendCallout({
+        message: isEditMode
+          ? <FormattedMessage id="ui-data-export.mappingProfiles.transformations.update.successCallout" />
+          : (
+            <SafeHTMLMessage
+              id="ui-data-export.mappingProfiles.transformations.save.successCallout"
+              values={{ count: newSelectedTransformations.length }}
+            />
+          ),
+      });
+      setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
+      setSelectedTransformations(newSelectedTransformations);
+      setInitialSelectedTransformations(generateSelectedTransformations(newSelectedTransformations, getSelectedTransformationsInAllTransformations));
+    }
+  };
+
   return (
     <Layer
       isOpen
@@ -83,13 +113,7 @@ export const MappingProfilesFormContainer = props => {
         transformations={selectedTransformations}
         allTransformations={allTransformations}
         initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
-        onSubmit={values => {
-          if (!isValidRecordTypesMatching(selectedTransformations, values.recordTypes)) {
-            return { recordTypes: <FormattedMessage id="ui-data-export.mappingProfiles.validation.recordTypeMismatch" /> };
-          }
-
-          return onSubmit(omitRawTransformations(values));
-        }}
+        onSubmit={onFromSubmit}
         onAddTransformations={() => setTransformationModalOpen(true)}
         onTypeDisable={disabledType => setDisabledRecordTypes(disabledType)}
       />
@@ -99,26 +123,7 @@ export const MappingProfilesFormContainer = props => {
         initialTransformationsValues={modalTransformations}
         disabledRecordTypes={disabledRecordTypes}
         onCancel={() => setTransformationModalOpen(false)}
-        onSubmit={newSelectedTransformations => {
-          setTransformationModalOpen(false);
-
-          if (calloutRef.current) {
-            calloutRef.current.sendCallout({
-              message: isEditMode
-                ? <FormattedMessage id="ui-data-export.mappingProfiles.transformations.update.successCallout" />
-                : (
-                  <SafeHTMLMessage
-                    id="ui-data-export.mappingProfiles.transformations.save.successCallout"
-                    values={{ count: newSelectedTransformations.length }}
-                  />
-                ),
-            });
-          }
-
-          setModalTransformations(() => ({ transformations: generateTransformationFieldsValues(allTransformations, newSelectedTransformations) }));
-          setSelectedTransformations(newSelectedTransformations);
-          setInitialSelectedTransformations(generateSelectedTransformations(newSelectedTransformations, getSelectedTransformationsInAllTransformations));
-        }}
+        onSubmit={onModalSubmit}
       />
       <Callout ref={calloutRef} />
     </Layer>
