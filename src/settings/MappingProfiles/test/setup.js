@@ -1,7 +1,7 @@
 import {
   getAllByRole, screen, within,
 } from '@testing-library/react';
-import translations from '../../../../translations/ui-data-export/en.json';
+import translations from '../../../../translations/ui-data-export/en';
 
 export const recordTypeInstance = () => screen.getByRole('checkbox', { name: /instance/i });
 export const recordTypesSRS = () => screen.getByRole('checkbox', { name: /source record storage/i });
