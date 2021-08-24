@@ -20,7 +20,7 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import { recordTypesHoldings } from '../test/setup';
+import { recordTypesHoldings, saveAndCloseBtn } from '../test/setup';
 
 function CreateMappingProfileFormRouteContainer({
   allTransformations = [],
