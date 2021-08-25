@@ -51,7 +51,7 @@
     "jobProfiles.delete.successCallout": "Aufgabenprofil <b>{name}</b> erfolgreich <b>gelöscht</b>",
     "jobProfiles.delete.errorCallout": "Fehler beim Löschen des Aufgabenprofils <b>{name}</b>",
     "jobProfiles.delete.confirmationModal.title": "Aufgabenprofil löschen",
-    "jobProfiles.delete.confirmationModal.message": "Das Aufgabenprofil <b>{name]</b> wird gelöscht",
+    "jobProfiles.delete.confirmationModal.message": "Das Aufgabenprofil <b>{name}</b> wird gelöscht",
     "delete": "Delete",
     "recordType": "Record type",
     "mappingProfiles.transformations.selectTransformations": "Select transformations",
