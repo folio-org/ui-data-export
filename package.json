@@ -104,7 +104,7 @@
     "permissionSets": [
       {
         "permissionName": "module.data-export.enabled",
-        "displayName": "UI: Data export module is enabled",
+        "displayName": "Data export: all permissions",
         "subPermissions": [
           "data-export.file-definitions.item.post",
           "data-export.file-definitions.upload.post",
@@ -134,7 +134,7 @@
       },
       {
         "permissionName": "settings.data-export.enabled",
-        "displayName": "Settings (data-export): display list of settings pages",
+        "displayName": "Settings (Data export): Can view, create, edit, and remove",
         "subPermissions": [
           "settings.enabled"
         ],
