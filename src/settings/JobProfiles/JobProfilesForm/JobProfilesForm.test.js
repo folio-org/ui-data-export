@@ -10,7 +10,7 @@ import JobProfilesForm from './JobProfilesForm';
 
 jest.mock(
   '@folio/stripes-components/lib/Layer',
-  () => props => props.children,
+  () => props => props.children
 );
 
 const mappingProfilesMock = [
