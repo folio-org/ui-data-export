@@ -17,11 +17,7 @@ import { AllJobLogsViewComponent } from '.';
 import { translationsProperties } from '../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../test/jest/helpers';
 import translations from '../../../translations/ui-data-export/en';
-import { getColumnIndexMapping } from '../../../test/bigtest/helpers/getColumnIndexMapping';
 import { logJobExecutions } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
-import { DEFAULT_JOB_LOG_COLUMNS } from '../../utils';
-
-const columnIndexMapping = getColumnIndexMapping(DEFAULT_JOB_LOG_COLUMNS);
 
 const renderAllJobLogsViewContainer = () => {
   renderWithIntl(
@@ -67,11 +63,9 @@ describe('AllJobLogsView', () => {
     it('should have the correct query in path', () => {
       renderAllJobLogsViewContainer();
 
-      userEvent.click(screen.getByText(columnIndexMapping.status));
+      userEvent.click(screen.getByRole('button', { name: /status/i }));
 
-      window.history.pushState({}, document.title, '/?sort=-completedDate');
-
-      expect(decodeURIComponent(window.location.search).includes('?sort=-completedDate')).toBeTruthy();
+      expect(decodeURIComponent(window.location.search)).toContain('?sort=status,completedDate');
     });
   });
 
