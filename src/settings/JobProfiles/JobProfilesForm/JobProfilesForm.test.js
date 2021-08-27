@@ -65,6 +65,6 @@ describe('JobProfilesForm', () => {
     userEvent.type(nameField, 'test name');
     userEvent.click(screen.getByRole('button', { name: /saveAndClose/ }));
 
-    expect(screen.getByText('stripes-data-transfer-components.validation.enterValue')).toBeVisible();
+    expect(screen.getByText(/validation.enterValue/)).toBeVisible();
   });
 });
