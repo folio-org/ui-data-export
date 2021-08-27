@@ -51,7 +51,7 @@
     "jobProfiles.delete.successCallout": "Le profil de tâche <b> {name} </b> a été <b> supprimé </b> avec succès",
     "jobProfiles.delete.errorCallout": "Une erreur s'est produite lors de la suppression du profil de tâche <b> {name} </b>",
     "jobProfiles.delete.confirmationModal.title": "Supprimer le profil de tâche",
-    "jobProfiles.delete.confirmationModal.message": "Le profil de tâche <b> {name} </b> sera supprimé",
+    "jobProfiles.delete.confirmationModal.message": "Le profil de tâche <b>{name}</b> sera supprimé",
     "delete": "Supprimer",
     "recordType": "Type d'enregistrement",
     "mappingProfiles.transformations.selectTransformations": "Sélectionnez les transformations",

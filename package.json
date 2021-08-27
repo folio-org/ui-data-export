@@ -20,7 +20,8 @@
     "test:bigtest": "stripes test karma",
     "test:bigtest:coverage": "stripes test karma --coverage",
     "test:bigtest:ci": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
-    "test": "yarn run test:jest && yarn run test:bigtest:ci"
+    "test": "yarn run test:jest && yarn run test:bigtest:ci",
+    "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-data-export ./translations/ui-data-export/compiled"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.12.1",
@@ -31,6 +32,7 @@
     "@folio/stripes": "^6.0.0",
     "@folio/stripes-cli": "^2.0.0",
     "@folio/stripes-core": "^7.0.0",
+    "@formatjs/cli": "^4.2.31",
     "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.7",
