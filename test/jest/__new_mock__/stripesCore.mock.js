@@ -1,4 +1,5 @@
 import React from 'react';
+import { noop } from 'lodash';
 
 const buildStripes = (otherProperties = {}) => ({
   actionNames: [],
@@ -17,17 +18,17 @@ const buildStripes = (otherProperties = {}) => ({
     url: 'https://folio-testing-okapi.dev.folio.org',
   },
   plugins: {},
-  setBindings: () => { },
-  setCurrency: () => { },
-  setLocale: () => { },
-  setSinglePlugin: () => { },
-  setTimezone: () => { },
-  setToken: () => { },
+  setBindings: noop,
+  setCurrency: noop,
+  setLocale: noop,
+  setSinglePlugin: noop,
+  setTimezone: noop,
+  setToken: noop,
   store: {
-    getState: () => { },
-    dispatch: () => { },
-    subscribe: () => { },
-    replaceReducer: () => { },
+    getState: noop,
+    dispatch: noop,
+    subscribe: noop,
+    replaceReducer: noop,
   },
   timezone: 'UTC',
   user: {
