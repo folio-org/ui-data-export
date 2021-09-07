@@ -32,8 +32,6 @@ import {
   getFileInfo,
 } from './utils';
 
-import css from './QueryFileUploader.css';
-
 const QueryFileUploaderComponent = props => {
   const {
     mutator,
@@ -153,8 +151,6 @@ const QueryFileUploaderComponent = props => {
         title={uploaderTitle}
         uploadButtonText={<FormattedMessage id="ui-data-export.uploaderBtnText" />}
         isDropZoneActive={isDropZoneActive}
-        className={css.upload}
-        activeClassName={css.activeUpload}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
