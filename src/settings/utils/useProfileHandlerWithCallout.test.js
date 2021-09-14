@@ -3,21 +3,18 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import { screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
 import '../../../test/jest/__mock__';
+import '../../../test/jest/__new_mock__';
 
 import { Callout } from '@folio/stripes-components';
-import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { useProfileHandlerWithCallout } from './useProfileHandlerWithCallout';
 import { CalloutContext } from '../../contexts/CalloutContext';
-import {
-  OverlayContainer,
-  translationsProperties,
-} from '../../../test/helpers';
+import { OverlayContainer } from '../../../test/helpers';
 
 const ContextComponent = ({ children }) => {
   const calloutRef = useRef(null);
@@ -67,7 +64,7 @@ describe('useProfileHandlerWithCallout', () => {
   });
 
   it('should display success callout', () => {
-    renderWithIntl(
+    render(
       <ContextComponent>
         <Component
           hookProps={{
@@ -75,8 +72,7 @@ describe('useProfileHandlerWithCallout', () => {
             onAction: jest.fn(),
           }}
         />
-      </ContextComponent>,
-      translationsProperties
+      </ContextComponent>
     );
     userEvent.click(screen.getByTestId('send-callout'));
 
@@ -92,7 +88,7 @@ describe('useProfileHandlerWithCallout', () => {
   it('should display error callout and cancel after error', () => {
     const onActionMock = () => Promise.reject();
 
-    renderWithIntl(
+    render(
       <ContextComponent>
         <Component
           hookProps={{
@@ -101,8 +97,7 @@ describe('useProfileHandlerWithCallout', () => {
             isCanceledAfterError: true,
           }}
         />
-      </ContextComponent>,
-      translationsProperties
+      </ContextComponent>
     );
     userEvent.click(screen.getByTestId('send-callout'));
 
@@ -118,7 +113,7 @@ describe('useProfileHandlerWithCallout', () => {
   it('should display error callout and not cancel after error', () => {
     const onActionMock = () => Promise.reject();
 
-    renderWithIntl(
+    render(
       <ContextComponent>
         <Component
           hookProps={{
@@ -127,8 +122,7 @@ describe('useProfileHandlerWithCallout', () => {
             isCanceledAfterError: false,
           }}
         />
-      </ContextComponent>,
-      translationsProperties
+      </ContextComponent>
     );
     userEvent.click(screen.getByTestId('send-callout'));
 
