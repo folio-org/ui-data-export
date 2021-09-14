@@ -49,33 +49,6 @@ describe('queryFileUploader component', () => {
 
   testUploaderInactiveMode();
 
-  describe('triggering drag enter on uploader area', () => {
-    beforeEach(async () => {
-      await queryFileUploaderInteractor.triggerDragEnter();
-    });
-
-    it('should display proper title when uploader area is active', () => {
-      expect(queryFileUploaderInteractor.title).to.equal(translation.uploaderActiveTitle);
-    });
-
-    it('should make file uploader area active', () => {
-      expect(queryFileUploaderInteractor.hasActiveClass).to.be.true;
-    });
-
-    it('should not display secondary area when uploader area is active', () => {
-      expect(queryFileUploaderInteractor.secondaryArea.isVisible).to.be.false;
-    });
-  });
-
-  describe('triggering drag leave on file uploader area', () => {
-    beforeEach(async () => {
-      await queryFileUploaderInteractor.triggerDragEnter();
-      await queryFileUploaderInteractor.triggerDragLeave();
-    });
-
-    testUploaderInactiveMode();
-  });
-
   describe('triggering drop on uploader area with no files', () => {
     beforeEach(async () => {
       await initiateFileUpload();
