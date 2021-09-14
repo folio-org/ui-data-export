@@ -74,6 +74,7 @@
     "@folio/react-intl-safe-html": "^2.0.0",
     "@folio/stripes": "^7.0.0",
     "react": "^17.0.2",
+    "react-dom": "^17.2.0",
     "react-intl": "^5.7.0",
     "react-query": "^3.6.0",
     "react-router": "*",
