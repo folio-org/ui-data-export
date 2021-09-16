@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import React, {
+  useCallback, useEffect, useState,
+} from 'react';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import classNames from 'classnames';
@@ -35,7 +37,21 @@ export const TransformationFieldGroup = ({
 }) => {
   const intl = useIntl();
 
-  const groupPlaceholder = record.isFirst ? GROUP_PLACEHOLDER : {};
+  const [isPlaceholder, setIsShowPlaceholder] = useState({
+    marcField: '',
+    indicator1: '',
+    indicator2: '',
+    subfield: '',
+  });
+
+  useEffect(() => {
+    setGrouptplaceHolder();
+  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGrouptplaceHolder, record]);
+
+  const setGrouptplaceHolder = useCallback(() => {
+    return record.isFirst && Object.values(isPlaceholder).every(x => x === null || x === '') ? GROUP_PLACEHOLDER : {};
+  }, [isPlaceholder, record.isFirst]);
+  const groupPlaceholder = setGrouptplaceHolder();
 
   const handleChange = useCallback((type, isValid) => {
     setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));
@@ -79,6 +95,10 @@ export const TransformationFieldGroup = ({
             aria-invalid={!isValid}
             marginBottom0
             onChange={event => {
+              setIsShowPlaceholder({
+                ...isPlaceholder,
+                [type]: event.target.value,
+              });
               handleChange(type, isValid);
               fieldProps.input.onChange(event);
             }}

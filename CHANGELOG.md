@@ -4,6 +4,7 @@
 * Mapping profiles list not ordered alphabetically on the new job profile form. UIDEXP-241.
 * Fix Error when cloning mapping profile from the prior relases. UIDEXP-242.
 * Saving a custom mapping profile not always checks for matching transformations. UIDEXP-239.
+* Hide placeholder attribute once user populates the first row. UIDEXP-249.
 
 ## [4.1.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-06-11)
 [Full Changelog](https://github.com/folio-org/ui-data-export/tree/v4.0.0...v4.1.0)
