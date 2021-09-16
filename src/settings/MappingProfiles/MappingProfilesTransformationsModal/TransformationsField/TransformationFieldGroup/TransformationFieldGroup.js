@@ -45,13 +45,13 @@ export const TransformationFieldGroup = ({
   });
 
   useEffect(() => {
-    setGrouptplaceHolder();
-  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGrouptplaceHolder, record]);
+    setGroupPlaceHolder();
+  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder, record]);
 
-  const setGrouptplaceHolder = useCallback(() => {
-    return record.isFirst && Object.values(isPlaceholder).every(x => x === null || x === '') ? GROUP_PLACEHOLDER : {};
+  const setGroupPlaceHolder = useCallback(() => {
+    return record.isFirst && Object.values(isPlaceholder).every(x => x === '') ? GROUP_PLACEHOLDER : {};
   }, [isPlaceholder, record.isFirst]);
-  const groupPlaceholder = setGrouptplaceHolder();
+  const groupPlaceholder = setGroupPlaceHolder();
 
   const handleChange = useCallback((type, isValid) => {
     setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));
