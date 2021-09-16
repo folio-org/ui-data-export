@@ -86,7 +86,7 @@ describe('rendering duplicate mapping profile page without profile data', () => 
       <DuplicateMappingProfileRouteContainer profile={null} />,
       translationsProperties
     );
-    expect(screen.getByTestId('preloader')).toBeVisible();
+    expect(screen.getByTestId('fullScreen-preloader')).toBeVisible();
   });
 });
 
