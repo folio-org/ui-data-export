@@ -46,7 +46,7 @@ export const TransformationFieldGroup = ({
 
   useEffect(() => {
     setGroupPlaceHolder();
-  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder, record]);
+  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder]);
 
   const setGroupPlaceHolder = useCallback(() => {
     return record.isFirst && Object.values(isPlaceholder).every(x => x === '') ? GROUP_PLACEHOLDER : {};
