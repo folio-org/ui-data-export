@@ -6,7 +6,6 @@ import {
   getByText,
   screen,
   getAllByRole,
-  getByPlaceholderText,
   queryByPlaceholderText,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

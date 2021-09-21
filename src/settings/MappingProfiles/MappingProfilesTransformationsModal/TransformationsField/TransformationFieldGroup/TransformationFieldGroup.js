@@ -69,6 +69,15 @@ export const TransformationFieldGroup = ({
     }
   }, [record.order, setIsSubmitButtonDisabled, setValidatedTransformations]);
 
+  const onChangeHandler = (event, type, isValid, fieldProps) => {
+    setIsShowPlaceholder({
+      ...isPlaceholder,
+      [type]: event.target.value,
+    });
+    handleChange(type, isValid);
+    fieldProps.input.onChange(event);
+  };
+
   const renderTransformationField = ({
     name,
     placeholder,
@@ -94,14 +103,7 @@ export const TransformationFieldGroup = ({
             maxLength={maxLength}
             aria-invalid={!isValid}
             marginBottom0
-            onChange={event => {
-              setIsShowPlaceholder({
-                ...isPlaceholder,
-                [type]: event.target.value,
-              });
-              handleChange(type, isValid);
-              fieldProps.input.onChange(event);
-            }}
+            onChange={event => onChangeHandler(event, type, isValid, fieldProps)}
           />
         )}
       />
