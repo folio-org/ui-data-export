@@ -6,7 +6,6 @@ import {
   getByText,
   screen,
   getAllByRole,
-  getByPlaceholderText,
   queryByPlaceholderText,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -237,11 +236,6 @@ describe('MappingProfileFormContainer', () => {
         it('should have correct placeholders', () => {
           expect(transformationFields.length).toEqual(2);
 
-          expect(getByPlaceholderText(transformationFields[0].marcField.container, '900')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].indicator1.container, '0')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].indicator2.container, '0')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].subfield.container, '$a')).toBeInTheDocument();
-
           expect(queryByPlaceholderText(transformationFields[1].marcField.container, '900')).toBeNull();
           expect(queryByPlaceholderText(transformationFields[1].indicator1.container, '0')).toBeNull();
           expect(queryByPlaceholderText(transformationFields[1].indicator2.container, '0')).toBeNull();
@@ -256,10 +250,10 @@ describe('MappingProfileFormContainer', () => {
 
           expect(transformationFields.length).toEqual(1);
 
-          expect(getByPlaceholderText(transformationFields[0].marcField.container, '900')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].indicator1.container, '0')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].indicator2.container, '0')).toBeInTheDocument();
-          expect(getByPlaceholderText(transformationFields[0].subfield.container, '$a')).toBeInTheDocument();
+          expect(queryByPlaceholderText(transformationFields[0].marcField.container, '900')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[0].indicator1.container, '0')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[0].indicator2.container, '0')).toBeNull();
+          expect(queryByPlaceholderText(transformationFields[0].subfield.container, '$a')).toBeNull();
         });
 
         it('should display correct transformation fields values', () => {

@@ -78,7 +78,7 @@ describe('rendering edit mapping profile page without profile data', () => {
       translationsProperties
     );
 
-    expect(screen.getByTestId('preloader')).toBeVisible();
+    expect(screen.getByTestId('fullScreen-preloader')).toBeVisible();
   });
 
   describe('rendering edit mapping profile page with profile data: success scenario', () => {
