@@ -74,7 +74,7 @@
     "mappingProfiles.edit.successCallout": "تم <b>حفظ</b> بروفايل تخطيط الحقل <b>{name}</b> بنجاح",
     "mappingProfiles.edit.errorCallout": "حدث خطأ أثناء حفظ بروفايل التخطيط <b>{name}</b>",
     "mappingProfiles.transformations.save.successCallout": "تمت <b>إضافة</b> <b>{count, number}</b> <b>{count, plural, one {تحويلاً} other {تحويلاً}}</b> بنجاح",
-    "jobProfiles.create.successCallout": "تم <b>إنشاء</b> بوفايل المهمة <b>{name}</b> بنجاح",
+    "jobProfiles.create.successCallout": "تم <b>إنشاء</b> بروفايل المهمة <b>{name}</b> بنجاح",
     "jobProfiles.create.errorCallout": "حدث خطأ أثناء إنشاء بروفايل المهمة <b>{name}</b>",
     "instance.electronic.access.linkText.default": "الوعاء - الوصول الإلكتروني - نص الرابط",
     "instance.electronic.access.materialsSpecification.default": "الوعاء - الوصول الإلكتروني - المواد المحددة",
