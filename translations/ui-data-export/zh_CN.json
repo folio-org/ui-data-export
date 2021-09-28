@@ -123,7 +123,7 @@
     "item.descriptionOfPieces": "单件-件的描述",
     "item.holdingsRecordId": "单件-馆藏ID",
     "item.status": "单件-状态",
-    "item.yearCaption": "单件-年，标题",
+    "item.yearCaption": "单件-年份，卷期标识",
     "item.metadata.createdDate": "单件-创建日期",
     "item.metadata.updatedDate": "单件-更新日期",
     "item.metadata.createdByUserId": "单件-创建者",
