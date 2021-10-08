@@ -1,9 +1,14 @@
 # Change history for ui-data-export
 
-## 4.2.0 (IN PROGRESS)
+## IN PROGRESS
+
+## [5.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-10-08)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v4.1.0...v5.0.0)
 * Mapping profiles list not ordered alphabetically on the new job profile form. UIDEXP-241.
 * Fix Error when cloning mapping profile from the prior relases. UIDEXP-242.
 * Saving a custom mapping profile not always checks for matching transformations. UIDEXP-239.
+* Update the UI permission names for current Data export permissions. UIDEXP-231.
+* Compile Translation Files into AST Format. UIDEXP-233.
 * increment stripes to v7. UIDEXP-246.
 * Hide placeholder attribute once user populates the first row. UIDEXP-249.
 
