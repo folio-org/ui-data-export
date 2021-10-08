@@ -20,7 +20,7 @@
     "test:bigtest": "stripes test karma",
     "test:bigtest:coverage": "stripes test karma --coverage",
     "test:bigtest:ci": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
-    "test": "yarn run test:jest && yarn run test:bigtest:ci",
+    "test": "yarn run test:jest",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-data-export ./translations/ui-data-export/compiled"
   },
   "devDependencies": {
