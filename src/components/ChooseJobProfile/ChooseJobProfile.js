@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import {
   JobProfiles,
   useJobProfilesProperties,
@@ -76,7 +75,7 @@ const ChooseJobProfileComponent = ({
         heading={<FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.title" />}
         message={(
           <div>
-            <SafeHTMLMessage
+            <FormattedMessage
               id="ui-data-export.jobProfiles.selectProfile.modal.message"
               values={{ profile: selectedProfile.name }}
             />
