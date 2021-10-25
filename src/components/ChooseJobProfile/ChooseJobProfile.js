@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
-import { ConfirmationModal } from '@folio/stripes/components';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import {
   JobProfiles,
@@ -16,7 +15,9 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
+import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { jobProfilesManifest } from '../../common';
+import { ListSelect } from './ChooseJobProfileSelect/ChooseJobProfileSelect';
 
 const customProperties = {
   columnWidths: { description: '40%' },
@@ -43,6 +44,13 @@ const ChooseJobProfileComponent = ({
     fileDefinitionIdRef.current = location.state?.fileDefinitionId;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const changeSelectHandler = event => {
+    setSelectedProfile({
+      ...selectedProfile,
+      idType: event.target.value,
+    });
+  };
+
   return (
     <>
       <JobProfiles
@@ -64,12 +72,16 @@ const ChooseJobProfileComponent = ({
       <ConfirmationModal
         id="choose-job-profile-confirmation-modal"
         open={isConfirmationModalOpen}
+        disabledCofirmButton={!selectedProfile.idType}
         heading={<FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.title" />}
         message={(
-          <SafeHTMLMessage
-            id="ui-data-export.jobProfiles.selectProfile.modal.message"
-            values={{ profile: selectedProfile.name }}
-          />
+          <div>
+            <SafeHTMLMessage
+              id="ui-data-export.jobProfiles.selectProfile.modal.message"
+              values={{ profile: selectedProfile.name }}
+            />
+            <ListSelect onChange={changeSelectHandler} />
+          </div>
         )}
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
         cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
@@ -79,6 +91,7 @@ const ChooseJobProfileComponent = ({
             await mutator.export.POST({
               fileDefinitionId: fileDefinitionIdRef.current,
               jobProfileId: selectedProfile.id,
+              idType: selectedProfile.idType,
             });
 
             history.push('/data-export');
