@@ -100,7 +100,7 @@
       }
     ],
     "okapiInterfaces": {
-      "data-export": "4.0"
+      "data-export": "5.0"
     },
     "permissionSets": [
       {

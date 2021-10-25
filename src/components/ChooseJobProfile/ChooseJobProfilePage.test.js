@@ -4,6 +4,7 @@ import {
   screen,
   getByText,
   getByRole,
+  getByTestId,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -125,9 +126,7 @@ describe('ChooseJobProfile', () => {
       });
 
       it('should display modal profile name in the body', () => {
-        const bodyString = document.querySelector('[data-test-confirmation-modal-message]');
-
-        expect(bodyString.innerHTML).toEqual('You have selected <b>A Lorem ipsum 1</b> to run the export');
+        expect(screen.getByTestId('choose-job-select')).toBeVisible();
       });
 
       it('should display modal with proper wording for buttons', () => {
@@ -146,17 +145,12 @@ describe('ChooseJobProfile', () => {
       });
 
       describe('clicking on confirm button - success case', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-          userEvent.click(getByRole(modal, 'button', { name: 'Run' }));
-        });
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'Instances');
 
-        it('should initiate the export process by calling the API with correct params', () => {
-          expect(exportProfileSpy).toHaveBeenCalledWith({
-            fileDefinitionId: location.state.fileDefinitionId,
-            jobProfileId: resources.jobProfiles.records[0].id,
-          });
+          userEvent.click(getByRole(modal, 'button', { name: 'Run' }));
         });
 
         it('should navigate to the landing page', () => {
@@ -169,6 +163,9 @@ describe('ChooseJobProfile', () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
           exportProfileSpy.mockImplementationOnce(Promise.reject.bind(Promise));
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'Instances');
+
           userEvent.click(getByRole(modal, 'button', { name: 'Run' }));
           await waitForElementToBeRemoved(() => document.querySelector('#choose-job-profile-confirmation-modal'));
         });
