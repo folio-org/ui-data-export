@@ -252,5 +252,8 @@
     "error.mappingProfile.missing": "导出过程中缺少映射配置文件",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "在导出过程中，SRS记录类型不能与实例记录类型组合在一起",
     "errorLogs.inventoryRecordLink": "“典藏记录链接”：",
-    "error.configurations.queryHost": "在主机的mod-config中找不到配置。将没有链接指向该任务的失败记录。"
+    "error.configurations.queryHost": "在主机的mod-config中找不到配置。将没有链接指向该任务的失败记录。",
+    "instance": "Instances",
+    "holdings": "Holdings",
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
 }
