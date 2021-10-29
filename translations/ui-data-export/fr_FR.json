@@ -252,5 +252,8 @@
     "error.mappingProfile.missing": "Le profil de mapping est manquant pendant le processus d'exportation",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
     "errorLogs.inventoryRecordLink": "\"Lien d'enregistrement d'inventaire / de catalogue\":",
-    "error.configurations.queryHost": "No configuration in mod-config found for the host. There will be no links to failed records for this job."
+    "error.configurations.queryHost": "No configuration in mod-config found for the host. There will be no links to failed records for this job.",
+    "instance": "Instances",
+    "holdings": "Holdings",
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
 }

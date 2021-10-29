@@ -252,5 +252,8 @@
     "error.mappingProfile.missing": "ملف تعريف التخطيط مفقود أثناء عملية التصدير",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "لا يمكن دمج نوع تسجيلة SRS مع نوع تسجيلة INSTANCE أثناء عملية التصدير",
     "errorLogs.inventoryRecordLink": "\"رابط تسجيلة المخزون\":",
-    "error.configurations.queryHost": "لم يتم العثور على أي تهيئة في mod-config لهذا المضيف. لن تكون هناك روابط للتسجيلات الفاشلة لهذه المهمة."
+    "error.configurations.queryHost": "لم يتم العثور على أي تهيئة في mod-config لهذا المضيف. لن تكون هناك روابط للتسجيلات الفاشلة لهذه المهمة.",
+    "instance": "الأوعية",
+    "holdings": "المقتنيات",
+    "jobProfiles.selectProfile.modal.selectTitle": "المعرفات العمومية الفريدة المقدمة لهذا التصدير"
 }

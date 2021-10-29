@@ -252,5 +252,8 @@
     "error.mappingProfile.missing": "Feldzuordnungsprofil fehlt während des Exportvorgangs",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS-Datensatztyp kann nicht mit INSTANCE-Datensatztyp während des Exportvorgangs kombiniert werden",
     "errorLogs.inventoryRecordLink": "\"Inventory record link\": ",
-    "error.configurations.queryHost": "Keine Konfiguration in mod-config für den Host gefunden. Für diesen Job gibt es keine Links zu fehlgeschlagenen Datensätzen."
+    "error.configurations.queryHost": "Keine Konfiguration in mod-config für den Host gefunden. Für diesen Job gibt es keine Links zu fehlgeschlagenen Datensätzen.",
+    "instance": "Instances",
+    "holdings": "Holdings",
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
 }
