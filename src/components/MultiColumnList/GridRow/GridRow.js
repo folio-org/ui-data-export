@@ -6,12 +6,6 @@ import { GridCell } from '../GridCell';
 
 import css from './GridRow.css';
 
-const arialLabelString = obj => Object.values(obj).reduce((acc, value) => {
-  acc.push(value);
-
-  return acc;
-}, []).join(' ');
-
 export const GridRow = React.memo(({
   data,
   index,
@@ -23,7 +17,7 @@ export const GridRow = React.memo(({
       data-row-inner
       className={classNames(css.mclRow, { [css.mclIsOdd]: !(index % 2) })}
       style={style}
-      aria-label={arialLabelString(data.contentData[index])}
+      aria-label={data.contentData[index].displayName}
     >
       {data.visibleColumns.map(column => (
         <GridCell
