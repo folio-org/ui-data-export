@@ -120,6 +120,7 @@
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.get",
           "data-export.job-profiles.item.post",
+          "data-export.job-profiles.item.put",
           "data-export.job-profiles.item.delete",
           "data-export.transformation-fields.collection.get",
           "data-export.logs.collection.get"
