@@ -84,7 +84,7 @@ describe('CreateMappingProfileFormRoute', () => {
 
       const modal = screen.getByRole('document');
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'Save & close' });
-      const tableRow = screen.getByRole('row', { name: 'Select field Holdings - Call number - Call number' });
+      const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
       const textFields = within(tableRow).getAllByRole('textbox');
 
@@ -122,7 +122,7 @@ describe('CreateMappingProfileFormRoute', () => {
 
       const modal = screen.getByRole('document');
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'Save & close' });
-      const tableRow = screen.getByRole('row', { name: 'Select field Holdings - Call number - Call number' });
+      const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
       const textFields = within(tableRow).getAllByRole('textbox');
 
