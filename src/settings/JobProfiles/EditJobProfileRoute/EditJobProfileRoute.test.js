@@ -5,6 +5,7 @@ import { noop } from 'lodash';
 import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
+import { screen, within } from '@testing-library/react';
 import { EditJobProfileRoute } from '.';
 
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
@@ -63,6 +64,37 @@ describe('EditJobProfile', () => {
       setupEditJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
 
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
+    });
+
+    it('should display correct form state', async () => {
+      server.get('/data-export/job-profiles/:id', () => [
+        200,
+        { 'content-type': 'application/json' },
+        JSON.stringify(jobProfile),
+      ]);
+
+      setupEditJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+
+      const form = await screen.findByTestId('full-screen-form');
+
+      const title = await within(form).findByText(/Edit A Lorem impsum 1/i);
+      const nameInput = await within(form).findByLabelText(/Name/i);
+      const mappingProfileInput = await within(form).findByLabelText(/Mapping profile/i);
+      const tcpipInput = await within(form).findByLabelText('TCP/IP');
+      const descriptionInput = await within(form).findByLabelText('Description');
+
+      expect(form).toBeVisible();
+      expect(title).toBeVisible();
+      expect(nameInput).toBeVisible();
+      expect(mappingProfileInput).toBeVisible();
+      expect(tcpipInput).toBeVisible();
+      expect(descriptionInput).toBeVisible();
+
+      expect(nameInput).toBeEnabled();
+      expect(descriptionInput).toBeEnabled();
+      expect(mappingProfileInput).toBeEnabled();
+
+      expect(tcpipInput).toBeDisabled();
     });
   });
 });

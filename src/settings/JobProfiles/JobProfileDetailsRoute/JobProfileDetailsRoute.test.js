@@ -7,6 +7,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import userEvent from '@testing-library/user-event';
+import { logDOM } from '@testing-library/dom';
 import { JobProfileDetailsRoute } from '.';
 
 import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
