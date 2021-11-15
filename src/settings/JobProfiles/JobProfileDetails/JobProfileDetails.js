@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { noop } from 'lodash';
 
 import {
   Accordion,
@@ -30,7 +29,6 @@ const JobProfileDetails = props => {
       profile={jobProfile}
       type="job"
       onEdit={onEdit}
-      onDuplicate={noop}
       {...props}
     >
       {!isLoading && (
@@ -109,9 +107,6 @@ JobProfileDetails.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-JobProfileDetails.defaultProps = {
-  isLoading: false,
-  onEdit: noop, // remove this in the scope UIDEXP-112: editing of the job profile
-};
+JobProfileDetails.defaultProps = { isLoading: false };
 
 export default JobProfileDetails;

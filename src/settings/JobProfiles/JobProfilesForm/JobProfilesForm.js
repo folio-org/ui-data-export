@@ -34,12 +34,16 @@ const validate = values => {
 
 const JobProfilesForm = props => {
   const {
-    onCancel,
-    handleSubmit,
+    onCancel = noop,
+    hasLoaded = false,
+    disableProtocol = false,
+    mappingProfiles = [],
     pristine,
     submitting,
-    hasLoaded,
-    mappingProfiles,
+    handleSubmit,
+    paneTitle,
+    metadata,
+    headLine,
   } = props;
 
   const intl = useIntl();
@@ -52,7 +56,7 @@ const JobProfilesForm = props => {
       <FullScreenForm
         id="job-profiles-form"
         noValidate
-        paneTitle={<FormattedMessage id="ui-data-export.jobProfiles.newProfile" />}
+        paneTitle={paneTitle}
         isSubmitButtonDisabled={pristine || submitting}
         onSubmit={handleSubmit}
         onCancel={onCancel}
@@ -60,6 +64,8 @@ const JobProfilesForm = props => {
         {!hasLoaded && <Preloader />}
         {hasLoaded && (
         <div className={css.jobProfilesFormContent}>
+          {headLine}
+          <div>{metadata}</div>
           <div data-test-job-profile-form-name>
             <Field
               label={<FormattedMessage id="stripes-data-transfer-components.name" />}
@@ -90,6 +96,7 @@ const JobProfilesForm = props => {
               component={Select}
               dataOptions={[]}
               fullWidth
+              disabled={disableProtocol}
             />
           </div>
           <div data-test-job-profile-description>
@@ -115,12 +122,10 @@ JobProfilesForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
   mappingProfiles: PropTypes.arrayOf(PropTypes.object),
   hasLoaded: PropTypes.bool,
-};
-
-JobProfilesForm.defaultProps = {
-  onCancel: noop,
-  hasLoaded: false,
-  mappingProfiles: [],
+  paneTitle: PropTypes.node.isRequired,
+  metadata: PropTypes.node,
+  headLine: PropTypes.node,
+  disableProtocol: PropTypes.bool,
 };
 
 export default stripesFinalForm({

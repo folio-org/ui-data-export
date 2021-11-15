@@ -14,9 +14,12 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
+import { noop } from 'lodash';
 import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
+import { EditJobProfileRoute } from '../EditJobProfileRoute';
+import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 
 const customProperties = {
   columnWidths: { protocol: '70px' },
@@ -61,6 +64,21 @@ const JobProfilesContainer = ({
             onSubmit={mutator.jobProfiles.POST}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
+        )}
+      />
+      <Route
+        path={`${match.path}/edit/:id`}
+        render={props => (
+          <FullScreenPreloader
+            isLoading={false}
+            onCancel={noop}
+          >
+            <EditJobProfileRoute
+              onSubmit={mutator.jobProfiles.PUT}
+              onCancel={() => history.push(`${match.path}${location.search}`)}
+              {...props}
+            />
+          </FullScreenPreloader>
         )}
       />
     </>
