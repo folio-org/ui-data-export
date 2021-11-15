@@ -17,6 +17,7 @@ export const GridRow = React.memo(({
       data-row-inner
       className={classNames(css.mclRow, { [css.mclIsOdd]: !(index % 2) })}
       style={style}
+      aria-label={data.contentData[index].displayName}
     >
       {data.visibleColumns.map(column => (
         <GridCell

@@ -4,6 +4,7 @@
 
 * Select UUIDs type before starting export. UIDEXP-177
 * Use correct `css-loader` syntax. UIDEXP-255
+* Add aria-label in mapping profile transformations list. UIDEXP-214
 
 ## [5.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-10-08)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v4.1.0...v5.0.0)
