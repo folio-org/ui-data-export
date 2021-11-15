@@ -12,6 +12,7 @@ import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
+import { checkJobProfileFormState } from '../test/setup';
 
 const history = [];
 
@@ -77,24 +78,10 @@ describe('EditJobProfile', () => {
 
       const form = await screen.findByTestId('full-screen-form');
 
-      const title = await within(form).findByText(/Edit A Lorem impsum 1/i);
-      const nameInput = await within(form).findByLabelText(/Name/i);
-      const mappingProfileInput = await within(form).findByLabelText(/Mapping profile/i);
-      const tcpipInput = await within(form).findByLabelText('TCP/IP');
-      const descriptionInput = await within(form).findByLabelText('Description');
-
-      expect(form).toBeVisible();
-      expect(title).toBeVisible();
-      expect(nameInput).toBeVisible();
-      expect(mappingProfileInput).toBeVisible();
-      expect(tcpipInput).toBeVisible();
-      expect(descriptionInput).toBeVisible();
-
-      expect(nameInput).toBeEnabled();
-      expect(descriptionInput).toBeEnabled();
-      expect(mappingProfileInput).toBeEnabled();
-
-      expect(tcpipInput).toBeDisabled();
+      await checkJobProfileFormState(form, {
+        title: /Edit A Lorem impsum 1/i,
+        isTCPIPEnabled: false,
+      });
     });
   });
 });
