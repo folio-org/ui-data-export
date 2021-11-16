@@ -1,4 +1,10 @@
+@import '@folio/stripes-components/lib/variables';
+
 .jobProfilesFormContent p {
   margin: 0 auto;
   max-width: 50em;
+}
+
+.jobProfilesFormContent h2 {
+  border-bottom: 1px solid var(--color-border-p2);
 }

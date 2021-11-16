@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import {
-  match as matchShape,
-  history as historyShape,
-  location as locationShape,
-} from 'react-router-prop-types';
+import { match as matchShape } from 'react-router-prop-types';
 
-import { Route } from '@folio/stripes/core';
+import {
+  Route, useStripes,
+} from '@folio/stripes/core';
 import {
   JobProfiles,
   useJobProfilesProperties,
@@ -14,9 +12,14 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
+import { noop } from 'lodash';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
+import { EditJobProfileRoute } from '../EditJobProfileRoute';
+import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 
 const customProperties = {
   columnWidths: { protocol: '70px' },
@@ -30,13 +33,14 @@ const customProperties = {
 };
 
 const JobProfilesContainer = ({
-  history,
   match,
-  location,
   resources,
   mutator,
-  stripes,
 }) => {
+  const history = useHistory();
+  const location = useLocation();
+  const stripes = useStripes();
+
   const JobProfileDetailsRouteConnected = useMemo(
     () => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }),
     [stripes]
@@ -58,9 +62,24 @@ const JobProfilesContainer = ({
         path={`${match.path}/create`}
         render={() => (
           <CreateJobProfileRoute
-            onSubmit={mutator.jobProfiles.POST}
+            onSubmit={mutator.jobProfiles?.POST}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
+        )}
+      />
+      <Route
+        path={`${match.path}/edit/:id`}
+        render={props => (
+          <FullScreenPreloader
+            isLoading={false}
+            onCancel={noop}
+          >
+            <EditJobProfileRoute
+              onSubmit={mutator.jobProfiles.PUT}
+              onCancel={() => history.push(`${match.path}${location.search}`)}
+              {...props}
+            />
+          </FullScreenPreloader>
         )}
       />
     </>
@@ -69,11 +88,8 @@ const JobProfilesContainer = ({
 
 JobProfilesContainer.propTypes = {
   match: matchShape.isRequired,
-  history: historyShape.isRequired,
-  location: locationShape.isRequired,
   mutator: PropTypes.object.isRequired,
   resources: PropTypes.object.isRequired,
-  stripes: PropTypes.shape({ connect: PropTypes.func.isRequired }).isRequired,
 };
 
 JobProfilesContainer.manifest = Object.freeze(jobProfilesManifest);

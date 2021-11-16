@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import '../../../../test/jest/__mock__';
 import '../../../../test/jest/__new_mock__';
 
+import { logDOM } from '@testing-library/dom';
 import JobProfilesForm from './JobProfilesForm';
 
 jest.mock(
@@ -27,20 +28,24 @@ const renderJobProfileForm = ({
   submitting,
   hasLoaded = true,
   mappingProfiles = mappingProfilesMock,
-} = {}) => (
+  renderWithDefault,
+} = {}) => {
+  const props = {
+    onSubmit: handleSubmit,
+    pristine,
+    submitting,
+    ...(!renderWithDefault && {
+      onCancel,
+      hasLoaded,
+      mappingProfiles,
+    }),
+  };
   render(
     <MemoryRouter>
-      <JobProfilesForm
-        pristine={pristine}
-        submitting={submitting}
-        hasLoaded={hasLoaded}
-        mappingProfiles={mappingProfiles}
-        onSubmit={handleSubmit}
-        onCancel={onCancel}
-      />
+      <JobProfilesForm {...props} />
     </MemoryRouter>
-  )
-);
+  );
+};
 
 describe('JobProfilesForm', () => {
   it('should submit form if required fields are filled', () => {
@@ -66,5 +71,15 @@ describe('JobProfilesForm', () => {
     userEvent.click(screen.getByRole('button', { name: /saveAndClose/ }));
 
     expect(screen.getByText(/validation.enterValue/)).toBeVisible();
+  });
+
+  it('should render preloader when render with default props', async () => {
+    renderJobProfileForm({
+      renderWithDefault: true,
+    });
+
+    const preloader = await screen.findByTestId('preloader');
+
+    expect(preloader).toBeVisible();
   });
 });
