@@ -4,39 +4,58 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
-import { screen } from '@testing-library/react';
 import { noop } from 'lodash';
+import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 import { JobProfilesContainer } from './index';
 
-const setupJobProfilesContainer = () => {
+jest.mock('../CreateJobProfileRoute', () => ({
+  CreateJobProfileRoute: () => <div>CreateJobProfileRoute</div>,
+}));
+
+jest.mock('../EditJobProfileRoute', () => ({
+  EditJobProfileRoute: () => <div>EditJobProfileRoute</div>,
+}));
+
+const setupJobProfilesContainer = initialEntries => {
   renderWithIntl(
     <SettingsComponentBuilder>
-      <JobProfilesContainer
-        resources={{
-          jobProfiles: {
-            hasLoaded: true,
-            records: [],
-            other: {
-              totalRecords: 0,
+      <MemoryRouter initialEntries={initialEntries}>
+        <JobProfilesContainer
+          resources={{
+            jobProfiles: {
+              hasLoaded: true,
+              records: [],
+              other: {
+                totalRecords: 0,
+              },
             },
-          },
-        }}
-        mutator={{ jobProfile: { POST: noop } }}
-        match={{ params: { }, path: '/data-export/job-profiles', url: '/' }}
-      />
+          }}
+          mutator={{ jobProfiles: { POST: noop } }}
+          match={{ params: { }, path: '/data-export/job-profiles', url: '/' }}
+        />
+      </MemoryRouter>,
     </SettingsComponentBuilder>,
     translationsProperties
   );
 };
 
 describe('JobProfilesContainer', () => {
-  it('should render correct', async () => {
-    setupJobProfilesContainer();
+  it('should render create job profile', async () => {
+    setupJobProfilesContainer(['/data-export/job-profiles/create']);
 
-    const search = await screen.findByText(/stripes-smart-components.search/i);
+    const createJobProfile = await screen.findByText(/CreateJobProfileRoute/i);
 
-    expect(search).toBeVisible();
+    expect(createJobProfile).toBeVisible();
+  });
+
+  it('should render edit job profile', async () => {
+    setupJobProfilesContainer(['/data-export/job-profiles/edit/1']);
+
+    const editJobProfile = await screen.findByText(/EditJobProfileRoute/i);
+
+    expect(editJobProfile).toBeVisible();
   });
 });

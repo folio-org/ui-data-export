@@ -62,7 +62,7 @@ const JobProfilesContainer = ({
         path={`${match.path}/create`}
         render={() => (
           <CreateJobProfileRoute
-            onSubmit={mutator.jobProfiles.POST}
+            onSubmit={mutator.jobProfiles?.POST}
             onCancel={() => history.push(`${match.path}${location.search}`)}
           />
         )}
