@@ -7,7 +7,7 @@ import {
 
 import { useQuery } from 'react-query';
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
-import JobProfilesFormContainer from '../JobProfilesFormСontainer/JobProfilesFormContainer';
+import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 
 const getFormattedMappingProfiles = (mappingProfiles = []) => (

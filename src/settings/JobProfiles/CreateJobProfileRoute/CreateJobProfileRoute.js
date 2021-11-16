@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
-import JobProfilesFormContainer from '../JobProfilesFormСontainer/JobProfilesFormContainer';
+import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
 
 const getFormattedMappingProfiles = (mappingProfiles = []) => (
   mappingProfiles
