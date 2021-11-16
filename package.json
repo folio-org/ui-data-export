@@ -17,7 +17,8 @@
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
     "test:jest": "jest --ci --coverage",
-    "test": "yarn run test:jest",
+    "test:unit:report": "cp -r ./artifacts/coverage-jest ./artifacts/coverage",
+    "test": "yarn run test:jest && yarn run test:unit:report",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-data-export ./translations/ui-data-export/compiled"
   },
   "devDependencies": {
