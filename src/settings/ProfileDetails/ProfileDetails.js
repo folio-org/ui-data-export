@@ -13,6 +13,7 @@ import {
   FullScreenView,
   Preloader,
 } from '@folio/stripes-data-transfer-components';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { ProfileDetailsActionMenu } from '../../components/ProfileDetailsActionMenu';
 import { useProfileHandlerWithCallout } from '../utils/useProfileHandlerWithCallout';
@@ -76,7 +77,7 @@ export const ProfileDetails = props => {
               open={isConfirmationModalOpen}
               heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
               message={(
-                <FormattedMessage
+                <SafeHTMLMessage
                   id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
                   values={{ name: profile.name }}
                 />

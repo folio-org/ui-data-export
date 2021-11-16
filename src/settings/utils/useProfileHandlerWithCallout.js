@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
+
 import { CalloutContext } from '../../contexts/CalloutContext';
 
 export const useProfileHandlerWithCallout = ({
@@ -17,7 +18,7 @@ export const useProfileHandlerWithCallout = ({
       await onAction(values);
 
       callout.sendCallout({
-        message: <FormattedMessage
+        message: <SafeHTMLMessage
           id={successMessageId}
           values={{ name: values.name }}
         />,
@@ -26,7 +27,7 @@ export const useProfileHandlerWithCallout = ({
       onActionComplete();
     } catch {
       callout.sendCallout({
-        message: <FormattedMessage
+        message: <SafeHTMLMessage
           id={errorMessageId}
           values={{ name: values.name }}
         />,
