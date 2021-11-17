@@ -79,6 +79,8 @@
     "jobProfiles.create.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
     "jobProfiles.edit.errorCallout": "There was an error while editing the job profile <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "instance.electronic.access.linkText.default": "Instance - Electronic access - Link Text",
     "instance.electronic.access.materialsSpecification.default": "Instance - Electronic access - Materials specified",
     "instance.electronic.access.publicNote.default": "Instance - Electronic access - URL Public note",

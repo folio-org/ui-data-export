@@ -88,6 +88,8 @@
   "jobProfiles.create.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
   "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
   "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
+  "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+  "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
   "jobProfiles.delete.successCallout": "Job profile <b>{name}</b> has been successfully <b>deleted</b>",
   "jobProfiles.delete.errorCallout": "There was an error while deleting the job profile <b>{name}</b>",
   "jobProfiles.delete.confirmationModal.title": "Delete job profile",

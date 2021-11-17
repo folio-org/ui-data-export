@@ -19,6 +19,10 @@ jest.mock('../EditJobProfileRoute', () => ({
   EditJobProfileRoute: () => <div>EditJobProfileRoute</div>,
 }));
 
+jest.mock('../DuplicateJobProfileRoute', () => ({
+  DuplicateJobProfileRoute: () => <div>DuplicateJobProfileRoute</div>,
+}));
+
 const setupJobProfilesContainer = initialEntries => {
   renderWithIntl(
     <SettingsComponentBuilder>
@@ -57,5 +61,13 @@ describe('JobProfilesContainer', () => {
     const editJobProfile = await screen.findByText(/EditJobProfileRoute/i);
 
     expect(editJobProfile).toBeVisible();
+  });
+
+  it('should render duplicate job profile', async () => {
+    setupJobProfilesContainer(['/data-export/job-profiles/duplicate/1']);
+
+    const duplicateJobProfile = await screen.findByText(/DuplicateJobProfileRoute/i);
+
+    expect(duplicateJobProfile).toBeVisible();
   });
 });

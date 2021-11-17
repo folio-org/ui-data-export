@@ -1,5 +1,7 @@
+import { mappingProfilesData } from '@folio/stripes-data-transfer-components/lib/Settings/MappingProfiles/tests/mappingProfilesData';
 import { formatJobProfileFormInitialValues } from './formatJobProfileFormInitialValues';
 import { formatMappingProfileFormInitialValues } from './formatMappingProfileFormInitialValues';
+import { getFormattedMappingProfiles } from './mappingProfiles';
 
 export const jobProfile = {
   id: 'someId',
@@ -71,5 +73,19 @@ describe('formatMappingProfileFormInitialValues.js', () => {
     const result = formatMappingProfileFormInitialValues(mappingProfile, ['recordTypes']);
 
     expect(result.recordTypes).toBeUndefined();
+  });
+});
+
+describe('mappingProfiles.js', () => {
+  it('result should consist of expected fields', () => {
+    const result = getFormattedMappingProfiles(mappingProfilesData);
+    const wrongKey = Object.keys(result[0]).find(k => k !== 'label' && k !== 'value');
+
+    expect(wrongKey).toBeUndefined();
+    expect(result.length).toEqual(mappingProfilesData.length);
+    expect(result[0]).toStrictEqual({
+      label: mappingProfilesData[0].name,
+      value: mappingProfilesData[0].id,
+    });
   });
 });
