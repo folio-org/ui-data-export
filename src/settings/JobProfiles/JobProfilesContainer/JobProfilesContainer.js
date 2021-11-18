@@ -12,14 +12,12 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { noop } from 'lodash';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 import { EditJobProfileRoute } from '../EditJobProfileRoute';
-import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 import { DuplicateJobProfileRoute } from '../DuplicateJobProfileRoute';
 
 const customProperties = {
