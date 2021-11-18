@@ -25,4 +25,12 @@ export const checkJobProfileFormState = async (form, {
   } else {
     expect(tcpipInput).not.toBeEnabled();
   }
+
+  return {
+    formTitle,
+    nameInput,
+    mappingProfileInput,
+    tcpipInput,
+    descriptionInput,
+  };
 };

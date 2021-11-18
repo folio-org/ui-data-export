@@ -12,14 +12,13 @@ import {
   useListFormatter,
 } from '@folio/stripes-data-transfer-components';
 
-import { noop } from 'lodash';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 import { EditJobProfileRoute } from '../EditJobProfileRoute';
-import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
+import { DuplicateJobProfileRoute } from '../DuplicateJobProfileRoute';
 
 const customProperties = {
   columnWidths: { protocol: '70px' },
@@ -70,16 +69,21 @@ const JobProfilesContainer = ({
       <Route
         path={`${match.path}/edit/:id`}
         render={props => (
-          <FullScreenPreloader
-            isLoading={false}
-            onCancel={noop}
-          >
-            <EditJobProfileRoute
-              onSubmit={mutator.jobProfiles.PUT}
-              onCancel={() => history.push(`${match.path}${location.search}`)}
-              {...props}
-            />
-          </FullScreenPreloader>
+          <EditJobProfileRoute
+            onSubmit={mutator.jobProfiles.PUT}
+            onCancel={() => history.push(`${match.path}${location.search}`)}
+            {...props}
+          />
+        )}
+      />
+      <Route
+        path={`${match.path}/duplicate/:id`}
+        render={props => (
+          <DuplicateJobProfileRoute
+            onSubmit={mutator.jobProfiles.POST}
+            onCancel={() => history.push(`${match.path}${location.search}`)}
+            {...props}
+          />
         )}
       />
     </>

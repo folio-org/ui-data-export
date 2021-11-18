@@ -22,6 +22,7 @@ const JobProfileDetails = props => {
     stripes,
     isLoading,
     onEdit,
+    onDuplicate,
   } = props;
 
   return (
@@ -29,6 +30,7 @@ const JobProfileDetails = props => {
       profile={jobProfile}
       type="job"
       onEdit={onEdit}
+      onDuplicate={onDuplicate}
       {...props}
     >
       {!isLoading && (
@@ -104,6 +106,7 @@ JobProfileDetails.propTypes = {
   isLoading: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onEdit: PropTypes.func,
+  onDuplicate: PropTypes.func,
   onDelete: PropTypes.func.isRequired,
 };
 

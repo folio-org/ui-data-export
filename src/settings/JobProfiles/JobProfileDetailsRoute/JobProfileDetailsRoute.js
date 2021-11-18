@@ -44,6 +44,7 @@ const JobProfileDetailsRoute = ({
       isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && jobExecutionsQuery.isLoading)}
       onCancel={handleCancel}
       onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}`); }}
+      onDuplicate={() => { history.push(`/settings/data-export/job-profiles/duplicate/${match.params.id}`); }}
       onDelete={() => DELETE({ id: jobProfileRecord?.id })}
     />
   );

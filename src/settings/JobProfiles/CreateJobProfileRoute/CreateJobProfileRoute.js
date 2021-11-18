@@ -5,17 +5,7 @@ import { stripesConnect } from '@folio/stripes/core';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
-
-const getFormattedMappingProfiles = (mappingProfiles = []) => (
-  mappingProfiles
-    .map(profile => (
-      {
-        label: profile.name,
-        value: profile.id,
-      }
-    ))
-    .sort((a, b) => a.label.localeCompare(b.label))
-);
+import { getFormattedMappingProfiles } from '../../MappingProfiles/utils/mappingProfiles';
 
 const CreateJobProfileRouteComponent = props => {
   const {

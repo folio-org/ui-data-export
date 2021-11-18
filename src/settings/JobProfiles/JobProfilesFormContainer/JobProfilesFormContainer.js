@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { ViewMetaData } from '@folio/stripes/smart-components';
 import { useStripes } from '@folio/stripes/core';
 import {
@@ -18,20 +18,16 @@ const JobProfilesFormContainer = ({
   jobProfile,
 }) => {
   const stripes = useStripes();
+  const intl = useIntl();
 
   const getModeBasedProps = () => {
     switch (mode) {
       case 'newProfile':
-        return { paneTitle: <FormattedMessage id="ui-data-export.jobProfiles.newProfile" /> };
+        return { paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }) };
       case 'editProfile':
         return {
           disableProtocol: true,
-          paneTitle: (
-            <FormattedMessage
-              id="ui-data-export.jobProfiles.editProfile"
-              values={{ name: jobProfile?.name }}
-            />
-          ),
+          paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.editProfile' }, { name: jobProfile?.name }),
           initialValues: formatJobProfileFormInitialValues(jobProfile),
           metadata: (
             <ViewMetaData
@@ -53,6 +49,18 @@ const JobProfilesFormContainer = ({
               </Col>
             </Row>
           ),
+        };
+      case 'duplicateProfile':
+        return {
+          paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }),
+          disableProtocol: true,
+          initialValues: {
+            ...formatJobProfileFormInitialValues(jobProfile, ['id']),
+            name: intl.formatMessage(
+              { id: 'ui-data-export.copyOf' },
+              { value: jobProfile.name }
+            ),
+          },
         };
       default:
         return {};

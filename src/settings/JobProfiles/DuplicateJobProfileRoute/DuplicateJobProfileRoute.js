@@ -8,7 +8,7 @@ import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 import { getFormattedMappingProfiles } from '../../MappingProfiles/utils/mappingProfiles';
 import { useJobProfileData } from '../../utils/useJobProfileData';
 
-const EditJobProfileRouteComponent = ({
+const DuplicateJobProfileRouteComponent = ({
   onCancel,
   onSubmit,
   resources: { mappingProfiles },
@@ -17,8 +17,8 @@ const EditJobProfileRouteComponent = ({
   const {
     jobProfileRecord, handleSubmit,
   } = useJobProfileData({
-    errorMessageId: 'ui-data-export.jobProfiles.edit.errorCallout',
-    successMessageId: 'ui-data-export.jobProfiles.edit.successCallout',
+    errorMessageId: 'ui-data-export.jobProfiles.duplicate.errorCallout',
+    successMessageId: 'ui-data-export.jobProfiles.duplicate.successCallout',
     onCancel,
     onSubmit,
     match,
@@ -38,14 +38,14 @@ const EditJobProfileRouteComponent = ({
       hasLoaded={mappingProfiles?.hasLoaded && jobProfileRecord}
       mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
       jobProfile={jobProfileRecord}
-      mode="editProfile"
+      mode="duplicateProfile"
       onSubmit={handleSubmit}
       onCancel={onCancel}
     />
   );
 };
 
-EditJobProfileRouteComponent.propTypes = {
+DuplicateJobProfileRouteComponent.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   resources: PropTypes.shape({
@@ -57,7 +57,7 @@ EditJobProfileRouteComponent.propTypes = {
   match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
 };
 
-EditJobProfileRouteComponent.manifest = Object.freeze({
+DuplicateJobProfileRouteComponent.manifest = Object.freeze({
   mappingProfiles: {
     type: 'okapi',
     records: 'mappingProfiles',
@@ -66,4 +66,4 @@ EditJobProfileRouteComponent.manifest = Object.freeze({
   },
 });
 
-export const EditJobProfileRoute = stripesConnect(EditJobProfileRouteComponent);
+export const DuplicateJobProfileRoute = stripesConnect(DuplicateJobProfileRouteComponent);
