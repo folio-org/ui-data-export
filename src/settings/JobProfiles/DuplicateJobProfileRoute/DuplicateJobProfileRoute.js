@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  stripesConnect, useOkapiKy,
-} from '@folio/stripes/core';
+import { stripesConnect } from '@folio/stripes/core';
 
-import { useQuery } from 'react-query';
-import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 import { getFormattedMappingProfiles } from '../../MappingProfiles/utils/mappingProfiles';
+import { useJobProfileData } from '../../utils/useJobProfileData';
 
 const DuplicateJobProfileRouteComponent = ({
   onCancel,
@@ -17,19 +14,14 @@ const DuplicateJobProfileRouteComponent = ({
   resources: { mappingProfiles },
   match,
 }) => {
-  const ky = useOkapiKy();
-
-  const { data: jobProfileRecord } = useQuery(
-    ['data-export', 'job-profile', match.params.id],
-    () => ky(`data-export/job-profiles/${match.params.id}`).json()
-  );
-
-  const handleSubmit = useProfileHandlerWithCallout({
+  const {
+    jobProfileRecord, handleSubmit,
+  } = useJobProfileData({
     errorMessageId: 'ui-data-export.jobProfiles.duplicate.errorCallout',
     successMessageId: 'ui-data-export.jobProfiles.duplicate.successCallout',
-    onAction: onSubmit,
-    onActionComplete: onCancel,
-    isCanceledAfterError: true,
+    onCancel,
+    onSubmit,
+    match,
   });
 
   if (!jobProfileRecord) {
