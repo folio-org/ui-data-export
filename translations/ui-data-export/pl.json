@@ -255,5 +255,10 @@
     "error.configurations.queryHost": "Nie znaleziono konfiguracji w mod-config dla tego hosta. Nie będzie powiązań do błędnych rekordów dla tego zadania.",
     "instance": "Instances",
     "holdings": "Holdings",
-    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
+    "jobProfiles.editProfile": "Edit {name}",
+    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
+    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
 }

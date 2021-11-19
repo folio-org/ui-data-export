@@ -255,5 +255,10 @@
     "error.configurations.queryHost": "لم يتم العثور على أي تهيئة في mod-config لهذا المضيف. لن تكون هناك روابط للتسجيلات الفاشلة لهذه المهمة.",
     "instance": "الأوعية",
     "holdings": "المقتنيات",
-    "jobProfiles.selectProfile.modal.selectTitle": "المعرفات العمومية الفريدة المقدمة لهذا التصدير"
+    "jobProfiles.selectProfile.modal.selectTitle": "المعرفات العمومية الفريدة المقدمة لهذا التصدير",
+    "jobProfiles.editProfile": "تحرير {name}",
+    "jobProfiles.edit.successCallout": "تم <b>تحرير</b> بروفايل المهمة <b>{name}</b> بنجاح",
+    "jobProfiles.edit.errorCallout": "حدث خطأ أثناء حفظ بروفايل المهمة <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "تم <b>إنشاء</b> بروفايل المهمة <b>{name}</b> بنجاح",
+    "jobProfiles.duplicate.errorCallout": "حدث خطأ أثناء إنشاء بروفايل المهمة <b>{name}</b>"
 }
