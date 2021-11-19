@@ -38,7 +38,6 @@
     "protocol": "TCP/IP",
     "mappingProfile": "Mapping profile",
     "jobProfiles.newProfile": "New job profile",
-    "jobProfiles.editProfile": "Edit {name}",
     "mappingProfiles.transformations.fieldName": "Field name",
     "mappingProfiles.transformations.transformation": "Transformation",
     "run": "Run",
@@ -77,10 +76,6 @@
     "mappingProfiles.transformations.save.successCallout": "<b>{count, number}</b> <b>{count, plural, one {transformation has} other {transformations have}}</b> been successfully <b>added</b>",
     "jobProfiles.create.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
     "jobProfiles.create.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
-    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
-    "jobProfiles.edit.errorCallout": "There was an error while editing the job profile <b>{name}</b>",
-    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "instance.electronic.access.linkText.default": "Instance - Electronic access - Link Text",
     "instance.electronic.access.materialsSpecification.default": "Instance - Electronic access - Materials specified",
     "instance.electronic.access.publicNote.default": "Instance - Electronic access - URL Public note",
@@ -260,5 +255,10 @@
     "error.configurations.queryHost": "No configuration in mod-config found for the host. There will be no links to failed records for this job.",
     "instance": "Instances",
     "holdings": "Holdings",
-    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
+    "jobProfiles.editProfile": "Edit {name}",
+    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
+    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
 }

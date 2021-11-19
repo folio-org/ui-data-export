@@ -114,7 +114,7 @@
     "item.permanentLoanTypeId": "单件-永久借阅类型",
     "item.id": "单件-ID",
     "item.hrid": "单件-HRID",
-    "item.barcode": "单件-条码",
+    "item.barcode": "單件 - 條碼",
     "item.chronology": "单件-年",
     "item.enumeration": "单件-期",
     "item.volume": "单件-卷",
@@ -255,5 +255,10 @@
     "error.configurations.queryHost": "在主机的mod-config中找不到配置。将没有链接指向该任务的失败记录。",
     "instance": "Instances",
     "holdings": "Holdings",
-    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export"
+    "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
+    "jobProfiles.editProfile": "Edit {name}",
+    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
+    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
+    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
 }
