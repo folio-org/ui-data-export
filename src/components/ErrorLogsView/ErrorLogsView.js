@@ -84,7 +84,7 @@ ErrorLogsViewComponent.manifest = Object.freeze({
         strict: false,
       });
 
-      return `data-export/logs?query=(jobExecutionId==${match.params.id})`;
+      return `data-export/logs?limit=10000&query=(jobExecutionId==${match.params.id})`;
     },
   },
 });
