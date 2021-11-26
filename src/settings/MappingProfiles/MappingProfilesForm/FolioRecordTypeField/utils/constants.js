@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 import { InfoPopover } from '@folio/stripes/components';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 export const RECORD_TYPES = [
   {
@@ -11,7 +10,7 @@ export const RECORD_TYPES = [
     label: <FormattedMessage id={FOLIO_RECORD_TYPES.SRS.captionId} />,
     details: (
       <InfoPopover
-        content={<SafeHTMLMessage id="ui-data-export.mappingProfiles.srs.info" />}
+        content={<FormattedMessage id="ui-data-export.mappingProfiles.srs.info" />}
         iconSize="medium"
       />
     ),
