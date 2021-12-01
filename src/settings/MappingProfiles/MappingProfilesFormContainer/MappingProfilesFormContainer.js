@@ -15,7 +15,6 @@ import {
   Layer,
   Callout,
 } from '@folio/stripes/components';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
@@ -91,7 +90,7 @@ export const MappingProfilesFormContainer = props => {
         message: isEditMode
           ? <FormattedMessage id="ui-data-export.mappingProfiles.transformations.update.successCallout" />
           : (
-            <SafeHTMLMessage
+            <FormattedMessage
               id="ui-data-export.mappingProfiles.transformations.save.successCallout"
               values={{ count: newSelectedTransformations.length }}
             />
