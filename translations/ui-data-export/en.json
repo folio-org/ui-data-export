@@ -20,6 +20,7 @@
   "inProgressStatus": "In progress",
   "beganRunning": "Began {time}",
   "noRunningJobsMessage": "No running jobs to show",
+  "totalRecords": "{countOfRecords} records",
   "today": "Today",
   "cancel": "Cancel",
   "pause": "Pause",

@@ -63,6 +63,12 @@ const JobDetails = props => {
         }
       </div>
       <div className={css.delimiter}>
+        <span>
+          <FormattedMessage
+            id="ui-data-export.totalRecords"
+            values={{ countOfRecords: total }}
+          />
+        </span>
         <span data-test-running-job-date-label>
           <FormattedMessage
             id="ui-data-export.beganRunning"
