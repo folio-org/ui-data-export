@@ -8,6 +8,7 @@
 * Job profile – edit existing profile. UIDEXP-112
 * Job profile – duplicate existing profile. UIDEXP-113
 * The list of errors is truncated. UIDEXP-259
+* Refactor away from SafeHTMLMessage. UIDEXP-216
 
 ## [5.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-10-08)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v4.1.0...v5.0.0)
