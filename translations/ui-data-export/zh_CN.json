@@ -256,9 +256,10 @@
     "instance": "实例",
     "holdings": "馆藏",
     "jobProfiles.selectProfile.modal.selectTitle": "为此导出提供的 UUID",
-    "jobProfiles.editProfile": "Edit {name}",
-    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
-    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
-    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>"
+    "jobProfiles.editProfile": "编辑 {name}",
+    "jobProfiles.edit.successCallout": "任务配置文件<b> {name} </b>已成功<b>编辑</b>",
+    "jobProfiles.edit.errorCallout": "保存任务配置文件<b> {name} </b>出错",
+    "jobProfiles.duplicate.successCallout": "任务配置文件<b> {name} </b>已成功<b>创建</b>",
+    "jobProfiles.duplicate.errorCallout": "创建任务配置文件<b> {name} </b>出错",
+    "totalRecords": "{countOfRecords} records"
 }
