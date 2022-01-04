@@ -261,5 +261,5 @@
     "jobProfiles.edit.errorCallout": "保存任务配置文件<b> {name} </b>出错",
     "jobProfiles.duplicate.successCallout": "任务配置文件<b> {name} </b>已成功<b>创建</b>",
     "jobProfiles.duplicate.errorCallout": "创建任务配置文件<b> {name} </b>出错",
-    "totalRecords": "{countOfRecords} records"
+    "totalRecords": "{countOfRecords}条记录"
 }
