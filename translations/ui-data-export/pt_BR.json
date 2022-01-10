@@ -256,10 +256,10 @@
     "instance": "Instâncias",
     "holdings": "Holdings",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs fornecidos para esta exportação",
-    "jobProfiles.editProfile": "Edit {name}",
+    "jobProfiles.editProfile": "Editar {name}",
     "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
     "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
-    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
-    "totalRecords": "{countOfRecords} records"
+    "jobProfiles.duplicate.successCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
+    "jobProfiles.duplicate.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
+    "totalRecords": "{countOfRecords} registros"
 }
