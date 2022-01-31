@@ -240,7 +240,7 @@
     "error.s3.bucketIsNotProvided": "S3-Bucket ist nicht angegeben",
     "error.invalidUuidFormat": "Ungültiges UUID-Format: {value1}",
     "error.mappingProfile.defaultNotFound": "Standardfeldzuordnungsprofil nicht gefunden",
-    "error.readingFromInputFile": "Error while reading from input file with uuids or file is empty",
+    "error.readingFromInputFile": "Fehler beim Lesen aus Eingabedatei mit UUIDs oder Datei ist leer",
     "error.uuidsNotFound": "UUIDs nicht im SRS oder Katalog gefunden: {value1}",
     "error.someRecordsFailed": "Der Export wurde mit Fehlern abgeschlossen. Einige Datensätze konnten nicht exportiert werden. Anzahl der fehlgeschlagenen Datensätze: {value1}",
     "error.mapping.dateParse": "Fehler beim Parsen des Datums während des Feldzuordnungsprozesses aufgetreten",
@@ -256,10 +256,10 @@
     "instance": "Instances",
     "holdings": "Holdings",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
-    "jobProfiles.editProfile": "Edit {name}",
-    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
+    "jobProfiles.editProfile": "{name} bearbeiten",
+    "jobProfiles.edit.successCallout": "Jobprofil <b>{name}</b> erfolgreich <b>bearbeitet</b>",
     "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
     "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
     "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
-    "totalRecords": "{countOfRecords} records"
+    "totalRecords": "{countOfRecords} Datensätze"
 }
