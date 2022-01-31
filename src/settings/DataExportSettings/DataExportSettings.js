@@ -1,4 +1,7 @@
-import React, { useRef } from 'react';
+import React, {
+  useEffect,
+  useRef,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
@@ -48,6 +51,13 @@ const sections = [
 
 export function DataExportSettings(props) {
   const calloutRef = useRef(null);
+  const paneTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (paneTitleRef.current) {
+      paneTitleRef.current.focus();
+    }
+  }, []);
 
   return (
     <>
@@ -57,6 +67,7 @@ export function DataExportSettings(props) {
           navPaneWidth="15%"
           sections={sections}
           paneTitle={<FormattedMessage id="ui-data-export.settings.index.paneTitle" />}
+          paneTitleRef={paneTitleRef}
         />
       </CalloutContext.Provider>
       <Callout ref={calloutRef} />
