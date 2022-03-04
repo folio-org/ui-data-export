@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+## [5.1.0](https://github.com/folio-org/ui-data-export/tree/v5.1.0) (2022-03-04)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.0.0...v5.1.0)
 * Select UUIDs type before starting export. UIDEXP-177
 * Use correct `css-loader` syntax. UIDEXP-255
 * Add aria-label in mapping profile transformations list. UIDEXP-214
@@ -11,9 +13,10 @@
 * Add total number of records to be exported to the Running component. UIDEXP-161
 * Refactor away from SafeHTMLMessage. UIDEXP-216
 * When go to Settings > Data export, change focus automatically to data-export pane header. UIDEXP-264
+* Refactor away from react-intl-safe-html. UIDEXP-235
 
 
-## [5.0.0](https://github.com/folio-org/ui-data-export/tree/v4.0.0) (2021-10-08)
+## [5.0.0](https://github.com/folio-org/ui-data-export/tree/v5.0.0) (2021-10-08)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v4.1.0...v5.0.0)
 * Mapping profiles list not ordered alphabetically on the new job profile form. UIDEXP-241.
 * Fix Error when cloning mapping profile from the prior relases. UIDEXP-242.
