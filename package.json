@@ -108,6 +108,7 @@
           "data-export.mapping-profiles.item.delete",
           "data-export.export.post",
           "data-export.job-executions.items.download.get",
+          "data-export.job-executions.collection.get",
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.get",
           "data-export.job-profiles.item.post",
