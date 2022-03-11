@@ -31,7 +31,7 @@ const MappingProfileDetailsRoute = ({
   // TODO: try `useManifest` hook once it is ready to avoid that
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
   const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: params.id }));
-  const isDefaultProfile = mappingProfileRecord?.id === DEFAULT_MAPPING_PROFILE_ID;
+  const isDefaultProfile = mappingProfileRecord?.default;
 
   return (
     <MappingProfileDetails
