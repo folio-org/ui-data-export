@@ -5,7 +5,6 @@ import { useQuery } from 'react-query';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import { JobProfileDetails } from '../JobProfileDetails';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   mutator: { jobProfile: { DELETE } },
