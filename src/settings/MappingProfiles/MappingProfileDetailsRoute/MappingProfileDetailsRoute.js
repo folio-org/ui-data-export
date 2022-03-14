@@ -8,9 +8,7 @@ import {
 import { stripesConnect } from '@folio/stripes/core';
 
 import { MappingProfileDetails } from '../MappingProfileDetails';
-import {
-  buildShouldRefreshHandler,
-} from '../../../utils';
+import { buildShouldRefreshHandler } from '../../../utils';
 import { mappingProfileShape } from '../shapes';
 
 const MappingProfileDetailsRoute = ({

@@ -11,10 +11,10 @@ import { DuplicateJobProfileRoute } from '.';
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 import { checkJobProfileFormState } from '../test/setup';
 
 const history = [];
+const JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';
 
 const setupDuplicateJobProfileRoute = ({
   matchParams = {},
@@ -63,13 +63,13 @@ describe('EditJobProfile', () => {
 
   describe('rendering duplicate for a job profile without mapping profile data', () => {
     it('should display preloader', async () => {
-      setupDuplicateJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupDuplicateJobProfileRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });
 
     it('should display correct form state', async () => {
-      setupDuplicateJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupDuplicateJobProfileRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       const form = await screen.findByTestId('full-screen-form');
 

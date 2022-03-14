@@ -11,10 +11,10 @@ import { EditJobProfileRoute } from '.';
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 import { checkJobProfileFormState } from '../test/setup';
 
 const history = [];
+const JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';
 
 const setupEditJobProfileRoute = ({
   matchParams = {},
@@ -62,7 +62,7 @@ describe('EditJobProfile', () => {
         JSON.stringify(jobProfile),
       ]);
 
-      setupEditJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupEditJobProfileRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });
@@ -74,7 +74,7 @@ describe('EditJobProfile', () => {
         JSON.stringify(jobProfile),
       ]);
 
-      setupEditJobProfileRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupEditJobProfileRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       const form = await screen.findByTestId('full-screen-form');
 
