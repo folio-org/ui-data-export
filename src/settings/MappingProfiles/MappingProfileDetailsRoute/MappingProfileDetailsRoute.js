@@ -9,7 +9,6 @@ import { stripesConnect } from '@folio/stripes/core';
 
 import { MappingProfileDetails } from '../MappingProfileDetails';
 import {
-  DEFAULT_MAPPING_PROFILE_ID,
   buildShouldRefreshHandler,
 } from '../../../utils';
 import { mappingProfileShape } from '../shapes';
@@ -75,7 +74,7 @@ MappingProfileDetailsRoute.manifest = Object.freeze({
     path: (queryParams, pathComponents) => {
       const { id } = pathComponents;
 
-      return id !== DEFAULT_MAPPING_PROFILE_ID ? `data-export/job-profiles?query=mappingProfileId==${id}&limit=1` : null;
+      return `data-export/job-profiles?query=mappingProfileId==${id}&limit=1`;
     },
     shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
