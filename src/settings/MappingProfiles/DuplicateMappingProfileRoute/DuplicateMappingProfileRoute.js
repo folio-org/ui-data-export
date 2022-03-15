@@ -31,6 +31,7 @@ export const DuplicateMappingProfileRouteComponent = ({
 
   const newMappingProfileRecord = {
     ...mappingProfileRecord,
+    default: false,
     name: intl.formatMessage(
       { id: 'ui-data-export.copyOf' },
       { value: mappingProfileRecord.name }
