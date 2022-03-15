@@ -7,16 +7,15 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import userEvent from '@testing-library/user-event';
-import { logDOM } from '@testing-library/dom';
 import { JobProfileDetailsRoute } from '.';
 
 import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 
 const history = [];
+const JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';
 
 const setupJobProfileDetailsRoute = ({
   matchParams = {},
@@ -88,7 +87,7 @@ describe('JobProfileDetails', () => {
         { 'content-type': 'application/json' },
         JSON.stringify(jobProfile),
       ]);
-      setupJobProfileDetailsRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupJobProfileDetailsRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });
@@ -107,7 +106,7 @@ describe('JobProfileDetails', () => {
         JSON.stringify(mappingProfile),
       ]);
 
-      setupJobProfileDetailsRoute({ matchParams: { id: DEFAULT_JOB_PROFILE_ID } });
+      setupJobProfileDetailsRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });

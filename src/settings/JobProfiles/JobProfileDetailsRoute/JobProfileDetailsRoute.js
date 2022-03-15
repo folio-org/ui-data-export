@@ -5,7 +5,6 @@ import { useQuery } from 'react-query';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import { JobProfileDetails } from '../JobProfileDetails';
-import { DEFAULT_JOB_PROFILE_ID } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   mutator: { jobProfile: { DELETE } },
@@ -27,10 +26,10 @@ const JobProfileDetailsRoute = ({
   const jobExecutionsQuery = useQuery(
     ['data-export', 'job-executions', match.params.id],
     () => ky(`data-export/job-executions?query=jobProfileId==${match.params.id}&limit=1`).json(),
-    { enabled: match.params.id !== DEFAULT_JOB_PROFILE_ID }
+    { enabled: !jobProfileRecord?.default }
   );
 
-  const isDefaultProfile = jobProfileRecord?.id === DEFAULT_JOB_PROFILE_ID;
+  const isDefaultProfile = jobProfileRecord?.default;
   const handleCancel = useCallback(() => {
     history.push(`/settings/data-export/job-profiles${location.search}`);
   }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps

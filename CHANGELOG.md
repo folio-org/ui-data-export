@@ -4,6 +4,8 @@
 * Undefined permission 'data-export.mapping-profiles.collection.get', ... UIDEXP-269
 
 
+* Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
+
 ## [5.1.0](https://github.com/folio-org/ui-data-export/tree/v5.1.0) (2022-03-04)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.0.0...v5.1.0)
 * Select UUIDs type before starting export. UIDEXP-177
