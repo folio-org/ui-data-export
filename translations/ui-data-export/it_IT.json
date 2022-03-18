@@ -11,7 +11,7 @@
     "triggeredBy": "Triggered by {userName}",
     "jobProfileLabel": "Job profile: {jobProfile}",
     "inProgressStatus": "In lavorazione",
-    "beganRunning": "Began {time}",
+    "beganRunning": "Comincia il {time}",
     "noRunningJobsMessage": "Nessuna procedura in esecuzione da mostrare",
     "today": "Oggi",
     "cancel": "Cancel",
