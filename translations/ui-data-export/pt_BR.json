@@ -257,8 +257,8 @@
     "holdings": "Holdings",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs fornecidos para esta exportação",
     "jobProfiles.editProfile": "Editar {name}",
-    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
-    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
+    "jobProfiles.edit.successCallout": "O perfil do job <b>{name}</b> foi <b>excluído</b> com sucesso",
+    "jobProfiles.edit.errorCallout": "Ocorreu um erro ao salvar o perfil de mapeamento <b>{name}</b>",
     "jobProfiles.duplicate.successCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
     "jobProfiles.duplicate.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
     "totalRecords": "{countOfRecords} registros"
