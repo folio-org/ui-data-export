@@ -2,6 +2,7 @@
 
 ## IN PROGRESS
 * Undefined permission 'data-export.mapping-profiles.collection.get', ... UIDEXP-269
+* Implement user notification when response after uploading file is 413. UIDEXP-271
 
 
 * Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
