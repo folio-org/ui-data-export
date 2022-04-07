@@ -11,7 +11,7 @@
     "triggeredBy": "Triggered by {userName}",
     "jobProfileLabel": "Job profile: {jobProfile}",
     "inProgressStatus": "In lavorazione",
-    "beganRunning": "Began {time}",
+    "beganRunning": "Comincia il {time}",
     "noRunningJobsMessage": "Nessuna procedura in esecuzione da mostrare",
     "today": "Oggi",
     "cancel": "Cancel",
@@ -102,8 +102,8 @@
     "item.electronic.access.uri": "Item - Electronic access - {value} - URI",
     "instance.contributorName": "Instance - Contributor - {value}",
     "instance.contributorName.primary": "Instance - Contributor - {value} - primary",
-    "holdings.holdingNoteTypeId": "Holdings  - Note - {value}",
-    "holdings.holdingNoteTypeId.staffOnly": "Holdings  - Note - {value} - Solo staff",
+    "holdings.holdingNoteTypeId": "Holdings - Note - {value}",
+    "holdings.holdingNoteTypeId.staffOnly": "Holdings - Note - {value} - Solo staff",
     "item.itemNoteTypeId": "Item - Notes - {value}",
     "item.itemNoteTypeId.staffOnly": "Item - Notes - {value} - Staff only",
     "instance.alternativeTitleTypeName": "Instance - Alternative title - {value}",
@@ -261,5 +261,6 @@
     "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
     "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
     "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
-    "totalRecords": "{countOfRecords} records"
+    "totalRecords": "{countOfRecords} records",
+    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb)."
 }

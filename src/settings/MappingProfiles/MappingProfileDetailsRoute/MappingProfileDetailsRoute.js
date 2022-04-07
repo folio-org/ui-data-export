@@ -8,10 +8,7 @@ import {
 import { stripesConnect } from '@folio/stripes/core';
 
 import { MappingProfileDetails } from '../MappingProfileDetails';
-import {
-  DEFAULT_MAPPING_PROFILE_ID,
-  buildShouldRefreshHandler,
-} from '../../../utils';
+import { buildShouldRefreshHandler } from '../../../utils';
 import { mappingProfileShape } from '../shapes';
 
 const MappingProfileDetailsRoute = ({
@@ -31,7 +28,7 @@ const MappingProfileDetailsRoute = ({
   // TODO: try `useManifest` hook once it is ready to avoid that
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
   const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: params.id }));
-  const isDefaultProfile = mappingProfileRecord?.id === DEFAULT_MAPPING_PROFILE_ID;
+  const isDefaultProfile = mappingProfileRecord?.default;
 
   return (
     <MappingProfileDetails
@@ -75,7 +72,7 @@ MappingProfileDetailsRoute.manifest = Object.freeze({
     path: (queryParams, pathComponents) => {
       const { id } = pathComponents;
 
-      return id !== DEFAULT_MAPPING_PROFILE_ID ? `data-export/job-profiles?query=mappingProfileId==${id}&limit=1` : null;
+      return `data-export/job-profiles?query=mappingProfileId==${id}&limit=1`;
     },
     shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },

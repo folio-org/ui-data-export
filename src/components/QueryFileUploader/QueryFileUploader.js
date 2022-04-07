@@ -123,7 +123,7 @@ const QueryFileUploaderComponent = props => {
         state: { fileDefinitionId: fileUploadResult.id },
       });
     } catch (error) {
-      handleUploadError();
+      handleUploadError(error);
       setDropZone(false);
 
       console.error(error);
@@ -135,12 +135,18 @@ const QueryFileUploaderComponent = props => {
     console.log(uploadedValue); // eslint-disable-line no-console
   };
 
-  const handleUploadError = () => {
+  const handleUploadError = ({ status }) => {
     if (!calloutRef.current) return;
+
+    const BIG_CONTENT_ERROR_STATUS = 413;
+
+    const errorMessageId = status === BIG_CONTENT_ERROR_STATUS // content > 500mb
+      ? 'ui-data-export.bigFileProblem'
+      : 'ui-data-export.communicationProblem';
 
     calloutRef.current.sendCallout({
       type: 'error',
-      message: <FormattedMessage id="ui-data-export.communicationProblem" />,
+      message: <FormattedMessage id={errorMessageId} />,
     });
   };
 

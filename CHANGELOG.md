@@ -1,6 +1,11 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Undefined permission 'data-export.mapping-profiles.collection.get', ... UIDEXP-269
+* Implement user notification when response after uploading file is 413. UIDEXP-271
+
+
+* Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
 
 ## [5.1.1](https://github.com/folio-org/ui-data-export/tree/v5.1.1) (2022-04-07)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.0...v5.1.1)

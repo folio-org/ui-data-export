@@ -232,7 +232,7 @@
     "error.inventory.gettingReferenceData": "Fehler beim Abruf von Referenzdaten aus dem Katalog während des Exportvorgangs mit dem Aufruf {value1}",
     "error.inventory.gettingHoldingsByInstanceId": "Fehler beim Abruf des Bestands via Instanz-ID: {value1}, Nachricht {value2}",
     "error.inventory.gettingItemsByHoldingsId": "Fehler beim Abruf von Exemplaren via Bestands-ID {value1}",
-    "error.callingUri": "Ausnahme beim Aufruf von {value1}: Meldung: {Wert2}",
+    "error.callingUri": "Ausnahme beim Aufruf von {value1}: Meldung: {value2}",
     "error.user.gettingById": "Fehler beim Abrufen von Person mit der Nummer = {value1}, Nachricht: {value2}",
     "error.savingRecordToFile": "Fehler beim Speichern des Datensatzes in Datei",
     "error.fileDefinition.invalidWithId": "Ungültige Exportdateidefinition mit ID: {value1}",
@@ -261,5 +261,6 @@
     "jobProfiles.edit.errorCallout": "Fehler beim Speichern des Jobprofils <b>{name}</b> aufgetreten",
     "jobProfiles.duplicate.successCallout": "Jobprofil <b>{name}</b> erfolgreich <b>erstellt</b>",
     "jobProfiles.duplicate.errorCallout": "Fehler beim Erstellen des Jobprofils <b>{name}</b>",
-    "totalRecords": "{countOfRecords} Datensätze"
+    "totalRecords": "{countOfRecords} Datensätze",
+    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb)."
 }
