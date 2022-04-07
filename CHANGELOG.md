@@ -1,8 +1,10 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
-* Undefined permission 'data-export.mapping-profiles.collection.get', ... UIDEXP-269
 
+## [5.1.1](https://github.com/folio-org/ui-data-export/tree/v5.1.1) (2022-04-07)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.0...v5.1.1)
+* Undefined permission 'data-export.mapping-profiles.collection.get', ... UIDEXP-269
 
 ## [5.1.0](https://github.com/folio-org/ui-data-export/tree/v5.1.0) (2022-03-04)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.0.0...v5.1.0)
