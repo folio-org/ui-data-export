@@ -37,6 +37,7 @@
   "status": "Status",
   "instance": "Instances",
   "holdings": "Holdings",
+  "authorities": "Authorities",
   "selected": "Selected",
   "unselected": "Unselected",
   "total": "Total",

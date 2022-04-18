@@ -25,6 +25,10 @@ export const ListSelect = ({ onChange }) => {
       value: 'holding',
       label: intl.formatMessage({ id: 'ui-data-export.holdings' }),
     },
+    {
+      value: 'authority',
+      label: intl.formatMessage({ id: 'ui-data-export.authorities' }),
+    },
   ];
 
   return (
