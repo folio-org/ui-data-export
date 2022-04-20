@@ -262,5 +262,6 @@
     "jobProfiles.duplicate.successCallout": "任务配置文件<b> {name} </b>已成功<b>创建</b>",
     "jobProfiles.duplicate.errorCallout": "创建任务配置文件<b> {name} </b>出错",
     "totalRecords": "{countOfRecords}条记录",
-    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb)."
+    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
+    "authorities": "Authorities"
 }

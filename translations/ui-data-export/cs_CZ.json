@@ -253,14 +253,15 @@
     "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
     "errorLogs.inventoryRecordLink": "\"Inventory record link\": ",
     "error.configurations.queryHost": "No configuration in mod-config found for the host. There will be no links to failed records for this job.",
-    "instance": "Instances",
-    "holdings": "Holdings",
+    "instance": "Instance",
+    "holdings": "Holdingy",
     "jobProfiles.selectProfile.modal.selectTitle": "UUID poskytnuté pro tento export",
-    "jobProfiles.editProfile": "Edit {name}",
-    "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
-    "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
-    "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
-    "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
+    "jobProfiles.editProfile": "Upravit {name}",
+    "jobProfiles.edit.successCallout": "Profil úlohy <b>{name}</b> byl úspěšně <b>upraven</b>",
+    "jobProfiles.edit.errorCallout": "Došlo k chybě při ukládání profilu úlohy <b>{name}</b>",
+    "jobProfiles.duplicate.successCallout": "Profil práce <b>{name}</b> byl úspěšně <b>vytvořen</b>",
+    "jobProfiles.duplicate.errorCallout": "Došlo k chybě při vytváření profilu úlohy <b>{name}</b>",
     "totalRecords": "{countOfRecords} záznamy",
-    "bigFileProblem": "Nahraný soubor překračuje povolenou velikost souboru (500 Mb)."
+    "bigFileProblem": "Nahraný soubor překračuje povolenou velikost souboru (500 Mb).",
+    "authorities": "Authorities"
 }
