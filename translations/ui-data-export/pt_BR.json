@@ -262,5 +262,6 @@
     "jobProfiles.duplicate.successCallout": "O perfil do job <b>{name}</b> foi <b>criado com sucesso</b>",
     "jobProfiles.duplicate.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
     "totalRecords": "{countOfRecords} registros",
-    "bigFileProblem": "O arquivo carregado excede o tamanho de arquivo permitido (500MB)."
+    "bigFileProblem": "O arquivo carregado excede o tamanho de arquivo permitido (500MB).",
+    "authorities": "Authorities"
 }

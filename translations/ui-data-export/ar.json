@@ -262,5 +262,6 @@
     "jobProfiles.duplicate.successCallout": "تم <b>إنشاء</b> بروفايل المهمة <b>{name}</b> بنجاح",
     "jobProfiles.duplicate.errorCallout": "حدث خطأ أثناء إنشاء بروفايل المهمة <b>{name}</b>",
     "totalRecords": "{countOfRecords} تسجيلة",
-    "bigFileProblem": "يتجاوز الملف الذي تم تحميله حجم الملف المسموح به (500 ميجا بايت)."
+    "bigFileProblem": "يتجاوز الملف الذي تم تحميله حجم الملف المسموح به (500 ميجا بايت).",
+    "authorities": "Authorities"
 }
