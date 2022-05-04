@@ -263,5 +263,5 @@
     "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "totalRecords": "{countOfRecords} records",
     "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
-    "authorities": "Authorities"
+    "authorities": "權威控制檔"
 }
