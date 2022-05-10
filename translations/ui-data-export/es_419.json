@@ -210,7 +210,7 @@
     "copyOf": "Copia de {value}",
     "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
     "mappingProfiles.recordType.instance": "Instancia de inventario (campos seleccionados)",
-    "mappingProfiles.transformations.invalidTransformationMessage": "Please check your input",
+    "mappingProfiles.transformations.invalidTransformationMessage": "Por favor revise su entrada",
     "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
     "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
     "errorLogs.record.Title": "\"{recordType} Title\": \"{value}\"",
