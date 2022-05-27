@@ -262,6 +262,6 @@
     "jobProfiles.duplicate.successCallout": "Jobprofil <b>{name}</b> erfolgreich <b>erstellt</b>",
     "jobProfiles.duplicate.errorCallout": "Fehler beim Erstellen des Jobprofils <b>{name}</b>",
     "totalRecords": "{countOfRecords} Datensätze",
-    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
+    "bigFileProblem": "Die hochgeladene Datei überschreitet die zulässige Dateigröße (500Mb).",
     "authorities": "Authorities"
 }
