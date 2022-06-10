@@ -75,7 +75,6 @@ describe('EditJobProfile', () => {
 
       const {
         nameInput,
-        tcpipInput,
         descriptionInput,
       } = await checkJobProfileFormState(form, {
         title: /New job profile/i,
@@ -84,7 +83,6 @@ describe('EditJobProfile', () => {
 
       expect(nameInput.value).toEqual(`Copy of ${jobProfile.name}`);
       expect(descriptionInput.value).toEqual(jobProfile.description);
-      expect(tcpipInput.value).toEqual('');
     });
   });
 });
