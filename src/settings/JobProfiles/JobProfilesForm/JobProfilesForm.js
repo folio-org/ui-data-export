@@ -36,7 +36,6 @@ const JobProfilesForm = props => {
   const {
     onCancel = noop,
     hasLoaded = false,
-    disableProtocol = false,
     mappingProfiles = [],
     pristine,
     submitting,
@@ -88,17 +87,6 @@ const JobProfilesForm = props => {
               required
             />
           </div>
-          <div data-test-job-profile-form-protocol>
-            <Field
-              label={<FormattedMessage id="ui-data-export.protocol" />}
-              name="protocol"
-              id="job-profile-protocol"
-              component={Select}
-              dataOptions={[]}
-              fullWidth
-              disabled={disableProtocol}
-            />
-          </div>
           <div data-test-job-profile-description>
             <Field
               label={<FormattedMessage id="ui-data-export.description" />}
@@ -125,7 +113,6 @@ JobProfilesForm.propTypes = {
   paneTitle: PropTypes.node.isRequired,
   metadata: PropTypes.node,
   headLine: PropTypes.node,
-  disableProtocol: PropTypes.bool,
 };
 
 export default stripesFinalForm({

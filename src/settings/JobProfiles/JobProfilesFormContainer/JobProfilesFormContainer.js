@@ -26,7 +26,6 @@ const JobProfilesFormContainer = ({
         return { paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }) };
       case 'editProfile':
         return {
-          disableProtocol: true,
           paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.editProfile' }, { name: jobProfile?.name }),
           initialValues: formatJobProfileFormInitialValues(jobProfile),
           metadata: (
@@ -53,7 +52,6 @@ const JobProfilesFormContainer = ({
       case 'duplicateProfile':
         return {
           paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }),
-          disableProtocol: true,
           initialValues: {
             ...formatJobProfileFormInitialValues(jobProfile, ['id']),
             name: intl.formatMessage(
