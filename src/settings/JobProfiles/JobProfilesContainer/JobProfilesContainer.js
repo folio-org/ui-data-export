@@ -21,11 +21,8 @@ import { EditJobProfileRoute } from '../EditJobProfileRoute';
 import { DuplicateJobProfileRoute } from '../DuplicateJobProfileRoute';
 
 const customProperties = {
-  columnWidths: { protocol: '70px' },
-  columnMapping: { protocol: 'ui-data-export.protocol' },
   visibleColumns: [
     DEFAULT_JOB_PROFILES_COLUMNS.NAME,
-    'protocol',
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED,
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED_BY,
   ],
@@ -50,7 +47,7 @@ const JobProfilesContainer = ({
       <JobProfiles
         parentResources={resources}
         parentMutator={mutator}
-        formatter={useListFormatter({ protocol: () => '' })}
+        // formatter={useListFormatter({ protocol: () => '' })}
         {...useJobProfilesProperties(customProperties)}
       />
       <Route
