@@ -74,15 +74,6 @@ const JobProfileDetails = props => {
               <Row>
                 <Col xs>
                   <KeyValue
-                    data-test-job-profile-protocol
-                    label={<FormattedMessage id="ui-data-export.protocol" />}
-                    value={<NoValue />}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col xs>
-                  <KeyValue
                     data-test-job-profile-description
                     label={<FormattedMessage id="ui-data-export.description" />}
                     value={jobProfile.description || <NoValue />}

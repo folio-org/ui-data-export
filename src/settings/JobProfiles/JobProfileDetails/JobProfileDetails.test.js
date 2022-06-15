@@ -66,8 +66,6 @@ describe('JobProfileDetails', () => {
       jobProfile.name,
       translations.description,
       jobProfile.description,
-      translations.protocol,
-      '-',
       translations.mappingProfile,
       mappingProfile.name,
     ];
