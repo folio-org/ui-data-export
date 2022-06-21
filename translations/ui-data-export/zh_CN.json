@@ -35,7 +35,6 @@
     "outputFormat": "输出格式",
     "transformations": "转换",
     "marc": "MARC",
-    "protocol": "TCP / IP",
     "mappingProfile": "映射配置文件",
     "jobProfiles.newProfile": "新任务配置文件",
     "mappingProfiles.transformations.fieldName": "字段名称",
