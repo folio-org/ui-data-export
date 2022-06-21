@@ -35,7 +35,6 @@
     "outputFormat": "Format wyjściowy",
     "transformations": "Przekształcenia",
     "marc": "MARC",
-    "protocol": "TCP/IP",
     "mappingProfile": "Profil mapowania",
     "jobProfiles.newProfile": "Nowy profil pracy",
     "mappingProfiles.transformations.fieldName": "Nazwa pola",

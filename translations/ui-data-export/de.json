@@ -35,7 +35,6 @@
     "outputFormat": "Ausgabeformat",
     "transformations": "Transformationen",
     "marc": "MARC",
-    "protocol": "TCP/IP",
     "mappingProfile": "Feldzuordnungsprofil",
     "jobProfiles.newProfile": "Neues Jobprofil",
     "mappingProfiles.transformations.fieldName": "Feldname",
