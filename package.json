@@ -115,7 +115,8 @@
           "data-export.job-profiles.item.put",
           "data-export.job-profiles.item.delete",
           "data-export.transformation-fields.collection.get",
-          "data-export.logs.collection.get"
+          "data-export.logs.collection.get",
+          "data-export.mapping-profiles.collection.get"
         ],
         "visible": false
       },
