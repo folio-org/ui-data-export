@@ -5,6 +5,7 @@
 * Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
 * Update Data Export > Are you sure you want to run this job? Confirmation modal to include Authorities in dropdown. UIDEXP-275
 * Data export UI cleanup. UIDEXP-277
+* User does not have enough permissions to create Data Export Job profile. UIDEXP-281
 
 ## [5.1.1](https://github.com/folio-org/ui-data-export/tree/v5.1.1) (2022-04-07)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.0...v5.1.1)
