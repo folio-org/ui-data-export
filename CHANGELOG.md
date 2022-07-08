@@ -1,6 +1,10 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+
+## [5.2.0](https://github.com/folio-org/ui-data-export/tree/v5.2.0) (2022-07-08)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.1...v5.2.0)
+
 * Implement user notification when response after uploading file is 413. UIDEXP-271
 * Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
 * Update Data Export > Are you sure you want to run this job? Confirmation modal to include Authorities in dropdown. UIDEXP-275
