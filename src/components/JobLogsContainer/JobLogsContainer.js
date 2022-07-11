@@ -121,9 +121,8 @@ export const JobLogsContainer = props => {
         runBy: record => {
           const firstName = record.runBy.firstName || '';
           const lastName = record.runBy.lastName || '';
-          const fullName = `${firstName} ${lastName}`.trim();
 
-          return fullName;
+          return `${firstName} ${lastName}`.trim();
         },
         errors: record => {
           const failed = record.progress?.failed;
