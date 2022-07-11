@@ -118,6 +118,13 @@ export const JobLogsContainer = props => {
       {
         status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
         fileName: record => getFileNameField(record),
+        runBy: record => {
+          const firstName = record.runBy.firstName || '';
+          const lastName = record.runBy.lastName || '';
+          const fullName = `${firstName} ${lastName}`.trim();
+
+          return fullName;
+        },
         errors: record => {
           const failed = record.progress?.failed;
 
