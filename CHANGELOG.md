@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* "Undefined" value display at "Run by" column when user has no "First name" value. UIDEXP-280
 
 ## [5.2.0](https://github.com/folio-org/ui-data-export/tree/v5.2.0) (2022-07-08)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.1...v5.2.0)
