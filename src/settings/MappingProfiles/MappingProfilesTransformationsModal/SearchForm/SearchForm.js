@@ -138,6 +138,7 @@ SearchFormComponent.propTypes = {
 };
 
 export const SearchForm = stripesFinalForm({
+  initialValuesEqual: (a, b) => a.searchValue === b.searchValue,
   subscription: { values: true },
   navigationCheck: false,
 })(SearchFormComponent);

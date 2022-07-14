@@ -67,7 +67,7 @@ export const MappingProfilesTransformationsModal = ({
   const initialFormValues = useMemo(() => ({
     searchValue: initialSearchFormValues.searchValue,
     filters: searchFilters,
-  }), [searchFilters]);
+  }), [searchFilters, searchValue]);
   const [validatedTransformations, setValidatedTransformations] = useState({});
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 
