@@ -1,6 +1,9 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+
+## [5.2.1](https://github.com/folio-org/ui-data-export/tree/v5.2.1) (2022-07-22)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.0...v5.2.1)
 * "Undefined" value display at "Run by" column when user has no "First name" value. UIDEXP-280
 * The search box is reset after updating filter in the Select transformations UIDEXP-270
 * Replace babel-eslint with @babel/eslint-parser. Refs UIDEXP-276
