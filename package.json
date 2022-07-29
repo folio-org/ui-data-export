@@ -55,7 +55,7 @@
     "sinon": "^7.1.1"
   },
   "dependencies": {
-    "@folio/stripes-data-transfer-components": "^5.0.0",
+    "@folio/stripes-data-transfer-components": "^5.2.1",
     "classnames": "^2.2.5",
     "lodash": "^4.16.4",
     "prop-types": "^15.6.0",
