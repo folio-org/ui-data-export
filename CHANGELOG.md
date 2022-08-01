@@ -1,8 +1,13 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Github Actions: Test failures with both node v14 and v16 in Github Actions CI. UIDEXP-282
+
+## [5.2.1](https://github.com/folio-org/ui-data-export/tree/v5.2.1) (2022-07-22)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.0...v5.2.1)
 * "Undefined" value display at "Run by" column when user has no "First name" value. UIDEXP-280
 * The search box is reset after updating filter in the Select transformations UIDEXP-270
+* Replace babel-eslint with @babel/eslint-parser. Refs UIDEXP-276
 
 ## [5.2.0](https://github.com/folio-org/ui-data-export/tree/v5.2.0) (2022-07-08)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.1...v5.2.0)
