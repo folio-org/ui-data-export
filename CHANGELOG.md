@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Github Actions: Test failures with both node v14 and v16 in Github Actions CI. UIDEXP-282
 
 ## [5.2.1](https://github.com/folio-org/ui-data-export/tree/v5.2.1) (2022-07-22)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.0...v5.2.1)
