@@ -35,7 +35,6 @@
     "outputFormat": "Format de sortie",
     "transformations": "Transformations",
     "marc": "MARC",
-    "protocol": "TCP / IP",
     "mappingProfile": "Profil de mapping",
     "jobProfiles.newProfile": "Nouveau profil de tâche",
     "mappingProfiles.transformations.fieldName": "Nom du champ",

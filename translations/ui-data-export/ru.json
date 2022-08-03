@@ -35,7 +35,6 @@
     "outputFormat": "Выходной формат",
     "transformations": "Трансформации",
     "marc": "MARC",
-    "protocol": "TCP/IP",
     "mappingProfile": "Профиль отображения",
     "jobProfiles.newProfile": "Новый профиль задания",
     "mappingProfiles.transformations.fieldName": "Имя поля",

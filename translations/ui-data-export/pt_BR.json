@@ -35,7 +35,6 @@
     "outputFormat": "Formato de saída",
     "transformations": "Transformações",
     "marc": "MARC",
-    "protocol": "TCP/IP",
     "mappingProfile": "Perfil de mapeamento",
     "jobProfiles.newProfile": "Novo perfil de job",
     "mappingProfiles.transformations.fieldName": "Nome do campo",
@@ -263,5 +262,5 @@
     "jobProfiles.duplicate.errorCallout": "Ocorreu um erro ao criar o perfil do job <b>{name}</b>",
     "totalRecords": "{countOfRecords} registros",
     "bigFileProblem": "O arquivo carregado excede o tamanho de arquivo permitido (500MB).",
-    "authorities": "Authorities"
+    "authorities": "Autoridades"
 }

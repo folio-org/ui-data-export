@@ -5,7 +5,7 @@
     "logsPaneTitle": "Protokolle",
     "uploaderTitle": "Drag & Drop",
     "uploaderBtnText": "oder Datei auswählen",
-    "uploaderSubTitle": "Datei mit Datensätze-IDs oder CQL-Abfragen auswählen",
+    "uploaderSubTitle": "Datei mit Datensatz-IDs oder CQL-Abfragen auswählen",
     "uploaderActiveTitle": "Loslassen um Import zu starten",
     "runningJobs": "Laufend",
     "triggeredBy": "Ausgelöst durch {userName}",
@@ -35,7 +35,6 @@
     "outputFormat": "Ausgabeformat",
     "transformations": "Transformationen",
     "marc": "MARC",
-    "protocol": "TCP/IP",
     "mappingProfile": "Feldzuordnungsprofil",
     "jobProfiles.newProfile": "Neues Jobprofil",
     "mappingProfiles.transformations.fieldName": "Feldname",
@@ -80,7 +79,7 @@
     "instance.electronic.access.materialsSpecification.default": "Instanz - Elektronischer Zugang - aufgeführte Materialien",
     "instance.electronic.access.publicNote.default": "Instanz - Elektronischer Zugang - Allgemeine Anmerkungen der URL",
     "instance.electronic.access.uri.default": "Instanz - Elektronischer Zugang - URI",
-    "holdings.electronic.access.linkText.default": "Besand - Elektronischer Zugang - Linktext",
+    "holdings.electronic.access.linkText.default": "Bestand - Elektronischer Zugang - Linktext",
     "holdings.electronic.access.materialsSpecification.default": "Bestand - Elektronischer Zugang - aufgeführte Materialien",
     "holdings.electronic.access.publicNote.default": "Bestand - Elektronischer Zugang - Allgemeine Anmerkungen der URL",
     "holdings.electronic.access.uri.default": "Bestand - Elektronischer Zugang - URI",
@@ -92,7 +91,7 @@
     "instance.electronic.access.materialsSpecification": "Instanz - Elektronischer Zugang - {value} - aufgeführte Materialien",
     "instance.electronic.access.publicNote": "Instanz - Elektronischer Zugang - {value} - Allgemeine Anmerkungen der URL",
     "instance.electronic.access.uri": "Instanz - Elektronischer Zugang - {value} - URI",
-    "holdings.electronic.access.linkText": "Besand - Elektronischer Zugang - {value} - Linktext",
+    "holdings.electronic.access.linkText": "Bestand - Elektronischer Zugang - {value} - Linktext",
     "holdings.electronic.access.materialsSpecification": "Bestand - Elektronischer Zugang - {value} - aufgeführte Materialien",
     "holdings.electronic.access.publicNote": "Bestand - Elektronischer Zugang - {value} - Allgemeine Anmerkungen der URL",
     "holdings.electronic.access.uri": "Bestand - Elektronischer Zugang - {value} - URI",
@@ -262,6 +261,6 @@
     "jobProfiles.duplicate.successCallout": "Jobprofil <b>{name}</b> erfolgreich <b>erstellt</b>",
     "jobProfiles.duplicate.errorCallout": "Fehler beim Erstellen des Jobprofils <b>{name}</b>",
     "totalRecords": "{countOfRecords} Datensätze",
-    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
-    "authorities": "Authorities"
+    "bigFileProblem": "Die hochgeladene Datei überschreitet die zulässige Dateigröße (500Mb).",
+    "authorities": "Normdaten"
 }

@@ -35,7 +35,6 @@
     "outputFormat": "输出格式",
     "transformations": "转换",
     "marc": "MARC",
-    "protocol": "TCP / IP",
     "mappingProfile": "映射配置文件",
     "jobProfiles.newProfile": "新任务配置文件",
     "mappingProfiles.transformations.fieldName": "字段名称",
@@ -262,6 +261,6 @@
     "jobProfiles.duplicate.successCallout": "任务配置文件<b> {name} </b>已成功<b>创建</b>",
     "jobProfiles.duplicate.errorCallout": "创建任务配置文件<b> {name} </b>出错",
     "totalRecords": "{countOfRecords}条记录",
-    "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
-    "authorities": "Authorities"
+    "bigFileProblem": "上传的文件超出了允许的文件大小 (500Mb)。",
+    "authorities": "规范"
 }

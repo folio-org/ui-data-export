@@ -35,7 +35,6 @@
     "outputFormat": "تنسيق الإخراج",
     "transformations": "تحولات",
     "marc": "مارك",
-    "protocol": "TCP/IP",
     "mappingProfile": "بروفايل التخطيط",
     "jobProfiles.newProfile": "بروفايل مهمة جديد",
     "mappingProfiles.transformations.fieldName": "اسم الحقل",
@@ -263,5 +262,5 @@
     "jobProfiles.duplicate.errorCallout": "حدث خطأ أثناء إنشاء بروفايل المهمة <b>{name}</b>",
     "totalRecords": "{countOfRecords} تسجيلة",
     "bigFileProblem": "يتجاوز الملف الذي تم تحميله حجم الملف المسموح به (500 ميجا بايت).",
-    "authorities": "Authorities"
+    "authorities": "الاستنادات"
 }

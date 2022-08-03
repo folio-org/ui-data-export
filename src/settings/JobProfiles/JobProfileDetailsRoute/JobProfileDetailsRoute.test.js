@@ -138,7 +138,6 @@ describe('JobProfileDetails', () => {
         'Record last updated: 12/4/2018 1:28 PM',
         jobProfile.name,
         jobProfile.description,
-        '-',
         mappingProfile.name,
       ];
 
@@ -174,7 +173,6 @@ describe('JobProfileDetails', () => {
         'Record last updated: 12/4/2018 1:28 PM',
         jobProfile.name,
         jobProfile.description,
-        '-',
         mappingProfile.name,
       ];
 

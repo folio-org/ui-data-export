@@ -50,7 +50,6 @@
   "communicationProblem": "Server communication problem. Please try again",
   "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
   "format": "Format",
-  "protocol": "TCP/IP",
   "copyOf": "Copy of {value}",
   "mappingProfile": "Mapping profile",
   "mappingProfiles.selectProfile": "Select mapping profile",

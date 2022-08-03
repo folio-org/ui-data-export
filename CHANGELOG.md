@@ -1,9 +1,22 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Github Actions: Test failures with both node v14 and v16 in Github Actions CI. UIDEXP-282
+
+## [5.2.1](https://github.com/folio-org/ui-data-export/tree/v5.2.1) (2022-07-22)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.0...v5.2.1)
+* "Undefined" value display at "Run by" column when user has no "First name" value. UIDEXP-280
+* The search box is reset after updating filter in the Select transformations UIDEXP-270
+* Replace babel-eslint with @babel/eslint-parser. Refs UIDEXP-276
+
+## [5.2.0](https://github.com/folio-org/ui-data-export/tree/v5.2.0) (2022-07-08)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.1...v5.2.0)
+
 * Implement user notification when response after uploading file is 413. UIDEXP-271
 * Adjust UI to changes about the default profiles (instances and holdings) check. UIDEXP-128
 * Update Data Export > Are you sure you want to run this job? Confirmation modal to include Authorities in dropdown. UIDEXP-275
+* Data export UI cleanup. UIDEXP-277
+* User does not have enough permissions to create Data Export Job profile. UIDEXP-281
 
 ## [5.1.1](https://github.com/folio-org/ui-data-export/tree/v5.1.1) (2022-04-07)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.1.0...v5.1.1)
