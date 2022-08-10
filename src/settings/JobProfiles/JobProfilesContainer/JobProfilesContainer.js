@@ -9,6 +9,7 @@ import {
   JobProfiles,
   useJobProfilesProperties,
   DEFAULT_JOB_PROFILES_COLUMNS,
+  useListFormatter
 } from '@folio/stripes-data-transfer-components';
 
 import { useHistory } from 'react-router-dom';
@@ -41,11 +42,13 @@ const JobProfilesContainer = ({
     [stripes]
   );
 
+
   return (
     <>
       <JobProfiles
         parentResources={resources}
         parentMutator={mutator}
+        formatter={useListFormatter({ format: ({ outputFormat }) => outputFormat })}
         {...useJobProfilesProperties(customProperties)}
       />
       <Route
