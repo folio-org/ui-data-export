@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Missing data in Updated and Updated by columns for job profiles. Refs UIDEXP-284
 
 ## [5.2.2](https://github.com/folio-org/ui-data-export/tree/v5.2.2) (2022-08-04)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.1...v5.2.2)
