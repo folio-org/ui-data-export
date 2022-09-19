@@ -1,6 +1,7 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
+* Numeric values are sorted alphabetically on View all logs form. Refs UIDEXP-289
 
 ## [5.2.3](https://github.com/folio-org/ui-data-export/tree/v5.2.3) (2022-08-16)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.2...v5.2.3)
