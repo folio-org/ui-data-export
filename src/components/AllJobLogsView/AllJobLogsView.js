@@ -18,7 +18,7 @@ import { JobLogsContainer } from '../JobLogsContainer';
 const excludedSortColumns = ['fileName'];
 const findAllCql = `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`;
 const sortMap = {
-  totalRecords: 'progress.total',
+  totalRecords: 'progress.total/number',
   errors: 'progress.failed',
   updated: 'metadata.updatedDate',
   runBy: 'runBy.firstName runBy.lastName',
