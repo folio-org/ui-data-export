@@ -53,7 +53,8 @@
     "react-query": "^3.6.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.3",
-    "sinon": "^7.1.1"
+    "sinon": "^7.1.1",
+    "react-virtualized-auto-sizer": "*"
   },
   "dependencies": {
     "@folio/stripes-data-transfer-components": "^5.2.1",
@@ -72,8 +73,7 @@
     "react-intl": "^5.7.0",
     "react-query": "^3.6.0",
     "react-router": "*",
-    "react-router-dom": "*",
-    "react-virtualized-auto-sizer": "*"
+    "react-router-dom": "*"
   },
   "stripes": {
     "stripesDeps": [
