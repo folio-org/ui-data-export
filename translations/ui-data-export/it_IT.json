@@ -108,7 +108,7 @@
     "instance.alternativeTitleTypeName": "Instance - Alternative title - {value}",
     "instance.identifiers": "Instance - Identifier - {value}",
     "instance.instanceTypeId": "Instance - Resource type - {value}",
-    "instance.modeOfIssuanceId": "Istanza - Modalità di emissione",
+    "instance.modeOfIssuanceId": "Istanza - Modalità di emissione - {value}",
     "item.materialTypeId": "Item - Tipologia materiale",
     "item.permanentLoanTypeId": "Item - Permanent loan type",
     "item.id": "Item - ID",
