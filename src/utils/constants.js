@@ -76,3 +76,21 @@ export const RECORD_TYPES_DISABLING_MAPPING = {
   [FOLIO_RECORD_TYPES.SRS.type]: FOLIO_RECORD_TYPES.INSTANCE.type,
   [FOLIO_RECORD_TYPES.INSTANCE.type]: FOLIO_RECORD_TYPES.SRS.type,
 };
+
+export const searchableIndexes = [
+  // {
+  //   label: 'keyword',
+  //   value: 'keyword',
+  //   placeholder: ''
+  // },
+  {
+    label: 'jobExecutionHrId',
+    value: 'hrId',
+    placeholder: 'jobExecutionHrId',
+  },
+  // {
+  //   label: 'fileName',
+  //   value: 'fileName',
+  //   placeholder: 'fileName',
+  // },
+];

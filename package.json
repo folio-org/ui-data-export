@@ -23,8 +23,8 @@
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-data-export ./translations/ui-data-export/compiled"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/eslint-parser": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@folio/eslint-config-stripes": "^5.0.0",
     "@folio/stripes": "^7.0.0",
     "@folio/stripes-cli": "^2.0.0",
@@ -56,9 +56,11 @@
     "sinon": "^7.1.1"
   },
   "dependencies": {
-    "@folio/stripes-data-transfer-components": "^5.2.1",
+    "@folio/stripes-acq-components": "^3.3.0",
+    "@folio/stripes-data-transfer-components": "^5.3.0",
     "classnames": "^2.2.5",
     "lodash": "^4.16.4",
+    "moment": "^2.29.4",
     "prop-types": "^15.6.0",
     "react-final-form": "^6.3.5",
     "react-final-form-arrays": "^3.1.1",
