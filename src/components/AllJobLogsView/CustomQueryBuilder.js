@@ -43,7 +43,7 @@ export const buildFilterQuery = (queryParams, getSearchQuery, customFilterMap = 
     }
 
     if (Array.isArray(filterValue)) {
-      return `${filterKey}==(${filterValue.map(v => `${v}`).join(' or ')})`;
+      return `${filterKey}==(${filterValue.map(v => v.toString()).join(' or ')})`;
     }
 
     return `${filterKey}==${filterValue}`;

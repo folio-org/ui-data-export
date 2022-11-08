@@ -59,7 +59,7 @@ const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && qu
   hrId: queryString,
 });
 
-const resetData = () => {};
+const onResetData = () => {};
 
 export const AllJobLogsViewComponent = ({
   resources,
@@ -79,9 +79,9 @@ export const AllJobLogsViewComponent = ({
     resetFilters,
     changeIndex,
     searchIndex,
-  ] = useLocationFilters(location, history, resetData);
+  ] = useLocationFilters(location, history, onResetData);
 
-  const applyFiltersAdapter = () => ({ name, values }) => applyFilters(name, values);
+  const applyFiltersAdapter = (callBack) => ({ name, values }) => callBack(name, values);
   const adaptedApplyFilters = useCallback(
     applyFiltersAdapter(applyFilters),
     [applyFilters],
