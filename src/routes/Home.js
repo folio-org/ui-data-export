@@ -29,7 +29,7 @@ function Home(props) {
       buttonStyle="primary paneHeaderNewButton"
       data-test-view-all-logs-button
       marginBottom0
-      to="/data-export/job-logs?sort=-completedDate"
+      to="/data-export/job-logs?qindex=hrId"
     >
       <FormattedMessage id="ui-data-export.viewAllLogs" />
     </Button>
