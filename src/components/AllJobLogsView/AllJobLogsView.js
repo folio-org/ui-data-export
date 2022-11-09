@@ -26,7 +26,7 @@ import { ViewAllLogsFilters } from '@folio/stripes-data-transfer-components/lib/
 
 import FilterPaneToggle from '@folio/stripes-acq-components/lib/AcqList/ResultsPane/FilterPaneToggle';
 import {
-  INITIAL_RESULT_COUNT, JOB_LOGS_STATUS_QUERY_VALUE,
+  INITIAL_RESULT_COUNT, JOB_EXECUTION_STATUSES, JOB_LOGS_STATUS_QUERY_VALUE,
   RESULT_COUNT_INCREMENT, searchableIndexes,
 } from '../../utils';
 import { JobLogsContainer } from '../JobLogsContainer';
@@ -36,6 +36,7 @@ import {
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
+const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)'
 
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
@@ -43,6 +44,17 @@ const buildJobsQuery = makeQueryBuilder(
   null,
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
+    status: (query)=>{
+      if(query === JOB_EXECUTION_STATUSES.FAIL){
+          return jobStatusFailString
+      } else if (Array.isArray(query)) {
+        return `status=(${query.map(v => {
+          if (v === JOB_EXECUTION_STATUSES.COMPLETED) {
+            return JOB_LOGS_STATUS_QUERY_VALUE;
+          } else return `"${v}"`;
+        }).join(' or ')})`;
+      } else return `status=${query}`;
+    }
   },
   {
     hrId: 'hrId/number',
