@@ -26,8 +26,11 @@ import { ViewAllLogsFilters } from '@folio/stripes-data-transfer-components/lib/
 
 import FilterPaneToggle from '@folio/stripes-acq-components/lib/AcqList/ResultsPane/FilterPaneToggle';
 import {
-  INITIAL_RESULT_COUNT, JOB_EXECUTION_STATUSES, JOB_LOGS_STATUS_QUERY_VALUE,
-  RESULT_COUNT_INCREMENT, searchableIndexes,
+  INITIAL_RESULT_COUNT, 
+  JOB_EXECUTION_STATUSES, 
+  JOB_LOGS_STATUS_QUERY_VALUE,
+  RESULT_COUNT_INCREMENT, 
+  searchableIndexes,
 } from '../../utils';
 import { JobLogsContainer } from '../JobLogsContainer';
 import {
