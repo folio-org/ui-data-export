@@ -26,8 +26,11 @@ import { ViewAllLogsFilters } from '@folio/stripes-data-transfer-components/lib/
 
 import FilterPaneToggle from '@folio/stripes-acq-components/lib/AcqList/ResultsPane/FilterPaneToggle';
 import {
-  INITIAL_RESULT_COUNT, JOB_LOGS_STATUS_QUERY_VALUE,
-  RESULT_COUNT_INCREMENT, searchableIndexes,
+  INITIAL_RESULT_COUNT, 
+  JOB_EXECUTION_STATUSES, 
+  JOB_LOGS_STATUS_QUERY_VALUE,
+  RESULT_COUNT_INCREMENT, 
+  searchableIndexes,
 } from '../../utils';
 import { JobLogsContainer } from '../JobLogsContainer';
 import {
@@ -36,6 +39,7 @@ import {
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
+const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)'
 
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
@@ -43,6 +47,20 @@ const buildJobsQuery = makeQueryBuilder(
   null,
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
+    status: (query)=> {
+      switch (true) {
+        case query === JOB_EXECUTION_STATUSES.FAIL:
+          return jobStatusFailString;
+        case Array.isArray(query):
+          return `status=(${query.map(v => (
+            v === JOB_EXECUTION_STATUSES.COMPLETED
+              ? JOB_LOGS_STATUS_QUERY_VALUE
+              : `"${v}"`)).join(' or ')})`;
+        default:
+          return `status=${query}`;
+
+      }
+    }
   },
   {
     hrId: 'hrId/number',
