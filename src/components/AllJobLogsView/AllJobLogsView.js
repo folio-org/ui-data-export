@@ -44,16 +44,19 @@ const buildJobsQuery = makeQueryBuilder(
   null,
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
-    status: (query)=>{
-      if(query === JOB_EXECUTION_STATUSES.FAIL){
-          return jobStatusFailString
-      } else if (Array.isArray(query)) {
-        return `status=(${query.map(v => {
-          if (v === JOB_EXECUTION_STATUSES.COMPLETED) {
-            return JOB_LOGS_STATUS_QUERY_VALUE;
-          } else return `"${v}"`;
-        }).join(' or ')})`;
-      } else return `status=${query}`;
+    status: (query)=> {
+      switch (true) {
+        case query === JOB_EXECUTION_STATUSES.FAIL:
+          return jobStatusFailString;
+        case Array.isArray(query):
+          return `status=(${query.map(v => (
+            v === JOB_EXECUTION_STATUSES.COMPLETED
+              ? JOB_LOGS_STATUS_QUERY_VALUE
+              : `"${v}"`)).join(' or ')})`;
+        default:
+          return `status=${query}`;
+
+      }
     }
   },
   {
