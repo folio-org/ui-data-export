@@ -42,7 +42,7 @@ export const ErrorLogsViewComponent = ({ resources: { log } }) => {
         >
           <div data-test-error-log-info>{errorLogRecord.createdDate} {errorLogRecord.logLevel} {intl.formatMessage(
             { id: `ui-data-export.${errorLogRecord.errorMessageCode}` },
-            { ...formatErrorReasonMessageValues(errorLogRecord?.errorMessageValues) }
+            { ...formatErrorReasonMessageValues(errorLogRecord.errorMessageValues) }
           )}
           </div>
           {errorLogRecord?.affectedRecord && (
