@@ -106,6 +106,13 @@
   "modal.resultsHeader": "Search results",
   "modal.totalSelected": "Total selected: {count}",
 
+  "keyword": "Keyword (ID, File name)",
+  "jobExecutionHrId": "ID",
+  "fileName": "fileName",
+  "placeholder.jobExecutionHrId": "Search for ID",
+  "placeholder.fileName": "Search for File name",
+  "resetFilters": "Reset all",
+
   "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
   "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
   "errorLogs.record.Title": "\"{recordType} Title\": \"{value}\"",

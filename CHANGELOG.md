@@ -2,16 +2,18 @@
 
 ## IN PROGRESS
 
+* Gracefully handle missing data in the exported jobs log. Fix UIDEXP-297
+
 ## [5.3.1](https://github.com/folio-org/ui-data-export/tree/v5.3.1) (2022-11-17)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.0...v5.3.1)
 
-* Gracefully handle missing data in the exported jobs log. Fix UIDEXP-297
 
 ## [5.3.0](https://github.com/folio-org/ui-data-export/tree/v5.3.0) (2022-10-28)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.3...v5.3.0)
 
 * Numeric values are sorted alphabetically on View all logs form. Refs UIDEXP-289
 * react-virtualized-auto-sizer is incorrectly listed as a peer-dependency.Refs UIDEXP-290.
+
 
 ## [5.2.3](https://github.com/folio-org/ui-data-export/tree/v5.2.3) (2022-08-16)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.2...v5.2.3)
