@@ -1,9 +1,11 @@
 import React from 'react';
-import Pretender from 'pretender';
-import { noop } from 'lodash';
-import { screen, within } from '@testing-library/react';
 
 import '../../../../test/jest/__mock__';
+
+import Pretender from 'pretender';
+import { noop } from 'lodash';
+import { useOkapiKy } from '@folio/stripes/core';
+import { screen, within } from '@testing-library/react';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import userEvent from '@testing-library/user-event';
@@ -41,6 +43,8 @@ describe('JobProfileDetails', () => {
 
   beforeEach(() => {
     server = new Pretender();
+
+    useOkapiKy.mockClear();
   });
 
   afterEach(() => {
@@ -116,26 +120,28 @@ describe('JobProfileDetails', () => {
     const nonDefaultJobProfileId = 'job-profile-id';
 
     it('should display job profile details for non default job profile', async () => {
-      server.get('/data-export/job-profiles/:id', () => [
-        200,
-        { 'content-type': 'application/json' },
-        JSON.stringify({
-          ...jobProfile,
-          id: nonDefaultJobProfileId,
-        }),
-      ]);
-      server.get('/data-export/mapping-profiles/:id', () => [
-        200,
-        { 'content-type': 'application/json' },
-        JSON.stringify(mappingProfile),
-      ]);
+      const kyMock = (url) => {
+        return {
+          json: jest.fn(() => {
+            if (url.includes('job-profiles')) {
+              return Promise.resolve({ ...jobProfile, id: nonDefaultJobProfileId });
+            } else if (url.includes('mapping-profiles')) {
+              return Promise.resolve(mappingProfile);
+            } else {
+              return Promise.resolve();
+            }
+          }),
+        };
+      };
+
+      useOkapiKy.mockReturnValue(kyMock);
+
       setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
 
       const summary = await screen.findByRole('region', { name: /summary/i });
 
       const labelsAndValues = [
-        'Record created: 12/4/2018 11:22 AM',
-        'Record last updated: 12/4/2018 1:28 PM',
+        'ViewMetaData',
         jobProfile.name,
         jobProfile.description,
         mappingProfile.name,
@@ -147,16 +153,21 @@ describe('JobProfileDetails', () => {
 
   describe('rendering details for default job profile with job execution data', () => {
     it('should display job profile details', async () => {
-      server.get('/data-export/job-profiles/:id', () => [
-        200,
-        { 'content-type': 'application/json' },
-        JSON.stringify(jobProfile),
-      ]);
-      server.get('/data-export/mapping-profiles/:id', () => [
-        200,
-        { 'content-type': 'application/json' },
-        JSON.stringify(mappingProfile),
-      ]);
+      const kyMock = (url) => {
+        return {
+          json: jest.fn(() => {
+            if (url.includes('job-profiles')) {
+              return Promise.resolve(jobProfile);
+            } else if (url.includes('mapping-profiles')) {
+              return Promise.resolve(mappingProfile);
+            } else {
+              return Promise.resolve();
+            }
+          }),
+        };
+      };
+
+      useOkapiKy.mockReturnValue(kyMock);
 
       setupJobProfileDetailsRoute();
 
@@ -169,8 +180,7 @@ describe('JobProfileDetails', () => {
       headings.forEach(heading => expect(heading).toBeVisible());
 
       const labelsAndValues = [
-        'Record created: 12/4/2018 11:22 AM',
-        'Record last updated: 12/4/2018 1:28 PM',
+        'ViewMetaData',
         jobProfile.name,
         jobProfile.description,
         mappingProfile.name,

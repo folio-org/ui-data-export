@@ -96,8 +96,7 @@ describe('MappingProfileDetails', () => {
       expect(transformations).toBeVisible();
 
       const labelsAndValues = [
-        'Record created: 12/4/2018 1:29 AM',
-        'Record last updated: 12/4/2018 1:29 AM',
+        'ViewMetaData',
         commonTranslations.name,
         'AP Holdings 1',
         translations.description,
