@@ -2,11 +2,12 @@
 
 ## IN PROGRESS
 
-* Gracefully handle missing data in the exported jobs log. Fix UIDEXP-297
+* Data Export App - View all logs page - left pane. Refs UIDEXP-64
 
 ## [5.3.1](https://github.com/folio-org/ui-data-export/tree/v5.3.1) (2022-11-17)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.0...v5.3.1)
 
+* Gracefully handle missing data in the exported jobs log. Fix UIDEXP-297
 
 ## [5.3.0](https://github.com/folio-org/ui-data-export/tree/v5.3.0) (2022-10-28)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.3...v5.3.0)
