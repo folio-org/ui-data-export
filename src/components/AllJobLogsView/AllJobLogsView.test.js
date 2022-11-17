@@ -66,7 +66,7 @@ describe('AllJobLogsView', () => {
 
       userEvent.click(screen.getByRole('button', { name: /status/i }));
 
-      expect(decodeURIComponent(window.location.search)).toContain('?sort=status,completedDate');
+      expect(decodeURIComponent(window.location.search)).toContain('?sort=status');
     });
   });
 
