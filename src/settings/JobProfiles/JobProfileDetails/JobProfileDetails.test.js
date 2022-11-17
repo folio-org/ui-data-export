@@ -60,8 +60,7 @@ describe('JobProfileDetails', () => {
     const summary = within(dialog).getByRole('region', { name: /summary/i });
 
     const labelsAndValues = [
-      'Record created: 12/4/2018 11:22 AM',
-      'Record last updated: 12/4/2018 1:28 PM',
+      'ViewMetaData',
       commonTranslations.name,
       jobProfile.name,
       translations.description,
