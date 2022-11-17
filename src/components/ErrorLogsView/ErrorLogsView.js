@@ -35,17 +35,17 @@ export const ErrorLogsViewComponent = ({ resources: { log } }) => {
       data-test-error-logs-container
       className={css.errorLogsContainer}
     >
-      {errorLogRecords.map(errorLogRecord => (
+      {errorLogRecords?.map(errorLogRecord => (
         <div
           key={errorLogRecord.id}
           data-test-error-log
         >
           <div data-test-error-log-info>{errorLogRecord.createdDate} {errorLogRecord.logLevel} {intl.formatMessage(
             { id: `ui-data-export.${errorLogRecord.errorMessageCode}` },
-            { ...formatErrorReasonMessageValues(errorLogRecord.errorMessageValues) }
+            { ...formatErrorReasonMessageValues(errorLogRecord?.errorMessageValues) }
           )}
           </div>
-          {errorLogRecord.affectedRecord && (
+          {errorLogRecord?.affectedRecord && (
             <div data-test-error-log-affected-record>
               {generateAffectedRecordInfo(errorLogRecord.affectedRecord, intl.formatMessage)
                 .map((item, i) => <div key={i}>{item}</div>)}

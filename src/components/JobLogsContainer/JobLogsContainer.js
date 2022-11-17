@@ -119,8 +119,8 @@ export const JobLogsContainer = props => {
         status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
         fileName: record => getFileNameField(record),
         runBy: record => {
-          const firstName = record.runBy.firstName || '';
-          const lastName = record.runBy.lastName || '';
+          const firstName = record.runBy?.firstName || '';
+          const lastName = record.runBy?.lastName || '';
 
           return `${firstName} ${lastName}`.trim();
         },
