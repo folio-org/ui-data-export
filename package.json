@@ -1,6 +1,6 @@
 {
   "name": "@folio/data-export",
-  "version": "5.2.3",
+  "version": "5.2.4",
   "description": "Data export manager",
   "main": "src/index.js",
   "repository": "folio-org/ui-data-export",

@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+## [5.2.4](https://github.com/folio-org/ui-data-export/tree/v5.2.4) (2022-11-30)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.2.3...v5.2.4)
 * Gracefully handle missing data in the exported jobs log. Fix UIDEXP-297
 
 ## [5.2.3](https://github.com/folio-org/ui-data-export/tree/v5.2.3) (2022-08-16)
