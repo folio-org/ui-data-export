@@ -253,7 +253,7 @@
     "errorLogs.inventoryRecordLink": "\"Inventory record link\": ",
     "error.configurations.queryHost": "No configuration in mod-config found for the host. There will be no links to failed records for this job.",
     "instance": "Instances",
-    "holdings": "Holdings",
+    "holdings": "Existencias",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
     "jobProfiles.editProfile": "Edit {name}",
     "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
@@ -262,5 +262,11 @@
     "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "totalRecords": "{countOfRecords} records",
     "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
-    "authorities": "Authorities"
+    "authorities": "Authorities",
+    "keyword": "Keyword (ID, File name)",
+    "jobExecutionHrId": "ID",
+    "fileName": "fileName",
+    "placeholder.jobExecutionHrId": "Search for ID",
+    "placeholder.fileName": "Search for File name",
+    "resetFilters": "Reset all"
 }

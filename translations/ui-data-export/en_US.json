@@ -263,6 +263,7 @@
     "totalRecords": "{countOfRecords} records",
     "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
     "authorities": "Authorities",
+    "keyword": "Keyword (ID, File name)",
     "jobExecutionHrId": "ID",
     "fileName": "fileName",
     "placeholder.jobExecutionHrId": "Search for ID",

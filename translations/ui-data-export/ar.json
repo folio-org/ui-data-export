@@ -262,5 +262,11 @@
     "jobProfiles.duplicate.errorCallout": "حدث خطأ أثناء إنشاء بروفايل المهمة <b>{name}</b>",
     "totalRecords": "{countOfRecords} تسجيلة",
     "bigFileProblem": "يتجاوز الملف الذي تم تحميله حجم الملف المسموح به (500 ميجا بايت).",
-    "authorities": "الاستنادات"
+    "authorities": "الاستنادات",
+    "keyword": "Keyword (ID, File name)",
+    "jobExecutionHrId": "ID",
+    "fileName": "fileName",
+    "placeholder.jobExecutionHrId": "Search for ID",
+    "placeholder.fileName": "Search for File name",
+    "resetFilters": "Reset all"
 }
