@@ -262,5 +262,11 @@
     "jobProfiles.duplicate.errorCallout": "创建任务配置文件<b> {name} </b>出错",
     "totalRecords": "{countOfRecords}条记录",
     "bigFileProblem": "上传的文件超出了允许的文件大小 (500Mb)。",
-    "authorities": "规范"
+    "authorities": "规范",
+    "keyword": "关键词（ID，文件名）",
+    "jobExecutionHrId": "ID",
+    "fileName": "文件名",
+    "placeholder.jobExecutionHrId": "搜索ID",
+    "placeholder.fileName": "搜索文件名",
+    "resetFilters": "全部重置"
 }

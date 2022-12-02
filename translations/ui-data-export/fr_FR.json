@@ -262,5 +262,11 @@
     "jobProfiles.duplicate.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
     "totalRecords": "{countOfRecords} notices",
     "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
-    "authorities": "Authorities"
+    "authorities": "Authorities",
+    "keyword": "Keyword (ID, File name)",
+    "jobExecutionHrId": "ID",
+    "fileName": "nom de fichier",
+    "placeholder.jobExecutionHrId": "Rechercher l'identifiant",
+    "placeholder.fileName": "Rechercher un nom de fichier",
+    "resetFilters": "Tout réinitialiser"
 }

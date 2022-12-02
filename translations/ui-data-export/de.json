@@ -262,5 +262,11 @@
     "jobProfiles.duplicate.errorCallout": "Fehler beim Erstellen des Jobprofils <b>{name}</b>",
     "totalRecords": "{countOfRecords} Datensätze",
     "bigFileProblem": "Die hochgeladene Datei überschreitet die zulässige Dateigröße (500Mb).",
-    "authorities": "Normdaten"
+    "authorities": "Normdaten",
+    "keyword": "Keyword (ID, File name)",
+    "jobExecutionHrId": "ID",
+    "fileName": "fileName",
+    "placeholder.jobExecutionHrId": "Suche nach ID",
+    "placeholder.fileName": "Suche nach  Dateinamen",
+    "resetFilters": "Reset all"
 }
