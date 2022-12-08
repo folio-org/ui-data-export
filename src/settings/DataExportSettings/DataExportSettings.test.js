@@ -6,12 +6,7 @@ import '../../../test/jest/__new_mock__';
 import { render, screen } from '@testing-library/react';
 import  { DataExportSettings } from './DataExportSettings';
 
-jest.mock('@folio/stripes/smart-components', () => ({
-  ...jest.requireActual('@folio/stripes/smart-components'),
-  Settings: () => <div>Settings</div>,
-  SettingsLabel: () => <div>SettingsLabel</div>
-}));
-
+jest.mock('@folio/stripes-smart-components/lib/Settings', () => () => <div>Settings</div>);
 
 const setupDataExportSettings = () => render(
   <BrowserRouter>
