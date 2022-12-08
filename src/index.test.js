@@ -31,10 +31,9 @@ describe('DataExport', () => {
     expect(screen.getByText('DataExportSettings')).toBeVisible();
   });
 
-  it('should display Data export settings', () => {
+  it('should display Data export home', () => {
     setupDataExport();
 
     expect(screen.getByText('Home')).toBeVisible();
   });
-
 });
