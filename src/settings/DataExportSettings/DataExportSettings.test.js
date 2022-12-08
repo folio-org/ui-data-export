@@ -8,7 +8,7 @@ import  { DataExportSettings } from './DataExportSettings';
 
 jest.mock('@folio/stripes-smart-components', () => ({
   ...jest.requireActual('@folio/stripes-smart-components'),
-  Settings: () => <div>Settings</div>,
+  Settings: () => <div>Settings</div>,2
   SettingsLabel: () => <div>SettingsLabel</div>
 }), { virtual: true });
 
