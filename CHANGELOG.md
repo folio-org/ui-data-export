@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Data Export App - View all logs page - left pane. Refs UIDEXP-64
+* Increase unit test code coverage for ui-data-export. Refs UIDEXP-296
 
 ## [5.3.1](https://github.com/folio-org/ui-data-export/tree/v5.3.1) (2022-11-17)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.0...v5.3.1)
