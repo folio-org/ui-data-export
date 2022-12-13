@@ -204,7 +204,7 @@
     "unselected": "Nevybrané",
     "mappingProfiles.transformations.status": "Stav transformace",
     "searchResultsCountHeader": "{count, number} {count, plural, one {nalezený záznam} other {nalezených záznamů}}",
-    "failed": "Neúspěšné",
+    "failed": "Neúspěšný",
     "total": "Celkem",
     "copyOf": "Kopie {value}",
     "mappingProfiles.srs.info": "Pokud je vybrána možnost <b>Úložiště zdrojových záznamů (celý záznam)</b> a titul nemá podkladový záznam SRS, bude vygenerován záznam MARC podle výchozích pravidel mapování.",
