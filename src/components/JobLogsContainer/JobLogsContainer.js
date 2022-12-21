@@ -97,7 +97,9 @@ export const JobLogsContainer = props => {
           downloadExportFile(record);
         }}
       >
-        {fileName}
+        <span className={styles.downloadFile}>
+           {fileName}
+        </span>
       </Button>
     );
   };

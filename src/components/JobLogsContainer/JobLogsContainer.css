@@ -1,3 +1,5 @@
+@import "@folio/stripes-components/lib/variables.css";
+
 .fileNameBtn {
   margin-top: 0.25rem !important;
   margin-bottom: 0.25rem !important;
@@ -18,4 +20,8 @@
 
 .disabledFileName {
   padding: 0.25em 10px !important;
+}
+
+.downloadFile {
+  color: var(--color-link);
 }
