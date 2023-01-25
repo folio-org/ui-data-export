@@ -263,10 +263,10 @@
     "totalRecords": "{countOfRecords} records",
     "bigFileProblem": "The uploaded file exceeds the allowed file size (500Mb).",
     "authorities": "Authorities",
-    "keyword": "Keyword (ID, File name)",
+    "keyword": "Palabra clave (ID, Nombre de archivo)",
     "jobExecutionHrId": "ID",
-    "fileName": "fileName",
-    "placeholder.jobExecutionHrId": "Search for ID",
-    "placeholder.fileName": "Search for File name",
-    "resetFilters": "Reset all"
+    "fileName": "NombreArchivo",
+    "placeholder.jobExecutionHrId": "Buscar ID",
+    "placeholder.fileName": "Buscar nombre de archivo",
+    "resetFilters": "Restablecer todo"
 }
