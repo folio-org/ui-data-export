@@ -263,10 +263,10 @@
     "totalRecords": "{countOfRecords} Datensätze",
     "bigFileProblem": "Die hochgeladene Datei überschreitet die zulässige Dateigröße (500Mb).",
     "authorities": "Normdaten",
-    "keyword": "Keyword (ID, File name)",
+    "keyword": "Stichwort (ID, Dateiname)",
     "jobExecutionHrId": "ID",
-    "fileName": "fileName",
+    "fileName": "Dateiname",
     "placeholder.jobExecutionHrId": "Suche nach ID",
     "placeholder.fileName": "Suche nach  Dateinamen",
-    "resetFilters": "Reset all"
+    "resetFilters": "Alles zurücksetzen"
 }
