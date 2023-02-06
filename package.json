@@ -125,6 +125,7 @@
       },
       {
         "permissionName": "ui-data-export.app.enabled",
+        "displayName": "UI: Data export module is enabled",
         "subPermissions": [
           "module.data-export.enabled"
         ],
