@@ -125,6 +125,7 @@
       },
       {
         "permissionName": "ui-data-export.app.enabled",
+        "displayName": "UI: Data export module is enabled",
         "subPermissions": [
           "module.data-export.enabled"
         ],
@@ -140,6 +141,7 @@
       },
       {
         "permissionName": "ui-data-export.settings.enabled",
+        "displayName": "Settings (data-export): display list of settings pages",
         "subPermissions": [
           "settings.data-export.enabled"
         ],
