@@ -2,6 +2,9 @@
 
 ## IN PROGRESS
 
+## [5.4.0](https://github.com/folio-org/ui-data-export/tree/v5.4.0) (2023-02-22)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.1...v5.4.0)
+
 * Data Export App - View all logs page - left pane. Refs UIDEXP-64
 * Increase unit test code coverage for ui-data-export. Refs UIDEXP-296
 * Change exported file names to the hyperlink color. Refs UIDEXP-141
