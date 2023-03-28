@@ -46,7 +46,7 @@
     "mappingProfiles.transformations.emptyMessage": "Nebyly nalezeny žádné transformace",
     "settings.profilesInfo": "Profily exportu dat přidávají flexibilitu a poskytují snadný způsob konfigurace exportu, který je opakovatelný a lze jej snadno provádět na různých setech dat.",
     "permission.app.enabled": "UI: Modul exportu dat je povolen",
-    "permission.settings.enabled": "Nastavení (export dat): zobrazení seznamu stránek nastavení",
+    "permission.settings.enabled": "Nastavení (export dat): zobrazit seznam stránek nastavení",
     "jobProfiles.delete.successCallout": "Profil úlohy <b>{name}</b> byl úspěšně <b>smazán</b>",
     "jobProfiles.delete.errorCallout": "Při mazání profilu úlohy <b>{name}</b> došlo k chybě",
     "jobProfiles.delete.confirmationModal.title": "Smazat profil úlohy",
