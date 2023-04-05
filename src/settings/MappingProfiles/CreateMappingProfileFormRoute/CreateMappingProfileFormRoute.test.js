@@ -76,14 +76,14 @@ describe('CreateMappingProfileFormRoute', () => {
 
     it('should initiate creating of mapping profile with correct values', async () => {
       const name = 'New mapping profile';
-      const submitFormButton = screen.getByRole('button', { name: 'Save & close' });
+      const submitFormButton = screen.getByRole('button', { name: 'stripes-components.saveAndClose' });
 
-      userEvent.type(screen.getByLabelText('Name*'), name);
+      userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), name);
       userEvent.click(recordTypesHoldings());
-      userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
+      userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 
       const modal = screen.getByRole('document');
-      const saveTransrormationsButton = within(modal).getByRole('button', { name: 'Save & close' });
+      const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
       const textFields = within(tableRow).getAllByRole('textbox');
@@ -106,22 +106,22 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(recordTypesHoldings());
       userEvent.click(saveAndCloseBtn());
 
-      expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'Please enter a value')).toBeVisible();
-      expect(screen.getByLabelText('Name*')).not.toBeValid();
+      expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'stripes-data-transfer-components.validation.enterValue')).toBeVisible();
+      expect(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'})).not.toBeValid();
       expect(onSubmitMock).not.toBeCalled();
     });
 
     it('should initiate displaying of error callout', async () => {
       onSubmitMock.mockImplementationOnce(() => Promise.reject());
 
-      const submitFormButton = screen.getByRole('button', { name: 'Save & close' });
+      const submitFormButton = screen.getByRole('button', { name: 'stripes-components.saveAndClose' });
 
-      userEvent.type(screen.getByLabelText('Name*'), 'Name');
-      userEvent.click(screen.getByRole('checkbox', { name: 'Holdings' }));
-      userEvent.click(screen.getByRole('button', { name: 'Add transformations' }));
+      userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), 'Name');
+      userEvent.click(screen.getByRole('checkbox', { name: 'stripes-data-transfer-components.recordTypes.holdings' }));
+      userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 
       const modal = screen.getByRole('document');
-      const saveTransrormationsButton = within(modal).getByRole('button', { name: 'Save & close' });
+      const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
       const textFields = within(tableRow).getAllByRole('textbox');

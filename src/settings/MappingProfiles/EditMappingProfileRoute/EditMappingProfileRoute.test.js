@@ -122,7 +122,7 @@ describe('rendering edit mapping profile page without profile data', () => {
       expect(paneHeader('AP Holdings 1')).toBeVisible();
       expect(nameField()).toHaveValue(mappingProfile.name);
       expect(descriptionField()).toHaveValue(mappingProfile.description);
-      expect(transformationsBtn('Edit transformations')).toBeVisible();
+      expect(transformationsBtn('ui-data-export.mappingProfiles.transformations.editTransformations')).toBeVisible();
       expect(saveAndCloseBtn()).toBeDisabled();
       expect(recordTypeInstance()).toBeChecked();
       expect(recordTypesSRS()).not.toBeChecked();
@@ -159,7 +159,7 @@ describe('rendering edit mapping profile page without profile data', () => {
       it('should display transformation value', () => {
         renderEditMappingProfileRoute();
 
-        userEvent.click(transformationsBtn('Edit transformations'));
+        userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.editTransformations'));
 
         expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
       });

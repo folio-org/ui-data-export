@@ -81,18 +81,18 @@ describe('ChooseJobProfile', () => {
       const { container } = renderResult;
       const paneHeader = container.querySelector('[data-test-pane-header]');
 
-      expect(getByText(paneHeader, 'Select job profile to run the export')).toBeVisible();
-      expect(getByText(paneHeader, '2 job profiles')).toBeVisible();
+      expect(getByText(paneHeader, 'ui-data-export.jobProfiles.selectProfile.title')).toBeVisible();
+      expect(getByText(paneHeader, 'ui-data-export.jobProfiles.selectProfile.title')).toBeVisible();
     });
 
     it('should place headers in correct order', () => {
       const { container } = renderResult;
       const headers = container.querySelectorAll('#search-results-list .mclHeader');
 
-      expect(getByText(headers[0], 'Name')).toBeVisible();
-      expect(getByText(headers[1], 'Description')).toBeVisible();
-      expect(getByText(headers[2], 'Updated')).toBeVisible();
-      expect(getByText(headers[3], 'Updated by')).toBeVisible();
+      expect(getByText(headers[0], 'stripes-data-transfer-components.name')).toBeVisible();
+      expect(getByText(headers[1], 'ui-data-export.description')).toBeVisible();
+      expect(getByText(headers[2], 'stripes-data-transfer-components.updated')).toBeVisible();
+      expect(getByText(headers[3], 'stripes-data-transfer-components.updatedBy')).toBeVisible();
     });
 
     it('should not display the confirmation modal', () => {
@@ -109,7 +109,7 @@ describe('ChooseJobProfile', () => {
 
       expect(getByText(cells[0], 'A Lorem ipsum 1')).toBeVisible();
       expect(getByText(cells[1], 'Description 1')).toBeVisible();
-      expect(getByText(cells[2], '12/4/2018')).toBeVisible();
+      expect(getByText(cells[2], '2018-12-04')).toBeVisible();
       expect(getByText(cells[3], 'Donald S')).toBeVisible();
     });
 
@@ -122,7 +122,7 @@ describe('ChooseJobProfile', () => {
       });
 
       it('should display modal with proper header', () => {
-        expect(screen.getByText('Are you sure you want to run this job?')).toBeInTheDocument();
+        expect(screen.getByText('ui-data-export.jobProfiles.selectProfile.modal.title')).toBeInTheDocument();
       });
 
       it('should display modal profile name in the body', () => {
@@ -132,14 +132,14 @@ describe('ChooseJobProfile', () => {
       it('should display modal with proper wording for buttons', () => {
         const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-        expect(getByRole(modal, 'button', { name: 'Run' })).toBeVisible();
-        expect(getByRole(modal, 'button', { name: 'Cancel' })).toBeVisible();
+        expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).toBeVisible();
+        expect(getByRole(modal, 'button', { name: 'ui-data-export.cancel' })).toBeVisible();
       });
 
       it('clicking on cancel button should close the modal', () => {
         const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-        userEvent.click(getByRole(modal, 'button', { name: 'Cancel' }));
+        userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.cancel' }));
 
         return waitForElementToBeRemoved(() => document.querySelector('#choose-job-profile-confirmation-modal'));
       });
@@ -148,9 +148,9 @@ describe('ChooseJobProfile', () => {
         beforeEach(async () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'Instances');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
 
-          userEvent.click(getByRole(modal, 'button', { name: 'Run' }));
+          userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
         });
 
         it('should navigate to the landing page', () => {
@@ -164,9 +164,9 @@ describe('ChooseJobProfile', () => {
 
           exportProfileSpy.mockImplementationOnce(Promise.reject.bind(Promise));
 
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'Instances');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
 
-          userEvent.click(getByRole(modal, 'button', { name: 'Run' }));
+          userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
           await waitForElementToBeRemoved(() => document.querySelector('#choose-job-profile-confirmation-modal'));
         });
 

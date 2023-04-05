@@ -29,12 +29,10 @@ import {
   SettingsComponentBuilder,
   getTransformationFieldGroups,
 } from '../../../../test/jest/helpers';
-import translations from '../../../../translations/ui-data-export/en';
 import {
   columnHeaderFieldName, columnHeaderTransformation,
   descriptionField,
   nameField,
-  paneHeader,
   recordTypeInstance, recordTypesHoldings, recordTypesItem, recordTypesSRS,
   saveAndCloseBtn, transformationListCells, transformationListRows,
   transformationsBtn,
@@ -126,19 +124,18 @@ describe('DuplicateMappingProfileRoute', () => {
 
     it('should display correct pane title', () => {
       renderDuplicateMappingProfileRoute();
-
-      expect(getByText(paneHeader('New field mapping profile'), translations['mappingProfiles.newProfile'])).toBeVisible();
+      expect(screen.getByText('ui-data-export.mappingProfiles.newProfile')).toBeVisible();
     });
 
     it('should have correct name field value', () => {
       renderDuplicateMappingProfileRoute();
-      expect(nameField()).toHaveValue(`Copy of ${mappingProfile.name}`);
+      expect(nameField()).toHaveValue(`ui-data-export.copyOf`);
     });
 
     it('should display add transformations button with proper wording', () => {
       renderDuplicateMappingProfileRoute();
 
-      expect(getByText(transformationsBtn('Add transformations'), translations['mappingProfiles.transformations.addTransformations'])).toBeVisible();
+      expect(screen.getByText('ui-data-export.mappingProfiles.transformations.addTransformations')).toBeVisible();
     });
 
     it('should have correct description field value', () => {
@@ -188,7 +185,7 @@ describe('DuplicateMappingProfileRoute', () => {
     describe('opening transformations modal', () => {
       it('should display correct transformations table with filled values', () => {
         renderDuplicateMappingProfileRoute();
-        userEvent.click(transformationsBtn('Add transformations'));
+        userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
         expect(columnHeaderFieldName()[0]).toBeVisible();
         expect(columnHeaderTransformation()[0]).toBeVisible();
@@ -198,7 +195,7 @@ describe('DuplicateMappingProfileRoute', () => {
       it('should fill transformation field group on transformation modal correctly', () => {
         renderDuplicateMappingProfileRoute();
 
-        userEvent.click(transformationsBtn('Add transformations'));
+        userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
         const transformationFields = getTransformationFieldGroups();
 
@@ -211,7 +208,7 @@ describe('DuplicateMappingProfileRoute', () => {
       it('should not show validation error when clearing transformation with empty indicator field', () => {
         const { container } = renderDuplicateMappingProfileRoute();
 
-        userEvent.click(transformationsBtn('Add transformations'));
+        userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
         const transformationFields = getTransformationFieldGroups();
         const modal = document.querySelector('[data-test-transformations-modal]');
@@ -220,9 +217,9 @@ describe('DuplicateMappingProfileRoute', () => {
         userEvent.type(transformationFields[0].indicator2.input, '');
         userEvent.type(transformationFields[0].subfield.input, '');
 
-        userEvent.dblClick(screen.getByLabelText('Select all fields'));
+        userEvent.dblClick(screen.getByLabelText('ui-data-export.mappingProfiles.transformations.selectAllFields'));
 
-        userEvent.click(getByRole(modal, 'button', { name: 'Save & close' }));
+        userEvent.click(getByRole(modal, 'button', { name: 'stripes-components.saveAndClose' }));
 
         return waitForElementToBeRemoved(() => container.querySelector('[data-test-transformations-modal]'));
       });
@@ -231,7 +228,7 @@ describe('DuplicateMappingProfileRoute', () => {
     it('should display transformation value', () => {
       renderDuplicateMappingProfileRoute();
 
-      userEvent.click(transformationsBtn('Add transformations'));
+      userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
       expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
     });

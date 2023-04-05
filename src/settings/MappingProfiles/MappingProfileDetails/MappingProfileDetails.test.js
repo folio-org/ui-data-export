@@ -12,7 +12,6 @@ import userEvent from '@testing-library/user-event';
 
 import '../../../../test/jest/__mock__';
 
-import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { MappingProfileDetails } from '.';
@@ -24,7 +23,6 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import translations from '../../../../translations/ui-data-export/en';
 
 const MappingProfileDetailsContainer = ({
   allTransformations = [],
@@ -60,6 +58,7 @@ const MappingProfileDetailsContainer = ({
         onCancel={onCancel}
         onEdit={onEdit}
         onDelete={onDelete}
+        onDuplicate={noop}
       />
     </SettingsComponentBuilder>
   );
@@ -87,7 +86,7 @@ describe('MappingProfileDetails', () => {
 
       headings.forEach(heading => expect(heading).toBeVisible());
 
-      expect(within(dialog).getByRole('button', { name: /collapse all/i })).toBeVisible();
+      expect(within(dialog).getByRole('button', { name: 'stripes-components.collapseAll' })).toBeVisible();
 
       const summary = within(dialog).getByRole('region', { name: /summary/i });
       const transformations = within(dialog).getByRole('region', { name: /transformations/i });
@@ -97,14 +96,14 @@ describe('MappingProfileDetails', () => {
 
       const labelsAndValues = [
         'ViewMetaData',
-        commonTranslations.name,
+        'ui-data-export.name',
         'AP Holdings 1',
-        translations.description,
+        'ui-data-export.description',
         'AP Holdings 1 description',
-        translations.outputFormat,
+        'ui-data-export.outputFormat',
         'MARC',
-        commonTranslations.folioRecordType,
-        commonTranslations['recordTypes.holdings'],
+        'stripes-data-transfer-components.folioRecordType',
+        'stripes-data-transfer-components.recordTypes.holdings'
       ];
 
       labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
@@ -113,8 +112,8 @@ describe('MappingProfileDetails', () => {
     it('should display correct transformations fields headers', () => {
       renderMappingProfileDetails();
 
-      expect(screen.getByRole('columnheader', { name: translations['mappingProfiles.transformations.fieldName'] })).toBeVisible();
-      expect(screen.getByRole('columnheader', { name: translations['mappingProfiles.transformations.transformation'] })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.fieldName' })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.transformation' })).toBeVisible();
     });
 
     it('should display correct transformations values', () => {

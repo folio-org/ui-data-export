@@ -18,7 +18,7 @@ describe('Jobs', () => {
   it('should display Jobs accordion', () => {
     setupJobs();
 
-    expect(screen.getByRole('button', { name: 'Running' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'ui-data-export.runningJobs' })).toBeVisible();
   });
 
 });

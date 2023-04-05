@@ -2,9 +2,9 @@ import { within } from '@testing-library/react';
 
 export const checkJobProfileFormState = async (form, { title }) => {
   const formTitle = await within(form).findByText(title);
-  const nameInput = await within(form).findByLabelText(/Name/i);
-  const mappingProfileInput = await within(form).findByLabelText(/Mapping profile/i);
-  const descriptionInput = await within(form).findByLabelText('Description');
+  const nameInput = await within(form).findByLabelText(/stripes-data-transfer-components.name/i);
+  const mappingProfileInput = await within(form).findByLabelText(/ui-data-export.jobProfiles./i);
+  const descriptionInput = await within(form).findByLabelText('ui-data-export.description');
 
   expect(form).toBeVisible();
   expect(formTitle).toBeVisible();
