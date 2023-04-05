@@ -2,6 +2,11 @@
 
 ## IN PROGRESS
 
+## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
+
+* Something went wrong during creation new field mapping profile. Refs UIDEXP-311
+
 ## [5.4.0](https://github.com/folio-org/ui-data-export/tree/v5.4.0) (2023-02-22)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.1...v5.4.0)
 
