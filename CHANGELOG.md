@@ -2,6 +2,11 @@
 
 ## IN PROGRESS
 
+
+## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
+* Something went wrong during creation new field mapping profile. Refs UIDEXP-311
+
 ## [5.4.0](https://github.com/folio-org/ui-data-export/tree/v5.4.0) (2023-02-22)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.1...v5.4.0)
 
@@ -10,7 +15,6 @@
 * Change exported file names to the hyperlink color. Refs UIDEXP-141
 * bump stripes to 8.0.0 for Orchid/2023-R1. Refs UIDEXP-302.
 * A result is not displayed in list of permissions after clicking on the 'Search' button. Refs UIDEXP-305
-* Something went wrong during creation new field mapping profile. Refs UIDEXP-311
 
 ## [5.3.1](https://github.com/folio-org/ui-data-export/tree/v5.3.1) (2022-11-17)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.3.0...v5.3.1)
