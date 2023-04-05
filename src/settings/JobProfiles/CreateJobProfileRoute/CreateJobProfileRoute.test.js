@@ -48,7 +48,7 @@ describe('CreateJobProfile', () => {
       const form = await screen.findByTestId('full-screen-form');
 
       await checkJobProfileFormState(form, {
-        title: /New job profile/i,
+        title: 'ui-data-export.jobProfiles.newProfile',
         isTCPIPEnabled: true,
       });
     });

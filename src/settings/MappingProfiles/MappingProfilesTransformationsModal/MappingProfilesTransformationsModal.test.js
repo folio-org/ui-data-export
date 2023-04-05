@@ -101,12 +101,12 @@ describe('MappingProfilesTransformationsModal', () => {
       const resultsPane = modal.querySelector('[data-test-transformations-results-pane]');
 
       expect(resultsPane).toBeInTheDocument();
-      expect(getByText(resultsPane, 'Transformations')).toBeInTheDocument();
-      expect(getByText(resultsPane, `${initialValues.transformations.length} fields found`)).toBeInTheDocument();
+      expect(getByText(resultsPane, 'ui-data-export.transformations')).toBeInTheDocument();
+      expect(getByText(resultsPane, `ui-data-export.mappingProfiles.transformations.searchResultsCountHeader`)).toBeInTheDocument();
     });
 
     it('should display total selected count', () => {
-      expect(getByText(modal, 'Total selected: 0')).toBeInTheDocument();
+      expect(getByText(modal, 'ui-data-export.modal.totalSelected')).toBeInTheDocument();
     });
 
     it('should display search form', () => {
@@ -122,11 +122,11 @@ describe('MappingProfilesTransformationsModal', () => {
     });
 
     it('should display cancel button', () => {
-      expect(getByRole(modal, 'button', { name: 'Cancel' })).toBeInTheDocument();
+      expect(getByRole(modal, 'button', { name: 'stripes-components.cancel' })).toBeInTheDocument();
     });
 
     it('should display save button', () => {
-      expect(getByRole(modal, 'button', { name: 'Save & close' })).toBeInTheDocument();
+      expect(getByRole(modal, 'button', { name: 'stripes-components.saveAndClose' })).toBeInTheDocument();
     });
 
     describe('filling transformation values', () => {
@@ -135,7 +135,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       beforeEach(() => {
         transformationFields = getTransformationFieldGroups();
-        submitButton = getByRole(modal, 'button', { name: 'Save & close' });
+        submitButton = getByRole(modal, 'button', { name: 'stripes-components.saveAndClose' });
         userEvent.type(transformationFields[0].marcField.input, '123');
         userEvent.type(transformationFields[0].indicator1.input, '1');
         userEvent.type(transformationFields[0].indicator2.input, '0');
@@ -154,7 +154,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       describe('selecting all fields and clicking submit', () => {
         beforeEach(() => {
-          userEvent.click(screen.getByLabelText('Select all fields'));
+          userEvent.click(screen.getByLabelText('ui-data-export.mappingProfiles.transformations.selectAllFields'));
           userEvent.click(submitButton);
           transformationFields = getTransformationFieldGroups();
         });

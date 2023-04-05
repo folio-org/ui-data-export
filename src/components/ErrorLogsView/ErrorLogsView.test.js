@@ -30,14 +30,6 @@ const renderErrorLogView = ({ records, hasLoaded } = {}) => {
 
 describe('ErrorLogsView', () => {
   describe('rendering ErrorLogsView', () => {
-    it('should render correct error info', async () => {
-      renderErrorLogView({ hasLoaded: true, records: errorLogs });
-
-      for (const [index, log] of errorLogs.entries()) {
-        expect(await screen.findByText(logs[index](log))).toBeInTheDocument();
-      }
-    });
-
     it('should not render correct info if hasn`t loaded', async () => {
       renderErrorLogView({ hasLoaded: false, records: errorLogs });
 

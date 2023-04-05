@@ -44,14 +44,15 @@ export const TransformationFieldGroup = ({
     subfield: '',
   });
 
-  useEffect(() => {
-    setGroupPlaceHolder();
-  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder]);
-
   const setGroupPlaceHolder = useCallback(() => {
     return record.isFirst && Object.values(isPlaceholder).every(x => x === '') ? GROUP_PLACEHOLDER : {};
   }, [isPlaceholder, record.isFirst]);
+
   const groupPlaceholder = setGroupPlaceHolder();
+
+  useEffect(() => {
+    setGroupPlaceHolder();
+  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder]);
 
   const handleChange = useCallback((type, isValid) => {
     setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));

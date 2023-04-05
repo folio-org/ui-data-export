@@ -55,7 +55,7 @@ describe('EditJobProfileRoute', () => {
       const form = await screen.findByTestId('full-screen-form');
 
       await checkJobProfileFormState(form, {
-        title: /Edit/i,
+        title: 'ui-data-export.jobProfiles.editProfile',
         isTCPIPEnabled: true,
       });
     });

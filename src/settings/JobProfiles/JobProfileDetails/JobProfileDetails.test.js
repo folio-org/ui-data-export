@@ -9,7 +9,6 @@ import userEvent from '@testing-library/user-event';
 
 import '../../../../test/jest/__mock__';
 
-import commonTranslations from '@folio/stripes-data-transfer-components/translations/stripes-data-transfer-components/en';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { JobProfileDetails } from '.';
@@ -17,7 +16,6 @@ import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
-import translations from '../../../../translations/ui-data-export/en';
 
 describe('JobProfileDetails', () => {
   const stripes = {
@@ -61,12 +59,12 @@ describe('JobProfileDetails', () => {
 
     const labelsAndValues = [
       'ViewMetaData',
-      commonTranslations.name,
-      jobProfile.name,
-      translations.description,
-      jobProfile.description,
-      translations.mappingProfile,
-      mappingProfile.name,
+      'ui-data-export.name',
+      'A Lorem impsum 1',
+      'ui-data-export.mappingProfile',
+      'AP Holdings and Items',
+      'ui-data-export.description',
+      'Job profile description'
     ];
 
     labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
@@ -74,13 +72,13 @@ describe('JobProfileDetails', () => {
 
   it('should display action buttons in the proper state', () => {
     renderJobProfileDetails();
-    const actionButton = screen.getByText('Actions');
+    const actionButton = screen.getByText('stripes-components.paneMenuActionsToggleLabel');
 
     userEvent.click(actionButton);
 
-    const deleteButton = screen.getByText(commonTranslations.delete);
-    const duplicateButton = screen.getByText(commonTranslations.duplicate);
-    const editButton = screen.getByText(commonTranslations.edit);
+    const deleteButton = screen.getByText('stripes-data-transfer-components.delete');
+    const duplicateButton = screen.getByText('stripes-data-transfer-components.duplicate');
+    const editButton = screen.getByText('stripes-data-transfer-components.edit');
 
     expect(deleteButton).toBeEnabled();
     expect(duplicateButton).toBeEnabled();
@@ -101,6 +99,7 @@ describe('JobProfileDetails', () => {
             isDefaultProfile={false}
             isProfileUsed={false}
             onCancel={noop}
+            onDelete={noop}
           />
         </SettingsComponentBuilder>,
         translationsProperties
@@ -116,13 +115,13 @@ describe('JobProfileDetails', () => {
 
     it('should display action buttons in the proper state', () => {
       renderJobProfileWitoutDescription();
-      const actionButton = screen.getByText('Actions');
+      const actionButton = screen.getByText('stripes-components.paneMenuActionsToggleLabel');
 
       userEvent.click(actionButton);
 
-      const deleteButton = screen.getByText(commonTranslations.delete);
-      const duplicateButton = screen.getByText(commonTranslations.duplicate);
-      const editButton = screen.getByText(commonTranslations.edit);
+      const deleteButton = screen.getByText('stripes-data-transfer-components.delete');
+      const duplicateButton = screen.getByText('stripes-data-transfer-components.duplicate');
+      const editButton = screen.getByText('stripes-data-transfer-components.edit');
 
       expect(deleteButton).toBeEnabled();
       expect(duplicateButton).toBeEnabled();
@@ -132,11 +131,11 @@ describe('JobProfileDetails', () => {
     describe('clicking on delete profiles button', () => {
       it('should display delete confirmation modal', async () => {
         renderJobProfileWitoutDescription();
-        const actionButton = screen.getByText('Actions');
+        const actionButton = screen.getByText('stripes-components.paneMenuActionsToggleLabel');
 
         userEvent.click(actionButton);
 
-        const deleteButton = screen.getByText(commonTranslations.delete);
+        const deleteButton = screen.getByText('stripes-data-transfer-components.delete');
 
         userEvent.click(deleteButton);
 
@@ -160,6 +159,7 @@ describe('JobProfileDetails', () => {
             isDefaultProfile={false}
             isProfileUsed
             onCancel={noop}
+            onDelete={noop}
           />
         </SettingsComponentBuilder>,
         translationsProperties
