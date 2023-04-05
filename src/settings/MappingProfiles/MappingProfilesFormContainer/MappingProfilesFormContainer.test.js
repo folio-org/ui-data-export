@@ -40,6 +40,7 @@ const MappingProfileFormContainer = ({
     outputFormat: 'MARC',
   },
   onSubmit = noop,
+  onCancel = noop,
 }) => {
   const intl = useIntl();
 
@@ -51,6 +52,7 @@ const MappingProfileFormContainer = ({
         isEditMode={isEditMode}
         initialValues={initialValues}
         onSubmit={onSubmit}
+        onCancel={onCancel}
       />
     </SettingsComponentBuilder>
   );
