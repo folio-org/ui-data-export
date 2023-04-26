@@ -1,7 +1,7 @@
 # Change history for ui-data-export
 
 ## IN PROGRESS
-
+* View All page displays export jobs in random order. Refs UIDEXP-312
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)

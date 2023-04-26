@@ -44,7 +44,7 @@ const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)'
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
   (query) => `query=${query}`,
-  null,
+  'sortby completedDate',
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
     status: (query)=> {
@@ -193,11 +193,12 @@ export const AllJobLogsViewComponent = ({
             resourceName="jobExecutions"
             hasSearchForm={false}
             firstMenu={renderFirstMenu()}
-            shouldSetInitialSort={false}
+            shouldSetInitialSort={true}
+            defaultSort='completedDate'
             lastMenu={<div />}
             initialResultCount={INITIAL_RESULT_COUNT}
             resultCountIncrement={RESULT_COUNT_INCREMENT}
-            shouldSetInitialSortOnMount={false}
+            shouldSetInitialSortOnMount={true}
             parentMutator={mutator}
             parentResources={resources}
             maxSortKeys={1}
