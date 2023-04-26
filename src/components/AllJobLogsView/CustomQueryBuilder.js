@@ -10,6 +10,7 @@ export const LIMIT_PARAMETER = 'limit';
 export const SORTING_PARAMETER = 'sort';
 export const SORTING_DIRECTION_PARAMETER = 'sortingDirection';
 export const ASC_DIRECTION = 'descending';
+export const ASC_ASCENDING = 'ascending'
 export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
 export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
@@ -54,7 +55,11 @@ export const buildSortingQuery = (queryParams, customSortMap = {}) => {
   if (queryParams.sort) {
     const key = customSortMap[queryParams.sort] || queryParams.sort;
 
-    return `sortby ${key}/sort.${queryParams.sortingDirection || ASC_DIRECTION} progress.total/number`;
+    const replacedKey = key.replace('-','');
+
+    const sortingDirection= key.startsWith('-') ? ASC_DIRECTION : ASC_ASCENDING;
+
+    return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
   }
 
   return '';
