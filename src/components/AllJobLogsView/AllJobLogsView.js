@@ -1,7 +1,11 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory, useLocation } from 'react-router-dom';
-import { FormattedMessage, useIntl } from 'react-intl';
+import {
+  useHistory, useLocation,
+} from 'react-router-dom';
+import {
+  FormattedMessage, useIntl,
+} from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
 import {
@@ -12,9 +16,7 @@ import {
   get,
   omit,
 } from 'lodash';
-import {
-  Paneset
-} from '@folio/stripes/components';
+import { Paneset } from '@folio/stripes/components';
 import {
   FiltersPane,
   ResetButton,
@@ -26,10 +28,10 @@ import { ViewAllLogsFilters } from '@folio/stripes-data-transfer-components/lib/
 
 import FilterPaneToggle from '@folio/stripes-acq-components/lib/AcqList/ResultsPane/FilterPaneToggle';
 import {
-  INITIAL_RESULT_COUNT, 
-  JOB_EXECUTION_STATUSES, 
+  INITIAL_RESULT_COUNT,
+  JOB_EXECUTION_STATUSES,
   JOB_LOGS_STATUS_QUERY_VALUE,
-  RESULT_COUNT_INCREMENT, 
+  RESULT_COUNT_INCREMENT,
   searchableIndexes,
 } from '../../utils';
 import { JobLogsContainer } from '../JobLogsContainer';
@@ -39,15 +41,15 @@ import {
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
-const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)'
+const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)';
 
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
-  (query) => `query=${query}`,
-  'sortby completedDate',
+  query => `query=${query}`,
+  'sortby completedDate/sort.descending',
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
-    status: (query)=> {
+    status: query => {
       switch (true) {
         case query === JOB_EXECUTION_STATUSES.FAIL:
           return jobStatusFailString;
@@ -58,12 +60,12 @@ const buildJobsQuery = makeQueryBuilder(
               : `"${v}"`)).join(' or ')})`;
         default:
           return `status=${query}`;
-
       }
-    }
+    },
   },
   {
     hrId: 'hrId/number',
+    '-hrId': '-hrId/number',
     totalRecords: 'progress.total/number',
     errors: 'progress.failed/number',
     updated: 'metadata.updatedDate',
@@ -71,11 +73,7 @@ const buildJobsQuery = makeQueryBuilder(
   }
 );
 
-const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? {
-  hrId: `${queryString} or fileName=${queryString}`,
-} : {
-  hrId: queryString,
-});
+const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });
 
 const onResetData = () => {};
 
@@ -99,16 +97,18 @@ export const AllJobLogsViewComponent = ({
     searchIndex,
   ] = useLocationFilters(location, history, onResetData);
 
-  const applyFiltersAdapter = (callBack) => ({ name, values }) => callBack(name, values);
+  const applyFiltersAdapter = callBack => ({
+    name, values,
+  }) => callBack(name, values);
   const adaptedApplyFilters = useCallback(
     applyFiltersAdapter(applyFilters),
-    [applyFilters],
+    [applyFilters]
   );
 
   const getSearchableIndexes = () => {
     return searchableIndexes.map(index => {
-      const label = intl.formatMessage({ id:`ui-data-export.${index.label}` });
-      const placeholder = index?.placeholder ? intl.formatMessage({ id:`ui-data-export.placeholder.${index.placeholder}` }) : '';
+      const label = intl.formatMessage({ id: `ui-data-export.${index.label}` });
+      const placeholder = index?.placeholder ? intl.formatMessage({ id: `ui-data-export.placeholder.${index.placeholder}` }) : '';
 
       return {
         ...index,
@@ -141,10 +141,12 @@ export const AllJobLogsViewComponent = ({
 
   const renderFirstMenu = () => (isFiltersOpened ?
     null :
-    (<FilterPaneToggle
-      filters={filters}
-      toggleFiltersPane={toggleFilters}
-    />));
+    (
+      <FilterPaneToggle
+        filters={filters}
+        toggleFiltersPane={toggleFilters}
+      />
+    ));
 
   return (
     <Paneset data-test-log-events-list>
@@ -166,12 +168,12 @@ export const AllJobLogsViewComponent = ({
           label={<FormattedMessage id="ui-data-export.resetFilters" />}
         />
         <ViewAllLogsFilters
-          onChange={adaptedApplyFilters}
           users={users}
           activeFilters={filters}
           jobProfiles={jobProfiles}
           queryMutator={mutator.query}
           showUsers={false}
+          onChange={adaptedApplyFilters}
         />
       </FiltersPane>
       )}
@@ -194,7 +196,7 @@ export const AllJobLogsViewComponent = ({
             hasSearchForm={false}
             firstMenu={renderFirstMenu()}
             shouldSetInitialSort
-            defaultSort='-completedDate'
+            defaultSort="-completedDate"
             lastMenu={<div />}
             initialResultCount={INITIAL_RESULT_COUNT}
             resultCountIncrement={RESULT_COUNT_INCREMENT}
@@ -216,14 +218,16 @@ export const AllJobLogsViewComponent = ({
 };
 
 AllJobLogsViewComponent.manifest = Object.freeze({
-  initializedFilterConfig: { initialValue:  {
-    query: '',
-    qindex: 'hrID'
-  } },
+  initializedFilterConfig: {
+    initialValue: {
+      query: '',
+      qindex: 'hrID',
+    },
+  },
   query: {
     initialValue: {
       query: '',
-      qindex: 'hrID'
+      qindex: 'hrID',
     },
   },
   resultCount: { initialValue: INITIAL_RESULT_COUNT },
@@ -233,17 +237,19 @@ AllJobLogsViewComponent.manifest = Object.freeze({
     records: 'jobExecutions',
     recordsRequired: '%{resultCount}',
     perRequest: RESULT_COUNT_INCREMENT,
-    params:  (queryParams, pathComponents, resourceData) => {
+    params: (queryParams, pathComponents, resourceData) => {
       const {
         query,
         qindex,
       } = resourceData.query;
 
       const customField = getQindex(qindex, query);
-      const buildedQuery = { ...omit(resourceData.query, ['qindex', 'query']), ...customField };
-      return {
-        query: buildJobsQuery(buildedQuery),
+      const buildedQuery = {
+        ...omit(resourceData.query, ['qindex', 'query']),
+        ...customField,
       };
+
+      return { query: buildJobsQuery(buildedQuery) };
     },
   },
   usersList: {
