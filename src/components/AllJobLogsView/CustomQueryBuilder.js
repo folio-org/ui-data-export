@@ -81,3 +81,4 @@ export const makeQueryBuilder = (searchAllQuery, getSearchQuery, defaultSorting,
     return connectQuery(filterQuery, sortingQuery);
   };
 };
+export const  getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });

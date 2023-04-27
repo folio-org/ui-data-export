@@ -16,10 +16,24 @@ import {
 import { AllJobLogsViewComponent } from '.';
 import { translationsProperties } from '../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../test/jest/helpers';
-import { logJobExecutions } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
+import { logJobExecutions, userList, jobProfilesList } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
 
 jest.mock('react-virtualized-auto-sizer', () => ({ children }) => children({ width: 1920, height: 1080 }));
 
+const mockData= {
+  'jobProfilesList': {
+    records: jobProfilesList,
+    hasLoaded: true,
+    isPending: false,
+    other: { totalRecords: jobProfilesList.length },
+  },
+  'usersList': {
+    records: userList,
+    hasLoaded: true,
+    isPending: false,
+    other: { totalRecords: userList.length },
+  },
+}
 const renderAllJobLogsViewContainer = () => {
   render(
     <SettingsComponentBuilder>
@@ -27,6 +41,7 @@ const renderAllJobLogsViewContainer = () => {
         resources={buildResources({
           resourceName: 'jobExecutions',
           records: logJobExecutions,
+          otherResources: mockData
         })}
         mutator={buildMutator()}
       />

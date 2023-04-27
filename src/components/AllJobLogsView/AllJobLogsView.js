@@ -38,6 +38,7 @@ import { JobLogsContainer } from '../JobLogsContainer';
 import {
   makeQueryBuilder,
   buildDateTimeRangeQuery,
+  getQindex,
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
@@ -72,8 +73,6 @@ const buildJobsQuery = makeQueryBuilder(
     runBy: 'runBy.firstName runBy.lastName',
   }
 );
-
-const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });
 
 const onResetData = () => {};
 
