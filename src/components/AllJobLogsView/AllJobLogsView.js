@@ -193,12 +193,12 @@ export const AllJobLogsViewComponent = ({
             resourceName="jobExecutions"
             hasSearchForm={false}
             firstMenu={renderFirstMenu()}
-            shouldSetInitialSort={true}
+            shouldSetInitialSort
             defaultSort='-completedDate'
             lastMenu={<div />}
             initialResultCount={INITIAL_RESULT_COUNT}
             resultCountIncrement={RESULT_COUNT_INCREMENT}
-            shouldSetInitialSortOnMount={true}
+            shouldSetInitialSortOnMount
             parentMutator={mutator}
             parentResources={resources}
             maxSortKeys={1}
