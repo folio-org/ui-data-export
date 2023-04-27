@@ -74,7 +74,7 @@ describe('CustomQueryBuilder', () => {
       sort: 'sort',
     };
 
-    const expectedOutput = 'sortby sort/sort.descending progress.total/number'
+    const expectedOutput = 'sortby sort/sort.ascending progress.total/number'
 
     expect(buildSortingQuery(queryParams, () => {})).toEqual(expectedOutput);
   });
