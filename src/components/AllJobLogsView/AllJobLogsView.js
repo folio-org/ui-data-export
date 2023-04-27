@@ -46,7 +46,7 @@ const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)';
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
   query => `query=${query}`,
-  'sortby completedDate',
+  'sortby completedDate/sort.descending',
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
     status: query => {
