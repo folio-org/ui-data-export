@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * View All page displays export jobs in random order. Refs UIDEXP-312
+* Sorting by ID is incorrect on the View All form. Refs UIDEXP-310.
 * View All page displays only top 100 records. Fixes UIDEXP-313.
 * Missing pagination on the View all page. Refs UIDEXP-314.
 

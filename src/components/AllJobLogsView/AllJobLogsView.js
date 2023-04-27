@@ -45,8 +45,8 @@ const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)';
 
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
-  (query) => `query=${query}`,
-  'sortby completedDate',
+  query => `query=${query}`,
+  'sortby completedDate/sort.descending',
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
     status: query => {
@@ -65,6 +65,7 @@ const buildJobsQuery = makeQueryBuilder(
   },
   {
     hrId: 'hrId/number',
+    '-hrId': '-hrId/number',
     totalRecords: 'progress.total/number',
     errors: 'progress.failed/number',
     updated: 'metadata.updatedDate',
@@ -197,7 +198,7 @@ export const AllJobLogsViewComponent = ({
             hasSearchForm={false}
             firstMenu={renderFirstMenu()}
             shouldSetInitialSort
-            defaultSort='-completedDate'
+            defaultSort="-completedDate"
             lastMenu={<div />}
             initialResultCount={INITIAL_RESULT_COUNT}
             resultCountIncrement={RESULT_COUNT_INCREMENT}
