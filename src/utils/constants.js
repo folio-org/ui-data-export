@@ -60,6 +60,7 @@ export const DEFAULT_JOB_LOG_COLUMNS = [
   'fileName',
   'status',
   'totalRecords',
+  'exported',
   'errors',
   'jobProfileName',
   'completedDate',

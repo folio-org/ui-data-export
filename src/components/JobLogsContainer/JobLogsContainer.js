@@ -36,6 +36,7 @@ const customProperties = {
     status: 'ui-data-export.status',
     totalRecords: 'ui-data-export.total',
     errors: 'ui-data-export.failed',
+    exported: 'ui-data-export.exported'
   },
 };
 
@@ -126,11 +127,19 @@ export const JobLogsContainer = props => {
 
           return `${firstName} ${lastName}`.trim();
         },
+        totalRecords: record => {
+          return record.progress?.total
+        },
         errors: record => {
           const failed = record.progress?.failed;
 
           return failed || '';
         },
+        exported: record =>{
+          const exported = record.progress?.exported
+
+          return exported || '';
+        }
       }
     ),
   };

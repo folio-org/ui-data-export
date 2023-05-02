@@ -67,7 +67,11 @@ const buildJobsQuery = makeQueryBuilder(
     hrId: 'hrId/number',
     '-hrId': '-hrId/number',
     totalRecords: 'progress.total/number',
+    '-totalRecords': '-progress.total/number',
     errors: 'progress.failed/number',
+    '-errors': '-progress.failed/number',
+    exported: 'progress.exported/number',
+    '-exported': '-progress.exported/number',
     updated: 'metadata.updatedDate',
     runBy: 'runBy.firstName runBy.lastName',
   }
