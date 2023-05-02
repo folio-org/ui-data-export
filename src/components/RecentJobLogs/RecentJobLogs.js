@@ -21,6 +21,10 @@ const sortColumns = {
     sortFn: sortStrings,
     useFormatterFn: true,
   },
+  exported: {
+    sortFn: sortNumbers,
+    useFormatterFn: true,
+  }
 };
 
 const RecentJobLogsComponent = () => {
