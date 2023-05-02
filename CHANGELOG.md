@@ -6,6 +6,7 @@
 * Sorting by ID is incorrect on the View All form. Refs UIDEXP-310.
 * View All page displays only top 100 records. Fixes UIDEXP-313.
 * Missing pagination on the View all page. Refs UIDEXP-314.
+* Total, Exported, Error columns on the landing page. Refs UIDEXP-160.
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
