@@ -4,7 +4,8 @@ import {
   buildFilterQuery,
   buildSortingQuery,
   connectQuery,
-  makeQueryBuilder
+  makeQueryBuilder,
+  getQindex,
 } from './CustomQueryBuilder';
 
 describe('CustomQueryBuilder', () => {
@@ -87,5 +88,13 @@ describe('CustomQueryBuilder', () => {
     const expectedOutput = '(searchAllQuery) defaultSorting'
 
     expect(makeQueryBuilder('searchAllQuery', () => {}, 'defaultSorting')({})).toEqual(expectedOutput);
+  });
+
+  it('getQindex with hrId', () => {
+    expect(getQindex('hrId', 'test' )).toEqual( {hrId: "test"})
+  });
+
+  it('getQindex with keyword', () => {
+    expect(getQindex('keyword', 'test' )).toEqual( {hrId: "test or fileName=test"})
   });
 })

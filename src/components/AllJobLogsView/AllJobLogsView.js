@@ -38,6 +38,7 @@ import { JobLogsContainer } from '../JobLogsContainer';
 import {
   makeQueryBuilder,
   buildDateTimeRangeQuery,
+  getQindex,
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
@@ -76,8 +77,6 @@ const buildJobsQuery = makeQueryBuilder(
     runBy: 'runBy.firstName runBy.lastName',
   }
 );
-
-const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });
 
 const onResetData = () => {};
 
@@ -124,6 +123,8 @@ export const AllJobLogsViewComponent = ({
 
   const jobProfiles = get(resources, ['jobProfilesList', 'records'], [])
     .sort((jobProfileA, jobProfileB) => jobProfileA.name.localeCompare(jobProfileB.name));
+
+  const totalCounts = get(resources, ['jobExecutions', 'other', 'totalRecords']);
 
   const users = get(resources, ['usersList', 'records'], [])
     .map(item => {
@@ -208,6 +209,10 @@ export const AllJobLogsViewComponent = ({
             parentMutator={mutator}
             parentResources={resources}
             maxSortKeys={1}
+            pagingType="prev-next"
+            virtualize={false}
+            pageAmount={RESULT_COUNT_INCREMENT}
+            totalRecordsCount={totalCounts}
             excludedSortColumns={excludedSortColumns}
             searchResultsProps={{
               rowProps: null,
@@ -235,11 +240,14 @@ AllJobLogsViewComponent.manifest = Object.freeze({
     },
   },
   resultCount: { initialValue: INITIAL_RESULT_COUNT },
+  resultOffset: { initialValue: 0 },
   jobExecutions: {
     type: 'okapi',
     path: 'data-export/job-executions',
     records: 'jobExecutions',
+    resultOffset: '%{resultOffset}',
     recordsRequired: '%{resultCount}',
+    resultDensity: 'sparse',
     perRequest: RESULT_COUNT_INCREMENT,
     params: (queryParams, pathComponents, resourceData) => {
       const {

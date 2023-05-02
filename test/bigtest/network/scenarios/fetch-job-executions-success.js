@@ -77,6 +77,85 @@ export const logJobExecutions = [
   },
 ];
 
+export const jobProfilesList = [
+  {
+    "id": "56944b1c-f3f9-475b-bed0-7387c33620ce",
+    "name": "Default authority export job profile",
+    "default": true,
+    "destination": "fileSystem",
+    "description": "Default authority job profile",
+    "userInfo": {
+      "firstName": "System",
+      "lastName": "Process",
+      "userName": "system_process"
+    },
+    "mappingProfileId": "5d636597-a59d-4391-a270-4e79d5ba70e3",
+    "metadata": {
+      "createdDate": "2023-04-27T01:50:42.569+00:00",
+      "updatedDate": "2023-04-27T01:50:42.569+00:00"
+    }
+  },
+  {
+    "id": "5e9835fc-0e51-44c8-8a47-f7b8fce35da7",
+    "name": "Default holdings export job profile",
+    "default": true,
+    "destination": "fileSystem",
+    "description": "Default holdings job profile",
+    "userInfo": {
+      "firstName": "System",
+      "lastName": "Process",
+      "userName": "system_process"
+    },
+    "mappingProfileId": "1ef7d0ac-f0a8-42b5-bbbb-c7e249009c13",
+    "metadata": {
+      "createdDate": "2023-04-27T01:50:42.572+00:00",
+      "updatedDate": "2023-04-27T01:50:42.572+00:00"
+    }
+  },
+  {
+    "id": "6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a",
+    "name": "Default instances export job profile",
+    "default": true,
+    "destination": "fileSystem",
+    "description": "Default instances export job profile",
+    "userInfo": {
+      "firstName": "System",
+      "lastName": "Process",
+      "userName": "system_process"
+    },
+    "mappingProfileId": "25d81cbe-9686-11ea-bb37-0242ac130002",
+    "metadata": {
+      "createdDate": "2023-04-27T01:50:42.565+00:00",
+      "updatedDate": "2023-04-27T01:50:42.565+00:00"
+    }
+  }
+]
+
+export const userList = [
+  {
+    "userId": "c20fba54-4215-4074-8cd7-1c7e6da77d79",
+    "jobUserFirstName": "valery",
+    "jobUserLastName": "pilko"
+  },
+  {
+    "userId": "63299600-37a3-59d7-a34d-a70344ec5618",
+    "jobUserFirstName": "DIKU",
+    "jobUserLastName": "DIKU"
+  },
+  {
+    "userId": "63299600-37a3-59d7-a34d-a70344ec5612",
+    "jobUserFirstName": "DIKU",
+    "jobUserLastName": "DIKU"
+  },
+  {
+    "userId": "63299600-37a3-59d7-a34d-a70344ec5619",
+    "jobUserLastName": "DIKU"
+  },
+  {
+    "userId": "63299600-37a3-59d7-a34d-a70344ec561-",
+    "jobUserFirstName": "DIKU"
+  }
+]
 export default server => {
   [
     ...runningJobExecutions,
