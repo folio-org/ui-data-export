@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   useHistory, useLocation,
@@ -152,6 +152,12 @@ export const AllJobLogsViewComponent = ({
         toggleFiltersPane={toggleFilters}
       />
     ));
+
+  useEffect(() => {
+    if (resources.resultOffset > totalCounts) {
+      mutator.resultOffset.replace(0);
+    }
+  }, [resources.resultOffset, totalCounts]);
 
   return (
     <Paneset data-test-log-events-list>
