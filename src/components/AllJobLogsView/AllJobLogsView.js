@@ -153,11 +153,10 @@ export const AllJobLogsViewComponent = ({
       />
     ));
 
+
   useEffect(() => {
-    if (resources.resultOffset > totalCounts) {
-      mutator.resultOffset.replace(0);
-    }
-  }, [resources.resultOffset, totalCounts]);
+    mutator.resultOffset.replace(0);
+  }, [location.search]);
 
   return (
     <Paneset data-test-log-events-list>
