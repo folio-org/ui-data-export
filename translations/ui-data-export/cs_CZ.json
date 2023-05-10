@@ -268,5 +268,6 @@
     "fileName": "název souboru",
     "placeholder.jobExecutionHrId": "Vyhledat ID",
     "placeholder.fileName": "Vyhledat název souboru",
-    "resetFilters": "Obnovit vše"
+    "resetFilters": "Obnovit vše",
+    "exported": "Exportováno"
 }

@@ -268,5 +268,6 @@
     "fileName": "NombreArchivo",
     "placeholder.jobExecutionHrId": "Buscar ID",
     "placeholder.fileName": "Buscar nombre de archivo",
-    "resetFilters": "Restablecer todo"
+    "resetFilters": "Restablecer todo",
+    "exported": "Exportado"
 }
