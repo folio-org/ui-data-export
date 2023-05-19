@@ -3,7 +3,7 @@
   "settings.index.paneTitle": "Data export",
 
   "permission.app.enabled": "UI: Data export module is enabled",
-  "permission.settings.enabled": "Settings (data-export): display list of settings pages",
+  "permission.settings.enabled": "Settings (Data export): display list of settings pages",
 
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",
