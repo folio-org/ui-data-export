@@ -141,7 +141,7 @@
       },
       {
         "permissionName": "ui-data-export.settings.enabled",
-        "displayName": "Settings (data-export): display list of settings pages",
+        "displayName": "Settings (Data export): display list of settings pages",
         "subPermissions": [
           "settings.data-export.enabled"
         ],
