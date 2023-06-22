@@ -31,7 +31,6 @@ import styles from './JobLogsContainer.css';
 
 const customProperties = {
   visibleColumns: DEFAULT_JOB_LOG_COLUMNS,
-  columnWidths: { fileName: '450px' },
   columnMapping: {
     status: 'ui-data-export.status',
     totalRecords: 'ui-data-export.total',
