@@ -269,5 +269,6 @@
     "placeholder.jobExecutionHrId": "搜索ID",
     "placeholder.fileName": "搜索文件名",
     "resetFilters": "全部重置",
-    "exported": "已导出"
+    "exported": "已导出",
+    "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}"
 }

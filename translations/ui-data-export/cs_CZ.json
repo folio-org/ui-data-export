@@ -269,5 +269,6 @@
     "placeholder.jobExecutionHrId": "Vyhledat ID",
     "placeholder.fileName": "Vyhledat název souboru",
     "resetFilters": "Obnovit vše",
-    "exported": "Exportováno"
+    "exported": "Exportováno",
+    "error.invalidCqlSyntax": "Neplatná CQL syntaxe v {value1}"
 }
