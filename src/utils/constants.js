@@ -68,6 +68,18 @@ export const DEFAULT_JOB_LOG_COLUMNS = [
   'hrId',
 ];
 
+export const JOB_LOGS_COLUMNS_WIDTHS = {
+  fileName: '450px',
+  status: '180px',
+  totalRecords: '100px',
+  exported: '100px',
+  errors: '100px',
+  jobProfileName: '250px',
+  completedDate: '200px',
+  runBy: '200px',
+  hrId: '50px',
+}
+
 export const SUPPORTED_FILE_EXTENSIONS = {
   CSV: 'csv',
   CQL: 'cql',
