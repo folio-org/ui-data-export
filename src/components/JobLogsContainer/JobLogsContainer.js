@@ -22,6 +22,7 @@ import { useStripes } from '@folio/stripes/core';
 
 import {
   DEFAULT_JOB_LOG_COLUMNS,
+  JOB_LOGS_COLUMNS_WIDTHS,
   JOB_EXECUTION_STATUSES,
   downloadFileByLink,
 } from '../../utils';
@@ -141,6 +142,7 @@ export const JobLogsContainer = props => {
         }
       }
     ),
+    columnWidths: JOB_LOGS_COLUMNS_WIDTHS
   };
 
   return (
