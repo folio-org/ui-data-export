@@ -269,6 +269,6 @@
     "placeholder.jobExecutionHrId": "Suche nach ID",
     "placeholder.fileName": "Suche nach  Dateinamen",
     "resetFilters": "Alles zurücksetzen",
-    "exported": "Exported",
-    "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}"
+    "exported": "Exportiert",
+    "error.invalidCqlSyntax": "Ungültige CQL-Syntax in {value1}"
 }
