@@ -6,10 +6,11 @@
     "jest/globals": true
   },
   "extends": "@folio/eslint-config-stripes",
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "legacyDecorators": true
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
     }
   },
   "plugins": ["babel", "jest"],
