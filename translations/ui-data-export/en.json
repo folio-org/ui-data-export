@@ -122,6 +122,7 @@
   "errorLogs.recordAssociated.Title": "\"Associated {recordType} Title\": \"{value}\"",
   "errorLogs.inventoryRecordLink": "\"Inventory record link\": ",
 
+
   "instance.electronic.access.linkText.default": "Instance - Electronic access - Link Text",
   "instance.electronic.access.materialsSpecification.default": "Instance - Electronic access - Materials specified",
   "instance.electronic.access.publicNote.default": "Instance - Electronic access - URL Public note",
@@ -294,5 +295,5 @@
   "error.messagePlaceholder": "{value1}",
   "error.mappingProfile.missing": "Mapping profile is missing during export process",
   "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
-  "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}"
+  "error.invalidCqlSyntax": "Invalid CQL syntax"
 }
