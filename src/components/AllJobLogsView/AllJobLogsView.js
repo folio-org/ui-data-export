@@ -81,6 +81,7 @@ const buildJobsQuery = makeQueryBuilder(
     jobProfileName: 'jobProfileName',
     '-jobProfileName': '-jobProfileName',
     runBy: 'runBy.firstName runBy.lastName',
+    '-runBy': '-runBy.firstName runBy.lastName',
   }
 );
 
