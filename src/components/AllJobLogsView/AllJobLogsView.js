@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect } from 'react';
+import React, {
+  useCallback, useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import {
   useHistory, useLocation,
@@ -75,6 +77,7 @@ const buildJobsQuery = makeQueryBuilder(
     '-exported': '-progress.exported/number',
     updated: 'metadata.updatedDate',
     runBy: 'runBy.firstName runBy.lastName',
+    '-runBy': '-runBy.firstName runBy.lastName',
   }
 );
 
@@ -152,7 +155,6 @@ export const AllJobLogsViewComponent = ({
         toggleFiltersPane={toggleFilters}
       />
     ));
-
 
   useEffect(() => {
     mutator.resultOffset.replace(0);

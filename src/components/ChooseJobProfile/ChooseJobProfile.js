@@ -56,7 +56,7 @@ const ChooseJobProfileComponent = ({
         parentResources={resources}
         parentMutator={mutator}
         formatter={useListFormatter({})}
-        hasSearchForm={true}
+        hasSearchForm
         lastMenu={<div />}
         titleId="ui-data-export.jobProfiles.selectProfile.title"
         searchResultsProps={{

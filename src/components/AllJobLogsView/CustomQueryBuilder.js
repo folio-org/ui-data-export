@@ -10,7 +10,7 @@ export const LIMIT_PARAMETER = 'limit';
 export const SORTING_PARAMETER = 'sort';
 export const SORTING_DIRECTION_PARAMETER = 'sortingDirection';
 export const ASC_DESCENDING = 'descending';
-export const ASC_ASCENDING = 'ascending'
+export const ASC_ASCENDING = 'ascending';
 export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
 export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
@@ -21,15 +21,15 @@ export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
   return `(${filterKey}>="${start}+00:00" and ${filterKey}<="${end}+00:00")`;
 };
 
-export const getFilterParams = (queryParams) => omit(
+export const getFilterParams = queryParams => omit(
   queryParams,
-  [SORTING_PARAMETER, SORTING_DIRECTION_PARAMETER, SEARCH_INDEX_PARAMETER, OFFSET_PARAMETER, LIMIT_PARAMETER],
+  [SORTING_PARAMETER, SORTING_DIRECTION_PARAMETER, SEARCH_INDEX_PARAMETER, OFFSET_PARAMETER, LIMIT_PARAMETER]
 );
 
 export const buildFilterQuery = (queryParams, getSearchQuery, customFilterMap = {}) => {
   const filterParams = getFilterParams(queryParams);
 
-  return Object.keys(filterParams).map((filterKey) => {
+  return Object.keys(filterParams).map(filterKey => {
     const filterValue = queryParams[filterKey];
     const buildCustomFilterQuery = customFilterMap[filterKey];
 
@@ -55,9 +55,13 @@ export const buildSortingQuery = (queryParams, customSortMap = {}) => {
   if (queryParams.sort) {
     const key = customSortMap[queryParams.sort] || queryParams.sort;
 
-    const replacedKey = key.replace('-','');
+    const replacedKey = key.replace('-', '');
 
-    const sortingDirection= key.startsWith('-') ? ASC_DESCENDING : ASC_ASCENDING;
+    const sortingDirection = key.startsWith('-') ? ASC_DESCENDING : ASC_ASCENDING;
+
+    if (key.includes('runBy.firstName')) {
+      return `sortby runBy.firstName/sort.${queryParams.sortingDirection || sortingDirection}  runBy.lastName/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
+    }
 
     return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
   }
@@ -74,11 +78,11 @@ export const connectQuery = (filterQuery, sortingQuery) => {
 };
 
 export const makeQueryBuilder = (searchAllQuery, getSearchQuery, defaultSorting, customFilterMap, customSortMap) => {
-  return (queryParams) => {
+  return queryParams => {
     const filterQuery = buildFilterQuery(queryParams, getSearchQuery, customFilterMap) || searchAllQuery;
     const sortingQuery = buildSortingQuery(queryParams, customSortMap) || defaultSorting;
 
     return connectQuery(filterQuery, sortingQuery);
   };
 };
-export const  getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });
+export const getQindex = (qindexValue, queryString) => (qindexValue === 'keyword' && queryString ? { hrId: `${queryString} or fileName=${queryString}` } : { hrId: queryString });
