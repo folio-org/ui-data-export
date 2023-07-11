@@ -1,9 +1,11 @@
 import React, {
-  useCallback, useEffect,
+  useCallback,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-  useHistory, useLocation,
+  useHistory,
+  useLocation,
 } from 'react-router-dom';
 import {
   FormattedMessage, useIntl,
@@ -76,6 +78,8 @@ const buildJobsQuery = makeQueryBuilder(
     exported: 'progress.exported/number',
     '-exported': '-progress.exported/number',
     updated: 'metadata.updatedDate',
+    jobProfileName: 'jobProfileName',
+    '-jobProfileName': '-jobProfileName',
     runBy: 'runBy.firstName runBy.lastName',
     '-runBy': '-runBy.firstName runBy.lastName',
   }
@@ -156,6 +160,16 @@ export const AllJobLogsViewComponent = ({
       />
     ));
 
+  const checkObjectValues = obj => {
+    const values = Object.values(obj);
+
+    if (Object.keys(obj).length === 0 || obj.sort === '-completedDate' || obj.qindex === 'hrId') {
+      return true;
+    }
+
+    return !values.every(value => value !== undefined);
+  };
+
   useEffect(() => {
     mutator.resultOffset.replace(0);
   }, [location.search]);
@@ -175,7 +189,7 @@ export const AllJobLogsViewComponent = ({
         />
         <ResetButton
           id="reset-export-filters"
-          disabled={!location.search}
+          disabled={checkObjectValues(filters)}
           reset={resetFilters}
           label={<FormattedMessage id="ui-data-export.resetFilters" />}
         />
