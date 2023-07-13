@@ -98,6 +98,7 @@ export const AllJobLogsViewComponent = ({
   const [isFiltersOpened, toggleFilters] = useToggle(true);
   const history = useHistory();
   const location = useLocation();
+  const { search } = location;
 
   const [
     filters,
@@ -163,11 +164,13 @@ export const AllJobLogsViewComponent = ({
       />
     ));
 
-  const isResetButtonDisabled = location.search === initialQuery || location.search === defaultSortingSearch;
+  const isResetButtonDisabled = location.search === initialQuery ||
+    location.search === defaultSortingSearch ||
+    !search;
 
   useEffect(() => {
     mutator.resultOffset.replace(0);
-  }, [location.search]);
+  }, [search]);
 
   return (
     <Paneset data-test-log-events-list>
@@ -184,7 +187,7 @@ export const AllJobLogsViewComponent = ({
         />
         <ResetButton
           id="reset-export-filters"
-          disabled={!location.search || isResetButtonDisabled}
+          disabled={isResetButtonDisabled}
           reset={resetFilters}
           label={<FormattedMessage id="ui-data-export.resetFilters" />}
         />
