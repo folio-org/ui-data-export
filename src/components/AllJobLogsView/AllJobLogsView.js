@@ -47,6 +47,9 @@ import {
 
 const excludedSortColumns = ['fileName'];
 const jobStatusFailString = 'status=(FAIL or COMPLETED_WITH_ERRORS)';
+const initialQuery = '?qindex=hrID&sort=-completedDate';
+const defaultSorting = '-completedDate';
+const defaultSortingSearch = '?sort=-completedDate';
 
 const buildJobsQuery = makeQueryBuilder(
   `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
@@ -160,15 +163,7 @@ export const AllJobLogsViewComponent = ({
       />
     ));
 
-  const checkObjectValues = obj => {
-    const values = Object.values(obj);
-
-    if (Object.keys(obj).length === 0 || obj.sort === '-completedDate' || obj.qindex === 'hrId') {
-      return true;
-    }
-
-    return !values.every(value => value !== undefined);
-  };
+  const isResetButtonDisabled = location.search === initialQuery || location.search === defaultSortingSearch;
 
   useEffect(() => {
     mutator.resultOffset.replace(0);
@@ -189,7 +184,7 @@ export const AllJobLogsViewComponent = ({
         />
         <ResetButton
           id="reset-export-filters"
-          disabled={checkObjectValues(filters)}
+          disabled={!location.search || isResetButtonDisabled}
           reset={resetFilters}
           label={<FormattedMessage id="ui-data-export.resetFilters" />}
         />
@@ -222,7 +217,7 @@ export const AllJobLogsViewComponent = ({
             hasSearchForm={false}
             firstMenu={renderFirstMenu()}
             shouldSetInitialSort
-            defaultSort="-completedDate"
+            defaultSort={defaultSorting}
             lastMenu={<div />}
             initialResultCount={INITIAL_RESULT_COUNT}
             resultCountIncrement={RESULT_COUNT_INCREMENT}
