@@ -57,6 +57,7 @@ const buildJobsQuery = makeQueryBuilder(
   'sortby completedDate/sort.descending',
   {
     completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
+    startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate']),
     status: query => {
       switch (true) {
         case query === JOB_EXECUTION_STATUSES.FAIL:
