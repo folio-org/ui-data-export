@@ -21,7 +21,6 @@ import {
 import { useStripes } from '@folio/stripes/core';
 
 import moment from 'moment';
-import { DATE_FORMAT } from '@folio/stripes-acq-components';
 import {
   DEFAULT_JOB_LOG_COLUMNS,
   JOB_LOGS_COLUMNS_WIDTHS,

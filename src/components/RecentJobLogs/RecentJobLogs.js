@@ -4,7 +4,8 @@ import {
   JobLogs,
   DEFAULT_JOB_LOGS_SORT_COLUMNS,
   sortStrings,
-  sortNumbers, sortDates,
+  sortNumbers,
+  sortDates,
 } from '@folio/stripes-data-transfer-components';
 import { stripesConnect } from '@folio/stripes/core';
 
