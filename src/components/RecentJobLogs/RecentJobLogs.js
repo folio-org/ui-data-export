@@ -5,6 +5,7 @@ import {
   DEFAULT_JOB_LOGS_SORT_COLUMNS,
   sortStrings,
   sortNumbers,
+  sortDates,
 } from '@folio/stripes-data-transfer-components';
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -24,7 +25,11 @@ const sortColumns = {
   exported: {
     sortFn: sortNumbers,
     useFormatterFn: true,
-  }
+  },
+  startedDate: {
+    sortFn: sortDates,
+    useFormatterFn: true,
+  },
 };
 
 const RecentJobLogsComponent = () => {

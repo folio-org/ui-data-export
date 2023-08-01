@@ -20,6 +20,7 @@ import {
 } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
 
+import moment from 'moment';
 import {
   DEFAULT_JOB_LOG_COLUMNS,
   JOB_LOGS_COLUMNS_WIDTHS,
@@ -36,7 +37,8 @@ const customProperties = {
     status: 'ui-data-export.status',
     totalRecords: 'ui-data-export.total',
     errors: 'ui-data-export.failed',
-    exported: 'ui-data-export.exported'
+    exported: 'ui-data-export.exported',
+    startedDate: 'ui-data-export.startedDate',
   },
 };
 
@@ -99,7 +101,7 @@ export const JobLogsContainer = props => {
         }}
       >
         <span className={styles.downloadFile}>
-           {fileName}
+          {fileName}
         </span>
       </Button>
     );
@@ -128,21 +130,26 @@ export const JobLogsContainer = props => {
           return `${firstName} ${lastName}`.trim();
         },
         totalRecords: record => {
-          return record.progress?.total
+          return record.progress?.total;
         },
         errors: record => {
           const failed = record.progress?.failed;
 
           return failed || '';
         },
-        exported: record =>{
-          const exported = record.progress?.exported
+        exported: record => {
+          const exported = record.progress?.exported;
 
           return exported || '';
-        }
+        },
+        startedDate: record => {
+          const startedDate = record.startedDate;
+
+          return moment(startedDate).format('L, LT');
+        },
       }
     ),
-    columnWidths: JOB_LOGS_COLUMNS_WIDTHS
+    columnWidths: JOB_LOGS_COLUMNS_WIDTHS,
   };
 
   return (

@@ -42,6 +42,7 @@
   "selected": "Selected",
   "unselected": "Unselected",
   "total": "Total",
+  "startedDate": "Started running",
   "jobStatus.fail": "Fail",
   "jobStatus.completed": "Completed",
   "jobStatus.completedWithErrors": "Completed with errors",

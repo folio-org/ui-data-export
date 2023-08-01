@@ -63,6 +63,7 @@ export const DEFAULT_JOB_LOG_COLUMNS = [
   'exported',
   'errors',
   'jobProfileName',
+  'startedDate',
   'completedDate',
   'runBy',
   'hrId',
@@ -76,9 +77,10 @@ export const JOB_LOGS_COLUMNS_WIDTHS = {
   errors: '100px',
   jobProfileName: '250px',
   completedDate: '200px',
+  startedDate: '200px',
   runBy: '200px',
   hrId: '50px',
-}
+};
 
 export const SUPPORTED_FILE_EXTENSIONS = {
   CSV: 'csv',
