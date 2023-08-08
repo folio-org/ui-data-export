@@ -20,7 +20,7 @@ import {
 } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
 
-import moment from 'moment';
+import { useTimeFormatter } from '@folio/stripes-data-transfer-components/lib/utils';
 import {
   DEFAULT_JOB_LOG_COLUMNS,
   JOB_LOGS_COLUMNS_WIDTHS,
@@ -116,6 +116,22 @@ export const JobLogsContainer = props => {
   };
 
   const intl = useIntl();
+  const formatTime = useTimeFormatter();
+
+  const getStartedDateDateFormatter = format => {
+    return record => {
+      const { startedDate } = record;
+
+      return format(
+        startedDate,
+        {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric',
+        }
+      );
+    };
+  };
 
   const listProps = {
     ...useJobLogsProperties(customProperties),
@@ -142,11 +158,7 @@ export const JobLogsContainer = props => {
 
           return exported || '';
         },
-        startedDate: record => {
-          const startedDate = record.startedDate;
-
-          return moment(startedDate).format('L, LT');
-        },
+        startedDate: getStartedDateDateFormatter(formatTime),
       }
     ),
     columnWidths: JOB_LOGS_COLUMNS_WIDTHS,
