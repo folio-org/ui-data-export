@@ -270,5 +270,6 @@
     "placeholder.fileName": "Rechercher un nom de fichier",
     "resetFilters": "Tout réinitialiser",
     "exported": "Exported",
-    "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}"
+    "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
+    "startedDate": "Started running"
 }
