@@ -270,5 +270,6 @@
     "placeholder.fileName": "Vyhledat název souboru",
     "resetFilters": "Obnovit vše",
     "exported": "Exportováno",
-    "error.invalidCqlSyntax": "Neplatná CQL syntaxe v {value1}"
+    "error.invalidCqlSyntax": "Neplatná CQL syntaxe v {value1}",
+    "startedDate": "Spuštěno"
 }
