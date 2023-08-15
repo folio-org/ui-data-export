@@ -7,7 +7,8 @@ import {
   Button,
 } from '@folio/stripes/components';
 import {
-  AppIcon, stripesConnect,
+  AppIcon,
+  stripesConnect,
 } from '@folio/stripes/core';
 import {
   DataFetcher,
