@@ -6,7 +6,10 @@ import {
   Pane,
   Button,
 } from '@folio/stripes/components';
-import { stripesConnect } from '@folio/stripes/core';
+import {
+  AppIcon,
+  stripesConnect,
+} from '@folio/stripes/core';
 import {
   DataFetcher,
   createUrl,
@@ -58,6 +61,11 @@ function Home(props) {
         <Pane
           data-test-logs-pane
           defaultWidth="fill"
+          appIcon={(
+            <AppIcon
+              app="data-export"
+            />
+          )}
           paneTitle={(
             <span data-test-title>
               <FormattedMessage id="ui-data-export.logsPaneTitle" />
