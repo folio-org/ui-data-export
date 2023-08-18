@@ -16,6 +16,8 @@
 * Depend on a specific version of react-virtual-auto-sizer. Refs UIDEXP-325.
 * Add Started running column to Logs. Refs UIDEXP-330.
 * Add icon for "Logs" label. Refs UIDEXP-319.
+* *BREAKING* Update `react` to `v18`. Refs UIDEXP-332.
+* Update Node.js to v18 in GitHub Actions. Refs UIDEXP-333.
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
