@@ -101,6 +101,10 @@ jest.mock('@folio/stripes/core', () => {
   // eslint-disable-next-line react/jsx-no-useless-fragment
   const AppContextMenu = props => <>{props.children()}</>;
 
+  const TitleManager = jest.fn(({ children, ...rest }) => (
+    <span {...rest}>{children}</span>
+  ));
+
   STRIPES.connect = stripesConnect;
 
   return {
@@ -110,6 +114,7 @@ jest.mock('@folio/stripes/core', () => {
     IfPermission,
     AppContextMenu,
     useStripes,
+    TitleManager,
   };
 }, { virtual: true });
 

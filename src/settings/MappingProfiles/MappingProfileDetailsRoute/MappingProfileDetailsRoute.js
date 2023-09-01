@@ -5,8 +5,9 @@ import {
   find,
 } from 'lodash';
 
-import { stripesConnect } from '@folio/stripes/core';
+import { stripesConnect, TitleManager } from '@folio/stripes/core';
 
+import { useIntl } from 'react-intl';
 import { MappingProfileDetails } from '../MappingProfileDetails';
 import { buildShouldRefreshHandler } from '../../../utils';
 import { mappingProfileShape } from '../shapes';
@@ -29,19 +30,22 @@ const MappingProfileDetailsRoute = ({
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
   const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: params.id }));
   const isDefaultProfile = mappingProfileRecord?.default;
+  const intl = useIntl();
 
   return (
-    <MappingProfileDetails
-      allTransformations={allTransformations}
-      mappingProfile={mappingProfileRecord}
-      isProfileUsed={isProfileUsed}
-      isDefaultProfile={isDefaultProfile}
-      isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
-      onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
-      onDuplicate={() => history.push(`/settings/data-export/mapping-profiles/duplicate/${params.id}${location.search}`)}
-      onCancel={onCancel}
-      onDelete={() => DELETE({ id: mappingProfileRecord?.id })}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: mappingProfileRecord?.name })}>
+      <MappingProfileDetails
+        allTransformations={allTransformations}
+        mappingProfile={mappingProfileRecord}
+        isProfileUsed={isProfileUsed}
+        isDefaultProfile={isDefaultProfile}
+        isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
+        onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
+        onDuplicate={() => history.push(`/settings/data-export/mapping-profiles/duplicate/${params.id}${location.search}`)}
+        onCancel={onCancel}
+        onDelete={() => DELETE({ id: mappingProfileRecord?.id })}
+      />
+    </TitleManager>
   );
 };
 

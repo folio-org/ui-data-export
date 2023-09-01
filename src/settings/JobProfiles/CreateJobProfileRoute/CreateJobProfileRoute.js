@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { stripesConnect } from '@folio/stripes/core';
+import { stripesConnect, TitleManager } from '@folio/stripes/core';
 
+import { useIntl } from 'react-intl';
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
 import { getFormattedMappingProfiles } from '../../MappingProfiles/utils/mappingProfiles';
@@ -21,13 +22,17 @@ const CreateJobProfileRouteComponent = props => {
     onActionComplete: onCancel,
   });
 
+  const intl = useIntl();
+
   return (
-    <JobProfilesFormContainer
-      hasLoaded={mappingProfiles?.hasLoaded}
-      mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
-      onSubmit={handleSubmit}
-      onCancel={onCancel}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.newJob.manager' })}>
+      <JobProfilesFormContainer
+        hasLoaded={mappingProfiles?.hasLoaded}
+        mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
+        onSubmit={handleSubmit}
+        onCancel={onCancel}
+      />
+    </TitleManager>
   );
 };
 

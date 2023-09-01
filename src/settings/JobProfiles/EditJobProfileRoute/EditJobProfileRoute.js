@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { stripesConnect } from '@folio/stripes/core';
+import { stripesConnect, TitleManager } from '@folio/stripes/core';
 
+import { useIntl } from 'react-intl';
 import JobProfilesFormContainer from '../JobProfilesFormContainer/JobProfilesFormContainer';
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
 import { getFormattedMappingProfiles } from '../../MappingProfiles/utils/mappingProfiles';
@@ -24,6 +25,8 @@ const EditJobProfileRouteComponent = ({
     match,
   });
 
+  const intl = useIntl();
+
   if (!jobProfileRecord) {
     return (
       <FullScreenPreloader
@@ -34,14 +37,16 @@ const EditJobProfileRouteComponent = ({
   }
 
   return (
-    <JobProfilesFormContainer
-      hasLoaded={mappingProfiles?.hasLoaded && jobProfileRecord}
-      mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
-      jobProfile={jobProfileRecord}
-      mode="editProfile"
-      onSubmit={handleSubmit}
-      onCancel={onCancel}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: jobProfileRecord?.name })}>
+      <JobProfilesFormContainer
+        hasLoaded={mappingProfiles?.hasLoaded && jobProfileRecord}
+        mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
+        jobProfile={jobProfileRecord}
+        mode="editProfile"
+        onSubmit={handleSubmit}
+        onCancel={onCancel}
+      />
+    </TitleManager>
   );
 };
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { get } from 'lodash';
 
-import { stripesConnect } from '@folio/stripes/core';
+import { stripesConnect, TitleManager } from '@folio/stripes/core';
 
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
@@ -41,15 +41,17 @@ export const EditMappingProfileRouteComponent = ({
   }
 
   return (
-    <MappingProfilesFormContainer
-      isEditMode
-      allTransformations={allTransformations}
-      contentLabel={contentLabel}
-      title={mappingProfileRecord.name}
-      initialValues={formatMappingProfileFormInitialValues(mappingProfileRecord)}
-      onSubmit={handleSubmit}
-      onCancel={onCancel}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: mappingProfileRecord?.name })}>
+      <MappingProfilesFormContainer
+        isEditMode
+        allTransformations={allTransformations}
+        contentLabel={contentLabel}
+        title={mappingProfileRecord.name}
+        initialValues={formatMappingProfileFormInitialValues(mappingProfileRecord)}
+        onSubmit={handleSubmit}
+        onCancel={onCancel}
+      />
+    </TitleManager>
   );
 };
 
