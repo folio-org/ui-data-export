@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { match as matchShape } from 'react-router-prop-types';
 
 import {
-  Route, useStripes,
+  Route, TitleManager, useStripes,
 } from '@folio/stripes/core';
 import {
   JobProfiles,
@@ -14,6 +14,7 @@ import {
 
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { useIntl } from 'react-intl';
 import { CreateJobProfileRoute } from '../CreateJobProfileRoute';
 import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
@@ -36,6 +37,7 @@ const JobProfilesContainer = ({
   const history = useHistory();
   const location = useLocation();
   const stripes = useStripes();
+  const intl = useIntl();
 
   const JobProfileDetailsRouteConnected = useMemo(
     () => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }),
@@ -45,12 +47,14 @@ const JobProfilesContainer = ({
 
   return (
     <>
-      <JobProfiles
-        parentResources={resources}
-        parentMutator={mutator}
-        formatter={useListFormatter({ format: ({ outputFormat }) => outputFormat })}
-        {...useJobProfilesProperties(customProperties)}
-      />
+      <TitleManager page={intl.formatMessage({ id:'ui-data-export.jobProfilesTitle.manager' })}>
+        <JobProfiles
+          parentResources={resources}
+          parentMutator={mutator}
+          formatter={useListFormatter({ format: ({ outputFormat }) => outputFormat })}
+          {...useJobProfilesProperties(customProperties)}
+        />
+      </TitleManager>
       <Route
         path={`${match.path}/view/:id`}
         component={JobProfileDetailsRouteConnected}

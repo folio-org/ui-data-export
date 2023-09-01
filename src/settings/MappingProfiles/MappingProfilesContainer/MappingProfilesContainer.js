@@ -14,7 +14,7 @@ import {
   location as locationShape,
 } from 'react-router-prop-types';
 
-import { Route } from '@folio/stripes/core';
+import { Route, TitleManager } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
@@ -97,12 +97,14 @@ const MappingProfilesContainer = ({
 
   return (
     <>
-      <MappingProfiles
-        parentResources={resources}
-        parentMutator={mutator}
-        formatter={useMappingProfileListFormatter({ format: ({ outputFormat }) => outputFormat })}
-        {...useMappingProfilesProperties(customProperties)}
-      />
+      <TitleManager page={intl.formatMessage({ id: 'ui-data-export.mappingProfilesTitle.manager' })}>
+        <MappingProfiles
+          parentResources={resources}
+          parentMutator={mutator}
+          formatter={useMappingProfileListFormatter({ format: ({ outputFormat }) => outputFormat })}
+          {...useMappingProfilesProperties(customProperties)}
+        />
+      </TitleManager>
       <Route
         path={`${path}/view/:id`}
         render={props => (

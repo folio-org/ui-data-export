@@ -30,31 +30,36 @@ const getSettingsLabel = (messageId, iconKey) => {
   );
 };
 
-const sections = [
-  {
-    label: <ProfilesLabel
-      link="https://wiki.folio.org/x/AyUuAg"
-      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
-    />,
-    pages: [
-      {
-        route: 'job-profiles',
-        label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
-        component: stripesConnect(JobProfilesContainer),
-      },
-      {
-        route: 'mapping-profiles',
-        label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
-        component: stripesConnect(MappingProfilesContainer),
-      },
-    ],
-  },
-];
+
 
 export function DataExportSettings(props) {
   const calloutRef = useRef(null);
   const paneTitleRef = useRef(null);
   const intl = useIntl();
+
+  const sections = [
+    {
+      label:
+  <TitleManager page={intl.formatMessage({ id: 'ui-data-export.settings.index.managerTitle' })}>
+    <ProfilesLabel
+      link="https://wiki.folio.org/x/AyUuAg"
+      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
+    />
+  </TitleManager>,
+      pages: [
+        {
+          route: 'job-profiles',
+          label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
+          component: stripesConnect(JobProfilesContainer),
+        },
+        {
+          route: 'mapping-profiles',
+          label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
+          component: stripesConnect(MappingProfilesContainer),
+        },
+      ],
+    },
+  ];
 
   useEffect(() => {
     if (paneTitleRef.current) {
@@ -62,28 +67,16 @@ export function DataExportSettings(props) {
     }
   }, []);
 
-  const { location : { pathname } } = props;
-
-  const findLabelByRoute = (path) => {
-    if (path.includes('job-profiles')) return intl.formatMessage({ id:'ui-data-export.jobProfilesTitle.manager' });
-    if (path.includes('mapping-profiles')) return intl.formatMessage({ id:'ui-data-export.mappingProfilesTitle.manager' });
-    return intl.formatMessage({ id: 'ui-data-export.settings.index.managerTitle' });
-  };
-
-  const recordLabel = findLabelByRoute(pathname);
-
   return (
     <>
       <CalloutContext.Provider value={calloutRef.current}>
-        <TitleManager page={recordLabel}>
-          <Settings
-            {...props}
-            navPaneWidth="15%"
-            sections={sections}
-            paneTitle={<FormattedMessage id="ui-data-export.settings.index.paneTitle" />}
-            paneTitleRef={paneTitleRef}
-          />
-        </TitleManager>
+        <Settings
+          {...props}
+          navPaneWidth="15%"
+          sections={sections}
+          paneTitle={<FormattedMessage id="ui-data-export.settings.index.paneTitle" />}
+          paneTitleRef={paneTitleRef}
+        />
       </CalloutContext.Provider>
       <Callout ref={calloutRef} />
     </>
