@@ -2,12 +2,13 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Settings } from '@folio/stripes/smart-components';
 import {
   stripesShape,
   stripesConnect,
+  TitleManager,
 } from '@folio/stripes/core';
 import {
   ProfilesLabel,
@@ -15,6 +16,7 @@ import {
 } from '@folio/stripes-data-transfer-components';
 import { Callout } from '@folio/stripes/components';
 
+import PropTypes from 'prop-types';
 import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
 import { JobProfilesContainer } from '../JobProfiles/JobProfilesContainer';
 import { CalloutContext } from '../../contexts/CalloutContext';
@@ -28,30 +30,36 @@ const getSettingsLabel = (messageId, iconKey) => {
   );
 };
 
-const sections = [
-  {
-    label: <ProfilesLabel
-      link="https://wiki.folio.org/x/AyUuAg"
-      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
-    />,
-    pages: [
-      {
-        route: 'job-profiles',
-        label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
-        component: stripesConnect(JobProfilesContainer),
-      },
-      {
-        route: 'mapping-profiles',
-        label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
-        component: stripesConnect(MappingProfilesContainer),
-      },
-    ],
-  },
-];
+
 
 export function DataExportSettings(props) {
   const calloutRef = useRef(null);
   const paneTitleRef = useRef(null);
+  const intl = useIntl();
+
+  const sections = [
+    {
+      label:
+  <TitleManager page={intl.formatMessage({ id: 'ui-data-export.settings.index.managerTitle' })}>
+    <ProfilesLabel
+      link="https://wiki.folio.org/x/AyUuAg"
+      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
+    />
+  </TitleManager>,
+      pages: [
+        {
+          route: 'job-profiles',
+          label: getSettingsLabel('jobProfilesTitle', 'jobProfiles'),
+          component: stripesConnect(JobProfilesContainer),
+        },
+        {
+          route: 'mapping-profiles',
+          label: getSettingsLabel('mappingProfilesTitle', 'mappingProfiles'),
+          component: stripesConnect(MappingProfilesContainer),
+        },
+      ],
+    },
+  ];
 
   useEffect(() => {
     if (paneTitleRef.current) {
@@ -75,4 +83,4 @@ export function DataExportSettings(props) {
   );
 }
 
-DataExportSettings.propTypes = { stripes: stripesShape.isRequired };
+DataExportSettings.propTypes = { stripes: stripesShape.isRequired, location: PropTypes.object };

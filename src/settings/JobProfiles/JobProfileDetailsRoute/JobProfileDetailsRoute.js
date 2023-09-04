@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 
-import { useOkapiKy } from '@folio/stripes/core';
+import { TitleManager, useOkapiKy } from '@folio/stripes/core';
 
+import { useIntl } from 'react-intl';
 import { JobProfileDetails } from '../JobProfileDetails';
 
 const JobProfileDetailsRoute = ({
@@ -13,6 +14,7 @@ const JobProfileDetailsRoute = ({
   match,
 }) => {
   const ky = useOkapiKy();
+  const intl = useIntl();
 
   const { data: jobProfileRecord } = useQuery(
     ['data-export', 'job-profile', match.params.id],
@@ -35,17 +37,19 @@ const JobProfileDetailsRoute = ({
   }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <JobProfileDetails
-      jobProfile={jobProfileRecord}
-      mappingProfile={mappingProfileRecord}
-      isProfileUsed={Boolean(jobExecutionsQuery.data?.totalRecords)}
-      isDefaultProfile={isDefaultProfile}
-      isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && jobExecutionsQuery.isLoading)}
-      onCancel={handleCancel}
-      onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}`); }}
-      onDuplicate={() => { history.push(`/settings/data-export/job-profiles/duplicate/${match.params.id}`); }}
-      onDelete={() => DELETE({ id: jobProfileRecord?.id })}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: jobProfileRecord?.name })}>
+      <JobProfileDetails
+        jobProfile={jobProfileRecord}
+        mappingProfile={mappingProfileRecord}
+        isProfileUsed={Boolean(jobExecutionsQuery.data?.totalRecords)}
+        isDefaultProfile={isDefaultProfile}
+        isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && jobExecutionsQuery.isLoading)}
+        onCancel={handleCancel}
+        onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}`); }}
+        onDuplicate={() => { history.push(`/settings/data-export/job-profiles/duplicate/${match.params.id}`); }}
+        onDelete={() => DELETE({ id: jobProfileRecord?.id })}
+      />
+    </TitleManager>
   );
 };
 

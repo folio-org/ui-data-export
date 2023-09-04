@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
+import { TitleManager } from '@folio/stripes/core';
 import { useProfileHandlerWithCallout } from '../../utils/useProfileHandlerWithCallout';
 import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
 
@@ -22,14 +23,16 @@ export const CreateMappingProfileFormRoute = ({
   });
 
   return (
-    <MappingProfilesFormContainer
-      allTransformations={allTransformations}
-      initialValues={initialValues}
-      isFormDirty={isFormDirty}
-      contentLabel={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.newProfile' })}
-      onSubmit={handleSubmit}
-      onCancel={onCancel}
-    />
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.newMapping.manager' })}>
+      <MappingProfilesFormContainer
+        allTransformations={allTransformations}
+        initialValues={initialValues}
+        isFormDirty={isFormDirty}
+        contentLabel={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.newProfile' })}
+        onSubmit={handleSubmit}
+        onCancel={onCancel}
+      />
+    </TitleManager>
   );
 };
 

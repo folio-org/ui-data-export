@@ -1,6 +1,10 @@
 {
   "meta.title": "Data export",
   "settings.index.paneTitle": "Data export",
+  "settings.index.managerTitle": "Data export settings",
+  "settings.job.manager": "Data export settings - {job}",
+  "settings.newJob.manager": "Data export settings - New job profiles",
+  "settings.newMapping.manager": "Data export settings - New mapping profiles",
 
   "permission.app.enabled": "UI: Data export module is enabled",
   "permission.settings.enabled": "Settings (Data export): display list of settings pages",
@@ -10,7 +14,9 @@
   "viewAllLogs": "View all",
   "uploaderTitle": "Drag and drop",
   "mappingProfilesTitle": "Field mapping profiles",
+  "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
   "jobProfilesTitle": "Job profiles",
+  "jobProfilesTitle.manager": "Data export settings - Job profiles",
   "uploaderBtnText": "or choose file",
   "uploaderSubTitle": "Select a file with records IDs or CQL queries",
   "uploaderActiveTitle": "Drop to start export",
