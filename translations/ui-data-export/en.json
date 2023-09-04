@@ -3,8 +3,8 @@
   "settings.index.paneTitle": "Data export",
   "settings.index.managerTitle": "Data export settings",
   "settings.job.manager": "Data export settings - {job}",
-  "settings.newJob.manager": "Data export settings - new job profiles",
-  "settings.newMapping.manager": "Data export settings - new mapping profiles",
+  "settings.newJob.manager": "Data export settings - New job profiles",
+  "settings.newMapping.manager": "Data export settings - New mapping profiles",
 
   "permission.app.enabled": "UI: Data export module is enabled",
   "permission.settings.enabled": "Settings (Data export): display list of settings pages",
