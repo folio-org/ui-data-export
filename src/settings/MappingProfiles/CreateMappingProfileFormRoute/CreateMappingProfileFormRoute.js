@@ -22,8 +22,12 @@ export const CreateMappingProfileFormRoute = ({
     onActionComplete: onSubmitNavigate,
   });
 
+  const titleManagerLabel = initialValues.name ? intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: initialValues?.name })
+    :
+    intl.formatMessage({ id:'ui-data-export.settings.newMapping.manager' });
+
   return (
-    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.newMapping.manager' })}>
+    <TitleManager page={titleManagerLabel}>
       <MappingProfilesFormContainer
         allTransformations={allTransformations}
         initialValues={initialValues}
