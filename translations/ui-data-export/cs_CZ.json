@@ -271,5 +271,11 @@
     "resetFilters": "Obnovit vše",
     "exported": "Exportováno",
     "error.invalidCqlSyntax": "Neplatná CQL syntaxe v {value1}",
-    "startedDate": "Spuštěno"
+    "startedDate": "Spuštěno",
+    "settings.index.managerTitle": "Data export settings",
+    "settings.job.manager": "Data export settings - {job}",
+    "settings.newJob.manager": "Data export settings - New job profiles",
+    "settings.newMapping.manager": "Data export settings - New mapping profiles",
+    "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
+    "jobProfilesTitle.manager": "Data export settings - Job profiles"
 }

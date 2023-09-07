@@ -271,5 +271,11 @@
     "resetFilters": "全部重置",
     "exported": "已导出",
     "error.invalidCqlSyntax": "{value1}中的CQL语法无效",
-    "startedDate": "Started running"
+    "startedDate": "已开始运行",
+    "settings.index.managerTitle": "Data export settings",
+    "settings.job.manager": "Data export settings - {job}",
+    "settings.newJob.manager": "Data export settings - New job profiles",
+    "settings.newMapping.manager": "Data export settings - New mapping profiles",
+    "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
+    "jobProfilesTitle.manager": "Data export settings - Job profiles"
 }
