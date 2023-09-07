@@ -271,5 +271,11 @@
     "resetFilters": "Tout réinitialiser",
     "exported": "Exported",
     "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
-    "startedDate": "Started running"
+    "startedDate": "Started running",
+    "settings.index.managerTitle": "Data export settings",
+    "settings.job.manager": "Data export settings - {job}",
+    "settings.newJob.manager": "Data export settings - New job profiles",
+    "settings.newMapping.manager": "Data export settings - New mapping profiles",
+    "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
+    "jobProfilesTitle.manager": "Data export settings - Job profiles"
 }
