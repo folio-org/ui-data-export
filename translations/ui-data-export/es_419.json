@@ -274,8 +274,8 @@
     "startedDate": "Empezó a correr",
     "settings.index.managerTitle": "Data export settings",
     "settings.job.manager": "Data export settings - {job}",
-    "settings.newJob.manager": "Data export settings - New job profiles",
-    "settings.newMapping.manager": "Data export settings - New mapping profiles",
+    "settings.newJob.manager": "Data export settings - New job profile",
+    "settings.newMapping.manager": "Data export settings - New field mapping profile",
     "mappingProfilesTitle.manager": "Configuración de la exportación de datos - Perfiles de asignación de campos",
     "jobProfilesTitle.manager": "Data export settings - Job profiles"
 }
