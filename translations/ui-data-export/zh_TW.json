@@ -274,8 +274,8 @@
     "startedDate": "Started running",
     "settings.index.managerTitle": "Data export settings",
     "settings.job.manager": "Data export settings - {job}",
-    "settings.newJob.manager": "Data export settings - New job profiles",
-    "settings.newMapping.manager": "Data export settings - New mapping profiles",
+    "settings.newJob.manager": "Data export settings - New job profile",
+    "settings.newMapping.manager": "Data export settings - New field mapping profile",
     "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
     "jobProfilesTitle.manager": "Data export settings - Job profiles"
 }
