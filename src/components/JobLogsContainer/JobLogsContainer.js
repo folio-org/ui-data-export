@@ -149,9 +149,19 @@ export const JobLogsContainer = props => {
           return record.progress?.total;
         },
         errors: record => {
-          const failed = record.progress?.failed;
+          const failedSrs = record.progress?.failed?.duplicatedSrs;
+          const failedOther = record.progress?.failed?.otherFailed;
 
-          return failed || '';
+          switch (true) {
+            case failedSrs === 0 && failedOther > 0:
+              return `${failedOther}`;
+            case failedSrs > 0 && failedOther > 0:
+              return `${failedOther}, ${failedSrs} duplicates`;
+            case failedSrs > 0 && failedOther === 0:
+              return `${failedSrs} duplicates`;
+            default:
+              return '';
+          }
         },
         exported: record => {
           const exported = record.progress?.exported;

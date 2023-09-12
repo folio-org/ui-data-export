@@ -20,6 +20,7 @@
 * Update Node.js to v18 in GitHub Actions. Refs UIDEXP-333.
 * Data export settings: Ensure your settings HTML page title follow this format - <<App name>> settings - <<selected page name>> - FOLIO. Refs UIDEXP-334.
 * *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIDEXP-338.
+* Display duplicate SRS records in the Failed column. Refs UIDEXP-337.
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)

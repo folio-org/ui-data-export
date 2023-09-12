@@ -74,7 +74,7 @@ export const JOB_LOGS_COLUMNS_WIDTHS = {
   status: '180px',
   totalRecords: '100px',
   exported: '100px',
-  errors: '100px',
+  errors: '150px',
   jobProfileName: '250px',
   completedDate: '200px',
   startedDate: '200px',
