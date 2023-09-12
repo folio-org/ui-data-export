@@ -6,6 +6,7 @@ jest.mock('react-intl', () => {
     formatTime: value => (value ? value.substring(0, 10) : value),
     formatDisplayName: value => value,
     formatMessage: ({ id }) => id,
+    formatNumber: ({ id }) => id,
   };
 
   return {

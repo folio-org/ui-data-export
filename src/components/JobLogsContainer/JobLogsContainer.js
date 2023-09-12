@@ -146,7 +146,7 @@ export const JobLogsContainer = props => {
           return `${firstName} ${lastName}`.trim();
         },
         totalRecords: record => {
-          return record.progress?.total;
+          return intl.formatNumber(record.progress?.total);
         },
         errors: record => {
           const failedSrs = record.progress?.failed?.duplicatedSrs;
