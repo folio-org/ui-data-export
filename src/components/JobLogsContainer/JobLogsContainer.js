@@ -154,7 +154,7 @@ export const JobLogsContainer = props => {
 
           switch (true) {
             case failedSrs === 0 && failedOther > 0:
-              return `${failedOther}`;
+              return failedOther;
             case failedSrs > 0 && failedOther > 0:
               return intl.formatMessage({
                 id: 'ui-data-export.column.errors.duplicatesWithOthers',
