@@ -156,9 +156,18 @@ export const JobLogsContainer = props => {
             case failedSrs === 0 && failedOther > 0:
               return `${failedOther}`;
             case failedSrs > 0 && failedOther > 0:
-              return `${failedOther}, ${failedSrs} duplicates`;
+              return intl.formatMessage({
+                id: 'ui-data-export.column.errors.duplicatesWithOthers',
+              }, {
+                failedOther,
+                failedSrs,
+              });
             case failedSrs > 0 && failedOther === 0:
-              return `${failedSrs} duplicates`;
+              return intl.formatMessage({
+                id: 'ui-data-export.column.errors.duplicates',
+              }, {
+                failedSrs,
+              });
             default:
               return '';
           }

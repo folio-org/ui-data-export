@@ -301,5 +301,8 @@
   "error.messagePlaceholder": "{value1}",
   "error.mappingProfile.missing": "Mapping profile is missing during export process",
   "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
-  "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}"
+  "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
+
+  "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
+  "column.errors.duplicates": ""
 }
