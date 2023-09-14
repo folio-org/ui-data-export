@@ -149,9 +149,28 @@ export const JobLogsContainer = props => {
           return intl.formatNumber(record.progress?.total);
         },
         errors: record => {
-          const failed = record.progress?.failed;
+          const failedSrs = record.progress?.failed?.duplicatedSrs;
+          const failedOther = record.progress?.failed?.otherFailed;
 
-          return failed || '';
+          switch (true) {
+            case failedSrs === 0 && failedOther > 0:
+              return failedOther;
+            case failedSrs > 0 && failedOther > 0:
+              return intl.formatMessage({
+                id: 'ui-data-export.column.errors.duplicatesWithOthers',
+              }, {
+                failedOther,
+                failedSrs,
+              });
+            case failedSrs > 0 && failedOther === 0:
+              return intl.formatMessage({
+                id: 'ui-data-export.column.errors.duplicates',
+              }, {
+                failedSrs,
+              });
+            default:
+              return '';
+          }
         },
         exported: record => {
           const exported = record.progress?.exported;
