@@ -303,6 +303,6 @@
   "error.mappingProfile.invalidSrsRecordTypeCombination": "SRS record type cannot be combined together with INSTANCE record type during export process",
   "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
 
-  "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
+  "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
   "column.errors.duplicates": "{failedSrs} duplicate(s)"
 }
