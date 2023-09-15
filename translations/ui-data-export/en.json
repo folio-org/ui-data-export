@@ -304,5 +304,5 @@
   "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
 
   "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
-  "column.errors.duplicates": "{failedSrs} duplicates"
+  "column.errors.duplicates": "{failedSrs} duplicate(s)"
 }
