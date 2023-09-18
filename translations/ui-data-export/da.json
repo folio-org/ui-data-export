@@ -277,5 +277,7 @@
     "settings.newJob.manager": "Data export settings - New job profile",
     "settings.newMapping.manager": "Data export settings - New field mapping profile",
     "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
-    "jobProfilesTitle.manager": "Data export settings - Job profiles"
+    "jobProfilesTitle.manager": "Data export settings - Job profiles",
+    "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
+    "column.errors.duplicates": "{failedSrs} duplicates"
 }
