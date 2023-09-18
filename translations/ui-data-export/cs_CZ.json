@@ -272,10 +272,12 @@
     "exported": "Exportováno",
     "error.invalidCqlSyntax": "Neplatná CQL syntaxe v {value1}",
     "startedDate": "Spuštěno",
-    "settings.index.managerTitle": "Data export settings",
-    "settings.job.manager": "Data export settings - {job}",
-    "settings.newJob.manager": "Data export settings - New job profile",
-    "settings.newMapping.manager": "Data export settings - New field mapping profile",
-    "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
-    "jobProfilesTitle.manager": "Data export settings - Job profiles"
+    "settings.index.managerTitle": "Nastavení exportu dat",
+    "settings.job.manager": "Nastavení exportu dat – {job}",
+    "settings.newJob.manager": "Nastavení exportu dat – Nový profil úlohy",
+    "settings.newMapping.manager": "Nastavení exportu dat - Nový profil mapování polí",
+    "mappingProfilesTitle.manager": "Nastavení exportu dat - Nové profily mapování polí",
+    "jobProfilesTitle.manager": "Nastavení exportu dat - Profily úloh",
+    "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
+    "column.errors.duplicates": "{failedSrs} duplicates"
 }

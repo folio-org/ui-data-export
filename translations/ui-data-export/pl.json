@@ -272,10 +272,12 @@
     "exported": "Exported",
     "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
     "startedDate": "Started running",
-    "settings.index.managerTitle": "Data export settings",
+    "settings.index.managerTitle": "Ustawienia eksportu danych",
     "settings.job.manager": "Data export settings - {job}",
     "settings.newJob.manager": "Data export settings - New job profile",
     "settings.newMapping.manager": "Data export settings - New field mapping profile",
     "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
-    "jobProfilesTitle.manager": "Data export settings - Job profiles"
+    "jobProfilesTitle.manager": "Data export settings - Job profiles",
+    "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicates",
+    "column.errors.duplicates": "{failedSrs} duplicates"
 }
