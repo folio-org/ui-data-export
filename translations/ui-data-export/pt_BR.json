@@ -274,8 +274,10 @@
     "startedDate": "Começou a executar",
     "settings.index.managerTitle": "Configurações de exportação de dados",
     "settings.job.manager": "Configurações de exportação de dados - {job}",
-    "settings.newJob.manager": "Configurações de exportação de dados - Novos perfis de trabalho",
-    "settings.newMapping.manager": "Configurações de exportação de dados – Novos perfis de mapeamento",
+    "settings.newJob.manager": "Configurações de exportação de dados – Novo perfil de trabalho",
+    "settings.newMapping.manager": "Configurações de exportação de dados – Novo perfil de mapeamento de campo",
     "mappingProfilesTitle.manager": "Configurações de exportação de dados – Perfis de mapeamento de campo",
-    "jobProfilesTitle.manager": "Configurações de exportação de dados – Perfis de trabalho"
+    "jobProfilesTitle.manager": "Configurações de exportação de dados – Perfis de trabalho",
+    "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicatas",
+    "column.errors.duplicates": "{failedSrs} duplicatas"
 }
