@@ -154,26 +154,26 @@ export const JobLogsContainer = props => {
 
           switch (true) {
             case failedSrs === 0 && failedOther > 0:
-              return failedOther;
+              return intl.formatNumber(failedOther);
             case failedSrs > 0 && failedOther > 0:
               return intl.formatMessage({
                 id: 'ui-data-export.column.errors.duplicatesWithOthers',
               }, {
-                failedOther,
-                failedSrs,
+                failedOther: intl.formatNumber(failedOther),
+                failedSrs: intl.formatNumber(failedSrs),
               });
             case failedSrs > 0 && failedOther === 0:
               return intl.formatMessage({
                 id: 'ui-data-export.column.errors.duplicates',
               }, {
-                failedSrs,
+                failedSrs: intl.formatNumber(failedSrs),
               });
             default:
               return '';
           }
         },
         exported: record => {
-          const exported = record.progress?.exported;
+          const exported = intl.formatNumber(record.progress?.exported);
 
           return exported || '';
         },
