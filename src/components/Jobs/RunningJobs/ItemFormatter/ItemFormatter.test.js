@@ -19,7 +19,7 @@ const jobMock = {
   progress : {
     exported : 1,
     failed : {
-      failedOther:0,
+      otherFailed:0,
       duplicatedSrs: 0,
     },
     total : 2,
