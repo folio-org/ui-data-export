@@ -23,6 +23,7 @@
 * DATA EXPORT: format numbers in "totalRecords" columns. Refs UIDEXP-339.
 * Display duplicate SRS records in the Failed column. Refs UIDEXP-337.
 * DATA EXPORT: format numbers in "Exported" and "Failed" columns. Refs UIDEXP-342.
+* Update HTML page title for duplicating mapping profile. Refs UIDEXP-343.
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
