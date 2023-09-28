@@ -272,12 +272,12 @@
     "exported": "已导出",
     "error.invalidCqlSyntax": "{value1}中的CQL语法无效",
     "startedDate": "已开始运行",
-    "settings.index.managerTitle": "Data export settings",
-    "settings.job.manager": "Data export settings - {job}",
-    "settings.newJob.manager": "Data export settings - New job profile",
-    "settings.newMapping.manager": "Data export settings - New field mapping profile",
-    "mappingProfilesTitle.manager": "Data export settings - Field mapping profiles",
-    "jobProfilesTitle.manager": "Data export settings - Job profiles",
-    "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
-    "column.errors.duplicates": "{failedSrs} duplicate(s)"
+    "settings.index.managerTitle": "数据导出设置",
+    "settings.job.manager": "数据导出设置 - {job}",
+    "settings.newJob.manager": "数据导出设置 - 新建任务配置文件",
+    "settings.newMapping.manager": "数据导出设置 - 新建字段映射配置文件",
+    "mappingProfilesTitle.manager": "数据导出设置 - 字段映射配置文件",
+    "jobProfilesTitle.manager": "数据导出设置 - 任务配置文件",
+    "column.errors.duplicatesWithOthers": "{failedOther} 、 {failedSrs}重复",
+    "column.errors.duplicates": "{failedSrs}重复"
 }
