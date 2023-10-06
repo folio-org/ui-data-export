@@ -35,6 +35,7 @@ function CreateMappingProfileFormRouteContainer({
   onSubmit = noop,
   onCancel = noop,
   onSubmitNavigate = noop,
+  isDuplicate = false
 } = {}) {
   const intl = useIntl();
 
@@ -46,6 +47,7 @@ function CreateMappingProfileFormRouteContainer({
         isFormDirty={isFormDirty}
         onSubmit={onSubmit}
         onCancel={onCancel}
+        isDuplicate={isDuplicate}
         onSubmitNavigate={onSubmitNavigate}
       />
     </SettingsComponentBuilder>
@@ -78,7 +80,7 @@ describe('CreateMappingProfileFormRoute', () => {
       const name = 'New mapping profile';
       const submitFormButton = screen.getByRole('button', { name: 'stripes-components.saveAndClose' });
 
-      userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), name);
+      userEvent.type(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' }), name);
       userEvent.click(recordTypesHoldings());
       userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 
@@ -107,7 +109,7 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(saveAndCloseBtn());
 
       expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'stripes-data-transfer-components.validation.enterValue')).toBeVisible();
-      expect(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'})).not.toBeValid();
+      expect(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' })).not.toBeValid();
       expect(onSubmitMock).not.toBeCalled();
     });
 
@@ -116,7 +118,7 @@ describe('CreateMappingProfileFormRoute', () => {
 
       const submitFormButton = screen.getByRole('button', { name: 'stripes-components.saveAndClose' });
 
-      userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), 'Name');
+      userEvent.type(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' }), 'Name');
       userEvent.click(screen.getByRole('checkbox', { name: 'stripes-data-transfer-components.recordTypes.holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 

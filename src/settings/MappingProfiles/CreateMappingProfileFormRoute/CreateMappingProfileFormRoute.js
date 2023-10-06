@@ -13,6 +13,7 @@ export const CreateMappingProfileFormRoute = ({
   onSubmit,
   onCancel,
   onSubmitNavigate,
+  isDuplicate = false
 }) => {
   const intl = useIntl();
   const handleSubmit = useProfileHandlerWithCallout({
@@ -22,7 +23,7 @@ export const CreateMappingProfileFormRoute = ({
     onActionComplete: onSubmitNavigate,
   });
 
-  const titleManagerLabel = initialValues.name ? intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: initialValues?.name })
+  const titleManagerLabel = initialValues.name && !isDuplicate ? intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: initialValues?.name })
     :
     intl.formatMessage({ id:'ui-data-export.settings.newMapping.manager' });
 
@@ -47,4 +48,5 @@ CreateMappingProfileFormRoute.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onSubmitNavigate: PropTypes.func.isRequired,
+  isDuplicate: PropTypes.bool
 };

@@ -37,7 +37,7 @@ const DuplicateJobProfileRouteComponent = ({
   }
 
   return (
-    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: jobProfileRecord?.name })}>
+    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.newJob.manager' })}>
       <JobProfilesFormContainer
         hasLoaded={mappingProfiles?.hasLoaded && jobProfileRecord}
         mappingProfiles={getFormattedMappingProfiles(mappingProfiles?.records)}
