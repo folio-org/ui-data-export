@@ -25,6 +25,7 @@
 * DATA EXPORT: format numbers in "Exported" and "Failed" columns. Refs UIDEXP-342.
 * Update HTML page title for duplicating mapping profile. Refs UIDEXP-343.
 * Update HTML page title for duplicating job profile. Refs UIDEXP-344.
+* Provide user friendly error in data export log when multiple SRS records are are linked to one instance. Refs UIDEXP-345.
 
 ## [5.4.1](https://github.com/folio-org/ui-data-export/tree/v5.4.1) (2023-04-05)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.0...v5.4.1)
