@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
-import { stripesConnect, TitleManager } from '@folio/stripes/core';
+import { stripesConnect } from '@folio/stripes/core';
 import { get } from 'lodash';
 
 import { FullScreenPreloader } from '../../../components/FullScreenPreloader';
@@ -39,16 +39,15 @@ export const DuplicateMappingProfileRouteComponent = ({
   };
 
   return (
-    <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: mappingProfileRecord?.name })}>
-      <CreateMappingProfileFormRoute
-        isFormDirty
-        allTransformations={allTransformations}
-        initialValues={formatMappingProfileFormInitialValues(newMappingProfileRecord, ['id'])}
-        onSubmit={onSubmit}
-        onCancel={onCancel}
-        onSubmitNavigate={onSubmitNavigate}
-      />
-    </TitleManager>
+    <CreateMappingProfileFormRoute
+      isFormDirty
+      isDuplicate
+      allTransformations={allTransformations}
+      initialValues={formatMappingProfileFormInitialValues(newMappingProfileRecord, ['id'])}
+      onSubmit={onSubmit}
+      onCancel={onCancel}
+      onSubmitNavigate={onSubmitNavigate}
+    />
   );
 };
 
