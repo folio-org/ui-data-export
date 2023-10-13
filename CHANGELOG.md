@@ -2,7 +2,7 @@
 
 ## IN PROGRESS
 
-## [6.0.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2023-10-12)
+## [6.0.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2023-10-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.1...v6.0.0)
 
 * View All page displays export jobs in random order. Refs UIDEXP-312
