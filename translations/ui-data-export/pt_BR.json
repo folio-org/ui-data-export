@@ -279,5 +279,6 @@
     "mappingProfilesTitle.manager": "Configurações de exportação de dados – Perfis de mapeamento de campo",
     "jobProfilesTitle.manager": "Configurações de exportação de dados – Perfis de trabalho",
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicata(s)",
-    "column.errors.duplicates": "{failedSrs} duplicata(s)"
+    "column.errors.duplicates": "{failedSrs} duplicata(s)",
+    "error.duplicateSRS": "{value1}"
 }
