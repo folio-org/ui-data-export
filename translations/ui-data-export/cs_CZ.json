@@ -279,5 +279,6 @@
     "mappingProfilesTitle.manager": "Nastavení exportu dat - Nové profily mapování polí",
     "jobProfilesTitle.manager": "Nastavení exportu dat - Profily úloh",
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
-    "column.errors.duplicates": "{failedSrs} duplicate(s)"
+    "column.errors.duplicates": "{failedSrs} duplicate(s)",
+    "error.duplicateSRS": "{value1}"
 }

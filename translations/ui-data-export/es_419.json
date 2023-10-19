@@ -279,5 +279,6 @@
     "mappingProfilesTitle.manager": "Configuración de la exportación de datos - Perfiles de asignación de campos",
     "jobProfilesTitle.manager": "Data export settings - Job profiles",
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicados",
-    "column.errors.duplicates": "{failedSrs} duplicados"
+    "column.errors.duplicates": "{failedSrs} duplicados",
+    "error.duplicateSRS": "{value1}"
 }
