@@ -140,7 +140,7 @@
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get"
         ],
-        "visible": false
+        "visible": "true"
       },
       {
         "permissionName": "settings.data-export.enabled",

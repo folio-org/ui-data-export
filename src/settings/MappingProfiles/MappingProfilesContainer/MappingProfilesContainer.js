@@ -82,8 +82,8 @@ const MappingProfilesContainer = ({
     [intl, resources.transformations.records]
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
-  const hasViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('module.data-export.enabled');
-  const lastMenu = hasViewPerms ? (<></>) : '';
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+  const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 
   const handleNavigationToMappingProfilesList = useCallback(
     () => push(`${path}${search}`),

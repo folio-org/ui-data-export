@@ -23,7 +23,7 @@ export const ProfileDetailsActionMenu = ({
   };
 
   const stripes = useStripes();
-  const hasViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('module.data-export.enabled');
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
 
 
   return (
@@ -31,7 +31,7 @@ export const ProfileDetailsActionMenu = ({
       <Button
         data-test-edit-profile-button
         buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed || hasViewPerms}
+        disabled={isDefaultProfile || isProfileUsed || hasOnlyViewPerms}
         onClick={buildButtonClickHandler(onEdit)}
       >
         <Icon icon="edit">
@@ -42,7 +42,7 @@ export const ProfileDetailsActionMenu = ({
         data-test-duplicate-profile-button
         buttonStyle="dropdownItem"
         onClick={buildButtonClickHandler(onDuplicate)}
-        disabled={hasViewPerms}
+        disabled={hasOnlyViewPerms}
       >
         <Icon icon="duplicate">
           <FormattedMessage id="stripes-data-transfer-components.duplicate" />
@@ -51,7 +51,7 @@ export const ProfileDetailsActionMenu = ({
       <Button
         data-test-delete-profile-button
         buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed || hasViewPerms}
+        disabled={isDefaultProfile || isProfileUsed || hasOnlyViewPerms}
         onClick={buildButtonClickHandler(onDelete)}
       >
         <Icon icon="trash">
