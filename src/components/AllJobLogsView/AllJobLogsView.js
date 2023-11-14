@@ -296,9 +296,8 @@ AllJobLogsViewComponent.manifest = Object.freeze({
   jobProfilesList: {
     type: 'okapi',
     records: 'jobProfiles',
-    path: 'data-export/job-profiles',
+    path: 'data-export/job-profiles?used=true',
     throwErrors: false,
-    perRequest: RESULT_COUNT_INCREMENT,
   },
 });
 
