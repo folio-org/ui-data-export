@@ -280,5 +280,6 @@
     "jobProfilesTitle.manager": "Nastavení exportu dat - Profily úloh",
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplikát(y)",
     "column.errors.duplicates": "{failedSrs} duplikát(y)",
-    "error.duplicateSRS": "{value1}"
+    "error.duplicateSRS": "{value1}",
+    "permission.settings.view": "Settings (Data export): Can view"
 }

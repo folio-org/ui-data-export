@@ -280,5 +280,6 @@
     "jobProfilesTitle.manager": "Data export settings - Job profiles",
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicados",
     "column.errors.duplicates": "{failedSrs} duplicados",
-    "error.duplicateSRS": "{value1}"
+    "error.duplicateSRS": "{value1}",
+    "permission.settings.view": "Settings (Data export): Can view"
 }

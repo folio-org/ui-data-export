@@ -280,5 +280,6 @@
     "jobProfilesTitle.manager": "数据导出设置 - 任务配置文件",
     "column.errors.duplicatesWithOthers": "{failedOther} 、 {failedSrs}重复",
     "column.errors.duplicates": "{failedSrs}重复",
-    "error.duplicateSRS": "{value1}"
+    "error.duplicateSRS": "{value1}",
+    "permission.settings.view": "Settings (Data export): Can view"
 }
