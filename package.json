@@ -138,7 +138,8 @@
           "data-export.job-profiles.item.get",
           "data-export.transformation-fields.collection.get",
           "data-export.logs.collection.get",
-          "data-export.mapping-profiles.collection.get"
+          "data-export.mapping-profiles.collection.get",
+          "settings.enabled"
         ],
         "visible": "true"
       },

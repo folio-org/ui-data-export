@@ -83,6 +83,7 @@ const MappingProfilesContainer = ({
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
   const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+  // Here we need to return fragment in that case, because in child component we have boolean check
   const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 
   const handleNavigationToMappingProfilesList = useCallback(
