@@ -8,6 +8,7 @@
 
   "permission.app.enabled": "UI: Data export module is enabled",
   "permission.settings.enabled": "Settings (Data export): display list of settings pages",
+  "permission.settings.view": "Settings (Data export): Can view",
 
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",

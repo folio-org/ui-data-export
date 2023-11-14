@@ -129,6 +129,21 @@
         "visible": true
       },
       {
+        "permissionName": "settings.data-export.view",
+        "displayName": "Settings (Data export): Can view",
+        "subPermissions": [
+          "data-export.mapping-profiles.item.get",
+          "data-export.job-executions.collection.get",
+          "data-export.job-profiles.collection.get",
+          "data-export.job-profiles.item.get",
+          "data-export.transformation-fields.collection.get",
+          "data-export.logs.collection.get",
+          "data-export.mapping-profiles.collection.get",
+          "settings.enabled"
+        ],
+        "visible": "true"
+      },
+      {
         "permissionName": "settings.data-export.enabled",
         "displayName": "Settings (Data export): Can view, create, edit, and remove",
         "subPermissions": [

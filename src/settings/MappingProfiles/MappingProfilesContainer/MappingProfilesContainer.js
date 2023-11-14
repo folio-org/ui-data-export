@@ -14,7 +14,7 @@ import {
   location as locationShape,
 } from 'react-router-prop-types';
 
-import { Route, TitleManager } from '@folio/stripes/core';
+import { Route, TitleManager, useStripes } from '@folio/stripes/core';
 import { makeQueryFunction } from '@folio/stripes/smart-components';
 import {
   MappingProfiles,
@@ -69,6 +69,7 @@ const MappingProfilesContainer = ({
   mutator,
 }) => {
   const intl = useIntl();
+  const stripes = useStripes();
   const allTransformations = useMemo(
     () => orderBy(get(resources.transformations.records, '0.transformationFields', [])
       .map(transformation => ({
@@ -81,6 +82,9 @@ const MappingProfilesContainer = ({
     [intl, resources.transformations.records]
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+  // Here we need to return fragment in that case, because in child component we have boolean check
+  const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 
   const handleNavigationToMappingProfilesList = useCallback(
     () => push(`${path}${search}`),
@@ -101,6 +105,7 @@ const MappingProfilesContainer = ({
         <MappingProfiles
           parentResources={resources}
           parentMutator={mutator}
+          lastMenu={lastMenu}
           formatter={useMappingProfileListFormatter({ format: ({ outputFormat }) => outputFormat })}
           {...useMappingProfilesProperties(customProperties)}
         />

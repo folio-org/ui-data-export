@@ -4,6 +4,7 @@
 
 * Progress bar displays more than 100% for the records with SRS duplicates. Refs UIDEXP-347.
 * Filter by job profiles from the completed jobs. Refs UIDEXP-328.
+* Need new permission(s) to view Data Export settings in UI. Refs UIDEXP-304.
 
 ## [6.0.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2023-10-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.1...v6.0.0)

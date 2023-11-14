@@ -38,6 +38,8 @@ const JobProfilesContainer = ({
   const location = useLocation();
   const stripes = useStripes();
   const intl = useIntl();
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+  const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 
   const JobProfileDetailsRouteConnected = useMemo(
     () => stripes.connect(JobProfileDetailsRoute, { dataKey: 'job-profile-details' }),
@@ -53,6 +55,7 @@ const JobProfilesContainer = ({
           parentMutator={mutator}
           formatter={useListFormatter({ format: ({ outputFormat }) => outputFormat })}
           {...useJobProfilesProperties(customProperties)}
+          lastMenu={lastMenu}
         />
       </TitleManager>
       <Route
