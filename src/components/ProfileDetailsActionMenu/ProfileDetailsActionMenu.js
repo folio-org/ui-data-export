@@ -23,7 +23,7 @@ export const ProfileDetailsActionMenu = ({
   };
 
   const stripes = useStripes();
-  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('ui-data-export.settings.enabled');
 
 
   return (
