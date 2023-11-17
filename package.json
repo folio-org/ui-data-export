@@ -139,7 +139,8 @@
           "data-export.transformation-fields.collection.get",
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
-          "settings.enabled"
+          "settings.data-export.enabled",
+          "settings.data-export.enabled"
         ],
         "visible": "true"
       },
