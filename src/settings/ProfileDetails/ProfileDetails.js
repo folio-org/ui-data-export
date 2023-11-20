@@ -13,6 +13,7 @@ import {
   FullScreenView,
   Preloader,
 } from '@folio/stripes-data-transfer-components';
+import { useStripes } from '@folio/stripes/core';
 
 import { ProfileDetailsActionMenu } from '../../components/ProfileDetailsActionMenu';
 import { useProfileHandlerWithCallout } from '../utils/useProfileHandlerWithCallout';
@@ -45,6 +46,10 @@ export const ProfileDetails = props => {
     },
   });
 
+
+  const stripes = useStripes();
+  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('settings.data-export.enabled');
+
   const renderActionMenu = useCallback(({ onToggle }) => {
     return (
       <ProfileDetailsActionMenu
@@ -63,7 +68,7 @@ export const ProfileDetails = props => {
       id={`${type}-profile-details`}
       contentLabel={intl.formatMessage({ id: `ui-data-export.${type}Profiles.newProfile` })}
       paneTitle={profile?.name}
-      actionMenu={!isLoading && renderActionMenu}
+      actionMenu={!isLoading && !hasOnlyViewPerms && renderActionMenu}
       onCancel={onCancel}
     >
       {isLoading
