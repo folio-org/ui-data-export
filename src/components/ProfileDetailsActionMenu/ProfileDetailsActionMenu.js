@@ -6,7 +6,6 @@ import {
   Button,
   Icon,
 } from '@folio/stripes/components';
-import { useStripes } from '@folio/stripes/core';
 
 export const ProfileDetailsActionMenu = ({
   isProfileUsed,
@@ -22,16 +21,12 @@ export const ProfileDetailsActionMenu = ({
     onToggle();
   };
 
-  const stripes = useStripes();
-  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('ui-data-export.settings.enabled');
-
-
   return (
     <>
       <Button
         data-test-edit-profile-button
         buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed || hasOnlyViewPerms}
+        disabled={isDefaultProfile || isProfileUsed}
         onClick={buildButtonClickHandler(onEdit)}
       >
         <Icon icon="edit">
@@ -42,7 +37,6 @@ export const ProfileDetailsActionMenu = ({
         data-test-duplicate-profile-button
         buttonStyle="dropdownItem"
         onClick={buildButtonClickHandler(onDuplicate)}
-        disabled={hasOnlyViewPerms}
       >
         <Icon icon="duplicate">
           <FormattedMessage id="stripes-data-transfer-components.duplicate" />
@@ -51,7 +45,7 @@ export const ProfileDetailsActionMenu = ({
       <Button
         data-test-delete-profile-button
         buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed || hasOnlyViewPerms}
+        disabled={isDefaultProfile || isProfileUsed}
         onClick={buildButtonClickHandler(onDelete)}
       >
         <Icon icon="trash">
