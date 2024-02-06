@@ -149,8 +149,8 @@ export const JobLogsContainer = props => {
           return intl.formatNumber(record.progress?.total);
         },
         errors: record => {
-          const failedSrs = record.progress?.failed?.duplicatedSrs;
-          const failedOther = record.progress?.failed?.otherFailed;
+          const failedSrs = record.progress?.duplicatedSrs;
+          const failedOther = record.progress?.failed;
 
           switch (true) {
             case failedSrs === 0 && failedOther > 0:

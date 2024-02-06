@@ -63,7 +63,7 @@ export const buildSortingQuery = (queryParams, customSortMap = {}) => {
       return `sortby runBy.firstName/sort.${queryParams.sortingDirection || sortingDirection}  runBy.lastName/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
     }
 
-    return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
+    return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection}`;
   }
 
   return '';
