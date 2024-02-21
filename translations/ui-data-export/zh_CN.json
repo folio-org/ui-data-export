@@ -281,5 +281,5 @@
     "column.errors.duplicatesWithOthers": "{failedOther} 、 {failedSrs}重复",
     "column.errors.duplicates": "{failedSrs}重复",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Settings (Data export): Can view"
+    "permission.settings.view": "设置（数据导出）：可以查看"
 }

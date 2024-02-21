@@ -252,7 +252,7 @@
     "error.mappingProfile.invalidSrsRecordTypeCombination": "Rekordu typu SRS nie można łączyć z rekordem typu INSTANCE podczas procesu eksportu",
     "errorLogs.inventoryRecordLink": "\"Link do rekordu egzemplarza\":",
     "error.configurations.queryHost": "Nie znaleziono konfiguracji w mod-config dla tego hosta. Nie będzie powiązań do błędnych rekordów dla tego zadania.",
-    "instance": "Instances",
+    "instance": "Opis bibliograficzny",
     "holdings": "Holdings",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
     "jobProfiles.editProfile": "Edit {name}",
