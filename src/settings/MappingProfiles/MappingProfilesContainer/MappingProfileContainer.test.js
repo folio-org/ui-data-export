@@ -7,6 +7,7 @@ import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jes
 import { noop } from 'lodash';
 import { MemoryRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
+import { runAxeTest } from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 import { MappingProfilesContainer } from './index';
@@ -124,5 +125,13 @@ describe('MappingProfilesContainer', () => {
     const duplicateJobProfile = await screen.findByText(/DuplicateMappingProfileRoute/i);
 
     expect(duplicateJobProfile).toBeVisible();
+  });
+
+  it('should render with no axe errors', async () => {
+    setupMappingProfilesContainer(['/data-export/mapping-profiles/duplicate/1']);
+
+    await runAxeTest({
+      rootNode: document.body,
+    });
   });
 });

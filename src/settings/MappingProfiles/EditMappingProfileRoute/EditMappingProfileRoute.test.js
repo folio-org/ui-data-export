@@ -15,6 +15,7 @@ import {
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import userEvent from '@testing-library/user-event';
+import { runAxeTest } from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import {
   mappingProfileWithTransformations as mappingProfile,
@@ -194,6 +195,14 @@ describe('rendering edit mapping profile page without profile data', () => {
             expect.objectContaining({ type: 'error' })
           );
           expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.edit.errorCallout');
+        });
+      });
+
+      it('should render with no axe errors', async () => {
+        renderEditMappingProfileRouteWithMocks();
+
+        await runAxeTest({
+          rootNode: document.body,
         });
       });
     });

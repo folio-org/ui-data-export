@@ -5,6 +5,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import { screen } from '@testing-library/react';
+import { runAxeTest } from '@folio/stripes-testing';
 import { EditJobProfileRoute } from '.';
 
 import { translationsProperties } from '../../../../test/helpers';
@@ -13,12 +14,12 @@ import { checkJobProfileFormState } from '../test/setup';
 
 const history = [];
 
-jest.mock('../../utils/useJobProfileData',() => ({
+jest.mock('../../utils/useJobProfileData', () => ({
   useJobProfileData: () => ({
     jobProfileRecord: {},
     handleSubmit: jest.fn(),
   })
-}))
+}));
 
 const setupEditJobProfileRoute = ({
   matchParams = {},
@@ -57,6 +58,13 @@ describe('EditJobProfileRoute', () => {
       await checkJobProfileFormState(form, {
         title: 'ui-data-export.jobProfiles.editProfile',
         isTCPIPEnabled: true,
+      });
+    });
+    it('should render with no axe errors', async () => {
+      setupEditJobProfileRoute();
+
+      await runAxeTest({
+        rootNode: document.body,
       });
     });
   });
