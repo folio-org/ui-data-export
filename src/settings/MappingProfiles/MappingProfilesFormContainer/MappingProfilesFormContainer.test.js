@@ -18,6 +18,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import {
   SettingsComponentBuilder,
   getTransformationFieldGroups,
@@ -145,6 +146,12 @@ describe('MappingProfileFormContainer', () => {
       expect(document.querySelector('[data-test-folio-record-type-error]').childElementCount).toBe(0);
     });
 
+    it('should render with no axe errors', async () => {
+      await runAxeTest({
+        rootNode: document.body,
+      });
+    });
+
     describe('changing transformation field value', () => {
       let transformationFields;
       let modal;
@@ -187,7 +194,7 @@ describe('MappingProfileFormContainer', () => {
       it('should display validation error when transformations do not match record type', () => {
         const folioRecordTypeContainer = document.querySelector('[data-test-folio-record-type]');
 
-        userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), 'Name');
+        userEvent.type(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' }), 'Name');
         userEvent.click(getByRole(folioRecordTypeContainer, 'checkbox', { name: 'stripes-data-transfer-components.recordTypes.item' }));
 
         userEvent.click(getByRole(footer, 'button', { name: 'stripes-components.saveAndClose' }));
@@ -207,7 +214,7 @@ describe('MappingProfileFormContainer', () => {
       it('should not display validation for record types when SRS and holdings types are checked', () => {
         const folioRecordTypeContainer = document.querySelector('[data-test-folio-record-type]');
 
-        userEvent.type(screen.getByRole('textbox', {name: 'stripes-data-transfer-components.name'}), 'Name');
+        userEvent.type(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' }), 'Name');
         userEvent.click(getByRole(folioRecordTypeContainer, 'checkbox', { name: 'stripes-data-transfer-components.recordTypes.holdings' }));
         userEvent.click(screen.getByRole('checkbox', { name: 'stripes-data-transfer-components.recordTypes.srs' }));
         userEvent.click(getByRole(footer, 'button', { name: 'stripes-components.saveAndClose' }));

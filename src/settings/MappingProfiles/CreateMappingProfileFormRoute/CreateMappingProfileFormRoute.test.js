@@ -13,6 +13,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import { CreateMappingProfileFormRoute } from './CreateMappingProfileFormRoute';
 import { translationsProperties } from '../../../../test/helpers';
 import {
@@ -111,6 +112,12 @@ describe('CreateMappingProfileFormRoute', () => {
       expect(getByText(document.querySelector('[data-test-mapping-profile-form-name]'), 'stripes-data-transfer-components.validation.enterValue')).toBeVisible();
       expect(screen.getByRole('textbox', { name: 'stripes-data-transfer-components.name' })).not.toBeValid();
       expect(onSubmitMock).not.toBeCalled();
+    });
+
+    it('should render with no axe errors', async () => {
+      await runAxeTest({
+        rootNode: document.body,
+      });
     });
 
     it('should initiate displaying of error callout', async () => {

@@ -3,13 +3,14 @@ import React from 'react';
 import '../../../../test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import { screen } from '@testing-library/react';
+import { runAxeTest } from '@folio/stripes-testing';
 import { MappingProfileDetailsRoute } from '.';
 
 import { translationsProperties } from '../../../../test/helpers';
 
-jest.mock('../MappingProfileDetails' ,() => ({
+jest.mock('../MappingProfileDetails', () => ({
   MappingProfileDetails: () => (<div>MappingProfileDetails</div>)
-}))
+}));
 
 const setupMappingProfileDetailsRoute = ({
   resources = {
@@ -22,10 +23,10 @@ const setupMappingProfileDetailsRoute = ({
   match = { params: {} },
   location = {},
   onCancel = jest.fn(),
-}= {}) => {
+} = {}) => {
   renderWithIntl(
     <MappingProfileDetailsRoute
-      resources= {resources}
+      resources={resources}
       allTransformations={allTransformations}
       mutator={mutator}
       history={history}
@@ -34,7 +35,7 @@ const setupMappingProfileDetailsRoute = ({
       onCancel={onCancel}
     />,
     translationsProperties
-  )
+  );
 };
 
 describe('MappingProfileDetailsRoute', () => {
@@ -42,7 +43,14 @@ describe('MappingProfileDetailsRoute', () => {
     setupMappingProfileDetailsRoute();
 
     expect(screen.getByText('MappingProfileDetails')).toBeVisible();
-
   });
 
+
+  it('should render with no axe errors', async () => {
+    setupMappingProfileDetailsRoute();
+
+    await runAxeTest({
+      rootNode: document.body,
+    });
+  });
 });

@@ -102,7 +102,7 @@ describe('MappingProfilesTransformationsModal', () => {
 
       expect(resultsPane).toBeInTheDocument();
       expect(getByText(resultsPane, 'ui-data-export.transformations')).toBeInTheDocument();
-      expect(getByText(resultsPane, `ui-data-export.mappingProfiles.transformations.searchResultsCountHeader`)).toBeInTheDocument();
+      expect(getByText(resultsPane, 'ui-data-export.mappingProfiles.transformations.searchResultsCountHeader')).toBeInTheDocument();
     });
 
     it('should display total selected count', () => {

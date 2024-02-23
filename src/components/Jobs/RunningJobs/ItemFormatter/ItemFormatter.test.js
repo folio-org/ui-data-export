@@ -4,6 +4,7 @@ import '../../../../../test/jest/__mock__';
 import '../../../../../test/jest/__new_mock__';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import { screen } from '@testing-library/react';
+import { runAxeTest } from '@folio/stripes-testing';
 import ItemFormatter from '.';
 
 import { translationsProperties } from '../../../../../test/helpers';
@@ -33,7 +34,11 @@ const jobMock = {
 
 const setupItemFormatter = () => {
   renderWithIntl(
-    ItemFormatter(jobMock),
+    (
+      <ul>
+        {ItemFormatter(jobMock)}
+      </ul>
+    ),
     translationsProperties
   );
 };
@@ -45,5 +50,13 @@ describe('ItemFormatter', () => {
     expect(screen.getByText('Holdings HRIDs')).toBeVisible();
     expect(screen.getByText('SearchInstanceUUIDs2022-12-06T02_28_37-05_00-7673.mrc')).toBeVisible();
     expect(screen.getByText('50%')).toBeVisible();
+  });
+
+  it('should render with no axe errors', async () => {
+    setupItemFormatter();
+
+    await runAxeTest({
+      rootNode: document.body,
+    });
   });
 });
