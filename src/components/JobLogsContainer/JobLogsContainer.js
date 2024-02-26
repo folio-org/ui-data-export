@@ -77,7 +77,7 @@ export const JobLogsContainer = props => {
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
 
-    if (!record.progress?.exported) {
+    if (!record.progress?.exported || record.status === JOB_EXECUTION_STATUSES.FAIL) {
       return (
         <span
           title={fileName}
