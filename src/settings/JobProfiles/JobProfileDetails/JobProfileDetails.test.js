@@ -11,6 +11,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import { JobProfileDetails } from '.';
 import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
@@ -111,6 +112,14 @@ describe('JobProfileDetails', () => {
       const description = document.querySelector('[data-test-job-profile-description]');
 
       expect(within(description).getByText('-')).toBeVisible();
+    });
+
+    it('should render with no axe errors', async () => {
+      renderJobProfileWitoutDescription();
+
+      await runAxeTest({
+        rootNode: document.body,
+      });
     });
 
     it('should display action buttons in the proper state', () => {

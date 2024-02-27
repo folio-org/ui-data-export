@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import '../../../../test/jest/__mock__';
 import '../../../../test/jest/__new_mock__';
 
-import { logDOM } from '@testing-library/dom';
+import { runAxeTest } from '@folio/stripes-testing';
 import JobProfilesForm from './JobProfilesForm';
 
 jest.mock(
@@ -81,5 +81,15 @@ describe('JobProfilesForm', () => {
     const preloader = await screen.findByTestId('preloader');
 
     expect(preloader).toBeVisible();
+  });
+
+  it('should render with no axe errors', async () => {
+    renderJobProfileForm({
+      renderWithDefault: true,
+    });
+
+    await runAxeTest({
+      rootNode: document.body,
+    });
   });
 });

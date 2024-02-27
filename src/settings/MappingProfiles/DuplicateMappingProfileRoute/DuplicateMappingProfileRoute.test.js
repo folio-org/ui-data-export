@@ -18,6 +18,7 @@ import {
 } from '@folio/stripes-data-transfer-components/testUtils';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import { DuplicateMappingProfileRouteComponent } from './DuplicateMappingProfileRoute';
 import { translationsProperties } from '../../../../test/helpers';
 import {
@@ -129,7 +130,7 @@ describe('DuplicateMappingProfileRoute', () => {
 
     it('should have correct name field value', () => {
       renderDuplicateMappingProfileRoute();
-      expect(nameField()).toHaveValue(`ui-data-export.copyOf`);
+      expect(nameField()).toHaveValue('ui-data-export.copyOf');
     });
 
     it('should display add transformations button with proper wording', () => {
@@ -298,6 +299,14 @@ describe('DuplicateMappingProfileRoute', () => {
             expect.objectContaining({ type: 'error' })
           );
           expect(sendCalloutMock.mock.calls[0][0].message.props.id).toBe('ui-data-export.mappingProfiles.create.errorCallout');
+        });
+      });
+
+      it('should render with no axe errors', async () => {
+        renderDuplicateMappingProfileRouteWithMocks();
+
+        await runAxeTest({
+          rootNode: document.body,
         });
       });
     });

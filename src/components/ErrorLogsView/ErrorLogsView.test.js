@@ -5,6 +5,7 @@ import '../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import { ErrorLogsView } from './ErrorLogsView';
 import { translationsProperties } from '../../../test/helpers';
 import { errorLogs } from '../../../test/bigtest/fixtures/errorLogs';
@@ -36,6 +37,14 @@ describe('ErrorLogsView', () => {
       for (const [index, log] of errorLogs.entries()) {
         expect(screen.queryByText(logs[index](log))).not.toBeInTheDocument();
       }
+    });
+
+    it('should render with no axe errors', async () => {
+      renderErrorLogView({ hasLoaded: false, records: errorLogs });
+
+      await runAxeTest({
+        rootNode: document.body,
+      });
     });
 
     it('should display record link', async () => {

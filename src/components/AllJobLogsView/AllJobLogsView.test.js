@@ -12,6 +12,7 @@ import {
   buildResources,
   buildMutator,
 } from '@folio/stripes-data-transfer-components/testUtils';
+import { runAxeTest } from '@folio/stripes-testing';
 
 import { AllJobLogsViewComponent } from '.';
 import { translationsProperties } from '../../../test/helpers';
@@ -20,7 +21,7 @@ import { logJobExecutions, userList, jobProfilesList } from '../../../test/bigte
 
 jest.mock('react-virtualized-auto-sizer', () => ({ children }) => children({ width: 1920, height: 1080 }));
 
-const mockData= {
+const mockData = {
   'jobProfilesList': {
     records: jobProfilesList,
     hasLoaded: true,
@@ -33,7 +34,7 @@ const mockData= {
     isPending: false,
     other: { totalRecords: userList.length },
   },
-}
+};
 const renderAllJobLogsViewContainer = () => {
   render(
     <SettingsComponentBuilder>
@@ -56,6 +57,14 @@ describe('AllJobLogsView', () => {
 
     expect(screen.getByText('ui-data-export.logsPaneTitle'));
     expect(screen.getByText('ui-data-export.searchResultsCountHeader')).toBeVisible();
+  });
+
+  it('should render with no axe errors', async () => {
+    renderAllJobLogsViewContainer();
+
+    await runAxeTest({
+      rootNode: document.body,
+    });
   });
 
   it('should be sorted by "completedDate" descending', () => {
