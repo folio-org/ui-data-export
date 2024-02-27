@@ -59,8 +59,8 @@ export const buildSortingQuery = (queryParams, customSortMap = {}) => {
 
     const sortingDirection = key.startsWith('-') ? ASC_DESCENDING : ASC_ASCENDING;
 
-    if (key.includes('runBy.firstName')) {
-      return `sortby runBy.firstName/sort.${queryParams.sortingDirection || sortingDirection}  runBy.lastName/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
+    if (key.includes('runByFirstName')) {
+      return `sortby runByFirstName/sort.${queryParams.sortingDirection || sortingDirection}  runByLastName/sort.${queryParams.sortingDirection || sortingDirection} total/number`;
     }
 
     return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection}`;
