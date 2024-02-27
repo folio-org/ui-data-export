@@ -8,8 +8,8 @@ import {
 } from '../utils';
 
 const sortMap = {
-  updated: 'metadata.updatedDate',
-  updatedBy: 'userInfo.firstName userInfo.lastName',
+  updated: 'updatedDate',
+  updatedBy: 'updatedByFirstName updatedByLastName',
 };
 
 export const jobProfilesManifest = {

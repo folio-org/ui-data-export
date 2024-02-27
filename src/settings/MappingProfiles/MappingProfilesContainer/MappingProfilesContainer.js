@@ -50,9 +50,9 @@ const queryTemplate = '(sortby "%{query.query}")';
 const sortMap = {
   name: 'name',
   folioRecord: 'recordTypes',
-  format: 'outputFormat',
-  updated: 'metadata.updatedDate',
-  updatedBy: 'userInfo.firstName userInfo.lastName',
+  format: 'format',
+  updated: 'updatedDate',
+  updatedBy: 'updatedByFirstName updatedByLastName',
 };
 
 const initialValues = {

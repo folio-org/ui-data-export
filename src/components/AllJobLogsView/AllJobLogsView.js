@@ -71,6 +71,8 @@ const buildJobsQuery = makeQueryBuilder(
           return `status=${query}`;
       }
     },
+    hrId: query => `hrid="${query}"`,
+    'runBy.userId': query => `runById="${query}"`,
   },
   {
     hrId: 'hrid/number',
@@ -81,7 +83,8 @@ const buildJobsQuery = makeQueryBuilder(
     '-errors': '-failed/number',
     exported: 'exported/number',
     '-exported': '-exported/number',
-    updated: 'metadata.updatedDate',
+    updated: 'updatedDate',
+    '-updated': '-updatedDate',
     jobProfileName: 'jobProfileName',
     '-jobProfileName': '-jobProfileName',
     runBy: 'runByFirstName runByLastName',

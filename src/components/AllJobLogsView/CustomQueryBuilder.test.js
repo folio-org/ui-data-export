@@ -10,9 +10,9 @@ import {
 
 describe('CustomQueryBuilder', () => {
   it('buildDateTimeRangeQuery', () => {
-    const expectedOutput = /\(key>="[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:00:00\.000\+00:00" and key<="[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:59:59\.999\+00:00"\)/;
+    const expectedOutput = '(key=="2022-12-08:2022-12-09")';
 
-    expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expect.stringMatching(expectedOutput));
+    expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expectedOutput);
   });
 
   it('getFilterParams', () => {
@@ -74,7 +74,17 @@ describe('CustomQueryBuilder', () => {
       sort: 'sort',
     };
 
-    const expectedOutput = 'sortby sort/sort.ascending';
+    const expectedOutput = 'sortby sort/sort.ascending total/number';
+
+    expect(buildSortingQuery(queryParams, () => {})).toEqual(expectedOutput);
+  });
+
+  it('buildSortingQuery when key is runByFirstName', () => {
+    const queryParams = {
+      sort: 'runByFirstName',
+    };
+
+    const expectedOutput = 'sortby runByFirstName/sort.ascending  runByLastName/sort.ascending total/number';
 
     expect(buildSortingQuery(queryParams, () => {})).toEqual(expectedOutput);
   });
