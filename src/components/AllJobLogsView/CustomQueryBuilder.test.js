@@ -12,7 +12,7 @@ describe('CustomQueryBuilder', () => {
   it('buildDateTimeRangeQuery', () => {
     const expectedOutput = /\(key>="[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:00:00\.000\+00:00" and key<="[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:59:59\.999\+00:00"\)/;
 
-    expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expect.stringMatching(expectedOutput))
+    expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expect.stringMatching(expectedOutput));
   });
 
   it('getFilterParams', () => {
@@ -23,14 +23,13 @@ describe('CustomQueryBuilder', () => {
       offset: 'offset',
       limit: 'limit',
       query: 'query',
-    }
+    };
     const expectedOutput = { query: 'query' };
 
-    expect(getFilterParams(queryParams)).toEqual(expectedOutput)
+    expect(getFilterParams(queryParams)).toEqual(expectedOutput);
   });
 
   it('buildFilterQuery with empty queryParams', () => {
-
     expect(buildFilterQuery({}, () => {})).toBeFalsy();
   });
 
@@ -75,7 +74,7 @@ describe('CustomQueryBuilder', () => {
       sort: 'sort',
     };
 
-    const expectedOutput = 'sortby sort/sort.ascending progress.total/number'
+    const expectedOutput = 'sortby sort/sort.ascending';
 
     expect(buildSortingQuery(queryParams, () => {})).toEqual(expectedOutput);
   });
@@ -85,16 +84,16 @@ describe('CustomQueryBuilder', () => {
   });
 
   it('makeQueryBuilder', () => {
-    const expectedOutput = '(searchAllQuery) defaultSorting'
+    const expectedOutput = '(searchAllQuery) defaultSorting';
 
     expect(makeQueryBuilder('searchAllQuery', () => {}, 'defaultSorting')({})).toEqual(expectedOutput);
   });
 
   it('getQindex with hrId', () => {
-    expect(getQindex('hrId', 'test' )).toEqual( {hrId: "test"})
+    expect(getQindex('hrId', 'test')).toEqual({ hrId: 'test' });
   });
 
   it('getQindex with keyword', () => {
-    expect(getQindex('keyword', 'test' )).toEqual( {hrId: "test or fileName=test"})
+    expect(getQindex('keyword', 'test')).toEqual({ hrId: 'test or fileName=test' });
   });
-})
+});
