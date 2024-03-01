@@ -139,7 +139,7 @@ export const AllJobLogsViewComponent = ({
   };
 
   const jobProfiles = get(resources, ['jobProfilesList', 'records'], [])
-    .sort((jobProfileA, jobProfileB) => jobProfileA.name.localeCompare(jobProfileB.name));
+    .sort((jobProfileA, jobProfileB) => jobProfileA.name?.localeCompare(jobProfileB.name));
 
   const totalCounts = get(resources, ['jobExecutions', 'other', 'totalRecords']);
 

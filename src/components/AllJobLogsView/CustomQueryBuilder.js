@@ -15,8 +15,8 @@ export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DD';
 
 export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
   const [from, to] = filterValue.split(':');
-  const start = moment(from).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
-  const end = moment(to).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const start = moment(from).format(DATE_RANGE_FILTER_FORMAT);
+  const end = moment(to).add(1, 'days').format(DATE_RANGE_FILTER_FORMAT);
 
   return `(${filterKey}=="${start}:${end}")`;
 };
