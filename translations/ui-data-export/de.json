@@ -281,5 +281,5 @@
     "column.errors.duplicatesWithOthers": "{failedOther} , {failedSrs} Duplikat(e)",
     "column.errors.duplicates": "{failedSrs} Duplikat(e)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Settings (Data export): Can view"
+    "permission.settings.view": "Einstellungen (Datenexport): Kann anzeigen"
 }
