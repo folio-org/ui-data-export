@@ -53,6 +53,7 @@
   "jobStatus.fail": "Fail",
   "jobStatus.completed": "Completed",
   "jobStatus.completedWithErrors": "Completed with errors",
+  "jobStatus.inProgress": "In progress",
   "modal.fileExtensions.blocked.header": "Invalid file",
   "modal.fileExtensions.blocked.message": "Only file with .csv or .cql extension can be uploaded",
   "modal.fileExtensions.actionButton": "Choose other file to upload",
