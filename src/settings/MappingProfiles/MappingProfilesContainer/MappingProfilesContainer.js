@@ -33,6 +33,7 @@ import { CreateMappingProfileFormRoute } from '../CreateMappingProfileFormRoute'
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
 import { DuplicateMappingProfileRoute } from '../DuplicateMappingProfileRoute';
+import { useDefaultSorting } from '../../../hooks/useDefaultSorting';
 
 const customProperties = {
   columnWidths: { format: '70px' },
@@ -98,6 +99,8 @@ const MappingProfilesContainer = ({
     }) => () => push(`/settings/data-export/mapping-profiles/view/${match.params.id}${location.search}`),
     [push]
   );
+
+  useDefaultSorting();
 
   return (
     <>
