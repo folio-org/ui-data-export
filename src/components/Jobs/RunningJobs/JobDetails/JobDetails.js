@@ -40,6 +40,7 @@ const JobDetails = props => {
       exported = 0,
       otherFailed = 0,
       duplicatedSrs = 0,
+      readIds = 0,
     } = {},
     startedDate,
   } = job;
@@ -83,8 +84,8 @@ const JobDetails = props => {
         tagName="div"
       />
       <Progress
-        current={(exported + Number(otherFailed)) - Number(duplicatedSrs)}
-        total={Number(total)}
+        current={(readIds + exported + Number(otherFailed)) - Number(duplicatedSrs)}
+        total={Number(total) * 2}
       />
     </>
   );
