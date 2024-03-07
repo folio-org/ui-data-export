@@ -213,12 +213,14 @@ MappingProfilesContainer.manifest = Object.freeze({
     throwErrors: false,
     GET: {
       params: {
-        query: makeQueryFunction(
-          FIND_ALL_CQL,
-          queryTemplate,
-          sortMap,
-          []
-        ),
+        query: (...args) => {
+          return makeQueryFunction(
+            FIND_ALL_CQL,
+            queryTemplate,
+            sortMap,
+            []
+          )(...args);
+        }
       },
       staticFallback: { params: {} },
     },

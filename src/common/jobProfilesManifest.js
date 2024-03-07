@@ -12,6 +12,34 @@ const sortMap = {
   updatedBy: 'updatedByFirstName updatedByLastName',
 };
 
+const ignoredSortFields = ['folioRecord', 'format', '-folioRecord', '-format'];
+
+const mapQuery = (...args) => {
+  const [queryParams, pathComponents, resourceValues, logger] = args;
+
+  const updatedArgs = [
+    queryParams,
+    pathComponents,
+    {
+      ...resourceValues,
+      query: {
+        ...resourceValues.query,
+        sort: resourceValues.query.sort?.split(',')
+          .filter(s => !ignoredSortFields.includes(s))
+          .join(',')
+      }
+    },
+    logger
+  ];
+
+  return makeQueryFunction(
+    FIND_ALL_CQL,
+    QUERY_TEMPLATE,
+    sortMap,
+    [],
+  )(...updatedArgs);
+};
+
 export const jobProfilesManifest = {
   initializedFilterConfig: { initialValue: false },
   query: { initialValue: {} },
@@ -26,12 +54,7 @@ export const jobProfilesManifest = {
     throwErrors: false,
     GET: {
       params: {
-        query: makeQueryFunction(
-          FIND_ALL_CQL,
-          QUERY_TEMPLATE,
-          sortMap,
-          []
-        ),
+        query: mapQuery,
       },
       staticFallback: { params: {} },
     },

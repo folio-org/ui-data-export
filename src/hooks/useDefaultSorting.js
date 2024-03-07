@@ -6,10 +6,12 @@ export const useDefaultSorting = () => {
   const history = useHistory();
 
   useEffect(() => {
-    history.replace({
-      search: `${buildSearch({
-        sort: 'name'
-      }, history.location.search)}`,
-    });
+    return () => {
+      history.replace({
+        search: `${buildSearch({
+          sort: 'name'
+        }, history.location.search)}`,
+      });
+    };
   }, []);
 };
