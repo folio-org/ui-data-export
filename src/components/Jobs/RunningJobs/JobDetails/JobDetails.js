@@ -85,7 +85,7 @@ const JobDetails = props => {
       />
       <Progress
         current={(readIds + exported + otherFailed) - duplicatedSrs}
-        total={readIds ? (total * 2) ? total}
+        total={readIds ? (total * 2) : total}
       />
     </>
   );
