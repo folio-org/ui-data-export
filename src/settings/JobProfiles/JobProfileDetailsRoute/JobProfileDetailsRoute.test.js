@@ -9,6 +9,7 @@ import { screen, within } from '@testing-library/react';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import userEvent from '@testing-library/user-event';
+import { runAxeTest } from '@folio/stripes-testing';
 import { JobProfileDetailsRoute } from '.';
 
 import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
@@ -148,6 +149,31 @@ describe('JobProfileDetails', () => {
       ];
 
       labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
+    });
+
+
+    it('should render with no axe errors', async () => {
+      const kyMock = (url) => {
+        return {
+          json: jest.fn(() => {
+            if (url.includes('job-profiles')) {
+              return Promise.resolve({ ...jobProfile, id: nonDefaultJobProfileId });
+            } else if (url.includes('mapping-profiles')) {
+              return Promise.resolve(mappingProfile);
+            } else {
+              return Promise.resolve();
+            }
+          }),
+        };
+      };
+
+      useOkapiKy.mockReturnValue(kyMock);
+
+      setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
+
+      await runAxeTest({
+        rootNode: document.body,
+      });
     });
   });
 

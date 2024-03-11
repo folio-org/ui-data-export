@@ -5,6 +5,7 @@ import '../../../../test/jest/__mock__';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import { screen } from '@testing-library/react';
+import { runAxeTest } from '@folio/stripes-testing';
 import { CreateJobProfileRoute } from '.';
 
 import { translationsProperties } from '../../../../test/helpers';
@@ -50,6 +51,13 @@ describe('CreateJobProfile', () => {
       await checkJobProfileFormState(form, {
         title: 'ui-data-export.jobProfiles.newProfile',
         isTCPIPEnabled: true,
+      });
+    });
+    it('should render with no axe errors', async () => {
+      setupCreateJobProfileRoute();
+
+      await runAxeTest({
+        rootNode: document.body,
       });
     });
   });

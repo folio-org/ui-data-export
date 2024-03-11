@@ -17,6 +17,7 @@ import {
 } from '@folio/stripes-data-transfer-components/testUtils';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
+import { runAxeTest } from '@folio/stripes-testing';
 import { ChooseJobProfileComponent as ChooseJobProfile } from './ChooseJobProfile';
 import { translationsProperties } from '../../../test/helpers';
 
@@ -75,6 +76,14 @@ describe('ChooseJobProfile', () => {
       const { container } = renderResult;
 
       expect(container.querySelector('#pane-results')).toBeVisible();
+    });
+
+    it('should render with no axe errors', async () => {
+      const { container } = renderResult;
+
+      await runAxeTest({
+        rootNode: container,
+      });
     });
 
     it('should display correct title and subtitle', () => {
