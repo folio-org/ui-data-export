@@ -33,6 +33,7 @@ import { CreateMappingProfileFormRoute } from '../CreateMappingProfileFormRoute'
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
 import { DuplicateMappingProfileRoute } from '../DuplicateMappingProfileRoute';
+import { useDefaultSorting } from '../../../hooks/useDefaultSorting';
 
 const customProperties = {
   columnWidths: { format: '70px' },
@@ -50,9 +51,9 @@ const queryTemplate = '(sortby "%{query.query}")';
 const sortMap = {
   name: 'name',
   folioRecord: 'recordTypes',
-  format: 'outputFormat',
-  updated: 'metadata.updatedDate',
-  updatedBy: 'userInfo.firstName userInfo.lastName',
+  format: 'format',
+  updated: 'updatedDate',
+  updatedBy: 'updatedByFirstName updatedByLastName',
 };
 
 const initialValues = {
@@ -98,6 +99,8 @@ const MappingProfilesContainer = ({
     }) => () => push(`/settings/data-export/mapping-profiles/view/${match.params.id}${location.search}`),
     [push]
   );
+
+  useDefaultSorting();
 
   return (
     <>
@@ -210,12 +213,14 @@ MappingProfilesContainer.manifest = Object.freeze({
     throwErrors: false,
     GET: {
       params: {
-        query: makeQueryFunction(
-          FIND_ALL_CQL,
-          queryTemplate,
-          sortMap,
-          []
-        ),
+        query: (...args) => {
+          return makeQueryFunction(
+            FIND_ALL_CQL,
+            queryTemplate,
+            sortMap,
+            []
+          )(...args);
+        }
       },
       staticFallback: { params: {} },
     },

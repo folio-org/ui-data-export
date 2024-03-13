@@ -11,14 +11,14 @@ export const SORTING_PARAMETER = 'sort';
 export const SORTING_DIRECTION_PARAMETER = 'sortingDirection';
 export const ASC_DESCENDING = 'descending';
 export const ASC_ASCENDING = 'ascending';
-export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
+export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DD';
 
 export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
   const [from, to] = filterValue.split(':');
-  const start = moment(from).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
-  const end = moment(to).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const start = moment(from).format(DATE_RANGE_FILTER_FORMAT);
+  const end = moment(to).add(1, 'days').format(DATE_RANGE_FILTER_FORMAT);
 
-  return `(${filterKey}>="${start}+00:00" and ${filterKey}<="${end}+00:00")`;
+  return `(${filterKey}=="${start}:${end}")`;
 };
 
 export const getFilterParams = queryParams => omit(
@@ -59,11 +59,11 @@ export const buildSortingQuery = (queryParams, customSortMap = {}) => {
 
     const sortingDirection = key.startsWith('-') ? ASC_DESCENDING : ASC_ASCENDING;
 
-    if (key.includes('runBy.firstName')) {
-      return `sortby runBy.firstName/sort.${queryParams.sortingDirection || sortingDirection}  runBy.lastName/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
+    if (key.includes('runByFirstName')) {
+      return `sortby runByFirstName/sort.${queryParams.sortingDirection || sortingDirection}  runByLastName/sort.${queryParams.sortingDirection || sortingDirection} total/number`;
     }
 
-    return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection} progress.total/number`;
+    return `sortby ${replacedKey}/sort.${queryParams.sortingDirection || sortingDirection} total/number`;
   }
 
   return '';

@@ -77,7 +77,7 @@ export const JobLogsContainer = props => {
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
 
-    if (!record.progress?.exported) {
+    if (!record.progress?.exported || [JOB_EXECUTION_STATUSES.FAIL, JOB_EXECUTION_STATUSES.IN_PROGRESS].includes(record.status)) {
       return (
         <span
           title={fileName}
@@ -149,8 +149,8 @@ export const JobLogsContainer = props => {
           return intl.formatNumber(record.progress?.total);
         },
         errors: record => {
-          const failedSrs = record.progress?.failed?.duplicatedSrs;
-          const failedOther = record.progress?.failed?.otherFailed;
+          const failedSrs = record.progress?.duplicatedSrs;
+          const failedOther = record.progress?.failed;
 
           switch (true) {
             case failedSrs === 0 && failedOther > 0:
