@@ -10,16 +10,14 @@ import {
   stripesConnect,
   TitleManager,
 } from '@folio/stripes/core';
-import {
-  ProfilesLabel,
-  SettingsLabel,
-} from '@folio/stripes-data-transfer-components';
+import { SettingsLabel } from '@folio/stripes-data-transfer-components';
 import { Callout } from '@folio/stripes/components';
 
 import PropTypes from 'prop-types';
 import { MappingProfilesContainer } from '../MappingProfiles/MappingProfilesContainer';
 import { JobProfilesContainer } from '../JobProfiles/JobProfilesContainer';
 import { CalloutContext } from '../../contexts/CalloutContext';
+import { ProfilesLabel } from './ProfilesLabel/ProfilesLabel';
 
 const getSettingsLabel = (messageId, iconKey) => {
   return (
@@ -41,10 +39,7 @@ export function DataExportSettings(props) {
     {
       label:
   <TitleManager page={intl.formatMessage({ id: 'ui-data-export.settings.index.managerTitle' })}>
-    <ProfilesLabel
-      link="https://wiki.folio.org/x/AyUuAg"
-      content={<FormattedMessage id="ui-data-export.settings.profilesInfo" />}
-    />
+    <ProfilesLabel />
   </TitleManager>,
       pages: [
         {
