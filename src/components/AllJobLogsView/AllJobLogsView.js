@@ -71,21 +71,24 @@ const buildJobsQuery = makeQueryBuilder(
           return `status=${query}`;
       }
     },
+    hrId: query => `hrid="${query}"`,
+    'runBy.userId': query => `runById="${query}"`,
   },
   {
-    hrId: 'hrId/number',
-    '-hrId': '-hrId/number',
-    totalRecords: 'progress.total/number',
-    '-totalRecords': '-progress.total/number',
-    errors: 'progress.failed/number',
-    '-errors': '-progress.failed/number',
-    exported: 'progress.exported/number',
-    '-exported': '-progress.exported/number',
-    updated: 'metadata.updatedDate',
+    hrId: 'hrid/number',
+    '-hrId': '-hrid/number',
+    totalRecords: 'total/number',
+    '-totalRecords': '-total/number',
+    errors: 'failed/number',
+    '-errors': '-failed/number',
+    exported: 'exported/number',
+    '-exported': '-exported/number',
+    updated: 'updatedDate',
+    '-updated': '-updatedDate',
     jobProfileName: 'jobProfileName',
     '-jobProfileName': '-jobProfileName',
-    runBy: 'runBy.firstName runBy.lastName',
-    '-runBy': '-runBy.firstName runBy.lastName',
+    runBy: 'runByFirstName runByLastName',
+    '-runBy': '-runByFirstName runByLastName',
     startedDate: 'startedDate',
     '-startedDate': '-startedDate',
   }
@@ -136,7 +139,7 @@ export const AllJobLogsViewComponent = ({
   };
 
   const jobProfiles = get(resources, ['jobProfilesList', 'records'], [])
-    .sort((jobProfileA, jobProfileB) => jobProfileA.name.localeCompare(jobProfileB.name));
+    .sort((jobProfileA, jobProfileB) => jobProfileA.name?.localeCompare(jobProfileB.name));
 
   const totalCounts = get(resources, ['jobExecutions', 'other', 'totalRecords']);
 
@@ -296,7 +299,7 @@ AllJobLogsViewComponent.manifest = Object.freeze({
   jobProfilesList: {
     type: 'okapi',
     records: 'jobProfiles',
-    path: 'data-export/job-profiles?used=true',
+    path: 'data-export/job-profiles?used=true&limit=1000',
     throwErrors: false,
   },
 });

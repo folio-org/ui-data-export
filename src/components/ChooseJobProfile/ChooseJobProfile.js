@@ -36,6 +36,7 @@ const ChooseJobProfileComponent = ({
   location,
 }) => {
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
+  const [isJobRunning, setIsJobRunning] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState({});
   const fileDefinitionIdRef = useRef(null);
 
@@ -71,7 +72,7 @@ const ChooseJobProfileComponent = ({
       <ConfirmationModal
         id="choose-job-profile-confirmation-modal"
         open={isConfirmationModalOpen}
-        disabledCofirmButton={!selectedProfile.idType}
+        disabledCofirmButton={!selectedProfile.idType || isJobRunning}
         heading={<FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.title" />}
         message={(
           <div>
@@ -87,6 +88,8 @@ const ChooseJobProfileComponent = ({
         onCancel={() => setConfirmationModalState(false)}
         onConfirm={async () => {
           try {
+            setIsJobRunning(true);
+
             await mutator.export.POST({
               fileDefinitionId: fileDefinitionIdRef.current,
               jobProfileId: selectedProfile.id,
@@ -97,6 +100,8 @@ const ChooseJobProfileComponent = ({
           } catch (error) {
             setConfirmationModalState(false);
             console.error(error);
+          } finally {
+            setIsJobRunning(false);
           }
         }}
       />
