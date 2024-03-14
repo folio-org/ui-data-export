@@ -150,7 +150,9 @@
         "permissionName": "ui-data-export.settings.enabled",
         "displayName": "Settings (Data export): display list of settings pages",
         "subPermissions": [
-          "settings.data-export.enabled"
+          "settings.data-export.enabled",
+          "data-export.mapping-profiles.collection.get",
+          "data-export.transformation-fields.collection.get"
         ],
         "visible": true
       }
