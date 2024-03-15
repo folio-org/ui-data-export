@@ -1,0 +1,9 @@
+@import "@folio/stripes-components/lib/variables.css";
+
+.profilesLabel {
+  display: flex;
+}
+.profilesLabel button {
+  margin-top: -3px;
+}
+
