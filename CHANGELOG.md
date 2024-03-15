@@ -8,6 +8,7 @@
 * Data export - Add accessibility testing to automated tests. Refs UIDEXP-355.
 * UI adjustments for reworked Data Export. Refs UIDEXP-357.
 * Cannot view Mapping profiles and Job profiles with "Settings (Data export): display list of settings pages" permission. Refs UIDEXP-351.
+* Remove information icon from Settings > Data export > Profiles .Refs UIDEXP-363
 
 ## [6.0.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2023-10-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.1...v6.0.0)
