@@ -2,7 +2,7 @@
 
 ## IN PROGRESS
 
-## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2024-03-19)
+## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.0.0...v6.1.0)
 
