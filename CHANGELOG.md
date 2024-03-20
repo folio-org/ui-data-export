@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+* Add User look-up filter for existing jobs to Logs page. Refs UIDEXP-370.
+
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.0.0...v6.1.0)

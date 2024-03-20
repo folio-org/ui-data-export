@@ -147,10 +147,11 @@ export const AllJobLogsViewComponent = ({
     .map(item => {
       return {
         userId: item.userId,
-        firstName: item.jobUserFirstName,
-        lastName: item.jobUserLastName,
+        firstName: item.firstName,
+        lastName: item.lastName,
       };
-    }).sort((userA, userB) => {
+    })
+    .sort((userA, userB) => {
       const nameA = userA.firstName || userA.lastName;
       const nameB = userB.firstName || userB.lastName;
 
@@ -202,7 +203,7 @@ export const AllJobLogsViewComponent = ({
           activeFilters={filters}
           jobProfiles={jobProfiles}
           queryMutator={mutator.query}
-          showUsers={false}
+          showUsers
           onChange={adaptedApplyFilters}
         />
       </FiltersPane>
@@ -291,8 +292,8 @@ AllJobLogsViewComponent.manifest = Object.freeze({
   },
   usersList: {
     type: 'okapi',
-    records: 'jobExecutionUsersInfo',
-    path: 'metadata-provider/jobExecutions/users',
+    records: 'relatedUsers',
+    path: 'data-export/related-users',
     throwErrors: false,
     perRequest: RESULT_COUNT_INCREMENT,
   },
