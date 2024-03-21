@@ -17,7 +17,11 @@ import { runAxeTest } from '@folio/stripes-testing';
 import { AllJobLogsViewComponent } from '.';
 import { translationsProperties } from '../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../test/jest/helpers';
-import { logJobExecutions, userList, jobProfilesList } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
+import {
+  logJobExecutions,
+  relatedUsers,
+  jobProfilesList,
+} from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
 
 jest.mock('react-virtualized-auto-sizer', () => ({ children }) => children({ width: 1920, height: 1080 }));
 
@@ -29,10 +33,10 @@ const mockData = {
     other: { totalRecords: jobProfilesList.length },
   },
   'usersList': {
-    records: userList,
+    records: relatedUsers,
     hasLoaded: true,
     isPending: false,
-    other: { totalRecords: userList.length },
+    other: { totalRecords: relatedUsers.length },
   },
 };
 const renderAllJobLogsViewContainer = () => {
