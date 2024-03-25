@@ -281,5 +281,7 @@
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
     "column.errors.duplicates": "{failedSrs} duplicate(s)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Settings (Data export): Can view"
+    "permission.settings.view": "Settings (Data export): Can view",
+    "jobStatus.inProgress": "In progress",
+    "error.recordIsTooLong": "{value1}"
 }
