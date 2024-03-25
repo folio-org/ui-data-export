@@ -209,7 +209,7 @@
     "copyOf": "Copy of {value}",
     "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
     "mappingProfiles.recordType.instance": "Inventory instance (selected fields)",
-    "mappingProfiles.transformations.invalidTransformationMessage": "Please check your input",
+    "mappingProfiles.transformations.invalidTransformationMessage": "入力内容を確認してください",
     "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
     "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
     "errorLogs.record.Title": "\"{recordType} Title\": \"{value}\"",
@@ -255,7 +255,7 @@
     "instance": "Instances",
     "holdings": "Holdings",
     "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
-    "jobProfiles.editProfile": "Edit {name}",
+    "jobProfiles.editProfile": "編集{name}",
     "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
     "jobProfiles.edit.errorCallout": "An error occurred while saving the job profile <b>{name}</b>",
     "jobProfiles.duplicate.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
@@ -272,7 +272,7 @@
     "exported": "Exported",
     "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
     "startedDate": "Started running",
-    "settings.index.managerTitle": "Data export settings",
+    "settings.index.managerTitle": "データエクスポート設定",
     "settings.job.manager": "Data export settings - {job}",
     "settings.newJob.manager": "Data export settings - New job profile",
     "settings.newMapping.manager": "Data export settings - New field mapping profile",
@@ -281,5 +281,7 @@
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
     "column.errors.duplicates": "{failedSrs} duplicate(s)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Settings (Data export): Can view"
+    "permission.settings.view": "Settings (Data export): Can view",
+    "jobStatus.inProgress": "In progress",
+    "error.recordIsTooLong": "{value1}"
 }

@@ -281,5 +281,7 @@
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplikát(y)",
     "column.errors.duplicates": "{failedSrs} duplikát(y)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Nastavení (Export dat): Lze zobrazit"
+    "permission.settings.view": "Nastavení (Export dat): Lze zobrazit",
+    "jobStatus.inProgress": "Probíhá",
+    "error.recordIsTooLong": "{value1}"
 }
