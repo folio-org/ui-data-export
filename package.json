@@ -142,7 +142,8 @@
           "data-export.job-profiles.item.post",
           "data-export.job-profiles.item.put",
           "data-export.job-profiles.item.delete",
-          "settings.data-export.view"
+          "settings.data-export.view",
+          "data-export.related-users.collection.get"
         ],
         "visible": false
       },
