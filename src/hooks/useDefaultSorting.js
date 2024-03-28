@@ -7,17 +7,17 @@ export const useDefaultSorting = () => {
   const history = useHistory();
 
   useEffect(() => {
-    history.replace({
+    const setDefaultSort = (sort) => history.replace({
       search: `${buildSearch({
-        sort: 'name'
+        sort
       }, history.location.search)}`,
     });
 
-    // clear search params on unmount to avoid conflicts with other components
+    setDefaultSort('name');
+
+    // clear sort params on unmount to avoid conflicts with other components
     return () => {
-      history.replace({
-        search: '',
-      });
+      setDefaultSort(null);
     };
   }, []);
 };
