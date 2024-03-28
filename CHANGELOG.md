@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+* Apply tenant date-time when filter data export logs by date on View all page. Refs UIDEXP-372.
+
 ## [6.1.3](https://github.com/folio-org/ui-data-export/tree/v6.1.3) (2024-04-02)
 
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.1.0...v6.1.3)
