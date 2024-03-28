@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Add User look-up filter for existing jobs to Logs page. Refs UIDEXP-370.
+* Apply tenant date-time when filter data export logs by date on View all page. Refs UIDEXP-372.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
