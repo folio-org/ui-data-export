@@ -10,7 +10,7 @@ import {
 
 describe('CustomQueryBuilder', () => {
   it('buildDateTimeRangeQuery', () => {
-    const expectedOutput = '(key>="2022-12-07T20:00:00.000" and key<="2022-12-09T19:59:59.999")';
+    const expectedOutput = '(key>="2022-12-08T00:00:00.000" and key<="2022-12-09T19:59:59.999")';
 
     expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expectedOutput);
   });
