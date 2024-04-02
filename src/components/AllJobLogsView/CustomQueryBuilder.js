@@ -1,5 +1,5 @@
 import { omit } from 'lodash';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export const SEARCH_PARAMETER = 'query';
 export const SEARCH_INDEX_PARAMETER = 'qindex';
