@@ -1,10 +1,5 @@
 import { omit } from 'lodash';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { dayjs } from '@folio/stripes/components';
 
 export const SEARCH_PARAMETER = 'query';
 export const SEARCH_INDEX_PARAMETER = 'qindex';
