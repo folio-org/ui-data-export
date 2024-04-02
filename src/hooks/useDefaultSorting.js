@@ -9,7 +9,7 @@ export const useDefaultSorting = () => {
   useEffect(() => {
     const setDefaultSort = (sort) => history.replace({
       search: `${buildSearch({
-        sort,
+        sort
       }, history.location.search)}`,
     });
 
