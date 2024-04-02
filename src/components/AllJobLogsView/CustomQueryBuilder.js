@@ -1,5 +1,10 @@
 import { omit } from 'lodash';
-import moment from 'moment-timezone';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const SEARCH_PARAMETER = 'query';
 export const SEARCH_INDEX_PARAMETER = 'qindex';
@@ -13,10 +18,10 @@ export const ASC_DESCENDING = 'descending';
 export const ASC_ASCENDING = 'ascending';
 export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
-export const buildDateTimeRangeQuery = (filterKey, timezone, filterValue) => {
+export const buildDateTimeRangeQuery = (filterKey, tenantTimezone, filterValue) => {
   const [from, to] = filterValue.split(':');
-  const start = moment.tz(from, timezone).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
-  const end = moment.tz(to, timezone).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const start = dayjs.tz(from, tenantTimezone).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const end = dayjs.tz(to, tenantTimezone).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
 
   return `(${filterKey}>="${start}" and ${filterKey}<="${end}")`;
 };
