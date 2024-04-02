@@ -11,14 +11,14 @@ export const SORTING_PARAMETER = 'sort';
 export const SORTING_DIRECTION_PARAMETER = 'sortingDirection';
 export const ASC_DESCENDING = 'descending';
 export const ASC_ASCENDING = 'ascending';
-export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DD';
+export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
-export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
+export const buildDateTimeRangeQuery = (filterKey, timezone, filterValue) => {
   const [from, to] = filterValue.split(':');
-  const start = moment(from).format(DATE_RANGE_FILTER_FORMAT);
-  const end = moment(to).add(1, 'days').format(DATE_RANGE_FILTER_FORMAT);
+  const start = moment.tz(from, timezone).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const end = moment.tz(to, timezone).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
 
-  return `(${filterKey}=="${start}:${end}")`;
+  return `(${filterKey}>="${start}" and ${filterKey}<="${end}")`;
 };
 
 export const getFilterParams = queryParams => omit(
