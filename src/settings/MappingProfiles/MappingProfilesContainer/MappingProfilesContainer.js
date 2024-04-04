@@ -57,9 +57,12 @@ const sortMap = {
 };
 
 const initialValues = {
+  name: '',
   transformations: [],
   recordTypes: [],
   outputFormat: 'MARC',
+  fieldsSuppression: '',
+  suppress999ff: false,
 };
 
 const MappingProfilesContainer = ({
