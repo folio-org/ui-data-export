@@ -17,7 +17,8 @@ import {
   Select,
   TextField,
   TextArea,
-  Button, Checkbox,
+  Button,
+  Checkbox,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
