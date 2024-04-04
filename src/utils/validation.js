@@ -11,7 +11,7 @@ export const requiredArray = values => {
 };
 
 export const fieldSuppression = (value) => {
-  const regex = /^[0-9]{3}$/;
+  const regex = /^\d{3}$/;
 
   return !value || value?.split(',').every(field => regex.test(field.trim()))
     ? undefined
