@@ -67,6 +67,12 @@ const MappingProfilesFormComponent = props => {
   const recordTypes = form.getFieldState('recordTypes')?.value;
   const isFieldsSuppressionDisabled = !recordTypes?.length || recordTypes?.every(recordType => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
 
+  // it's required clear field value when it became disabled
+  useEffect(() => {
+    if (isFieldsSuppressionDisabled && form.getFieldState('fieldsSuppression')?.value) {
+      form.change('fieldsSuppression', '');
+    }
+  }, [form, isFieldsSuppressionDisabled]);
 
   useEffect(() => {
     const transformationsField = form.getFieldState('transformations');
