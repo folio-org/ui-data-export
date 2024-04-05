@@ -41,8 +41,8 @@ import {
 import { JobLogsContainer } from '../JobLogsContainer';
 import {
   makeQueryBuilder,
-  buildDateTimeRangeQuery,
   getQindex,
+  buildDateTimeRangeQuery,
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
@@ -51,48 +51,50 @@ const initialQuery = '?qindex=hrID&sort=-completedDate';
 const defaultSorting = '-completedDate';
 const defaultSortingSearch = '?sort=-completedDate';
 
-const buildJobsQuery = makeQueryBuilder(
-  `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
-  query => `query=${query}`,
-  'sortby completedDate/sort.descending',
-  {
-    completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
-    startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate']),
-    status: query => {
-      switch (true) {
-        case query === JOB_EXECUTION_STATUSES.FAIL:
-          return jobStatusFailString;
-        case Array.isArray(query):
-          return `status=(${query.map(v => (
-            v === JOB_EXECUTION_STATUSES.COMPLETED
-              ? JOB_LOGS_STATUS_QUERY_VALUE
-              : `"${v}"`)).join(' or ')})`;
-        default:
-          return `status=${query}`;
-      }
+const buildJobsQuery = (timezone) => {
+  return makeQueryBuilder(
+    `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
+    query => `query=${query}`,
+    'sortby completedDate/sort.descending',
+    {
+      completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate'], timezone),
+      startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate'], timezone),
+      status: query => {
+        switch (true) {
+          case query === JOB_EXECUTION_STATUSES.FAIL:
+            return jobStatusFailString;
+          case Array.isArray(query):
+            return `status=(${query.map(v => (
+              v === JOB_EXECUTION_STATUSES.COMPLETED
+                ? JOB_LOGS_STATUS_QUERY_VALUE
+                : `"${v}"`)).join(' or ')})`;
+          default:
+            return `status=${query}`;
+        }
+      },
+      hrId: query => `hrid="${query}"`,
+      'runBy.userId': query => `runById="${query}"`,
     },
-    hrId: query => `hrid="${query}"`,
-    'runBy.userId': query => `runById="${query}"`,
-  },
-  {
-    hrId: 'hrid/number',
-    '-hrId': '-hrid/number',
-    totalRecords: 'total/number',
-    '-totalRecords': '-total/number',
-    errors: 'failed/number',
-    '-errors': '-failed/number',
-    exported: 'exported/number',
-    '-exported': '-exported/number',
-    updated: 'updatedDate',
-    '-updated': '-updatedDate',
-    jobProfileName: 'jobProfileName',
-    '-jobProfileName': '-jobProfileName',
-    runBy: 'runByFirstName runByLastName',
-    '-runBy': '-runByFirstName runByLastName',
-    startedDate: 'startedDate',
-    '-startedDate': '-startedDate',
-  }
-);
+    {
+      hrId: 'hrid/number',
+      '-hrId': '-hrid/number',
+      totalRecords: 'total/number',
+      '-totalRecords': '-total/number',
+      errors: 'failed/number',
+      '-errors': '-failed/number',
+      exported: 'exported/number',
+      '-exported': '-exported/number',
+      updated: 'updatedDate',
+      '-updated': '-updatedDate',
+      jobProfileName: 'jobProfileName',
+      '-jobProfileName': '-jobProfileName',
+      runBy: 'runByFirstName runByLastName',
+      '-runBy': '-runByFirstName runByLastName',
+      startedDate: 'startedDate',
+      '-startedDate': '-startedDate',
+    }
+  );
+};
 
 const onResetData = () => {};
 
@@ -275,7 +277,8 @@ AllJobLogsViewComponent.manifest = Object.freeze({
     recordsRequired: '%{resultCount}',
     resultDensity: 'sparse',
     perRequest: RESULT_COUNT_INCREMENT,
-    params: (queryParams, pathComponents, resourceData) => {
+    // eslint-disable-next-line no-shadow-restricted-names
+    params: (queryParams, pathComponents, resourceData, undefined, { stripes }) => {
       const {
         query,
         qindex,
@@ -287,7 +290,7 @@ AllJobLogsViewComponent.manifest = Object.freeze({
         ...customField,
       };
 
-      return { query: buildJobsQuery(buildedQuery) };
+      return { query: buildJobsQuery(stripes.timezone)(buildedQuery) };
     },
   },
   usersList: {

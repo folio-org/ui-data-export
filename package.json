@@ -59,7 +59,6 @@
     "@folio/stripes-data-transfer-components": "^6.1.0",
     "classnames": "^2.2.5",
     "lodash": "^4.16.4",
-    "moment": "^2.29.4",
     "prop-types": "^15.6.0",
     "react-final-form": "^6.3.5",
     "react-final-form-arrays": "^3.1.1",
