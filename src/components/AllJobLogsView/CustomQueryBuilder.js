@@ -1,5 +1,5 @@
 import { omit } from 'lodash';
-import moment from 'moment';
+import { dayjs } from '@folio/stripes/components';
 
 export const SEARCH_PARAMETER = 'query';
 export const SEARCH_INDEX_PARAMETER = 'qindex';
@@ -13,10 +13,10 @@ export const ASC_DESCENDING = 'descending';
 export const ASC_ASCENDING = 'ascending';
 export const DATE_RANGE_FILTER_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
-export const buildDateTimeRangeQuery = (filterKey, filterValue) => {
+export const buildDateTimeRangeQuery = (filterKey, tenantTimezone, filterValue) => {
   const [from, to] = filterValue.split(':');
-  const start = moment(from).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
-  const end = moment(to).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const start = dayjs.tz(from, tenantTimezone).startOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
+  const end = dayjs.tz(to, tenantTimezone).endOf('day').utc().format(DATE_RANGE_FILTER_FORMAT);
 
   return `(${filterKey}>="${start}" and ${filterKey}<="${end}")`;
 };
