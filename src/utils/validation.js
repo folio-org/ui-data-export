@@ -9,3 +9,11 @@ export const required = value => (
 export const requiredArray = values => {
   return !isEmpty(values) ? undefined : <FormattedMessage id="stripes-data-transfer-components.validation.enterValue" />;
 };
+
+export const fieldSuppression = (value) => {
+  const regex = /^\d{3}$/;
+
+  return !value || value?.split(',').every(field => regex.test(field.trim()))
+    ? undefined
+    : <FormattedMessage id="ui-data-export.mappingProfiles.validation.fieldsSuppression" />;
+};
