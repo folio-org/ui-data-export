@@ -11,7 +11,11 @@ import {
   FormattedMessage, useIntl,
 } from 'react-intl';
 
-import { stripesConnect, TitleManager, useStripes } from '@folio/stripes/core';
+import {
+  stripesConnect,
+  TitleManager,
+  useStripes,
+} from '@folio/stripes/core';
 import {
   SearchAndSortPane,
   SettingsLabel,
