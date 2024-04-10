@@ -4,6 +4,8 @@
 
 * Add User look-up filter for existing jobs to Logs page. Refs UIDEXP-370.
 * Apply tenant date-time when filter data export logs by date on View all page. Refs UIDEXP-372.
+* Add Fields Suppression to Mapping Profiles Setup. Refs UIDEXP-361.
+* Update HTML Page Title on Data export Pages. Refs UIDEXP-369
 
 ## [6.1.3](https://github.com/folio-org/ui-data-export/tree/v6.1.3) (2024-04-02)
 

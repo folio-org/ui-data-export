@@ -11,7 +11,11 @@ import {
   FormattedMessage, useIntl,
 } from 'react-intl';
 
-import { stripesConnect } from '@folio/stripes/core';
+import {
+  stripesConnect,
+  TitleManager,
+  useStripes,
+} from '@folio/stripes/core';
 import {
   SearchAndSortPane,
   SettingsLabel,
@@ -41,8 +45,8 @@ import {
 import { JobLogsContainer } from '../JobLogsContainer';
 import {
   makeQueryBuilder,
-  buildDateTimeRangeQuery,
   getQindex,
+  buildDateTimeRangeQuery,
 } from './CustomQueryBuilder';
 
 const excludedSortColumns = ['fileName'];
@@ -51,48 +55,50 @@ const initialQuery = '?qindex=hrID&sort=-completedDate';
 const defaultSorting = '-completedDate';
 const defaultSortingSearch = '?sort=-completedDate';
 
-const buildJobsQuery = makeQueryBuilder(
-  `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
-  query => `query=${query}`,
-  'sortby completedDate/sort.descending',
-  {
-    completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate']),
-    startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate']),
-    status: query => {
-      switch (true) {
-        case query === JOB_EXECUTION_STATUSES.FAIL:
-          return jobStatusFailString;
-        case Array.isArray(query):
-          return `status=(${query.map(v => (
-            v === JOB_EXECUTION_STATUSES.COMPLETED
-              ? JOB_LOGS_STATUS_QUERY_VALUE
-              : `"${v}"`)).join(' or ')})`;
-        default:
-          return `status=${query}`;
-      }
+const buildJobsQuery = (timezone) => {
+  return makeQueryBuilder(
+    `status=(${JOB_LOGS_STATUS_QUERY_VALUE})`,
+    query => `query=${query}`,
+    'sortby completedDate/sort.descending',
+    {
+      completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate'], timezone),
+      startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate'], timezone),
+      status: query => {
+        switch (true) {
+          case query === JOB_EXECUTION_STATUSES.FAIL:
+            return jobStatusFailString;
+          case Array.isArray(query):
+            return `status=(${query.map(v => (
+              v === JOB_EXECUTION_STATUSES.COMPLETED
+                ? JOB_LOGS_STATUS_QUERY_VALUE
+                : `"${v}"`)).join(' or ')})`;
+          default:
+            return `status=${query}`;
+        }
+      },
+      hrId: query => `hrid="${query}"`,
+      'runBy.userId': query => `runById="${query}"`,
     },
-    hrId: query => `hrid="${query}"`,
-    'runBy.userId': query => `runById="${query}"`,
-  },
-  {
-    hrId: 'hrid/number',
-    '-hrId': '-hrid/number',
-    totalRecords: 'total/number',
-    '-totalRecords': '-total/number',
-    errors: 'failed/number',
-    '-errors': '-failed/number',
-    exported: 'exported/number',
-    '-exported': '-exported/number',
-    updated: 'updatedDate',
-    '-updated': '-updatedDate',
-    jobProfileName: 'jobProfileName',
-    '-jobProfileName': '-jobProfileName',
-    runBy: 'runByFirstName runByLastName',
-    '-runBy': '-runByFirstName runByLastName',
-    startedDate: 'startedDate',
-    '-startedDate': '-startedDate',
-  }
-);
+    {
+      hrId: 'hrid/number',
+      '-hrId': '-hrid/number',
+      totalRecords: 'total/number',
+      '-totalRecords': '-total/number',
+      errors: 'failed/number',
+      '-errors': '-failed/number',
+      exported: 'exported/number',
+      '-exported': '-exported/number',
+      updated: 'updatedDate',
+      '-updated': '-updatedDate',
+      jobProfileName: 'jobProfileName',
+      '-jobProfileName': '-jobProfileName',
+      runBy: 'runByFirstName runByLastName',
+      '-runBy': '-runByFirstName runByLastName',
+      startedDate: 'startedDate',
+      '-startedDate': '-startedDate',
+    }
+  );
+};
 
 const onResetData = () => {};
 
@@ -102,6 +108,7 @@ export const AllJobLogsViewComponent = ({
 }) => {
   const intl = useIntl();
   const [isFiltersOpened, toggleFilters] = useToggle(true);
+  const stripes = useStripes();
   const history = useHistory();
   const location = useLocation();
   const { search } = location;
@@ -180,75 +187,77 @@ export const AllJobLogsViewComponent = ({
   }, [search]);
 
   return (
-    <Paneset data-test-log-events-list>
-      {isFiltersOpened && (
-      <FiltersPane toggleFilters={toggleFilters}>
-        <SingleSearchForm
-          applySearch={applySearch}
-          changeSearch={changeSearch}
-          searchQuery={searchQuery}
-          ariaLabelId="ui-data-export.search"
-          searchableIndexes={getSearchableIndexes()}
-          changeSearchIndex={changeIndex}
-          selectedIndex={searchIndex}
-        />
-        <ResetButton
-          id="reset-export-filters"
-          disabled={isResetButtonDisabled}
-          reset={resetFilters}
-          label={<FormattedMessage id="ui-data-export.resetFilters" />}
-        />
-        <ViewAllLogsFilters
-          users={users}
-          activeFilters={filters}
-          jobProfiles={jobProfiles}
-          queryMutator={mutator.query}
-          showUsers
-          onChange={adaptedApplyFilters}
-        />
-      </FiltersPane>
-      )}
-      <JobLogsContainer>
-        {({
-          listProps,
-          onRowClick,
-        }) => (
-          <SearchAndSortPane
-            objectName="job-executions"
-            label={(
-              <SettingsLabel
-                messageId="ui-data-export.logsPaneTitle"
-                iconKey="app"
-                app="data-export"
-              />
-          )}
-            resultCountMessageId="ui-data-export.searchResultsCountHeader"
-            resourceName="jobExecutions"
-            hasSearchForm={false}
-            firstMenu={renderFirstMenu()}
-            shouldSetInitialSort
-            defaultSort={defaultSorting}
-            lastMenu={<div />}
-            initialResultCount={INITIAL_RESULT_COUNT}
-            resultCountIncrement={RESULT_COUNT_INCREMENT}
-            shouldSetInitialSortOnMount
-            parentMutator={mutator}
-            parentResources={resources}
-            maxSortKeys={1}
-            pagingType="prev-next"
-            virtualize={false}
-            pageAmount={RESULT_COUNT_INCREMENT}
-            totalRecordsCount={totalCounts}
-            excludedSortColumns={excludedSortColumns}
-            searchResultsProps={{
-              rowProps: null,
-              onRowClick,
-            }}
-            {...listProps}
-          />
+    <TitleManager stripes={stripes} record={intl.formatMessage({ id: 'ui-data-export.title.logs' })}>
+      <Paneset data-test-log-events-list>
+        {isFiltersOpened && (
+          <FiltersPane toggleFilters={toggleFilters}>
+            <SingleSearchForm
+              applySearch={applySearch}
+              changeSearch={changeSearch}
+              searchQuery={searchQuery}
+              ariaLabelId="ui-data-export.search"
+              searchableIndexes={getSearchableIndexes()}
+              changeSearchIndex={changeIndex}
+              selectedIndex={searchIndex}
+            />
+            <ResetButton
+              id="reset-export-filters"
+              disabled={isResetButtonDisabled}
+              reset={resetFilters}
+              label={<FormattedMessage id="ui-data-export.resetFilters" />}
+            />
+            <ViewAllLogsFilters
+              users={users}
+              activeFilters={filters}
+              jobProfiles={jobProfiles}
+              queryMutator={mutator.query}
+              showUsers
+              onChange={adaptedApplyFilters}
+            />
+          </FiltersPane>
         )}
-      </JobLogsContainer>
-    </Paneset>
+        <JobLogsContainer>
+          {({
+            listProps,
+            onRowClick,
+          }) => (
+            <SearchAndSortPane
+              objectName="job-executions"
+              label={(
+                <SettingsLabel
+                  messageId="ui-data-export.logsPaneTitle"
+                  iconKey="app"
+                  app="data-export"
+                />
+              )}
+              resultCountMessageId="ui-data-export.searchResultsCountHeader"
+              resourceName="jobExecutions"
+              hasSearchForm={false}
+              firstMenu={renderFirstMenu()}
+              shouldSetInitialSort
+              defaultSort={defaultSorting}
+              lastMenu={<div />}
+              initialResultCount={INITIAL_RESULT_COUNT}
+              resultCountIncrement={RESULT_COUNT_INCREMENT}
+              shouldSetInitialSortOnMount
+              parentMutator={mutator}
+              parentResources={resources}
+              maxSortKeys={1}
+              pagingType="prev-next"
+              virtualize={false}
+              pageAmount={RESULT_COUNT_INCREMENT}
+              totalRecordsCount={totalCounts}
+              excludedSortColumns={excludedSortColumns}
+              searchResultsProps={{
+                rowProps: null,
+                onRowClick,
+              }}
+              {...listProps}
+            />
+          )}
+        </JobLogsContainer>
+      </Paneset>
+    </TitleManager>
   );
 };
 
@@ -275,7 +284,8 @@ AllJobLogsViewComponent.manifest = Object.freeze({
     recordsRequired: '%{resultCount}',
     resultDensity: 'sparse',
     perRequest: RESULT_COUNT_INCREMENT,
-    params: (queryParams, pathComponents, resourceData) => {
+    // eslint-disable-next-line no-shadow-restricted-names
+    params: (queryParams, pathComponents, resourceData, undefined, { stripes }) => {
       const {
         query,
         qindex,
@@ -287,7 +297,7 @@ AllJobLogsViewComponent.manifest = Object.freeze({
         ...customField,
       };
 
-      return { query: buildJobsQuery(buildedQuery) };
+      return { query: buildJobsQuery(stripes.timezone)(buildedQuery) };
     },
   },
   usersList: {

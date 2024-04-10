@@ -1,3 +1,5 @@
+import '../../../test/jest/__mock__';
+
 import {
   buildDateTimeRangeQuery,
   getFilterParams,
@@ -12,7 +14,7 @@ describe('CustomQueryBuilder', () => {
   it('buildDateTimeRangeQuery', () => {
     const expectedOutput = '(key>="2022-12-08T00:00:00.000" and key<="2022-12-09T23:59:59.999")';
 
-    expect(buildDateTimeRangeQuery('key', '2022-12-08:2022-12-09')).toEqual(expectedOutput);
+    expect(buildDateTimeRangeQuery('key', 'UTC', '2022-12-08:2022-12-09')).toEqual(expectedOutput);
   });
 
   it('getFilterParams', () => {
