@@ -23,6 +23,11 @@ import {
   jobProfilesList,
 } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
 
+jest.mock('@folio/stripes/core', () => ({
+  ...jest.requireActual('@folio/stripes/core'),
+  TitleManager: ({ children }) => <>{children}</>,
+}), { virtual: true });
+
 jest.mock('react-virtualized-auto-sizer', () => ({ children }) => children({ width: 1920, height: 1080 }));
 
 const mockData = {
