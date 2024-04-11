@@ -28,7 +28,7 @@
     "format": "Formát",
     "viewAllLogs": "Zobrazit všechny",
     "mappingProfiles.newProfile": "Nový profil mapování polí",
-    "jobProfilesTitle": "Pracovní profily",
+    "jobProfilesTitle": "Profily úloh",
     "summary": "Shrnutí",
     "name": "Jméno",
     "description": "Popis",
@@ -283,5 +283,9 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Nastavení (Export dat): Lze zobrazit",
     "jobStatus.inProgress": "Probíhá",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Potlačení polí",
+    "suppress999ff": "Potlačit 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Potlačená pole mohou být reprezentována pouze třemi číslicemi a musí být oddělena čárkou.",
+    "title.logs": "Logs"
 }
