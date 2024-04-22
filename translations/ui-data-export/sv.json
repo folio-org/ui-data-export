@@ -283,5 +283,9 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Settings (Data export): Can view",
     "jobStatus.inProgress": "In progress",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Fields suppression",
+    "suppress999ff": "Suppress 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Suppressed fields can be represented by three digits only and need to be separated by a comma.",
+    "title.logs": "Logs"
 }

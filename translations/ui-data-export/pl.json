@@ -208,7 +208,7 @@
     "total": "Ogółem",
     "copyOf": "Kopia {value}",
     "mappingProfiles.srs.info": "Jeśli wybrano opcję <b>Magazyn Rekordów Źródłowych (cały rekord)</b>, a rekord instancji nie ma bazowego rekordu MRŹ, rekord MARC zostanie wygenerowany zgodnie z domyślnymi regułami mapowania.",
-    "mappingProfiles.recordType.instance": "Inwentarz instancji (wybrane pola)",
+    "mappingProfiles.recordType.instance": "Rekordy instancji (wybrane pola)",
     "mappingProfiles.transformations.invalidTransformationMessage": "Proszę sprawdzić dane wejściowe",
     "errorLogs.record.HRID": "\"{recordType} HRID\": \"{value}\"",
     "errorLogs.record.UUID": "\"{recordType} UUID\": \"{value}\"",
@@ -283,5 +283,9 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Settings (Data export): Can view",
     "jobStatus.inProgress": "In progress",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Fields suppression",
+    "suppress999ff": "Suppress 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Suppressed fields can be represented by three digits only and need to be separated by a comma.",
+    "title.logs": "Logs"
 }
