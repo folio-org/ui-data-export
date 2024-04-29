@@ -7,6 +7,7 @@ import {
   FormattedTime,
   FormattedDate,
 } from '@folio/stripes/components';
+
 import {
   jobExecutionPropTypes,
   Progress,
@@ -14,17 +15,11 @@ import {
 
 import css from '@folio/stripes-data-transfer-components/lib/Jobs/Job/Job.css';
 
-const checkDateIsToday = dateStr => {
-  return new Date().toDateString() === new Date(dateStr).toDateString();
-};
-
 const formatTime = dateStr => {
-  const isToday = checkDateIsToday(dateStr);
-  const datePart = !isToday && <FormattedDate value={dateStr} />;
+  const datePart = <FormattedDate value={dateStr} />;
   const timePart = <FormattedTime value={dateStr} />;
-  const todayPart = isToday && <FormattedMessage id="ui-data-export.today" />;
 
-  return <span>{datePart} {timePart} {todayPart}</span>;
+  return <span>{datePart} {timePart} </span>;
 };
 
 const JobDetails = props => {

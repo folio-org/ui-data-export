@@ -18,13 +18,15 @@ import {
   TextField,
   TextArea,
   Button,
+  Checkbox,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
-import { FullScreenForm } from '@folio/stripes-data-transfer-components';
+import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
 
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
 import { TransformationsList } from '../TransformationsList';
 import {
+  fieldSuppression,
   required,
   requiredArray,
 } from '../../../utils';
@@ -37,6 +39,7 @@ const validate = values => {
   errors.name = required(values.name);
   errors.outputFormat = required(values.outputFormat);
   errors.recordTypes = requiredArray(values.recordTypes);
+  errors.fieldsSuppression = fieldSuppression(values.fieldsSuppression);
 
   return errors;
 };
@@ -61,10 +64,20 @@ const MappingProfilesFormComponent = props => {
 
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
   const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
+  const recordTypes = form.getFieldState('recordTypes')?.value;
+  const isFieldsSuppressionDisabled = !recordTypes?.length || recordTypes?.every(recordType => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
+
+  // it's required clear field value when it became disabled
+  useEffect(() => {
+    if (isFieldsSuppressionDisabled && form.getFieldState('fieldsSuppression')?.value) {
+      form.change('fieldsSuppression', '');
+    }
+  }, [form, isFieldsSuppressionDisabled]);
 
   useEffect(() => {
-    if (form.getFieldState('transformations')) {
-      form.getFieldState('transformations').change(transformations);
+    const transformationsField = form.getFieldState('transformations');
+    if (transformationsField) {
+      transformationsField.change(transformations);
     }
   }, [form, transformations]);
 
@@ -122,6 +135,27 @@ const MappingProfilesFormComponent = props => {
                   fullWidth
                 />
               </div>
+              <div data-test-mapping-profile-fieldsSuppression>
+                <Field
+                  disabled={isFieldsSuppressionDisabled}
+                  label={<FormattedMessage id="ui-data-export.fieldsSuppression" />}
+                  name="fieldsSuppression"
+                  id="mapping-profile-fieldsSuppression"
+                  component={TextArea}
+                  fullWidth
+                />
+              </div>
+              <div data-test-mapping-profile-suppress999ff>
+                <Field
+                  type="checkbox"
+                  label={<FormattedMessage id="ui-data-export.suppress999ff" />}
+                  name="suppress999ff"
+                  id="mapping-profile-suppress999ff"
+                  component={Checkbox}
+                />
+              </div>
+
+
             </Accordion>
             <Accordion
               label={<FormattedMessage id="ui-data-export.transformations" />}
@@ -180,6 +214,6 @@ MappingProfilesFormComponent.defaultProps = {
 
 export const MappingProfilesForm = stripesFinalForm({
   validate,
-  subscription: { values: false },
+  subscription: { values: true },
   navigationCheck: true,
 })(MappingProfilesFormComponent);
