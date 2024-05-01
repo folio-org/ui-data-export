@@ -244,7 +244,7 @@ export const AllJobLogsViewComponent = ({
               parentResources={resources}
               maxSortKeys={1}
               pagingType="prev-next"
-              virtualize={false}
+              virtualize
               pageAmount={RESULT_COUNT_INCREMENT}
               totalRecordsCount={totalCounts}
               excludedSortColumns={excludedSortColumns}

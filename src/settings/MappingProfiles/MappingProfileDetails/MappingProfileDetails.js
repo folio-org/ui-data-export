@@ -33,6 +33,8 @@ const MappingProfileDetails = props => {
     onDuplicate,
   } = props;
 
+  const suppressFieldsValues = mappingProfile?.suppress999ff ? '999 ff' : null;
+
   return (
     <ProfileDetails
       profile={mappingProfile}
@@ -116,6 +118,19 @@ const MappingProfileDetails = props => {
                   />
                 </Col>
               </Row>
+              <Row>
+                <Col xs>
+                  <KeyValue
+                    data-test-mapping-profile-description
+                    label={<FormattedMessage id="ui-data-export.fieldsSuppression" />}
+                    value={mappingProfile.fieldsSuppression || <NoValue />}
+                  />
+                  <KeyValue
+                    data-test-mapping-profile-description
+                    value={suppressFieldsValues || <NoValue />}
+                  />
+                </Col>
+              </Row>
             </Accordion>
             <Accordion label={<FormattedMessage id="ui-data-export.transformations" />}>
               <TransformationsList
@@ -143,6 +158,8 @@ MappingProfileDetails.propTypes = {
   onDuplicate: PropTypes.func.isRequired,
 };
 
-MappingProfileDetails.defaultProps = { isLoading: false };
+MappingProfileDetails.defaultProps = {
+  isLoading: false,
+};
 
 export default MappingProfileDetails;

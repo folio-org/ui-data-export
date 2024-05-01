@@ -28,6 +28,8 @@ export const mappingProfileWithTransformations = {
   id: MAPPING_PROFILE_ID,
   name: 'AP Holdings 1',
   description: 'AP Holdings 1 description',
+  suppress999ff: true,
+  fieldsSuppression: '666',
   recordTypes: ['HOLDINGS'],
   transformations: [
     {
