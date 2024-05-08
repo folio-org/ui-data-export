@@ -153,7 +153,8 @@
           "settings.data-export.enabled",
           "data-export.mapping-profiles.collection.get",
           "data-export.transformation-fields.collection.get",
-          "data-export.job-profiles.collection.get"
+          "data-export.job-profiles.collection.get",
+          "data-export.mapping-profiles.item.post"
         ],
         "visible": true
       }
