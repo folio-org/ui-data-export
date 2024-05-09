@@ -228,7 +228,7 @@
     "error.configurations.queryConfigs": "Erro ao consultar as configurações a partir da configuração mod pela consulta: {value1}",
     "error.genericError": "Erro genérico",
     "error.inventory.gettingInstancesByIds": "Erro ao obter instâncias pelo IDs: {value1}",
-    "error.inventory.gettingReferenceData": "Erro ao obter dados de referência do inventário durante o processo de exportação, pelo valor {valor1}.",
+    "error.inventory.gettingReferenceData": "Erro ao obter dados de referência do registro de Inventário durante o processo de exportação chamando {value1}",
     "error.inventory.gettingHoldingsByInstanceId": "Erro ao obter coleções por ID de instância: {value1} , mensagem: {value2}",
     "error.inventory.gettingItemsByHoldingsId": "Erro ao obter itens pelo ID de coleção {value1}",
     "error.callingUri": "Exceção ao chamar {value1}: mensagem: {value2}",
@@ -250,7 +250,7 @@
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Falta o perfil de mapeamento durante o processo de exportação",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "O tipo de registro SRS não pode ser combinado com o tipo de registro INSTANCE durante o processo de exportação",
-    "errorLogs.inventoryRecordLink": "\"Link de registro no inventário\": ",
+    "errorLogs.inventoryRecordLink": "\"Link de registro de inventário\": ",
     "error.configurations.queryHost": "Nenhuma configuração em mod-config encontrada para o host. Não haverá links para registros com falha para este trabalho.",
     "instance": "Instâncias",
     "holdings": "Coleção",
@@ -283,5 +283,12 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Configurações (Exportação de dados): Pode visualizar",
     "jobStatus.inProgress": "Em andamento",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Ocultação de campos",
+    "suppress999ff": "Ocultar 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Os campos ocultos podem ser representados apenas por três dígitos e precisam ser separados por vírgula.",
+    "title.logs": "Logs",
+    "error.setToDeletion": "{value1}",
+    "error.onlyForSetToDeletion": "Esse perfil só pode ser usado para exportar registros de autoridade definidos para exclusão",
+    "error.profileUsedToNonDeleted": "Esse perfil só pode ser usado para exportar registros de autoridade não excluídos"
 }

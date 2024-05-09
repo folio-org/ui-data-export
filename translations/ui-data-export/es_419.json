@@ -283,5 +283,12 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Settings (Data export): Can view",
     "jobStatus.inProgress": "In progress",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Supresión de campos",
+    "suppress999ff": "Suprimir 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Los campos suprimidos sólo pueden representarse con tres dígitos y deben ir separados por una coma.",
+    "title.logs": "Logs",
+    "error.setToDeletion": "{value1}",
+    "error.onlyForSetToDeletion": "This profile can only be used to export authority records set for deletion",
+    "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted"
 }

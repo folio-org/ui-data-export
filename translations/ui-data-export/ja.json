@@ -1,6 +1,6 @@
 {
     "meta.title": "データ・エクスポート",
-    "settings.index.paneTitle": "Data export",
+    "settings.index.paneTitle": "データ・エクスポート",
     "jobsPaneTitle": "ジョブ",
     "logsPaneTitle": "ログ",
     "uploaderTitle": "ドラッグ&ドロップ",
@@ -110,7 +110,7 @@
     "instance.instanceTypeId": "Instance - Resource type - {value}",
     "instance.modeOfIssuanceId": "インスタンス - 発行モード -  {value}",
     "item.materialTypeId": "アイテム - 資料種別",
-    "item.permanentLoanTypeId": "Item - Permanent loan type",
+    "item.permanentLoanTypeId": "資料 - 通常貸出タイプ",
     "item.id": "Item - ID",
     "item.hrid": "Item - HRID",
     "item.barcode": "アイテム - バーコード",
@@ -283,5 +283,12 @@
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Settings (Data export): Can view",
     "jobStatus.inProgress": "In progress",
-    "error.recordIsTooLong": "{value1}"
+    "error.recordIsTooLong": "{value1}",
+    "fieldsSuppression": "Fields suppression",
+    "suppress999ff": "Suppress 999 ff",
+    "mappingProfiles.validation.fieldsSuppression": "Suppressed fields can be represented by three digits only and need to be separated by a comma.",
+    "title.logs": "ログ",
+    "error.setToDeletion": "{value1}",
+    "error.onlyForSetToDeletion": "This profile can only be used to export authority records set for deletion",
+    "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted"
 }
