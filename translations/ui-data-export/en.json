@@ -309,7 +309,7 @@
   "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
   "error.duplicateSRS": "{value1}",
   "error.recordIsTooLong": "{value1}",
-  "error.setToDeletion": "{value1} is set for deletion and cannot be exported using this profile",
+  "error.setToDeletion": "{value1}",
   "error.onlyForSetToDeletion": "This profile can only be used to export authority records set for deletion",
   "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted",
 
