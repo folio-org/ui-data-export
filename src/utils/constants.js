@@ -124,7 +124,6 @@ export const EXCLUDED_SORT_COLUMNS = ['fileName'];
 
 export const DEFAULT_SORT_COLUMN = '-completedDate';
 
-
 export const PAGINATION_CONFIG = {
   limit: 100,
   offset: 0,
