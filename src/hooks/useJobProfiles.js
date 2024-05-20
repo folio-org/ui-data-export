@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes/core';
 

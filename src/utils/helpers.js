@@ -34,3 +34,21 @@ export const getMappedFilters = (timezone) => ({
   hrId: query => `hrid="${query}"`,
   'runBy.userId': query => `runById="${query}"`,
 });
+
+export const getSortedUsers = (users = []) => users.map(item => {
+  return {
+    userId: item.userId,
+    firstName: item.firstName,
+    lastName: item.lastName,
+  };
+})
+  .sort((userA, userB) => {
+    const nameA = userA.firstName || userA.lastName;
+    const nameB = userB.firstName || userB.lastName;
+
+    if (userA.firstName?.localeCompare(userB.firstName) === 0) {
+      return userA.lastName.localeCompare(userB.lastName);
+    }
+
+    return nameA.localeCompare(nameB);
+  });

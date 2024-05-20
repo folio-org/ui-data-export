@@ -1,5 +1,5 @@
 import '../../test/jest/__mock__';
-import { getFormattedFilters, getMappedFilters } from './helpers';
+import { getFormattedFilters, getMappedFilters, getSortedUsers } from './helpers';
 import { buildDateTimeRangeQuery } from '../components/AllJobLogsView/CustomQueryBuilder';
 import { JOB_EXECUTION_STATUSES, JOB_LOGS_STATUS_QUERY_VALUE } from './constants';
 
@@ -107,5 +107,77 @@ describe('getMappedFilters', () => {
     const filters = getMappedFilters(timezone);
     const result = filters['runBy.userId']('67890');
     expect(result).toBe('runById="67890"');
+  });
+});
+
+describe('getSortedUsers', () => {
+  it('should return an empty array when input is an empty array', () => {
+    const result = getSortedUsers([]);
+
+    expect(result).toEqual([]);
+  });
+
+  it('should sort users by firstName', () => {
+    const users = [
+      { userId: 1, firstName: 'Charlie', lastName: 'Brown' },
+      { userId: 2, firstName: 'Alice', lastName: 'Smith' },
+      { userId: 3, firstName: 'Bob', lastName: 'Jones' },
+    ];
+
+    const result = getSortedUsers(users);
+
+    expect(result).toEqual([
+      { userId: 2, firstName: 'Alice', lastName: 'Smith' },
+      { userId: 3, firstName: 'Bob', lastName: 'Jones' },
+      { userId: 1, firstName: 'Charlie', lastName: 'Brown' },
+    ]);
+  });
+
+  it('should sort users by lastName if firstNames are equal', () => {
+    const users = [
+      { userId: 1, firstName: 'John', lastName: 'Smith' },
+      { userId: 2, firstName: 'John', lastName: 'Doe' },
+      { userId: 3, firstName: 'John', lastName: 'Adams' },
+    ];
+
+    const result = getSortedUsers(users);
+
+    expect(result).toEqual([
+      { userId: 3, firstName: 'John', lastName: 'Adams' },
+      { userId: 2, firstName: 'John', lastName: 'Doe' },
+      { userId: 1, firstName: 'John', lastName: 'Smith' },
+    ]);
+  });
+
+  it('should handle users with missing firstName or lastName', () => {
+    const users = [
+      { userId: 1, firstName: 'Charlie' },
+      { userId: 2, lastName: 'Smith' },
+      { userId: 3, firstName: 'Alice', lastName: 'Brown' },
+    ];
+
+    const result = getSortedUsers(users);
+
+    expect(result).toEqual([
+      { userId: 3, firstName: 'Alice', lastName: 'Brown' },
+      { userId: 1, firstName: 'Charlie', lastName: undefined },
+      { userId: 2, firstName: undefined, lastName: 'Smith' },
+    ]);
+  });
+
+  it('should handle users with both firstName and lastName missing', () => {
+    const users = [
+      { userId: 1 },
+      { userId: 2, firstName: 'Alice' },
+      { userId: 3, lastName: 'Smith' },
+    ];
+
+    const result = getSortedUsers(users);
+
+    expect(result).toEqual([
+      { userId: 2, firstName: 'Alice', lastName: undefined },
+      { userId: 3, firstName: undefined, lastName: 'Smith' },
+      { userId: 1, firstName: undefined, lastName: undefined },
+    ]);
   });
 });
