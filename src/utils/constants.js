@@ -3,8 +3,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
-import { buildDateTimeRangeQuery } from '../components/AllJobLogsView/CustomQueryBuilder';
-
 
 export const JOB_EXECUTION_STATUSES = {
   NEW: 'NEW',
@@ -126,42 +124,9 @@ export const EXCLUDED_SORT_COLUMNS = ['fileName'];
 
 export const DEFAULT_SORT_COLUMN = '-completedDate';
 
-export const getMappedFilters = (timezone) => ({
-  completedDate: buildDateTimeRangeQuery.bind(null, ['completedDate'], timezone),
-  startedDate: buildDateTimeRangeQuery.bind(null, ['startedDate'], timezone),
-  status: query => {
-    switch (true) {
-      case query === JOB_EXECUTION_STATUSES.FAIL:
-        return 'status=(FAIL or COMPLETED_WITH_ERRORS)';
-      case Array.isArray(query):
-        return `status=(${query.map(v => (
-          v === JOB_EXECUTION_STATUSES.COMPLETED
-            ? JOB_LOGS_STATUS_QUERY_VALUE
-            : `"${v}"`)).join(' or ')})`;
-      default:
-        return `status=${query}`;
-    }
-  },
-  hrId: query => `hrid="${query}"`,
-  'runBy.userId': query => `runById="${query}"`,
-});
-
 
 export const PAGINATION_CONFIG = {
   limit: 100,
   offset: 0,
 };
 
-export const getFormattedFilters = (filters) => Object.entries(filters).reduce((acc, [key, value]) => {
-  if (Array.isArray(value)) {
-    if (value.length === 1) {
-      acc[key] = value[0];
-    } else {
-      acc[key] = value;
-    }
-  } else {
-    acc[key] = value;
-  }
-
-  return acc;
-}, {});

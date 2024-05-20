@@ -62,13 +62,9 @@ export const AllJobLogsViewComponent = () => {
   ] = useLocationFilters(location, history, noop);
 
   const { search } = location;
-  const filterObj = omit(filters, ['sort', 'qindex', 'offset', 'limit', 'query']);
+  const filterObj = omit(filters, ['sort', 'qindex', 'offset', 'limit']);
   const filterValues = Object.values(filterObj).filter(Boolean);
   const isResetButtonDisabled = !filterValues.length || !search;
-
-  const adaptedApplyFilters = ({
-    name, values,
-  }) => applyFilters(name, values);
 
   const mappedSearchableIndexes = searchableIndexes.map(index => {
     const label = intl.formatMessage({ id: `ui-data-export.${index.label}` });
@@ -81,6 +77,10 @@ export const AllJobLogsViewComponent = () => {
     };
   });
 
+  const handleApplyFilters = ({
+    name, values,
+  }) => applyFilters(name, values);
+
   const handleSort = (_, meta) => {
     const fieldName = meta.name;
 
@@ -89,7 +89,7 @@ export const AllJobLogsViewComponent = () => {
     const [currentSort] = filters.sort || [DEFAULT_SORT_COLUMN];
     const newSort = buildSortOrder(currentSort, fieldName, DEFAULT_SORT_COLUMN, 1);
 
-    adaptedApplyFilters({ name: 'sort', values: [newSort] });
+    handleApplyFilters({ name: 'sort', values: [newSort] });
   };
 
   return (
@@ -113,11 +113,11 @@ export const AllJobLogsViewComponent = () => {
               label={<FormattedMessage id="ui-data-export.resetFilters" />}
             />
             <ViewAllLogsFilters
+              showUsers
               users={relatedUsers}
               activeFilters={filters}
               jobProfiles={jobProfiles}
-              showUsers
-              onChange={adaptedApplyFilters}
+              onChange={handleApplyFilters}
             />
           </FiltersPane>
         )}
