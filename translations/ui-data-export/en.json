@@ -53,6 +53,7 @@
   "total": "Total",
   "startedDate": "Started running",
   "jobStatus.fail": "Fail",
+  "jobStatus.new": "New",
   "jobStatus.completed": "Completed",
   "jobStatus.completedWithErrors": "Completed with errors",
   "jobStatus.inProgress": "In progress",
