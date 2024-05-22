@@ -1,9 +1,7 @@
-/* istanbul ignore file */
 import { useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes/core';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useJobProfiles = () => {
+const useJobProfiles = () => {
   const [namespaceKey] = useNamespace({ key: 'jobProfiles' });
   const ky = useOkapiKy();
 
@@ -29,3 +27,5 @@ export const useJobProfiles = () => {
     isFetching
   };
 };
+
+export default useJobProfiles;

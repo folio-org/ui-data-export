@@ -34,9 +34,9 @@ import {
 } from '../../utils';
 import { JobLogsContainer } from '../JobLogsContainer';
 import AllJobLogsList from './AllJobLogsList';
-import { useDefaultSorting } from '../../hooks/useDefaultSorting';
-import { useUsers } from '../../hooks/useUsers';
-import { useJobProfiles } from '../../hooks/useJobProfiles';
+import useDefaultSorting from '../../hooks/useDefaultSorting';
+import useUsers from '../../hooks/useUsers';
+import useJobProfiles from '../../hooks/useJobProfiles';
 
 export const AllJobLogsViewComponent = () => {
   const intl = useIntl();

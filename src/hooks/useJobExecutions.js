@@ -1,9 +1,7 @@
-/* istanbul ignore file */
 import { useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes/core';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useJobExecutions = ({
+const useJobExecutions = ({
   query = '',
   limit,
   offset,
@@ -27,3 +25,5 @@ export const useJobExecutions = ({
     isFetching
   };
 };
+
+export default useJobExecutions;

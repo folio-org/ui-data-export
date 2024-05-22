@@ -1,12 +1,10 @@
-/* istanbul ignore file */
 import { useQuery } from 'react-query';
 
 import { useNamespace, useOkapiKy } from '@folio/stripes/core';
 
 import { getSortedUsers } from '../utils';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useUsers = () => {
+const useUsers = () => {
   const [namespaceKey] = useNamespace({ key: 'relatedUsers' });
   const ky = useOkapiKy();
 
@@ -30,3 +28,5 @@ export const useUsers = () => {
     isFetching
   };
 };
+
+export default useUsers;
