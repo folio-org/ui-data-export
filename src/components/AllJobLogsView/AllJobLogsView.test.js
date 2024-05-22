@@ -13,9 +13,9 @@ import {
   relatedUsers,
   jobProfilesList,
 } from '../../../test/bigtest/network/scenarios/fetch-job-executions-success';
-import { useJobExecutions } from '../../hooks/useJobExecutions';
-import { useUsers } from '../../hooks/useUsers';
-import { useJobProfiles } from '../../hooks/useJobProfiles';
+import useJobExecutions from '../../hooks/useJobExecutions';
+import useUsers from '../../hooks/useUsers';
+import useJobProfiles from '../../hooks/useJobProfiles';
 import { translationsProperties } from '../../../test/helpers';
 
 jest.mock('react-intl', () => ({
