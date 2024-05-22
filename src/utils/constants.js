@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
+
 export const JOB_EXECUTION_STATUSES = {
   NEW: 'NEW',
   IN_PROGRESS: 'IN_PROGRESS',
@@ -93,19 +94,38 @@ export const RECORD_TYPES_DISABLING_MAPPING = {
 };
 
 export const searchableIndexes = [
-  // {
-  //   label: 'keyword',
-  //   value: 'keyword',
-  //   placeholder: ''
-  // },
   {
     label: 'jobExecutionHrId',
     value: 'hrId',
     placeholder: 'jobExecutionHrId',
-  },
-  // {
-  //   label: 'fileName',
-  //   value: 'fileName',
-  //   placeholder: 'fileName',
-  // },
+  }
 ];
+
+export const SORT_MAP = {
+  hrId: 'hrid/number',
+  '-hrId': '-hrid/number',
+  totalRecords: 'total/number',
+  '-totalRecords': '-total/number',
+  errors: 'failed/number',
+  '-errors': '-failed/number',
+  exported: 'exported/number',
+  '-exported': '-exported/number',
+  updated: 'updatedDate',
+  '-updated': '-updatedDate',
+  jobProfileName: 'jobProfileName',
+  '-jobProfileName': '-jobProfileName',
+  runBy: 'runByFirstName runByLastName',
+  '-runBy': '-runByFirstName runByLastName',
+  startedDate: 'startedDate',
+  '-startedDate': '-startedDate',
+};
+
+export const EXCLUDED_SORT_COLUMNS = ['fileName'];
+
+export const DEFAULT_SORT_COLUMN = '-completedDate';
+
+export const PAGINATION_CONFIG = {
+  limit: 100,
+  offset: 0,
+};
+

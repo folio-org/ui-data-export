@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { buildSearch } from '@folio/stripes-acq-components';
 import { useHistory } from 'react-router-dom';
 
-// eslint-disable-next-line import/prefer-default-export
-export const useDefaultSorting = () => {
+const useDefaultSorting = (paramName = 'name') => {
   const history = useHistory();
 
   useEffect(() => {
@@ -13,7 +12,7 @@ export const useDefaultSorting = () => {
       }, history.location.search)}`,
     });
 
-    setDefaultSort('name');
+    setDefaultSort(paramName);
 
     // clear sort params on unmount to avoid conflicts with other components
     return () => {
@@ -21,3 +20,5 @@ export const useDefaultSorting = () => {
     };
   }, []);
 };
+
+export default useDefaultSorting;

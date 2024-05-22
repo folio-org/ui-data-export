@@ -20,7 +20,7 @@ import { JobProfileDetailsRoute } from '../JobProfileDetailsRoute';
 import { jobProfilesManifest } from '../../../common';
 import { EditJobProfileRoute } from '../EditJobProfileRoute';
 import { DuplicateJobProfileRoute } from '../DuplicateJobProfileRoute';
-import { useDefaultSorting } from '../../../hooks/useDefaultSorting';
+import useDefaultSorting from '../../../hooks/useDefaultSorting';
 
 const customProperties = {
   visibleColumns: [

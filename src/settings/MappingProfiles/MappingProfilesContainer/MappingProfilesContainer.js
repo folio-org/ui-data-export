@@ -33,7 +33,7 @@ import { CreateMappingProfileFormRoute } from '../CreateMappingProfileFormRoute'
 import { MappingProfileDetailsRoute } from '../MappingProfileDetailsRoute';
 import { EditMappingProfileRoute } from '../EditMappingProfileRoute';
 import { DuplicateMappingProfileRoute } from '../DuplicateMappingProfileRoute';
-import { useDefaultSorting } from '../../../hooks/useDefaultSorting';
+import useDefaultSorting from '../../../hooks/useDefaultSorting';
 
 const customProperties = {
   columnWidths: { format: '70px' },
