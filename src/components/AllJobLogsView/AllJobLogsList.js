@@ -66,6 +66,7 @@ const AllJobLogsList = ({
       )}
         count={totalRecords}
         isLoading={false}
+        filters={filtersWithoutSorting}
         toggleFiltersPane={onToggleFilters}
         isFiltersOpened={isFiltersOpened}
       >
