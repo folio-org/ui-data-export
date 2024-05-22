@@ -30,32 +30,35 @@ jest.mock('@folio/stripes/core', () => ({
 jest.mock('react-virtualized-auto-sizer', () => ({ children }) => children({ width: 1920, height: 1080 }));
 
 jest.mock('../../hooks/useJobExecutions', () => ({
-  useJobExecutions: jest.fn(),
+  default: jest.fn(),
+  __esModule: true
 }));
 
 jest.mock('../../hooks/useUsers', () => ({
-  useUsers: jest.fn(),
+  default: jest.fn(),
+  __esModule: true
 }));
 
 jest.mock('../../hooks/useJobProfiles', () => ({
-  useJobProfiles: jest.fn(),
+  default: jest.fn(),
+  __esModule: true
 }));
 
-useJobExecutions.mockReturnValue({
+useJobExecutions.mockReturnValue(({
   jobExecutions: logJobExecutions,
   totalRecords: logJobExecutions.length,
   isFetching: false,
-});
+}));
 
-useUsers.mockReturnValue({
-  users: relatedUsers,
+useUsers.mockReturnValue(({
+  relatedUsers,
   isLoading: false,
-});
+}));
 
-useJobProfiles.mockReturnValue({
+useJobProfiles.mockReturnValue(({
   jobProfiles: jobProfilesList.jobProfiles,
   isLoading: false,
-});
+}));
 
 const renderAllJobLogsViewContainer = () => {
   return renderWithIntl(

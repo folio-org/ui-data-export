@@ -43,7 +43,8 @@ export const AllJobLogsViewComponent = () => {
   const stripes = useStripes();
   const history = useHistory();
   const location = useLocation();
-  const { relatedUsers } = useUsers();
+  const data = useUsers();
+  const relatedUsers = data.relatedUsers;
   const { jobProfiles } = useJobProfiles();
 
   useDefaultSorting(DEFAULT_SORT_COLUMN);
