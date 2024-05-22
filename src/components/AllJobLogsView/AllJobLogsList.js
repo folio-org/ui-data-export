@@ -7,7 +7,7 @@ import { SettingsLabel } from '@folio/stripes-data-transfer-components';
 
 import { useStripes } from '@folio/stripes/core';
 import { omit } from 'lodash';
-import { useJobExecutions } from '../../hooks/useJobExecutions';
+import useJobExecutions from '../../hooks/useJobExecutions';
 import { buildSortingQuery, connectQuery } from './CustomQueryBuilder';
 import {
   DEFAULT_SORT_COLUMN, getFormattedFilters,
