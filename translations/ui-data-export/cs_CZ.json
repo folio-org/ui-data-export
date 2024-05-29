@@ -290,5 +290,6 @@
     "title.logs": "Logy",
     "error.setToDeletion": "{value1}",
     "error.onlyForSetToDeletion": "Tento profil lze použít pouze pro export záznamů autority nastavených ke smazání",
-    "error.profileUsedToNonDeleted": "Tento profil lze použít pouze k exportu autoritativních záznamů, které nebyly smazány"
+    "error.profileUsedToNonDeleted": "Tento profil lze použít pouze k exportu autoritativních záznamů, které nebyly smazány",
+    "jobStatus.new": "New"
 }

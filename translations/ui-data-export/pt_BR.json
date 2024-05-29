@@ -290,5 +290,6 @@
     "title.logs": "Logs",
     "error.setToDeletion": "{value1}",
     "error.onlyForSetToDeletion": "Esse perfil só pode ser usado para exportar registros de autoridade definidos para exclusão",
-    "error.profileUsedToNonDeleted": "Esse perfil só pode ser usado para exportar registros de autoridade não excluídos"
+    "error.profileUsedToNonDeleted": "Esse perfil só pode ser usado para exportar registros de autoridade não excluídos",
+    "jobStatus.new": "Novo"
 }
