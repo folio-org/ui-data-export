@@ -45,7 +45,7 @@
     "jobProfiles.selectProfile.modal.message": "Vous avez sélectionné <b> {profile} </b> pour exécuter l'exportation",
     "mappingProfiles.transformations.emptyMessage": "Aucune transformation trouvée",
     "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
-    "permission.app.enabled": "Interface Utilisateur: le module d'exportation de données est activé",
+    "permission.app.enabled": "Interface Utilisateur: le module d'export de données est activé",
     "permission.settings.enabled": "Paramètres (export de données): afficher la liste des pages de paramètres",
     "jobProfiles.delete.successCallout": "Le profil de tâche <b> {name} </b> a été <b> supprimé </b> avec succès",
     "jobProfiles.delete.errorCallout": "Une erreur s'est produite lors de la suppression du profil de tâche <b> {name} </b>",
@@ -290,5 +290,6 @@
     "title.logs": "Logs",
     "error.setToDeletion": "{value1}",
     "error.onlyForSetToDeletion": "This profile can only be used to export authority records set for deletion",
-    "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted"
+    "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted",
+    "jobStatus.new": "New"
 }
