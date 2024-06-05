@@ -10,6 +10,7 @@
 * Display error messages instead of error codes in Data export. Refs UIDEXP-371.
 * Suppressing fields on export - integrate with BE. Refs UIDEXP-375.
 * Reliably show paginator on the 'View all' page. Refs UIDEXP-379.
+* React v19: refactor away from default props for functional components.фвв Refs UIDEXP-376.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
