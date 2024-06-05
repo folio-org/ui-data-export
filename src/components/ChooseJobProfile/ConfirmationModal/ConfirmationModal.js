@@ -30,19 +30,22 @@ const propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-const defaultProps = {
-  bodyTag: 'div',
-  buttonStyle: 'primary',
-  cancelButtonStyle: 'default',
-  disabledCofirmButton: false,
-};
 
 const ConfirmationModal = props => {
-  const testId = props.id || uniqueId('confirmation-');
-  const cancelLabel = props.cancelLabel || <FormattedMessage id="stripes-components.cancel" />;
-  const confirmLabel = props.confirmLabel || <FormattedMessage id="stripes-components.submit" />;
   const {
-    bodyTag: Element,
+    bodyTag: Element = 'div',
+    buttonStyle = 'primary',
+    cancelButtonStyle = 'default',
+    disabledCofirmButton = false,
+    id = uniqueId('confirmation-'),
+    cancelLabel = <FormattedMessage id="stripes-components.cancel" />,
+    confirmLabel = <FormattedMessage id="stripes-components.submit" />,
+    onConfirm,
+    onCancel,
+    open,
+    heading,
+    ariaLabel,
+    message,
     ...rest
   } = props;
 
@@ -50,18 +53,18 @@ const ConfirmationModal = props => {
     <ModalFooter>
       <Button
         data-test-confirmation-modal-confirm-button
-        buttonStyle={props.buttonStyle}
-        disabled={props.disabledCofirmButton}
-        id={`clickable-${testId}-confirm`}
-        onClick={props.onConfirm}
+        buttonStyle={buttonStyle}
+        disabled={disabledCofirmButton}
+        id={`clickable-${id}-confirm`}
+        onClick={onConfirm}
       >
         {confirmLabel}
       </Button>
       <Button
         data-test-confirmation-modal-cancel-button
-        buttonStyle={props.cancelButtonStyle}
-        id={`clickable-${testId}-cancel`}
-        onClick={props.onCancel}
+        buttonStyle={cancelButtonStyle}
+        id={`clickable-${id}-cancel`}
+        onClick={onCancel}
       >
         {cancelLabel}
       </Button>
@@ -70,10 +73,10 @@ const ConfirmationModal = props => {
 
   return (
     <Modal
-      open={props.open}
-      id={testId}
-      label={props.heading}
-      aria-label={rest['aria-label'] || props.ariaLabel}
+      open={open}
+      id={id}
+      label={heading}
+      aria-label={rest['aria-label'] || ariaLabel}
       scope="module"
       size="small"
       footer={footer}
@@ -82,13 +85,12 @@ const ConfirmationModal = props => {
         data-test-confirmation-modal-message
         className={css.message}
       >
-        {props.message}
+        {message}
       </Element>
     </Modal>
   );
 };
 
 ConfirmationModal.propTypes = propTypes;
-ConfirmationModal.defaultProps = defaultProps;
 
 export default ConfirmationModal;

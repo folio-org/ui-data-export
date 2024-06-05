@@ -16,7 +16,7 @@ import { AllJobLogsView } from './components/AllJobLogsView';
 
 export default function DataExport(props) {
   const {
-    showSettings,
+    showSettings = false,
     match: { path },
   } = props;
 
@@ -52,5 +52,3 @@ DataExport.propTypes = {
   match: matchShape.isRequired,
   showSettings: PropTypes.bool,
 };
-
-DataExport.defaultProps = { showSettings: false };
