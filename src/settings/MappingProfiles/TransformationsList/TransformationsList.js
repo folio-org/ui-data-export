@@ -18,7 +18,7 @@ const columnWidths = {
 const visibleColumns = ['fieldName', 'transformation'];
 
 export const TransformationsList = ({
-  transformations,
+  transformations = [],
   allTransformations,
 }) => {
   const [sortedTransformations, setSortedTransformations] = useState([]);
@@ -70,4 +70,3 @@ TransformationsList.propTypes = {
   transformations: PropTypes.arrayOf(PropTypes.object),
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-TransformationsList.defaultProps = { transformations: [] };

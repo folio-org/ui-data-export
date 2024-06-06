@@ -9,11 +9,11 @@ import {
 } from '@folio/stripes/components';
 
 export const CheckboxGroupField = memo(({
+  disabledFields = {},
   id,
   name,
   options,
   filtersLabelClass,
-  disabledFields,
   onChange,
 }) => {
   return (
@@ -55,5 +55,3 @@ CheckboxGroupField.propTypes = {
   filtersLabelClass: PropTypes.string,
   disabledFields: PropTypes.object,
 };
-
-CheckboxGroupField.defaultProps = { disabledFields: {} };

@@ -43,9 +43,9 @@ const isValidRecordTypesMatching = (selectedTransformations = [], selectedRecord
 
 export const MappingProfilesFormContainer = props => {
   const {
+    isEditMode = false,
     allTransformations,
     contentLabel,
-    isEditMode,
     initialValues,
     onSubmit,
   } = props;
@@ -136,5 +136,3 @@ MappingProfilesFormContainer.propTypes = {
   isEditMode: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
 };
-
-MappingProfilesFormContainer.defaultProps = { isEditMode: false };
