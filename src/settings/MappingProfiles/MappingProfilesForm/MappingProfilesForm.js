@@ -46,13 +46,13 @@ const validate = values => {
 
 const MappingProfilesFormComponent = props => {
   const {
-    title,
+    isEditMode = false,
+    isFormDirty = false,
+    title = <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />,
     pristine,
     submitting,
     transformations,
     allTransformations,
-    isEditMode,
-    isFormDirty,
     form,
     initiallyDisabledRecordTypes,
     onAddTransformations,
@@ -204,12 +204,6 @@ MappingProfilesFormComponent.propTypes = {
   onAddTransformations: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onTypeDisable: PropTypes.func.isRequired,
-};
-
-MappingProfilesFormComponent.defaultProps = {
-  isEditMode: false,
-  isFormDirty: false,
-  title: <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />,
 };
 
 export const MappingProfilesForm = stripesFinalForm({

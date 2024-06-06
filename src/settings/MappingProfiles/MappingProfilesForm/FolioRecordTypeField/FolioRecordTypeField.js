@@ -18,7 +18,7 @@ import { CheckboxGroupField } from '../../CheckboxGroupField';
 import css from './FolioRecordTypeField.css';
 
 export const FolioRecordTypeField = memo(({
-  initiallyDisabledRecordTypes,
+  initiallyDisabledRecordTypes = {},
   onTypeDisable,
 }) => {
   const [touched, setTouched] = useState(false);
@@ -91,5 +91,3 @@ FolioRecordTypeField.propTypes = {
   initiallyDisabledRecordTypes: PropTypes.object,
   onTypeDisable: PropTypes.func.isRequired,
 };
-
-FolioRecordTypeField.defaultProps = { initiallyDisabledRecordTypes: {} };

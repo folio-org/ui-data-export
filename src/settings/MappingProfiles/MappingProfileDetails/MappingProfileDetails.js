@@ -25,10 +25,10 @@ import css from './MappingProfileDetails.css';
 
 const MappingProfileDetails = props => {
   const {
+    isLoading = false,
     allTransformations,
     mappingProfile,
     stripes,
-    isLoading,
     onEdit,
     onDuplicate,
   } = props;
@@ -156,10 +156,6 @@ MappingProfileDetails.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onDuplicate: PropTypes.func.isRequired,
-};
-
-MappingProfileDetails.defaultProps = {
-  isLoading: false,
 };
 
 export default MappingProfileDetails;

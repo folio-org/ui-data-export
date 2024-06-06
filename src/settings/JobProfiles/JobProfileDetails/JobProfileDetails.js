@@ -17,10 +17,10 @@ import { ProfileDetails } from '../../ProfileDetails';
 
 const JobProfileDetails = props => {
   const {
+    isLoading = false,
     jobProfile,
     mappingProfile,
     stripes,
-    isLoading,
     onEdit,
     onDuplicate,
   } = props;
@@ -100,7 +100,5 @@ JobProfileDetails.propTypes = {
   onDuplicate: PropTypes.func,
   onDelete: PropTypes.func.isRequired,
 };
-
-JobProfileDetails.defaultProps = { isLoading: false };
 
 export default JobProfileDetails;
