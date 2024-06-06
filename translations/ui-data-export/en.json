@@ -189,6 +189,8 @@
   "item.copyNumber": "Item - Copy number",
   "item.numberOfPieces": "Item - Number of pieces",
   "item.descriptionOfPieces": "Item - Description of pieces",
+  "item.checkInNote": "Check in not",
+  "item.checkOutNote": "Check out note",
   "item.holdingsRecordId": "Item - Holdings ID",
   "item.status": "Item - Status",
   "item.yearCaption": "Item - Year, caption",
