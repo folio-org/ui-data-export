@@ -19,6 +19,7 @@ import {
   TextArea,
   Button,
   Checkbox,
+  InfoPopover,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
@@ -66,6 +67,15 @@ const MappingProfilesFormComponent = props => {
   const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
   const recordTypes = form.getFieldState('recordTypes')?.value;
   const isFieldsSuppressionDisabled = !recordTypes?.length || recordTypes?.every(recordType => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
+  const fieldSuppressionFieldLabel = (
+    <span>
+      <FormattedMessage id="ui-data-export.fieldsSuppression" />
+      <InfoPopover
+        allowAnchorClick
+        content={<FormattedMessage id="ui-data-export.suppressInfo" />}
+      />
+    </span>
+  );
 
   // it's required clear field value when it became disabled
   useEffect(() => {
@@ -138,7 +148,7 @@ const MappingProfilesFormComponent = props => {
               <div data-test-mapping-profile-fieldsSuppression>
                 <Field
                   disabled={isFieldsSuppressionDisabled}
-                  label={<FormattedMessage id="ui-data-export.fieldsSuppression" />}
+                  label={fieldSuppressionFieldLabel}
                   name="fieldsSuppression"
                   id="mapping-profile-fieldsSuppression"
                   component={TextArea}
