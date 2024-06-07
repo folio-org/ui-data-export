@@ -32,6 +32,7 @@
     "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.7",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^12.1.10",
     "babel-jest": "^26.1.0",
     "chai": "^4.2.0",

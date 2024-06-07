@@ -13,6 +13,7 @@
 * React v19: refactor away from default props for functional components.фвв Refs UIDEXP-376.
 * Add info tip to field suppression. Refs UIDEXP-377
 * Update translation file with item's circulation notes. Refs UIDEXP-294.
+* Rewrite tests which depends on stripes-data-transfer-components.Refs UIDEXP-380.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
