@@ -38,6 +38,7 @@
   "description": "Description",
   "fieldsSuppression": "Fields suppression",
   "suppress999ff": "Suppress 999 ff",
+  "suppressInfo": "List of MARC fields to be excluded from the export. The fields are represented by three digits and separated by a comma. For example: 902,903",
   "outputFormat": "Output format",
   "transformations": "Transformations",
   "uploading": "Uploading",
