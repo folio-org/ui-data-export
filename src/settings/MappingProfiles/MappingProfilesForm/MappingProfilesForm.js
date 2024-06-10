@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
@@ -62,19 +62,23 @@ const MappingProfilesFormComponent = props => {
     onTypeDisable,
   } = props;
   const intl = useIntl();
+  const [open, setOpen] = useState(false);
 
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
   const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
   const recordTypes = form.getFieldState('recordTypes')?.value;
   const isFieldsSuppressionDisabled = !recordTypes?.length || recordTypes?.every(recordType => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
   const fieldSuppressionFieldLabel = (
-    <span>
+    <>
       <FormattedMessage id="ui-data-export.fieldsSuppression" />
-      <InfoPopover
-        allowAnchorClick
-        content={<FormattedMessage id="ui-data-export.suppressInfo" />}
-      />
-    </span>
+      <span onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+        <InfoPopover
+          allowAnchorClick
+          open={open}
+          content={<FormattedMessage id="ui-data-export.suppressInfo" />}
+        />
+      </span>
+    </>
   );
 
   // it's required clear field value when it became disabled
