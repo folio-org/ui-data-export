@@ -90,7 +90,7 @@ const MappingProfilesFormComponent = props => {
 
   const handleSubmitValidated = (value) => {
     const supress = form.getFieldState('fieldsSuppression')?.value;
-    form.change('fieldsSuppression', supress?.replace(/,+$/, ''));
+    form.change('fieldsSuppression', supress?.split(',').filter(Boolean).join(','));
 
     handleSubmit(value);
   };
