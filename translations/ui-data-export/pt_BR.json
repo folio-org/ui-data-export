@@ -291,5 +291,8 @@
     "error.setToDeletion": "{value1}",
     "error.onlyForSetToDeletion": "Esse perfil só pode ser usado para exportar registros de autoridade definidos para exclusão",
     "error.profileUsedToNonDeleted": "Esse perfil só pode ser usado para exportar registros de autoridade não excluídos",
-    "jobStatus.new": "Novo"
+    "jobStatus.new": "Novo",
+    "suppressInfo": "Lista de campos MARC a serem excluídos da exportação. Os campos são representados por três dígitos e separados por vírgula. Por exemplo: 902.903",
+    "item.checkInNote": "Noda de devolução",
+    "item.checkOutNote": "Nota de empréstimo"
 }
