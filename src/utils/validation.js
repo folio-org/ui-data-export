@@ -17,7 +17,7 @@ export const fieldSuppression = (value) => {
     return undefined;
   }
 
-  const trimmedValue = value?.replace(/,+$/, '');
+  const trimmedValue = value?.replace(/,*$/, '');
 
   const fields = trimmedValue.split(',').map(field => field.trim());
 
