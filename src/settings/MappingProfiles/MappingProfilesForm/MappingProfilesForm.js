@@ -88,6 +88,13 @@ const MappingProfilesFormComponent = props => {
     }
   }, [form, isFieldsSuppressionDisabled]);
 
+  const handleSubmitValidated = (value) => {
+    const supress = form.getFieldState('fieldsSuppression')?.value;
+    form.change('fieldsSuppression', supress?.replace(/,+$/, ''));
+
+    handleSubmit(value);
+  };
+
   useEffect(() => {
     const transformationsField = form.getFieldState('transformations');
     if (transformationsField) {
@@ -100,7 +107,7 @@ const MappingProfilesFormComponent = props => {
       id="mapping-profiles-form"
       paneTitle={title}
       isSubmitButtonDisabled={isSubmitButtonDisabled}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitValidated}
       onCancel={onCancel}
     >
       <div className={css.mappingProfilesFormContent}>

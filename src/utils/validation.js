@@ -13,7 +13,18 @@ export const requiredArray = values => {
 export const fieldSuppression = (value) => {
   const regex = /^\d{3}$/;
 
-  return !value || value?.split(',').every(field => regex.test(field.trim()))
+  if (!value) {
+    return undefined;
+  }
+
+  const trimmedValue = value?.replace(/,+$/, '');
+
+  // Разделить по запятым и проверить каждое поле
+  const fields = trimmedValue.split(',').map(field => field.trim());
+
+  const isValid = fields.every(field => regex.test(field));
+
+  return isValid
     ? undefined
     : <FormattedMessage id="ui-data-export.mappingProfiles.validation.fieldsSuppression" />;
 };
