@@ -19,7 +19,6 @@ export const fieldSuppression = (value) => {
 
   const trimmedValue = value?.replace(/,+$/, '');
 
-  // Разделить по запятым и проверить каждое поле
   const fields = trimmedValue.split(',').map(field => field.trim());
 
   const isValid = fields.every(field => regex.test(field));
