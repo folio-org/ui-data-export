@@ -83,6 +83,28 @@ const QueryFileUploaderComponent = props => {
     setFileExtensionModalOpen(false);
   };
 
+
+  const handleUploadError = ({ status }) => {
+    if (!calloutRef.current) return;
+
+    const BIG_CONTENT_ERROR_STATUS = 413;
+
+    const errorMessageId = status === BIG_CONTENT_ERROR_STATUS // content > 500mb
+      ? 'ui-data-export.bigFileProblem'
+      : 'ui-data-export.communicationProblem';
+
+    calloutRef.current.sendCallout({
+      type: 'error',
+      message: <FormattedMessage id={errorMessageId} />,
+    });
+  };
+
+
+  const handleFileUploadProgress = (file, { loaded: uploadedValue }) => {
+    // TODO: handle file progress once the file uploading occurs on the choose job profile page
+    console.log(uploadedValue); // eslint-disable-line no-console
+  };
+
   async function handleDrop(acceptedFiles) {
     const { okapi } = stripes;
 
@@ -125,30 +147,10 @@ const QueryFileUploaderComponent = props => {
     } catch (error) {
       handleUploadError(error);
       setDropZone(false);
-
-      console.error(error);
     }
   }
 
-  const handleFileUploadProgress = (file, { loaded: uploadedValue }) => {
-    // TODO: handle file progress once the file uploading occurs on the choose job profile page
-    console.log(uploadedValue); // eslint-disable-line no-console
-  };
 
-  const handleUploadError = ({ status }) => {
-    if (!calloutRef.current) return;
-
-    const BIG_CONTENT_ERROR_STATUS = 413;
-
-    const errorMessageId = status === BIG_CONTENT_ERROR_STATUS // content > 500mb
-      ? 'ui-data-export.bigFileProblem'
-      : 'ui-data-export.communicationProblem';
-
-    calloutRef.current.sendCallout({
-      type: 'error',
-      message: <FormattedMessage id={errorMessageId} />,
-    });
-  };
 
   return (
     <>

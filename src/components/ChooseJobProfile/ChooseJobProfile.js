@@ -99,7 +99,6 @@ const ChooseJobProfileComponent = ({
             history.push('/data-export');
           } catch (error) {
             setConfirmationModalState(false);
-            console.error(error);
           } finally {
             setIsJobRunning(false);
           }

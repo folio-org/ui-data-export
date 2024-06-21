@@ -7,6 +7,7 @@ import {
   Col,
   Row,
 } from '@folio/stripes/components';
+import PropTypes from 'prop-types';
 
 export const ListSelect = ({ onChange }) => {
   const intl = useIntl();
@@ -45,4 +46,8 @@ export const ListSelect = ({ onChange }) => {
       </Col>
     </Row>
   );
+};
+
+ListSelect.propTypes = {
+  onChange: PropTypes.func.isRequired,
 };
