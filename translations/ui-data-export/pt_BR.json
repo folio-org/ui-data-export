@@ -102,9 +102,9 @@
     "instance.contributorName": "Instância - Colaborador - {value}",
     "instance.contributorName.primary": "Instância - Colaborador - {value} - primário",
     "holdings.holdingNoteTypeId": "Coleção - Notas - {value}",
-    "holdings.holdingNoteTypeId.staffOnly": "Coleção - Notas - {value} - Somente equipe",
+    "holdings.holdingNoteTypeId.staffOnly": "Coleção - Notas - {value} - Somente para a equipe",
     "item.itemNoteTypeId": "Item - Notas - {value}",
-    "item.itemNoteTypeId.staffOnly": "Item - Notas - {value} - Apenas equipe",
+    "item.itemNoteTypeId.staffOnly": "Item - Notas - {value} - Somente para a equipe",
     "instance.alternativeTitleTypeName": "Instância - Título alternativo - {value}",
     "instance.identifiers": "Instância - Identificador - {value}",
     "instance.instanceTypeId": "Instância - tipo de recurso - {value}",
@@ -208,7 +208,7 @@
     "total": "Total",
     "copyOf": "Cópia de {value}",
     "mappingProfiles.srs.info": "Se a opção <b>Armazenamento de registro de origem (registro inteiro)</b> for selecionada e a instância não tiver um registro SRS subjacente, um registro MARC será gerado de contrato com as regras de mapeamento padrão.",
-    "mappingProfiles.recordType.instance": "Instância de inventário (campos selecionados)",
+    "mappingProfiles.recordType.instance": "Instância de catalogação (campos selecionados)",
     "mappingProfiles.transformations.invalidTransformationMessage": "Por favor, verifique sua entrada",
     "errorLogs.record.HRID": "\"HRID do {recordType}\": \"{value}\"",
     "errorLogs.record.UUID": "\"UUID do {recordType}\": \"{value}\"",
@@ -291,5 +291,8 @@
     "error.setToDeletion": "{value1}",
     "error.onlyForSetToDeletion": "Esse perfil só pode ser usado para exportar registros de autoridade definidos para exclusão",
     "error.profileUsedToNonDeleted": "Esse perfil só pode ser usado para exportar registros de autoridade não excluídos",
-    "jobStatus.new": "Novo"
+    "jobStatus.new": "Novo",
+    "suppressInfo": "Lista de campos MARC a serem excluídos da exportação. Os campos são representados por três dígitos e separados por vírgula. Por exemplo: 902.903",
+    "item.checkInNote": "Noda de devolução",
+    "item.checkOutNote": "Nota de empréstimo"
 }
