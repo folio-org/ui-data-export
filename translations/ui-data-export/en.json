@@ -316,6 +316,9 @@
   "error.setToDeletion": "{value1}",
   "error.onlyForSetToDeletion": "This profile can only be used to export authority records set for deletion",
   "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted",
+  "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
+  "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
+  "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
 
   "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
   "column.errors.duplicates": "{failedSrs} duplicate(s)"
