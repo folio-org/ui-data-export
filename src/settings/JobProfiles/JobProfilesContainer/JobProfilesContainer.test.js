@@ -24,6 +24,12 @@ jest.mock('../DuplicateJobProfileRoute', () => ({
   DuplicateJobProfileRoute: () => <div>DuplicateJobProfileRoute</div>,
 }));
 
+jest.mock('@folio/stripes-data-transfer-components', () => ({
+  ...jest.requireActual('@folio/stripes-data-transfer-components'),
+  JobProfiles: () => <div>JobProfiles</div>,
+}));
+
+
 const setupJobProfilesContainer = initialEntries => {
   renderWithIntl(
     <SettingsComponentBuilder>

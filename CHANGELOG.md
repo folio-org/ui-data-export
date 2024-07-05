@@ -15,6 +15,7 @@
 * Update translation file with item's circulation notes. Refs UIDEXP-294.
 * Rewrite tests which depends on stripes-data-transfer-components.Refs UIDEXP-380.
 * Improve field suppression validation. Refs UIDEXP-378.
+* Error message  in error " Logs", if the user does not have the affiliation with the tenant. Refs UIDEXP-381.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
