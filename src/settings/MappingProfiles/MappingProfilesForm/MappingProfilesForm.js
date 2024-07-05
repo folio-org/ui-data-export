@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   FormattedMessage,
@@ -62,7 +62,6 @@ const MappingProfilesFormComponent = props => {
     onTypeDisable,
   } = props;
   const intl = useIntl();
-  const [open, setOpen] = useState(false);
 
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
   const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
@@ -71,13 +70,10 @@ const MappingProfilesFormComponent = props => {
   const fieldSuppressionFieldLabel = (
     <>
       <FormattedMessage id="ui-data-export.fieldsSuppression" />
-      <span onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-        <InfoPopover
-          allowAnchorClick
-          open={open}
-          content={<FormattedMessage id="ui-data-export.suppressInfo" />}
-        />
-      </span>
+      <InfoPopover
+        iconSize="medium"
+        content={<FormattedMessage id="ui-data-export.suppressInfo" />}
+      />
     </>
   );
 
