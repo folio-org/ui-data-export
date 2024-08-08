@@ -86,7 +86,7 @@ const MappingProfilesContainer = ({
     [intl, resources.transformations.records]
   );
   const isTransformationsLoaded = get(resources, 'transformations.hasLoaded', false);
-  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('ui-data-export.settings.enabled');
+  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
   // Here we need to return fragment in that case, because in child component we have boolean check
   const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 

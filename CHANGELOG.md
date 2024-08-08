@@ -17,6 +17,7 @@
 * Improve field suppression validation. Refs UIDEXP-378.
 * Error message  in error " Logs", if the user does not have the affiliation with the tenant. Refs UIDEXP-381.
 * Replace hover with click event for all Info icons on "Add mapping profile" form. Refs UIDEXP-382.
+* Data export permission cleanup. Refs UIDEXP-387.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
