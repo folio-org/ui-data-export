@@ -103,19 +103,37 @@
         "subPermissions": [
           "module.data-export.enabled"
         ],
-        "visible": true
-      },
-      {
-        "permissionName": "settings.data-export.enabled",
-        "displayName": "Settings (Data export): Can view, create, edit, and remove",
-        "subPermissions": [
-          "settings.enabled"
-        ],
         "visible": false
       },
       {
-        "permissionName": "settings.data-export.view",
-        "displayName": "Settings (Data export): Can view",
+        "permissionName": "ui-data-export.view",
+        "displayName": "Data export: Can view only",
+        "subPermissions": [
+          "module.data-export.enabled",
+          "data-export.related-users.collection.get",
+          "data-export.file-definitions.item.post",
+          "data-export.file-definitions.upload.post",
+          "data-export.job-executions.items.download.get",
+          "data-export.job-executions.collection.get",
+          "data-export.logs.collection.get",
+          "data-export.mapping-profiles.collection.get",
+          "data-export.job-profiles.collection.get",
+          "data-export.mapping-profiles.item.get",
+          "data-export.export.post"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-data-export.edit",
+        "displayName": "Data export: Can upload files, export, download files and view logs",
+        "subPermissions": [
+          "ui-data-export.view"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-data-export.settings.view",
+        "displayName": "Settings (Data export): Can view only",
         "subPermissions": [
           "data-export.mapping-profiles.item.get",
           "data-export.job-executions.items.download.get",
@@ -125,7 +143,8 @@
           "data-export.transformation-fields.collection.get",
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
-          "settings.data-export.enabled"
+          "data-export.mapping-profiles.item.post",
+          "settings.enabled"
         ],
         "visible": "true"
       },
@@ -148,15 +167,18 @@
         "visible": false
       },
       {
-        "permissionName": "ui-data-export.settings.enabled",
-        "displayName": "Settings (Data export): display list of settings pages",
+        "permissionName": "ui-data-export.settings.edit",
+        "displayName": "Settings (Data export): Can view, add, update profiles",
         "subPermissions": [
-          "settings.data-export.enabled",
-          "data-export.mapping-profiles.collection.get",
-          "data-export.transformation-fields.collection.get",
-          "data-export.job-profiles.collection.get",
+          "ui-data-export.settings.view",
+          "data-export.file-definitions.item.post",
+          "data-export.file-definitions.upload.post",
           "data-export.mapping-profiles.item.post",
-          "data-export.mapping-profiles.item.get"
+          "data-export.mapping-profiles.item.put",
+          "data-export.mapping-profiles.item.delete",
+          "data-export.job-profiles.item.post",
+          "data-export.job-profiles.item.put",
+          "data-export.job-profiles.item.delete"
         ],
         "visible": true
       }
