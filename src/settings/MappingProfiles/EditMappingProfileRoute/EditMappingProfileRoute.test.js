@@ -162,7 +162,7 @@ describe('rendering edit mapping profile page without profile data', () => {
 
         userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.editTransformations'));
 
-        expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
+        expect(getByText(transformationListRows()[0], '900')).toBeVisible();
       });
     });
 

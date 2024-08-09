@@ -13,9 +13,12 @@ import css from './TransformationsList.css';
 
 const columnWidths = {
   fieldName: '50%',
-  transformation: '50%',
+  field: '15%',
+  ind1: '10%',
+  ind2: '10%',
+  subfield: '15%',
 };
-const visibleColumns = ['fieldName', 'transformation'];
+const visibleColumns = ['fieldName', 'field', 'ind1', 'ind2', 'subfield'];
 
 export const TransformationsList = ({
   transformations = [],
@@ -30,25 +33,40 @@ export const TransformationsList = ({
 
       return transformation?.displayName;
     },
-    transformation: record => (
-      <pre
-        title={record.transformation}
-        className={css.transformation}
-      >
-        {record.transformation}
-      </pre>
-    ),
+    field: record => {
+      return record.transformation.slice(0, 3);
+    },
+    ind1: record => {
+      console.log(!!record.transformation[3]);
+      return (!record.transformation[3] || record.transformation[3].trim() === '')
+        ? (record.transformation.startsWith('0') ? '' : '\\')
+        : record.transformation[3];
+    },
+    ind2: record => {
+      return (!record.transformation[4] || record.transformation[4].trim() === '')
+        ? (record.transformation.startsWith('0') ? '' : '\\')
+        : record.transformation[4];
+    },
+    subfield: record => {
+      return record.transformation[6];
+    },
   }), [allTransformations]);
 
   const columnMapping = useMemo(() => ({
     fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
-    transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
+    field: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.field' }),
+    ind1: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.ind1' }),
+    ind2: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.ind2' }),
+    subfield: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.subfield' }),
   }), [intl]);
 
   useEffect(() => {
     const formattedTransformations = orderBy(transformations.map(transformation => ({
       fieldName: formatter.fieldName(transformation),
-      transformation: formatter.transformation(transformation),
+      field: formatter.field(transformation),
+      subfield: formatter.subfield(transformation),
+      ind1: formatter.ind1(transformation),
+      ind2: formatter.ind2(transformation),
     })), 'fieldName', 'asc');
 
     setSortedTransformations(formattedTransformations);
