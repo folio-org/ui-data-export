@@ -9,8 +9,6 @@ import { orderBy } from 'lodash';
 
 import { MultiColumnList } from '@folio/stripes/components';
 
-import css from './TransformationsList.css';
-
 const columnWidths = {
   fieldName: '50%',
   field: '15%',
@@ -37,15 +35,24 @@ export const TransformationsList = ({
       return record.transformation.slice(0, 3);
     },
     ind1: record => {
-      console.log(!!record.transformation[3]);
-      return (!record.transformation[3] || record.transformation[3].trim() === '')
-        ? (record.transformation.startsWith('0') ? '' : '\\')
-        : record.transformation[3];
+      const isFourthCharEmpty = !record.transformation[3] || record.transformation[3].trim() === '';
+      const startsWithZero = record.transformation.startsWith('0');
+
+      if (isFourthCharEmpty) {
+        return startsWithZero ? '' : '\\';
+      } else {
+        return record.transformation[3];
+      }
     },
     ind2: record => {
-      return (!record.transformation[4] || record.transformation[4].trim() === '')
-        ? (record.transformation.startsWith('0') ? '' : '\\')
-        : record.transformation[4];
+      const isFourthCharEmpty = !record.transformation[4] || record.transformation[4].trim() === '';
+      const startsWithZero = record.transformation.startsWith('0');
+
+      if (isFourthCharEmpty) {
+        return startsWithZero ? '' : '\\';
+      } else {
+        return record.transformation[4];
+      }
     },
     subfield: record => {
       return record.transformation[6];
