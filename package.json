@@ -111,15 +111,12 @@
         "subPermissions": [
           "module.data-export.enabled",
           "data-export.related-users.collection.get",
-          "data-export.file-definitions.item.post",
-          "data-export.file-definitions.upload.post",
           "data-export.job-executions.items.download.get",
           "data-export.job-executions.collection.get",
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
           "data-export.job-profiles.collection.get",
-          "data-export.mapping-profiles.item.get",
-          "data-export.export.post"
+          "data-export.mapping-profiles.item.get"
         ],
         "visible": true
       },
@@ -127,7 +124,10 @@
         "permissionName": "ui-data-export.edit",
         "displayName": "Data export: Can upload files, export, download files and view logs",
         "subPermissions": [
-          "ui-data-export.view"
+          "ui-data-export.view",
+          "data-export.export.post",
+          "data-export.file-definitions.upload.post",
+          "data-export.file-definitions.item.post"
         ],
         "visible": true
       },
