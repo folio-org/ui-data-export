@@ -48,7 +48,7 @@ export const ProfileDetails = props => {
 
 
   const stripes = useStripes();
-  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('ui-data-export.settings.enabled');
+  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
 
   const renderActionMenu = useCallback(({ onToggle }) => {
     return (

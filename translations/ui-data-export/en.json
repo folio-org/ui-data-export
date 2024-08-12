@@ -8,7 +8,10 @@
   "settings.newMapping.manager": "Data export settings - New field mapping profile",
   "permission.app.enabled": "UI: Data export module is enabled",
   "permission.settings.enabled": "Settings (Data export): display list of settings pages",
-  "permission.settings.view": "Settings (Data export): Can view",
+  "permission.settings.view": "Settings (Data export): Can view only",
+  "permission.settings.edit": "Settings (Data export): Can view, add, update profiles",
+  "permission.view": "Data export: Can view only",
+  "permission.edit": "Data export: Can upload files, export, download files and view logs",
 
   "jobsPaneTitle": "Jobs",
   "logsPaneTitle": "Logs",
