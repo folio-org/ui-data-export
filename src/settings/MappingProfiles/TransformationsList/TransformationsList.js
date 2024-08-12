@@ -17,6 +17,16 @@ const columnWidths = {
   subfield: '15%',
 };
 const visibleColumns = ['fieldName', 'field', 'ind1', 'ind2', 'subfield'];
+const getValue = (record, index) => {
+  const isFourthCharEmpty = !record.transformation[index] || record.transformation[index].trim() === '';
+  const startsWithZero = record.transformation.startsWith('0');
+
+  if (isFourthCharEmpty) {
+    return startsWithZero ? '' : '\\';
+  } else {
+    return record.transformation[index];
+  }
+};
 
 export const TransformationsList = ({
   transformations = [],
@@ -35,24 +45,10 @@ export const TransformationsList = ({
       return record.transformation.slice(0, 3);
     },
     ind1: record => {
-      const isFourthCharEmpty = !record.transformation[3] || record.transformation[3].trim() === '';
-      const startsWithZero = record.transformation.startsWith('0');
-
-      if (isFourthCharEmpty) {
-        return startsWithZero ? '' : '\\';
-      } else {
-        return record.transformation[3];
-      }
+      return getValue(record, 3);
     },
     ind2: record => {
-      const isFourthCharEmpty = !record.transformation[4] || record.transformation[4].trim() === '';
-      const startsWithZero = record.transformation.startsWith('0');
-
-      if (isFourthCharEmpty) {
-        return startsWithZero ? '' : '\\';
-      } else {
-        return record.transformation[4];
-      }
+      return getValue(record, 4);
     },
     subfield: record => {
       return record.transformation[6];
