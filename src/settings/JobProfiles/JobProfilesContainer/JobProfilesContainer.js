@@ -39,7 +39,7 @@ const JobProfilesContainer = ({
   const location = useLocation();
   const stripes = useStripes();
   const intl = useIntl();
-  const hasOnlyViewPerms = stripes.hasPerm('settings.data-export.view') && !stripes.hasPerm('ui-data-export.settings.enabled');
+  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
   const lastMenu = hasOnlyViewPerms ? (<></>) : '';
 
   const JobProfileDetailsRouteConnected = useMemo(

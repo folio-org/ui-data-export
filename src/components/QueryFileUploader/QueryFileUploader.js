@@ -45,6 +45,7 @@ const QueryFileUploaderComponent = props => {
   const calloutRef = useRef(null);
   const currentFileUploadXhr = useRef(null);
   const stripes = useStripes();
+  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
 
   const uploaderTitle = isDropZoneActive ? isLoading
     ? <Preloader message={<FormattedMessage id="ui-data-export.uploading" />} />
@@ -162,6 +163,7 @@ const QueryFileUploaderComponent = props => {
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        disabled={hasOnlyViewPerms}
       >
         {openDialogWindow => (
           <>
