@@ -45,7 +45,7 @@ const QueryFileUploaderComponent = props => {
   const calloutRef = useRef(null);
   const currentFileUploadXhr = useRef(null);
   const stripes = useStripes();
-  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
+  const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.view') && !stripes.hasPerm('ui-data-export.edit');
 
   const uploaderTitle = isDropZoneActive ? isLoading
     ? <Preloader message={<FormattedMessage id="ui-data-export.uploading" />} />

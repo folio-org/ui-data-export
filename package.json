@@ -106,6 +106,14 @@
         "visible": false
       },
       {
+        "permissionName": "settings.data-export.enabled",
+        "displayName": "Settings data-export enabled",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": false
+      },
+      {
         "permissionName": "ui-data-export.view",
         "displayName": "Data export: Can view only",
         "subPermissions": [
@@ -144,7 +152,7 @@
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
           "data-export.mapping-profiles.item.post",
-          "settings.enabled"
+          "settings.data-export.enabled"
         ],
         "visible": "true"
       },
