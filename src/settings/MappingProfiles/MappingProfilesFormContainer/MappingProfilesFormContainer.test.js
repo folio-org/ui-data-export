@@ -183,8 +183,8 @@ describe('MappingProfileFormContainer', () => {
 
       it('should select all and add transformations with values', () => {
         expect(transformationListRows.length).toBe(2);
-        expect(getByText(transformationListRows[0], '12310$r')).toBeVisible();
-        expect(getByText(transformationListRows[1], '900 $1')).toBeVisible();
+        expect(getByText(transformationListRows[0], '123')).toBeVisible();
+        expect(getByText(transformationListRows[1], '900')).toBeVisible();
       });
 
       it('should enable submit button', () => {

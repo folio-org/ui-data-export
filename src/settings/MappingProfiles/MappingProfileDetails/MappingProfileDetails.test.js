@@ -113,7 +113,10 @@ describe('MappingProfileDetails', () => {
       renderMappingProfileDetails();
 
       expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.fieldName' })).toBeVisible();
-      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.transformation' })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.field' })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.ind1' })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.ind2' })).toBeVisible();
+      expect(screen.getByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.subfield' })).toBeVisible();
     });
 
     it('should display correct transformations values', () => {
@@ -121,9 +124,9 @@ describe('MappingProfileDetails', () => {
       const transformationListRows = getAllByRole(screen.getByRole('rowgroup'), 'row');
 
       expect(getByText(transformationListRows[0], 'Holdings - Call number - Call number')).toBeVisible();
-      expect(getByText(transformationListRows[0], '11100$a')).toBeVisible();
+      expect(getByText(transformationListRows[0], '111')).toBeVisible();
       expect(getByText(transformationListRows[1], 'Holdings - Notes - Action note')).toBeVisible();
-      expect(getByText(transformationListRows[1], '123 1$12')).toBeVisible();
+      expect(getByText(transformationListRows[1], '123')).toBeVisible();
     });
     it('should display action buttons in the proper state', () => {
       const { container } = renderMappingProfileDetails();

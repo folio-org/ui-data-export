@@ -231,7 +231,7 @@ describe('DuplicateMappingProfileRoute', () => {
 
       userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
-      expect(getByText(transformationListRows()[0], '900 1$12')).toBeVisible();
+      expect(getByText(transformationListRows()[0], '900')).toBeVisible();
     });
 
     describe('submitting the form - success case', () => {
