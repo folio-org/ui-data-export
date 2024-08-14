@@ -13,7 +13,7 @@ describe('parseRawTransformation', () => {
         marcField: '900',
         indicator1: '0',
         indicator2: '0',
-        subfield: '$12',
+        subfield: '12',
       },
     })).toBe('90000$12');
   });
@@ -23,7 +23,7 @@ describe('parseRawTransformation', () => {
       rawTransformation: {
         marcField: '900',
         indicator2: '0',
-        subfield: '$12',
+        subfield: '12',
       },
     })).toBe('900 0$12');
   });
@@ -33,7 +33,7 @@ describe('parseRawTransformation', () => {
       rawTransformation: {
         marcField: '900',
         indicator1: '1',
-        subfield: '$12',
+        subfield: '12',
       },
     })).toBe('9001 $12');
   });
@@ -44,7 +44,7 @@ describe('parseRawTransformation', () => {
         marcField: '900',
         indicator1: '',
         indicator2: '',
-        subfield: '$12',
+        subfield: '12',
       },
     })).toBe('900  $12');
   });
@@ -65,7 +65,7 @@ describe('splitIntoRawTransformation', () => {
       marcField: '900',
       indicator1: '1',
       indicator2: '2',
-      subfield: '$12',
+      subfield: '12',
     });
   });
 
@@ -74,7 +74,7 @@ describe('splitIntoRawTransformation', () => {
       marcField: '900',
       indicator1: '1',
       indicator2: '',
-      subfield: '$1',
+      subfield: '1',
     });
   });
 
@@ -83,7 +83,7 @@ describe('splitIntoRawTransformation', () => {
       marcField: '900',
       indicator1: '',
       indicator2: '2',
-      subfield: '$r',
+      subfield: 'r',
     });
   });
 });
@@ -98,14 +98,14 @@ describe('omitRawTransformations', () => {
             indicator1: '1',
             indicator2: '1',
             marcField: '900',
-            subfield: '$12',
+            subfield: '12',
           },
         },
         {
           fieldId: 'holdings.callnumberprefix',
           rawTransformation: {
             marcField: '700',
-            subfield: '$0',
+            subfield: '0',
           },
         },
       ],

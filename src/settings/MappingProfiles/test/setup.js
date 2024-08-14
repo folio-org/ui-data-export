@@ -16,6 +16,6 @@ export const transformationsBtn = name => screen.getByRole('button', { name });
 export const transformationListRows = () => getAllByRole(screen.getByRole('rowgroup'), 'row');
 export const transformationListCells = () => within(transformationListRows()[0]).getByText('Instance - Resource title');
 export const columnHeaderFieldName = () => screen.getAllByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.fieldName' });
-export const columnHeaderTransformation = () => screen.getAllByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.transformation' });
+export const columnHeaderTransformation = () => screen.getAllByRole('columnheader', { name: 'ui-data-export.mappingProfiles.transformations.field' });
 
 export const paneHeader = name => screen.getByRole('heading', { name });

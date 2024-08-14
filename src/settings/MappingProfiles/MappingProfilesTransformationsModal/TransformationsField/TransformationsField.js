@@ -19,9 +19,12 @@ import { TransformationFieldGroup } from './TransformationFieldGroup';
 const columnWidths = {
   isSelected: '5%',
   fieldName: '45%',
-  transformation: '50%',
+  field: '15%',
+  ind1: '10%',
+  ind2: '10%',
+  subfield: '15%',
 };
-const visibleColumns = ['isSelected', 'fieldName', 'transformation'];
+const visibleColumns = ['isSelected', 'fieldName', 'field', 'ind1', 'ind2', 'subfield'];
 
 export const TransformationField = memo(({
   contentData,
@@ -36,7 +39,7 @@ export const TransformationField = memo(({
   const headerRowHeight = 40;
   const rowHeight = 50;
 
-  const formatter = {
+  const formatter = useMemo(() => ({
     isSelected: record => (
       <Field
         key={record.displayName}
@@ -59,15 +62,44 @@ export const TransformationField = memo(({
       </Field>
     ),
     fieldName: record => record.displayName,
-    transformation: record => (
+    field: record => (
       <TransformationFieldGroup
         record={record}
         validatedTransformations={validatedTransformations[record.order]}
         setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+        typeOfField="marcField"
       />
     ),
-  };
+    subfield: record => (
+      <TransformationFieldGroup
+        record={record}
+        validatedTransformations={validatedTransformations[record.order]}
+        setValidatedTransformations={setValidatedTransformations}
+        setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+        typeOfField="subfield"
+      />
+    ),
+    ind1: record => (
+      <TransformationFieldGroup
+        record={record}
+        validatedTransformations={validatedTransformations[record.order]}
+        setValidatedTransformations={setValidatedTransformations}
+        setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+        typeOfField="indicator1"
+      />
+    ),
+    ind2: record => (
+      <TransformationFieldGroup
+        record={record}
+        validatedTransformations={validatedTransformations[record.order]}
+        setValidatedTransformations={setValidatedTransformations}
+        setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+        typeOfField="indicator2"
+      />
+    ),
+  }), [validatedTransformations, setValidatedTransformations, setIsSubmitButtonDisabled, onSelectChange, intl]);
+
 
   const selectAllLabel = useMemo(() => intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' }), [intl]);
 
@@ -86,7 +118,10 @@ export const TransformationField = memo(({
       />
     ),
     fieldName: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.fieldName' }),
-    transformation: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.transformation' }),
+    field: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.field' }),
+    ind1: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.ind1' }),
+    ind2: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.ind2' }),
+    subfield: intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.subfield' }),
   }), [intl, isSelectAllChecked, onSelectAll, selectAllLabel]);
 
   const itemsData = useMemo(() => ({

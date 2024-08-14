@@ -198,12 +198,12 @@ describe('DuplicateMappingProfileRoute', () => {
 
         userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
-        const transformationFields = getTransformationFieldGroups();
+        const { marcFields, indicators2, indicators1, subfields } = getTransformationFieldGroups();
 
-        expect(transformationFields[2].marcField.input.value).toBe('900');
-        expect(transformationFields[2].indicator1.input.value).toBe('');
-        expect(transformationFields[2].indicator2.input.value).toBe('1');
-        expect(transformationFields[2].subfield.input.value).toBe('$12');
+        expect(marcFields[2].querySelector('input')).toHaveValue('900');
+        expect(indicators1[2].querySelector('input')).toHaveValue('');
+        expect(indicators2[2].querySelector('input')).toHaveValue('1');
+        expect(subfields[2].querySelector('input')).toHaveValue('12');
       });
 
       it('should not show validation error when clearing transformation with empty indicator field', () => {
@@ -211,12 +211,13 @@ describe('DuplicateMappingProfileRoute', () => {
 
         userEvent.click(transformationsBtn('ui-data-export.mappingProfiles.transformations.addTransformations'));
 
-        const transformationFields = getTransformationFieldGroups();
+        const { marcFields, indicators2, subfields } = getTransformationFieldGroups();
+
         const modal = document.querySelector('[data-test-transformations-modal]');
 
-        userEvent.type(transformationFields[2].marcField.input, '');
-        userEvent.type(transformationFields[0].indicator2.input, '');
-        userEvent.type(transformationFields[0].subfield.input, '');
+        userEvent.type(marcFields[2].querySelector('input'), '');
+        userEvent.type(indicators2[0].querySelector('input'), '');
+        userEvent.type(subfields[0].querySelector('input'), '');
 
         userEvent.dblClick(screen.getByLabelText('ui-data-export.mappingProfiles.transformations.selectAllFields'));
 

@@ -2,6 +2,7 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  memo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
@@ -16,9 +17,13 @@ const columnWidths = {
   ind2: '10%',
   subfield: '15%',
 };
+
 const visibleColumns = ['fieldName', 'field', 'ind1', 'ind2', 'subfield'];
+
 const getValue = (record, index) => {
-  const isFourthCharEmpty = !record.transformation[index] || record.transformation[index].trim() === '';
+  const isFourthCharEmpty =
+    !record.transformation[index] ||
+    record.transformation[index].trim() === '';
   const startsWithZero = record.transformation.startsWith('0');
 
   if (isFourthCharEmpty) {
@@ -28,10 +33,7 @@ const getValue = (record, index) => {
   }
 };
 
-export const TransformationsList = ({
-  transformations = [],
-  allTransformations,
-}) => {
+export const TransformationsList = memo(({ transformations = [], allTransformations }) => {
   const [sortedTransformations, setSortedTransformations] = useState([]);
   const intl = useIntl();
 
@@ -73,7 +75,7 @@ export const TransformationsList = ({
     })), 'fieldName', 'asc');
 
     setSortedTransformations(formattedTransformations);
-  }, [transformations, formatter]);
+  }, [formatter, transformations]);
 
   return (
     <MultiColumnList
@@ -85,9 +87,10 @@ export const TransformationsList = ({
       isEmptyMessage={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.emptyMessage' })}
     />
   );
-};
+});
 
 TransformationsList.propTypes = {
   transformations: PropTypes.arrayOf(PropTypes.object),
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+

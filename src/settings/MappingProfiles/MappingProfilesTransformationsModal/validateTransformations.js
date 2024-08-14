@@ -3,7 +3,7 @@ import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 const transformationRegexMap = {
   marcField: /^\d{3}$/,
   indicator: /^[\d\sa-zA-Z]?$/,
-  subfield: /^(\$([0-9]{1,2}|[a-zA-Z]))?$/,
+  subfield: /^([0-9]{1,2}|[a-zA-Z])?$/,
 };
 
 export const checkTransformationValidity = ({
@@ -19,16 +19,6 @@ export const checkTransformationValidity = ({
   isTransformationValid: marcField && indicator1 && indicator2 && subfield,
 });
 
-export const isInstanceTransformationEmpty = transformation => {
-  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
-    if (isRawTransformationEmpty(transformation.rawTransformation)) {
-      return true;
-    }
-  }
-
-  return false;
-};
-
 export const isRawTransformationEmpty = rawTransformation => {
   if (!rawTransformation) {
     return true;
@@ -42,6 +32,17 @@ export const isRawTransformationEmpty = rawTransformation => {
   } = rawTransformation;
 
   return `${marcField}${indicator1}${indicator2}${subfield}` === '';
+};
+
+
+export const isInstanceTransformationEmpty = transformation => {
+  if (transformation.recordType === FOLIO_RECORD_TYPES.INSTANCE.type) {
+    if (isRawTransformationEmpty(transformation.rawTransformation)) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 export const validateRawTransformation = transformation => {
