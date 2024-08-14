@@ -281,7 +281,7 @@
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicata(s)",
     "column.errors.duplicates": "{failedSrs} duplicata(s)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Configurações (Exportação de dados): Pode visualizar",
+    "permission.settings.view": "Configurações (exportação de dados): Pode visualizar apenas",
     "jobStatus.inProgress": "Em andamento",
     "error.recordIsTooLong": "{value1}",
     "fieldsSuppression": "Ocultação de campos",
@@ -297,5 +297,12 @@
     "item.checkOutNote": "Nota de empréstimo",
     "error.noAffiliation": "{value1} - o usuário {value2} não tem permissões para acessar o registro de coleção no locatário de dados {value3}.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - o usuário {value2} não tem permissões para acessar o registro de coleção no locatário de dados {value3}.",
-    "error.tenantNotFoundForHolding": "Nenhum locatário pode ser encontrado para o registro de coleção {value1}."
+    "error.tenantNotFoundForHolding": "Nenhum locatário pode ser encontrado para o registro de coleção {value1}.",
+    "permission.settings.edit": "Configurações (exportação de dados): Pode visualizar, adicionar e atualizar perfis",
+    "permission.view": "Exportação de dados: Pode visualizar apenas",
+    "permission.edit": "Exportação de dados: Pode carregar arquivos, exportar, baixar arquivos e visualizar logs",
+    "mappingProfiles.transformations.field": "Campo",
+    "mappingProfiles.transformations.subfield": "Subcampo",
+    "mappingProfiles.transformations.ind1": "In.1",
+    "mappingProfiles.transformations.ind2": "In.2"
 }

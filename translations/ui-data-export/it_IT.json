@@ -281,7 +281,7 @@
     "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
     "column.errors.duplicates": "{failedSrs} duplicate(s)",
     "error.duplicateSRS": "{value1}",
-    "permission.settings.view": "Settings (Data export): Can view",
+    "permission.settings.view": "Settings (Data export): Can view only",
     "jobStatus.inProgress": "In progress",
     "error.recordIsTooLong": "{value1}",
     "fieldsSuppression": "Fields suppression",
@@ -297,5 +297,12 @@
     "item.checkOutNote": "Check out note",
     "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
-    "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}."
+    "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
+    "permission.settings.edit": "Settings (Data export): Can view, add, update profiles",
+    "permission.view": "Data export: Can view only",
+    "permission.edit": "Data export: Can upload files, export, download files and view logs",
+    "mappingProfiles.transformations.field": "Field",
+    "mappingProfiles.transformations.subfield": "Subfield",
+    "mappingProfiles.transformations.ind1": "In.1",
+    "mappingProfiles.transformations.ind2": "In.2"
 }

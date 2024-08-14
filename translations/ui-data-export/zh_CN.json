@@ -295,7 +295,14 @@
     "suppressInfo": "导出时要排除的 MARC 字段列表。字段由三位数字表示，并以逗号分隔。例如：902,903",
     "item.checkInNote": "归还附注",
     "item.checkOutNote": "借出附注",
-    "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
-    "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
-    "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}."
+    "error.noAffiliation": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
+    "error.userNotHaveAccessForHoldingsTenantData": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
+    "error.tenantNotFoundForHolding": "找不到馆藏记录{value1}的租户。",
+    "permission.settings.edit": "Settings (Data export): Can view, add, update profiles",
+    "permission.view": "Data export: Can view only",
+    "permission.edit": "Data export: Can upload files, export, download files and view logs",
+    "mappingProfiles.transformations.field": "Field",
+    "mappingProfiles.transformations.subfield": "Subfield",
+    "mappingProfiles.transformations.ind1": "In.1",
+    "mappingProfiles.transformations.ind2": "In.2"
 }
