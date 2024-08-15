@@ -152,7 +152,9 @@
           "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
           "data-export.mapping-profiles.item.post",
-          "settings.data-export.enabled"
+          "settings.data-export.enabled",
+          "users.collection.get",
+          "users.item.get"
         ],
         "visible": "true"
       },
