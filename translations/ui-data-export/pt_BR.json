@@ -218,7 +218,7 @@
     "errorLogs.recordAssociated.Title": "\"Título associado para {recordType}\": \"{value}\"",
     "error.fileDefinition.notFound": "Definição de arquivo não encontrada",
     "error.s3.bucketNameNotFound": "O nome do bucket S3 não foi encontrado nas Propriedades do Sistema",
-    "error.binaryFile.notGenerated": "Nada a exportar: nenhum arquivo binário gerado",
+    "error.binaryFile.notGenerated": "Nada para exportar: nenhum arquivo .mrc gerado.",
     "error.user.notFound": "Usuário não encontrado",
     "error.uploadedFile.invalidExtension": "A extensão do nome do arquivo não corresponde ao formato csv",
     "error.fileDefinition.fileAlreadyUploaded": "Arquivo já carregado para esta Definição de Arquivo",
@@ -240,8 +240,8 @@
     "error.invalidUuidFormat": "Formato UUID inválido: {value1}",
     "error.mappingProfile.defaultNotFound": "Perfil de mapeamento padrão não encontrado",
     "error.readingFromInputFile": "Erro durante a leitura do arquivo de entrada com uuids ou arquivo está vazio",
-    "error.uuidsNotFound": "UUIDs não encontrados no SRS ou no App Inventário: {value1}",
-    "error.someRecordsFailed": "A exportação foi concluída com erros: alguns registros falharam ao exportar: número de registros com falha: {value1}",
+    "error.uuidsNotFound": "Registro não encontrado: {value1}.",
+    "error.someRecordsFailed": "Número de registros com falha: {value1}.",
     "error.mapping.dateParse": "Erro ocorrido durante a análise da data no processo de mapeamento",
     "error.mapping.undefined": "Erro desconhecido durante o processo de mapeamento",
     "error.mapping.fieldsMappingInventory": "Ocorreu um erro durante o mapeamento de campos para registro de inventário",
@@ -304,5 +304,9 @@
     "mappingProfiles.transformations.field": "Campo",
     "mappingProfiles.transformations.subfield": "Subcampo",
     "mappingProfiles.transformations.ind1": "In.1",
-    "mappingProfiles.transformations.ind2": "In.2"
+    "mappingProfiles.transformations.ind2": "In.2",
+    "error.duplicatedIds": "ERRO UUID {value1} repetido {value2} vezes.",
+    "error.deletedDuplicate.instance": "O registro de instância associado a {value1} foi excluído.",
+    "error.deletedTooLong.instance": "A instância com id {value1} foi excluída.",
+    "error.nonExisting.instance": "O registro de instância associado a {value1} não existe."
 }
