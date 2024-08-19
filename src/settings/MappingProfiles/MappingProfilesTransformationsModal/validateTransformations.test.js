@@ -23,7 +23,7 @@ describe('validateRawTransformation', () => {
         marcField: '123',
         indicator1: '0',
         indicator2: '0',
-        subfield: '13',
+        subfield: '1',
       },
     };
 
@@ -35,7 +35,7 @@ describe('validateRawTransformation', () => {
       rawTransformation: {
         marcField: '123',
         indicator1: '',
-        subfield: '13',
+        subfield: '1',
       },
     };
 
@@ -45,7 +45,11 @@ describe('validateRawTransformation', () => {
   it('should validate raw transformation as valid when indicators and subfield are absent', () => {
     const transformation = { rawTransformation: { marcField: '300' } };
 
-    expect(validateRawTransformation(transformation)).toEqual(validTransformation);
+    expect(validateRawTransformation(transformation)).toEqual({
+      ...validTransformation,
+      isTransformationValid: false,
+      subfield: false,
+    });
   });
 
   it('should validate raw transformation as invalid when marcField contains letters', () => {
@@ -55,6 +59,7 @@ describe('validateRawTransformation', () => {
       ...validTransformation,
       marcField: false,
       isTransformationValid: false,
+      subfield: false,
     });
   });
 
@@ -65,6 +70,7 @@ describe('validateRawTransformation', () => {
       ...validTransformation,
       marcField: false,
       isTransformationValid: false,
+      subfield: false,
     });
   });
 
@@ -75,6 +81,7 @@ describe('validateRawTransformation', () => {
       ...validTransformation,
       marcField: false,
       isTransformationValid: false,
+      subfield: false,
     });
   });
 
@@ -85,6 +92,7 @@ describe('validateRawTransformation', () => {
       ...validTransformation,
       marcField: false,
       isTransformationValid: false,
+      subfield: false,
     });
   });
 
@@ -95,6 +103,7 @@ describe('validateRawTransformation', () => {
       ...validTransformation,
       marcField: false,
       isTransformationValid: false,
+      subfield: false,
     });
   });
 
@@ -104,6 +113,7 @@ describe('validateRawTransformation', () => {
         marcField: '123',
         indicator1: '12',
         indicator2: 'aa',
+        subfield: 'c',
       },
     };
 
@@ -121,6 +131,7 @@ describe('validateRawTransformation', () => {
         marcField: '123',
         indicator1: 'a',
         indicator2: 'B',
+        subfield: 'c',
       },
     };
 
@@ -133,6 +144,7 @@ describe('validateRawTransformation', () => {
         marcField: '123',
         indicator1: ' ',
         indicator2: ' ',
+        subfield: 'c',
       },
     };
 
@@ -297,14 +309,14 @@ describe('validateTransformations', () => {
         marcField: false,
         indicator1: true,
         indicator2: true,
-        subfield: true,
+        subfield: false,
         isTransformationValid: false,
       },
       4: {
         marcField: false,
         indicator1: true,
         indicator2: true,
-        subfield: true,
+        subfield: false,
         isTransformationValid: false,
       },
     };

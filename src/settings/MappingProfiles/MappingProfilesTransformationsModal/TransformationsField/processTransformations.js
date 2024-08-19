@@ -5,6 +5,30 @@ import {
   splitIntoRawTransformation,
 } from '../../MappingProfilesFormContainer/processRawTransformations';
 
+const processMarcField = (data) => {
+  if (!data) {
+    return undefined;
+  }
+
+  const { marcField, indicator1, indicator2, subfield } = data;
+
+  const result = { marcField };
+
+  if ((!indicator1 || indicator1 === ' ') && !marcField.startsWith('0')) {
+    result.indicator1 = '\\';
+  } else result.indicator1 = indicator1;
+
+  if ((!indicator2 || indicator2 === ' ') && !marcField.startsWith('0')) {
+    result.indicator2 = '\\';
+  } else result.indicator2 = indicator2;
+
+  if (subfield) {
+    result.subfield = subfield;
+  }
+
+  return result;
+};
+
 export function generateTransformationFieldsValues(allTransformations, profileTransformations = []) {
   const generatedTransformations = allTransformations.map((transformation, i) => ({
     ...transformation,
@@ -16,7 +40,7 @@ export function generateTransformationFieldsValues(allTransformations, profileTr
       .findIndex(transformation => transformation.fieldId === profileTransformation.fieldId);
     const profileTransformationInAllTransformations = {
       ...generatedTransformations[profileTransformationInAllTransformationsIndex],
-      rawTransformation: profileTransformation.rawTransformation || splitIntoRawTransformation(profileTransformation.transformation),
+      rawTransformation: processMarcField(profileTransformation.rawTransformation) || splitIntoRawTransformation(profileTransformation.transformation),
     };
 
     if (profileTransformationInAllTransformationsIndex !== -1) {

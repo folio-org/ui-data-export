@@ -139,7 +139,7 @@ export const TransformationFieldGroup = ({
       placeholder: groupPlaceholder.subfield,
       testId: 'transformation-subfield',
       type: 'subfield',
-      maxLength: 3,
+      maxLength: 1,
       isValid: validatedTransformations.subfield,
     },
   };
@@ -151,7 +151,7 @@ export const TransformationFieldGroup = ({
       data-testid={`transformation-field-group-${typeOfField}`}
     >
       {renderTransformationField(fieldConfigs[typeOfField])}
-      {!validatedTransformations.isTransformationValid && (
+      {!validatedTransformations[typeOfField] && (
         <Popover
           renderTrigger={({
             ref,

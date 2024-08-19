@@ -5,7 +5,6 @@
 }
 
 .field {
-  margin-right: 0.5rem;
   margin-left: 0.5rem;
 
   &:nth-of-type(4) {

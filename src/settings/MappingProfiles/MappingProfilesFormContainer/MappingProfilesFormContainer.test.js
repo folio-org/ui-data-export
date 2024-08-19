@@ -252,8 +252,8 @@ describe('MappingProfileFormContainer', () => {
           expect(transformationFields.subfields[0].querySelector('input')).toHaveValue('r');
 
           expect(transformationFields.marcFields[1].querySelector('input')).toHaveValue('900');
-          expect(transformationFields.indicators1[1].querySelector('input')).toHaveValue('');
-          expect(transformationFields.indicators2[1].querySelector('input')).toHaveValue('');
+          expect(transformationFields.indicators1[1].querySelector('input')).toHaveValue('\\');
+          expect(transformationFields.indicators2[1].querySelector('input')).toHaveValue('\\');
           expect(transformationFields.subfields[1].querySelector('input')).toHaveValue('1');
         });
 
