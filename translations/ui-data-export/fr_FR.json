@@ -304,5 +304,9 @@
     "mappingProfiles.transformations.field": "Field",
     "mappingProfiles.transformations.subfield": "Subfield",
     "mappingProfiles.transformations.ind1": "In.1",
-    "mappingProfiles.transformations.ind2": "In.2"
+    "mappingProfiles.transformations.ind2": "In.2",
+    "error.duplicatedIds": "ERROR UUID {value1} repeated {value2} times.",
+    "error.deletedDuplicate.instance": "Instance record associated with {value1} has been deleted.",
+    "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
+    "error.nonExisting.instance": "Instance record associated with {value1} does not exist."
 }
