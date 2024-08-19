@@ -23,7 +23,7 @@ describe('validateRawTransformation', () => {
         marcField: '123',
         indicator1: '0',
         indicator2: '0',
-        subfield: '$13',
+        subfield: '13',
       },
     };
 
@@ -35,7 +35,7 @@ describe('validateRawTransformation', () => {
       rawTransformation: {
         marcField: '123',
         indicator1: '',
-        subfield: '$13',
+        subfield: '13',
       },
     };
 
@@ -143,7 +143,7 @@ describe('validateRawTransformation', () => {
     const transformation = {
       rawTransformation: {
         marcField: '123',
-        subfield: '$1',
+        subfield: '1',
       },
     };
 
@@ -154,7 +154,7 @@ describe('validateRawTransformation', () => {
     const transformation = {
       rawTransformation: {
         marcField: '123',
-        subfield: '$12',
+        subfield: '12',
       },
     };
 
@@ -165,7 +165,7 @@ describe('validateRawTransformation', () => {
     const transformation = {
       rawTransformation: {
         marcField: '123',
-        subfield: '$a',
+        subfield: 'a',
       },
     };
 
@@ -176,7 +176,7 @@ describe('validateRawTransformation', () => {
     const transformation = {
       rawTransformation: {
         marcField: '123',
-        subfield: '$ab',
+        subfield: 'ab',
       },
     };
 
@@ -217,7 +217,7 @@ describe('validateRawTransformation', () => {
     });
   });
 
-  it('should validate raw transformation as invalid when subfield does not have $ at the beginning', () => {
+  it('should validate raw transformation', () => {
     const transformation = {
       rawTransformation: {
         marcField: '123',
@@ -227,8 +227,8 @@ describe('validateRawTransformation', () => {
 
     expect(validateRawTransformation(transformation)).toEqual({
       ...validTransformation,
-      subfield: false,
-      isTransformationValid: false,
+      subfield: true,
+      isTransformationValid: true,
     });
   });
 

@@ -10,11 +10,11 @@ export const parseRawTransformation = transformation => {
   const { rawTransformation = {} } = transformation;
   const {
     marcField = '',
-    subfield = '',
   } = rawTransformation;
   let {
     indicator1 = ' ',
     indicator2 = ' ',
+    subfield = '',
   } = rawTransformation;
 
   if (indicator1 === '') {
@@ -24,6 +24,10 @@ export const parseRawTransformation = transformation => {
   if (indicator2 === '') {
     indicator2 = ' ';
   }
+
+  if (marcField.startsWith('0')) {
+    subfield = '';
+  } else subfield = `$${subfield}`;
 
   return `${marcField}${indicator1}${indicator2}${subfield}`;
 };
@@ -41,6 +45,8 @@ export const splitIntoRawTransformation = transformation => {
   if (rawTransformation?.indicator2 === ' ') {
     rawTransformation.indicator2 = '';
   }
+
+  rawTransformation.subfield = rawTransformation.subfield?.replace('$', '');
 
   return rawTransformation;
 };

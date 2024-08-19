@@ -20,7 +20,7 @@ import {
   allMappingProfilesTransformations,
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
-import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
+import { getTransformationFieldGroups, SettingsComponentBuilder } from '../../../../test/jest/helpers';
 import { recordTypesHoldings, saveAndCloseBtn } from '../test/setup';
 
 function CreateMappingProfileFormRouteContainer({
@@ -89,11 +89,11 @@ describe('CreateMappingProfileFormRoute', () => {
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
-      const textFields = within(tableRow).getAllByRole('textbox');
+      const { marcFields, subfields } = getTransformationFieldGroups();
 
       userEvent.click(checkbox);
-      userEvent.type(textFields[0], '500');
-      userEvent.type(textFields[3], '$a');
+      userEvent.type(marcFields[0].querySelector('input'), '500');
+      userEvent.type(subfields[0].querySelector('input'), 'a');
       userEvent.click(saveTransrormationsButton);
 
       userEvent.click(submitFormButton);
@@ -133,11 +133,11 @@ describe('CreateMappingProfileFormRoute', () => {
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
-      const textFields = within(tableRow).getAllByRole('textbox');
+      const { marcFields, subfields } = getTransformationFieldGroups();
 
       userEvent.click(checkbox);
-      userEvent.type(textFields[0], '500');
-      userEvent.type(textFields[3], '$a');
+      userEvent.type(marcFields[0].querySelector('input'), '500');
+      userEvent.type(subfields[0].querySelector('input'), 'a');
       userEvent.click(saveTransrormationsButton);
 
       userEvent.click(submitFormButton);
