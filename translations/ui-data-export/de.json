@@ -293,7 +293,7 @@
     "error.profileUsedToNonDeleted": "This profile can only be used to export authority records not deleted",
     "jobStatus.new": "New",
     "suppressInfo": "List of MARC fields to be excluded from the export. The fields are represented by three digits and separated by a comma. For example: 902,903",
-    "item.checkInNote": "Check in Anmerkung",
+    "item.checkInNote": "Check-In-Notiz",
     "item.checkOutNote": "Check out note",
     "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
@@ -304,5 +304,9 @@
     "mappingProfiles.transformations.field": "Field",
     "mappingProfiles.transformations.subfield": "Subfield",
     "mappingProfiles.transformations.ind1": "In.1",
-    "mappingProfiles.transformations.ind2": "In.2"
+    "mappingProfiles.transformations.ind2": "In.2",
+    "error.duplicatedIds": "ERROR UUID {value1} repeated {value2} times.",
+    "error.deletedDuplicate.instance": "Instance record associated with {value1} has been deleted.",
+    "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
+    "error.nonExisting.instance": "Instance record associated with {value1} does not exist."
 }
