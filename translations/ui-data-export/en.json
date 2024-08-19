@@ -305,7 +305,7 @@
   "error.invalidUuidFormat": "Invalid UUID format: {value1}",
   "error.mappingProfile.defaultNotFound": "Default mapping profile not found",
   "error.readingFromInputFile": "Error while reading from input file with uuids or file is empty",
-  "error.duplicatedIds": "ERROR UUID {value1} repeated {value2} times.",
+  "error.duplicatedIds": "UUID {value1} repeated {value2} times.",
   "error.someRecordsFailed": "Failed records number: {value1}.",
   "error.uuidsNotFound": "Record not found: {value1}.",
   "error.binaryFile.notGenerated": "Nothing to export: no .mrc file generated.",
