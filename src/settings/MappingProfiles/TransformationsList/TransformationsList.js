@@ -24,7 +24,7 @@ const getValue = (record, index) => {
   const isFourthCharEmpty =
     !record.transformation[index] ||
     record.transformation[index].trim() === '';
-  const startsWithZero = record.transformation.startsWith('0');
+  const startsWithZero = record.transformation.startsWith('00');
 
   if (isFourthCharEmpty) {
     return startsWithZero ? '' : '\\';

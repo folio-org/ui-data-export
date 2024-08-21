@@ -5,7 +5,6 @@
 }
 
 .field {
-  margin-left: 0.5rem;
 
   &:nth-of-type(4) {
     margin-right: calc(var(--font-size-x-small)*2);

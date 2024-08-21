@@ -25,7 +25,7 @@ export const parseRawTransformation = transformation => {
     indicator2 = ' ';
   }
 
-  if (marcField.startsWith('0')) {
+  if (marcField.startsWith('00')) {
     subfield = '';
   } else subfield = `$${subfield}`;
 
@@ -40,13 +40,13 @@ export const splitIntoRawTransformation = transformation => {
 
   if ((rawTransformation?.indicator1 === ' ' || rawTransformation?.indicator1 === '') && !rawTransformation?.marcField.startsWith('0')) {
     rawTransformation.indicator1 = '\\';
-  } else if (rawTransformation?.marcField.startsWith('0')) {
+  } else if (rawTransformation?.marcField.startsWith('00')) {
     rawTransformation.indicator1 = '';
   }
 
   if ((rawTransformation?.indicator2 === ' ' || rawTransformation?.indicator2 === '') && !rawTransformation?.marcField.startsWith('0')) {
     rawTransformation.indicator2 = '\\';
-  } else if (rawTransformation?.marcField.startsWith('0')) {
+  } else if (rawTransformation?.marcField.startsWith('00')) {
     rawTransformation.indicator2 = '';
   }
 

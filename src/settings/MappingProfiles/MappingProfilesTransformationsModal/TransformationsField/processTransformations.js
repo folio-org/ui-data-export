@@ -13,12 +13,13 @@ const processMarcField = (data) => {
   const { marcField, indicator1, indicator2, subfield } = data;
 
   const result = { marcField };
+  console.log(data);
 
-  if ((!indicator1 || indicator1 === ' ') && !marcField.startsWith('0')) {
+  if ((!indicator1 || indicator1 === ' ') && !marcField.startsWith('00')) {
     result.indicator1 = '\\';
   } else result.indicator1 = indicator1;
 
-  if ((!indicator2 || indicator2 === ' ') && !marcField.startsWith('0')) {
+  if ((!indicator2 || indicator2 === ' ') && !marcField.startsWith('00')) {
     result.indicator2 = '\\';
   } else result.indicator2 = indicator2;
 

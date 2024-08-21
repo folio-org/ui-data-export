@@ -63,7 +63,7 @@ export const validateRawTransformation = transformation => {
     marcField: transformationRegexMap.marcField.test(marcField),
     indicator1: transformationRegexMap.indicator.test(indicator1),
     indicator2: transformationRegexMap.indicator.test(indicator2),
-    subfield: marcField.startsWith('0') ? transformationRegexMap.controlledSubfield.test(subfield) : transformationRegexMap.subfield.test(subfield),
+    subfield: marcField.startsWith('00') ? transformationRegexMap.controlledSubfield.test(subfield) : transformationRegexMap.subfield.test(subfield),
   });
 };
 
