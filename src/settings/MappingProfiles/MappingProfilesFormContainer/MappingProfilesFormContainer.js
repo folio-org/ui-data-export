@@ -58,6 +58,7 @@ export const MappingProfilesFormContainer = props => {
   const [initialSelectedTransformations, setInitialSelectedTransformations] = useState(
     () => generateSelectedTransformations(selectedTransformations, getSelectedTransformationsInAllTransformations)
   );
+
   const [disabledRecordTypes, setDisabledRecordTypes] = useState({
     [FOLIO_RECORD_TYPES.SRS.type]: false,
     [FOLIO_RECORD_TYPES.INSTANCE.type]: false,

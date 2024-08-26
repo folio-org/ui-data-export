@@ -1,6 +1,6 @@
 import React, {
   memo,
-  useMemo,
+  useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
@@ -39,6 +39,8 @@ export const TransformationField = memo(({
   const headerRowHeight = 40;
   const rowHeight = 50;
 
+  const [isShowPlaceholder, setIsShowPlaceholder] = useState(true);
+
   const formatter = useMemo(() => ({
     isSelected: record => (
       <Field
@@ -69,6 +71,8 @@ export const TransformationField = memo(({
         setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         typeOfField="marcField"
+        isShowPlaceholder={isShowPlaceholder}
+        setIsShowPlaceholder={setIsShowPlaceholder}
       />
     ),
     subfield: record => (
@@ -78,6 +82,8 @@ export const TransformationField = memo(({
         setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         typeOfField="subfield"
+        isShowPlaceholder={isShowPlaceholder}
+        setIsShowPlaceholder={setIsShowPlaceholder}
       />
     ),
     ind1: record => (
@@ -87,6 +93,8 @@ export const TransformationField = memo(({
         setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         typeOfField="indicator1"
+        isShowPlaceholder={isShowPlaceholder}
+        setIsShowPlaceholder={setIsShowPlaceholder}
       />
     ),
     ind2: record => (
@@ -96,9 +104,11 @@ export const TransformationField = memo(({
         setValidatedTransformations={setValidatedTransformations}
         setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
         typeOfField="indicator2"
+        isShowPlaceholder={isShowPlaceholder}
+        setIsShowPlaceholder={setIsShowPlaceholder}
       />
     ),
-  }), [validatedTransformations, setValidatedTransformations, setIsSubmitButtonDisabled, onSelectChange, intl]);
+  }), [validatedTransformations, setValidatedTransformations, setIsSubmitButtonDisabled, onSelectChange, intl, isShowPlaceholder, setIsShowPlaceholder]);
 
 
   const selectAllLabel = useMemo(() => intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.selectAllFields' }), [intl]);

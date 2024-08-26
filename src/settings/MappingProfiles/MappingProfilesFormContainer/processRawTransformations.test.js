@@ -73,7 +73,7 @@ describe('splitIntoRawTransformation', () => {
     expect(splitIntoRawTransformation('9001 $1')).toEqual({
       marcField: '900',
       indicator1: '1',
-      indicator2: '',
+      indicator2: '\\',
       subfield: '1',
     });
   });
@@ -81,7 +81,7 @@ describe('splitIntoRawTransformation', () => {
   it('should return correct raw transformation when indicator1 is empty and subfield containing letter', () => {
     expect(splitIntoRawTransformation('900 2$r')).toEqual({
       marcField: '900',
-      indicator1: '',
+      indicator1: '\\',
       indicator2: '2',
       subfield: 'r',
     });

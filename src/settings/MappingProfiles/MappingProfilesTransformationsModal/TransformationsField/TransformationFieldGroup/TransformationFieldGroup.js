@@ -1,10 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { TextField, Popover, IconButton } from '@folio/stripes/components';
+import {
+  TextField,
+  Popover,
+  IconButton,
+} from '@folio/stripes/components';
 
 import { checkTransformationValidity } from '../../validateTransformations';
 
@@ -29,25 +33,10 @@ export const TransformationFieldGroup = ({
   setValidatedTransformations,
   setIsSubmitButtonDisabled,
   typeOfField,
+  isShowPlaceholder,
+  setIsShowPlaceholder,
 }) => {
   const intl = useIntl();
-
-  const [isPlaceholder, setIsShowPlaceholder] = useState({
-    marcField: '',
-    indicator1: '',
-    indicator2: '',
-    subfield: '',
-  });
-
-  const setGroupPlaceHolder = useCallback(() => {
-    return record.isFirst && Object.values(isPlaceholder).every(x => x === '') ? GROUP_PLACEHOLDER : {};
-  }, [isPlaceholder, record.isFirst]);
-
-  const groupPlaceholder = setGroupPlaceHolder();
-
-  useEffect(() => {
-    setGroupPlaceHolder();
-  }, [groupPlaceholder, record.isFirst, isPlaceholder, setGroupPlaceHolder]);
 
   const handleChange = useCallback((type, isValid) => {
     setIsSubmitButtonDisabled(isSubmitButtonDisabled => (isSubmitButtonDisabled ? false : isSubmitButtonDisabled));
@@ -66,10 +55,7 @@ export const TransformationFieldGroup = ({
   }, [record.order, setIsSubmitButtonDisabled, setValidatedTransformations]);
 
   const onChangeHandler = (event, type, isValid, fieldProps) => {
-    setIsShowPlaceholder({
-      ...isPlaceholder,
-      [type]: event.target.value,
-    });
+    setIsShowPlaceholder(!event.target.value);
     handleChange(type, isValid);
     fieldProps.input.onChange(event);
   };
@@ -95,9 +81,8 @@ export const TransformationFieldGroup = ({
         render={fieldProps => (
           <TextField
             {...fieldProps.input}
-            placeholder={placeholder}
+            placeholder={(isShowPlaceholder && record.isFirst) ? placeholder : null}
             maxLength={maxLength}
-            hasClearIcon={false}
             aria-invalid={!isValid}
             marginBottom0
             onChange={event => onChangeHandler(event, type, isValid, fieldProps)}
@@ -110,7 +95,7 @@ export const TransformationFieldGroup = ({
   const fieldConfigs = {
     marcField: {
       name: `transformations[${record.order}].rawTransformation.marcField`,
-      placeholder: groupPlaceholder.marcField,
+      placeholder: GROUP_PLACEHOLDER.marcField,
       testId: 'transformation-marcField',
       type: 'marcField',
       maxLength: 3,
@@ -118,7 +103,7 @@ export const TransformationFieldGroup = ({
     },
     indicator1: {
       name: `transformations[${record.order}].rawTransformation.indicator1`,
-      placeholder: groupPlaceholder.indicator1,
+      placeholder: GROUP_PLACEHOLDER.indicator1,
       testId: 'transformation-indicator1',
       type: 'indicator1',
       maxLength: 1,
@@ -127,7 +112,7 @@ export const TransformationFieldGroup = ({
     },
     indicator2: {
       name: `transformations[${record.order}].rawTransformation.indicator2`,
-      placeholder: groupPlaceholder.indicator2,
+      placeholder: GROUP_PLACEHOLDER.indicator2,
       testId: 'transformation-indicator2',
       type: 'indicator2',
       maxLength: 1,
@@ -136,10 +121,10 @@ export const TransformationFieldGroup = ({
     },
     subfield: {
       name: `transformations[${record.order}].rawTransformation.subfield`,
-      placeholder: groupPlaceholder.subfield,
+      placeholder: GROUP_PLACEHOLDER.subfield,
       testId: 'transformation-subfield',
       type: 'subfield',
-      maxLength: 3,
+      maxLength: 1,
       isValid: validatedTransformations.subfield,
     },
   };
@@ -151,7 +136,7 @@ export const TransformationFieldGroup = ({
       data-testid={`transformation-field-group-${typeOfField}`}
     >
       {renderTransformationField(fieldConfigs[typeOfField])}
-      {!validatedTransformations.isTransformationValid && (
+      {!validatedTransformations[typeOfField] && (
         <Popover
           renderTrigger={({
             ref,
@@ -189,5 +174,7 @@ TransformationFieldGroup.propTypes = {
   }),
   setValidatedTransformations: PropTypes.func.isRequired,
   setIsSubmitButtonDisabled: PropTypes.func.isRequired,
+  isShowPlaceholder: PropTypes.bool.isRequired,
+  setIsShowPlaceholder: PropTypes.func.isRequired,
   typeOfField: PropTypes.oneOf(['marcField', 'indicator1', 'indicator2', 'subfield']).isRequired,
 };

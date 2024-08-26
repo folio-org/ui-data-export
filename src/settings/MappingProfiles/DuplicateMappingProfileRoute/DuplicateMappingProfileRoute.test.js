@@ -201,7 +201,7 @@ describe('DuplicateMappingProfileRoute', () => {
         const { marcFields, indicators2, indicators1, subfields } = getTransformationFieldGroups();
 
         expect(marcFields[2].querySelector('input')).toHaveValue('900');
-        expect(indicators1[2].querySelector('input')).toHaveValue('');
+        expect(indicators1[2].querySelector('input')).toHaveValue('\\');
         expect(indicators2[2].querySelector('input')).toHaveValue('1');
         expect(subfields[2].querySelector('input')).toHaveValue('12');
       });

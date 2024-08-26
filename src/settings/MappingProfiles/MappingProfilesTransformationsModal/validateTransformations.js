@@ -2,8 +2,9 @@ import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
 const transformationRegexMap = {
   marcField: /^\d{3}$/,
-  indicator: /^[\d\sa-zA-Z]?$/,
-  subfield: /^([0-9]{1,2}|[a-zA-Z])?$/,
+  indicator: /^[\d\sa-zA-Z\\]?$/,
+  subfield: /^([0-9]{1,2}|[a-zA-Z])$/,
+  controlledSubfield: /^([0-9]{1,2}|[a-zA-Z])?/,
 };
 
 export const checkTransformationValidity = ({
@@ -62,7 +63,7 @@ export const validateRawTransformation = transformation => {
     marcField: transformationRegexMap.marcField.test(marcField),
     indicator1: transformationRegexMap.indicator.test(indicator1),
     indicator2: transformationRegexMap.indicator.test(indicator2),
-    subfield: transformationRegexMap.subfield.test(subfield),
+    subfield: marcField.startsWith('00') ? transformationRegexMap.controlledSubfield.test(subfield) : transformationRegexMap.subfield.test(subfield),
   });
 };
 
