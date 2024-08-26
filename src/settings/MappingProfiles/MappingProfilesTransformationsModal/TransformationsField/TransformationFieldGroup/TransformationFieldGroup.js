@@ -1,10 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { TextField, Popover, IconButton } from '@folio/stripes/components';
+import {
+  TextField,
+  Popover,
+  IconButton,
+} from '@folio/stripes/components';
 
 import { checkTransformationValidity } from '../../validateTransformations';
 
