@@ -305,7 +305,7 @@
     "mappingProfiles.transformations.subfield": "Subcampo",
     "mappingProfiles.transformations.ind1": "In.1",
     "mappingProfiles.transformations.ind2": "In.2",
-    "error.duplicatedIds": "ERRO UUID {value1} repetido {value2} vezes.",
+    "error.duplicatedIds": "UUID {value1} repetido {value2} vezes.",
     "error.deletedDuplicate.instance": "O registro de instância associado a {value1} foi excluído.",
     "error.deletedTooLong.instance": "A instância com id {value1} foi excluída.",
     "error.nonExisting.instance": "O registro de instância associado a {value1} não existe."

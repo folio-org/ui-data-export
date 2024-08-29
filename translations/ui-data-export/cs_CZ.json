@@ -305,7 +305,7 @@
     "mappingProfiles.transformations.subfield": "Podpole",
     "mappingProfiles.transformations.ind1": "In.1",
     "mappingProfiles.transformations.ind2": "In.2",
-    "error.duplicatedIds": "ERROR UUID {value1} se opakuje {value2} krát.",
+    "error.duplicatedIds": "UUID {value1} se opakuje {value2} krát.",
     "error.deletedDuplicate.instance": "Záznam titulu spojený s {value1} byl smazán.",
     "error.deletedTooLong.instance": "Titul s ID {value1} byl smazán.",
     "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje."
