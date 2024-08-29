@@ -61,9 +61,9 @@ export const validateRawTransformation = transformation => {
 
   return checkTransformationValidity({
     marcField: transformationRegexMap.marcField.test(marcField),
-    indicator1: transformationRegexMap.indicator.test(indicator1),
-    indicator2: transformationRegexMap.indicator.test(indicator2),
-    subfield: marcField.startsWith('00') ? transformationRegexMap.controlledSubfield.test(subfield) : transformationRegexMap.subfield.test(subfield),
+    indicator1: marcField.startsWith('00') ? !indicator1 : transformationRegexMap.indicator.test(indicator1),
+    indicator2: marcField.startsWith('00') ? !indicator2 : transformationRegexMap.indicator.test(indicator2),
+    subfield: marcField.startsWith('00') ? !subfield : transformationRegexMap.subfield.test(subfield),
   });
 };
 

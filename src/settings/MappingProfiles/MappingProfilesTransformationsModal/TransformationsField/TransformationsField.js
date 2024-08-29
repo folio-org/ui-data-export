@@ -22,7 +22,7 @@ const columnWidths = {
   field: '15%',
   ind1: '10%',
   ind2: '10%',
-  subfield: '15%',
+  subfield: '10%',
 };
 const visibleColumns = ['isSelected', 'fieldName', 'field', 'ind1', 'ind2', 'subfield'];
 
