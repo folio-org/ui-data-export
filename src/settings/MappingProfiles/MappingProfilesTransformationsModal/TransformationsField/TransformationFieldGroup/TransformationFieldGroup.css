@@ -5,6 +5,7 @@
 }
 
 .field {
+  width: 100%;
 
   &:nth-of-type(4) {
     margin-right: calc(var(--font-size-x-small)*2);
@@ -20,6 +21,6 @@
 }
 
 .icon {
-  margin-left: -1.4rem;
+  margin-left: -2rem;
   color: var(--error);
 }
