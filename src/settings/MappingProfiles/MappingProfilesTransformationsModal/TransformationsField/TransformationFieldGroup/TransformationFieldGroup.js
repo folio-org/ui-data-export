@@ -55,7 +55,9 @@ export const TransformationFieldGroup = ({
   }, [record.order, setIsSubmitButtonDisabled, setValidatedTransformations]);
 
   const onChangeHandler = (event, type, isValid, fieldProps) => {
-    setIsShowPlaceholder(!event.target.value);
+    if (record.isFirst) {
+      setIsShowPlaceholder(!event.target.value);
+    }
     handleChange(type, isValid);
     fieldProps.input.onChange(event);
   };
@@ -85,6 +87,7 @@ export const TransformationFieldGroup = ({
             maxLength={maxLength}
             aria-invalid={!isValid}
             marginBottom0
+            hasClearIcon={isValid}
             onChange={event => onChangeHandler(event, type, isValid, fieldProps)}
           />
         )}
@@ -138,6 +141,7 @@ export const TransformationFieldGroup = ({
       {renderTransformationField(fieldConfigs[typeOfField])}
       {!validatedTransformations[typeOfField] && (
         <Popover
+          placement="bottom-end"
           renderTrigger={({
             ref,
             toggle,
@@ -152,7 +156,9 @@ export const TransformationFieldGroup = ({
             />
           )}
         >
-          {intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.invalidTransformationMessage' })}
+          <div data-role="popover">
+            {intl.formatMessage({ id: 'ui-data-export.mappingProfiles.transformations.invalidTransformationMessage' })}
+          </div>
         </Popover>
       )}
     </div>
