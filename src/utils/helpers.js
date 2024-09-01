@@ -52,3 +52,16 @@ export const getSortedUsers = (users = []) => users.map(item => {
 
     return nameA.localeCompare(nameB);
   });
+
+export const sortByFileName = (a, b) => {
+  const fileNameA = a.exportedFiles[0]?.fileName.toLowerCase();
+  const fileNameB = b.exportedFiles[0]?.fileName.toLowerCase();
+
+  if (fileNameA < fileNameB) {
+    return -1;
+  }
+  if (fileNameA > fileNameB) {
+    return 1;
+  }
+  return 0;
+};
