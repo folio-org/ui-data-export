@@ -1,5 +1,5 @@
 import '../../test/jest/__mock__';
-import { getFormattedFilters, getMappedFilters, getSortedUsers } from './helpers';
+import { getFormattedFilters, getMappedFilters, getSortedUsers, sortByFileName } from './helpers';
 import { buildDateTimeRangeQuery } from '../components/AllJobLogsView/CustomQueryBuilder';
 import { JOB_EXECUTION_STATUSES, JOB_LOGS_STATUS_QUERY_VALUE } from './constants';
 
@@ -179,5 +179,77 @@ describe('getSortedUsers', () => {
       { userId: 3, firstName: undefined, lastName: 'Smith' },
       { userId: 1, firstName: undefined, lastName: undefined },
     ]);
+  });
+});
+
+describe('sortByFileName', () => {
+  it('should sort an array of objects by the fileName in exportedFiles', () => {
+    const array = [
+      {
+        id: '1',
+        exportedFiles: [{ fileName: 'user-barcodes-2.mrc' }],
+      },
+      {
+        id: '2',
+        exportedFiles: [{ fileName: 'user-barcodes-1.mrc' }],
+      },
+      {
+        id: '3',
+        exportedFiles: [{ fileName: 'user-barcodes-3.mrc' }],
+      },
+    ];
+
+    const expectedArray = [
+      {
+        id: '2',
+        exportedFiles: [{ fileName: 'user-barcodes-1.mrc' }],
+      },
+      {
+        id: '1',
+        exportedFiles: [{ fileName: 'user-barcodes-2.mrc' }],
+      },
+      {
+        id: '3',
+        exportedFiles: [{ fileName: 'user-barcodes-3.mrc' }],
+      },
+    ];
+
+    array.sort(sortByFileName);
+    expect(array).toEqual(expectedArray);
+  });
+
+  it('should handle case insensitivity when sorting', () => {
+    const array = [
+      {
+        id: '1',
+        exportedFiles: [{ fileName: 'User-barcodes-2.mrc' }],
+      },
+      {
+        id: '2',
+        exportedFiles: [{ fileName: 'user-barcodes-1.mrc' }],
+      },
+      {
+        id: '3',
+        exportedFiles: [{ fileName: 'user-barcodes-3.mrc' }],
+      },
+    ];
+
+    const expectedArray = [
+      {
+        id: '2',
+        exportedFiles: [{ fileName: 'user-barcodes-1.mrc' }],
+      },
+      {
+        id: '1',
+        exportedFiles: [{ fileName: 'User-barcodes-2.mrc' }],
+      },
+      {
+        id: '3',
+        exportedFiles: [{ fileName: 'user-barcodes-3.mrc' }],
+      },
+    ];
+
+    array.sort(sortByFileName);
+    expect(array).toEqual(expectedArray);
   });
 });
