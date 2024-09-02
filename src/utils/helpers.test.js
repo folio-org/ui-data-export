@@ -182,3 +182,66 @@ describe('getSortedUsers', () => {
   });
 });
 
+const createMockComponent = (title) => ({
+  props: {
+    title,
+  },
+});
+
+describe('sortByFileName', () => {
+  it('should sort alphabetically by title  with .csv extension', () => {
+    const item1 = createMockComponent('fileA.csv');
+    const item2 = createMockComponent('fileB.csv');
+    const item3 = createMockComponent('fileC.csv');
+
+    const items = [item2, item3, item1];
+    const sortedItems = items.sort(sortByFileName);
+
+    expect(sortedItems).toEqual([item1, item2, item3]);
+  });
+
+  it('should be case insensitive', () => {
+    const item1 = createMockComponent('FileA.csv');
+    const item2 = createMockComponent('fileB.csv');
+    const item3 = createMockComponent('fileC.csv');
+
+    const items = [item2, item3, item1];
+    const sortedItems = items.sort(sortByFileName);
+
+    expect(sortedItems).toEqual([item1, item2, item3]);
+  });
+
+  it('should handle items with identical titles correctly', () => {
+    const item1 = createMockComponent('fileA.csv');
+    const item2 = createMockComponent('fileB.csv');
+    const item3 = createMockComponent('fileB.csv');
+
+    const items = [item2, item3, item1];
+    const sortedItems = items.sort(sortByFileName);
+
+    expect(sortedItems).toEqual([item1, item2, item3]);
+  });
+
+  it('should handle empty titles correctly', () => {
+    const item1 = createMockComponent('');
+    const item2 = createMockComponent('fileB.csv');
+    const item3 = createMockComponent('fileA.csv');
+
+    const items = [item2, item3, item1];
+    const sortedItems = items.sort(sortByFileName);
+
+    expect(sortedItems).toEqual([item1, item3, item2]);
+  });
+
+  it('should handle titles with special characters correctly', () => {
+    const item1 = createMockComponent('@fileA.csv');
+    const item2 = createMockComponent('fileB.csv');
+    const item3 = createMockComponent('fileA.csv');
+
+    const items = [item2, item3, item1];
+    const sortedItems = items.sort(sortByFileName);
+
+    expect(sortedItems).toEqual([item1, item3, item2]);
+  });
+});
+
