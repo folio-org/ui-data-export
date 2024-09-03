@@ -1,3 +1,4 @@
+import { sortStrings } from '@folio/stripes-data-transfer-components';
 import { buildDateTimeRangeQuery } from '../components/AllJobLogsView/CustomQueryBuilder';
 import { JOB_EXECUTION_STATUSES, JOB_LOGS_STATUS_QUERY_VALUE } from './constants';
 
@@ -52,3 +53,10 @@ export const getSortedUsers = (users = []) => users.map(item => {
 
     return nameA.localeCompare(nameB);
   });
+
+export const sortByFileName = (a, b) => {
+  const fileNameA = a.props.title.toUpperCase();
+  const fileNameB = b.props.title.toUpperCase();
+
+  return sortStrings(fileNameA, fileNameB);
+};

@@ -11,9 +11,14 @@ import { stripesConnect } from '@folio/stripes/core';
 
 import { DataFetcherContext } from '../../contexts/DataFetcherContext';
 import { JobLogsContainer } from '../JobLogsContainer';
+import { sortByFileName } from '../../utils';
 
 const sortColumns = {
   ...DEFAULT_JOB_LOGS_SORT_COLUMNS,
+  fileName: {
+    sortFn: sortByFileName,
+    useFormatterFn: true,
+  },
   errors: {
     sortFn: sortNumbers,
     useFormatterFn: true,
