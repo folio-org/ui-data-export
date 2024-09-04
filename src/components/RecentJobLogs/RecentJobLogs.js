@@ -55,6 +55,7 @@ const RecentJobLogsComponent = () => {
           contentData={logs}
           formatter={listProps.resultsFormatter}
           onRowClick={onRowClick}
+          showSortIndicator
           {...listProps}
         />
       )}
