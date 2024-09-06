@@ -47,10 +47,6 @@ export const isInstanceTransformationEmpty = transformation => {
 };
 
 export const validateRawTransformation = transformation => {
-  if (isInstanceTransformationEmpty(transformation)) {
-    return { isTransformationValid: true };
-  }
-
   const { rawTransformation = {} } = transformation;
   const {
     marcField = '',

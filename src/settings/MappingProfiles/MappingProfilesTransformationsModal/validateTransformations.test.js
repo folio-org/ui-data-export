@@ -244,13 +244,19 @@ describe('validateRawTransformation', () => {
     });
   });
 
-  it('should validate raw transformation as valid when all fields are absent and record has an instance type', () => {
+  it('should validate raw transformation as invalid when all fields are absent and record has an instance type', () => {
     const transformation = { recordType: 'INSTANCE' };
 
-    expect(validateRawTransformation(transformation)).toEqual({ isTransformationValid: true });
+    expect(validateRawTransformation(transformation)).toEqual({
+      isTransformationValid: false,
+      indicator1: true,
+      indicator2: true,
+      marcField: false,
+      subfield: false,
+    });
   });
 
-  it('should validate raw transformation as valid when all fields are present but empty and record has an instance type', () => {
+  it('should validate raw transformation as invalid when all fields are present but empty and record has an instance type', () => {
     const transformation = {
       recordType: 'INSTANCE',
       rawTransformation: {
@@ -261,7 +267,13 @@ describe('validateRawTransformation', () => {
       },
     };
 
-    expect(validateRawTransformation(transformation)).toEqual({ isTransformationValid: true });
+    expect(validateRawTransformation(transformation)).toEqual({
+      indicator1: true,
+      indicator2: true,
+      marcField: false,
+      subfield: false,
+      isTransformationValid: false,
+    });
   });
 });
 
