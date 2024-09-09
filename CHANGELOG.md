@@ -23,6 +23,8 @@
 * Transformation form: empty indicators and subfields display. Refs UIDEXP-385.
 * Mapping profile - modify validation of transformation elements. Refs UIDEXP-384.
 * Sort logs by file name. Refs UIDEXP-317.
+* “Something went wrong“ page with error appears when save transformation form with empty row of “Instance” record type.
+  Refs UIDEXP-396.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
