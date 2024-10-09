@@ -11,7 +11,7 @@
     "triggeredBy": "آغاز {userName}",
     "jobProfileLabel": "کام کی نوعیت",
     "inProgressStatus": "کام جاری ہے",
-    "beganRunning": "شروع {وقت}",
+    "beganRunning": "شروع {time}",
     "noRunningJobsMessage": "کوئی ہدایت نہیں چل رہی ہے",
     "today": "آج",
     "cancel": "منسوخ",

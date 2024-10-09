@@ -246,7 +246,7 @@
     "error.mapping.undefined": "Erro desconhecido durante o processo de mapeamento",
     "error.mapping.fieldsMappingInventory": "Ocorreu um erro durante o mapeamento de campos para registro de inventário",
     "error.mapping.fieldsMappingInventoryWithReason": "Ocorreu um erro durante o mapeamento de campos para registro bibliográfico: motivo: {value1} , causa: {value2}",
-    "error.mapping.fieldsMappingSrs": "Ocorreu um erro durante o mapeamento de campos para registro SRS com id: {value1}, razão: {value2}, causa: {valor3}, motivo: {valor2}, causa: {value3}.",
+    "error.mapping.fieldsMappingSrs": "An error occurred during fields mapping for srs record with id: {value1}, reason: {value2}, cause: {value3}",
     "error.messagePlaceholder": "{value1}",
     "error.mappingProfile.missing": "Falta o perfil de mapeamento durante o processo de exportação",
     "error.mappingProfile.invalidSrsRecordTypeCombination": "O tipo de registro SRS não pode ser combinado com o tipo de registro INSTANCE durante o processo de exportação",
