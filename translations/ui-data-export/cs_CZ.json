@@ -59,7 +59,7 @@
     "mappingProfiles.transformations.searchFields": "Vyhledávací pole",
     "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {nalezeno pole} other {nalezeno pole}}",
     "resetAll": "Obnovit vše",
-    "searchAndFilter": "Hledat a filtrovat",
+    "searchAndFilter": "Vyhledat a filtrovat",
     "modal.resultsHeader": "Výsledky vyhledávání",
     "modal.totalSelected": "Celkem vybráno: {count}",
     "mappingProfiles.delete.successCallout": "Profil mapování <b>{name}</b> byl úspěšně <b>smazán</b>",
