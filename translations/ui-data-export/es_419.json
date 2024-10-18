@@ -100,7 +100,7 @@
     "item.electronic.access.publicNote": "Elemento - Acceso electrónico - {value} - Nota pública de URL",
     "item.electronic.access.uri": "Ítem - Acceso electrónico - {value} - URI",
     "instance.contributorName": "Instancia - Colaborador - {value}",
-    "instance.contributorName.primary": "Instancia - Colaborador - {valor} - primario",
+    "instance.contributorName.primary": "Instancia - Colaborador - {value} - primario",
     "holdings.holdingNoteTypeId": "Tenencias - Notas - {value}",
     "holdings.holdingNoteTypeId.staffOnly": "Holdings - Notas - {value} - Sólo personal",
     "item.itemNoteTypeId": "Ítem - Notas - {value}",
