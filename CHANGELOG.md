@@ -25,6 +25,7 @@
 * Sort logs by file name. Refs UIDEXP-317.
 * “Something went wrong“ page with error appears when save transformation form with empty row of “Instance” record type.
   Refs UIDEXP-396.
+* Clean up permissions. Refs UIDEXP-398.
 
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 

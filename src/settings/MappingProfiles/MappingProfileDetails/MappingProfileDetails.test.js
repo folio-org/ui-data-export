@@ -5,7 +5,6 @@ import {
   screen,
   getAllByRole,
   getByText,
-  waitForElementToBeRemoved,
   within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -196,7 +195,7 @@ describe('MappingProfileDetails', () => {
         expect(modal).toBeVisible();
         userEvent.click(within(modal).getByRole('button', { name: /cancel/i }));
 
-        await waitForElementToBeRemoved(modal);
+        expect(modal).not.toBeVisible();
       });
     });
   });

@@ -2,7 +2,6 @@ import React from 'react';
 import { noop } from 'lodash';
 import {
   screen,
-  waitForElementToBeRemoved,
   within,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -153,7 +152,7 @@ describe('JobProfileDetails', () => {
         expect(modal).toBeVisible();
         userEvent.click(within(modal).getByRole('button', { name: /cancel/i }));
 
-        await waitForElementToBeRemoved(modal);
+        expect(modal).not.toBeVisible();
       });
     });
   });
