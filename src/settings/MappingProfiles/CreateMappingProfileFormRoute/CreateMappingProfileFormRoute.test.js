@@ -85,7 +85,7 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(recordTypesHoldings());
       userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 
-      const modal = screen.getByRole('document');
+      const modal = screen.getAllByRole('dialog')[0];
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');
@@ -129,7 +129,7 @@ describe('CreateMappingProfileFormRoute', () => {
       userEvent.click(screen.getByRole('checkbox', { name: 'stripes-data-transfer-components.recordTypes.holdings' }));
       userEvent.click(screen.getByRole('button', { name: 'ui-data-export.mappingProfiles.transformations.addTransformations' }));
 
-      const modal = screen.getByRole('document');
+      const modal = screen.getAllByRole('dialog')[0];
       const saveTransrormationsButton = within(modal).getByRole('button', { name: 'stripes-components.saveAndClose' });
       const tableRow = screen.getByRole('row', { name: 'Holdings - Call number - Call number' });
       const checkbox = within(tableRow).getByRole('checkbox');

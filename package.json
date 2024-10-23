@@ -98,11 +98,8 @@
     },
     "permissionSets": [
       {
-        "permissionName": "ui-data-export.app.enabled",
-        "displayName": "UI: Data export module is enabled",
-        "subPermissions": [
-          "module.data-export.enabled"
-        ],
+        "permissionName": "module.data-export.enabled",
+        "displayName": "Data export: module enabled",
         "visible": false
       },
       {
@@ -143,46 +140,23 @@
         "permissionName": "ui-data-export.settings.view",
         "displayName": "Settings (Data export): Can view only",
         "subPermissions": [
-          "data-export.mapping-profiles.item.get",
-          "data-export.job-executions.items.download.get",
+          "settings.data-export.enabled",
           "data-export.job-executions.collection.get",
           "data-export.job-profiles.collection.get",
           "data-export.job-profiles.item.get",
           "data-export.transformation-fields.collection.get",
-          "data-export.logs.collection.get",
           "data-export.mapping-profiles.collection.get",
-          "data-export.mapping-profiles.item.post",
-          "settings.data-export.enabled",
+          "data-export.mapping-profiles.item.get",
           "users.collection.get",
           "users.item.get"
         ],
         "visible": "true"
       },
       {
-        "permissionName": "module.data-export.enabled",
-        "displayName": "Data export: all permissions",
-        "subPermissions": [
-          "data-export.file-definitions.item.post",
-          "data-export.file-definitions.upload.post",
-          "data-export.mapping-profiles.item.post",
-          "data-export.mapping-profiles.item.put",
-          "data-export.mapping-profiles.item.delete",
-          "data-export.export.post",
-          "data-export.job-profiles.item.post",
-          "data-export.job-profiles.item.put",
-          "data-export.job-profiles.item.delete",
-          "settings.data-export.view",
-          "data-export.related-users.collection.get"
-        ],
-        "visible": false
-      },
-      {
         "permissionName": "ui-data-export.settings.edit",
         "displayName": "Settings (Data export): Can view, add, update profiles",
         "subPermissions": [
           "ui-data-export.settings.view",
-          "data-export.file-definitions.item.post",
-          "data-export.file-definitions.upload.post",
           "data-export.mapping-profiles.item.post",
           "data-export.mapping-profiles.item.put",
           "data-export.mapping-profiles.item.delete",

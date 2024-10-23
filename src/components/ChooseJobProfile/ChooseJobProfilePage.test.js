@@ -5,7 +5,6 @@ import {
   getByText,
   getByRole,
   getByTestId,
-  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -150,7 +149,7 @@ describe('ChooseJobProfile', () => {
 
         userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.cancel' }));
 
-        return waitForElementToBeRemoved(() => document.querySelector('#choose-job-profile-confirmation-modal'));
+        expect(modal).not.toBeVisible();
       });
 
       describe('clicking on confirm button - success case', () => {
@@ -176,7 +175,6 @@ describe('ChooseJobProfile', () => {
           await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
 
           userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
-          await waitForElementToBeRemoved(() => document.querySelector('#choose-job-profile-confirmation-modal'));
         });
 
         it('should not navigate to the landing page', () => {

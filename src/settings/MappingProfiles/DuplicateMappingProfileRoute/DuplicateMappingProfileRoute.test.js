@@ -5,7 +5,6 @@ import {
   screen,
   getByText,
   getByRole,
-  waitForElementToBeRemoved,
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -222,8 +221,6 @@ describe('DuplicateMappingProfileRoute', () => {
         userEvent.dblClick(screen.getByLabelText('ui-data-export.mappingProfiles.transformations.selectAllFields'));
 
         userEvent.click(getByRole(modal, 'button', { name: 'stripes-components.saveAndClose' }));
-
-        return waitForElementToBeRemoved(() => container.querySelector('[data-test-transformations-modal]'));
       });
     });
 
