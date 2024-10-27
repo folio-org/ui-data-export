@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.modal.message": "您已經選擇 <b> {profile} </b> 進行匯出",
     "mappingProfiles.transformations.emptyMessage": "找不到轉換",
     "settings.profilesInfo": "資料匯出設定檔增加了靈活性，並提供了一種簡單的方法來設定可重複的匯出，並且可以在不同的資料集上輕鬆執行。",
-    "permission.app.enabled": "UI：已經啟用資料匯出模組",
     "permission.settings.enabled": "設定（資料匯出）：顯示設定頁面列表",
     "jobProfiles.delete.successCallout": "任務設定檔<b> {name} </b>已成功<b>刪除</b>",
     "jobProfiles.delete.errorCallout": "刪除任務設定檔<b> {name} </b>時發生錯誤",
@@ -308,5 +307,6 @@
     "error.duplicatedIds": "UUID {value1} repeated {value2} times.",
     "error.deletedDuplicate.instance": "Instance record associated with {value1} has been deleted.",
     "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
-    "error.nonExisting.instance": "Instance record associated with {value1} does not exist."
+    "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
+    "permission.module.data-export.enabled": "Data export: Module enabled"
 }

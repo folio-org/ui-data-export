@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.modal.message": "Vybrali jste  <b>{profile}</b> pro spuštění exportu",
     "mappingProfiles.transformations.emptyMessage": "Nebyly nalezeny žádné transformace",
     "settings.profilesInfo": "Profily exportu dat přidávají flexibilitu a poskytují snadný způsob konfigurace exportu, který je opakovatelný a lze jej snadno provádět na různých setech dat.",
-    "permission.app.enabled": "UI: Modul exportu dat je povolen",
     "permission.settings.enabled": "Nastavení (Export dat): zobrazit seznam stránek nastavení",
     "jobProfiles.delete.successCallout": "Profil úlohy <b>{name}</b> byl úspěšně <b>smazán</b>",
     "jobProfiles.delete.errorCallout": "Při mazání profilu úlohy <b>{name}</b> došlo k chybě",
@@ -59,7 +58,7 @@
     "mappingProfiles.transformations.searchFields": "Vyhledávací pole",
     "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {nalezeno pole} other {nalezeno pole}}",
     "resetAll": "Obnovit vše",
-    "searchAndFilter": "Hledat a filtrovat",
+    "searchAndFilter": "Vyhledat a filtrovat",
     "modal.resultsHeader": "Výsledky vyhledávání",
     "modal.totalSelected": "Celkem vybráno: {count}",
     "mappingProfiles.delete.successCallout": "Profil mapování <b>{name}</b> byl úspěšně <b>smazán</b>",
@@ -308,5 +307,6 @@
     "error.duplicatedIds": "UUID {value1} se opakuje {value2} krát.",
     "error.deletedDuplicate.instance": "Záznam titulu spojený s {value1} byl smazán.",
     "error.deletedTooLong.instance": "Titul s ID {value1} byl smazán.",
-    "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje."
+    "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje.",
+    "permission.module.data-export.enabled": "Data export: Module enabled"
 }
