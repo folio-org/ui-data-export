@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.modal.message": "Вы выбрали <b>{profile}</b> для запуска экспорта",
     "mappingProfiles.transformations.emptyMessage": "Не найдено преобразований",
     "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
-    "permission.app.enabled": "Интерфейс пользователя: модуль выгрузки данных включён",
     "permission.settings.enabled": "Настройки (выгрузка данных): отображать список настроек",
     "jobProfiles.delete.successCallout": "Job profile <b>{name}</b> has been successfully <b>deleted</b>",
     "jobProfiles.delete.errorCallout": "There was an error while deleting the job profile <b>{name}</b>",
@@ -308,5 +307,6 @@
     "error.duplicatedIds": "UUID {value1} repeated {value2} times.",
     "error.deletedDuplicate.instance": "Instance record associated with {value1} has been deleted.",
     "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
-    "error.nonExisting.instance": "Instance record associated with {value1} does not exist."
+    "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
+    "permission.module.data-export.enabled": "Data export: Module enabled"
 }

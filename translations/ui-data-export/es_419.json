@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.modal.message": "Has seleccionado <b>{profile}</b> para ejecutar la exportación",
     "mappingProfiles.transformations.emptyMessage": "No se han encontrado transformaciones",
     "settings.profilesInfo": "Los perfiles de exportación de datos añaden flexibilidad y proporcionan una manera fácil de configurar la exportación que es repetible y se puede ejecutar fácilmente en diferentes conjuntos de datos.",
-    "permission.app.enabled": "UI: El módulo de exportación de datos está habilitado",
     "permission.settings.enabled": "Configuración (exportación de datos): muestra la lista de páginas de configuración",
     "jobProfiles.delete.successCallout": "El perfil de trabajo <b>{name}</b> se ha <b>eliminado</b> correctamente",
     "jobProfiles.delete.errorCallout": "Se ha producido un error al eliminar el perfil de trabajo <b>{name}</b>.",
@@ -100,7 +99,7 @@
     "item.electronic.access.publicNote": "Elemento - Acceso electrónico - {value} - Nota pública de URL",
     "item.electronic.access.uri": "Ítem - Acceso electrónico - {value} - URI",
     "instance.contributorName": "Instancia - Colaborador - {value}",
-    "instance.contributorName.primary": "Instancia - Colaborador - {valor} - primario",
+    "instance.contributorName.primary": "Instancia - Colaborador - {value} - primario",
     "holdings.holdingNoteTypeId": "Tenencias - Notas - {value}",
     "holdings.holdingNoteTypeId.staffOnly": "Holdings - Notas - {value} - Sólo personal",
     "item.itemNoteTypeId": "Ítem - Notas - {value}",
@@ -308,5 +307,6 @@
     "error.duplicatedIds": "UUID {value1} repeated {value2} times.",
     "error.deletedDuplicate.instance": "Instance record associated with {value1} has been deleted.",
     "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
-    "error.nonExisting.instance": "Instance record associated with {value1} does not exist."
+    "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
+    "permission.module.data-export.enabled": "Data export: Module enabled"
 }

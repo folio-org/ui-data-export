@@ -45,7 +45,6 @@
     "jobProfiles.selectProfile.modal.message": "エクスポートを実行するために<b> {profile} </b>が選択されました",
     "mappingProfiles.transformations.emptyMessage": "No transformations found",
     "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
-    "permission.app.enabled": "UI: Data export module is enabled",
     "permission.settings.enabled": "Settings (Data export): display list of settings pages",
     "jobProfiles.delete.successCallout": "ジョブプロファイル<b> {name} </b>の<b>削除</b>に成功しました",
     "jobProfiles.delete.errorCallout": "ジョブプロファイル<b> {name} </b>の削除中にエラーが発生しました",
@@ -308,5 +307,6 @@
     "error.duplicatedIds": "ERROR UUID{value1} {value2} 回繰り返されました",
     "error.deletedDuplicate.instance": "{value1}に関連付けられたインスタンス レコードが削除されました",
     "error.deletedTooLong.instance": "ID {value1}のインスタンスが削除されました",
-    "error.nonExisting.instance": "{value1}に関連付けられたインスタンス レコードが存在しません"
+    "error.nonExisting.instance": "{value1}に関連付けられたインスタンス レコードが存在しません",
+    "permission.module.data-export.enabled": "Data export: Module enabled"
 }
