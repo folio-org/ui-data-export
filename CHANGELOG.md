@@ -3,7 +3,6 @@
 ## IN PROGRESS
 
 * Add User look-up filter for existing jobs to Logs page. Refs UIDEXP-370.
-* Apply tenant date-time when filter data export logs by date on View all page. Refs UIDEXP-372.
 * Add Fields Suppression to Mapping Profiles Setup. Refs UIDEXP-361.
 * Update HTML Page Title on Data export Pages. Refs UIDEXP-369
 * Time Reported on the Progress Display. Refs UIDEXP-373.
@@ -27,6 +26,18 @@
   Refs UIDEXP-396.
 * Clean up permissions. Refs UIDEXP-398.
 
+## [6.1.4](https://github.com/folio-org/ui-data-export/tree/v6.1.4) (2024-04-15)
+
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.1.3...v6.1.4)
+
+* Apply tenant date-time when filter data export logs by date on View all page. Refs UIDEXP-372.
+
+## [6.1.3](https://github.com/folio-org/ui-data-export/tree/v6.1.3) (2024-04-02)
+
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.1.0...v6.1.3)
+
+* Error message is displayed when go from Data export Settings to View All page. Refs UIDEXP-366.
+
 ## [6.1.0](https://github.com/folio-org/ui-data-export/tree/v6.1.0) (2024-03-19)
 
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.0.0...v6.1.0)
@@ -39,7 +50,6 @@
 * Cannot view Mapping profiles and Job profiles with "Settings (Data export): display list of settings pages"
   permission. Refs UIDEXP-351.
 * Remove information icon from Settings > Data export > Profiles .Refs UIDEXP-363
-* Error message is displayed when go from Data export Settings to View All page. Refs UIDEXP-366.
 
 ## [6.0.0](https://github.com/folio-org/ui-data-export/tree/v6.0.0) (2023-10-13)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v5.4.1...v6.0.0)
