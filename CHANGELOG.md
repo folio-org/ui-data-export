@@ -2,6 +2,9 @@
 
 ## IN PROGRESS
 
+## [6.2.0](https://github.com/folio-org/ui-data-export/tree/v6.2.0) (2024-10-30)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.1.4...v6.2.0)
+
 * Add User look-up filter for existing jobs to Logs page. Refs UIDEXP-370.
 * Add Fields Suppression to Mapping Profiles Setup. Refs UIDEXP-361.
 * Update HTML Page Title on Data export Pages. Refs UIDEXP-369
