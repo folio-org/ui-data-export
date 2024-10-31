@@ -28,6 +28,7 @@
 * “Something went wrong“ page with error appears when save transformation form with empty row of “Instance” record type.
   Refs UIDEXP-396.
 * Clean up permissions. Refs UIDEXP-398.
+* Bump "@folio/stripes-acq-components" version to v6.0.0
 
 ## [6.1.4](https://github.com/folio-org/ui-data-export/tree/v6.1.4) (2024-04-15)
 
