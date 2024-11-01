@@ -330,6 +330,7 @@
   "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
   "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
   "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
+  "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
 
   "column.errors.duplicatesWithOthers": "{failedOther}, {failedSrs} duplicate(s)",
   "column.errors.duplicates": "{failedSrs} duplicate(s)"
