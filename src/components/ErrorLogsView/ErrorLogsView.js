@@ -12,8 +12,7 @@ import css from './ErrorLogsView.css';
 
 const formatErrorReasonMessageValues = (errorMessageValues = []) => {
   return errorMessageValues.reduce((formattedValues, value, index) => {
-    formattedValues[`value${index + 1}`] = value;
-
+    formattedValues[`value${index + 1}`] = Array.isArray(value) ? value.join(', ') : value;
     return formattedValues;
   }, {});
 };
