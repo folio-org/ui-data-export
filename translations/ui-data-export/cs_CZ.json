@@ -308,5 +308,6 @@
     "error.deletedDuplicate.instance": "Záznam titulu spojený s {value1} byl smazán.",
     "error.deletedTooLong.instance": "Titul s ID {value1} byl smazán.",
     "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje.",
-    "permission.module.data-export.enabled": "Data export: Module enabled"
+    "permission.module.data-export.enabled": "Data export: Module enabled",
+    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
 }

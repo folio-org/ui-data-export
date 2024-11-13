@@ -308,5 +308,6 @@
     "error.deletedDuplicate.instance": "Instancerecord gekoppeld aan {value1} is verwijderd.",
     "error.deletedTooLong.instance": "Instance met ID {value1} is verwijderd.",
     "error.nonExisting.instance": "Instancerecord geassocieerd met {value1} bestaat niet.",
-    "permission.module.data-export.enabled": "Data export: Module enabled"
+    "permission.module.data-export.enabled": "Data export: Module enabled",
+    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
 }

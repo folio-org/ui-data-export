@@ -308,5 +308,6 @@
     "error.deletedDuplicate.instance": "O registro de instância associado a {value1} foi excluído.",
     "error.deletedTooLong.instance": "A instância com id {value1} foi excluída.",
     "error.nonExisting.instance": "O registro de instância associado a {value1} não existe.",
-    "permission.module.data-export.enabled": "Exportação de dados: Módulo habilitado"
+    "permission.module.data-export.enabled": "Exportação de dados: Módulo habilitado",
+    "error.instance.noPermission": "{value1} o usuário {value2} não tem permissões para visualizar coleção ou itens no(s) locatário(s) de dados {value3}. Os registros de coleção e itens desse locatário foram omitidos durante a exportação."
 }
