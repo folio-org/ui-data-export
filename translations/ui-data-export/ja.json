@@ -308,5 +308,6 @@
     "error.deletedDuplicate.instance": "{value1}に関連付けられたインスタンス レコードが削除されました",
     "error.deletedTooLong.instance": "ID {value1}のインスタンスが削除されました",
     "error.nonExisting.instance": "{value1}に関連付けられたインスタンス レコードが存在しません",
-    "permission.module.data-export.enabled": "Data export: Module enabled"
+    "permission.module.data-export.enabled": "Data export: Module enabled",
+    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
 }

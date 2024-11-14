@@ -308,5 +308,6 @@
     "error.deletedDuplicate.instance": "La notice bibliographique associée à {value1} a été supprimée.",
     "error.deletedTooLong.instance": "La notice avec l'ID {value1} a été supprimée.",
     "error.nonExisting.instance": "La notice bibliographique associée à {value1} n'existe pas.",
-    "permission.module.data-export.enabled": "Data export: Module enabled"
+    "permission.module.data-export.enabled": "Data export: Module enabled",
+    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
 }
