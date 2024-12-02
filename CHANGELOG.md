@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Add translation to “error.instance.noPermission” error. Refs UIDEXP-399.
+* Update translation for noAffiliation and noPermission cases. Refs UIDEXP-400.
 
 ## [6.2.0](https://github.com/folio-org/ui-data-export/tree/v6.2.0) (2024-10-30)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.1.4...v6.2.0)
