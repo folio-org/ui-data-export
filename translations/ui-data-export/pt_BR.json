@@ -294,7 +294,6 @@
     "suppressInfo": "Lista de campos MARC a serem excluídos da exportação. Os campos são representados por três dígitos e separados por vírgula. Por exemplo: 902.903",
     "item.checkInNote": "Noda de devolução",
     "item.checkOutNote": "Nota de empréstimo",
-    "error.noAffiliation": "{value1} - o usuário {value2} não tem permissões para acessar o registro de coleção no locatário de dados {value3}.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - o usuário {value2} não tem permissões para acessar o registro de coleção no locatário de dados {value3}.",
     "error.tenantNotFoundForHolding": "Nenhum locatário pode ser encontrado para o registro de coleção {value1}.",
     "permission.settings.edit": "Configurações (exportação de dados): Pode visualizar, adicionar e atualizar perfis",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "A instância com id {value1} foi excluída.",
     "error.nonExisting.instance": "O registro de instância associado a {value1} não existe.",
     "permission.module.data-export.enabled": "Exportação de dados: Módulo habilitado",
-    "error.instance.noPermission": "{value1} o usuário {value2} não tem permissões para visualizar coleção ou itens no(s) locatário(s) de dados {value3}. Os registros de coleção e itens desse locatário foram omitidos durante a exportação."
+    "error.instance.noPermission": "{value1} - o usuário {value2} não tem permissões para visualizar coleções ou itens no(s) locatário(s) de dados {value3}. Os registros de coleções e itens desse locatário foram omitidos durante a exportação.",
+    "error.instance.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao(s) locatário(s) de dados {value3} e as coleções e registros de itens desse locatário foram omitidos durante a exportação.",
+    "error.holdings.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao locatário de dados {value3} e os registros de coleções desse locatário foram omitidos durante a exportação.",
+    "error.holdings.noPermission": "{value1} - o usuário {value2} não tem permissões para acessar o registro de coleção no locatário de dados {value3}."
 }

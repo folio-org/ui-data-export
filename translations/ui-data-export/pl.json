@@ -294,7 +294,6 @@
     "suppressInfo": "List of MARC fields to be excluded from the export. The fields are represented by three digits and separated by a comma. For example: 902,903",
     "item.checkInNote": "Check in note",
     "item.checkOutNote": "Check out note",
-    "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
     "permission.settings.edit": "Ustawienia (Eksport danych): można wyświetlać, dodawać, aktualizować profile",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
     "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
     "permission.module.data-export.enabled": "Eksport danych: włączanie modułu",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
+    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
+    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
 }

@@ -294,7 +294,6 @@
     "suppressInfo": "Liste des champs MARC à exclure de l'exportation. Ces champs sont représentés par 3 chiffres et séparés d'une virgule. Par exemple : 902,903",
     "item.checkInNote": "Note de retour",
     "item.checkOutNote": "Note d'emprunt",
-    "error.noAffiliation": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
     "permission.settings.edit": "Settings (Data export): Can view, add, update profiles",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "La notice avec l'ID {value1} a été supprimée.",
     "error.nonExisting.instance": "La notice bibliographique associée à {value1} n'existe pas.",
     "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
+    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
+    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
 }

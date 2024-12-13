@@ -294,7 +294,6 @@
     "suppressInfo": "Seznam polí MARC, která mají být vyloučena z exportu. Pole jsou reprezentována třemi číslicemi a oddělena čárkou. Například: 902 903",
     "item.checkInNote": "Poznámka Návratu",
     "item.checkOutNote": "Poznámka Výpůjčky",
-    "error.noAffiliation": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}.",
     "error.tenantNotFoundForHolding": "Nebyl nalezen žádný nájemce pro záznam holdingu {value1}.",
     "permission.settings.edit": "Nastavení (Export dat): Může prohlížet, přidávat a aktualizovat profily",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "Titul s ID {value1} byl smazán.",
     "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje.",
     "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
+    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
+    "error.holdings.noPermission": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}."
 }

@@ -294,7 +294,6 @@
     "suppressInfo": "导出时要排除的 MARC 字段列表。字段由三位数字表示，并以逗号分隔。例如：902,903",
     "item.checkInNote": "归还附注",
     "item.checkOutNote": "借出附注",
-    "error.noAffiliation": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
     "error.tenantNotFoundForHolding": "找不到馆藏记录{value1}的租户。",
     "permission.settings.edit": "设置（数据导出）：可以查看、添加、更新配置文件",
@@ -308,6 +307,9 @@
     "error.deletedDuplicate.instance": "与{value1}关联的实例记录已删除。",
     "error.deletedTooLong.instance": "ID 为{value1}实例已删除。",
     "error.nonExisting.instance": "与{value1}关联的实例记录不存在。",
-    "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "permission.module.data-export.enabled": "数据导出：模块启用",
+    "error.instance.noPermission": "{value1} - 用户{value2}无权查看{value3}数据租户中的馆藏或单件。导出过程中省略了此租户的馆藏和单件记录。",
+    "error.instance.noAffiliation": "{value1} - 用户{value2}与{value3}数据租户无关联，且此租户的馆藏和单件记录在导出过程中被省略。",
+    "error.holdings.noAffiliation": "{value1} - 用户{value2}与{value3}数据租户无关联，且导出过程中省略了该租户的馆藏记录。",
+    "error.holdings.noPermission": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。"
 }
