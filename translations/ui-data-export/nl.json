@@ -294,7 +294,6 @@
     "suppressInfo": "Lijst met MARC-velden die van de export moeten worden uitgesloten. De velden worden vertegenwoordigd door drie cijfers en gescheiden door een komma. Bijvoorbeeld: 902,903",
     "item.checkInNote": "Notitie bij inchecken",
     "item.checkOutNote": "Notities bij uitchecken",
-    "error.noAffiliation": "{value1} - de gebruiker {value2} heeft geen rechten om toegang te krijgen tot de holdingsrecord in {value3} data tenant.",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - de gebruiker {value2} heeft geen rechten om toegang te krijgen tot de holdingsrecord in {value3} data tenant.",
     "error.tenantNotFoundForHolding": "Er kan geen tenant gevonden worden voor holdingsrecord {value1}.",
     "permission.settings.edit": "Instellingen (Opmerkingen): Algemene instellingen bewerken en bekijken",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "Instance met ID {value1} is verwijderd.",
     "error.nonExisting.instance": "Instancerecord geassocieerd met {value1} bestaat niet.",
     "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "error.instance.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data Tenant(s) en Holdings en Item Records van deze Tenant werden weggelaten tijdens de export.",
+    "error.holdings.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data tenant en holdingsrecords van deze tenant werden weggelaten tijdens de export.",
+    "error.holdings.noPermission": "{value1} - de gebruiker {value2} heeft geen toestemming om toegang te krijgen tot de holdingsrecord in {value3} data tenant."
 }

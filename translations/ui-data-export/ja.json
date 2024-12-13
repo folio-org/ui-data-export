@@ -294,7 +294,6 @@
     "suppressInfo": "エクスポートから除外する MARC フィールドのリスト。フィールドは 3 桁の数字で表され、カンマで区切られます。例: 902,903",
     "item.checkInNote": "返却ノート",
     "item.checkOutNote": "貸出ノート",
-    "error.noAffiliation": "{value1} - ユーザー {value2} には、{value3} データ テナントの所蔵レコードにアクセスするアクセス権限がありません。",
     "error.userNotHaveAccessForHoldingsTenantData": "{value1} - ユーザー {value2} には、{value3} データ テナントの所蔵レコードにアクセスするアクセス権限がありません。",
     "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
     "permission.settings.edit": "設定（データエクスポート）：プロファイルの閲覧、追加、更新が可能",
@@ -309,5 +308,8 @@
     "error.deletedTooLong.instance": "ID {value1}のインスタンスが削除されました",
     "error.nonExisting.instance": "{value1}に関連付けられたインスタンス レコードが存在しません",
     "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export."
+    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
+    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
+    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
 }
