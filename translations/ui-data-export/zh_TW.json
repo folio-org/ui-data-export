@@ -262,7 +262,7 @@
     "totalRecords": "{countOfRecords}筆紀錄",
     "bigFileProblem": "上傳的檔案超出了允許的檔案大小 (500Mb)。",
     "authorities": "權威控制檔",
-    "keyword": "關鍵字（ID、檔案名稱）",
+    "keyword": "關鍵字 ( ID、檔案名稱 )",
     "jobExecutionHrId": "ID",
     "fileName": "檔名",
     "placeholder.jobExecutionHrId": "搜尋ID",
