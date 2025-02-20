@@ -168,7 +168,7 @@
     "holdings.temporaryLocation.campus.name": "馆藏-临时馆藏地-校区",
     "holdings.temporaryLocation.campus.code": "馆藏-临时馆藏地-校区-代码",
     "holdings.temporaryLocation.institution.name": "馆藏-临时馆藏地-机构",
-    "holdings.temporaryLocation.institution.code": "馆藏-临时位置馆藏地-机构-代码",
+    "holdings.temporaryLocation.institution.code": "馆藏-临时馆藏地-机构-代码",
     "item.permanentLocation.name": "单件-永久馆藏地",
     "item.permanentLocation.code": "单件-永久馆藏地-代码",
     "item.permanentLocation.library.name": "单件-永久馆藏地-图书馆",
