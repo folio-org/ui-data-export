@@ -307,9 +307,9 @@
     "error.deletedDuplicate.instance": "Záznam titulu spojený s {value1} byl smazán.",
     "error.deletedTooLong.instance": "Titul s ID {value1} byl smazán.",
     "error.nonExisting.instance": "Záznam titulu spojený s {value1} neexistuje.",
-    "permission.module.data-export.enabled": "Data export: Module enabled",
+    "permission.module.data-export.enabled": "Export dat: Modul povolen",
     "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
     "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
-    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
+    "error.holdings.noAffiliation": "{value1} - uživatel {value2} není spojen se {value3} záznamy dat čtenáře a holdingů z tohoto čtenáře byly při exportu vynechány.",
     "error.holdings.noPermission": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}."
 }
