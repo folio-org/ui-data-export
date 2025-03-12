@@ -2,6 +2,9 @@
 
 ## IN PROGRESS
 
+## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
+[Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.2.0...v7.0.0)
+
 * Add translation to “error.instance.noPermission” error. Refs UIDEXP-399.
 * Update translation for noAffiliation and noPermission cases. Refs UIDEXP-400.
 * Migrate to shared GA workflows. Refs UIDEXP-404.
