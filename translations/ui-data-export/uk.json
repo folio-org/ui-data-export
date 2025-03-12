@@ -308,8 +308,8 @@
     "error.deletedTooLong.instance": "Instance with id {value1} has been deleted.",
     "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
     "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
-    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
+    "error.instance.noPermission": "{value1} – користувач {value2} не має дозволів переглядати записи даних про фонди (холдінгси) або примірники для клієнта/клієнтів {value3}. Записи даних про фонди (холдінгси) та примірники для цього клієнта були пропущені під час експорту.",
+    "error.instance.noAffiliation": "{value1} – користувач {value2} не пов’язаний з даними клієнта/клієнтів {value3} та записи даних про фонди (холдінгси) та примірники для цього клієнта були пропущені під час експорту.",
     "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
     "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
 }
