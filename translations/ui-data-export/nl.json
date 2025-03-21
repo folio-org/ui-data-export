@@ -307,8 +307,8 @@
     "error.deletedDuplicate.instance": "Instancerecord gekoppeld aan {value1} is verwijderd.",
     "error.deletedTooLong.instance": "Instance met ID {value1} is verwijderd.",
     "error.nonExisting.instance": "Instancerecord geassocieerd met {value1} bestaat niet.",
-    "permission.module.data-export.enabled": "Data export: Module enabled",
-    "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
+    "permission.module.data-export.enabled": "Gegevens exporteren: Module ingeschakeld",
+    "error.instance.noPermission": "{waarde1} - de gebruiker {value2} heeft geen rechten om holdings of items te bekijken in {value3} gegevens huurder(s). Holdingsrecords en itemrecords van deze huurder werden weggelaten tijdens het exporteren.",
     "error.instance.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data Tenant(s) en Holdings en Item Records van deze Tenant werden weggelaten tijdens de export.",
     "error.holdings.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data tenant en holdingsrecords van deze tenant werden weggelaten tijdens de export.",
     "error.holdings.noPermission": "{value1} - de gebruiker {value2} heeft geen toestemming om toegang te krijgen tot de holdingsrecord in {value3} data tenant."
