@@ -281,7 +281,7 @@
     "column.errors.duplicates": "{failedSrs} duplicate(s)",
     "error.duplicateSRS": "{value1}",
     "permission.settings.view": "Ustawienia (Eksport danych): można tylko wyświetlać",
-    "jobStatus.inProgress": "In progress",
+    "jobStatus.inProgress": "W toku",
     "error.recordIsTooLong": "{value1}",
     "fieldsSuppression": "Fields suppression",
     "suppress999ff": "Suppress 999 ff",
@@ -294,8 +294,8 @@
     "suppressInfo": "List of MARC fields to be excluded from the export. The fields are represented by three digits and separated by a comma. For example: 902,903",
     "item.checkInNote": "Check in note",
     "item.checkOutNote": "Check out note",
-    "error.userNotHaveAccessForHoldingsTenantData": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
-    "error.tenantNotFoundForHolding": "No tenant can be found for holdings record {value1}.",
+    "error.userNotHaveAccessForHoldingsTenantData": "{value1} - użytkownik {value2} nie ma uprawnień dostępu do rekordu zasobów w {value3} danych tenanta.",
+    "error.tenantNotFoundForHolding": "Nie można znaleźć żadnego najemcy dla rekordu zasobów {value1}.",
     "permission.settings.edit": "Ustawienia (Eksport danych): można wyświetlać, dodawać, aktualizować profile",
     "permission.view": "Eksport danych: można tylko wyświetlać",
     "permission.edit": "Eksport danych: można przesyłać, eksportować i pobierać pliki oraz wyświetlać dzienniki",
@@ -309,7 +309,7 @@
     "error.nonExisting.instance": "Instance record associated with {value1} does not exist.",
     "permission.module.data-export.enabled": "Eksport danych: włączanie modułu",
     "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
-    "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
-    "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
-    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
+    "error.instance.noAffiliation": "{value1} - użytkownik {value2} nie jest powiązany z {value3} danymi tenanta (tenantów), a rekordy zasobów i egzemplarzy od tego tenanta zostały pominięte podczas eksportu.",
+    "error.holdings.noAffiliation": "{value1} - użytkownik {value2} nie jest powiązany z {value3} danymi tenanta, a rekordy zasobów od tego tenanta zostały pominięte podczas eksportu.",
+    "error.holdings.noPermission": "{value1} - użytkownik {value2} nie ma uprawnień dostępu do rekordu zasobów w {value3} danych tenanta."
 }

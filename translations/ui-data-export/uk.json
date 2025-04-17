@@ -31,7 +31,7 @@
     "jobProfilesTitle": "Job profiles",
     "summary": "Summary",
     "name": "Name",
-    "description": "Description",
+    "description": "Опис",
     "outputFormat": "Output format",
     "transformations": "Transformations",
     "marc": "MARC",
