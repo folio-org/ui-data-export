@@ -283,7 +283,7 @@
     "permission.settings.view": "Configurações (exportação de dados): Pode visualizar apenas",
     "jobStatus.inProgress": "Em andamento",
     "error.recordIsTooLong": "{value1}",
-    "fieldsSuppression": "Ocultação de campos",
+    "fieldsSuppression": "Campos a suprimir da exportação",
     "suppress999ff": "Ocultar 999 ff",
     "mappingProfiles.validation.fieldsSuppression": "Os campos ocultos podem ser representados apenas por três dígitos e precisam ser separados por vírgula.",
     "title.logs": "Logs",
