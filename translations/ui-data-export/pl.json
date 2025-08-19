@@ -58,7 +58,7 @@
     "mappingProfiles.transformations.searchFields": "Pola wyszukiwania",
     "mappingProfiles.transformations.searchResultsCountHeader": "{count, number} {count, plural, one {odnalezione pole} other {odnalezione pola}}",
     "resetAll": "Resetuj wszystko",
-    "searchAndFilter": "Wyszukaj i filtruj",
+    "searchAndFilter": "Szukaj i filtruj",
     "modal.resultsHeader": "Wyniki wyszukiwania",
     "modal.totalSelected": "Wybrano łącznie: {count}",
     "mappingProfiles.delete.successCallout": "Profilu mapowania <b>{name}</b> został pomyślnie <b>usunięty</b>",
