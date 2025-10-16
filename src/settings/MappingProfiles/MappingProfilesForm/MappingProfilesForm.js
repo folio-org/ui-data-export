@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage,
-  useIntl,
-} from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { isEqual } from 'lodash';
 
@@ -24,17 +21,14 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
 
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import { FolioRecordTypeField } from './FolioRecordTypeField/FolioRecordTypeField';
 import { TransformationsList } from '../TransformationsList';
-import {
-  fieldSuppression,
-  required,
-  requiredArray,
-} from '../../../utils';
+import { fieldSuppression, required, requiredArray } from '../../../utils';
 
 import css from './MappingProfilesForm.css';
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
 
   errors.name = required(values.name);
@@ -45,7 +39,7 @@ const validate = values => {
   return errors;
 };
 
-const MappingProfilesFormComponent = props => {
+const MappingProfilesFormComponent = (props) => {
   const {
     isEditMode = false,
     isFormDirty = false,
@@ -55,6 +49,7 @@ const MappingProfilesFormComponent = props => {
     transformations,
     allTransformations,
     form,
+    metadata,
     initiallyDisabledRecordTypes,
     onAddTransformations,
     handleSubmit,
@@ -66,14 +61,12 @@ const MappingProfilesFormComponent = props => {
   const openTransformationModalButtonId = isEditMode ? 'editTransformations' : 'addTransformations';
   const isSubmitButtonDisabled = isFormDirty ? !isFormDirty : pristine || submitting;
   const recordTypes = form.getFieldState('recordTypes')?.value;
-  const isFieldsSuppressionDisabled = !recordTypes?.length || recordTypes?.every(recordType => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
+  const isFieldsSuppressionDisabled =
+    !recordTypes?.length || recordTypes?.every((recordType) => [FOLIO_RECORD_TYPES.ITEM.type].includes(recordType));
   const fieldSuppressionFieldLabel = (
     <>
       <FormattedMessage id="ui-data-export.fieldsSuppression" />
-      <InfoPopover
-        iconSize="medium"
-        content={<FormattedMessage id="ui-data-export.suppressInfo" />}
-      />
+      <InfoPopover iconSize="medium" content={<FormattedMessage id="ui-data-export.suppressInfo" />} />
     </>
   );
 
@@ -115,6 +108,7 @@ const MappingProfilesFormComponent = props => {
           </Row>
           <AccordionSet id="mapping-profiles-form-accordions">
             <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
+              {metadata && <ViewMetaData metadata={metadata} />}
               <div data-test-mapping-profile-form-name>
                 <Field
                   label={<FormattedMessage id="stripes-data-transfer-components.name" />}
@@ -131,10 +125,12 @@ const MappingProfilesFormComponent = props => {
                   name="outputFormat"
                   id="mapping-profile-output-format"
                   component={Select}
-                  dataOptions={[{
-                    label: intl.formatMessage({ id: 'ui-data-export.marc' }),
-                    value: 'MARC',
-                  }]}
+                  dataOptions={[
+                    {
+                      label: intl.formatMessage({ id: 'ui-data-export.marc' }),
+                      value: 'MARC',
+                    },
+                  ]}
                   fullWidth
                   required
                 />
@@ -171,26 +167,18 @@ const MappingProfilesFormComponent = props => {
                   component={Checkbox}
                 />
               </div>
-
-
             </Accordion>
             <Accordion
               label={<FormattedMessage id="ui-data-export.transformations" />}
-              displayWhenOpen={(
-                <Button
-                  data-test-add-transformations
-                  marginBottom0
-                  onClick={onAddTransformations}
-                >
-                  <FormattedMessage id={`ui-data-export.mappingProfiles.transformations.${openTransformationModalButtonId}`} />
+              displayWhenOpen={
+                <Button data-test-add-transformations marginBottom0 onClick={onAddTransformations}>
+                  <FormattedMessage
+                    id={`ui-data-export.mappingProfiles.transformations.${openTransformationModalButtonId}`}
+                  />
                 </Button>
-              )}
+              }
             >
-              <Field
-                name="transformations"
-                id="mapping-profile-transformations"
-                isEqual={isEqual}
-              >
+              <Field name="transformations" id="mapping-profile-transformations" isEqual={isEqual}>
                 {({ input }) => (
                   <TransformationsList
                     name={input.name}
@@ -208,6 +196,7 @@ const MappingProfilesFormComponent = props => {
 };
 
 MappingProfilesFormComponent.propTypes = {
+  metadata: PropTypes.shape({}),
   transformations: PropTypes.arrayOf(PropTypes.object),
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   pristine: PropTypes.bool.isRequired,

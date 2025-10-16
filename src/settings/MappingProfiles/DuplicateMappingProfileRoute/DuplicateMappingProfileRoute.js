@@ -42,6 +42,7 @@ export const DuplicateMappingProfileRouteComponent = ({
     <CreateMappingProfileFormRoute
       isFormDirty
       isDuplicate
+      metadata={mappingProfileRecord.metadata}
       allTransformations={allTransformations}
       initialValues={formatMappingProfileFormInitialValues(newMappingProfileRecord, ['id'])}
       onSubmit={onSubmit}

@@ -9,11 +9,12 @@ import { MappingProfilesFormContainer } from '../MappingProfilesFormContainer';
 export const CreateMappingProfileFormRoute = ({
   allTransformations,
   initialValues,
+  metadata,
   isFormDirty,
   onSubmit,
   onCancel,
   onSubmitNavigate,
-  isDuplicate = false
+  isDuplicate = false,
 }) => {
   const intl = useIntl();
   const handleSubmit = useProfileHandlerWithCallout({
@@ -23,13 +24,15 @@ export const CreateMappingProfileFormRoute = ({
     onActionComplete: onSubmitNavigate,
   });
 
-  const titleManagerLabel = initialValues.name && !isDuplicate ? intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: initialValues?.name })
-    :
-    intl.formatMessage({ id:'ui-data-export.settings.newMapping.manager' });
+  const titleManagerLabel =
+    initialValues.name && !isDuplicate
+      ? intl.formatMessage({ id: 'ui-data-export.settings.job.manager' }, { job: initialValues?.name })
+      : intl.formatMessage({ id: 'ui-data-export.settings.newMapping.manager' });
 
   return (
     <TitleManager page={titleManagerLabel}>
       <MappingProfilesFormContainer
+        metadata={metadata}
         allTransformations={allTransformations}
         initialValues={initialValues}
         isFormDirty={isFormDirty}
@@ -48,5 +51,5 @@ CreateMappingProfileFormRoute.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onSubmitNavigate: PropTypes.func.isRequired,
-  isDuplicate: PropTypes.bool
+  isDuplicate: PropTypes.bool,
 };
