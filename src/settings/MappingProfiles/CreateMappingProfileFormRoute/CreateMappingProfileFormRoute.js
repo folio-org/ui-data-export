@@ -45,6 +45,7 @@ export const CreateMappingProfileFormRoute = ({
 };
 
 CreateMappingProfileFormRoute.propTypes = {
+  metadata: PropTypes.shape({}),
   allTransformations: PropTypes.arrayOf(PropTypes.object),
   initialValues: PropTypes.object.isRequired,
   isFormDirty: PropTypes.bool,
