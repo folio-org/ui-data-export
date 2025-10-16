@@ -1,13 +1,9 @@
 const path = require('path');
 
-const esModules = ['@folio', 'ky'].join('|');
+const esModules = ['@folio', 'ky', 'usehooks-ts'].join('|');
 
 module.exports = {
-  collectCoverageFrom: [
-    '**/(lib|src)/**/*.{js,jsx}',
-    '!**/node_modules/**',
-    '!**/test/**',
-  ],
+  collectCoverageFrom: ['**/(lib|src)/**/*.{js,jsx}', '!**/node_modules/**', '!**/test/**'],
   coverageDirectory: './artifacts/coverage-jest/',
   coverageReporters: ['lcov'],
   reporters: ['jest-junit', 'default'],
