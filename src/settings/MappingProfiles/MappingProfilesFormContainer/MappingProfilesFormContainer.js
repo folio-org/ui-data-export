@@ -47,6 +47,7 @@ export const MappingProfilesFormContainer = props => {
     allTransformations,
     contentLabel,
     initialValues,
+    metadata,
     onSubmit,
   } = props;
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
@@ -110,6 +111,7 @@ export const MappingProfilesFormContainer = props => {
     >
       <MappingProfilesForm
         {...props}
+        metadata={metadata}
         transformations={selectedTransformations}
         allTransformations={allTransformations}
         initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
@@ -131,6 +133,7 @@ export const MappingProfilesFormContainer = props => {
 };
 
 MappingProfilesFormContainer.propTypes = {
+  metadata: PropTypes.shape({}),
   initialValues: PropTypes.object.isRequired,
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
   contentLabel: PropTypes.string.isRequired,

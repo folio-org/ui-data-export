@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+* Include metadata in edit form of data export mapping profile. Refs UIDEXP-408.
+
 ## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.2.0...v7.0.0)
 

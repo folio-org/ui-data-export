@@ -44,6 +44,7 @@ export const EditMappingProfileRouteComponent = ({
     <TitleManager page={intl.formatMessage({ id:'ui-data-export.settings.job.manager' }, { job: mappingProfileRecord?.name })}>
       <MappingProfilesFormContainer
         isEditMode
+        metadata={mappingProfileRecord.metadata}
         allTransformations={allTransformations}
         contentLabel={contentLabel}
         title={mappingProfileRecord.name}
