@@ -38,6 +38,7 @@ const ChooseJobProfileComponent = ({
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
   const [isJobRunning, setIsJobRunning] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState({});
+  const [selectedRecordType, setSelectedRecordType] = useState(null);
   const fileDefinitionIdRef = useRef(null);
 
   useEffect(() => {
@@ -50,6 +51,10 @@ const ChooseJobProfileComponent = ({
       idType: event.target.value,
     });
   };
+
+  const changeRecordSelectHandler = event => {
+    setSelectedRecordType(event.target.value);
+  }
 
   return (
     <>
@@ -80,7 +85,8 @@ const ChooseJobProfileComponent = ({
               id="ui-data-export.jobProfiles.selectProfile.modal.message"
               values={{ profile: selectedProfile.name }}
             />
-            <ListSelect onChange={changeSelectHandler} />
+            <ListSelect type="id" onChange={changeSelectHandler} />
+            <ListSelect type="record" onChange={changeRecordSelectHandler} />
           </div>
         )}
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
@@ -94,6 +100,7 @@ const ChooseJobProfileComponent = ({
               fileDefinitionId: fileDefinitionIdRef.current,
               jobProfileId: selectedProfile.id,
               idType: selectedProfile.idType,
+              recordType: selectedRecordType,
             });
 
             history.push('/data-export');
