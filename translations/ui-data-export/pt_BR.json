@@ -309,7 +309,7 @@
     "error.nonExisting.instance": "O registro de instância associado a {value1} não existe.",
     "permission.module.data-export.enabled": "Exportação de dados: Módulo habilitado",
     "error.instance.noPermission": "{value1} - o usuário {value2} não tem permissões para visualizar acervos ou itens no(s) locatário(s) de dados {value3}. Os registros de acervos e itens desse locatário foram omitidos durante a exportação.",
-    "error.instance.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao(s) locatário(s) de dados {value3} e as acervos e registros de itens desse locatário foram omitidos durante a exportação.",
+    "error.instance.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao(s) locatário(s) de dados {value3} e os acervos e registros de itens desse locatário foram omitidos durante a exportação.",
     "error.holdings.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao locatário de dados {value3} e os registros de acervos desse locatário foram omitidos durante a exportação.",
     "error.holdings.noPermission": "{value1} - o usuário {value2} não tem permissões para acessar o registro de acervo no locatário de dados {value3}."
 }
