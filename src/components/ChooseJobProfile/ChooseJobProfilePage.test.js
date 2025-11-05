@@ -134,7 +134,7 @@ describe('ChooseJobProfile', () => {
       });
 
       it('should display modal profile name in the body', () => {
-        expect(screen.getByTestId('choose-job-select')).toBeVisible();
+        expect(screen.getByTestId('choose-job-select-id')).toBeVisible();
       });
 
       it('should display modal with proper wording for buttons', () => {
@@ -156,7 +156,8 @@ describe('ChooseJobProfile', () => {
         beforeEach(async () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.marc');
 
           userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
         });
@@ -172,7 +173,8 @@ describe('ChooseJobProfile', () => {
 
           exportProfileSpy.mockImplementationOnce(Promise.reject.bind(Promise));
 
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.marc');
 
           userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
         });

@@ -54,7 +54,7 @@ const ChooseJobProfileComponent = ({
 
   const changeRecordSelectHandler = event => {
     setSelectedRecordType(event.target.value);
-  }
+  };
 
   return (
     <>

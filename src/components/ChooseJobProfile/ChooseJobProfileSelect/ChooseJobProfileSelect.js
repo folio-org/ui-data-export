@@ -52,12 +52,13 @@ export const ListSelect = ({ type, onChange }) => {
 
   const options = (type === 'record') ? recordOptions : idOptions;
   const label = (type === 'record') ? recordLabel : idLabel;
+  const testId = 'choose-job-select-' + type;
 
   return (
     <Row>
       <Col xs={6}>
         <Select
-          data-testid="choose-job-select"
+          data-testid={testId}
           required
           dataOptions={options}
           label={label}
