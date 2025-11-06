@@ -137,6 +137,10 @@ describe('ChooseJobProfile', () => {
         expect(screen.getByTestId('choose-job-select-id')).toBeVisible();
       });
 
+      it('should display record type selector in the body', () => {
+        expect(screen.getByTestId('choose-job-select-record')).toBeVisible();
+      });
+
       it('should display modal with proper wording for buttons', () => {
         const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
