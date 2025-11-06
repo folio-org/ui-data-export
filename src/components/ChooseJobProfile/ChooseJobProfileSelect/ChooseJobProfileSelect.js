@@ -9,7 +9,7 @@ import {
 } from '@folio/stripes/components';
 import PropTypes from 'prop-types';
 
-export const ListSelect = ({ type, onChange }) => {
+export const ListSelect = ({ type, onChange, value, required = true, disabled = false }) => {
   const intl = useIntl();
 
   const idLabel = <FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.selectTitle" />;
@@ -41,8 +41,8 @@ export const ListSelect = ({ type, onChange }) => {
       disabled: true,
     },
     {
-      value: 'MARC',
-      label: intl.formatMessage({ id: 'ui-data-export.marc' }),
+      value: 'same',
+      label: intl.formatMessage({ id: 'ui-data-export.jobProfiles.selectProfile.modal.sameRecordTypeAsIdType' }),
     },
     {
       value: 'LINKED_DATA',
@@ -59,11 +59,13 @@ export const ListSelect = ({ type, onChange }) => {
       <Col xs={6}>
         <Select
           data-testid={testId}
-          required
+          required={required}
+          disabled={disabled}
           dataOptions={options}
           label={label}
           defaultValue={options[0].value}
           onChange={onChange}
+          value={value}
         />
       </Col>
     </Row>

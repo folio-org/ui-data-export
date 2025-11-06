@@ -137,8 +137,9 @@ describe('ChooseJobProfile', () => {
         expect(screen.getByTestId('choose-job-select-id')).toBeVisible();
       });
 
-      it('should display record type selector in the body', () => {
+      it('should display inactive record type selector in the body', () => {
         expect(screen.getByTestId('choose-job-select-record')).toBeVisible();
+        expect(screen.getByTestId('choose-job-select-record')).toBeDisabled();
       });
 
       it('should display modal with proper wording for buttons', () => {
@@ -156,12 +157,65 @@ describe('ChooseJobProfile', () => {
         expect(modal).not.toBeVisible();
       });
 
+      describe('modal confirmation values', () => {
+        it('always require identification type', () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+
+          expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).toBeDisabled();
+        });
+
+        it('ignore record type for non-instance identification type values', async () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.holdings');
+
+          expect(screen.getByTestId('choose-job-select-record')).toBeDisabled();
+          expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).not.toBeDisabled();
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.authorities');
+
+          expect(screen.getByTestId('choose-job-select-record')).toBeDisabled();
+          expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).not.toBeDisabled();
+        });
+
+        it('require record type for instance identification type', async () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
+
+          expect(screen.getByTestId('choose-job-select-record')).not.toBeDisabled();
+          expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).toBeDisabled();
+        });
+
+        it('allow continuing when instance and record type are chosen', async () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.linkedData');
+
+          expect(getByRole(modal, 'button', { name: 'ui-data-export.run' })).not.toBeDisabled();
+        });
+
+        it('clears record type value when identification type changed from instance', async () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.linkedData');
+
+          expect(getByTestId(modal, 'choose-job-select-record')).toHaveValue('LINKED_DATA');
+
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.authorities');
+
+          expect(getByTestId(modal, 'choose-job-select-record')).toHaveValue('');
+        });
+      });
+
       describe('clicking on confirm button - success case', () => {
         beforeEach(async () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
           await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.marc');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.jobProfiles.selectProfile.modal.sameRecordTypeAsIdType');
 
           userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
         });
@@ -178,7 +232,7 @@ describe('ChooseJobProfile', () => {
           exportProfileSpy.mockImplementationOnce(Promise.reject.bind(Promise));
 
           await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-id'), 'ui-data-export.instance');
-          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.marc');
+          await userEvent.selectOptions(getByTestId(modal, 'choose-job-select-record'), 'ui-data-export.jobProfiles.selectProfile.modal.sameRecordTypeAsIdType');
 
           userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
         });

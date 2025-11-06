@@ -38,12 +38,18 @@ const ChooseJobProfileComponent = ({
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
   const [isJobRunning, setIsJobRunning] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState({});
-  const [selectedRecordType, setSelectedRecordType] = useState(null);
+  const [selectedRecordType, setSelectedRecordType] = useState('');
   const fileDefinitionIdRef = useRef(null);
 
   useEffect(() => {
     fileDefinitionIdRef.current = location.state?.fileDefinitionId;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isInstanceIdType()) {
+      setSelectedRecordType('');
+    }
+  }), [selectedProfile];
 
   const changeSelectHandler = event => {
     setSelectedProfile({
@@ -54,6 +60,16 @@ const ChooseJobProfileComponent = ({
 
   const changeRecordSelectHandler = event => {
     setSelectedRecordType(event.target.value);
+  };
+
+  const isInstanceIdType = () => {
+    return selectedProfile.idType === 'instance';
+  };
+
+  const isConfirmDisabled = () => {
+    return !selectedProfile.idType ||
+      (isInstanceIdType() && selectedRecordType === '')
+      || isJobRunning;
   };
 
   return (
@@ -77,7 +93,7 @@ const ChooseJobProfileComponent = ({
       <ConfirmationModal
         id="choose-job-profile-confirmation-modal"
         open={isConfirmationModalOpen}
-        disabledCofirmButton={!selectedProfile.idType || isJobRunning}
+        disabledCofirmButton={isConfirmDisabled()}
         heading={<FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.title" />}
         message={(
           <div>
@@ -85,8 +101,15 @@ const ChooseJobProfileComponent = ({
               id="ui-data-export.jobProfiles.selectProfile.modal.message"
               values={{ profile: selectedProfile.name }}
             />
-            <ListSelect type="id" onChange={changeSelectHandler} />
-            <ListSelect type="record" onChange={changeRecordSelectHandler} />
+            <ListSelect
+              type="id"
+              onChange={changeSelectHandler} />
+            <ListSelect
+              type="record"
+              onChange={changeRecordSelectHandler}
+              required={isInstanceIdType()}
+              disabled={!isInstanceIdType()}
+              value={selectedRecordType} />
           </div>
         )}
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
@@ -96,12 +119,21 @@ const ChooseJobProfileComponent = ({
           try {
             setIsJobRunning(true);
 
-            await mutator.export.POST({
+            let requestBody = {
               fileDefinitionId: fileDefinitionIdRef.current,
               jobProfileId: selectedProfile.id,
               idType: selectedProfile.idType,
-              recordType: selectedRecordType,
-            });
+            };
+
+            // Record type is which records to search - this is normally
+            // implicit, to be the same as the identifier type, but it is
+            // only used in an export request for the Linked Data case.
+            // Leave it unset otherwise.
+            if (selectedRecordType === 'LINKED_DATA') {
+              requestBody.recordType = selectedRecordType;
+            }
+
+            await mutator.export.POST(requestBody);
 
             history.push('/data-export');
           } catch (error) {
