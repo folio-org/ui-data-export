@@ -53,7 +53,7 @@ const ChooseJobProfileComponent = ({
     if (!isInstanceIdType()) {
       setSelectedRecordType('');
     }
-  }, [selectedProfile, isInstanceIdType]);
+  }, [selectedProfile]);
 
   const changeSelectHandler = event => {
     setSelectedProfile({
