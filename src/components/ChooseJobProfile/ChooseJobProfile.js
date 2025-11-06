@@ -29,6 +29,10 @@ const customProperties = {
   ],
 };
 
+const isInstanceIdType = (profile) => {
+  return profile?.idType === 'instance';
+};
+
 const ChooseJobProfileComponent = ({
   resources,
   mutator,
@@ -45,12 +49,8 @@ const ChooseJobProfileComponent = ({
     fileDefinitionIdRef.current = location.state?.fileDefinitionId;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isInstanceIdType = () => {
-    return selectedProfile.idType === 'instance';
-  };
-
   useEffect(() => {
-    if (!isInstanceIdType()) {
+    if (!isInstanceIdType(selectedProfile)) {
       setSelectedRecordType('');
     }
   }, [selectedProfile]);
@@ -68,7 +68,7 @@ const ChooseJobProfileComponent = ({
 
   const isConfirmDisabled = () => {
     return !selectedProfile.idType ||
-      (isInstanceIdType() && selectedRecordType === '')
+      (isInstanceIdType(selectedProfile) && selectedRecordType === '')
       || isJobRunning;
   };
 
@@ -108,8 +108,8 @@ const ChooseJobProfileComponent = ({
             <ListSelect
               type="record"
               onChange={changeRecordSelectHandler}
-              required={isInstanceIdType()}
-              disabled={!isInstanceIdType()}
+              required={isInstanceIdType(selectedProfile)}
+              disabled={!isInstanceIdType(selectedProfile)}
               value={selectedRecordType}
             />
           </div>
