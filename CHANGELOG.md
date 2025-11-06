@@ -2,6 +2,7 @@
 
 ## IN PROGRESS
 
+* Add record type selection to confirmation dialog with Linked Data option. Refs UIDEXP-411.
 * Include metadata in edit form of data export mapping profile. Refs UIDEXP-408.
 
 ## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
