@@ -45,11 +45,15 @@ const ChooseJobProfileComponent = ({
     fileDefinitionIdRef.current = location.state?.fileDefinitionId;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const isInstanceIdType = () => {
+    return selectedProfile.idType === 'instance';
+  };
+
   useEffect(() => {
     if (!isInstanceIdType()) {
       setSelectedRecordType('');
     }
-  }), [selectedProfile];
+  }, [selectedProfile, isInstanceIdType]);
 
   const changeSelectHandler = event => {
     setSelectedProfile({
@@ -60,10 +64,6 @@ const ChooseJobProfileComponent = ({
 
   const changeRecordSelectHandler = event => {
     setSelectedRecordType(event.target.value);
-  };
-
-  const isInstanceIdType = () => {
-    return selectedProfile.idType === 'instance';
   };
 
   const isConfirmDisabled = () => {
@@ -103,13 +103,15 @@ const ChooseJobProfileComponent = ({
             />
             <ListSelect
               type="id"
-              onChange={changeSelectHandler} />
+              onChange={changeSelectHandler}
+            />
             <ListSelect
               type="record"
               onChange={changeRecordSelectHandler}
               required={isInstanceIdType()}
               disabled={!isInstanceIdType()}
-              value={selectedRecordType} />
+              value={selectedRecordType}
+            />
           </div>
         )}
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
@@ -119,7 +121,7 @@ const ChooseJobProfileComponent = ({
           try {
             setIsJobRunning(true);
 
-            let requestBody = {
+            const requestBody = {
               fileDefinitionId: fileDefinitionIdRef.current,
               jobProfileId: selectedProfile.id,
               idType: selectedProfile.idType,
