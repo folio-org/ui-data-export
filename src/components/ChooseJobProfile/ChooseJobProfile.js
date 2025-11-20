@@ -111,7 +111,7 @@ const ChooseJobProfileComponent = ({ resources, mutator, history, location }) =>
 
 ChooseJobProfileComponent.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  location: PropTypes.shape({ state: PropTypes.shape({ fileDefinitionId: PropTypes.string }) }).isRequired,
+  location: PropTypes.shape({ search: PropTypes.string }).isRequired,
   mutator: PropTypes.shape({ export: PropTypes.shape({ POST: PropTypes.func.isRequired }) }).isRequired,
   resources: PropTypes.shape({}).isRequired,
 };
