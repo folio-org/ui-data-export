@@ -7,8 +7,8 @@ import { match as matchShape, history as historyShape } from 'react-router-prop-
 import { FileUploader, uploadFile, Preloader, createUrl } from '@folio/stripes-data-transfer-components';
 import { Layout, Callout, ConfirmationModal } from '@folio/stripes/components';
 import { useStripes, stripesConnect } from '@folio/stripes/core';
-
 import { buildSearch } from '@folio/stripes-acq-components';
+
 import { generateFileDefinitionBody, getFileInfo } from './utils';
 
 const QueryFileUploaderComponent = (props) => {
