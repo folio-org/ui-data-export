@@ -1,43 +1,18 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-  match as matchShape,
-  history as historyShape,
-} from 'react-router-prop-types';
+import { match as matchShape, history as historyShape } from 'react-router-prop-types';
 
-import {
-  FileUploader,
-  uploadFile,
-  Preloader,
-  createUrl,
-} from '@folio/stripes-data-transfer-components';
-import {
-  Layout,
-  Callout,
-  ConfirmationModal,
-} from '@folio/stripes/components';
-import {
-  useStripes,
-  stripesConnect,
-} from '@folio/stripes/core';
+import { FileUploader, uploadFile, Preloader, createUrl } from '@folio/stripes-data-transfer-components';
+import { Layout, Callout, ConfirmationModal } from '@folio/stripes/components';
+import { useStripes, stripesConnect } from '@folio/stripes/core';
 
-import {
-  generateFileDefinitionBody,
-  getFileInfo,
-} from './utils';
+import { buildSearch } from '@folio/stripes-acq-components';
+import { generateFileDefinitionBody, getFileInfo } from './utils';
 
-const QueryFileUploaderComponent = props => {
-  const {
-    mutator,
-    history,
-    match,
-  } = props;
+const QueryFileUploaderComponent = (props) => {
+  const { mutator, history, match } = props;
 
   const [isDropZoneActive, setDropZoneActive] = useState(false);
   const [fileExtensionModalOpen, setFileExtensionModalOpen] = useState(false);
@@ -47,10 +22,15 @@ const QueryFileUploaderComponent = props => {
   const stripes = useStripes();
   const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.view') && !stripes.hasPerm('ui-data-export.edit');
 
-  const uploaderTitle = isDropZoneActive ? isLoading
-    ? <Preloader message={<FormattedMessage id="ui-data-export.uploading" />} />
-    : <FormattedMessage id="ui-data-export.uploaderActiveTitle" />
-    : <FormattedMessage id="ui-data-export.uploaderTitle" />;
+  const uploaderTitle = isDropZoneActive ? (
+    isLoading ? (
+      <Preloader message={<FormattedMessage id="ui-data-export.uploading" />} />
+    ) : (
+      <FormattedMessage id="ui-data-export.uploaderActiveTitle" />
+    )
+  ) : (
+    <FormattedMessage id="ui-data-export.uploaderTitle" />
+  );
 
   useEffect(() => {
     return () => {
@@ -84,22 +64,21 @@ const QueryFileUploaderComponent = props => {
     setFileExtensionModalOpen(false);
   };
 
-
   const handleUploadError = ({ status }) => {
     if (!calloutRef.current) return;
 
     const BIG_CONTENT_ERROR_STATUS = 413;
 
-    const errorMessageId = status === BIG_CONTENT_ERROR_STATUS // content > 500mb
-      ? 'ui-data-export.bigFileProblem'
-      : 'ui-data-export.communicationProblem';
+    const errorMessageId =
+      status === BIG_CONTENT_ERROR_STATUS // content > 500mb
+        ? 'ui-data-export.bigFileProblem'
+        : 'ui-data-export.communicationProblem';
 
     calloutRef.current.sendCallout({
       type: 'error',
       message: <FormattedMessage id={errorMessageId} />,
     });
   };
-
 
   const handleFileUploadProgress = (file, { loaded: uploadedValue }) => {
     // TODO: handle file progress once the file uploading occurs on the choose job profile page
@@ -113,10 +92,7 @@ const QueryFileUploaderComponent = props => {
 
     if (!fileToUpload) return;
 
-    const {
-      isTypeSupported,
-      fileType,
-    } = getFileInfo(fileToUpload);
+    const { isTypeSupported, fileType } = getFileInfo(fileToUpload);
 
     if (!isTypeSupported) {
       showFileExtensionModal();
@@ -143,15 +119,13 @@ const QueryFileUploaderComponent = props => {
 
       history.push({
         pathname: `${match.path}/job-profile`,
-        state: { fileDefinitionId: fileUploadResult.id },
+        search: buildSearch({ fileDefinitionId: fileUploadResult.id }),
       });
     } catch (error) {
       handleUploadError(error);
       setDropZone(false);
     }
   }
-
-
 
   return (
     <>
@@ -165,7 +139,7 @@ const QueryFileUploaderComponent = props => {
         onDrop={handleDrop}
         disabled={hasOnlyViewPerms}
       >
-        {openDialogWindow => (
+        {(openDialogWindow) => (
           <>
             <Layout className="padding-top-gutter padding-start-gutter padding-end-gutter textCentered">
               <span data-test-sub-title>
@@ -175,11 +149,11 @@ const QueryFileUploaderComponent = props => {
             <ConfirmationModal
               id="file-extension-modal"
               open={fileExtensionModalOpen}
-              heading={(
+              heading={
                 <span data-test-file-extension-modal-header>
                   <FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.header" />
                 </span>
-              )}
+              }
               message={<FormattedMessage id="ui-data-export.modal.fileExtensions.blocked.message" />}
               confirmLabel={<FormattedMessage id="ui-data-export.modal.fileExtensions.actionButton" />}
               cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
@@ -200,7 +174,8 @@ const QueryFileUploaderComponent = props => {
 QueryFileUploaderComponent.propTypes = {
   history: historyShape.isRequired,
   match: matchShape.isRequired,
-  mutator: PropTypes.shape({ fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired }).isRequired,
+  mutator: PropTypes.shape({ fileDefinition: PropTypes.shape({ POST: PropTypes.func.isRequired }).isRequired })
+    .isRequired,
 };
 
 QueryFileUploaderComponent.manifest = Object.freeze({

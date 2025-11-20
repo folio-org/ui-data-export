@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -17,6 +13,9 @@ import {
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal';
 import { jobProfilesManifest } from '../../common';
 import { ListSelect } from './ChooseJobProfileSelect/ChooseJobProfileSelect';
+import { useMappingProfile } from '../../hooks/useMappingProfile';
+import { useRunDataExport } from '../../hooks/useRunDataExport';
+import { RECORD_TYPE_TO_RUN_JOB_PROFILE_MAPPING } from '../../utils';
 
 const customProperties = {
   columnWidths: { description: '40%' },
@@ -29,27 +28,33 @@ const customProperties = {
   ],
 };
 
-const ChooseJobProfileComponent = ({
-  resources,
-  mutator,
-  history,
-  location,
-}) => {
+const ChooseJobProfileComponent = ({ resources, mutator, history, location }) => {
+  const searchParams = new URLSearchParams(location.search);
+  const fileDefinitionId = searchParams.get('fileDefinitionId');
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
-  const [isJobRunning, setIsJobRunning] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState({});
-  const fileDefinitionIdRef = useRef(null);
+  const { runDataExport, isDataExportLoading } = useRunDataExport();
+  const { mappingProfile } = useMappingProfile(selectedProfile.mappingProfileId);
 
-  useEffect(() => {
-    fileDefinitionIdRef.current = location.state?.fileDefinitionId;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const changeSelectHandler = event => {
+  const changeSelectHandler = (event) => {
     setSelectedProfile({
       ...selectedProfile,
       idType: event.target.value,
     });
   };
+
+  // Set default record type if the selected profile is default to skip modal selection
+  useEffect(() => {
+    const recordType = mappingProfile?.recordTypes?.[0];
+    const idType = RECORD_TYPE_TO_RUN_JOB_PROFILE_MAPPING[recordType];
+
+    if (selectedProfile.default && recordType && isConfirmationModalOpen) {
+      setSelectedProfile((prevState) => ({
+        ...prevState,
+        idType,
+      }));
+    }
+  }, [selectedProfile.default, mappingProfile, isConfirmationModalOpen]);
 
   return (
     <>
@@ -72,26 +77,24 @@ const ChooseJobProfileComponent = ({
       <ConfirmationModal
         id="choose-job-profile-confirmation-modal"
         open={isConfirmationModalOpen}
-        disabledCofirmButton={!selectedProfile.idType || isJobRunning}
+        disabledCofirmButton={!selectedProfile.idType || isDataExportLoading}
         heading={<FormattedMessage id="ui-data-export.jobProfiles.selectProfile.modal.title" />}
-        message={(
+        message={
           <div>
             <FormattedMessage
               id="ui-data-export.jobProfiles.selectProfile.modal.message"
               values={{ profile: selectedProfile.name }}
             />
-            <ListSelect onChange={changeSelectHandler} />
+            {!selectedProfile.default && <ListSelect onChange={changeSelectHandler} />}
           </div>
-        )}
+        }
         confirmLabel={<FormattedMessage id="ui-data-export.run" />}
         cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
         onCancel={() => setConfirmationModalState(false)}
         onConfirm={async () => {
           try {
-            setIsJobRunning(true);
-
-            await mutator.export.POST({
-              fileDefinitionId: fileDefinitionIdRef.current,
+            await runDataExport({
+              fileDefinitionId,
               jobProfileId: selectedProfile.id,
               idType: selectedProfile.idType,
             });
@@ -99,8 +102,6 @@ const ChooseJobProfileComponent = ({
             history.push('/data-export');
           } catch (error) {
             setConfirmationModalState(false);
-          } finally {
-            setIsJobRunning(false);
           }
         }}
       />
@@ -115,16 +116,7 @@ ChooseJobProfileComponent.propTypes = {
   resources: PropTypes.shape({}).isRequired,
 };
 
-ChooseJobProfileComponent.manifest = Object.freeze({
-  ...jobProfilesManifest,
-  export: {
-    type: 'okapi',
-    path: 'data-export/export',
-    clientGeneratePk: false,
-    throwErrors: false,
-    fetch: false,
-  },
-});
+ChooseJobProfileComponent.manifest = Object.freeze(jobProfilesManifest);
 
 export { ChooseJobProfileComponent };
 export default stripesConnect(ChooseJobProfileComponent);
