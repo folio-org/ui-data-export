@@ -1,4 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
+
+import * as stripesCore from '@folio/stripes/core';
+import * as reactQuery from 'react-query';
 import { useMappingProfile } from './useMappingProfile';
 
 jest.mock('@folio/stripes/core', () => ({
@@ -10,9 +13,9 @@ jest.mock('react-query', () => ({
   useQuery: jest.fn(),
 }));
 
-const mockUseNamespace = require('@folio/stripes/core').useNamespace;
-const mockUseOkapiKy = require('@folio/stripes/core').useOkapiKy;
-const mockUseQuery = require('react-query').useQuery;
+const mockUseNamespace = stripesCore.useNamespace;
+const mockUseOkapiKy = stripesCore.useOkapiKy;
+const mockUseQuery = reactQuery.useQuery;
 
 describe('useMappingProfile', () => {
   const kyGetMock = jest.fn();
