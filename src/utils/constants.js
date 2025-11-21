@@ -3,6 +3,11 @@ import { FormattedMessage } from 'react-intl';
 
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
+export const RECORD_TYPE_TO_RUN_JOB_PROFILE_MAPPING = {
+  AUTHORITY: 'authority',
+  HOLDINGS: 'holding',
+  INSTANCE: 'instance',
+};
 
 export const JOB_EXECUTION_STATUSES = {
   NEW: 'NEW',
@@ -98,7 +103,7 @@ export const searchableIndexes = [
     label: 'jobExecutionHrId',
     value: 'hrId',
     placeholder: 'jobExecutionHrId',
-  }
+  },
 ];
 
 export const SORT_MAP = {
@@ -128,4 +133,3 @@ export const PAGINATION_CONFIG = {
   limit: 100,
   offset: 0,
 };
-

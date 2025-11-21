@@ -107,7 +107,7 @@
   "jobProfiles.selectProfile.title": "Select job profile to run the export",
   "jobProfiles.selectProfile.modal.title": "Are you sure you want to run this job?",
   "jobProfiles.selectProfile.modal.selectTitle": "UUIDs provided for this export",
-  "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export",
+  "jobProfiles.selectProfile.modal.message": "You have selected <b>{profile}</b> to run the export.",
   "jobProfiles.create.successCallout": "Job profile <b>{name}</b> has been successfully <b>created</b>",
   "jobProfiles.create.errorCallout": "There was an error while creating the job profile <b>{name}</b>",
   "jobProfiles.edit.successCallout": "Job profile <b>{name}</b> has been successfully <b>edited</b>",
