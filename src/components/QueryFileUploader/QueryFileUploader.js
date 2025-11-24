@@ -26,6 +26,7 @@ import {
   useStripes,
   stripesConnect,
 } from '@folio/stripes/core';
+import { buildSearch } from '@folio/stripes-acq-components';
 
 import {
   generateFileDefinitionBody,
@@ -143,7 +144,7 @@ const QueryFileUploaderComponent = props => {
 
       history.push({
         pathname: `${match.path}/job-profile`,
-        state: { fileDefinitionId: fileUploadResult.id },
+        search: buildSearch({ fileDefinitionId: fileUploadResult.id }),
       });
     } catch (error) {
       handleUploadError(error);

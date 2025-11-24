@@ -1,59 +1,77 @@
-import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import {
-  screen,
-  getByText,
-  getByRole,
-  getByTestId,
-} from '@testing-library/react';
+import { screen, getByText, getByRole, getByTestId, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import '../../../test/jest/__mock__';
 
-import {
-  buildResources,
-  buildMutator,
-} from '@folio/stripes-data-transfer-components/testUtils';
+import { buildResources, buildMutator } from '@folio/stripes-data-transfer-components/testUtils';
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 
 import { runAxeTest } from '@folio/stripes-testing';
 import { ChooseJobProfileComponent as ChooseJobProfile } from './ChooseJobProfile';
 import { translationsProperties } from '../../../test/helpers';
 
+import { useRunDataExport } from '../../hooks/useRunDataExport';
+import { useMappingProfile } from '../../hooks/useMappingProfile';
+
+jest.mock('../../hooks/useRunDataExport', () => ({
+  useRunDataExport: jest.fn(),
+}));
+
+jest.mock('../../hooks/useMappingProfile', () => ({
+  useMappingProfile: jest.fn(),
+}));
+
 const resources = buildResources({
   resourceName: 'jobProfiles',
-  records: [{
-    id: 'jobProfile1',
-    name: 'A Lorem ipsum 1',
-    description: 'Description 1',
-    userInfo: {
-      firstName: 'Donald',
-      lastName: 'S',
+  records: [
+    {
+      id: 'jobProfile1',
+      name: 'A Lorem ipsum 1',
+      description: 'Description 1',
+      userInfo: {
+        firstName: 'Donald',
+        lastName: 'S',
+      },
+      metadata: { updatedDate: '2018-12-04T09:05:30.000+0000' },
     },
-    metadata: { updatedDate: '2018-12-04T09:05:30.000+0000' },
-  },
-  {
-    id: 'jobProfile2',
-    name: 'A Lorem ipsum 2',
-    description: 'Description 2',
-    userInfo: {
-      firstName: 'Mark',
-      lastName: 'K',
+    {
+      id: 'jobProfile2',
+      name: 'A Lorem ipsum 2',
+      description: 'Description 2',
+      userInfo: {
+        firstName: 'Mark',
+        lastName: 'K',
+      },
+      metadata: { updatedDate: '2018-11-04T11:22:31.000+0000' },
     },
-    metadata: { updatedDate: '2018-11-04T11:22:31.000+0000' },
-  }],
+  ],
   hasLoaded: true,
 });
 
 describe('ChooseJobProfile', () => {
   describe('rendering ChooseJobProfile', () => {
-    const exportProfileSpy = jest.fn(Promise.resolve.bind(Promise));
     const pushHistorySpy = jest.fn();
-    const mutator = buildMutator({ export: { POST: exportProfileSpy } });
-    const location = { state: { fileDefinitionId: 'fileDefinitionId' } };
+    const mutator = buildMutator({ export: { POST: jest.fn() } });
+    const location = { search: '?fileDefinitionId=fileDefinitionId' };
+
     let renderResult;
+    let runDataExportMock;
 
     beforeEach(() => {
+      jest.clearAllMocks();
+
+      runDataExportMock = jest.fn().mockResolvedValue({});
+
+      useRunDataExport.mockReturnValue({
+        runDataExport: runDataExportMock,
+        isDataExportLoading: false,
+      });
+
+      useMappingProfile.mockReturnValue({
+        mappingProfile: null,
+      });
+
       renderResult = renderWithIntl(
         <Router>
           <ChooseJobProfile
@@ -122,11 +140,11 @@ describe('ChooseJobProfile', () => {
     });
 
     describe('clicking on row', () => {
-      beforeEach(() => {
+      beforeEach(async () => {
         const { container } = renderResult;
         const row = container.querySelector('.mclRow');
 
-        userEvent.click(row);
+        await userEvent.click(row);
       });
 
       it('should display modal with proper header', () => {
@@ -144,41 +162,55 @@ describe('ChooseJobProfile', () => {
         expect(getByRole(modal, 'button', { name: 'ui-data-export.cancel' })).toBeVisible();
       });
 
-      it('clicking on cancel button should close the modal', () => {
+      it('clicking on cancel button should close the modal', async () => {
         const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
-        userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.cancel' }));
+        await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.cancel' }));
 
-        expect(modal).not.toBeVisible();
+        await waitFor(() => {
+          expect(document.querySelector('#choose-job-profile-confirmation-modal')).not.toBeInTheDocument();
+        });
       });
 
       describe('clicking on confirm button - success case', () => {
-        beforeEach(async () => {
+        it('should call runDataExport with proper payload and navigate to the landing page', async () => {
           const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
           await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
 
-          userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
-        });
+          await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
 
-        it('should navigate to the landing page', () => {
+          await waitFor(() => {
+            expect(runDataExportMock).toHaveBeenCalledTimes(1);
+          });
+
+          const payload = runDataExportMock.mock.calls[0][0];
+
+          expect(payload.fileDefinitionId).toBe('fileDefinitionId');
+          expect(payload.jobProfileId).toBe('jobProfile1');
+          expect(payload.idType).toBeTruthy();
+
           expect(pushHistorySpy).toHaveBeenCalledWith('/data-export');
         });
       });
 
       describe('clicking on confirm button - error case', () => {
-        beforeEach(async () => {
-          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
+        beforeEach(() => {
+          runDataExportMock.mockReset();
+          runDataExportMock.mockRejectedValue(new Error('export failed'));
+        });
 
-          exportProfileSpy.mockImplementationOnce(Promise.reject.bind(Promise));
+        it('should not navigate to the landing page and should close the modal', async () => {
+          const modal = document.querySelector('#choose-job-profile-confirmation-modal');
 
           await userEvent.selectOptions(getByTestId(modal, 'choose-job-select'), 'ui-data-export.instance');
 
-          userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
-        });
+          await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
 
-        it('should not navigate to the landing page', () => {
-          expect(pushHistorySpy).not.toHaveBeenCalled();
+          await waitFor(() => {
+            expect(pushHistorySpy).not.toHaveBeenCalled();
+            expect(document.querySelector('#choose-job-profile-confirmation-modal')).not.toBeInTheDocument();
+          });
         });
       });
     });
