@@ -168,7 +168,6 @@ describe('ChooseJobProfile', () => {
         await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.cancel' }));
 
         await waitFor(() => {
-          // modal may be removed completely, so we re-query
           expect(document.querySelector('#choose-job-profile-confirmation-modal')).not.toBeInTheDocument();
         });
       });
@@ -181,7 +180,6 @@ describe('ChooseJobProfile', () => {
 
           await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
 
-          // wait for async runDataExport + navigation
           await waitFor(() => {
             expect(runDataExportMock).toHaveBeenCalledTimes(1);
           });
