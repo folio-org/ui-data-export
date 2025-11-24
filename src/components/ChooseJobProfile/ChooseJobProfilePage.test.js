@@ -207,7 +207,6 @@ describe('ChooseJobProfile', () => {
 
           await userEvent.click(getByRole(modal, 'button', { name: 'ui-data-export.run' }));
 
-          // wait for the catch block to run and close modal
           await waitFor(() => {
             expect(pushHistorySpy).not.toHaveBeenCalled();
             expect(document.querySelector('#choose-job-profile-confirmation-modal')).not.toBeInTheDocument();
