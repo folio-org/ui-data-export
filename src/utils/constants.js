@@ -7,6 +7,7 @@ export const RECORD_TYPE_TO_RUN_JOB_PROFILE_MAPPING = {
   AUTHORITY: 'authority',
   HOLDINGS: 'holding',
   INSTANCE: 'instance',
+  LINKED_DATA: 'instance',
 };
 
 export const JOB_EXECUTION_STATUSES = {
