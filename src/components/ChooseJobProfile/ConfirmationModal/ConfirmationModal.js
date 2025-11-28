@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
@@ -49,9 +49,19 @@ const ConfirmationModal = props => {
     ...rest
   } = props;
 
+  const confirmButtonRef = useRef(null);
+
+  useEffect(() => {
+    // when the confirm button becomes enabled, move focus to it
+    if (!disabledCofirmButton && confirmButtonRef.current) {
+      confirmButtonRef.current.focus();
+    }
+  }, [disabledCofirmButton]);
+
   const footer = (
     <ModalFooter>
       <Button
+        ref={confirmButtonRef}
         data-test-confirmation-modal-confirm-button
         buttonStyle={buttonStyle}
         disabled={disabledCofirmButton}
