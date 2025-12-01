@@ -42,7 +42,7 @@
     "run": "Executar",
     "jobProfiles.selectProfile.title": "Selecione o perfil do trabalho para executar a exportação",
     "jobProfiles.selectProfile.modal.title": "Tem certeza de que deseja executar este trabalho?",
-    "jobProfiles.selectProfile.modal.message": "Você selecionou <b>{profile}</b> para executar a exportação",
+    "jobProfiles.selectProfile.modal.message": "Você selecionou <b>{profile}</b> para executar a exportação.",
     "mappingProfiles.transformations.emptyMessage": "Nenhuma transformação encontrada",
     "settings.profilesInfo": "Os perfis de exportação de dados adicionam flexibilidade e fornecem uma maneira fácil de configurar a exportação que é repetível e pode ser facilmente executada em diferentes conjuntos de dados.",
     "permission.settings.enabled": "Configurações (Exportação de dados): exibe a lista de páginas de configurações",
