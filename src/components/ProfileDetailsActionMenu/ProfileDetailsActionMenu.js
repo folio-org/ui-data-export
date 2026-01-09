@@ -6,6 +6,7 @@ import {
   Button,
   Icon,
 } from '@folio/stripes/components';
+import { useStripes } from '@folio/stripes/core';
 
 export const ProfileDetailsActionMenu = ({
   isProfileUsed,
@@ -15,6 +16,11 @@ export const ProfileDetailsActionMenu = ({
   onToggle,
   onDuplicate,
 }) => {
+  const stripes = useStripes();
+
+  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock');
+  const isModifyingHidden = isDefaultProfile || isProfileUsed || !hasLockPermissions;
+
   const buildButtonClickHandler = buttonClickHandler => () => {
     buttonClickHandler();
 
@@ -23,16 +29,17 @@ export const ProfileDetailsActionMenu = ({
 
   return (
     <>
-      <Button
-        data-test-edit-profile-button
-        buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed}
-        onClick={buildButtonClickHandler(onEdit)}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="stripes-data-transfer-components.edit" />
-        </Icon>
-      </Button>
+      {!isModifyingHidden && (
+        <Button
+          data-test-edit-profile-button
+          buttonStyle="dropdownItem"
+          onClick={buildButtonClickHandler(onEdit)}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="stripes-data-transfer-components.edit" />
+          </Icon>
+        </Button>
+      )}
       <Button
         data-test-duplicate-profile-button
         buttonStyle="dropdownItem"
@@ -42,16 +49,17 @@ export const ProfileDetailsActionMenu = ({
           <FormattedMessage id="stripes-data-transfer-components.duplicate" />
         </Icon>
       </Button>
-      <Button
-        data-test-delete-profile-button
-        buttonStyle="dropdownItem"
-        disabled={isDefaultProfile || isProfileUsed}
-        onClick={buildButtonClickHandler(onDelete)}
-      >
-        <Icon icon="trash">
-          <FormattedMessage id="stripes-data-transfer-components.delete" />
-        </Icon>
-      </Button>
+      {!isModifyingHidden && (
+        <Button
+          data-test-delete-profile-button
+          buttonStyle="dropdownItem"
+          onClick={buildButtonClickHandler(onDelete)}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="stripes-data-transfer-components.delete" />
+          </Icon>
+        </Button>
+      )}
     </>
   );
 };

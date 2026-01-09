@@ -7,12 +7,7 @@ import {
 import { noop } from 'lodash';
 import { Field } from 'react-final-form';
 
-import {
-  Layer,
-  TextField,
-  TextArea,
-  Select,
-} from '@folio/stripes/components';
+import { Layer, TextField, TextArea, Select, Checkbox, Layout } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import {
   FullScreenForm,
@@ -37,6 +32,7 @@ const JobProfilesForm = props => {
     onCancel = noop,
     hasLoaded = false,
     mappingProfiles = [],
+    hasLockPermissions,
     pristine,
     submitting,
     handleSubmit,
@@ -65,37 +61,54 @@ const JobProfilesForm = props => {
         <div className={css.jobProfilesFormContent}>
           {headLine}
           <div>{metadata}</div>
-          <div data-test-job-profile-form-name>
-            <Field
-              label={<FormattedMessage id="stripes-data-transfer-components.name" />}
-              name="name"
-              id="job-profile-name"
-              component={TextField}
-              fullWidth
-              required
-            />
-          </div>
-          <div data-test-job-profile-form-mapping-profile>
-            <Field
-              label={<FormattedMessage id="ui-data-export.mappingProfile" />}
-              name="mappingProfileId"
-              id="mapping-profile-id"
-              component={Select}
-              dataOptions={mappingProfiles}
-              placeholder={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.selectProfile' })}
-              fullWidth
-              required
-            />
-          </div>
-          <div data-test-job-profile-description>
-            <Field
-              label={<FormattedMessage id="ui-data-export.description" />}
-              name="description"
-              id="job-profile-description"
-              component={TextArea}
-              fullWidth
-            />
-          </div>
+          <Layout className="flex flex-align-items-start full">
+            <Layout className="full">
+              <div data-test-job-profile-form-name>
+                <Field
+                  label={<FormattedMessage id="stripes-data-transfer-components.name" />}
+                  name="name"
+                  id="job-profile-name"
+                  component={TextField}
+                  fullWidth
+                  required
+                />
+              </div>
+              <div data-test-job-profile-form-mapping-profile>
+                <Field
+                  label={<FormattedMessage id="ui-data-export.mappingProfile" />}
+                  name="mappingProfileId"
+                  id="mapping-profile-id"
+                  component={Select}
+                  dataOptions={mappingProfiles}
+                  placeholder={intl.formatMessage({ id: 'ui-data-export.mappingProfiles.selectProfile' })}
+                  fullWidth
+                  required
+                />
+              </div>
+              <div data-test-job-profile-description>
+                <Field
+                  label={<FormattedMessage id="ui-data-export.description" />}
+                  name="description"
+                  id="job-profile-description"
+                  component={TextArea}
+                  fullWidth
+                />
+              </div>
+            </Layout>
+            <Layout className="margin-start-gutter" style={{ flexShrink: 0 }}>
+              <div data-test-job-profile-locked>
+                <Field
+                  type="checkbox"
+                  label={<FormattedMessage id="ui-data-export.locked" />}
+                  name="locked"
+                  id="mapping-profile-locked"
+                  component={Checkbox}
+                  vertical
+                  disabled={!hasLockPermissions}
+                />
+              </div>
+            </Layout>
+          </Layout>
         </div>
         )}
       </FullScreenForm>
@@ -108,6 +121,7 @@ JobProfilesForm.propTypes = {
   onCancel: PropTypes.func,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
+  hasLockPermissions: PropTypes.bool,
   mappingProfiles: PropTypes.arrayOf(PropTypes.object),
   hasLoaded: PropTypes.bool,
   paneTitle: PropTypes.node.isRequired,
