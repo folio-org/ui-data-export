@@ -6,6 +6,7 @@ import {
   Accordion,
   AccordionSet,
   AccordionStatus,
+  Checkbox,
   Col,
   Headline,
   KeyValue,
@@ -77,6 +78,17 @@ const JobProfileDetails = props => {
                     data-test-job-profile-description
                     label={<FormattedMessage id="ui-data-export.description" />}
                     value={jobProfile.description || <NoValue />}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs>
+                  <Checkbox
+                    data-test-job-profile-locked
+                    label={<FormattedMessage id="ui-data-export.locked" />}
+                    vertical
+                    checked={jobProfile.locked}
+                    disabled
                   />
                 </Col>
               </Row>

@@ -100,10 +100,10 @@ const JobProfilesForm = props => {
                 <Field
                   type="checkbox"
                   label={<FormattedMessage id="ui-data-export.locked" />}
+                  vertical
                   name="locked"
                   id="mapping-profile-locked"
                   component={Checkbox}
-                  vertical
                   disabled={!hasLockPermissions}
                 />
               </div>
