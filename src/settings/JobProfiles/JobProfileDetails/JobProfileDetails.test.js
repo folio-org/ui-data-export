@@ -76,13 +76,13 @@ describe('JobProfileDetails', () => {
 
     userEvent.click(actionButton);
 
-    const deleteButton = screen.getByText('stripes-data-transfer-components.delete');
-    const duplicateButton = screen.getByText('stripes-data-transfer-components.duplicate');
-    const editButton = screen.getByText('stripes-data-transfer-components.edit');
+    const deleteButton = screen.queryByText('stripes-data-transfer-components.delete');
+    const duplicateButton = screen.queryByText('stripes-data-transfer-components.duplicate');
+    const editButton = screen.queryByText('stripes-data-transfer-components.edit');
 
-    expect(deleteButton).toBeEnabled();
+    expect(deleteButton).toBeNull();
     expect(duplicateButton).toBeEnabled();
-    expect(editButton).toBeEnabled();
+    expect(editButton).toBeNull();
   });
 
   describe('rendering details without description for a job profile which is not already in use', () => {

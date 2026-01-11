@@ -90,7 +90,7 @@ JobProfilesFormContainer.propTypes = {
   mappingProfiles: PropTypes.arrayOf(PropTypes.object),
   jobProfile: PropTypes.object,
   hasLoaded: PropTypes.bool,
-  mode: PropTypes.oneOf(['newProfile', 'editProfile']),
+  mode: PropTypes.oneOf(['newProfile', 'editProfile', 'duplicateProfile']),
 };
 
 export default JobProfilesFormContainer;

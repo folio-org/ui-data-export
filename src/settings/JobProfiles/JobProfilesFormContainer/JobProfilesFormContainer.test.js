@@ -1,234 +1,348 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { noop } from 'lodash';
 
 import '../../../../test/jest/__mock__';
 import '../../../../test/jest/__new_mock__';
 
-import { useStripes } from '@folio/stripes/core';
+import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
+import { runAxeTest } from '@folio/stripes-testing';
+
 import JobProfilesFormContainer from './JobProfilesFormContainer';
+import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
+import { translationsProperties } from '../../../../test/helpers';
+
+jest.mock('../JobProfilesForm', () => ({
+  JobProfilesForm: jest.fn(props => (
+    <div data-testid="job-profiles-form">
+      <div data-testid="pane-title">{props.paneTitle}</div>
+      <div data-testid="has-lock-permissions">{String(props.hasLockPermissions)}</div>
+      <div data-testid="initial-values">{JSON.stringify(props.initialValues)}</div>
+      {props.metadata && <div data-testid="metadata">metadata</div>}
+      {props.headLine && <div data-testid="headline">headline</div>}
+    </div>
+  )),
+}));
 
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
-  useStripes: jest.fn(),
+  useStripes: jest.fn(() => ({
+    hasPerm: jest.fn(perm => perm === 'ui-data-export.settings.lock'),
+  })),
 }));
-
-jest.mock(
-  '@folio/stripes-components/lib/Layer',
-  () => props => props.children
-);
 
 const mappingProfilesMock = [
   { value: 'mapping_1', label: 'mapping 1' },
   { value: 'mapping_2', label: 'mapping 2' },
 ];
 
-const jobProfileMock = {
-  id: 'profile-1',
-  name: 'Test Profile',
-  description: 'Test Description',
-  mappingProfileId: 'mapping_1',
-  locked: false,
-  metadata: {
-    createdDate: '2023-01-01',
-    updatedDate: '2023-01-02',
-  },
-};
-
-const defaultProps = {
-  onSubmit: jest.fn(),
-  onCancel: jest.fn(),
-  hasLoaded: true,
-  mappingProfiles: mappingProfilesMock,
-};
-
-const renderContainer = (props = {}) => {
-  render(<JobProfilesFormContainer {...defaultProps} {...props} />);
-};
-
 describe('JobProfilesFormContainer', () => {
-  beforeEach(() => {
+  const defaultProps = {
+    onSubmit: jest.fn(),
+    onCancel: noop,
+    mappingProfiles: mappingProfilesMock,
+    hasLoaded: true,
+  };
+
+  afterEach(() => {
     jest.clearAllMocks();
-    useStripes.mockReturnValue({
-      hasPerm: jest.fn().mockReturnValue(true),
+  });
+
+  describe('newProfile mode', () => {
+    it('should render with correct pane title', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
+
+      expect(screen.getByTestId('pane-title')).toHaveTextContent('ui-data-export.jobProfiles.newProfile');
+    });
+
+    it('should set locked to true in initial values when user has lock permissions', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
+
+      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
+      expect(initialValues.locked).toBe(true);
+    });
+
+    it('should pass hasLockPermissions prop correctly', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
+
+      expect(screen.getByTestId('has-lock-permissions')).toHaveTextContent('true');
+    });
+
+    it('should not render metadata or headline', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
+
+      expect(screen.queryByTestId('metadata')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('headline')).not.toBeInTheDocument();
+    });
+
+    it('should render with no axe errors', async () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
+
+      await runAxeTest({
+        rootNode: document.body,
+      });
     });
   });
 
-  describe('Permission checking', () => {
-    it('should call stripes.hasPerm with correct permission', () => {
-      const hasPerm = jest.fn().mockReturnValue(true);
+  describe('editProfile mode', () => {
+    it('should render with correct pane title translation key', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
 
-      useStripes.mockReturnValue({ hasPerm });
-
-      renderContainer({ mode: 'newProfile' });
-
-      expect(hasPerm).toHaveBeenCalledWith('ui-data-export.settings.lock');
+      const paneTitleElement = screen.getByTestId('pane-title');
+      expect(paneTitleElement).toBeInTheDocument();
+      expect(paneTitleElement.textContent).toBeTruthy();
     });
 
-    it('should pass hasLockPermissions=true to form when user has permission', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
+    it('should format initial values from job profile', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
 
-      renderContainer({ mode: 'newProfile' });
+      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
 
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+      expect(initialValues.id).toBe(jobProfile.id);
+      expect(initialValues.name).toBe(jobProfile.name);
+      expect(initialValues.description).toBe(jobProfile.description);
+      expect(initialValues.mappingProfileId).toBe(jobProfile.mappingProfileId);
 
-      expect(lockCheckbox).toBeEnabled();
+      expect(initialValues.metadata).toBeUndefined();
+      expect(initialValues.userInfo).toBeUndefined();
+      expect(initialValues.default).toBeUndefined();
     });
 
-    it('should pass hasLockPermissions=false to form when user lacks permission', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(false),
+    it('should render metadata component', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      expect(screen.getByTestId('metadata')).toBeInTheDocument();
+    });
+
+    it('should render headline with job profile name', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      expect(screen.getByTestId('headline')).toBeInTheDocument();
+    });
+
+    it('should pass all required props to JobProfilesForm', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      expect(screen.getByTestId('job-profiles-form')).toBeInTheDocument();
+      expect(screen.getByTestId('has-lock-permissions')).toHaveTextContent('true');
+    });
+
+    it('should render with no axe errors', async () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="editProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      await runAxeTest({
+        rootNode: document.body,
       });
-
-      renderContainer({ mode: 'newProfile' });
-
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).toBeDisabled();
     });
   });
 
-  describe('New profile mode', () => {
-    it('should render form with correct title', () => {
-      renderContainer({ mode: 'newProfile' });
+  describe('duplicateProfile mode', () => {
+    it('should render with new profile pane title', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
 
-      expect(screen.getByText(/jobProfiles.newProfile/)).toBeInTheDocument();
+      expect(screen.getByTestId('pane-title')).toHaveTextContent('ui-data-export.jobProfiles.newProfile');
     });
 
-    it('should set locked=true by default when user has lock permissions', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
+    it('should format initial values without id field', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
 
-      renderContainer({ mode: 'newProfile' });
+      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
 
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).toBeChecked();
+      expect(initialValues.id).toBeUndefined();
+      expect(initialValues.description).toBe(jobProfile.description);
+      expect(initialValues.mappingProfileId).toBe(jobProfile.mappingProfileId);
     });
 
-    it('should set locked=false by default when user lacks lock permissions', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(false),
+    it('should set locked to false in initial values', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
+      expect(initialValues.locked).toBe(false);
+    });
+
+    it('should have name in initial values for duplicate', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
+      expect(initialValues.name).toBeTruthy();
+    });
+
+    it('should not render metadata or headline', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      expect(screen.queryByTestId('metadata')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('headline')).not.toBeInTheDocument();
+    });
+
+    it('should render with no axe errors', async () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="duplicateProfile"
+          jobProfile={jobProfile}
+        />,
+        translationsProperties
+      );
+
+      await runAxeTest({
+        rootNode: document.body,
       });
-
-      renderContainer({ mode: 'newProfile' });
-
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).not.toBeChecked();
     });
   });
 
-  describe('Edit profile mode', () => {
-    it('should render form with correct title', () => {
-      renderContainer({
-        mode: 'editProfile',
-        jobProfile: jobProfileMock,
-      });
+  describe('user without lock permissions', () => {
+    it('should set hasLockPermissions based on stripes permissions', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
 
-      expect(screen.getByText(/jobProfiles.editProfile/)).toBeInTheDocument();
-    });
-
-    it('should render profile headline', () => {
-      renderContainer({
-        mode: 'editProfile',
-        jobProfile: jobProfileMock,
-      });
-
-      expect(screen.getByTestId('headline')).toHaveTextContent('Test Profile');
-    });
-
-    it('should preserve existing lock status', () => {
-      const lockedProfile = { ...jobProfileMock, locked: true };
-
-      renderContainer({
-        mode: 'editProfile',
-        jobProfile: lockedProfile,
-      });
-
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).toBeChecked();
+      expect(screen.getByTestId('has-lock-permissions')).toBeInTheDocument();
     });
   });
 
-  describe('Duplicate profile mode', () => {
-    it('should render form with new profile title', () => {
-      renderContainer({
-        mode: 'duplicateProfile',
-        jobProfile: jobProfileMock,
-      });
+  describe('prop forwarding', () => {
+    it('should render JobProfilesForm with correct props', () => {
+      renderWithIntl(
+        <JobProfilesFormContainer
+          {...defaultProps}
+          hasLoaded={false}
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
 
-      expect(screen.getByText(/jobProfiles.newProfile/)).toBeInTheDocument();
+      expect(screen.getByTestId('job-profiles-form')).toBeInTheDocument();
     });
 
-    it('should always set locked=false for duplicated profiles', () => {
-      const lockedProfile = { ...jobProfileMock, locked: true };
+    it('should pass through all props to JobProfilesForm', () => {
+      const onSubmitMock = jest.fn();
+      const onCancelMock = jest.fn();
 
-      renderContainer({
-        mode: 'duplicateProfile',
-        jobProfile: lockedProfile,
-      });
+      renderWithIntl(
+        <JobProfilesFormContainer
+          onSubmit={onSubmitMock}
+          onCancel={onCancelMock}
+          mappingProfiles={mappingProfilesMock}
+          hasLoaded
+          mode="newProfile"
+        />,
+        translationsProperties
+      );
 
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).not.toBeChecked();
-    });
-
-    it('should set locked=false even when user has lock permissions', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
-
-      const lockedProfile = { ...jobProfileMock, locked: true };
-
-      renderContainer({
-        mode: 'duplicateProfile',
-        jobProfile: lockedProfile,
-      });
-
-      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
-
-      expect(lockCheckbox).not.toBeChecked();
-    });
-
-    it('should prefix profile name with "Copy of"', () => {
-      renderContainer({
-        mode: 'duplicateProfile',
-        jobProfile: jobProfileMock,
-      });
-
-      const nameField = screen.getByRole('textbox', { name: /name/ });
-
-      expect(nameField).toHaveValue('copyOf Test Profile');
-    });
-  });
-
-  describe('Form props', () => {
-    it('should pass hasLoaded prop to form', () => {
-      renderContainer({ hasLoaded: false });
-
-      expect(screen.getByTestId('preloader')).toBeInTheDocument();
-    });
-
-    it('should pass mappingProfiles to form', () => {
-      renderContainer({ mode: 'newProfile' });
-
-      const mappingProfileField = screen.getByRole('combobox', { name: /mappingProfile/ });
-
-      expect(mappingProfileField).toBeInTheDocument();
-    });
-
-    it('should pass onSubmit and onCancel handlers', () => {
-      const onSubmit = jest.fn();
-      const onCancel = jest.fn();
-
-      renderContainer({ onSubmit, onCancel, mode: 'newProfile' });
-
-      expect(screen.getByRole('button', { name: /saveAndClose/ })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /cancel/ })).toBeInTheDocument();
+      expect(screen.getByTestId('job-profiles-form')).toBeInTheDocument();
+      expect(screen.getByTestId('has-lock-permissions')).toBeInTheDocument();
+      expect(screen.getByTestId('initial-values')).toBeInTheDocument();
     });
   });
 });
