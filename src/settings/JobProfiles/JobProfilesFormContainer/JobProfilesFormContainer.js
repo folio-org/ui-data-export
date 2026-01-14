@@ -19,7 +19,7 @@ const JobProfilesFormContainer = ({
 }) => {
   const stripes = useStripes();
   const intl = useIntl();
-  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock');
+  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock.edit');
 
   const getModeBasedProps = () => {
     switch (mode) {

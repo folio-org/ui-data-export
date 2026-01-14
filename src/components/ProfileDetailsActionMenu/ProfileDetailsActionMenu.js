@@ -11,15 +11,16 @@ import { useStripes } from '@folio/stripes/core';
 export const ProfileDetailsActionMenu = ({
   isProfileUsed,
   isDefaultProfile,
+  isLockedProfile,
   onEdit,
   onDelete,
   onToggle,
   onDuplicate,
 }) => {
   const stripes = useStripes();
-
-  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock');
-  const isModifyingHidden = isDefaultProfile || isProfileUsed || !hasLockPermissions;
+  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock.edit');
+  const isEditHidden = isDefaultProfile || isProfileUsed || (isLockedProfile && !hasLockPermissions);
+  const isDeleteHidden = isDefaultProfile || isProfileUsed || isLockedProfile;
 
   const buildButtonClickHandler = buttonClickHandler => () => {
     buttonClickHandler();
@@ -29,7 +30,7 @@ export const ProfileDetailsActionMenu = ({
 
   return (
     <>
-      {!isModifyingHidden && (
+      {!isEditHidden && (
         <Button
           data-test-edit-profile-button
           buttonStyle="dropdownItem"
@@ -49,7 +50,7 @@ export const ProfileDetailsActionMenu = ({
           <FormattedMessage id="stripes-data-transfer-components.duplicate" />
         </Icon>
       </Button>
-      {!isModifyingHidden && (
+      {!isDeleteHidden && (
         <Button
           data-test-delete-profile-button
           buttonStyle="dropdownItem"
@@ -67,6 +68,7 @@ export const ProfileDetailsActionMenu = ({
 ProfileDetailsActionMenu.propTypes = {
   isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
+  isLockedProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

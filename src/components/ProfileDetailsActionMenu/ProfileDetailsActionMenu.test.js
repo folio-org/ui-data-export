@@ -10,14 +10,13 @@ import { useStripes } from '@folio/stripes/core';
 
 import { ProfileDetailsActionMenu } from './ProfileDetailsActionMenu';
 
-jest.mock('@folio/stripes/core', () => ({
-  ...jest.requireActual('@folio/stripes/core'),
-  useStripes: jest.fn(),
-}));
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const mockStripes = useStripes();
 
 const defaultProps = {
   isProfileUsed: false,
   isDefaultProfile: false,
+  isLockedProfile: false,
   onEdit: jest.fn(),
   onDelete: jest.fn(),
   onToggle: jest.fn(),
@@ -32,55 +31,160 @@ const renderActionMenu = (props = {}) => {
 };
 
 describe('ProfileDetailsActionMenu', () => {
+  beforeEach(() => {
+    // Default: user has all permissions
+    mockStripes.hasPerm.mockReturnValue(true);
+  });
+
   afterEach(() => {
     cleanup();
     jest.clearAllMocks();
   });
 
-  describe('User with lock permissions', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
+  it('should render all action buttons for unlocked profile', () => {
+    renderActionMenu();
+
+    expect(getByDataTest('edit-profile-button')).toBeInTheDocument();
+    expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
+    expect(getByDataTest('delete-profile-button')).toBeInTheDocument();
+  });
+
+  it('should display correct labels for all buttons', () => {
+    renderActionMenu();
+
+    expect(screen.getByText('stripes-data-transfer-components.edit')).toBeInTheDocument();
+    expect(screen.getByText('stripes-data-transfer-components.duplicate')).toBeInTheDocument();
+    expect(screen.getByText('stripes-data-transfer-components.delete')).toBeInTheDocument();
+  });
+
+  it('should hide edit and delete buttons for default profile', () => {
+    renderActionMenu({ isDefaultProfile: true });
+
+    expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
+    expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
+    expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
+  });
+
+  it('should hide edit and delete buttons for locked (in-use) profile', () => {
+    renderActionMenu({ isProfileUsed: true });
+
+    expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
+    expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
+    expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
+  });
+
+  it('should call onEdit and onToggle when edit button is clicked', () => {
+    const onEdit = jest.fn();
+    const onToggle = jest.fn();
+
+    renderActionMenu({ onEdit, onToggle });
+
+    userEvent.click(getByDataTest('edit-profile-button'));
+
+    expect(onEdit).toHaveBeenCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call onDelete and onToggle when delete button is clicked', () => {
+    const onDelete = jest.fn();
+    const onToggle = jest.fn();
+
+    renderActionMenu({ onDelete, onToggle });
+
+    userEvent.click(getByDataTest('delete-profile-button'));
+
+    expect(onDelete).toHaveBeenCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call onDuplicate and onToggle when duplicate button is clicked', () => {
+    const onDuplicate = jest.fn();
+    const onToggle = jest.fn();
+
+    renderActionMenu({ onDuplicate, onToggle });
+
+    userEvent.click(getByDataTest('duplicate-profile-button'));
+
+    expect(onDuplicate).toHaveBeenCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('should render with no axe errors', async () => {
+    renderActionMenu();
+
+    await runAxeTest({
+      rootNode: document.body,
     });
-    it('should render all action buttons for unlocked profile', () => {
-      renderActionMenu();
+  });
+
+  it('should render buttons with correct styles', () => {
+    renderActionMenu();
+
+    const editButton = getByDataTest('edit-profile-button');
+    const duplicateButton = getByDataTest('duplicate-profile-button');
+    const deleteButton = getByDataTest('delete-profile-button');
+
+    expect(editButton).toHaveAttribute('type', 'button');
+    expect(duplicateButton).toHaveAttribute('type', 'button');
+    expect(deleteButton).toHaveAttribute('type', 'button');
+  });
+
+  it('should display icons for all buttons', () => {
+    renderActionMenu();
+
+    expect(getByDataTest('edit-profile-button')).toHaveTextContent('stripes-data-transfer-components.edit');
+    expect(getByDataTest('duplicate-profile-button')).toHaveTextContent('stripes-data-transfer-components.duplicate');
+    expect(getByDataTest('delete-profile-button')).toHaveTextContent('stripes-data-transfer-components.delete');
+  });
+
+  describe('Locked profile behavior', () => {
+    it('should show edit and duplicate buttons for locked profile when user has lock permissions', () => {
+      mockStripes.hasPerm.mockImplementation(perm => perm === 'ui-data-export.settings.lock.edit');
+
+      renderActionMenu({ isLockedProfile: true });
 
       expect(getByDataTest('edit-profile-button')).toBeInTheDocument();
       expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
-      expect(getByDataTest('delete-profile-button')).toBeInTheDocument();
+      expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
     });
 
-    it('should display correct labels for all buttons', () => {
-      renderActionMenu();
+    it('should only show duplicate button for locked profile when user does not have lock permissions', () => {
+      mockStripes.hasPerm.mockReturnValue(false);
 
-      expect(screen.getByText('stripes-data-transfer-components.edit')).toBeInTheDocument();
-      expect(screen.getByText('stripes-data-transfer-components.duplicate')).toBeInTheDocument();
-      expect(screen.getByText('stripes-data-transfer-components.delete')).toBeInTheDocument();
-    });
-
-    it('should hide edit and delete buttons for default profile', () => {
-      renderActionMenu({ isDefaultProfile: true });
+      renderActionMenu({ isLockedProfile: true });
 
       expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
       expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
       expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
     });
 
-    it('should hide edit and delete buttons for locked (in-use) profile', () => {
-      renderActionMenu({ isProfileUsed: true });
+    it('should always hide delete button for locked profiles, even for authorized users', () => {
+      mockStripes.hasPerm.mockImplementation(perm => perm === 'ui-data-export.settings.lock.edit');
 
-      expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-      expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
+      renderActionMenu({ isLockedProfile: true });
+
       expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
     });
 
-    it('should call onEdit and onToggle when edit button is clicked', () => {
+    it('should allow duplicate action for locked profile', () => {
+      const onDuplicate = jest.fn();
+      const onToggle = jest.fn();
+
+      renderActionMenu({ isLockedProfile: true, onDuplicate, onToggle });
+
+      userEvent.click(getByDataTest('duplicate-profile-button'));
+
+      expect(onDuplicate).toHaveBeenCalledTimes(1);
+      expect(onToggle).toHaveBeenCalledTimes(1);
+    });
+
+    it('should allow edit action for locked profile when user has lock permissions', () => {
+      mockStripes.hasPerm.mockImplementation(perm => perm === 'ui-data-export.settings.lock.edit');
+
       const onEdit = jest.fn();
       const onToggle = jest.fn();
 
-      renderActionMenu({ onEdit, onToggle });
+      renderActionMenu({ isLockedProfile: true, onEdit, onToggle });
 
       userEvent.click(getByDataTest('edit-profile-button'));
 
@@ -88,122 +192,18 @@ describe('ProfileDetailsActionMenu', () => {
       expect(onToggle).toHaveBeenCalledTimes(1);
     });
 
-    it('should call onDelete and onToggle when delete button is clicked', () => {
-      const onDelete = jest.fn();
-      const onToggle = jest.fn();
-
-      renderActionMenu({ onDelete, onToggle });
-
-      userEvent.click(getByDataTest('delete-profile-button'));
-
-      expect(onDelete).toHaveBeenCalledTimes(1);
-      expect(onToggle).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call onDuplicate and onToggle when duplicate button is clicked', () => {
-      const onDuplicate = jest.fn();
-      const onToggle = jest.fn();
-
-      renderActionMenu({ onDuplicate, onToggle });
-
-      userEvent.click(getByDataTest('duplicate-profile-button'));
-
-      expect(onDuplicate).toHaveBeenCalledTimes(1);
-      expect(onToggle).toHaveBeenCalledTimes(1);
-    });
-
-    it('should render with no axe errors', async () => {
-      renderActionMenu();
+    it('should render with no axe errors when profile is locked', async () => {
+      renderActionMenu({ isLockedProfile: true });
 
       await runAxeTest({
         rootNode: document.body,
       });
-    });
-
-    it('should render buttons with correct styles', () => {
-      renderActionMenu();
-
-      const editButton = getByDataTest('edit-profile-button');
-      const duplicateButton = getByDataTest('duplicate-profile-button');
-      const deleteButton = getByDataTest('delete-profile-button');
-
-      expect(editButton).toHaveAttribute('type', 'button');
-      expect(duplicateButton).toHaveAttribute('type', 'button');
-      expect(deleteButton).toHaveAttribute('type', 'button');
-    });
-
-    it('should display icons for all buttons', () => {
-      renderActionMenu();
-
-      expect(getByDataTest('edit-profile-button')).toHaveTextContent('stripes-data-transfer-components.edit');
-      expect(getByDataTest('duplicate-profile-button')).toHaveTextContent('stripes-data-transfer-components.duplicate');
-      expect(getByDataTest('delete-profile-button')).toHaveTextContent('stripes-data-transfer-components.delete');
-    });
-  });
-
-  describe('User without lock permissions', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(false),
-      });
-    });
-
-    it('should only show duplicate button for locked profile without permissions', () => {
-      renderActionMenu({ isProfileUsed: true });
-
-      expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-      expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
-      expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
-    });
-
-    it('should only show duplicate button for default profile without permissions', () => {
-      renderActionMenu({ isDefaultProfile: true });
-
-      expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-      expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
-      expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
-    });
-
-    it('should allow duplicate action even without lock permissions', () => {
-      const onDuplicate = jest.fn();
-      const onToggle = jest.fn();
-
-      renderActionMenu({ onDuplicate, onToggle });
-
-      userEvent.click(getByDataTest('duplicate-profile-button'));
-
-      expect(onDuplicate).toHaveBeenCalledTimes(1);
-      expect(onToggle).toHaveBeenCalledTimes(1);
-    });
-
-    it('should render with no axe errors when user lacks permissions', async () => {
-      renderActionMenu();
-
-      await runAxeTest({
-        rootNode: document.body,
-      });
-    });
-  });
-
-  describe('Permission checking', () => {
-    it('should respect permission check result for button visibility', () => {
-      const hasPerm = jest.fn().mockReturnValue(true);
-      useStripes.mockReturnValue({ hasPerm });
-
-      renderActionMenu();
-
-      expect(getByDataTest('edit-profile-button')).toBeInTheDocument();
-      expect(getByDataTest('delete-profile-button')).toBeInTheDocument();
     });
   });
 
   describe('Button click handlers', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
     });
     it('should execute callbacks in correct order for edit action', () => {
       const callOrder = [];
@@ -255,9 +255,6 @@ describe('ProfileDetailsActionMenu', () => {
   describe('Edge cases', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
     });
     it('should handle both isDefaultProfile and isProfileUsed being true', () => {
       renderActionMenu({
@@ -271,13 +268,10 @@ describe('ProfileDetailsActionMenu', () => {
     });
 
     it('should only show duplicate button when all conditions restrict editing', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(false),
-      });
-
       renderActionMenu({
         isDefaultProfile: true,
         isProfileUsed: true,
+        isLockedProfile: true,
       });
 
       expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
@@ -285,14 +279,11 @@ describe('ProfileDetailsActionMenu', () => {
       expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
     });
 
-    it('should show all buttons for regular profile with permissions', () => {
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
-
+    it('should show all buttons for regular profile that is not locked', () => {
       renderActionMenu({
         isDefaultProfile: false,
         isProfileUsed: false,
+        isLockedProfile: false,
       });
 
       expect(getByDataTest('edit-profile-button')).toBeInTheDocument();
@@ -304,9 +295,6 @@ describe('ProfileDetailsActionMenu', () => {
   describe('Button interactions', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
     });
     it('should not call handlers multiple times on single click', () => {
       const onEdit = jest.fn();
@@ -354,9 +342,6 @@ describe('ProfileDetailsActionMenu', () => {
   describe('Component rendering', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      useStripes.mockReturnValue({
-        hasPerm: jest.fn().mockReturnValue(true),
-      });
     });
     it('should render without errors', () => {
       expect(() => renderActionMenu()).not.toThrow();
@@ -368,7 +353,6 @@ describe('ProfileDetailsActionMenu', () => {
     });
 
     it('should conditionally render edit button based on multiple factors', () => {
-      // Case 1: Show edit button
       const { unmount: unmount1 } = renderActionMenu({
         isDefaultProfile: false,
         isProfileUsed: false,
@@ -390,14 +374,25 @@ describe('ProfileDetailsActionMenu', () => {
       expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
     });
 
-    it('should match button visibility with delete button', () => {
+    it('should match button visibility with delete button for unlocked profiles', () => {
       renderActionMenu();
 
       const editButtonExists = queryByDataTest('edit-profile-button') !== null;
       const deleteButtonExists = queryByDataTest('delete-profile-button') !== null;
 
-      // Both should have same visibility
       expect(editButtonExists).toBe(deleteButtonExists);
+    });
+
+    it('should show edit button but hide delete button for locked profiles when user has permissions', () => {
+      mockStripes.hasPerm.mockImplementation(perm => perm === 'ui-data-export.settings.lock.edit');
+
+      renderActionMenu({ isLockedProfile: true });
+
+      const editButtonExists = queryByDataTest('edit-profile-button') !== null;
+      const deleteButtonExists = queryByDataTest('delete-profile-button') !== null;
+
+      expect(editButtonExists).toBe(true);
+      expect(deleteButtonExists).toBe(false);
     });
   });
 });

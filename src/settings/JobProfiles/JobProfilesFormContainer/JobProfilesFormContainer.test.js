@@ -27,7 +27,7 @@ jest.mock('../JobProfilesForm', () => ({
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
   useStripes: jest.fn(() => ({
-    hasPerm: jest.fn(perm => perm === 'ui-data-export.settings.lock'),
+    hasPerm: jest.fn(perm => perm === 'ui-data-export.settings.lock.edit'),
   })),
 }));
 
