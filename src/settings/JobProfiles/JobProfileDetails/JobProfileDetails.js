@@ -55,11 +55,20 @@ const JobProfileDetails = props => {
                 stripes={stripes}
               />
               <Row>
-                <Col xs>
+                <Col xs={10}>
                   <KeyValue
                     data-test-job-profile-name
                     label={<FormattedMessage id="ui-data-export.name" />}
                     value={jobProfile.name}
+                  />
+                </Col>
+                <Col xs={2}>
+                  <Checkbox
+                    data-test-job-profile-locked
+                    label={<FormattedMessage id="ui-data-export.locked" />}
+                    vertical
+                    checked={jobProfile.locked}
+                    disabled
                   />
                 </Col>
               </Row>
@@ -78,17 +87,6 @@ const JobProfileDetails = props => {
                     data-test-job-profile-description
                     label={<FormattedMessage id="ui-data-export.description" />}
                     value={jobProfile.description || <NoValue />}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col xs>
-                  <Checkbox
-                    data-test-job-profile-locked
-                    label={<FormattedMessage id="ui-data-export.locked" />}
-                    vertical
-                    checked={jobProfile.locked}
-                    disabled
                   />
                 </Col>
               </Row>
