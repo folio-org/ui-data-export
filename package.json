@@ -165,6 +165,16 @@
           "data-export.job-profiles.item.delete"
         ],
         "visible": true
+      },
+      {
+        "permissionName": "ui-data-export.settings.lock.edit",
+        "displayName": "Settings (Data export): Can lock and unlock profiles",
+        "subPermissions": [
+          "ui-data-export.settings.edit",
+          "data-export.mapping-profiles.item.lock.execute",
+          "data-export.job-profiles.item.lock.execute"
+        ],
+        "visible": true
       }
     ]
   }

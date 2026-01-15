@@ -19,11 +19,17 @@ const JobProfilesFormContainer = ({
 }) => {
   const stripes = useStripes();
   const intl = useIntl();
+  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock.edit');
 
   const getModeBasedProps = () => {
     switch (mode) {
       case 'newProfile':
-        return { paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }) };
+        return {
+          paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }),
+          initialValues: {
+            locked: hasLockPermissions,
+          }
+        };
       case 'editProfile':
         return {
           paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.editProfile' }, { name: jobProfile?.name }),
@@ -54,6 +60,7 @@ const JobProfilesFormContainer = ({
           paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }),
           initialValues: {
             ...formatJobProfileFormInitialValues(jobProfile, ['id']),
+            locked: false,
             name: intl.formatMessage(
               { id: 'ui-data-export.copyOf' },
               { value: jobProfile.name }
@@ -69,6 +76,7 @@ const JobProfilesFormContainer = ({
     <JobProfilesForm
       hasLoaded={hasLoaded}
       mappingProfiles={mappingProfiles}
+      hasLockPermissions={hasLockPermissions}
       onSubmit={onSubmit}
       onCancel={onCancel}
       {...getModeBasedProps()}
@@ -82,7 +90,7 @@ JobProfilesFormContainer.propTypes = {
   mappingProfiles: PropTypes.arrayOf(PropTypes.object),
   jobProfile: PropTypes.object,
   hasLoaded: PropTypes.bool,
-  mode: PropTypes.oneOf(['newProfile', 'editProfile']),
+  mode: PropTypes.oneOf(['newProfile', 'editProfile', 'duplicateProfile']),
 };
 
 export default JobProfilesFormContainer;

@@ -28,6 +28,7 @@ const renderJobProfileForm = ({
   submitting,
   hasLoaded = true,
   mappingProfiles = mappingProfilesMock,
+  hasLockPermissions = true,
   renderWithDefault,
 } = {}) => {
   const props = {
@@ -38,6 +39,7 @@ const renderJobProfileForm = ({
       onCancel,
       hasLoaded,
       mappingProfiles,
+      hasLockPermissions,
     }),
   };
   render(
@@ -90,6 +92,60 @@ describe('JobProfilesForm', () => {
 
     await runAxeTest({
       rootNode: document.body,
+    });
+  });
+
+  describe('Lock profile checkbox', () => {
+    it('should render lock profile checkbox', () => {
+      renderJobProfileForm();
+
+      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+
+      expect(lockCheckbox).toBeInTheDocument();
+    });
+
+    it('should enable lock checkbox when user has lock permissions', () => {
+      renderJobProfileForm({ hasLockPermissions: true });
+
+      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+
+      expect(lockCheckbox).toBeEnabled();
+    });
+
+    it('should disable lock checkbox when user does not have lock permissions', () => {
+      renderJobProfileForm({ hasLockPermissions: false });
+
+      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+
+      expect(lockCheckbox).toBeDisabled();
+    });
+
+    it('should allow user to check lock checkbox when authorized', () => {
+      renderJobProfileForm({ hasLockPermissions: true });
+
+      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+
+      expect(lockCheckbox).not.toBeChecked();
+
+      userEvent.click(lockCheckbox);
+
+      expect(lockCheckbox).toBeChecked();
+    });
+
+    it('should submit form with lock field value', () => {
+      renderJobProfileForm({ hasLockPermissions: true });
+
+      const nameField = screen.getByRole('textbox', { name: /name/ });
+      const mappingProfileField = screen.getByRole('combobox', { name: /mappingProfile/ });
+      const mappingOptions = screen.getByRole('option', { name: 'mapping 1' });
+      const lockCheckbox = screen.getByRole('checkbox', { name: /locked/ });
+
+      userEvent.type(nameField, 'test name');
+      userEvent.selectOptions(mappingProfileField, mappingOptions);
+      userEvent.click(lockCheckbox);
+      userEvent.click(screen.getByRole('button', { name: /saveAndClose/ }));
+
+      expect(onSubmitMock).toHaveBeenCalled();
     });
   });
 });

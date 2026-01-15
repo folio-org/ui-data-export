@@ -55,13 +55,14 @@ export const ProfileDetails = props => {
       <ProfileDetailsActionMenu
         isDefaultProfile={isDefaultProfile}
         isProfileUsed={isProfileUsed}
+        isLockedProfile={profile?.locked}
         onToggle={onToggle}
         onEdit={onEdit}
         onDuplicate={onDuplicate}
         onDelete={() => setConfirmationModalState(true)}
       />
     );
-  }, [isDefaultProfile, isProfileUsed, onEdit, onDuplicate]);
+  }, [isDefaultProfile, isProfileUsed, onEdit, onDuplicate, profile?.locked]);
 
   return (
     <FullScreenView

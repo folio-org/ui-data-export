@@ -136,9 +136,9 @@ describe('MappingProfileDetails', () => {
 
       userEvent.click(actionButton);
 
-      expect(disableButton).toBeDisabled();
+      expect(disableButton).toBeNull();
       expect(duplicateButton).toBeEnabled();
-      expect(deleteButton).toBeDisabled();
+      expect(deleteButton).toBeNull();
     });
   });
   describe('rendering details for a mapping profile which is already in use', () => {
