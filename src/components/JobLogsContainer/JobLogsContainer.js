@@ -76,8 +76,11 @@ export const JobLogsContainer = props => {
 
   const getFileNameField = record => {
     const fileName = get(record.exportedFiles, '0.fileName');
+    const isDeleted = !record.jobProfileId;
+    const isExported = record.progress?.exported;
+    const isNotCompleted = [JOB_EXECUTION_STATUSES.FAIL, JOB_EXECUTION_STATUSES.IN_PROGRESS].includes(record.status);
 
-    if (!record.progress?.exported || [JOB_EXECUTION_STATUSES.FAIL, JOB_EXECUTION_STATUSES.IN_PROGRESS].includes(record.status)) {
+    if (!isExported || isNotCompleted || isDeleted) {
       return (
         <span
           title={fileName}
@@ -108,7 +111,7 @@ export const JobLogsContainer = props => {
   };
 
   const handleRowClick = (e, row) => {
-    if (row.status !== JOB_EXECUTION_STATUSES.COMPLETED) {
+    if (row.status !== JOB_EXECUTION_STATUSES.COMPLETED && row.jobProfileId) {
       const path = `/data-export/log/${row.id}`;
 
       history.push(path);
@@ -178,6 +181,12 @@ export const JobLogsContainer = props => {
           return exported || '';
         },
         startedDate: getStartedDateDateFormatter(formatTime),
+        jobProfileName: record => {
+          const isProfileDeleted = !record.jobProfileId;
+          const deletedProfileSuffix = ` (${intl.formatMessage({ id: 'ui-data-export.deleted' })})`;
+
+          return `${record.jobProfileName || ''}${isProfileDeleted ? deletedProfileSuffix : ''}`;
+        }
       }
     ),
     columnWidths: JOB_LOGS_COLUMNS_WIDTHS,
