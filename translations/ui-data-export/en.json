@@ -122,6 +122,7 @@
   "marc": "MARC",
   "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
   "delete": "Delete",
+  "deleted": "deleted",
   "resetAll": "Reset all",
   "searchAndFilter": "Search & filter",
   "searchResultsCountHeader": "{count, number} {count, plural, one {record found} other {records found}}",
