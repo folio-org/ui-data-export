@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} - 用户{value2}无权查看{value3}数据租户中的馆藏或单件。导出过程中省略了此租户的馆藏和单件记录。",
     "error.instance.noAffiliation": "{value1} - 用户{value2}与{value3}数据租户无关联，且此租户的馆藏和单件记录在导出过程中被省略。",
     "error.holdings.noAffiliation": "{value1} - 用户{value2}与{value3}数据租户无关联，且导出过程中省略了该租户的馆藏记录。",
-    "error.holdings.noPermission": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。"
+    "error.holdings.noPermission": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
+    "locked": "Lock profile"
 }

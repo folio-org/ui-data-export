@@ -28,7 +28,7 @@
     "format": "Format",
     "viewAllLogs": "Pokaż wszystko",
     "mappingProfiles.newProfile": "Nowy profil mapowania pól",
-    "jobProfilesTitle": "Profile zadania",
+    "jobProfilesTitle": "Profile zadań",
     "summary": "Podsumowanie",
     "name": "Nazwa",
     "description": "Opis",
@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} – użytkownik {value2} nie ma uprawnień do przeglądania zasobów ani egzemplarzy w {value3} danych tenanta(ów). Rekordy zasobów i egzemplarzy od tego tenanta zostały pominięte podczas eksportu.",
     "error.instance.noAffiliation": "{value1} - użytkownik {value2} nie jest powiązany z {value3} danymi tenanta (tenantów), a rekordy zasobów i egzemplarzy od tego tenanta zostały pominięte podczas eksportu.",
     "error.holdings.noAffiliation": "{value1} - użytkownik {value2} nie jest powiązany z {value3} danymi tenanta, a rekordy zasobów od tego tenanta zostały pominięte podczas eksportu.",
-    "error.holdings.noPermission": "{value1} - użytkownik {value2} nie ma uprawnień dostępu do rekordu zasobów w {value3} danych tenanta."
+    "error.holdings.noPermission": "{value1} - użytkownik {value2} nie ma uprawnień dostępu do rekordu zasobów w {value3} danych tenanta.",
+    "locked": "Lock profile"
 }

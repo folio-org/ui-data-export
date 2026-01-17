@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} - l'utilisateur {value2} n'a pas les autorisations pour voire les localisations ou les exemplaires dans les données {value3}. Les notices d'exemplaires et localisations de cette session seront omises de cet export.",
     "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
     "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
-    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
+    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
+    "locked": "Lock profile"
 }
