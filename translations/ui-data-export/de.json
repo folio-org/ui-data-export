@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} – Die PErson {value2} ist nicht berechtigt, Bestände oder Exemplare in {value3} Mandanten anzuzeigen. Bestände und Exemplardatensätze dieses Mandanten wurden beim Export ausgelassen.",
     "error.instance.noAffiliation": "{value1} – die Person {value2} ist nicht mit {value3} Datenmandanten verbunden und Bestände und Exemplardatensätze dieses Mandanten wurden beim Export ausgelassen.",
     "error.holdings.noAffiliation": "{value1} – diePerson {value2} ist nicht mit dem Datenmandanten {value3} verbunden und Bestandsdatensätze dieses Mandanten wurden beim Export ausgelassen.",
-    "error.holdings.noPermission": "{value1} – die Person {value2} hat keine Berechtigung, auf den Bestandsdatensatz im Datenmandanten {value3} zuzugreifen."
+    "error.holdings.noPermission": "{value1} – die Person {value2} hat keine Berechtigung, auf den Bestandsdatensatz im Datenmandanten {value3} zuzugreifen.",
+    "locked": "Lock profile"
 }

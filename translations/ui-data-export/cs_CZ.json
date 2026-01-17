@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} – uživatel {value2} nemá oprávnění k zobrazení holdingů nebo položek v {value3} detech nájemce. Při exportu byly vynechány záznamy o holdinzích a jednotkách od tohoto nájemce.",
     "error.instance.noAffiliation": "{value1} - uživatel {value2} není přidružen k nájemci (nájemcům) dat {value3} a záznamy o holdinzích a jednotkách tohoto nájemce byly při exportu vynechány.",
     "error.holdings.noAffiliation": "{value1} - uživatel {value2} není spojen se {value3} záznamy dat čtenáře a holdingů z tohoto čtenáře byly při exportu vynechány.",
-    "error.holdings.noPermission": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}."
+    "error.holdings.noPermission": "{value1} – uživatel {value2} nemá oprávnění pro přístup k záznamu holdingu v nájemci dat {value3}.",
+    "locked": "Uzamknout profil"
 }
