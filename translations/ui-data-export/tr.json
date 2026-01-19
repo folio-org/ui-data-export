@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} - kullanıcı {value2} 'deki koleksiyonları veya öğeleri görüntüleme iznine sahip değil. {value3} veri kiracı(ları). Bu kiracıya ait koleksiyonlar ve kalem kayıtları dışa aktarma sırasında atlanmıştır.",
     "error.instance.noAffiliation": "{value1} - kullanıcı {value2} ile bağlantılı değildir {value3} veri kiracı(lar)ı ve bu kiracıya ait varlık ve kalem kayıtları dışa aktarma sırasında atlanmıştır.",
     "error.holdings.noAffiliation": "{value1} - kullanıcı {value2} ile bağlantılı değildir {value3} veri kiracısı ve bu kiracıya ait koleksiyon kayıtları dışa aktarma sırasında atlanmıştır.",
-    "error.holdings.noPermission": "{value1} - kullanıcı {value2} 'deki Koleksiyon kayıtlarına erişim izni yok. {value3} veri kiracısı."
+    "error.holdings.noPermission": "{value1} - kullanıcı {value2} 'deki Koleksiyon kayıtlarına erişim izni yok. {value3} veri kiracısı.",
+    "locked": "Lock profile"
 }

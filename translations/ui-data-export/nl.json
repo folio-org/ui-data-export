@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} - de gebruiker {value2} heeft geen rechten om holdings of items te bekijken in {value3} gegevens huurder(s). Holdingsrecords en itemrecords van deze huurder werden weggelaten tijdens het exporteren.",
     "error.instance.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data Tenant(s) en Holdings en Item Records van deze Tenant werden weggelaten tijdens de export.",
     "error.holdings.noAffiliation": "{value1} - de gebruiker {value2} is niet geaffilieerd met {value3} data tenant en holdingsrecords van deze tenant werden weggelaten tijdens de export.",
-    "error.holdings.noPermission": "{value1} - de gebruiker {value2} heeft geen toestemming om toegang te krijgen tot de holdingsrecord in {value3} data tenant."
+    "error.holdings.noPermission": "{value1} - de gebruiker {value2} heeft geen toestemming om toegang te krijgen tot de holdingsrecord in {value3} data tenant.",
+    "locked": "Lock profile"
 }

@@ -311,5 +311,6 @@
     "error.instance.noPermission": "{value1} - the user {value2} does not have permissions to view holdings or items in {value3} data tenant(s). Holdings and item records from this tenant were omitted during export.",
     "error.instance.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant(s) and holdings and item records from this tenant were omitted during export.",
     "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
-    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant."
+    "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
+    "locked": "Lock profile"
 }
