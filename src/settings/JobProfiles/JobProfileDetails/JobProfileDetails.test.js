@@ -35,7 +35,6 @@ describe('JobProfileDetails', () => {
           jobProfile={jobProfile}
           mappingProfile={mappingProfile}
           isDefaultProfile
-          isProfileUsed
           onCancel={noop}
           onDelete={noop}
         />
@@ -97,7 +96,6 @@ describe('JobProfileDetails', () => {
             }}
             mappingProfile={mappingProfile}
             isDefaultProfile={false}
-            isProfileUsed={false}
             onCancel={noop}
             onDelete={noop}
           />
@@ -165,7 +163,6 @@ describe('JobProfileDetails', () => {
             stripes={stripes}
             isLoading
             isDefaultProfile={false}
-            isProfileUsed
             onCancel={noop}
             onDelete={noop}
           />

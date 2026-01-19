@@ -99,7 +99,6 @@ const JobProfileDetails = props => {
 };
 
 JobProfileDetails.propTypes = {
-  isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   mappingProfile: PropTypes.object,
   jobProfile: PropTypes.object,

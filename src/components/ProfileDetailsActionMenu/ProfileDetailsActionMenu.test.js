@@ -14,7 +14,6 @@ import { ProfileDetailsActionMenu } from './ProfileDetailsActionMenu';
 const mockStripes = useStripes();
 
 const defaultProps = {
-  isProfileUsed: false,
   isDefaultProfile: false,
   isLockedProfile: false,
   onEdit: jest.fn(),
@@ -59,14 +58,6 @@ describe('ProfileDetailsActionMenu', () => {
 
   it('should hide edit and delete buttons for default profile', () => {
     renderActionMenu({ isDefaultProfile: true });
-
-    expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-    expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
-    expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
-  });
-
-  it('should hide edit and delete buttons for locked (in-use) profile', () => {
-    renderActionMenu({ isProfileUsed: true });
 
     expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
     expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
@@ -256,21 +247,10 @@ describe('ProfileDetailsActionMenu', () => {
     beforeEach(() => {
       jest.clearAllMocks();
     });
-    it('should handle both isDefaultProfile and isProfileUsed being true', () => {
+
+    it('should only show duplicate button when both default and locked', () => {
       renderActionMenu({
         isDefaultProfile: true,
-        isProfileUsed: true,
-      });
-
-      expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-      expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
-      expect(queryByDataTest('delete-profile-button')).not.toBeInTheDocument();
-    });
-
-    it('should only show duplicate button when all conditions restrict editing', () => {
-      renderActionMenu({
-        isDefaultProfile: true,
-        isProfileUsed: true,
         isLockedProfile: true,
       });
 
@@ -282,7 +262,6 @@ describe('ProfileDetailsActionMenu', () => {
     it('should show all buttons for regular profile that is not locked', () => {
       renderActionMenu({
         isDefaultProfile: false,
-        isProfileUsed: false,
         isLockedProfile: false,
       });
 
@@ -352,24 +331,15 @@ describe('ProfileDetailsActionMenu', () => {
       expect(getByDataTest('duplicate-profile-button')).toBeInTheDocument();
     });
 
-    it('should conditionally render edit button based on multiple factors', () => {
+    it('should conditionally render edit button based on profile type', () => {
       const { unmount: unmount1 } = renderActionMenu({
         isDefaultProfile: false,
-        isProfileUsed: false,
       });
       expect(getByDataTest('edit-profile-button')).toBeInTheDocument();
       unmount1();
 
-      const { unmount: unmount2 } = renderActionMenu({
-        isDefaultProfile: true,
-        isProfileUsed: false,
-      });
-      expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
-      unmount2();
-
       renderActionMenu({
-        isDefaultProfile: false,
-        isProfileUsed: true,
+        isDefaultProfile: true,
       });
       expect(queryByDataTest('edit-profile-button')).not.toBeInTheDocument();
     });
