@@ -25,11 +25,6 @@ const JobProfileDetailsRoute = ({
     () => ky(`data-export/mapping-profiles/${jobProfileRecord?.mappingProfileId}`).json(),
     { enabled: Boolean(jobProfileRecord?.mappingProfileId) }
   );
-  const jobExecutionsQuery = useQuery(
-    ['data-export', 'job-executions', match.params.id],
-    () => ky(`data-export/job-executions?query=jobProfileId==${match.params.id}&limit=1`).json(),
-    { enabled: !jobProfileRecord?.default }
-  );
 
   const isDefaultProfile = jobProfileRecord?.default;
   const handleCancel = useCallback(() => {
@@ -41,9 +36,8 @@ const JobProfileDetailsRoute = ({
       <JobProfileDetails
         jobProfile={jobProfileRecord}
         mappingProfile={mappingProfileRecord}
-        isProfileUsed={Boolean(jobExecutionsQuery.data?.totalRecords)}
         isDefaultProfile={isDefaultProfile}
-        isLoading={!jobProfileRecord || !mappingProfileRecord || (!isDefaultProfile && jobExecutionsQuery.isLoading)}
+        isLoading={!jobProfileRecord || !mappingProfileRecord}
         onCancel={handleCancel}
         onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}${location.search}`); }}
         onDuplicate={() => { history.push(`/settings/data-export/job-profiles/duplicate/${match.params.id}${location.search}`); }}

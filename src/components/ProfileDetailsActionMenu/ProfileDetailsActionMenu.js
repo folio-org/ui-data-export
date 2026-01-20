@@ -9,7 +9,6 @@ import {
 import { useStripes } from '@folio/stripes/core';
 
 export const ProfileDetailsActionMenu = ({
-  isProfileUsed,
   isDefaultProfile,
   isLockedProfile,
   onEdit,
@@ -19,8 +18,8 @@ export const ProfileDetailsActionMenu = ({
 }) => {
   const stripes = useStripes();
   const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock.edit');
-  const isEditHidden = isDefaultProfile || isProfileUsed || (isLockedProfile && !hasLockPermissions);
-  const isDeleteHidden = isDefaultProfile || isProfileUsed || isLockedProfile;
+  const isEditHidden = isDefaultProfile || (isLockedProfile && !hasLockPermissions);
+  const isDeleteHidden = isDefaultProfile || isLockedProfile;
 
   const buildButtonClickHandler = buttonClickHandler => () => {
     buttonClickHandler();
@@ -66,7 +65,6 @@ export const ProfileDetailsActionMenu = ({
 };
 
 ProfileDetailsActionMenu.propTypes = {
-  isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   isLockedProfile: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,

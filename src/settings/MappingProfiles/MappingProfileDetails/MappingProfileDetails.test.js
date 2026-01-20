@@ -27,7 +27,6 @@ const MappingProfileDetailsContainer = ({
   allTransformations = [],
   mappingProfile = mappingProfileWithTransformations,
   isDefaultProfile = false,
-  isProfileUsed = false,
   isLoading = false,
   onCancel = noop,
   onEdit = noop,
@@ -53,7 +52,6 @@ const MappingProfileDetailsContainer = ({
         stripes={stripes}
         mappingProfile={mappingProfile}
         isDefaultProfile={isDefaultProfile}
-        isProfileUsed={isProfileUsed}
         onCancel={onCancel}
         onEdit={onEdit}
         onDelete={onDelete}
@@ -64,12 +62,11 @@ const MappingProfileDetailsContainer = ({
 };
 
 describe('MappingProfileDetails', () => {
-  describe('rendering details for a mapping profile which is already in use', () => {
+  describe('rendering details for a default mapping profile', () => {
     const renderMappingProfileDetails = () => renderWithIntl(
       <MappingProfileDetailsContainer
         allTransformations={allMappingProfilesTransformations}
         isDefaultProfile
-        isProfileUsed
       />,
       translationsProperties
     );
@@ -204,7 +201,6 @@ describe('MappingProfileDetails', () => {
       const { container } = renderWithIntl(<MappingProfileDetailsContainer
         mappingProfile={mappingProfileWithoutTransformations}
         isLoading
-        isProfileUsed
       />,
       translationsProperties);
 

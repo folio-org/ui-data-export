@@ -61,19 +61,6 @@ describe('JobProfilesFormContainer', () => {
       expect(screen.getByTestId('pane-title')).toHaveTextContent('ui-data-export.jobProfiles.newProfile');
     });
 
-    it('should set locked to true in initial values when user has lock permissions', () => {
-      renderWithIntl(
-        <JobProfilesFormContainer
-          {...defaultProps}
-          mode="newProfile"
-        />,
-        translationsProperties
-      );
-
-      const initialValues = JSON.parse(screen.getByTestId('initial-values').textContent);
-      expect(initialValues.locked).toBe(true);
-    });
-
     it('should pass hasLockPermissions prop correctly', () => {
       renderWithIntl(
         <JobProfilesFormContainer

@@ -15,7 +15,6 @@ import { mappingProfileShape } from '../shapes';
 const MappingProfileDetailsRoute = ({
   resources: {
     mappingProfile,
-    jobProfiles,
   },
   allTransformations,
   mutator: { mappingProfile: { DELETE } },
@@ -24,11 +23,10 @@ const MappingProfileDetailsRoute = ({
   location,
   onCancel,
 }) => {
-  // `find` is used to make sure the matched job profile, mapping profile are displayed to avoid
+  // `find` is used to make sure the matched mapping profile is displayed to avoid
   // the flickering because of the disappearing of the previous and appearing of the new ones
   // TODO: try `useManifest` hook once it is ready to avoid that
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
-  const isProfileUsed = Boolean(find([get(jobProfiles, 'records.0', {})], { mappingProfileId: params.id }));
   const isDefaultProfile = mappingProfileRecord?.default;
   const intl = useIntl();
 
@@ -37,9 +35,8 @@ const MappingProfileDetailsRoute = ({
       <MappingProfileDetails
         allTransformations={allTransformations}
         mappingProfile={mappingProfileRecord}
-        isProfileUsed={isProfileUsed}
         isDefaultProfile={isDefaultProfile}
-        isLoading={!mappingProfileRecord || (!isDefaultProfile && !jobProfiles.hasLoaded)}
+        isLoading={!mappingProfileRecord}
         onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
         onDuplicate={() => history.push(`/settings/data-export/mapping-profiles/duplicate/${params.id}${location.search}`)}
         onCancel={onCancel}
@@ -57,7 +54,6 @@ MappingProfileDetailsRoute.propTypes = {
   onCancel: PropTypes.func.isRequired,
   resources: PropTypes.shape({
     mappingProfile: PropTypes.shape({ records: PropTypes.arrayOf(mappingProfileShape) }),
-    jobProfiles: PropTypes.shape({ hasLoaded: PropTypes.bool }),
   }),
   mutator: PropTypes.shape({ mappingProfile: PropTypes.shape({ DELETE: PropTypes.func.isRequired }).isRequired }).isRequired,
 };
@@ -68,16 +64,6 @@ MappingProfileDetailsRoute.manifest = Object.freeze({
   mappingProfile: {
     type: 'okapi',
     path: 'data-export/mapping-profiles/:{id}',
-    shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
-  },
-  jobProfiles: {
-    type: 'okapi',
-    records: 'jobProfiles',
-    path: (queryParams, pathComponents) => {
-      const { id } = pathComponents;
-
-      return `data-export/job-profiles?query=mappingProfileId==${id}&limit=1`;
-    },
     shouldRefresh: buildShouldRefreshHandler(resourceActionsToPreventRefresh),
   },
 });

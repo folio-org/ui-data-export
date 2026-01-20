@@ -147,7 +147,6 @@ const MappingProfileDetails = props => {
 
 MappingProfileDetails.propTypes = {
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   mappingProfile: mappingProfileShape,
   isLoading: PropTypes.bool,

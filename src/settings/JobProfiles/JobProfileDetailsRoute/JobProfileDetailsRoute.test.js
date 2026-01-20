@@ -113,6 +113,8 @@ describe('JobProfileDetails', () => {
 
       setupJobProfileDetailsRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
+      // Without an explicit `useOkapiKy` mock here, the route can't actually load data.
+      // The expected behavior for this test is just that we show the preloader.
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });
   });
@@ -139,16 +141,10 @@ describe('JobProfileDetails', () => {
 
       setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
 
-      const summary = await screen.findByRole('region', { name: /summary/i });
-
-      const labelsAndValues = [
-        'ViewMetaData',
-        jobProfile.name,
-        jobProfile.description,
-        mappingProfile.name,
-      ];
-
-      labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
+      expect(await screen.findByText(jobProfile.name)).toBeVisible();
+      expect(screen.getByText('ViewMetaData')).toBeVisible();
+      expect(screen.getByText(jobProfile.description)).toBeVisible();
+      expect(screen.getByText(mappingProfile.name)).toBeVisible();
     });
 
 

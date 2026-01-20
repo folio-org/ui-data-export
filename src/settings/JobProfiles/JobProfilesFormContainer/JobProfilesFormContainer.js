@@ -27,7 +27,7 @@ const JobProfilesFormContainer = ({
         return {
           paneTitle: intl.formatMessage({ id: 'ui-data-export.jobProfiles.newProfile' }),
           initialValues: {
-            locked: hasLockPermissions,
+            locked: false,
           }
         };
       case 'editProfile':

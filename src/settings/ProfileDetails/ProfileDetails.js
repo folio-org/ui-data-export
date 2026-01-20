@@ -22,7 +22,6 @@ export const ProfileDetails = props => {
   const {
     profile,
     isLoading,
-    isProfileUsed,
     isDefaultProfile,
     children,
     type,
@@ -54,7 +53,6 @@ export const ProfileDetails = props => {
     return (
       <ProfileDetailsActionMenu
         isDefaultProfile={isDefaultProfile}
-        isProfileUsed={isProfileUsed}
         isLockedProfile={profile?.locked}
         onToggle={onToggle}
         onEdit={onEdit}
@@ -62,7 +60,7 @@ export const ProfileDetails = props => {
         onDelete={() => setConfirmationModalState(true)}
       />
     );
-  }, [isDefaultProfile, isProfileUsed, onEdit, onDuplicate, profile?.locked]);
+  }, [isDefaultProfile, onEdit, onDuplicate, profile?.locked]);
 
   return (
     <FullScreenView
@@ -100,7 +98,6 @@ export const ProfileDetails = props => {
 };
 
 ProfileDetails.propTypes = {
-  isProfileUsed: PropTypes.bool.isRequired,
   isDefaultProfile: PropTypes.bool.isRequired,
   profile: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,

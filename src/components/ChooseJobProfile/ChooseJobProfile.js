@@ -25,6 +25,7 @@ const customProperties = {
     'description',
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED,
     DEFAULT_JOB_PROFILES_COLUMNS.UPDATED_BY,
+    DEFAULT_JOB_PROFILES_COLUMNS.LOCKED,
   ],
 };
 
