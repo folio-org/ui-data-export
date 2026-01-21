@@ -94,6 +94,7 @@ describe('MappingProfileDetails', () => {
         'ViewMetaData',
         'ui-data-export.name',
         'AP Holdings 1',
+        'ui-data-export.locked',
         'ui-data-export.description',
         'AP Holdings 1 description',
         'ui-data-export.outputFormat',

@@ -17,6 +17,7 @@ import {
   Button,
   Checkbox,
   InfoPopover,
+  Layout,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
@@ -44,6 +45,7 @@ const MappingProfilesFormComponent = (props) => {
     isEditMode = false,
     isFormDirty = false,
     title = <FormattedMessage id="ui-data-export.mappingProfiles.newProfile" />,
+    hasLockPermissions = false,
     pristine,
     submitting,
     transformations,
@@ -109,64 +111,81 @@ const MappingProfilesFormComponent = (props) => {
           <AccordionSet id="mapping-profiles-form-accordions">
             <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
               {metadata && <ViewMetaData metadata={metadata} />}
-              <div data-test-mapping-profile-form-name>
-                <Field
-                  label={<FormattedMessage id="stripes-data-transfer-components.name" />}
-                  name="name"
-                  id="mapping-profile-name"
-                  component={TextField}
-                  fullWidth
-                  required
-                />
-              </div>
-              <div data-test-mapping-profile-output-format>
-                <Field
-                  label={<FormattedMessage id="ui-data-export.outputFormat" />}
-                  name="outputFormat"
-                  id="mapping-profile-output-format"
-                  component={Select}
-                  dataOptions={[
-                    {
-                      label: intl.formatMessage({ id: 'ui-data-export.marc' }),
-                      value: 'MARC',
-                    },
-                  ]}
-                  fullWidth
-                  required
-                />
-              </div>
-              <FolioRecordTypeField
-                initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
-                onTypeDisable={onTypeDisable}
-              />
-              <div data-test-mapping-profile-description>
-                <Field
-                  label={<FormattedMessage id="ui-data-export.description" />}
-                  name="description"
-                  id="mapping-profile-description"
-                  component={TextArea}
-                  fullWidth
-                />
-              </div>
-              <div data-test-mapping-profile-fieldsSuppression>
-                <Field
-                  disabled={isFieldsSuppressionDisabled}
-                  label={fieldSuppressionFieldLabel}
-                  name="fieldsSuppression"
-                  id="mapping-profile-fieldsSuppression"
-                  component={TextArea}
-                  fullWidth
-                />
-              </div>
-              <div data-test-mapping-profile-suppress999ff>
-                <Field
-                  type="checkbox"
-                  label={<FormattedMessage id="ui-data-export.suppress999ff" />}
-                  name="suppress999ff"
-                  id="mapping-profile-suppress999ff"
-                  component={Checkbox}
-                />
-              </div>
+              <Layout className="flex flex-align-items-start full">
+                <Layout className="full">
+                  <div data-test-mapping-profile-form-name>
+                    <Field
+                      label={<FormattedMessage id="stripes-data-transfer-components.name" />}
+                      name="name"
+                      id="mapping-profile-name"
+                      component={TextField}
+                      fullWidth
+                      required
+                    />
+                  </div>
+                  <div data-test-mapping-profile-output-format>
+                    <Field
+                      label={<FormattedMessage id="ui-data-export.outputFormat" />}
+                      name="outputFormat"
+                      id="mapping-profile-output-format"
+                      component={Select}
+                      dataOptions={[
+                        {
+                          label: intl.formatMessage({ id: 'ui-data-export.marc' }),
+                          value: 'MARC',
+                        },
+                      ]}
+                      fullWidth
+                      required
+                    />
+                  </div>
+                  <FolioRecordTypeField
+                    initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}
+                    onTypeDisable={onTypeDisable}
+                  />
+                  <div data-test-mapping-profile-description>
+                    <Field
+                      label={<FormattedMessage id="ui-data-export.description" />}
+                      name="description"
+                      id="mapping-profile-description"
+                      component={TextArea}
+                      fullWidth
+                    />
+                  </div>
+                  <div data-test-mapping-profile-fieldsSuppression>
+                    <Field
+                      disabled={isFieldsSuppressionDisabled}
+                      label={fieldSuppressionFieldLabel}
+                      name="fieldsSuppression"
+                      id="mapping-profile-fieldsSuppression"
+                      component={TextArea}
+                      fullWidth
+                    />
+                  </div>
+                  <div data-test-mapping-profile-suppress999ff>
+                    <Field
+                      type="checkbox"
+                      label={<FormattedMessage id="ui-data-export.suppress999ff" />}
+                      name="suppress999ff"
+                      id="mapping-profile-suppress999ff"
+                      component={Checkbox}
+                    />
+                  </div>
+                </Layout>
+                <Layout className="margin-start-gutter" style={{ flexShrink: 0 }}>
+                  <div data-test-mapping-profile-locked>
+                    <Field
+                      type="checkbox"
+                      label={<FormattedMessage id="ui-data-export.locked" />}
+                      vertical
+                      name="locked"
+                      id="mapping-profile-locked"
+                      component={Checkbox}
+                      disabled={!hasLockPermissions}
+                    />
+                  </div>
+                </Layout>
+              </Layout>
             </Accordion>
             <Accordion
               label={<FormattedMessage id="ui-data-export.transformations" />}
@@ -199,6 +218,7 @@ MappingProfilesFormComponent.propTypes = {
   metadata: PropTypes.shape({}),
   transformations: PropTypes.arrayOf(PropTypes.object),
   allTransformations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hasLockPermissions: PropTypes.bool,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   title: PropTypes.node,

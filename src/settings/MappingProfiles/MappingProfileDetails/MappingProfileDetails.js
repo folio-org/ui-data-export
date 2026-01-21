@@ -6,6 +6,7 @@ import {
   Accordion,
   AccordionSet,
   AccordionStatus,
+  Checkbox,
   Col,
   ExpandAllButton,
   Headline,
@@ -71,11 +72,20 @@ const MappingProfileDetails = props => {
                 stripes={stripes}
               />
               <Row>
-                <Col xs>
+                <Col xs={10}>
                   <KeyValue
                     data-test-mapping-profile-name
                     label={<FormattedMessage id="ui-data-export.name" />}
                     value={mappingProfile.name}
+                  />
+                </Col>
+                <Col xs={2}>
+                  <Checkbox
+                    data-test-mapping-profile-locked
+                    label={<FormattedMessage id="ui-data-export.locked" />}
+                    vertical
+                    checked={mappingProfile.locked}
+                    disabled
                   />
                 </Col>
               </Row>

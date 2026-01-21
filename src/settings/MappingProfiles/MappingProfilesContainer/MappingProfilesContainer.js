@@ -44,6 +44,8 @@ const customProperties = {
     'format',
     DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED,
     DEFAULT_MAPPING_PROFILES_COLUMNS.UPDATED_BY,
+    // DEFAULT_MAPPING_PROFILES_COLUMNS.LOCKED,
+    'locked'
   ],
 };
 
@@ -63,6 +65,7 @@ const initialValues = {
   outputFormat: 'MARC',
   fieldsSuppression: '',
   suppress999ff: false,
+  locked: false,
 };
 
 const MappingProfilesContainer = ({
