@@ -24,7 +24,7 @@ const MappingProfilesFormContainer = ({
   allTransformations = [],
   transformations = [],
   isEditMode = false,
-  hasLockPermissions = false,
+  hasLockPermissions,
   initialValues = {
     transformations: [],
     recordTypes: [],
@@ -45,7 +45,7 @@ const MappingProfilesFormContainer = ({
         allTransformations={generateTransformationsWithDisplayName(intl, allTransformations)}
         transformations={transformations}
         isEditMode={isEditMode}
-        hasLockPermissions={hasLockPermissions}
+        {...(hasLockPermissions !== undefined && { hasLockPermissions })}
         initialValues={initialValues}
         onSubmit={onSubmit}
         onCancel={onCancel}
@@ -119,6 +119,23 @@ describe('MappingProfilesForm', () => {
   });
 
   describe('lock profile checkbox behavior', () => {
+    describe('when hasLockPermissions is not provided (uses default false)', () => {
+      beforeEach(() => {
+        renderWithIntl(
+          <MappingProfilesFormContainer
+            allTransformations={allMappingProfilesTransformations}
+          />,
+          translationsProperties
+        );
+      });
+
+      it('should render lock profile checkbox as disabled by default', () => {
+        const lockCheckbox = screen.getByRole('checkbox', { name: 'ui-data-export.locked' });
+
+        expect(lockCheckbox).toBeDisabled();
+      });
+    });
+
     describe('when user does NOT have lock permissions', () => {
       beforeEach(() => {
         renderWithIntl(
