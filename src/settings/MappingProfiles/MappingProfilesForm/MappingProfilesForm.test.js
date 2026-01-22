@@ -217,6 +217,44 @@ describe('MappingProfilesForm', () => {
         expect(fieldsSuppressionTextarea).toBeDisabled();
       });
     });
+
+    it('should clear fieldsSuppression value when the field becomes disabled', async () => {
+      renderWithIntl(
+        <MappingProfilesFormContainer
+          allTransformations={allMappingProfilesTransformations}
+        />,
+        translationsProperties
+      );
+
+      const fieldsSuppressionTextarea = document.querySelector('#mapping-profile-fieldsSuppression');
+
+      // Initially the field should be disabled (no record types selected)
+      expect(fieldsSuppressionTextarea).toBeDisabled();
+
+      // Select holdings to enable the field
+      const holdingsCheckbox = screen.getByRole('checkbox', { name: 'stripes-data-transfer-components.recordTypes.holdings' });
+
+      userEvent.click(holdingsCheckbox);
+
+      await waitFor(() => {
+        expect(fieldsSuppressionTextarea).toBeEnabled();
+      });
+
+      // Type a value into the field
+      userEvent.type(fieldsSuppressionTextarea, '123,456');
+
+      await waitFor(() => {
+        expect(fieldsSuppressionTextarea.value).toBe('123,456');
+      });
+
+      // Unselect holdings to disable the field - this should clear the value
+      userEvent.click(holdingsCheckbox);
+
+      await waitFor(() => {
+        expect(fieldsSuppressionTextarea).toBeDisabled();
+        expect(fieldsSuppressionTextarea.value).toBe('');
+      });
+    });
   });
 
   describe('form submission', () => {
@@ -394,4 +432,3 @@ describe('MappingProfilesForm', () => {
     });
   });
 });
-
