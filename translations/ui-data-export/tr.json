@@ -312,5 +312,6 @@
     "error.instance.noAffiliation": "{value1} - kullanıcı {value2} ile bağlantılı değildir {value3} veri kiracı(lar)ı ve bu kiracıya ait varlık ve kalem kayıtları dışa aktarma sırasında atlanmıştır.",
     "error.holdings.noAffiliation": "{value1} - kullanıcı {value2} ile bağlantılı değildir {value3} veri kiracısı ve bu kiracıya ait koleksiyon kayıtları dışa aktarma sırasında atlanmıştır.",
     "error.holdings.noPermission": "{value1} - kullanıcı {value2} 'deki Koleksiyon kayıtlarına erişim izni yok. {value3} veri kiracısı.",
-    "locked": "Lock profile"
+    "locked": "Lock profile",
+    "deleted": "deleted"
 }

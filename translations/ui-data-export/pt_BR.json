@@ -312,5 +312,6 @@
     "error.instance.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao(s) locatário(s) de dados {value3} e os acervos e registros de itens desse locatário foram omitidos durante a exportação.",
     "error.holdings.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao locatário de dados {value3} e os registros de acervos desse locatário foram omitidos durante a exportação.",
     "error.holdings.noPermission": "{value1} - o usuário {value2} não tem permissões para acessar o registro de acervo no locatário de dados {value3}.",
-    "locked": "Lock profile"
+    "locked": "Perfil de bloqueio",
+    "deleted": "deletado"
 }
