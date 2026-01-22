@@ -312,5 +312,6 @@
     "error.instance.noAffiliation": "{value1} - المستخدم {value2} ليس مرتبطاً مستأجري بيانات {value3} وتم حذف تسجيلات المقتنيات والمواد من هذا المستأجر أثناء التصدير.",
     "error.holdings.noAffiliation": "{value1} - المستخدم {value2} غير منتسب لمستأجر البيانات {value3} وتم حذف تسجيلات المقتنيات من هذا المستأجر أثناء التصدير.",
     "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
-    "locked": "Lock profile"
+    "locked": "Lock profile",
+    "deleted": "deleted"
 }
