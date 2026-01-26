@@ -16,6 +16,11 @@ import { mappingProfile } from '../../../../test/bigtest/network/scenarios/fetch
 import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job-profiles-success';
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
+import { useProfileUsedInLogs } from '../../../hooks/useProfileUsedInLogs';
+
+jest.mock('../../../hooks/useProfileUsedInLogs', () => ({
+  useProfileUsedInLogs: jest.fn(),
+}));
 
 describe('JobProfileDetails', () => {
   const stripes = {
@@ -27,6 +32,14 @@ describe('JobProfileDetails', () => {
       />
     ),
   };
+
+  beforeEach(() => {
+    useProfileUsedInLogs.mockReturnValue({
+      isUsedInLogs: false,
+      isLoading: false,
+    });
+  });
+
   const renderJobProfileDetails = () => {
     renderWithIntl(
       <SettingsComponentBuilder>

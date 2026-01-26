@@ -95,6 +95,7 @@
   "mappingProfiles.delete.errorCallout": "There was an error while deleting the mapping profile <b>{name}</b>",
   "mappingProfiles.delete.confirmationModal.title": "Delete mapping profile",
   "mappingProfiles.delete.confirmationModal.message": "The mapping profile <b>{name}</b> will be deleted",
+  "mappingProfiles.delete.confirmationModal.messageUsedInLogs": "The mapping profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
   "mappingProfiles.transformations.save.successCallout": "<b>{count, number}</b> <b>{count, plural, one {transformation has} other {transformations have}}</b> been successfully <b>added</b>",
   "mappingProfiles.transformations.update.successCallout": "The transformations have been updated",
   "mappingProfiles.srs.info": "If the option <b>Source Record Storage (entire record)</b> is selected and the instance does not have an underlying SRS record, a MARC record will be generated according to the default mapping rules.",
