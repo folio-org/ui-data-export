@@ -17,7 +17,6 @@ import {
   Button,
   Checkbox,
   InfoPopover,
-  Layout,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FOLIO_RECORD_TYPES, FullScreenForm } from '@folio/stripes-data-transfer-components';
@@ -111,8 +110,8 @@ const MappingProfilesFormComponent = (props) => {
           <AccordionSet id="mapping-profiles-form-accordions">
             <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
               {metadata && <ViewMetaData metadata={metadata} />}
-              <Layout className="flex flex-align-items-start full">
-                <Layout className="full">
+              <Row end="xs">
+                <Col xs={10}>
                   <div data-test-mapping-profile-form-name>
                     <Field
                       label={<FormattedMessage id="stripes-data-transfer-components.name" />}
@@ -171,8 +170,8 @@ const MappingProfilesFormComponent = (props) => {
                       component={Checkbox}
                     />
                   </div>
-                </Layout>
-                <Layout className="margin-start-gutter" style={{ flexShrink: 0 }}>
+                </Col>
+                <Col xs={2}>
                   <div data-test-mapping-profile-locked>
                     <Field
                       type="checkbox"
@@ -184,8 +183,8 @@ const MappingProfilesFormComponent = (props) => {
                       disabled={!hasLockPermissions}
                     />
                   </div>
-                </Layout>
-              </Layout>
+                </Col>
+              </Row>
             </Accordion>
             <Accordion
               label={<FormattedMessage id="ui-data-export.transformations" />}
