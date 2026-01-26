@@ -238,7 +238,7 @@ describe('MappingProfileFormContainer', () => {
           expect(queryByPlaceholderText(transformationFields.subfields[1], '$a')).toBeNull();
         });
 
-        it.only('should display correct transformation fields values', () => {
+        it('should display correct transformation fields values', () => {
           expect(transformationFields.marcFields[0].querySelector('input')).toHaveValue('123');
           expect(transformationFields.indicators1[0].querySelector('input')).toHaveValue('1');
           expect(transformationFields.indicators2[0].querySelector('input')).toHaveValue('0');

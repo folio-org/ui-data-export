@@ -15,6 +15,7 @@ import {
   Layer,
   Callout,
 } from '@folio/stripes/components';
+import { useStripes } from '@folio/stripes/core';
 import { FOLIO_RECORD_TYPES } from '@folio/stripes-data-transfer-components';
 
 import { MappingProfilesTransformationsModal } from '../MappingProfilesTransformationsModal';
@@ -50,6 +51,8 @@ export const MappingProfilesFormContainer = props => {
     metadata,
     onSubmit,
   } = props;
+  const stripes = useStripes();
+  const hasLockPermissions = stripes.hasPerm('ui-data-export.settings.lock.edit');
   const [transformationModalOpen, setTransformationModalOpen] = useState(false);
   const [selectedTransformations, setSelectedTransformations] = useState(initialValues.transformations);
   const [modalTransformations, setModalTransformations] = useState({ transformations: generateTransformationFieldsValues(allTransformations, initialValues.transformations) });
@@ -112,6 +115,7 @@ export const MappingProfilesFormContainer = props => {
       <MappingProfilesForm
         {...props}
         metadata={metadata}
+        hasLockPermissions={hasLockPermissions}
         transformations={selectedTransformations}
         allTransformations={allTransformations}
         initiallyDisabledRecordTypes={initiallyDisabledRecordTypes}

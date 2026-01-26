@@ -7,7 +7,7 @@ import {
 import { noop } from 'lodash';
 import { Field } from 'react-final-form';
 
-import { Layer, TextField, TextArea, Select, Checkbox, Layout } from '@folio/stripes/components';
+import { Layer, TextField, TextArea, Select, Checkbox, Col, Row } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import {
   FullScreenForm,
@@ -61,8 +61,8 @@ const JobProfilesForm = props => {
         <div className={css.jobProfilesFormContent}>
           {headLine}
           <div>{metadata}</div>
-          <Layout className="flex flex-align-items-start full">
-            <Layout className="full">
+          <Row end="xs">
+            <Col col={10}>
               <div data-test-job-profile-form-name>
                 <Field
                   label={<FormattedMessage id="stripes-data-transfer-components.name" />}
@@ -94,8 +94,8 @@ const JobProfilesForm = props => {
                   fullWidth
                 />
               </div>
-            </Layout>
-            <Layout className="margin-start-gutter" style={{ flexShrink: 0 }}>
+            </Col>
+            <Col xs={2}>
               <div data-test-job-profile-locked>
                 <Field
                   type="checkbox"
@@ -107,8 +107,8 @@ const JobProfilesForm = props => {
                   disabled={!hasLockPermissions}
                 />
               </div>
-            </Layout>
-          </Layout>
+            </Col>
+          </Row>
         </div>
         )}
       </FullScreenForm>
