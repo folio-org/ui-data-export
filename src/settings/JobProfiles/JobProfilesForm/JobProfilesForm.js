@@ -62,7 +62,7 @@ const JobProfilesForm = props => {
           {headLine}
           <div>{metadata}</div>
           <Row end="xs">
-            <Col col={10}>
+            <Col xs={10}>
               <div data-test-job-profile-form-name>
                 <Field
                   label={<FormattedMessage id="stripes-data-transfer-components.name" />}
