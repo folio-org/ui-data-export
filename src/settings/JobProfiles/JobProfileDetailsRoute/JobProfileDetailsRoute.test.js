@@ -17,6 +17,13 @@ import { jobProfile } from '../../../../test/bigtest/network/scenarios/fetch-job
 import { translationsProperties } from '../../../../test/helpers';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 
+jest.mock('../../../hooks/useProfileUsedInLogs', () => ({
+  useProfileUsedInLogs: jest.fn().mockReturnValue({
+    isUsedInLogs: false,
+    isLoading: false,
+  }),
+}));
+
 const history = [];
 const JOB_PROFILE_ID = '6f7f3cd7-9f24-42eb-ae91-91af1cd54d0a';
 

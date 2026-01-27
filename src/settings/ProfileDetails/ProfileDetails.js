@@ -17,6 +17,7 @@ import { useStripes } from '@folio/stripes/core';
 
 import { ProfileDetailsActionMenu } from '../../components/ProfileDetailsActionMenu';
 import { useProfileHandlerWithCallout } from '../utils/useProfileHandlerWithCallout';
+import { useProfileUsedInLogs } from '../../hooks/useProfileUsedInLogs';
 
 export const ProfileDetails = props => {
   const {
@@ -32,6 +33,12 @@ export const ProfileDetails = props => {
   } = props;
   const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
   const intl = useIntl();
+
+  const { isUsedInLogs } = useProfileUsedInLogs(
+    profile?.id,
+    type,
+    isConfirmationModalOpen
+  );
 
   const handleDelete = useProfileHandlerWithCallout({
     errorMessageId: `ui-data-export.${type}Profiles.delete.errorCallout`,
@@ -81,7 +88,9 @@ export const ProfileDetails = props => {
               heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
               message={(
                 <FormattedMessage
-                  id={`ui-data-export.${type}Profiles.delete.confirmationModal.message`}
+                  id={isUsedInLogs
+                    ? `ui-data-export.${type}Profiles.delete.confirmationModal.messageUsedInLogs`
+                    : `ui-data-export.${type}Profiles.delete.confirmationModal.message`}
                   values={{ name: profile.name }}
                 />
               )}

@@ -119,6 +119,7 @@
   "jobProfiles.delete.errorCallout": "There was an error while deleting the job profile <b>{name}</b>",
   "jobProfiles.delete.confirmationModal.title": "Delete job profile",
   "jobProfiles.delete.confirmationModal.message": "The job profile <b>{name}</b> will be deleted",
+  "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
   "marc": "MARC",
   "settings.profilesInfo": "The data export profiles add flexibility and provide an easy way to configure export that is repeatable and can be easily executed on different data sets.",
   "delete": "Delete",

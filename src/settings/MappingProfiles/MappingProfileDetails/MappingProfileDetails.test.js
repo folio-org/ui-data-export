@@ -23,6 +23,14 @@ import {
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
 
+jest.mock('../../../hooks/useProfileUsedInLogs', () => ({
+  useProfileUsedInLogs: jest.fn().mockReturnValue({
+    isUsedInLogs: false,
+    isLoading: false,
+  }),
+}));
+
+
 const MappingProfileDetailsContainer = ({
   allTransformations = [],
   mappingProfile = mappingProfileWithTransformations,
