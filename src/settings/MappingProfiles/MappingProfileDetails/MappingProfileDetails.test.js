@@ -22,10 +22,19 @@ import {
   generateTransformationsWithDisplayName,
 } from '../../../../test/bigtest/network/scenarios/fetch-mapping-profiles-success';
 import { SettingsComponentBuilder } from '../../../../test/jest/helpers';
+import { useMappingProfileUsedInJobProfiles } from '../../../hooks/useMappingProfileUsedInJobProfiles';
 
 jest.mock('../../../hooks/useProfileUsedInLogs', () => ({
   useProfileUsedInLogs: jest.fn().mockReturnValue({
     isUsedInLogs: false,
+    isLoading: false,
+  }),
+}));
+
+jest.mock('../../../hooks/useMappingProfileUsedInJobProfiles', () => ({
+  useMappingProfileUsedInJobProfiles: jest.fn().mockReturnValue({
+    jobProfiles: [],
+    isUsedInJobProfiles: false,
     isLoading: false,
   }),
 }));
@@ -202,6 +211,31 @@ describe('MappingProfileDetails', () => {
         userEvent.click(within(modal).getByRole('button', { name: /cancel/i }));
 
         expect(modal).not.toBeVisible();
+      });
+
+      it('should display cannot delete modal when mapping profile is used in job profiles', async () => {
+        useMappingProfileUsedInJobProfiles.mockReturnValue({
+          jobProfiles: [{ name: 'Job profile 1' }, { name: 'Job profile 2' }],
+          isUsedInJobProfiles: true,
+          isLoading: false,
+        });
+
+        renderMappingProfileDetailsWithMapping();
+
+        const actionButton = document.querySelector('[data-test-pane-header-actions-button]');
+
+        userEvent.click(actionButton);
+
+        const deleteButton = document.querySelector('[data-test-delete-profile-button]');
+
+        userEvent.click(deleteButton);
+
+        const modal = screen.getAllByRole('dialog')
+          .find(dialog => within(dialog).queryByText('ui-data-export.mappingProfiles.delete.cannotDeleteModal.title'));
+
+        expect(modal).toBeVisible();
+        expect(within(modal).getByText('ui-data-export.mappingProfiles.delete.cannotDeleteModal.message')).toBeVisible();
+        expect(within(modal).getByRole('button', { name: 'stripes-components.close' })).toBeVisible();
       });
     });
   });
