@@ -1,10 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import { useQuery } from 'react-query';
-import { useNamespace, useOkapiKy } from '@folio/stripes/core';
-
-import { useMappingProfileUsedInJobProfiles } from './useMappingProfileUsedInJobProfiles';
-
 jest.mock('react-query', () => ({
   useQuery: jest.fn(),
 }));
@@ -12,11 +7,20 @@ jest.mock('react-query', () => ({
 jest.mock('@folio/stripes/core', () => ({
   useNamespace: jest.fn(),
   useOkapiKy: jest.fn(),
-}));
+}), { virtual: true });
+
+let useQuery;
+let useNamespace;
+let useOkapiKy;
+let useMappingProfileUsedInJobProfiles;
 
 describe('useMappingProfileUsedInJobProfiles', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
+
+    ({ useQuery } = await import('react-query'));
+    ({ useNamespace, useOkapiKy } = await import('@folio/stripes/core'));
+    ({ useMappingProfileUsedInJobProfiles } = await import('./useMappingProfileUsedInJobProfiles'));
 
     useNamespace.mockReturnValue(['mapping-profile-job-profiles-check']);
     useOkapiKy.mockReturnValue({
