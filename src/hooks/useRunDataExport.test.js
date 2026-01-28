@@ -1,23 +1,27 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useRunDataExport } from './useRunDataExport';
 
 jest.mock('@folio/stripes/core', () => ({
   useOkapiKy: jest.fn(),
-}));
+}), { virtual: true });
 
 jest.mock('react-query', () => ({
   useMutation: jest.fn(),
 }));
 
-const mockUseOkapiKy = require('@folio/stripes/core').useOkapiKy;
-const mockUseMutation = require('react-query').useMutation;
+let useRunDataExport;
+let mockUseOkapiKy;
+let mockUseMutation;
 
 describe('useRunDataExport', () => {
   const kyPostMock = jest.fn();
   const kyJsonMock = jest.fn();
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
+
+    ({ useRunDataExport } = await import('./useRunDataExport'));
+    ({ useOkapiKy: mockUseOkapiKy } = await import('@folio/stripes/core'));
+    ({ useMutation: mockUseMutation } = await import('react-query'));
 
     kyPostMock.mockReturnValue({ json: kyJsonMock });
     mockUseOkapiKy.mockReturnValue({ post: kyPostMock });
