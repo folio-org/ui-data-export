@@ -20,34 +20,46 @@ export const MappingProfileDeleteModal = ({ profile, isOpen, onClose, onConfirm 
     ? <FormattedMessage id="ui-data-export.mappingProfiles.delete.cannotDeleteModal.title" />
     : <FormattedMessage id="ui-data-export.mappingProfiles.delete.confirmationModal.title" />;
 
-  const footer = (
-    <ModalFooter>
-      {isLoading ? (
+  const renderFooter = () => {
+    if (isLoading) {
+      return (
         <Button buttonStyle="default" onClick={onClose} marginBottom0>
           <FormattedMessage id="ui-data-export.cancel" />
         </Button>
-      ) : cannotDelete ? (
+      );
+    }
+
+    if (cannotDelete) {
+      return (
         <Button buttonStyle="primary" onClick={onClose} marginBottom0>
           <FormattedMessage id="stripes-components.close" />
         </Button>
-      ) : (
-        <>
-          <Button
-            buttonStyle="primary"
-            onClick={onConfirm}
-            marginBottom0
-          >
-            <FormattedMessage id="ui-data-export.delete" />
-          </Button>
-          <Button
-            buttonStyle="default"
-            onClick={onClose}
-            marginBottom0
-          >
-            <FormattedMessage id="ui-data-export.cancel" />
-          </Button>
-        </>
-      )}
+      );
+    }
+
+    return (
+      <>
+        <Button
+          buttonStyle="primary"
+          onClick={onConfirm}
+          marginBottom0
+        >
+          <FormattedMessage id="ui-data-export.delete" />
+        </Button>
+        <Button
+          buttonStyle="default"
+          onClick={onClose}
+          marginBottom0
+        >
+          <FormattedMessage id="ui-data-export.cancel" />
+        </Button>
+      </>
+    );
+  };
+
+  const footer = (
+    <ModalFooter>
+      {renderFooter()}
     </ModalFooter>
   );
 
