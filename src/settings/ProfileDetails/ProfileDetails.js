@@ -3,12 +3,8 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage,
-  useIntl,
-} from 'react-intl';
+import { useIntl } from 'react-intl';
 
-import { ConfirmationModal } from '@folio/stripes/components';
 import {
   FullScreenView,
   Preloader,
@@ -17,7 +13,7 @@ import { useStripes } from '@folio/stripes/core';
 
 import { ProfileDetailsActionMenu } from '../../components/ProfileDetailsActionMenu';
 import { useProfileHandlerWithCallout } from '../utils/useProfileHandlerWithCallout';
-import { useProfileUsedInLogs } from '../../hooks/useProfileUsedInLogs';
+import { JobProfileDeleteModal, MappingProfileDeleteModal } from './DeleteModals';
 
 export const ProfileDetails = props => {
   const {
@@ -31,14 +27,8 @@ export const ProfileDetails = props => {
     onDelete,
     onDuplicate,
   } = props;
-  const [isConfirmationModalOpen, setConfirmationModalState] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const intl = useIntl();
-
-  const { isUsedInLogs } = useProfileUsedInLogs(
-    profile?.id,
-    type,
-    isConfirmationModalOpen
-  );
 
   const handleDelete = useProfileHandlerWithCallout({
     errorMessageId: `ui-data-export.${type}Profiles.delete.errorCallout`,
@@ -46,7 +36,7 @@ export const ProfileDetails = props => {
     isCanceledAfterError: true,
     onAction: onDelete,
     onActionComplete: () => {
-      setConfirmationModalState(false);
+      setDeleteModalOpen(false);
 
       onCancel();
     },
@@ -64,10 +54,32 @@ export const ProfileDetails = props => {
         onToggle={onToggle}
         onEdit={onEdit}
         onDuplicate={onDuplicate}
-        onDelete={() => setConfirmationModalState(true)}
+        onDelete={() => setDeleteModalOpen(true)}
       />
     );
   }, [isDefaultProfile, onEdit, onDuplicate, profile?.locked]);
+
+  const renderDeleteModal = () => {
+    if (type === 'mapping') {
+      return (
+        <MappingProfileDeleteModal
+          profile={profile}
+          isOpen={isDeleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+          onConfirm={() => handleDelete(profile)}
+        />
+      );
+    }
+
+    return (
+      <JobProfileDeleteModal
+        profile={profile}
+        isOpen={isDeleteModalOpen}
+        onClose={() => setDeleteModalOpen(false)}
+        onConfirm={() => handleDelete(profile)}
+      />
+    );
+  };
 
   return (
     <FullScreenView
@@ -82,23 +94,7 @@ export const ProfileDetails = props => {
         : (
           <>
             {children}
-            <ConfirmationModal
-              id={`delete-${type}-profile-confirmation-modal`}
-              open={isConfirmationModalOpen}
-              heading={<FormattedMessage id={`ui-data-export.${type}Profiles.delete.confirmationModal.title`} />}
-              message={(
-                <FormattedMessage
-                  id={isUsedInLogs
-                    ? `ui-data-export.${type}Profiles.delete.confirmationModal.messageUsedInLogs`
-                    : `ui-data-export.${type}Profiles.delete.confirmationModal.message`}
-                  values={{ name: profile.name }}
-                />
-              )}
-              confirmLabel={<FormattedMessage id="ui-data-export.delete" />}
-              cancelLabel={<FormattedMessage id="ui-data-export.cancel" />}
-              onCancel={() => setConfirmationModalState(false)}
-              onConfirm={() => handleDelete(profile)}
-            />
+            {renderDeleteModal()}
           </>
         )
       }
