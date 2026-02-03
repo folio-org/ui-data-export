@@ -313,5 +313,8 @@
     "error.holdings.noAffiliation": "{value1} - użytkownik {value2} nie jest powiązany z {value3} danymi tenanta, a rekordy zasobów od tego tenanta zostały pominięte podczas eksportu.",
     "error.holdings.noPermission": "{value1} - użytkownik {value2} nie ma uprawnień dostępu do rekordu zasobów w {value3} danych tenanta.",
     "locked": "Lock profile",
-    "deleted": "deleted"
+    "deleted": "deleted",
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Cannot delete mapping profile",
+    "mappingProfiles.delete.cannotDeleteModal.message": "This mapping profile cannot be deleted, as it is used in the following job profiles: <b>{jobProfilesNames}</b>."
 }

@@ -313,5 +313,8 @@
     "error.holdings.noAffiliation": "{value1} - the user {value2} is not affiliated with {value3} data tenant and holdings records from this tenant were omitted during export.",
     "error.holdings.noPermission": "{value1} - the user {value2} does not have permissions to access the holdings record in {value3} data tenant.",
     "locked": "Lock profile",
-    "deleted": "deleted"
+    "deleted": "deleted",
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Cannot delete mapping profile",
+    "mappingProfiles.delete.cannotDeleteModal.message": "This mapping profile cannot be deleted, as it is used in the following job profiles: <b>{jobProfilesNames}</b>."
 }

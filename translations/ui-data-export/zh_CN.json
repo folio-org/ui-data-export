@@ -313,5 +313,8 @@
     "error.holdings.noAffiliation": "{value1} - 用户{value2}与{value3}数据租户无关联，且导出过程中省略了该租户的馆藏记录。",
     "error.holdings.noPermission": "{value1} - 用户{value2}无权访问{value3}数据租户中的馆藏记录。",
     "locked": "Lock profile",
-    "deleted": "deleted"
+    "deleted": "deleted",
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Cannot delete mapping profile",
+    "mappingProfiles.delete.cannotDeleteModal.message": "This mapping profile cannot be deleted, as it is used in the following job profiles: <b>{jobProfilesNames}</b>."
 }

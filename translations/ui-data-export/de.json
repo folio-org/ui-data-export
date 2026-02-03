@@ -313,5 +313,8 @@
     "error.holdings.noAffiliation": "{value1} – diePerson {value2} ist nicht mit dem Datenmandanten {value3} verbunden und Bestandsdatensätze dieses Mandanten wurden beim Export ausgelassen.",
     "error.holdings.noPermission": "{value1} – die Person {value2} hat keine Berechtigung, auf den Bestandsdatensatz im Datenmandanten {value3} zuzugreifen.",
     "locked": "Lock profile",
-    "deleted": "deleted"
+    "deleted": "gelöscht",
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Cannot delete mapping profile",
+    "mappingProfiles.delete.cannotDeleteModal.message": "This mapping profile cannot be deleted, as it is used in the following job profiles: <b>{jobProfilesNames}</b>."
 }

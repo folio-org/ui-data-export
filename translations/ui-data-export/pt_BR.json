@@ -49,7 +49,7 @@
     "jobProfiles.delete.successCallout": "O perfil do trabalho <b>{name}</b> foi <b>excluído</b> com sucesso",
     "jobProfiles.delete.errorCallout": "Ocorreu um erro ao excluir o perfil do trabalho <b>{name}</b>",
     "jobProfiles.delete.confirmationModal.title": "Excluir perfil de trabalho",
-    "jobProfiles.delete.confirmationModal.message": "O perfil do trabalho <b>{name}</b> será excluído",
+    "jobProfiles.delete.confirmationModal.message": "O perfil de trabalho <b>{name}</b> será excluído.",
     "delete": "Excluir",
     "recordType": "Tipo de registro",
     "mappingProfiles.transformations.selectTransformations": "Selecionar transformações",
@@ -64,7 +64,7 @@
     "mappingProfiles.delete.successCallout": "O perfil de mapeamento <b>{name}</b> foi <b>excluído</b> com sucesso",
     "mappingProfiles.delete.errorCallout": "Ocorreu um erro ao excluir o perfil de mapeamento <b>{name}</b>",
     "mappingProfiles.delete.confirmationModal.title": "Excluir perfil de mapeamento",
-    "mappingProfiles.delete.confirmationModal.message": "O perfil de mapeamento <b>{name}</b> será excluído",
+    "mappingProfiles.delete.confirmationModal.message": "O perfil de mapeamento <b>{name}</b> será excluído.",
     "mappingProfiles.selectProfile": "Selecione o perfil de mapeamento",
     "mappingProfiles.editProfile": "Editar perfil de mapeamento de campo",
     "mappingProfiles.create.successCallout": "O perfil de mapeamento de campo <b>{name}</b> foi <b>criado com sucesso</b>",
@@ -313,5 +313,8 @@
     "error.holdings.noAffiliation": "{value1} - o usuário {value2} não é afiliado ao locatário de dados {value3} e os registros de acervos desse locatário foram omitidos durante a exportação.",
     "error.holdings.noPermission": "{value1} - o usuário {value2} não tem permissões para acessar o registro de acervo no locatário de dados {value3}.",
     "locked": "Perfil de bloqueio",
-    "deleted": "deletado"
+    "deleted": "deletado",
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "O perfil de trabalho <b>{name}</b> e todos os arquivos criados por trabalhos de exportação que usaram esse perfil serão permanentemente excluídos.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Não é possível excluir o perfil de mapeamento",
+    "mappingProfiles.delete.cannotDeleteModal.message": "Esse perfil de mapeamento não pode ser excluído, pois é usado nos seguintes perfis de trabalho: <b>{jobProfilesNames}</b>."
 }
