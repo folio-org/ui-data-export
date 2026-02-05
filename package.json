@@ -106,7 +106,9 @@
         "permissionName": "settings.data-export.enabled",
         "displayName": "Settings data-export enabled",
         "subPermissions": [
-          "settings.enabled"
+          "settings.enabled",
+          "mod-settings.global.read.stripes-core.prefs.manage",
+          "mod-settings.entries.collection.get"
         ],
         "visible": false
       },
