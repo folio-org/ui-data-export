@@ -270,7 +270,7 @@
     "resetFilters": "Resetuj wszystko",
     "exported": "Eksportowane",
     "error.invalidCqlSyntax": "Invalid CQL syntax in {value1}",
-    "startedDate": "Data i godzina rozpoczęcia importu",
+    "startedDate": "Data i godzina rozpoczęcia",
     "settings.index.managerTitle": "Ustawienia eksportu danych",
     "settings.job.manager": "Data export settings - {job}",
     "settings.newJob.manager": "Ustawienia eksportu danych - Nowy profil zadania",
