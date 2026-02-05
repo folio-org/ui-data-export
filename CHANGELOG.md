@@ -7,7 +7,7 @@
 * Locking and unlocking mapping profile. Refs UIDEXP-414.
 * Update modal messages related to deleting job profiles. Refs UIDEXP-417.
 * Update deleting of mapping profiles. Refs UIDEXP-418.
-* UInclude global mod-settings permissions in base permission sets. Refs UIDEXP-410.
+* Include universal read-only permissions. Refs UIDEXP-410.
 
 ## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.2.0...v7.0.0)
