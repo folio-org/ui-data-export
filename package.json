@@ -116,6 +116,7 @@
         "displayName": "Data export: Can view only",
         "subPermissions": [
           "module.data-export.enabled",
+          "stripes-core.settings.read",
           "data-export.related-users.collection.get",
           "data-export.job-executions.items.download.get",
           "data-export.job-executions.collection.get",
