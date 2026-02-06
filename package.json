@@ -100,13 +100,17 @@
       {
         "permissionName": "module.data-export.enabled",
         "displayName": "Data export: module enabled",
+        "subPermissions": [
+          "stripes-core.settings.read"
+        ],
         "visible": false
       },
       {
         "permissionName": "settings.data-export.enabled",
         "displayName": "Settings data-export enabled",
         "subPermissions": [
-          "settings.enabled"
+          "settings.enabled",
+          "stripes-core.settings.read"
         ],
         "visible": false
       },
