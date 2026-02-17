@@ -130,7 +130,7 @@
     "instance.hrid": "Біб.запис (інстанс) - HRID",
     "instance.source": "Біб.запис (інстанс) - Джерело",
     "instance.editions": "Біб.запис (інстанс) - Видання",
-    "instance.subjects": "Біб.запис (інстанс) - Предмети",
+    "instance.subjects": "Біб.запис (інстанс) - Предметні рубрики",
     "instance.languages": "Біб.запис (інстанс) - Мова",
     "instance.title": "Біб.запис (інстанс) - Назва ресурсу",
     "instance.metadata.createdDate": "Біб.запис (інстанс) - Дата створення",
