@@ -8,6 +8,7 @@
 * Update modal messages related to deleting job profiles. Refs UIDEXP-417.
 * Update deleting of mapping profiles. Refs UIDEXP-418.
 * Include universal read-only permissions. Refs UIDEXP-410.
+* Dependency correction: bump `@folio/stripes` peer to v7, as the dev-dep was in UIDEXP-405. Refs UIDEXP-421.
 
 ## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.2.0...v7.0.0)
