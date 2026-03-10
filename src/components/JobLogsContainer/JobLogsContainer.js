@@ -143,7 +143,7 @@ export const JobLogsContainer = props => {
       {
         status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
         fileName: record => getFileNameField(record),
-        runBy: record => getFullName(record.runBy),
+        runBy: record => getFullName({ personal: record.runBy }),
         totalRecords: record => {
           return intl.formatNumber(record.progress?.total);
         },

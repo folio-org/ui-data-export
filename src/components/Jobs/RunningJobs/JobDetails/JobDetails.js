@@ -54,7 +54,7 @@ const JobDetails = props => {
             <span data-test-running-job-triggered-by>
               <FormattedMessage
                 id="ui-data-export.triggeredBy"
-                values={{ userName: getFullName(runBy) }}
+                values={{ userName: getFullName({ personal: runBy }) }}
               />
             </span>
           )
