@@ -58,7 +58,6 @@
   "dependencies": {
     "@folio/stripes-acq-components": "^7.0.0",
     "@folio/stripes-data-transfer-components": "^7.0.0",
-    "@folio/stripes-util": "^7.0.0",
     "classnames": "^2.2.5",
     "lodash": "^4.16.4",
     "prop-types": "^15.6.0",
