@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { getFullName } from '@folio/stripes-util';
+import { getFullName } from '@folio/stripes/util';
 import classNames from 'classnames';
 import { get } from 'lodash';
 

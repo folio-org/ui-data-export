@@ -19,7 +19,7 @@ import {
   Callout,
 } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
-import { getFullName } from '@folio/stripes-util';
+import { getFullName } from '@folio/stripes/util';
 
 import { useTimeFormatter } from '@folio/stripes-data-transfer-components/lib/utils';
 import {
