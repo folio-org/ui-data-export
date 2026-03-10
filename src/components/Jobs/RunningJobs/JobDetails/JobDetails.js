@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { getFullName } from '@folio/stripes-util';
 import classNames from 'classnames';
 import { get } from 'lodash';
 
@@ -53,7 +54,7 @@ const JobDetails = props => {
             <span data-test-running-job-triggered-by>
               <FormattedMessage
                 id="ui-data-export.triggeredBy"
-                values={{ userName: `${runBy.firstName} ${runBy.lastName}` }}
+                values={{ userName: getFullName(runBy) }}
               />
             </span>
           )

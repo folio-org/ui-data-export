@@ -19,6 +19,7 @@ import {
   Callout,
 } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
+import { getFullName } from '@folio/stripes-util';
 
 import { useTimeFormatter } from '@folio/stripes-data-transfer-components/lib/utils';
 import {
@@ -142,12 +143,7 @@ export const JobLogsContainer = props => {
       {
         status: record => intl.formatMessage({ id: `ui-data-export.jobStatus.${camelCase(record.status)}` }),
         fileName: record => getFileNameField(record),
-        runBy: record => {
-          const firstName = record.runBy?.firstName || '';
-          const lastName = record.runBy?.lastName || '';
-
-          return `${firstName} ${lastName}`.trim();
-        },
+        runBy: record => getFullName(record.runBy),
         totalRecords: record => {
           return intl.formatNumber(record.progress?.total);
         },
