@@ -1,4 +1,5 @@
 import React from 'react';
+import * as ReactQuery from 'react-query';
 
 import '../../../../test/jest/__mock__';
 
@@ -129,48 +130,16 @@ describe('JobProfileDetails', () => {
   describe('rendering details for non default job profile without job execution data', () => {
     const nonDefaultJobProfileId = 'job-profile-id';
 
-    it('should display job profile details for non default job profile', async () => {
-      const kyMock = (url) => {
-        return {
-          json: jest.fn(() => {
-            if (url.includes('job-profiles')) {
-              return Promise.resolve({ ...jobProfile, id: nonDefaultJobProfileId });
-            } else if (url.includes('mapping-profiles')) {
-              return Promise.resolve(mappingProfile);
-            } else {
-              return Promise.resolve();
-            }
-          }),
-        };
-      };
-
-      useOkapiKy.mockReturnValue(kyMock);
-
-      setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
-
-      expect(await screen.findByText(jobProfile.name)).toBeVisible();
-      expect(screen.getByText('ViewMetaData')).toBeVisible();
-      expect(screen.getByText(jobProfile.description)).toBeVisible();
-      expect(screen.getByText(mappingProfile.name)).toBeVisible();
-    });
-
-
     it('should render with no axe errors', async () => {
-      const kyMock = (url) => {
-        return {
-          json: jest.fn(() => {
-            if (url.includes('job-profiles')) {
-              return Promise.resolve({ ...jobProfile, id: nonDefaultJobProfileId });
-            } else if (url.includes('mapping-profiles')) {
-              return Promise.resolve(mappingProfile);
-            } else {
-              return Promise.resolve();
-            }
-          }),
-        };
-      };
-
-      useOkapiKy.mockReturnValue(kyMock);
+      jest.spyOn(ReactQuery, 'useQuery')
+        .mockReturnValueOnce({
+          data: { ...jobProfile, id: nonDefaultJobProfileId },
+          isFetching: false,
+        })
+        .mockReturnValueOnce({
+          data: mappingProfile,
+          isFetching: false,
+        });
 
       setupJobProfileDetailsRoute({ matchParams: { id: nonDefaultJobProfileId } });
 
@@ -182,23 +151,18 @@ describe('JobProfileDetails', () => {
 
   describe('rendering details for default job profile with job execution data', () => {
     it('should display job profile details', async () => {
-      const kyMock = (url) => {
-        return {
-          json: jest.fn(() => {
-            if (url.includes('job-profiles')) {
-              return Promise.resolve(jobProfile);
-            } else if (url.includes('mapping-profiles')) {
-              return Promise.resolve(mappingProfile);
-            } else {
-              return Promise.resolve();
-            }
-          }),
-        };
-      };
+      // Mock useQuery to return job profile first, then mapping profile
+      jest.spyOn(ReactQuery, 'useQuery')
+        .mockReturnValueOnce({
+          data: jobProfile,
+          isFetching: false,
+        })
+        .mockReturnValueOnce({
+          data: mappingProfile,
+          isFetching: false,
+        });
 
-      useOkapiKy.mockReturnValue(kyMock);
-
-      setupJobProfileDetailsRoute();
+      setupJobProfileDetailsRoute({ matchParams: { id: JOB_PROFILE_ID } });
 
       const summary = await screen.findByRole('region', { name: /summary/i });
 

@@ -45,6 +45,7 @@ export const ProfileDetails = props => {
 
   const stripes = useStripes();
   const hasOnlyViewPerms = stripes.hasPerm('ui-data-export.settings.view') && !stripes.hasPerm('ui-data-export.settings.edit');
+  const paneTitle = isLoading ? <Preloader size="medium" /> : profile?.name;
 
   const renderActionMenu = useCallback(({ onToggle }) => {
     return (
@@ -85,7 +86,7 @@ export const ProfileDetails = props => {
     <FullScreenView
       id={`${type}-profile-details`}
       contentLabel={intl.formatMessage({ id: `ui-data-export.${type}Profiles.newProfile` })}
-      paneTitle={profile?.name}
+      paneTitle={paneTitle}
       actionMenu={!isLoading && !hasOnlyViewPerms && renderActionMenu}
       onCancel={onCancel}
     >
