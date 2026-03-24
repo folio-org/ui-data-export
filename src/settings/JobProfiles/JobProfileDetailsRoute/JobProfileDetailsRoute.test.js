@@ -253,7 +253,7 @@ describe('JobProfileDetails', () => {
       setupJobProfileDetailsRoute({ matchParams: { id: AUTHORITY_JOB_PROFILE_ID } });
 
       await waitFor(() => {
-        expect(screen.getByText(authorityJobProfile.name)).toBeVisible();
+        expect(screen.getAllByText(authorityJobProfile.name)[0]).toBeVisible();
       });
 
       const actionButton = screen.queryByText('stripes-components.paneMenuActionsToggleLabel');
@@ -292,7 +292,7 @@ describe('JobProfileDetails', () => {
       setupJobProfileDetailsRoute({ matchParams: { id: linkedDataJobProfile.id } });
 
       await waitFor(() => {
-        expect(screen.getByText(linkedDataJobProfile.name)).toBeVisible();
+        expect(screen.getAllByText(linkedDataJobProfile.name)[0]).toBeVisible();
       });
 
       const actionButton = screen.queryByText('stripes-components.paneMenuActionsToggleLabel');
