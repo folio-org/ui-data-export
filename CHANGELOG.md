@@ -10,6 +10,7 @@
 * Include universal read-only permissions. Refs UIDEXP-410.
 * Dependency correction: bump `@folio/stripes` peer to v7, as the dev-dep was in UIDEXP-405. Refs UIDEXP-421.
 * Make name of the User triggered export under "Running" accordion consistent to the User name in "Run by" column. Refs UIDEXP-422.
+* Prevent duplication of default profiles for authority records. Refs UIDEXP-424.
 
 ## [7.0.0](https://github.com/folio-org/ui-data-export/tree/v7.0.0) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/ui-data-export/compare/v6.2.0...v7.0.0)
