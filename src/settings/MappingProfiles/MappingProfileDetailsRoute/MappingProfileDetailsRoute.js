@@ -9,7 +9,7 @@ import { stripesConnect, TitleManager } from '@folio/stripes/core';
 
 import { useIntl } from 'react-intl';
 import { MappingProfileDetails } from '../MappingProfileDetails';
-import { buildShouldRefreshHandler } from '../../../utils';
+import { buildShouldRefreshHandler, hasHiddenActionsRecordType } from '../../../utils';
 import { mappingProfileShape } from '../shapes';
 
 const MappingProfileDetailsRoute = ({
@@ -28,6 +28,7 @@ const MappingProfileDetailsRoute = ({
   // TODO: try `useManifest` hook once it is ready to avoid that
   const mappingProfileRecord = find([get(mappingProfile, 'records.0', {})], { id: params.id });
   const isDefaultProfile = mappingProfileRecord?.default;
+  const isActionsHidden = hasHiddenActionsRecordType(mappingProfileRecord?.recordTypes) && isDefaultProfile;
   const intl = useIntl();
 
   return (
@@ -36,6 +37,7 @@ const MappingProfileDetailsRoute = ({
         allTransformations={allTransformations}
         mappingProfile={mappingProfileRecord}
         isDefaultProfile={isDefaultProfile}
+        isActionsHidden={isActionsHidden}
         isLoading={!mappingProfileRecord}
         onEdit={() => history.push(`/settings/data-export/mapping-profiles/edit/${params.id}${location.search}`)}
         onDuplicate={() => history.push(`/settings/data-export/mapping-profiles/duplicate/${params.id}${location.search}`)}

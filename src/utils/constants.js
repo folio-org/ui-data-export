@@ -134,3 +134,12 @@ export const PAGINATION_CONFIG = {
   limit: 100,
   offset: 0,
 };
+
+// Record types for which the Actions menu should be hidden on profile details
+// (profiles that don't support duplication in the Trillium release)
+export const HIDDEN_ACTIONS_RECORD_TYPES = ['AUTHORITY', 'LINKED_DATA'];
+
+export const hasHiddenActionsRecordType = (recordTypes = []) => {
+  return recordTypes.some(type => HIDDEN_ACTIONS_RECORD_TYPES.includes(type));
+};
+

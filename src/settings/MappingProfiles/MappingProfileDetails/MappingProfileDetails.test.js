@@ -44,6 +44,7 @@ const MappingProfileDetailsContainer = ({
   allTransformations = [],
   mappingProfile = mappingProfileWithTransformations,
   isDefaultProfile = false,
+  isActionsHidden = false,
   isLoading = false,
   onCancel = noop,
   onEdit = noop,
@@ -69,6 +70,7 @@ const MappingProfileDetailsContainer = ({
         stripes={stripes}
         mappingProfile={mappingProfile}
         isDefaultProfile={isDefaultProfile}
+        isActionsHidden={isActionsHidden}
         onCancel={onCancel}
         onEdit={onEdit}
         onDelete={onDelete}
@@ -248,6 +250,24 @@ describe('MappingProfileDetails', () => {
       translationsProperties);
 
       expect(container.querySelector('[data-test-preloader]')).toBeVisible();
+    });
+  });
+
+  describe('rendering details for a mapping profile with hidden actions', () => {
+    const renderMappingProfileWithHiddenActions = () => renderWithIntl(
+      <MappingProfileDetailsContainer
+        allTransformations={allMappingProfilesTransformations}
+        isDefaultProfile
+        isActionsHidden
+      />,
+      translationsProperties
+    );
+
+    it('should not display the actions menu button', () => {
+      const { container } = renderMappingProfileWithHiddenActions();
+      const actionButton = container.querySelector('[data-test-pane-header-actions-button]');
+
+      expect(actionButton).toBeNull();
     });
   });
 });

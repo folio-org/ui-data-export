@@ -189,4 +189,31 @@ describe('JobProfileDetails', () => {
       expect(document.querySelector('[data-test-preloader]')).toBeVisible();
     });
   });
+
+  describe('rendering details for a job profile with hidden actions', () => {
+    const renderJobProfileWithHiddenActions = () => {
+      renderWithIntl(
+        <SettingsComponentBuilder>
+          <JobProfileDetails
+            stripes={stripes}
+            jobProfile={jobProfile}
+            mappingProfile={mappingProfile}
+            isDefaultProfile
+            isActionsHidden
+            onCancel={noop}
+            onDelete={noop}
+          />
+        </SettingsComponentBuilder>,
+        translationsProperties
+      );
+    };
+
+    it('should not display the actions menu button', () => {
+      renderJobProfileWithHiddenActions();
+
+      const actionButton = screen.queryByText('stripes-components.paneMenuActionsToggleLabel');
+
+      expect(actionButton).toBeNull();
+    });
+  });
 });

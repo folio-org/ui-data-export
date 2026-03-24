@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
+import { useIntl } from 'react-intl';
 
 import { TitleManager, useOkapiKy } from '@folio/stripes/core';
 
-import { useIntl } from 'react-intl';
 import { JobProfileDetails } from '../JobProfileDetails';
+import { hasHiddenActionsRecordType } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   mutator: { jobProfile: { DELETE } },
@@ -27,6 +28,8 @@ const JobProfileDetailsRoute = ({
   );
 
   const isDefaultProfile = jobProfileRecord?.default;
+  const isActionsHidden = hasHiddenActionsRecordType(mappingProfileRecord?.recordTypes) && isDefaultProfile;
+
   const handleCancel = useCallback(() => {
     history.push(`/settings/data-export/job-profiles${location.search}`);
   }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -37,6 +40,7 @@ const JobProfileDetailsRoute = ({
         jobProfile={jobProfileRecord}
         mappingProfile={mappingProfileRecord}
         isDefaultProfile={isDefaultProfile}
+        isActionsHidden={isActionsHidden}
         isLoading={!jobProfileRecord || !mappingProfileRecord}
         onCancel={handleCancel}
         onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}${location.search}`); }}

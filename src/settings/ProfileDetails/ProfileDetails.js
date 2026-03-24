@@ -17,6 +17,7 @@ import { JobProfileDeleteModal, MappingProfileDeleteModal } from './DeleteModals
 
 export const ProfileDetails = props => {
   const {
+    isActionsHidden = false,
     profile,
     isLoading,
     isDefaultProfile,
@@ -86,7 +87,7 @@ export const ProfileDetails = props => {
       id={`${type}-profile-details`}
       contentLabel={intl.formatMessage({ id: `ui-data-export.${type}Profiles.newProfile` })}
       paneTitle={profile?.name}
-      actionMenu={!isLoading && !hasOnlyViewPerms && renderActionMenu}
+      actionMenu={!isLoading && !hasOnlyViewPerms && !isActionsHidden && renderActionMenu}
       onCancel={onCancel}
     >
       {isLoading
@@ -104,6 +105,7 @@ export const ProfileDetails = props => {
 
 ProfileDetails.propTypes = {
   isDefaultProfile: PropTypes.bool.isRequired,
+  isActionsHidden: PropTypes.bool,
   profile: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   children: PropTypes.node,

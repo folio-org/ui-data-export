@@ -5,7 +5,7 @@ import '../../../../test/jest/__mock__';
 import Pretender from 'pretender';
 import { noop } from 'lodash';
 import { useOkapiKy } from '@folio/stripes/core';
-import { screen, within } from '@testing-library/react';
+import { screen, within, waitFor } from '@testing-library/react';
 
 import { renderWithIntl } from '@folio/stripes-data-transfer-components/test/jest/helpers';
 import userEvent from '@testing-library/user-event';
@@ -216,6 +216,88 @@ describe('JobProfileDetails', () => {
       ];
 
       labelsAndValues.forEach(el => expect(within(summary).getByText(el)).toBeVisible());
+    });
+  });
+
+  describe('rendering details for an authority/linked data job profile', () => {
+    const AUTHORITY_JOB_PROFILE_ID = 'authority-job-profile-id';
+
+    it('should hide the actions menu for profiles with authority record type', async () => {
+      const authorityMappingProfile = {
+        ...mappingProfile,
+        recordTypes: ['AUTHORITY'],
+      };
+
+      const authorityJobProfile = {
+        ...jobProfile,
+        id: AUTHORITY_JOB_PROFILE_ID,
+        name: 'Default authority export job profile',
+        default: true,
+        mappingProfileId: authorityMappingProfile.id,
+      };
+
+      const kyMock = (url) => ({
+        json: jest.fn(() => {
+          if (url.includes('job-profiles')) {
+            return Promise.resolve(authorityJobProfile);
+          } else if (url.includes('mapping-profiles')) {
+            return Promise.resolve(authorityMappingProfile);
+          }
+
+          return Promise.resolve();
+        }),
+      });
+
+      useOkapiKy.mockReturnValue(kyMock);
+
+      setupJobProfileDetailsRoute({ matchParams: { id: AUTHORITY_JOB_PROFILE_ID } });
+
+      await waitFor(() => {
+        expect(screen.getByText(authorityJobProfile.name)).toBeVisible();
+      });
+
+      const actionButton = screen.queryByText('stripes-components.paneMenuActionsToggleLabel');
+
+      expect(actionButton).toBeNull();
+    });
+
+    it('should hide the actions menu for profiles with linked data record type', async () => {
+      const linkedDataMappingProfile = {
+        ...mappingProfile,
+        recordTypes: ['LINKED_DATA'],
+      };
+
+      const linkedDataJobProfile = {
+        ...jobProfile,
+        id: 'linked-data-job-profile-id',
+        name: 'Default linked data export job profile',
+        default: true,
+        mappingProfileId: linkedDataMappingProfile.id,
+      };
+
+      const kyMock = (url) => ({
+        json: jest.fn(() => {
+          if (url.includes('job-profiles')) {
+            return Promise.resolve(linkedDataJobProfile);
+          } else if (url.includes('mapping-profiles')) {
+            return Promise.resolve(linkedDataMappingProfile);
+          }
+
+          return Promise.resolve();
+        }),
+      });
+
+      useOkapiKy.mockReturnValue(kyMock);
+
+      setupJobProfileDetailsRoute({ matchParams: { id: linkedDataJobProfile.id } });
+
+      await waitFor(() => {
+        expect(screen.getByText(linkedDataJobProfile.name)).toBeVisible();
+      });
+
+      const actionButton = screen.queryByText('stripes-components.paneMenuActionsToggleLabel');
+
+      expect(actionButton).toBeNull();
     });
   });
 });
