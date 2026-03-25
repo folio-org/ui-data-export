@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
+import { useIntl } from 'react-intl';
 
 import { TitleManager, useOkapiKy } from '@folio/stripes/core';
 
-import { useIntl } from 'react-intl';
 import { JobProfileDetails } from '../JobProfileDetails';
+import { hasHiddenActionsRecordType } from '../../../utils';
 
 const JobProfileDetailsRoute = ({
   mutator: { jobProfile: { DELETE } },
@@ -33,6 +34,7 @@ const JobProfileDetailsRoute = ({
   );
 
   const isDefaultProfile = jobProfileRecord?.default;
+  const isActionsHidden = hasHiddenActionsRecordType(mappingProfileRecord?.recordTypes) && isDefaultProfile;
   const isLoading = isJobProfileFetching || isMappingProfileFetching || !jobProfileRecord || !mappingProfileRecord;
   const handleCancel = useCallback(() => {
     history.push(`/settings/data-export/job-profiles${location.search}`);
@@ -44,6 +46,7 @@ const JobProfileDetailsRoute = ({
         jobProfile={jobProfileRecord}
         mappingProfile={mappingProfileRecord}
         isDefaultProfile={isDefaultProfile}
+        isActionsHidden={isActionsHidden}
         isLoading={isLoading}
         onCancel={handleCancel}
         onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}${location.search}`); }}
