@@ -17,11 +17,17 @@ const JobProfileDetailsRoute = ({
   const ky = useOkapiKy();
   const intl = useIntl();
 
-  const { data: jobProfileRecord } = useQuery(
+  const {
+    data: jobProfileRecord,
+    isFetching: isJobProfileFetching,
+  } = useQuery(
     ['data-export', 'job-profile', match.params.id],
-    () => ky(`data-export/job-profiles/${match.params.id}`).json()
+    () => ky(`data-export/job-profiles/${match.params.id}`).json(),
   );
-  const { data: mappingProfileRecord } = useQuery(
+  const {
+    data: mappingProfileRecord,
+    isFetching: isMappingProfileFetching,
+  } = useQuery(
     ['data-export', 'mapping-profile', jobProfileRecord?.mappingProfileId],
     () => ky(`data-export/mapping-profiles/${jobProfileRecord?.mappingProfileId}`).json(),
     { enabled: Boolean(jobProfileRecord?.mappingProfileId) }
@@ -29,7 +35,7 @@ const JobProfileDetailsRoute = ({
 
   const isDefaultProfile = jobProfileRecord?.default;
   const isActionsHidden = hasHiddenActionsRecordType(mappingProfileRecord?.recordTypes) && isDefaultProfile;
-
+  const isLoading = isJobProfileFetching || isMappingProfileFetching || !jobProfileRecord || !mappingProfileRecord;
   const handleCancel = useCallback(() => {
     history.push(`/settings/data-export/job-profiles${location.search}`);
   }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -41,7 +47,7 @@ const JobProfileDetailsRoute = ({
         mappingProfile={mappingProfileRecord}
         isDefaultProfile={isDefaultProfile}
         isActionsHidden={isActionsHidden}
-        isLoading={!jobProfileRecord || !mappingProfileRecord}
+        isLoading={isLoading}
         onCancel={handleCancel}
         onEdit={() => { history.push(`/settings/data-export/job-profiles/edit/${match.params.id}${location.search}`); }}
         onDuplicate={() => { history.push(`/settings/data-export/job-profiles/duplicate/${match.params.id}${location.search}`); }}
