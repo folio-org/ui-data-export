@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+## [7.1.0](https://github.com/folio-org/ui-data-export/tree/v7.1.0) (2026-04-15)
+
 * Include metadata in edit form of data export mapping profile. Refs UIDEXP-408.
 * Eliminate identifier selection for exports with default profiles. Refs UIDEXP-413.
 * Locking and unlocking mapping profile. Refs UIDEXP-414.
