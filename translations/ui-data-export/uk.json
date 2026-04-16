@@ -312,9 +312,9 @@
     "error.instance.noAffiliation": "{value1} – користувач {value2} не пов’язаний з даними клієнта/клієнтів (тенантів) {value3} та записи даних про фонди (холдінгси) та примірники для цього клієнта (тенанта) були пропущені під час експорту.",
     "error.holdings.noAffiliation": "{value1} – користувач {value2} не має афіліації (приналежності до організації) для {value3} і записи, що стосуються цього клієнта (тенанта) та його даних про фонди (холдінгси) були пропущені під час експорту.",
     "error.holdings.noPermission": "{value1} – користувач {value2} не має дозволів на доступ до запису даних про фонди (холдінгси) в клієнті (тенанті) даних {value3}.",
-    "locked": "Lock profile",
+    "locked": "Заблокувати профіль",
     "deleted": "видалено",
-    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "The job profile <b>{name}</b> and all files created by export jobs that used this profile will be permanently deleted.",
-    "mappingProfiles.delete.cannotDeleteModal.title": "Cannot delete mapping profile",
-    "mappingProfiles.delete.cannotDeleteModal.message": "This mapping profile cannot be deleted, as it is used in the following job profiles: <b>{jobProfilesNames}</b>."
+    "jobProfiles.delete.confirmationModal.messageUsedInLogs": "Профіль завдання <b>{name}</b> і всі файли, створені завданнями експорту, які використовували цей профіль, будуть видалені назавжди.",
+    "mappingProfiles.delete.cannotDeleteModal.title": "Неможливо видалити профіль мапування",
+    "mappingProfiles.delete.cannotDeleteModal.message": "Цей профіль мапування неможливо видалити, оскільки він використовується такими профілями завдань: <b>{jobProfilesNames}</b>."
 }
