@@ -2,6 +2,8 @@
 
 ## IN PROGRESS
 
+* Align text by left side in mapping profiles form. Refs UIDEXP-414.
+
 ## [7.1.0](https://github.com/folio-org/ui-data-export/tree/v7.1.0) (2026-04-15)
 
 * Include metadata in edit form of data export mapping profile. Refs UIDEXP-408.

@@ -110,7 +110,7 @@ const MappingProfilesFormComponent = (props) => {
           <AccordionSet id="mapping-profiles-form-accordions">
             <Accordion label={<FormattedMessage id="ui-data-export.summary" />}>
               {metadata && <ViewMetaData metadata={metadata} />}
-              <Row end="xs">
+              <Row start="xs">
                 <Col xs={10}>
                   <div data-test-mapping-profile-form-name>
                     <Field
